@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -18,6 +18,7 @@
                 <outlet property="dateTime" destination="jlz-ag-Rzg" id="eN1-uP-GTb"/>
                 <outlet property="displayPiture" destination="uGM-ah-bNv" id="fwa-Hw-PVo"/>
                 <outlet property="duration" destination="HGe-wL-max" id="NFz-Gd-qMz"/>
+                <outlet property="gradiantView" destination="SnY-i5-x5x" id="qb1-9P-yfZ"/>
                 <outlet property="qiView" destination="pCX-Kl-can" id="65z-ax-0Mb"/>
                 <outlet property="quickDescription" destination="fAp-ce-CRi" id="O0V-3n-0mb"/>
                 <outlet property="quickTitle" destination="ItY-yF-83P" id="yrI-aE-yDi"/>
@@ -158,14 +159,14 @@
                                         <constraint firstAttribute="height" constant="65" id="zz2-Ku-ADD"/>
                                     </constraints>
                                 </view>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ItY-yF-83P">
-                                    <rect key="frame" x="8" y="26" width="20" height="30.5"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chatgy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ItY-yF-83P">
+                                    <rect key="frame" x="8" y="25" width="73.5" height="30.5"/>
                                     <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="22"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="9uV-0Q-Inc">
-                                    <rect key="frame" x="8" y="51" width="80" height="20"/>
+                                    <rect key="frame" x="8" y="53" width="80" height="20"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="adventure" translatesAutoresizingMaskIntoConstraints="NO" id="Gqz-ch-f7y">
                                             <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
@@ -194,8 +195,8 @@
                                         <constraint firstAttribute="height" constant="20" id="j9g-fE-JVS"/>
                                     </constraints>
                                 </stackView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jlz-ag-Rzg">
-                                    <rect key="frame" x="8" y="13.5" width="12" height="19.5"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Feb 2016" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jlz-ag-Rzg">
+                                    <rect key="frame" x="8" y="6.5" width="59.5" height="19.5"/>
                                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
@@ -205,12 +206,12 @@
                             <constraints>
                                 <constraint firstAttribute="bottom" secondItem="pCX-Kl-can" secondAttribute="bottom" constant="-20" id="8qo-rv-1t9"/>
                                 <constraint firstAttribute="trailing" secondItem="pCX-Kl-can" secondAttribute="trailing" constant="20" id="A1E-zq-7hp"/>
-                                <constraint firstItem="jlz-ag-Rzg" firstAttribute="top" secondItem="ItY-yF-83P" secondAttribute="bottom" constant="-43" id="A2R-96-VY3"/>
+                                <constraint firstItem="jlz-ag-Rzg" firstAttribute="top" secondItem="ItY-yF-83P" secondAttribute="bottom" constant="-49" id="A2R-96-VY3"/>
                                 <constraint firstItem="ItY-yF-83P" firstAttribute="leading" secondItem="BIF-HR-asB" secondAttribute="leading" constant="8" id="A5g-Ow-Ydp"/>
                                 <constraint firstItem="jlz-ag-Rzg" firstAttribute="leading" secondItem="BIF-HR-asB" secondAttribute="leading" constant="8" id="AdR-Ig-bUF"/>
                                 <constraint firstAttribute="height" constant="78" id="Cg1-2U-TN1"/>
-                                <constraint firstItem="ItY-yF-83P" firstAttribute="top" secondItem="BIF-HR-asB" secondAttribute="top" constant="26" id="UUs-4M-lFZ"/>
-                                <constraint firstItem="9uV-0Q-Inc" firstAttribute="top" secondItem="jlz-ag-Rzg" secondAttribute="bottom" constant="18" id="YQg-KS-e4B"/>
+                                <constraint firstItem="ItY-yF-83P" firstAttribute="top" secondItem="BIF-HR-asB" secondAttribute="top" constant="25" id="UUs-4M-lFZ"/>
+                                <constraint firstItem="9uV-0Q-Inc" firstAttribute="top" secondItem="jlz-ag-Rzg" secondAttribute="bottom" constant="27" id="YQg-KS-e4B"/>
                                 <constraint firstItem="9uV-0Q-Inc" firstAttribute="leading" secondItem="BIF-HR-asB" secondAttribute="leading" constant="8" id="i9X-5p-v2c"/>
                             </constraints>
                         </view>

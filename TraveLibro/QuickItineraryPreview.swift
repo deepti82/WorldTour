@@ -24,14 +24,18 @@ class QuickItineraryPreview: UIView {
     @IBOutlet weak var quickDescription: UITextView!
     @IBOutlet weak var typeGroup: UIStackView!
     @IBOutlet var quickType: [UIImageView]!
+    @IBOutlet weak var gradiantView: UIView!
     var horizontal: HorizontalLayout!
     var cityScroll:UILabel!
     @IBOutlet weak var cityScroller: UIScrollView!
     var json:JSON!
+    var gradiantLayer: CAGradientLayer!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib()
+        
+        
         
         self.qiView.layer.cornerRadius = 5
         self.qiView.clipsToBounds = true
@@ -66,6 +70,15 @@ class QuickItineraryPreview: UIView {
             self.countryScroll.contentSize = CGSize(width: self.horizontal.frame.width, height: self.horizontal.frame.height)
         }
     }
+    
+    func getGradiant() {
+        gradiantLayer = CAGradientLayer()
+        gradiantLayer.frame = displayPiture.bounds
+        gradiantLayer.colors = [UIColor.black, UIColor.white]
+        displayPiture.layer.addSublayer(gradiantLayer)
+    }
+    
+    
     
     func generateCity () {
 

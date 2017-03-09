@@ -20,6 +20,7 @@ class QuickItineraryPreviewViewController: UIViewController {
         //        self.view.addSubview(prev)
         
         let getImageUrl = adminUrl + "upload/readFile?file=" + currentUser["profilePicture"].stringValue + "&width=100"
+        prev.getGradiant()
         prev.userPhoto.hnk_setImageFromURL(URL(string: getImageUrl)!)
         if selectedQuickI != "" {
             if quickItinery["coverPhoto"] != nil {
