@@ -67,7 +67,7 @@ class startOTGView: UIView {
         }
         startJourneyButton.layer.cornerRadius = 5
         
-        bonVoyageLabel.animation.rotate(350).makeX(238).animate(0.1)
+        bonVoyageLabel.animation.rotate(350).animate(0.1)
         
         transparentOrangeButton(startJourneyButton)
         transparentOrangeView(cityDetails)

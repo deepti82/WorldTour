@@ -45,6 +45,8 @@ class QuickIteneraryTwo: UIViewController {
     func typeButtonPressed(_ sender: UIButton!){
         if sender.tag == 0 {
             sender.setBackgroundImage(UIImage(named: "orangebox"), for: .normal)
+            sender.imageView?.contentMode = .scaleAspectFit
+            sender.clipsToBounds = true
             eachButton.append(sender.title(for: .application)!)
             sender.tag = 1
         }
@@ -52,6 +54,8 @@ class QuickIteneraryTwo: UIViewController {
             sender.setBackgroundImage(UIImage(named: "bluebox"), for: .normal)
             eachButton = eachButton.filter({$0 != sender.currentTitle})
             sender.tag = 0
+            sender.imageView?.contentMode = .scaleAspectFit
+            sender.clipsToBounds = true
         }
         quickItinery["itineraryType"] = JSON(eachButton)
     }
