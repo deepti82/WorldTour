@@ -132,6 +132,7 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
                             checkIn.createProfileHeader(feed: post)
                             checkIn.activityFeed = self
                             self.uploadingView = UploadingToCloud(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 23))
+                            self.uploadingView.uploadText.text = "Uploading to My Life."
                             self.uploadingView.backgroundColor = endJourneyColor
 
                             self.layout.addSubview(checkIn)
