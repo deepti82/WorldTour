@@ -38,6 +38,16 @@ class TripPhotoHeader: UIView {
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view)
         timeLabel.text = String(format: "%C", faicon["clock"]!)
+        
+        let path = UIBezierPath(roundedRect:self.bounds,
+                                byRoundingCorners:[.bottomRight, .bottomLeft],
+                                cornerRadii: CGSize(width: 10, height:  10))
+        
+        let maskLayer = CAShapeLayer()
+        
+        maskLayer.path = path.cgPath
+        self.layer.mask = maskLayer
+        
     }
     
     func getDays(_ startDate: String, postDate: String) -> Int {
