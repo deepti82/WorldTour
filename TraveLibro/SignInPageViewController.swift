@@ -33,7 +33,7 @@ class SignInPageViewController: UIViewController {
         
         self.customNavigationBar(left: leftButton, right: nil)
         
-        pageView = SignInFullView(frame: CGRect(x: 0, y: 60, width: self.view.frame.size.width, height: self.view.frame.size.height - 60))
+        pageView = SignInFullView()
         self.view.addSubview(pageView)
         
         pageView.loginButton.addTarget(self, action: #selector(SignInPageViewController.gotoLogin(_:)), for: .touchUpInside)
@@ -93,7 +93,8 @@ class SignInPageViewController: UIViewController {
             
             self.title = "Login"
             
-            print("\n Existing user")
+            pageView.frame = CGRect(x: 0, y: 80, width: self.view.frame.size.width, height: self.view.frame.size.height - 80)
+            
             pageView.profileImage.isHidden = false
             pageView.messageLabel.isHidden = false
             pageView.requestLabel.isHidden = false
@@ -113,7 +114,8 @@ class SignInPageViewController: UIViewController {
             
             self.title = "Sign Up"
             
-            print("\n New user")
+            pageView.frame = CGRect(x: 0, y: -20, width: self.view.frame.size.width, height: self.view.frame.size.height)
+            
             pageView.profileImage.isHidden = true
             pageView.messageLabel.isHidden = true
             pageView.requestLabel.isHidden = true

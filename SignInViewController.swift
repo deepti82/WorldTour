@@ -252,6 +252,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
     
     func goToSignUp(_ sender: AnyObject) {
         print("storyboard: \(self.navigationController)")
+        loggedInUser = nil
         let signUpFullVC = storyboard?.instantiateViewController(withIdentifier: "signUpTwo") as! SignInPageViewController
         self.navigationController?.pushViewController(signUpFullVC, animated: true)
     }
