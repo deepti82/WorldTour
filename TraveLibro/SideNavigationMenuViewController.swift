@@ -67,6 +67,7 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         profile.waves.isHidden = true
         makeSideNavigation(profile.image)
 
+        sideTableView.tableFooterView = UIView(frame: CGRect.zero)
         updateProfilePicture()
         
         let settingsVC = storyboard!.instantiateViewController(withIdentifier: "UserProfileSettings") as! UserProfileSettingsViewController

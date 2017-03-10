@@ -78,11 +78,8 @@ class ActivityProfileHeader: UIView {
             category.isHidden = true
         }
         
-        if feed["following"].boolValue {
-            followButton.setTitle("Following", for: .normal)
-        }else{
-            followButton.setTitle("Follow", for: .normal)
-        }
+        setFollowButtonTitle(button: followButton, followType: feed["following"].intValue)
+        
         if((currentUser != nil) && feed["user"]["_id"].stringValue == currentUser["_id"].stringValue) {
             followButton.isHidden = true
         }
@@ -97,7 +94,7 @@ class ActivityProfileHeader: UIView {
     }
     
     @IBAction func followClick(_ sender: UIButton) {
-        print("in follow clicked \(currentFeed)")
+        
         if currentUser != nil {
             if followButton.titleLabel?.text == "Follow" {
                 request.followUser(currentUser["_id"].string!, followUserId: currentFeed["user"]["_id"].stringValue, completion: {(response) in
@@ -112,9 +109,7 @@ class ActivityProfileHeader: UIView {
                         else if response["value"].bool! {
                             
                             print("response arrived!")
-                            self.followButton.setTitle("Following", for: .normal)
-                            
-                            
+                            setFollowButtonTitle(button: self.followButton, followType: response["data"]["responseValue"].intValue)
                         }
                         else {
                             
@@ -123,7 +118,8 @@ class ActivityProfileHeader: UIView {
                         }
                     })
                 })
-            }else{
+            }
+            else if followButton.titleLabel?.text == "Following" {
                 request.unfollow(currentUser["_id"].string!, unFollowId: currentFeed["user"]["_id"].stringValue, completion: {(response) in
                     DispatchQueue.main.async(execute: {
                         if response.error != nil {
@@ -134,7 +130,7 @@ class ActivityProfileHeader: UIView {
                         else if response["value"].bool! {
                             
                             print("response arrived!")
-                            self.followButton.setTitle("Follow", for: .normal)
+                            setFollowButtonTitle(button: self.followButton, followType: response["data"]["responseValue"].intValue)
                             
                         }
                         else {

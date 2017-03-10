@@ -980,7 +980,6 @@ class Navigation {
         do {
             
             let params = ["_id": unFollowId, "user": userId]
-            print(params)
             let opt = try HTTP.POST(adminUrl + "user/unFollowUser", parameters: params)
             var json = JSON(1);
             opt.start { response in
@@ -991,7 +990,6 @@ class Navigation {
                 else
                 {
                     json  = JSON(data: response.data)
-                    print(json)
                     completion(json)
                 }
             }

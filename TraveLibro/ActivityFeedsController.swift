@@ -48,9 +48,9 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         NotificationCenter.default.addObserver(self, selector: #selector(globalActivityFeedsController.demonote(_:)), name: NSNotification.Name(rawValue: "UPLOAD_ITINERARY"), object: nil)
-
         globalNavigationController = self.navigationController
     }
+    
     func demonote(_ notification: Notification) {
         print("notification called")
         if currentUser != nil{

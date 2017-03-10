@@ -158,10 +158,10 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
         cell.followerCountLabel.text = "Followers : " + cellData["followers_count"].stringValue
         
         cell.userBadgeImage.image = UIImage(named:cellData["userBadgeName"].stringValue.lowercased())
-        
-        if(currentUser != nil) {            
+                
+        if(currentUser != nil) {
             cell.followButton.tag = indexPath.row
-            cell.followButton.setTitle((cellData["following"].intValue == 0) ? "Follow" : "Following", for: .normal)
+            setFollowButtonTitle(button: cell.followButton, followType: cellData["following"].intValue)
         }
         else {
             cell.followButton.setTitle("Follow", for: .normal)

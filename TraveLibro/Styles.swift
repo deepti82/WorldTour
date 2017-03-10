@@ -591,6 +591,20 @@ func shouldShowBigImage(position: Int) -> Bool {
     }
 }
 
+func setFollowButtonTitle(button:UIButton, followType: Int) {
+    if followType == 1 {
+        button.setTitle("Following", for: .normal)
+    }
+    else if followType == 2 {
+        button.setTitle("Requested", for: .normal)
+    }
+    else if followType == 0 {
+        button.setTitle("Follow", for: .normal)
+    }
+}
+
+
+
 //LoadingOverlay.shared.showOverlay(self.view)
 ////To to long tasks
 //LoadingOverlay.shared.hideOverlayView()
