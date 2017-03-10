@@ -137,11 +137,6 @@ class UserProfileSettingsViewController: UIViewController, UITableViewDataSource
                 editMAMVC.whichView = "MAMView"
                 self.navigationController?.pushViewController(editMAMVC, animated: true)
                 break
-//            case 1:
-//                let editNewPswdVC = storyboard?.instantiateViewController(withIdentifier: "EditSettings") as! EditSettingsViewController
-//                editNewPswdVC.whichView = "NewPswdView"
-//                self.navigationController?.pushViewController(editNewPswdVC, animated: true)
-//                break
             case 1:
                 let dataUsageVC = storyboard?.instantiateViewController(withIdentifier: "SettingsVC") as! SettingsViewController
                 dataUsageVC.dataSourceOption = "dataUploadOptions"

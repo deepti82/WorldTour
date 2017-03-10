@@ -4,6 +4,7 @@ import Player
 import TwitterKit
 import SwiftGifOrigin
 import AVKit
+import TAPageControl
 
 var currentUser: JSON!
 var loggedInUser : JSON!
@@ -33,7 +34,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
     var player2:Player!
     var player3:Player!
     
-    var pageControl = UIPageControl()
+    var pageControl = TAPageControl()
     
     var videoHeight:CGFloat!
     var horizontal:HorizontalLayout!
@@ -74,11 +75,10 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         self.view.addSubview(videoLabel)
         
         
-        pageControl = UIPageControl()
+        pageControl = TAPageControl()
         pageControl.currentPage = showPage
-        pageControl.currentPageIndicatorTintColor = UIColor.white
-        pageControl.pageIndicatorTintColor = UIColor.darkGray
         pageControl.numberOfPages = 3
+        pageControl.contentMode = .center
         self.view.addSubview(pageControl)
         
         
@@ -135,7 +135,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         playBtn.center = imageView1.center
         
         videoToPlay()
-    }
+    }   
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -215,9 +215,9 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         signInFooter.signUp.addTarget(self, action: #selector(SignInViewController.goToSignUp(_:)), for: .touchUpInside)
         signInFooter.signInButton.addTarget(self, action: #selector(SignInViewController.loginButtonTapped(_:)), for: .touchUpInside)
         
-        pageControl.frame = CGRect(x: 0, y: signInFooter.frame.origin.y - 30, width: screenWidth, height: 30)
+        pageControl.frame = CGRect(x: self.view.center.x, y: signInFooter.frame.origin.y - 15, width: 60, height: 30)
         
-        toggleSoundButton.frame = CGRect(x: self.view.frame.maxX - 60, y: pageControl.frame.origin.y, width: 40, height: 32)
+        toggleSoundButton.frame = CGRect(x: self.view.frame.maxX - 60, y: signInFooter.frame.origin.y - 30, width: 40, height: 32)
         
         profileVC = self.storyboard?.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
         
@@ -262,10 +262,10 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         self.navigationController?.pushViewController(logInVC, animated: true)
     }
     
+    
     //MARK: - Player Delegates
     
     func playerReady(_ player: Player) {
-        print("\n Player ready called")
         loader.hideOverlayView()
         videoToPlay()
     }
@@ -274,7 +274,6 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         
         if playBtn != nil {
             let pageNumber = round(videoScrollView.contentOffset.x / videoScrollView.frame.size.width)
-            print("Player ended : \(pageNumber)")
             
             let i = Int(pageNumber)
             switch(i) {
@@ -329,7 +328,6 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
     }
     
     func playAgain(){
-        print("\n play Again")
         
         loader.showOverlay(self.view)
         
@@ -389,8 +387,6 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        print("scrollViewDidEndDecelerating")
-        
         self.player1.setUrl(NSURL(fileURLWithPath: (Bundle.main.path(forResource: "travellife", ofType:"mp4"))!) as URL)
         self.player2.setUrl(NSURL(fileURLWithPath: (Bundle.main.path(forResource: "locallife", ofType:"mp4"))!) as URL)
         self.player3.setUrl(NSURL(fileURLWithPath: (Bundle.main.path(forResource: "mylife", ofType:"mp4"))!) as URL)

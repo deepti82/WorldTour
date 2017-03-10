@@ -23,6 +23,7 @@ target 'TraveLibro' do
   pod 'SwiftGifOrigin', '~> 1.6.1'
   pod 'iCarousel', '~> 1.8'
   pod "SABlurImageView"
+  pod 'TAPageControl'
 end
 
 

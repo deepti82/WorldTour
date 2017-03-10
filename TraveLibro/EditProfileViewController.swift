@@ -299,8 +299,18 @@ class EditProfileViewController: UIViewController, UITableViewDataSource, UITabl
     //MARK: - Image Picker Delegate
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+        
+        print("\n\n Info : \(info)")
+        
+        var pickedImage = info[UIImagePickerControllerEditedImage] as? UIImage
+        if pickedImage != nil {
             pickerImage = pickedImage
+        }
+        else{
+            pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage
+            if pickedImage != nil {
+                pickerImage = pickedImage
+            }
         }
         
         if pickerImage != nil {
