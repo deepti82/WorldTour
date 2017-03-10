@@ -145,7 +145,6 @@
                         <constraint firstItem="iBj-3n-r4D" firstAttribute="top" secondItem="c9b-qI-EhI" secondAttribute="bottom" constant="2" id="c0f-Mv-fyG"/>
                         <constraint firstItem="c9b-qI-EhI" firstAttribute="leading" secondItem="gDE-6v-4jE" secondAttribute="leading" constant="16" id="kR3-MQ-f1z"/>
                         <constraint firstItem="ZKZ-QL-pIT" firstAttribute="leading" secondItem="gDE-6v-4jE" secondAttribute="leading" constant="16" id="mPC-0D-NpC"/>
-                        <constraint firstItem="ztF-ws-nNS" firstAttribute="top" secondItem="gDE-6v-4jE" secondAttribute="top" constant="11" id="rjL-yH-Qeg"/>
                         <constraint firstItem="ZKZ-QL-pIT" firstAttribute="top" secondItem="ztF-ws-nNS" secondAttribute="bottom" constant="1" id="xNE-9g-4gY"/>
                     </constraints>
                 </view>

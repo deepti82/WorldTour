@@ -31,7 +31,7 @@ class Rating: UIView {
         clockIcon.text = String(format: "%C", faicon["clock"]!)
         
         let path = UIBezierPath(roundedRect:self.bounds,
-                                byRoundingCorners:[.allCorners],
+                                byRoundingCorners:[.topLeft, .topRight, .bottomLeft, .bottomRight],
                                 cornerRadii: CGSize(width: 10, height:  10))
         
         let maskLayer = CAShapeLayer()

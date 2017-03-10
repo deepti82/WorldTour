@@ -18,7 +18,7 @@ var TLLoader = UIActivityIndicatorView()
 var userLocation: CLLocationCoordinate2D!
 var globalNewTLViewController:NewTLViewController!
 
-class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationManagerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIGestureRecognizerDelegate, UIScrollViewDelegate {
+class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, CLLocationManagerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIGestureRecognizerDelegate, UIScrollViewDelegate {
     
     var myJourney: JSON!
     var isJourney = false
@@ -1999,6 +1999,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     }
     
     
+        
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         otgView.locationLabel.resignFirstResponder()
         self.title = "On The Go"
@@ -2208,7 +2209,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 otgView.journeyCategoryTwo.image = UIImage(named: kindOfJourneyStack[1])
                 otgView.journeyCategoryTwo.isHidden = false
                 otgView.journeyCategoryThree.isHidden = false
-//                otgView.journeyCategoryThree.image = UIImage(named: kindOfJourneyStack[2])
+                otgView.journeyCategoryThree.image = UIImage(named: kindOfJourneyStack[2])
             }
             
         }

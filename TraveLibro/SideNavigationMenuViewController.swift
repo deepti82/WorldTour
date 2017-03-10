@@ -32,7 +32,7 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
     @IBOutlet weak var settingsButton: UIButton!
     @IBOutlet weak var userBadgeLabel: UILabel!
     @IBOutlet weak var loginLabel: UILabel!
-    @IBOutlet weak var backgroundImage: SABlurImageView!
+    @IBOutlet weak var backgroundImage: UIImageView!
     @IBOutlet weak var profileName: UILabel!
     @IBOutlet weak var profileView: UIView!
     @IBOutlet weak var profilePicture: UIImageView!
@@ -50,7 +50,7 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         super.viewDidLoad()
 
         loginLabel.isHidden = true
-        backgroundImage.addBlurEffect(80)
+//        backgroundImage.addBlurEffect(80)
 
         
 //        let bgImage = UIImageView(frame:self.view.frame)
@@ -149,7 +149,7 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
             }
             
             makeTLProfilePicture(profilePicture)
-            backgroundImage!.addBlurEffect(30, times: 1)
+//            backgroundImage!.addBlurEffect(30, times: 1)
         }
         else {
             profile.flag.isHidden = true

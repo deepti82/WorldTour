@@ -40,7 +40,7 @@ class TripPhotoHeader: UIView {
         timeLabel.text = String(format: "%C", faicon["clock"]!)
         
         let path = UIBezierPath(roundedRect:self.bounds,
-                                byRoundingCorners:[.bottomRight, .bottomLeft],
+                                byRoundingCorners:[.topRight, .topLeft],
                                 cornerRadii: CGSize(width: 10, height:  10))
         
         let maskLayer = CAShapeLayer()

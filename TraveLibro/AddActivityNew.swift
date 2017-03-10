@@ -245,10 +245,8 @@ class AddActivityNew: SpringView, UITextViewDelegate, PlayerDelegate, UITextFiel
     func textViewDidBeginEditing(_ textView: UITextView) {
         if thoughtsTextView.text == "Fill Me In..." {
             thoughtsTextView.text = ""
-            
         }
     }
-    
     
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
@@ -342,6 +340,7 @@ class AddActivityNew: SpringView, UITextViewDelegate, PlayerDelegate, UITextFiel
     }
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField == addLocationText{
+        newScroll.setContentOffset(CGPoint(x: 0, y: 250), animated: true)
         self.frame.origin.y = self.frame.origin.y
         }
     }
