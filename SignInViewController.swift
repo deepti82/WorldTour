@@ -98,8 +98,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         playBtn.imageView?.tintColor = mainBlueColor
         playBtn.setTitle(String(format: "%C",0xf144), for: .normal)
         playBtn.titleLabel?.font = UIFont(name: "FontAwesome", size: 65)        
-        playBtn.addTarget(self, action: #selector(self.playAgain), for: .touchUpInside)
-        playBtn.isHidden = true
+        playBtn.addTarget(self, action: #selector(self.playAgain), for: .touchUpInside)        
         self.view.addSubview(playBtn)
         
     }
@@ -107,6 +106,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = true
+        playBtn.isHidden = true
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -141,6 +141,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         super.viewWillDisappear(animated)
         self.navigationController?.isNavigationBarHidden = false
         showPage = pageControl.currentPage
+        destroyViews()
     }
     
     override func didReceiveMemoryWarning() {
@@ -148,6 +149,8 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
     }
     
     func loadData() {
+        
+        print("\n\n LoadData called \n\n")
         
         let videoWidth = videoScrollView.frame.width
         videoHeight = screenHeight
@@ -203,7 +206,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         imageView3.addSubview(self.player3.view)
         self.horizontal.addSubview(imageView3)
         
-        addToLayout();
+        addToLayout()        
         
         signInFooter = SignInToolbar(frame: CGRect(x: 0 , y: screenHeight - 80, width: screenWidth, height: 80))
         signInFooter.center = CGPoint(x: self.view.center.x, y: signInFooter.center.y)
@@ -224,6 +227,29 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         nationalityPage = self.storyboard?.instantiateViewController(withIdentifier: "nationalityNew") as! AddNationalityNewViewController
         
         navigation = self.navigationController
+    }
+    
+    func destroyViews() {
+        
+//        player1.stop()
+//        player2.stop()
+//        player3.stop()
+        
+        player1.view.removeFromSuperview()
+        player2.view.removeFromSuperview()
+        player3.view.removeFromSuperview()
+        
+        player1 = nil
+        player2 = nil
+        player3 = nil
+        
+        imageView1.removeFromSuperview()
+        imageView2.removeFromSuperview()
+        imageView3.removeFromSuperview()
+        
+        imageView1 = nil
+        imageView2 = nil
+        imageView3 = nil
     }
     
     func addToLayout() {
