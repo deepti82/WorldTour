@@ -10,6 +10,7 @@ import UIKit
 
 class TripPhotoHeader: UIView {
 
+    @IBOutlet weak var cornerRadiusView: UIView!
     @IBOutlet weak var noOfDay: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var timeNow: UILabel!
@@ -39,14 +40,14 @@ class TripPhotoHeader: UIView {
         self.addSubview(view)
         timeLabel.text = String(format: "%C", faicon["clock"]!)
         
-        let path = UIBezierPath(roundedRect:self.bounds,
-                                byRoundingCorners:[.topRight, .topLeft],
-                                cornerRadii: CGSize(width: 10, height:  10))
-        
-        let maskLayer = CAShapeLayer()
-        
-        maskLayer.path = path.cgPath
-        self.layer.mask = maskLayer
+//        let path = UIBezierPath(roundedRect:cornerRadiusView.bounds,
+//                                byRoundingCorners:[.topRight, .topLeft],
+//                                cornerRadii: CGSize(width: 10, height:  10))
+//        
+//        let maskLayer = CAShapeLayer()
+//        
+//        maskLayer.path = path.cgPath
+//        self.layer.mask = maskLayer
         
     }
     

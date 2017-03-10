@@ -20,6 +20,7 @@
                 <outlet property="calendarIcon" destination="Ow2-hC-YgK" id="ZQh-FN-1fd"/>
                 <outlet property="checkInTitle" destination="ztF-ws-nNS" id="Ovj-Bo-TS3"/>
                 <outlet property="clockIcon" destination="b7W-WN-9Y0" id="OEY-0D-nTj"/>
+                <outlet property="corneRadiusView" destination="gDE-6v-4jE" id="daY-bi-xq7"/>
                 <outlet property="date" destination="hTm-PF-T0l" id="rBD-Si-4zj"/>
                 <outlet property="reviewDescription" destination="c9b-qI-EhI" id="dgY-EJ-Rkd"/>
                 <outlet property="time" destination="ecK-i2-aiq" id="WTD-oF-8Pl"/>
@@ -90,7 +91,7 @@
                             </constraints>
                         </stackView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="YOUR REVIEW OF GIRGAON" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ztF-ws-nNS">
-                            <rect key="frame" x="16" y="11" width="376" height="22"/>
+                            <rect key="frame" x="16" y="14" width="376" height="22"/>
                             <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="16"/>
                             <color key="textColor" red="0.13725490868091583" green="0.17647059261798859" blue="0.29019609093666077" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
@@ -145,7 +146,7 @@
                         <constraint firstItem="iBj-3n-r4D" firstAttribute="top" secondItem="c9b-qI-EhI" secondAttribute="bottom" constant="2" id="c0f-Mv-fyG"/>
                         <constraint firstItem="c9b-qI-EhI" firstAttribute="leading" secondItem="gDE-6v-4jE" secondAttribute="leading" constant="16" id="kR3-MQ-f1z"/>
                         <constraint firstItem="ZKZ-QL-pIT" firstAttribute="leading" secondItem="gDE-6v-4jE" secondAttribute="leading" constant="16" id="mPC-0D-NpC"/>
-                        <constraint firstItem="ZKZ-QL-pIT" firstAttribute="top" secondItem="ztF-ws-nNS" secondAttribute="bottom" constant="1" id="xNE-9g-4gY"/>
+                        <constraint firstItem="ZKZ-QL-pIT" firstAttribute="top" secondItem="ztF-ws-nNS" secondAttribute="bottom" constant="-2" id="xNE-9g-4gY"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HCc-b6-9Wj" customClass="drawLine" customModule="TraveLibro" customModuleProvider="target">

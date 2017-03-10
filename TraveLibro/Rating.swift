@@ -10,6 +10,7 @@ import UIKit
 
 class Rating: UIView {
     
+    @IBOutlet weak var corneRadiusView: UIView!
     @IBOutlet weak var calendarIcon: UILabel!
     @IBOutlet weak var clockIcon: UILabel!
     @IBOutlet weak var checkInTitle: UILabel!
@@ -30,14 +31,7 @@ class Rating: UIView {
         calendarIcon.text = String(format: "%C", faicon["calendar"]!)
         clockIcon.text = String(format: "%C", faicon["clock"]!)
         
-        let path = UIBezierPath(roundedRect:self.bounds,
-                                byRoundingCorners:[.topLeft, .topRight, .bottomLeft, .bottomRight],
-                                cornerRadii: CGSize(width: 10, height:  10))
         
-        let maskLayer = CAShapeLayer()
-        
-        maskLayer.path = path.cgPath
-        self.layer.mask = maskLayer
 
         let width = CGFloat(2)
         
@@ -47,6 +41,15 @@ class Rating: UIView {
         border.borderWidth = width
         self.layer.addSublayer(border)
         self.layer.masksToBounds = true
+//        
+//        let path = UIBezierPath(roundedRect:corneRadiusView.bounds,
+//                                byRoundingCorners:[.topLeft, .topRight, .bottomLeft, .bottomRight],
+//                                cornerRadii: CGSize(width: 10, height:  10))
+//        
+//        let maskLayer = CAShapeLayer()
+//        
+//        maskLayer.path = path.cgPath
+//        self.layer.mask = maskLayer
         
     }
     

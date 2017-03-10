@@ -16,6 +16,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TripPhotoHeader" customModule="TraveLibro" customModuleProvider="target">
             <connections>
+                <outlet property="cornerRadiusView" destination="bNK-FU-LWQ" id="wHB-a6-C8X"/>
                 <outlet property="noOfDay" destination="bbd-dI-LfA" id="9cJ-ab-Clf"/>
                 <outlet property="timeLabel" destination="gwa-1a-cvL" id="pqA-10-ZYv"/>
                 <outlet property="timeNow" destination="NzL-FT-O62" id="tml-wI-vGa"/>
