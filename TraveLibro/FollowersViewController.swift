@@ -46,8 +46,6 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
         
         self.customNavigationBar(left: leftButton, right: rightButton)
         
-        self.setOnlyLeftNavigationButton(leftButton)
-        
         followerTable.delegate = self
         followerTable.dataSource = self
         followerTable.tableFooterView = UIView(frame: CGRect.zero)
@@ -92,11 +90,13 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
                     
                 }
                 else if response["value"].bool! {
-                    print("SearchText :\(self.searchText) && RESULT : \n \(response["data"]["following"])")                    
                     followers = response["data"]["following"].array!
                     self.headerText.text = "Following (\(followers.count))"
                     self.followerTable.reloadData()
                     loader.hideOverlayView()
+                    if (self.searchText == "" && (followers.first!["following"].intValue != 1)) {
+                        self.noFollowingFound()
+                    }
                 }
                 else {
                     
@@ -125,12 +125,14 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
                 }
                 else if response["value"].bool! {
                     
-                    print("\(response["data"]["following"])")
                     followers = response["data"]["followers"].array!
                     self.followersMainCopy = response["data"]["followers"].array!
                     self.headerText.text = "Followers (\(followers.count))"
                     self.followerTable.reloadData()
                     loader.hideOverlayView()
+                    if followers.isEmpty {
+                        self.noFollowersFound()
+                    }
                 }
                 else {
                     
@@ -142,6 +144,25 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
         })
         
     }
+    
+    //MARK: - Empty Data Handled
+    
+    func noFollowingFound() {
+        headerText.text = "Popular TraveLibrans"
+        customSearch.searchField.placeholder = "Search interesting people..."
+    }
+    
+    func noFollowersFound() {
+        followerTable.removeFromSuperview()
+        searchView.removeFromSuperview()
+        headerText.removeFromSuperview()
+        self.navigationItem.rightBarButtonItems = []
+        let nofollow = NoFollowers(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 120))
+        nofollow.inviteButton.addTarget(self, action: #selector(FollowersViewController.inviteButtonClicked(sender:)), for: .touchUpInside)
+        nofollow.center = self.view.center
+        self.view.addSubview(nofollow)
+    }
+    
     
     //MARK: - Search
     

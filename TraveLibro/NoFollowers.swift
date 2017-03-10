@@ -10,18 +10,15 @@ import UIKit
 
 class NoFollowers: UIView {
 
-    @IBOutlet weak var fbButton: UIButton!
-    @IBOutlet weak var whatsappButton: UIButton!
-    @IBOutlet weak var mailButton: UIButton!
+    @IBOutlet weak var inviteButton: UIButton!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
         
-        mailButton.setTitle(String(format: "%C", faicon["email"]!), for: UIControlState())
-        whatsappButton.setTitle(String(format: "%C", faicon["whatsapp"]!), for: UIControlState())
-        fbButton.setTitle(String(format: "%C", faicon["facebook"]!), for: UIControlState())
-        
+        inviteButton.layer.borderColor = mainOrangeColor.cgColor
+        inviteButton.layer.borderWidth = 1.0
+        inviteButton.layer.cornerRadius = 5.0
     }
     
     required init?(coder aDecoder: NSCoder) {

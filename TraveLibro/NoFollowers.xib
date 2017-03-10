@@ -6,109 +6,72 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="fontawesome-webfont.ttf">
-            <string>FontAwesome</string>
-        </array>
-    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NoFollowers" customModule="TraveLibro" customModuleProvider="target">
             <connections>
-                <outlet property="fbButton" destination="44j-hd-337" id="nlW-st-bwH"/>
-                <outlet property="mailButton" destination="yyk-nZ-Br7" id="Wym-8p-1ef"/>
-                <outlet property="whatsappButton" destination="SbJ-bs-jbW" id="k1n-kF-WqC"/>
+                <outlet property="inviteButton" destination="tVa-gr-R9Y" id="dPQ-lx-TO3"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="400" height="224"/>
+            <rect key="frame" x="0.0" y="0.0" width="414" height="139"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Invite friends via" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o3b-xg-wFV">
-                    <rect key="frame" x="50" y="106" width="300" height="50"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e3J-Gx-YKm">
+                    <rect key="frame" x="-5" y="0.0" width="424" height="139"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tVa-gr-R9Y">
+                            <rect key="frame" x="158.66666666666669" y="20" width="106.00000000000006" height="40"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="89x-r6-dm2"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="18"/>
+                            <color key="tintColor" red="1" green="0.4039215686" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <inset key="titleEdgeInsets" minX="-20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <inset key="imageEdgeInsets" minX="20" minY="10" maxX="60" maxY="10"/>
+                            <state key="normal" title="Invite" image="add_people">
+                                <color key="titleColor" red="1" green="0.40392156862745099" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="300" id="NFU-g5-zHM"/>
-                        <constraint firstAttribute="height" constant="50" id="OQc-ch-IVF"/>
+                        <constraint firstItem="tVa-gr-R9Y" firstAttribute="width" secondItem="e3J-Gx-YKm" secondAttribute="width" multiplier="0.25" id="Cs5-u5-bKj"/>
+                        <constraint firstItem="tVa-gr-R9Y" firstAttribute="top" secondItem="e3J-Gx-YKm" secondAttribute="top" constant="20" id="LPk-HS-TBp"/>
+                        <constraint firstItem="tVa-gr-R9Y" firstAttribute="centerX" secondItem="e3J-Gx-YKm" secondAttribute="centerX" id="pkk-si-LtC"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
-                    <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yyk-nZ-Br7">
-                    <rect key="frame" x="34" y="164" width="100" height="40"/>
-                    <color key="backgroundColor" red="0.0" green="0.6588235294117647" blue="0.92549019607843142" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Invite Buddies to follow your interesting travel tales &amp; local activities." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="drD-La-Ame">
+                    <rect key="frame" x="0.0" y="68" width="414" height="45"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="100" id="l5V-JV-efY"/>
-                        <constraint firstAttribute="height" constant="40" id="v0T-K1-h6q"/>
+                        <constraint firstAttribute="height" constant="45" id="YhF-Sp-vqK"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="24"/>
-                    <state key="normal" title="Button">
-                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </state>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="44j-hd-337">
-                    <rect key="frame" x="266" y="164" width="100" height="40"/>
-                    <color key="backgroundColor" red="0.23529411764705882" green="0.3529411764705882" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="40" id="w1k-RK-zM6"/>
-                        <constraint firstAttribute="width" constant="100" id="w8u-0I-NaH"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="24"/>
-                    <state key="normal" title="Button">
-                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </state>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SbJ-bs-jbW">
-                    <rect key="frame" x="150" y="164" width="100" height="40"/>
-                    <color key="backgroundColor" red="0.27058823529411763" green="0.71764705882352942" blue="0.14117647058823529" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="100" id="LPf-nW-83L"/>
-                        <constraint firstAttribute="height" constant="40" id="rDy-1v-blj"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="24"/>
-                    <state key="normal" title="Button">
-                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </state>
-                </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aliquam tincidunt mauris eu risus. Vestibulum auctor dapibus neque." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uIH-dL-Kly">
-                    <rect key="frame" x="35" y="8" width="330" height="90"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="330" id="2yl-wS-AsL"/>
-                        <constraint firstAttribute="height" constant="90" id="foD-lZ-nL1"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
-                    <color key="textColor" red="0.13725490868091583" green="0.17647059261798859" blue="0.29019609093666077" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
+                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="o3b-xg-wFV" firstAttribute="top" secondItem="uIH-dL-Kly" secondAttribute="bottom" constant="8" id="0rg-CZ-Hxd"/>
-                <constraint firstItem="yyk-nZ-Br7" firstAttribute="leading" secondItem="o3b-xg-wFV" secondAttribute="leading" id="9cn-7q-fpm"/>
-                <constraint firstItem="SbJ-bs-jbW" firstAttribute="leading" secondItem="yyk-nZ-Br7" secondAttribute="trailing" constant="16" id="HAy-Mm-zeX"/>
-                <constraint firstItem="44j-hd-337" firstAttribute="leading" secondItem="SbJ-bs-jbW" secondAttribute="trailing" constant="16" id="Pty-tY-ESU"/>
-                <constraint firstItem="SbJ-bs-jbW" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Qt8-Cq-aM2"/>
-                <constraint firstItem="o3b-xg-wFV" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="VDg-Do-aTd"/>
-                <constraint firstItem="yyk-nZ-Br7" firstAttribute="top" secondItem="o3b-xg-wFV" secondAttribute="bottom" constant="8" id="W6t-SU-NNY"/>
-                <constraint firstItem="SbJ-bs-jbW" firstAttribute="top" secondItem="o3b-xg-wFV" secondAttribute="bottom" constant="8" id="fb1-6p-Ndo"/>
-                <constraint firstItem="uIH-dL-Kly" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="nfM-mv-5Kc"/>
-                <constraint firstItem="SbJ-bs-jbW" firstAttribute="leading" secondItem="yyk-nZ-Br7" secondAttribute="trailing" constant="16" id="r7A-GG-6F2"/>
-                <constraint firstItem="uIH-dL-Kly" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="rzI-uO-kQ2"/>
-                <constraint firstItem="yyk-nZ-Br7" firstAttribute="baseline" secondItem="44j-hd-337" secondAttribute="baseline" id="zL1-4I-Bc8"/>
-                <constraint firstItem="o3b-xg-wFV" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="zta-u1-NSN"/>
+                <constraint firstAttribute="bottom" secondItem="drD-La-Ame" secondAttribute="bottom" priority="250" constant="20" id="3bi-gt-SgG"/>
+                <constraint firstItem="drD-La-Ame" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="6Gf-qC-IcI"/>
+                <constraint firstItem="e3J-Gx-YKm" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Cjp-eX-doV"/>
+                <constraint firstAttribute="trailing" secondItem="drD-La-Ame" secondAttribute="trailing" id="ICO-lh-eWF"/>
+                <constraint firstItem="e3J-Gx-YKm" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="-5" id="fGC-Xp-aqi"/>
+                <constraint firstAttribute="bottom" secondItem="e3J-Gx-YKm" secondAttribute="bottom" id="h6P-xs-cEG"/>
+                <constraint firstAttribute="trailing" secondItem="e3J-Gx-YKm" secondAttribute="trailing" constant="-5" id="ihO-hI-4U6"/>
+                <constraint firstItem="drD-La-Ame" firstAttribute="top" secondItem="tVa-gr-R9Y" secondAttribute="bottom" constant="8" id="jAi-wp-4Iy"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <variation key="default">
-                <mask key="constraints">
-                    <exclude reference="zta-u1-NSN"/>
-                    <exclude reference="9cn-7q-fpm"/>
-                    <exclude reference="r7A-GG-6F2"/>
-                </mask>
-            </variation>
-            <point key="canvasLocation" x="224" y="173"/>
+            <point key="canvasLocation" x="146" y="181.5"/>
         </view>
     </objects>
+    <resources>
+        <image name="add_people" width="60" height="60"/>
+    </resources>
 </document>
