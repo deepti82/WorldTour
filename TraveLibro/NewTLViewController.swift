@@ -801,11 +801,21 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         print("lets go \(jouurneyToShow)")
         if jouurneyToShow["endTime"] != nil {
             endJourneyView = EndJourneyMyLife(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 329))
+            
+            if jouurneyToShow["post"].count > 0 {
+                endJourneyView.placeLabel.text = jouurneyToShow["post"][jouurneyToShow["post"].count - 1]["city"].string
+
+            }else{
             endJourneyView.placeLabel.text = jouurneyToShow["startLocation"].stringValue
+            }
             endJourneyView.dateLabel.text = getDateFormat(jouurneyToShow["endTime"].stringValue, format: "dd MMM, yyyy")
             endJourneyView.timeLabel.text = getDateFormat(jouurneyToShow["endTime"].stringValue, format: "hh:mm a")
             layout.addSubview(endJourneyView)
             addHeightToLayout(height: endJourneyView.frame.height + 50.0)
+        }else{
+            if endJourneyView != nil {
+                endJourneyView.removeFromSuperview()
+            }
         }
     }
     

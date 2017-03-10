@@ -20,6 +20,7 @@ class ActivityFeedImageView: UIView {
     @IBOutlet weak var photoVideoCheckInCount: UIStackView!
 
     @IBOutlet weak var daysLabel: UILabel!
+    @IBOutlet weak var days: UILabel!
     @IBOutlet weak var kindOfJourneyThree: UIImageView!
     @IBOutlet weak var kindOfJourneyTwo: UIImageView!
     @IBOutlet weak var kindOfJourneyOne: UIImageView!
@@ -56,6 +57,14 @@ class ActivityFeedImageView: UIView {
     }
     
     func fillData(feed:JSON) {
+        
+        self.days.text = feed["duration"].stringValue
+        
+        if feed["duration"].intValue < 2 {
+            self.daysLabel.text = "Day"
+        }else{
+            self.days.text = "Days"
+        }
         
         for country in countryStackView.subviews {
             country.isHidden = true
