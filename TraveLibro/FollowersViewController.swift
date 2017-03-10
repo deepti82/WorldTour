@@ -168,7 +168,7 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
     
     func configureSearchController() {
         
-        customSearch = SearchFieldView(frame: CGRect(x: 10, y: 10, width: searchView.frame.width, height: 30))
+        customSearch = SearchFieldView(frame: CGRect(x: 10, y: 10, width: searchView.frame.width - 10, height: 30))
         customSearch.leftLine.backgroundColor = mainOrangeColor
         customSearch.rightLine.backgroundColor = mainOrangeColor
         customSearch.bottomLine.backgroundColor = mainOrangeColor
@@ -349,7 +349,7 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
         
         for i in 0 ..< followers.count {
             
-            if followers[i]["name"].string! == followName {
+            if followers[i]["urlSlug"].string! == followName {
                 
                 followId = followers[i]["_id"].string!
                 
@@ -388,7 +388,7 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
         
         for i in 0 ..< followers.count {
             
-            if followers[i]["name"].string! == unfollowName {
+            if followers[i]["urlSlug"].string! == unfollowName {
                 
                 unfollowId = followers[i]["_id"].string!
                 
@@ -451,7 +451,7 @@ class FollowersCell: UITableViewCell {
         if sender.tag == 0 {
             
             print("profile name follow: \(profileName.text)")
-            parent.followUser(profileName.text!)
+            parent.followUser(getURLSlug(slug: urlSlurg.text!))
             sender.tag = 1
             sender.setImage(UIImage(named:"following"), for: .normal)
             sender.contentMode = .scaleAspectFit
@@ -462,7 +462,7 @@ class FollowersCell: UITableViewCell {
             
         else if sender.tag == 1 {
             print("profile name unfollow: \(profileName.text)")
-            parent.unFollowUser(profileName.text!)
+            parent.unFollowUser(getURLSlug(slug: urlSlurg.text!))
             sender.tag = 0
             sender.setImage(UIImage(named:"follow"), for: .normal)
             sender.contentMode = .scaleAspectFit
@@ -474,6 +474,12 @@ class FollowersCell: UITableViewCell {
         else if sender.tag == 2 {            
             //Nothing should happen
         }
+    }
+    
+    func getURLSlug(slug: String) -> String {
+        var myString = slug
+        myString.remove(at: myString.startIndex)
+        return myString
     }
     
 }
