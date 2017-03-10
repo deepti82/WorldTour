@@ -44,7 +44,6 @@ class ActivityFeedQuickItinerary: UIView {
         rectShape.path = UIBezierPath(roundedRect: self.quickBadge.bounds, byRoundingCorners: [.topRight , .topLeft], cornerRadii: CGSize(width: 5, height: 5)).cgPath
         
         self.quickBadge.layer.backgroundColor = UIColor.green.cgColor
-        //Here I'm masking the textView's layer with rectShape layer
         self.quickBadge.layer.mask = rectShape
     }
     

@@ -89,7 +89,7 @@ class AddYourRatingViewController: UIViewController {
     func addRating(post: JSON) {
         print("One post ..............")
         print(post)
-        let rating = Rating(frame: CGRect(x: 0, y: 0, width: layout.frame.width, height: 130))
+        let rating = Rating(frame: CGRect(x: 0, y: 0, width: layout.frame.width, height: 165))
         if post["city"] != nil {
             rating.checkInTitle.text = "\(post["city"].string!.capitalized)"
         }else{

@@ -19,6 +19,7 @@ class Rating: UIView {
     @IBOutlet weak var date: UILabel!
     @IBOutlet weak var time: UILabel!
     @IBOutlet weak var upLine: drawLine!
+   
     let border = CALayer()
     var lines = 0
     var textViewHeight: CGFloat!
@@ -31,25 +32,18 @@ class Rating: UIView {
         calendarIcon.text = String(format: "%C", faicon["calendar"]!)
         clockIcon.text = String(format: "%C", faicon["clock"]!)
         
+    
+        corneRadiusView.layer.cornerRadius = 10
+        corneRadiusView.layer.masksToBounds = true
         
-
         let width = CGFloat(2)
-        
-        
-        border.frame = CGRect(x: 0, y: self.frame.size.height - width, width:  self.frame.size.width, height: self.frame.size.height)
+        border.frame = CGRect(x: 0, y: corneRadiusView.frame.size.height - width, width:  corneRadiusView.frame.size.width, height: corneRadiusView.frame.size.height)
         border.borderColor = UIColor(colorLiteralRed: 0/255, green: 0/255, blue: 0/255, alpha: 0.5).cgColor
         border.borderWidth = width
-        self.layer.addSublayer(border)
-        self.layer.masksToBounds = true
-//        
-//        let path = UIBezierPath(roundedRect:corneRadiusView.bounds,
-//                                byRoundingCorners:[.topLeft, .topRight, .bottomLeft, .bottomRight],
-//                                cornerRadii: CGSize(width: 10, height:  10))
-//        
-//        let maskLayer = CAShapeLayer()
-//        
-//        maskLayer.path = path.cgPath
-//        self.layer.mask = maskLayer
+        corneRadiusView.layer.addSublayer(border)
+        
+
+       
         
     }
     
