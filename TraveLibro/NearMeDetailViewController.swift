@@ -45,7 +45,7 @@ class NearMeDetailViewController: UIViewController {
         detailView.backgroundColor = UIColor.white.withAlphaComponent(0.8)
         detailView.isHidden = true
         
-        directions.layer.borderWidth = 1.0
+        directions.layer.borderWidth = 2.0
         directions.layer.borderColor = mainOrangeColor.cgColor
         directions.layer.cornerRadius = 5.0
         directions.clipsToBounds = true

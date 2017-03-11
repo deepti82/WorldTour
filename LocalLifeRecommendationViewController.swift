@@ -29,6 +29,15 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
     var layout:VerticalLayout!
     
     @IBOutlet weak var plusButton: UIButton!
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.isTranslucent = false
+        print(navigationController?.navigationBar.isTranslucent)
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        navigationController?.navigationBar.isTranslucent = true
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         loader.hideOverlayView()
@@ -52,7 +61,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
         layout.addSubview(titleLabel)
         
         
-        let myView = LocalLifeRecommends(frame: CGRect(x: 0, y: -8, width: self.view.frame.width, height: 400))
+        let myView = LocalLifeRecommends(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 400))
         myView.photoTop.image = UIImage(named: "restaurantsLocalLife")
         myView.photoTopView.tag = 1
         let tapGestureRecognizer = UITapGestureRecognizer(target:self, action: #selector(self.getCategoryLocalLife))
@@ -79,7 +88,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
         layout.addSubview(myView)
         
         
-        let myView2 = LocalLifeRecommends(frame: CGRect(x: 0, y: -8, width: self.view.frame.width, height: 400))
+        let myView2 = LocalLifeRecommends(frame: CGRect(x: 0, y: -10, width: self.view.frame.width, height: 400))
         myView2.photoTop.image = UIImage(named: "museumsLocalLife")
         myView2.topLabel.text = "Museums and Galleries"
         myView2.photoBottom1.image = UIImage(named: "adventureLocalLife")
@@ -106,7 +115,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
 //        tapGesture(myView2.photoBottom2)
         layout.addSubview(myView2)
         
-        let myView3 = LocalLifeRecommends(frame: CGRect(x: 0, y: -8, width: self.view.frame.width, height: 400))
+        let myView3 = LocalLifeRecommends(frame: CGRect(x: 0, y: -10, width: self.view.frame.width, height: 400))
         myView3.photoTop.image = UIImage(named: "bgeventsandfestival")
         myView3.topLabel.text = "Events and Festival"
         myView3.photoBottom1.image = UIImage(named: "bgshopping")
@@ -127,7 +136,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
         myView3.photoBottomView2.addGestureRecognizer(tapGestureRecognizer8)
         layout.addSubview(myView3)
         myView3.photoBottomView2.tag = 9
-        let myView4 = LocalLifeRecommends(frame: CGRect(x: 0, y: -8, width: self.view.frame.width, height: 400))
+        let myView4 = LocalLifeRecommends(frame: CGRect(x: 0, y: -10, width: self.view.frame.width, height: 400))
         myView4.photoTop.image = UIImage(named: "bgreligious")
         myView4.topLabel.text = "Religious"
         myView4.photoBottom1.image = UIImage(named: "bgcinemasandtheatre")
@@ -148,7 +157,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
         myView4.photoBottomView2.tag = 12
         layout.addSubview(myView4)
         
-        let myView5 = LocalLifeRecommends(frame: CGRect(x: 0, y: -16, width: self.view.frame.width, height: 188))
+        let myView5 = LocalLifeRecommends(frame: CGRect(x: 0, y: -10, width: self.view.frame.width, height: 188))
         myView5.photoTop.isHidden = true
         myView5.clipsToBounds = true
         myView5.photoBottom1.image = UIImage(named: "bgairport")

@@ -33,6 +33,16 @@ class NearMeViewController: UIViewController, UICollectionViewDelegateFlowLayout
         return textArr.count
     }
     
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.isTranslucent = false
+        print(navigationController?.navigationBar.isTranslucent)
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        navigationController?.navigationBar.isTranslucent = true
+    }
+
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "nearMeCell", for: indexPath) as! NearMeCell
         

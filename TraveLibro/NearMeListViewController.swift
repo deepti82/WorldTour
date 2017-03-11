@@ -86,6 +86,9 @@ class NearMeListViewController: UIViewController, UITableViewDataSource, UITable
         
     }
     
+    
+    
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return self.nearMeListJSON.count
     }
@@ -103,7 +106,8 @@ class NearMeListViewController: UIViewController, UITableViewDataSource, UITable
         
         cell.backgroundColor = UIColor.clear
         cell.contentView.backgroundColor = UIColor.white.withAlphaComponent(0.8)
-        
+        cell.contentView.layer.cornerRadius = 10
+        cell.contentView.layer.masksToBounds = true
                for star in cell.stars {
             star.setImage(UIImage(named: "star_uncheck")?.withRenderingMode(.alwaysTemplate), for: UIControlState())
             star.setImage(UIImage(named: "star_check")?.withRenderingMode(.alwaysTemplate), for: .selected)
@@ -153,6 +157,15 @@ class NearMeListViewController: UIViewController, UITableViewDataSource, UITable
         invisibleView.backgroundColor = UIColor.clear
         return invisibleView
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.isTranslucent = false
+        print(navigationController?.navigationBar.isTranslucent)
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        navigationController?.navigationBar.isTranslucent = true
+    }
+
     
     func setTopNavigation(_ text: String) {
         let leftButton = UIButton()

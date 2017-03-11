@@ -24,30 +24,30 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="400" height="400"/>
+            <rect key="frame" x="0.0" y="0.0" width="395" height="400"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="beach_scene" translatesAutoresizingMaskIntoConstraints="NO" id="qcY-U9-ghf">
-                    <rect key="frame" x="8" y="8" width="384" height="204"/>
+                    <rect key="frame" x="0.0" y="0.0" width="395" height="212"/>
                 </imageView>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cinema_scene" translatesAutoresizingMaskIntoConstraints="NO" id="LlX-0B-Jrw">
-                    <rect key="frame" x="8" y="220" width="188" height="172"/>
+                    <rect key="frame" x="0.0" y="215" width="196" height="172"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="172" id="b3j-ng-Kqm"/>
-                        <constraint firstAttribute="width" constant="188" id="mGq-SZ-0eQ"/>
+                        <constraint firstAttribute="width" constant="196" id="mGq-SZ-0eQ"/>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="172" id="wJT-Pm-OvY"/>
                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="188" id="xv2-3h-FVj"/>
                     </constraints>
                 </imageView>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="resort_scene" translatesAutoresizingMaskIntoConstraints="NO" id="S2r-8m-C9I">
-                    <rect key="frame" x="204" y="220" width="188" height="172"/>
+                    <rect key="frame" x="199" y="215" width="196" height="172"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="172" id="pkf-rB-Uh8"/>
-                        <constraint firstAttribute="width" constant="188" id="wTE-eR-SNA"/>
+                        <constraint firstAttribute="width" constant="196" id="wTE-eR-SNA"/>
                     </constraints>
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Zx-3e-7LH">
-                    <rect key="frame" x="8" y="220" width="188" height="172"/>
+                    <rect key="frame" x="0.0" y="215" width="196" height="172"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hotel and Accomodations" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bl1-rB-EZ8">
                             <rect key="frame" x="8" y="120" width="172" height="44"/>
@@ -60,13 +60,34 @@
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="Bl1-rB-EZ8" secondAttribute="bottom" constant="8" id="9KY-IN-2g8"/>
                         <constraint firstItem="Bl1-rB-EZ8" firstAttribute="leading" secondItem="8Zx-3e-7LH" secondAttribute="leading" constant="8" id="NQ1-0b-Pmh"/>
-                        <constraint firstAttribute="width" constant="188" id="WIW-Lo-8yJ"/>
+                        <constraint firstAttribute="width" constant="196" id="WIW-Lo-8yJ"/>
                         <constraint firstAttribute="height" constant="172" id="n25-Z7-nX6"/>
-                        <constraint firstAttribute="trailing" secondItem="Bl1-rB-EZ8" secondAttribute="trailing" constant="8" id="sMv-ty-nbT"/>
+                        <constraint firstAttribute="trailing" secondItem="Bl1-rB-EZ8" secondAttribute="trailing" constant="16" id="sMv-ty-nbT"/>
                     </constraints>
                 </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SEc-wq-zad">
+                    <rect key="frame" x="0.0" y="0.0" width="395" height="212"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Beaches" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="12w-Vs-cNc">
+                            <rect key="frame" x="8" y="177" width="363" height="22"/>
+                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
+                    <gestureRecognizers/>
+                    <constraints>
+                        <constraint firstItem="12w-Vs-cNc" firstAttribute="leading" secondItem="SEc-wq-zad" secondAttribute="leading" constant="8" id="S1U-2v-PnX"/>
+                        <constraint firstAttribute="trailing" secondItem="12w-Vs-cNc" secondAttribute="trailing" constant="24" id="clX-mY-Yi6"/>
+                        <constraint firstAttribute="bottom" secondItem="12w-Vs-cNc" secondAttribute="bottom" constant="13" id="kSU-I2-hkn"/>
+                    </constraints>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="kS0-76-tQ7" appends="YES" id="FiJ-a9-Jat"/>
+                    </connections>
+                </view>
                 <view clipsSubviews="YES" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ksi-Aa-PZn">
-                    <rect key="frame" x="204" y="220" width="188" height="172"/>
+                    <rect key="frame" x="199" y="215" width="196" height="172"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hotel and Accomodations" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o8K-0E-HRc">
                             <rect key="frame" x="8" y="120" width="172" height="44"/>
@@ -78,61 +99,35 @@
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="o8K-0E-HRc" secondAttribute="bottom" constant="8" id="2QV-xW-nUJ"/>
-                        <constraint firstAttribute="width" constant="188" id="NS0-XM-8E9"/>
+                        <constraint firstAttribute="width" constant="196" id="NS0-XM-8E9"/>
                         <constraint firstItem="o8K-0E-HRc" firstAttribute="leading" secondItem="Ksi-Aa-PZn" secondAttribute="leading" constant="8" id="OZ6-sa-G8t"/>
-                        <constraint firstAttribute="trailing" secondItem="o8K-0E-HRc" secondAttribute="trailing" constant="8" id="UuK-oA-zZg"/>
+                        <constraint firstAttribute="trailing" secondItem="o8K-0E-HRc" secondAttribute="trailing" constant="16" id="UuK-oA-zZg"/>
                         <constraint firstAttribute="height" constant="172" id="mn8-bV-KhK"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SEc-wq-zad">
-                    <rect key="frame" x="8" y="8" width="384" height="204"/>
-                    <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Beaches" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="12w-Vs-cNc">
-                            <rect key="frame" x="8" y="174" width="368" height="22"/>
-                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
-                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                    </subviews>
-                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
-                    <gestureRecognizers/>
-                    <constraints>
-                        <constraint firstItem="12w-Vs-cNc" firstAttribute="leading" secondItem="SEc-wq-zad" secondAttribute="leading" constant="8" id="S1U-2v-PnX"/>
-                        <constraint firstAttribute="trailing" secondItem="12w-Vs-cNc" secondAttribute="trailing" constant="8" id="clX-mY-Yi6"/>
-                        <constraint firstAttribute="bottom" secondItem="12w-Vs-cNc" secondAttribute="bottom" constant="8" id="kSU-I2-hkn"/>
-                    </constraints>
-                    <connections>
-                        <outletCollection property="gestureRecognizers" destination="kS0-76-tQ7" appends="YES" id="FiJ-a9-Jat"/>
-                    </connections>
-                </view>
             </subviews>
             <constraints>
-                <constraint firstItem="S2r-8m-C9I" firstAttribute="leading" secondItem="LlX-0B-Jrw" secondAttribute="trailing" constant="8" id="112-0r-mqH"/>
-                <constraint firstAttribute="trailing" secondItem="SEc-wq-zad" secondAttribute="trailing" constant="8" id="1Rl-Li-NWV"/>
-                <constraint firstAttribute="bottom" secondItem="8Zx-3e-7LH" secondAttribute="bottom" constant="8" id="4NI-jQ-q9x"/>
-                <constraint firstItem="Ksi-Aa-PZn" firstAttribute="leading" secondItem="8Zx-3e-7LH" secondAttribute="trailing" constant="8" id="4bg-az-aeP"/>
+                <constraint firstItem="S2r-8m-C9I" firstAttribute="leading" secondItem="LlX-0B-Jrw" secondAttribute="trailing" constant="3" id="112-0r-mqH"/>
+                <constraint firstAttribute="trailing" secondItem="SEc-wq-zad" secondAttribute="trailing" id="1Rl-Li-NWV"/>
                 <constraint firstItem="8Zx-3e-7LH" firstAttribute="top" secondItem="LlX-0B-Jrw" secondAttribute="top" id="Dcp-nL-WwK"/>
-                <constraint firstAttribute="bottom" secondItem="S2r-8m-C9I" secondAttribute="bottom" constant="8" id="Ff5-US-1hi"/>
-                <constraint firstItem="Ksi-Aa-PZn" firstAttribute="top" secondItem="SEc-wq-zad" secondAttribute="bottom" constant="8" id="MIX-6D-paF"/>
+                <constraint firstItem="Ksi-Aa-PZn" firstAttribute="top" secondItem="SEc-wq-zad" secondAttribute="bottom" constant="3" id="MIX-6D-paF"/>
                 <constraint firstItem="Ksi-Aa-PZn" firstAttribute="width" secondItem="8Zx-3e-7LH" secondAttribute="width" id="Q8d-O4-W04"/>
-                <constraint firstItem="LlX-0B-Jrw" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="SjS-uR-ZtP"/>
-                <constraint firstAttribute="trailing" secondItem="Ksi-Aa-PZn" secondAttribute="trailing" constant="8" id="VZt-Ly-Vo5"/>
-                <constraint firstItem="LlX-0B-Jrw" firstAttribute="top" secondItem="qcY-U9-ghf" secondAttribute="bottom" constant="8" id="WWY-T8-ete"/>
-                <constraint firstAttribute="trailing" secondItem="qcY-U9-ghf" secondAttribute="trailing" constant="8" id="b1Y-QW-tVU"/>
+                <constraint firstItem="LlX-0B-Jrw" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="SjS-uR-ZtP"/>
+                <constraint firstItem="LlX-0B-Jrw" firstAttribute="top" secondItem="qcY-U9-ghf" secondAttribute="bottom" constant="3" id="WWY-T8-ete"/>
+                <constraint firstAttribute="trailing" secondItem="qcY-U9-ghf" secondAttribute="trailing" id="b1Y-QW-tVU"/>
                 <constraint firstItem="8Zx-3e-7LH" firstAttribute="leading" secondItem="LlX-0B-Jrw" secondAttribute="leading" id="bb2-ID-SIK"/>
-                <constraint firstItem="SEc-wq-zad" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="bd0-tl-VUi"/>
+                <constraint firstItem="SEc-wq-zad" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="bd0-tl-VUi"/>
                 <constraint firstItem="Ksi-Aa-PZn" firstAttribute="leading" secondItem="S2r-8m-C9I" secondAttribute="leading" id="ctg-jU-zKn"/>
-                <constraint firstItem="qcY-U9-ghf" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="dUH-ig-efQ"/>
-                <constraint firstItem="qcY-U9-ghf" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="fAd-AJ-iNL"/>
-                <constraint firstItem="8Zx-3e-7LH" firstAttribute="top" secondItem="SEc-wq-zad" secondAttribute="bottom" constant="8" id="iGk-dK-kM8"/>
-                <constraint firstAttribute="trailing" secondItem="S2r-8m-C9I" secondAttribute="trailing" constant="8" id="kDZ-ij-wCp"/>
-                <constraint firstItem="S2r-8m-C9I" firstAttribute="top" secondItem="qcY-U9-ghf" secondAttribute="bottom" constant="8" id="mMH-Fn-Xok"/>
-                <constraint firstItem="SEc-wq-zad" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="qSH-3O-MT4"/>
-                <constraint firstAttribute="bottom" secondItem="Ksi-Aa-PZn" secondAttribute="bottom" constant="8" id="yf3-ha-enr"/>
-                <constraint firstAttribute="bottom" secondItem="LlX-0B-Jrw" secondAttribute="bottom" constant="8" id="zYo-N5-oFP"/>
+                <constraint firstItem="qcY-U9-ghf" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="dUH-ig-efQ"/>
+                <constraint firstItem="qcY-U9-ghf" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="fAd-AJ-iNL"/>
+                <constraint firstItem="8Zx-3e-7LH" firstAttribute="top" secondItem="SEc-wq-zad" secondAttribute="bottom" constant="3" id="iGk-dK-kM8"/>
+                <constraint firstItem="S2r-8m-C9I" firstAttribute="top" secondItem="qcY-U9-ghf" secondAttribute="bottom" constant="3" id="mMH-Fn-Xok"/>
+                <constraint firstItem="SEc-wq-zad" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="qSH-3O-MT4"/>
+                <constraint firstAttribute="bottom" secondItem="LlX-0B-Jrw" secondAttribute="bottom" constant="13" id="zYo-N5-oFP"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-15.5" y="54"/>
         </view>
         <tapGestureRecognizer id="kS0-76-tQ7"/>
     </objects>
