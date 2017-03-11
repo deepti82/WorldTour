@@ -40,21 +40,21 @@ class TripPhotoHeader: UIView {
         self.addSubview(view)
         timeLabel.text = String(format: "%C", faicon["clock"]!)
         
-        let path = UIBezierPath(roundedRect:cornerRadiusView.bounds,
-                                byRoundingCorners:[.topRight, .topLeft],
-                                cornerRadii: CGSize(width: 10, height:  10))
-        
-        let maskLayer = CAShapeLayer()
-        
-        maskLayer.path = path.cgPath
-        self.layer.mask = maskLayer
+//        let path = UIBezierPath(roundedRect:cornerRadiusView.bounds,
+//                                byRoundingCorners:[.topRight, .topLeft],
+//                                cornerRadii: CGSize(width: 10, height:  10))
+//        
+//        let maskLayer = CAShapeLayer()
+//        
+//        maskLayer.path = path.cgPath
+//        self.layer.mask = maskLayer
         
         let rectShape = CAShapeLayer()
         rectShape.bounds = self.cornerRadiusView.frame
         rectShape.position = self.cornerRadiusView.center
         rectShape.path = UIBezierPath(roundedRect: self.cornerRadiusView.bounds, byRoundingCorners: [.topRight , .topLeft], cornerRadii: CGSize(width: 5, height: 5)).cgPath
         
-        self.cornerRadiusView.layer.backgroundColor = UIColor.green.cgColor
+//        self.cornerRadiusView.layer.backgroundColor = UIColor.green.cgColor
         self.cornerRadiusView.layer.mask = rectShape
         
     }

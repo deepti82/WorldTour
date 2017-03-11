@@ -9,7 +9,8 @@
 import UIKit
 
 class AddYourRatingViewController: UIViewController {
-    
+    let border = CALayer()
+    var rating = Rating()
     var layout: VerticalLayout!
     var journeyId = ""
     var reviews: [JSON] = []
@@ -90,12 +91,12 @@ class AddYourRatingViewController: UIViewController {
         print("One post ..............")
         print(post)
         let rating = Rating(frame: CGRect(x: 0, y: 0, width: layout.frame.width, height: 165))
+        
         if post["city"] != nil {
             rating.checkInTitle.text = "\(post["city"].string!.capitalized)"
         }else{
             rating.checkInTitle.text = ""
         }
-        
         rating.reviewDescription.text = post["review"].string!
         rating.date.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSZ", getFormat: "dd-MM-yyyy", date: post["createdAt"].string!, isDate: true)
         rating.time.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSZ", getFormat: "h:mm a", date: post["createdAt"].string!, isDate: false)
@@ -106,18 +107,16 @@ class AddYourRatingViewController: UIViewController {
             
             let heightDifference = rating.reviewDescription.frame.height - rating.textViewHeight
             rating.frame.size.height -= heightDifference
-            
-            
         }
         else {
             
-            let heightDifference = rating.textViewHeight - rating.reviewDescription.frame.height
+            let heightDifference = rating.textViewHeight - rating.reviewDescription.frame.height 
             rating.frame.size.height += heightDifference
-            
-            
+
         }
         print(post["rating"].intValue)
         getStars(rating, stars: post["rating"].intValue)
+
         addHeightToLayout(rating.frame.height)
         layout.addSubview(rating)
         

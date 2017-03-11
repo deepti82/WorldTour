@@ -165,17 +165,17 @@ class AddYearsCountriesVisitedTableViewController: UITableViewController {
         cell.selectionStyle = .none
         cell.accessoryType = .checkmark
         
-        if (indexPath as NSIndexPath).row % 2 == 0 {
-            cell.backgroundColor = UIColor.white.withAlphaComponent(0.6)
-//            cell.backgroundColor = mainOrangeColor.withAlphaComponent(0.1)
-            
-        }
-            
-        else {
-            
-            cell.backgroundColor = UIColor.white.withAlphaComponent(0.6)
-            
-        }
+//        if (indexPath as NSIndexPath).row % 2 == 0 {
+//            cell.backgroundColor = UIColor.white.withAlphaComponent(0.8)
+////            cell.backgroundColor = mainOrangeColor.withAlphaComponent(0.1)
+//            
+//        }
+//            
+//        else {
+//            
+//            cell.backgroundColor = UIColor.white.withAlphaComponent(0.8)
+//            
+//        }
         
         if selectedYears.contains(years[(indexPath as NSIndexPath).row]) {
             cell.tintColor = mainOrangeColor
