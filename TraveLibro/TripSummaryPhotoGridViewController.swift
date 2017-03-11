@@ -15,7 +15,7 @@ import Spring
 class TripSummaryPhotoGridViewController: UICollectionViewController, ToolStackControllerDelegate, PlayerDelegate, UICollectionViewDelegateFlowLayout {
     var loader = LoadingOverlay()
     var journeyId = ""
-    var myPhotos: [String] = []
+    var myPhotos: [JSON] = []
     var videos: JSON = []
     var fromView = ""
     var type = ""
@@ -56,11 +56,9 @@ class TripSummaryPhotoGridViewController: UICollectionViewController, ToolStackC
                     }
                     else if response["value"].bool! {
                         if self.type == "photos" {
-                        if response["data"]["photos"] != nil {
-                            for n in response["data"]["photos"].array! {
-                                self.myPhotos.append(n["name"].string!)
+                            if response["data"]["photos"] != nil {                            
+                                self.myPhotos = response["data"]["photos"].array!                           
                             }
-                        }
                         }else{
                             self.videos = response["data"]["videos"]
                         }
@@ -133,7 +131,7 @@ class TripSummaryPhotoGridViewController: UICollectionViewController, ToolStackC
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! gridCollectionViewCell
         
         if type == "photos" {
-            cell.photo.hnk_setImageFromURL(getImageURL(myPhotos[(indexPath as NSIndexPath).row], width: 300))
+            cell.photo.hnk_setImageFromURL(getImageURL(myPhotos[indexPath.row]["name"].stringValue, width: 300))
 
         }else{
             self.videoContainer = VideoView(frame: CGRect(x: 0, y: 0, width: cell.frame.width, height: cell.frame.width))
@@ -192,8 +190,17 @@ class TripSummaryPhotoGridViewController: UICollectionViewController, ToolStackC
 
         }
         
-            
+        else if type == "photos" {            
+            let singlePhotoController = self.storyboard?.instantiateViewController(withIdentifier: "singlePhoto") as! SinglePhotoViewController
+            singlePhotoController.index = indexPath.row
+            singlePhotoController.whichView = "detail_itinerary"
+            singlePhotoController.postId = ""
+            singlePhotoController.allDataCollection = myPhotos
+            globalNavigationController.pushViewController(singlePhotoController, animated: true)
+        }            
     }
+    
+    
     func toolStackController(_ toolStackController: ToolStackController, didFinishWith image: UIImage){
         
         dismiss(animated: true, completion: {
