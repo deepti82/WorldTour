@@ -20,19 +20,21 @@ class EachItineraryPhotosViewController: UIViewController, UICollectionViewDataS
     var selectedItinerary:JSON!
     var photoJSON : [JSON] = []
     
+    //MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        photosCollectionView.delegate = self
+        photosCollectionView.delegate = self        
         
         itineraryNameLabel.text = (selectedItinerary["name"].stringValue)
-        if selectedQuickI != "" {
+//        if selectedQuickI != "" {
             itineraryNameLabel.text = "Photo(\(self.photoJSON.count))"
             
-        }else{
-            itineraryNameLabel.text = "Photo(\(globalPostImage.count))"
-            
-        }
+//        }else{
+//            itineraryNameLabel.text = "Photo(\(globalPostImage.count))"
+//            
+//        }
         photoJSON = (selectedItinerary["photos"].arrayValue)
         
 //        if (photoJSON.count == 0) {
@@ -58,12 +60,12 @@ class EachItineraryPhotosViewController: UIViewController, UICollectionViewDataS
     //MARK: - CollectionView Delegates
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if selectedQuickI != "" {
+//        if selectedQuickI != "" {
             return photoJSON.count
-        }else{
-            return globalPostImage.count
-
-        }
+//        }else{
+//            return globalPostImage.count
+//
+//        }
         
     }
     
@@ -93,13 +95,13 @@ class EachItineraryPhotosViewController: UIViewController, UICollectionViewDataS
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! EachItineraryMomentCollectionViewCell        
         
-        if selectedQuickI != "" {
+//        if selectedQuickI != "" {
             cell.photo.hnk_setImageFromURL(getImageURL(photoJSON[indexPath.row]["name"].stringValue, width: 200))
             
-        }else{
-            
-            cell.photo.image = globalPostImage[indexPath.row].image
-        }
+//        }else{
+//            
+//            cell.photo.image = globalPostImage[indexPath.row].image
+//        }
         
         return cell
         

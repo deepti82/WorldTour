@@ -48,12 +48,13 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate, iCarouselDeleg
     var imageLeftSwipe: UISwipeGestureRecognizer!
     var imageRightSwipe: UISwipeGestureRecognizer!
     
+    var isSpecialHandling = false
+    
     //MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         loader.showOverlay(self.view)
-        print("current post \(postId!) \(index!)")
         
         let leftButton = UIButton(frame: CGRect(x: 20, y: 30, width: 30, height: 30))
         leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
@@ -97,7 +98,10 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate, iCarouselDeleg
         
         if postId == "" {
             photos = allDataFromMyLife
+            isSpecialHandling = true
+            setCarouselDataDictForSpecialHandling()
         }
+        
         
         carouselView = iCarousel(frame: mainImage.frame)
         carouselView.type = iCarouselType.linear      //iCarouselTypeCylinder
@@ -274,7 +278,7 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate, iCarouselDeleg
                 currentIndexCopy = Int(currentIndexCopy) - 1
             } else {	
                 if !(carouselDict.allKeys.contains(value: photos[currentIndexCopy]["_id"].string!)) {
-                    print("in swipe left : \(currentIndex!) fetching : \(photos[currentIndexCopy]["_id"].string!)")
+//                    print("in swipe left : \(currentIndex!) fetching : \(photos[currentIndexCopy]["_id"].string!)")
                     self.getSinglePhoto(photos[currentIndexCopy]["_id"].string!)
                 }
             }
@@ -295,7 +299,7 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate, iCarouselDeleg
                 currentIndexCopy = Int(currentIndex) + 1
             } else {
                 if !(carouselDict.allKeys.contains(value: photos[currentIndexCopy]["_id"].string!)) {
-                    print("in swipe right : \(currentIndex!) fetching : \(photos[currentIndexCopy]["_id"].string!)")
+//                    print("in swipe right : \(currentIndex!) fetching : \(photos[currentIndexCopy]["_id"].string!)")
                     self.getSinglePhoto(photos[currentIndexCopy]["_id"].string!)
                 }
             }
@@ -311,6 +315,15 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate, iCarouselDeleg
             
             print("\n data : \(data)")
             
+            if data["likeCount"].intValue > 0 {
+                self.likeButton.setImage(UIImage(named: "favorite-heart-button")?.withRenderingMode(.alwaysTemplate), for: .normal)
+                self.likeButton.tintColor = UIColor.white
+                self.hasLiked = true
+            } 
+            else {
+                self.likeButton.setImage(UIImage(named: "likeButton"), for: .normal)
+                self.hasLiked = false
+            }            
         }
         
         else {
@@ -415,9 +428,13 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate, iCarouselDeleg
     
     var singlePhotoJSON: JSON!
     
-    func setCarouselDataArray() {
+    func setCarouselDataDictForSpecialHandling() {
         
+        for data in allDataFromMyLife {
+            carouselDict.setObject(data, forKey: data["_id"].stringValue as NSCopying)
+        }
         
+        print("\n carousel Dict : \(carouselDict)")
     }
     
     func getSingleVideo(_ photoId: String) {
@@ -455,13 +472,21 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate, iCarouselDeleg
         print("in print print....... \(postId) index \(self.currentIndex)")
         if postId == "" {
             
-            if allDataFromMyLife[self.currentIndex]["type"].stringValue == "video" {
-                self.getSingleVideo("")
-            } else {
-                self.getSinglePhoto("")
-            }
+//            if allDataFromMyLife[self.currentIndex]["type"].stringValue == "video" {
+//                self.getSingleVideo("")
+//            } else {
+//                self.getSinglePhoto("")
+//            }
             
-        } else {
+            if carouselView.isHidden {
+                carouselView.isHidden = false
+            }
+            carouselView.currentItemIndex = index
+            carouselView.reloadData()
+            carouselView.scrollToItem(at: index, animated: true)
+        }
+            
+        else {
             
             request.getOneJourneyPost(id: postId, completion: {(response) in
                 DispatchQueue.main.async(execute: {
@@ -499,12 +524,6 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate, iCarouselDeleg
     func getSinglePhoto(_ photoId: String) {
         loader.hideOverlayView()
         if photoId == "" {
-//            self.fromPhotoFunction(data: allDataFromMyLife[self.currentIndex])
-            if carouselView.isHidden {
-                carouselView.isHidden = false
-            }
-            carouselView.reloadData()
-            carouselView.currentItemIndex = self.currentIndex
         }
         else{
             var val = ""
@@ -525,14 +544,17 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate, iCarouselDeleg
                     else if response["value"].bool! {
                         let data: JSON = response["data"]
                         self.carouselDict.setObject(data, forKey: photoId as NSCopying)
-//                        print("\n\n self.carouselDataArray : \(self.carouselDict)")
-//                        self.singlePhotoJSON = response["data"]
-                        self.carouselView.reloadData()
-                        
+                        print("\n\n self.carouselDataArray : \(self.carouselDict)")                          
                         if self.carouselView.isHidden {
                             self.carouselView.isHidden = false
-                            self.carouselView.currentItemIndex = self.currentIndex
+                            self.carouselView.currentItemIndex = self.index
+                            self.carouselView.reloadData()
+                            self.carouselView.scrollToItem(at: self.index, animated: true)
                         }
+                        else{
+                            self.carouselView.reloadData()
+                        }
+                        
                     }
                     else {
                         print("response error!")
@@ -544,8 +566,10 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate, iCarouselDeleg
     }
     
     func loadMore() {
-        loadPreviousData()
-        loadNextData()
+        if !isSpecialHandling {
+            loadPreviousData()
+            loadNextData()            
+        }
     }
     
     func loadPreviousData() {
@@ -560,13 +584,10 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate, iCarouselDeleg
     //MARK: - Carousel Datasource and Delegates
     
     func numberOfItems(in carousel: iCarousel) -> Int {
-//        return carouselDict.allKeys.count
-        if photos != nil {
-            return photos.count
-        }
-        else{
-            if postId == ""{
-                return allDataFromMyLife.count
+        
+        if !carousel.isHidden {
+            if photos != nil {
+                return photos.count
             }
         }
         return 0
@@ -596,23 +617,22 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate, iCarouselDeleg
         }
         
         let key = photos[index]["_id"].string!
-        var currentJson = carouselDict.value(forKey: key) as! JSON!
-        if postId == "" {
-            currentJson = allDataFromMyLife[currentIndex]
-        }
+        let currentJson = carouselDict.value(forKey: key) as! JSON!
+        
+        print("\n viewForItemAt: \(index)  key : \(key)")
+        
         if shouldCreateView {
             currentImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: carousel.frame.size.width*0.80, height: carousel.frame.size.height*0.70))
             currentImageView.contentMode = .scaleAspectFill
             currentImageView.clipsToBounds = true
-            currentImageView.image = UIImage(named: "logo-default")
             currentImageView.backgroundColor = UIColor.clear
             currentImageView.tag = 999
             currentImageView.layer.borderColor = UIColor.lightGray.cgColor
             currentImageView.layer.borderWidth = 0.5
             currentImageView.layer.cornerRadius = 5.0
         }
+        currentImageView.image = UIImage(named: "logo-default")
         
-//        currentImageView.center = carousel.center        
         if currentJson != nil {            
             currentImageView.hnk_setImageFromURL(getImageURL((currentJson?["name"].stringValue)!, width: Int(carousel.frame.size.width*0.8)))
         }
@@ -624,18 +644,19 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate, iCarouselDeleg
         
         if carousel.currentItemIndex != -1 {
             
-            let key = photos[currentIndex!]["_id"].string!
-            var currentJson = carouselDict.value(forKey: key)
-            if postId == "" {
-                currentJson = allDataFromMyLife[currentIndex]
-            }
-            if currentJson != nil {
-                self.fromPhotoFunction(data: currentJson as! JSON)
-            }
+            let key = photos[carousel.currentItemIndex]["_id"].string!
+            let currentJson = carouselDict.value(forKey: key) as? JSON
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: { 
-                self.bgImage.image = self.currentImageView.image
-            })
+            print("\n CurrentJSON : \(currentJson) key :\(key)  current index: \(carousel.currentItemIndex)")
+            
+            if currentJson != nil {
+                currentImageView.hnk_setImageFromURL(getImageURL((currentJson?["name"].stringValue)!, width: Int(carousel.frame.size.width*0.8)))
+                self.fromPhotoFunction(data: currentJson! )
+                bgImage.hnk_setImageFromURL(getImageURL((currentJson?["name"].stringValue)!, width: Int(carousel.frame.size.width*0.8)))
+            }
+            else{
+                print("\n current JSON is nil")
+            }
             
             currentIndex = carousel.currentItemIndex
             self.loadMore()

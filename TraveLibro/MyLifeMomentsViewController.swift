@@ -345,6 +345,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
         
         if insideView == "Monthly" {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MomentsLargeImageCell", for: indexPath) as! photosTwoCollectionViewCell
+            cell.photoBig.image = UIImage(named: "logo-default")
             if allData[indexPath.row]["name"].stringValue != "" {
                 cell.photoBig.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["name"].stringValue, width: 200))
                 
@@ -358,6 +359,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
             switch momentType {
             case "all":
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath) as! photosCollectionViewCell
+                cell.photo.image = UIImage(named: "logo-default")
                 if allData[indexPath.section]["data"][indexPath.row]["name"].stringValue != "" {
                     cell.photo.hnk_setImageFromURL(getImageURL(allData[indexPath.section]["data"][indexPath.row]["name"].stringValue, width: 200))
                     
@@ -367,13 +369,14 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
                 return cell
             case "Monthly", "SelectCover":
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MomentsLargeImageCell", for: indexPath) as! photosTwoCollectionViewCell
-                cell.photoBig.image = nil
+                cell.photoBig.image = UIImage(named: "logo-default")
                 cell.photoBig.backgroundColor = UIColor.white
                 
                 cell.photoBig.hnk_setImageFromURL(URL(string: "\(adminUrl)upload/readFile?file=\(self.images[(indexPath as NSIndexPath).item])&width=200")!)
                 return cell
             case "local-life":
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "localLifeMomentsCell", for: indexPath) as! LocalLifeMomentsCollectionViewCell
+                cell.bgImage.image = UIImage(named: "logo-default")
                 cell.bgImage.transform = CGAffineTransform(rotationAngle: 0.0349066)
                 cell.bgImage.layer.cornerRadius = 5
                 cell.coverImage.layer.cornerRadius = cell.coverImage.frame.width/2
@@ -386,7 +389,6 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
                 return cell
             case "travel-life":
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "travelLifeMomentsCell", for: indexPath) as! TravelLifeMomentsCollectionViewCell
-                
                 
                 cell.coverImage.layer.cornerRadius = cell.coverImage.frame.width/2
                 cell.coverImage.clipsToBounds = true
@@ -401,6 +403,8 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
                 cell.bgImage.layer.shadowRadius = 10
                 cell.bgImage.transform = CGAffineTransform(rotationAngle: 0.0349066)
                 cell.bgImage.clipsToBounds = true
+                cell.bgImage.image = UIImage(named: "logo-default")
+                
                 if allData[indexPath.row]["coverPhoto"] != nil {
                     cell.coverImage.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["coverPhoto"].stringValue, width: 200))
                     cell.bgImage.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["coverPhoto"].stringValue, width: 200))
