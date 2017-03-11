@@ -198,11 +198,12 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
             if(post.post_location != "") {
                 rateButton = RatingCheckIn(frame: CGRect(x: 0, y: 0, width: width, height: 150))
                 rateButton.photosOtg = self;
+                rateButton.whichView = "otg"
                 rateButton.rateCheckInLabel.text = "Rate " + post.post_location
                 print("helloshowmejsonpost")
                 print(post.jsonPost)
                 if((post.jsonPost["review"].count) > 0) {
-                    self.rateButton.rateCheckInButton.setBackgroundImage(UIImage(named:"box8"), for: UIControlState())
+//                    self.rateButton.rateCheckInButton.setBackgroundImage(UIImage(named:"box8"), for: UIControlState())
 
                     let review = post.jsonPost["review"].array?[0]
                     rateButton.review = review

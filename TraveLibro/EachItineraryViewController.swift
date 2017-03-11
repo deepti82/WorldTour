@@ -385,7 +385,7 @@ class EachItineraryViewController: UIViewController, UITableViewDataSource, UITa
             
         else {
             //No contries available please go back
-            Toast(text: "No countries founf under \(editJson?["name"].stringValue) itinerary").show()
+            Toast(text: "No countries found under \(editJson?["name"].stringValue) itinerary").show()
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
                 _ = self.navigationController?.popViewController(animated: true)                

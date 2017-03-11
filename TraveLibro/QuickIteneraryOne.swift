@@ -10,6 +10,8 @@
 
 import UIKit
 import CoreGraphics
+import Toaster
+
 class QuickIteneraryOne: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
     @IBOutlet weak var tripTitle: UITextField!
     @IBOutlet weak var quickOneView: UIView!
@@ -32,6 +34,8 @@ class QuickIteneraryOne: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     var date = NSDate()
     var currentYear: Int = 0
     var currentMonth: String = ""
+    var yearIndex: Int = -1
+    var monthIndex: Int = -1
     
    
 
@@ -171,17 +175,37 @@ class QuickIteneraryOne: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         }
     }
     
-  
+    func checkMonth() {
+        
+        let date = Date()
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.year, .month, .day], from: date)
+        
+        let month = components.month
+        
+        if yearIndex == 0 && monthIndex > month! - 1 {
+            monthPickerView.text = ""
+            Toast(text: "Month & year can not be greater tha Today's date.").show()
+        }
+        
+    }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    
         switch  component {
+            
         case 0:
-            monthPickerView.text = months[row]
+                monthPickerView.text = months[row]
+                monthIndex = row
         case 1:
             yearPickerView.text = "\(yearsPicker[row])"
+            yearIndex = row
         default:
             break
         }
+        
+        checkMonth()
+        
     }
     
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange,

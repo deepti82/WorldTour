@@ -18,6 +18,7 @@ class RatingCheckIn: UIView {
     var review:JSON!
     let moodArr = ["Disappointed", "Sad", "Good", "Super", "In Love"]
     let imageArr = ["disapointed", "sad", "good", "superface", "love"]
+    var whichView:String = ""
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -99,7 +100,13 @@ class RatingCheckIn: UIView {
         print("reviewwww")
         print(reviewR)
         self.rateCheckInButton.setImage(UIImage(named:imageArr[num - 1]), for: UIControlState())
-        self.rateCheckInButton.setBackgroundImage(UIImage(named:"box8"), for: UIControlState())
+        if whichView == "otg" {
+            self.rateCheckInButton.setBackgroundImage(UIImage(named:"orangebox"), for: UIControlState())
+
+        }else{
+            self.rateCheckInButton.setBackgroundImage(UIImage(named:"box8"), for: UIControlState())
+
+        }
         self.rateCheckInLabel.text = moodArr[num - 1]
         review = ["rating":"\(num)", "review":reviewR]
     }
