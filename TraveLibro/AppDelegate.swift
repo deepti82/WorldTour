@@ -296,7 +296,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
     }
     
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
-        print("\n Controllers : \(navigationController.viewControllers)")
         var prevVC = UIViewController()
         if (navigationController.viewControllers.count > 1 ) {
             prevVC = navigationController.viewControllers[navigationController.viewControllers.count - 1]

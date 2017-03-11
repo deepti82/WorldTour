@@ -283,7 +283,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     
     
     override func viewDidAppear(_ animated: Bool) {
-        
+        super.viewDidAppear(animated)
         globalNavigationController = self.navigationController
         self.getUser()
     }
