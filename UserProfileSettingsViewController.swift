@@ -10,8 +10,8 @@ import UIKit
 
 class UserProfileSettingsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
-    let labels = ["Edit Profile - a little more about me", "Data Upload", "Privacy", "Report a Problem"]
-    let sideImages = ["edit_profile_icon", "data_upload_icon", "privacy_icon", "report_icon"]
+    let labels = ["Edit Profile - a little more about me", "Privacy", "Report a Problem"]
+    let sideImages = ["edit_profile_icon", "privacy_icon", "report_icon"]
     
     @IBOutlet weak var settingsTableView: UITableView!
     
@@ -137,17 +137,17 @@ class UserProfileSettingsViewController: UIViewController, UITableViewDataSource
                 editMAMVC.whichView = "MAMView"
                 self.navigationController?.pushViewController(editMAMVC, animated: true)
                 break
+//            case 1:
+//                let dataUsageVC = storyboard?.instantiateViewController(withIdentifier: "SettingsVC") as! SettingsViewController
+//                dataUsageVC.dataSourceOption = "dataUploadOptions"
+//                self.navigationController?.pushViewController(dataUsageVC, animated: true)
+//                break
             case 1:
-                let dataUsageVC = storyboard?.instantiateViewController(withIdentifier: "SettingsVC") as! SettingsViewController
-                dataUsageVC.dataSourceOption = "dataUploadOptions"
-                self.navigationController?.pushViewController(dataUsageVC, animated: true)
-                break
-            case 2:
                 let privacyVC = storyboard?.instantiateViewController(withIdentifier: "SettingsVC") as! SettingsViewController
                 privacyVC.dataSourceOption = "privacyOptions"
                 self.navigationController?.pushViewController(privacyVC, animated: true)
                 break
-            case 3:
+            case 2:
                 let reportVC = storyboard?.instantiateViewController(withIdentifier: "EditSettings") as! EditSettingsViewController
                 reportVC.whichView = "ReportView"
                 self.navigationController?.pushViewController(reportVC, animated: true)
