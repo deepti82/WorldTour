@@ -234,7 +234,9 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
             }
         })
     }
-    
+    func setAll() {
+        self.automaticallyAdjustsScrollViewInsets = false;
+    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -246,6 +248,7 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
             cell.locationLabel.text = "\(allData[indexPath.row]["checkIn"]["city"].stringValue), \(allData[indexPath.row]["checkIn"]["country"].stringValue)"
             cell.placeTitle.text = allData[indexPath.row]["checkIn"]["location"].stringValue
             cell.setView(feed: allData[indexPath.row])
+            setAll()
             
             return cell
             
@@ -417,6 +420,15 @@ class allReviewsMLTableViewCell: UITableViewCell {
         
         let rating = AddRating(frame: CGRect(x: 0, y: 0, width: width - 40, height: 335))
         rating.activityJson = postTop
+        
+        if postTop["type"].stringValue == "travel-life" {
+            rating.whichView = "otg"
+            rating.switchSmily()
+        }else{
+            rating.whichView = ""
+            rating.switchSmily()
+        }
+        
         rating.accordianCell = self
         rating.checkView = "accordian"
         
@@ -445,8 +457,6 @@ class allReviewsMLTableViewCell: UITableViewCell {
             }
         }
         
-        
-        
         rating.center = backgroundReview.center
         rating.layer.cornerRadius = 5
         rating.clipsToBounds = true
@@ -462,11 +472,19 @@ class allReviewsMLTableViewCell: UITableViewCell {
         ratingStack.addGestureRecognizer(tapout)
         categoryImage.image = UIImage(named: getCategory(type: feed["checkIn"]["category"].stringValue))
         
+        if postTop["type"].stringValue == "travel-life" {
+            ratingButton.setTitleColor(mainOrangeColor, for: .normal)
+        }else{
+            ratingButton.setTitleColor(endJourneyColor, for: .normal)
+
+        }
+        
         if feed["review"][0] != nil && feed["review"].count > 0 {
             ratingStack.isHidden = false
             ratingButton.isHidden = true
             if feed["review"][0]["review"].stringValue != "" {
                 self.review.text = feed["review"][0]["review"].stringValue
+                self.review.sizeToFit()
             }
             afterRating(starCnt: feed["review"][0]["rating"].intValue, review: feed["review"][0]["review"].stringValue, type:feed["type"].stringValue)
         }else{
@@ -503,11 +521,12 @@ class allReviewsMLTableViewCell: UITableViewCell {
                 self.review.isHidden = false
                 self.review.text = review
             }
-            
+//            self.rel
             newRating = ["rating":"\(starCnt)","review":review]
             ratingStack.isHidden = false
             ratingButton.isHidden = true
         }
+        
     }
     
     

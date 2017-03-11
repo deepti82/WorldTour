@@ -83,13 +83,22 @@ class PhotoOTGFooter: UIView {
         self.likeHeart.text = String(format: "%C", faicon["likes"]!)
             }
     
-    func showLike (_ sender: UITapGestureRecognizer? = nil) {
-        
+    func showLike(_ sender: UITapGestureRecognizer) {
+        print("fahsldkjfhlaksjdhfalkjsfhlk")
         let feedVC = storyboard!.instantiateViewController(withIdentifier: "likeTable") as! LikeUserViewController
 //        feedVC.postId = postTop["_id"].stringValue
         globalNavigationController.pushViewController(feedVC, animated: true)
         
     }
+    
+//    func showLike(_ sender: UITapGestureRecognizer) {
+//        print("in footer tap out \(postTop)")
+//        let feedVC = storyboard!.instantiateViewController(withIdentifier: "likeTable") as! LikeUserViewController
+//        feedVC.postId = postTop["_id"].stringValue
+//        feedVC.type = postTop["type"].stringValue
+//        feedVC.title = postTop["name"].stringValue
+//        globalNavigationController.pushViewController(feedVC, animated: true)
+//    }
 
     
     
