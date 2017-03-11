@@ -81,6 +81,9 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
                 //                profileHeader.category.imageView?.tintColor = UIColor(hex: "#303557")
             }
             videoUrl = URL(string:feed["videos"][0]["name"].stringValue)
+            if(videoUrl == nil) {
+                videoUrl = URL(string:feed["videos"][0]["localUrl"].stringValue)
+            }
             self.player.setUrl(videoUrl!)
             self.videoContainer.videoHolder.addSubview(self.player.view)
             self.addSubview(self.videoContainer)

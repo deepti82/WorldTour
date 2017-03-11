@@ -17,6 +17,7 @@ public class PostVideo {
     var caption = ""
     var postId = 0
     var serverUrl = ""
+    var localURL = ""
     var serverUrlThumbnail = ""
     var editId = ""
     
@@ -86,6 +87,7 @@ public class PostVideo {
                 let p = PostVideo();
                 p.caption = String(video[captions])
                 p.serverUrl = String(video[url])
+                p.localURL = getDocumentsDirectory().appendingPathComponent( String(video[localUrl]) ).absoluteString
                 p.serverUrlThumbnail = String(video[thumbnail])
                 p.imageUrl = getDocumentsDirectory().appendingPathComponent( video[localUrl] )
                 all.append(p)
@@ -156,7 +158,7 @@ public class PostVideo {
         print(self.serverUrl)
         print(self.caption)
         print(self.serverUrlThumbnail)
-        var photoJson:JSON = ["name":self.serverUrl,"caption":self.caption,"thumbnail":self.serverUrlThumbnail]
+        var photoJson:JSON = ["name":self.serverUrl,"caption":self.caption,"thumbnail":self.serverUrlThumbnail,"localUrl":self.localURL]
         if(self.editId != "") {
             photoJson["_id"] = JSON(self.editId)
         }
