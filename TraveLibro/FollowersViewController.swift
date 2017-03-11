@@ -148,8 +148,7 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
     //MARK: - Empty Data Handled
     
     func noFollowingFound() {
-        headerText.text = "Popular TraveLibrans"
-        customSearch.searchField.placeholder = "Search interesting people..."
+        headerText.text = "Popular Travellers"
     }
     
     func noFollowersFound() {

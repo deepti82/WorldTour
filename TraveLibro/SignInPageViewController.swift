@@ -69,8 +69,8 @@ class SignInPageViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
+        super.viewWillAppear(animated)        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.userSocialLoginFailed(notification:)), name: NSNotification.Name(rawValue: "SOCIAL_LOGIN_FAILED"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.userChangeLoginFailed(notification:)), name: NSNotification.Name(rawValue: "USER_MIGRATE_FAILED"), object: nil)        
         setData()
     }
@@ -311,6 +311,16 @@ class SignInPageViewController: UIViewController {
         print("\n user change login failed : \(notification.object)")
         
         let errorAlert = UIAlertController(title: "Error", message: "Something went wrong. Please try after sometimes.", preferredStyle: UIAlertControllerStyle.alert)
+        let DestructiveAction = UIAlertAction(title: "Ok", style: .destructive) {
+            (result : UIAlertAction) -> Void in
+        }            
+        errorAlert.addAction(DestructiveAction)
+        self.navigationController?.present(errorAlert, animated: true, completion: nil)
+    }
+    
+    func userSocialLoginFailed(notification : Notification) {
+        
+        let errorAlert = UIAlertController(title: "Error", message: "Unable to login. Please check your profile public.", preferredStyle: UIAlertControllerStyle.alert)
         let DestructiveAction = UIAlertAction(title: "Ok", style: .destructive) {
             (result : UIAlertAction) -> Void in
         }            

@@ -30,14 +30,12 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.setNavigationBarItem()
+        setNavigationBarItemText("Notifications")
         
         loader.showOverlay(self.view)        
         self.mainFooter = FooterViewNew(frame: CGRect(x: 0, y: self.view.frame.height - 65, width: self.view.frame.width, height: 65))
         self.mainFooter.layer.zPosition = 5
         self.view.addSubview(self.mainFooter)
-
-        self.title = "Notifications"
         
         getDarkBackGround(self)
         notifyTableView.backgroundColor = UIColor.clear

@@ -8,6 +8,7 @@
 
 import UIKit
 import Toaster
+import Foundation
 
 class PopularBloggersViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
@@ -26,7 +27,7 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.setNavigationBarItem()
+        self.setNavigationBarItemText("Popular Bloggers")
         
         getDarkBackGround(self)
         
@@ -53,7 +54,6 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
     
     //MARK: - Helpers
     
@@ -126,6 +126,10 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
         
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {        
+        return min(210, (tableView.frame.size.height - 10) / 3)
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "popularCell") as! PopularBloggerTableViewCell
@@ -191,6 +195,9 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
         }
     }
+    
+    
+    //MARK: - Follow Action
     
     @IBAction func followButtonClicked(_ sender: UIButton) {
         
