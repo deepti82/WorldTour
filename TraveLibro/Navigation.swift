@@ -13,12 +13,12 @@ class Navigation {
     
     func saveUser(_ firstName: String, lastName: String, email: String, mobile: String, fbId: String, googleId: String, twitterId: String, instaId: String, nationality: String, profilePicture: String, gender: String, dob: String, completion: @escaping ((JSON) -> Void)) {
         
-        var json1 = JSON(1);
-        let deviceId = UIDevice.current.identifierForVendor!.uuidString
+        var json1 = JSON(1);        
         OneSignal.idsAvailable({(_ userId, _ pushToken) in
-            let deviceParams = userId
+            let deviceParams = userId! as String
             let params = ["firstName":firstName, "lastName":lastName, "email": email, "mobile": mobile, "facebookID": fbId, "googleID": googleId, "twitterID": twitterId, "instagramID": instaId, "nationality": nationality, "profilePicture": profilePicture, "gender": gender, "deviceId": deviceParams, "dob": dob] as [String : Any]
             
+            print("\n\n Params : \n \(params)")
             do {
                 let opt = try HTTP.POST(adminUrl + "user/save", parameters: [params])
                 opt.start { response in
@@ -27,26 +27,16 @@ class Navigation {
                     }
                     else
                     {
-                        json1  = JSON(data: response.data)
-                        var json = json1["data"]
-                        print("\(#line)\(json)")
-                        print(json["googleID"])
+                        json1  = JSON(data: response.data)                        
+                        var json = json1["data"]                        
                         var socialType = ""
                         var socialId = ""
                         
-                        if json["googleID"].string! != "" {
+                        if json["googleID"].stringValue != "" {
                             socialType = "google"
                             socialId = json["googleID"].string!
                         }
-                        else if json["instagramID"].string! != "" {
-                            socialType = "instagram"
-                            socialId = json["instagramID"].string!
-                        }
-                        else if json["twitterID"].string! != "" {
-                            socialType = "twitter"
-                            socialId = json["twitterID"].string!
-                        }
-                        else if json["facebookID"].string! != "" {
+                        else if json["facebookID"].stringValue != "" {
                             socialType = "facebook"
                             socialId = json["facebookID"].string!
                         }

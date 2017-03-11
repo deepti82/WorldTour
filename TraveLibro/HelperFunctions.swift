@@ -53,87 +53,92 @@ class SocialLoginClass: UIViewController {
                         let json = JSON(data: response.data)
                         print(json)
                         
-                        if loggedInUser != nil {
-                            request.changeLogin(id: loggedInUser["_id"].stringValue, email: json["emails"][0]["value"].string!, facebookID: nil, googleID: json["id"].string!, completion: { (response) in
-                                
-                                DispatchQueue.main.async(execute: {
+                        if json["emails"][0]["value"].string! != "" {
+                            if loggedInUser != nil {
+                                request.changeLogin(id: loggedInUser["_id"].stringValue, email: json["emails"][0]["value"].string!, facebookID: nil, googleID: json["id"].string!, completion: { (response) in
                                     
-                                    if (response.error != nil) {
+                                    DispatchQueue.main.async(execute: {
                                         
-                                        print("error: \(response.error!.localizedDescription)")
-                                    }
-                                    else if response["value"].bool! {
-                                        
-                                        request.getUser(loggedInUser["_id"].stringValue, completion: { (response1) in
+                                        if (response.error != nil) {
                                             
+                                            print("error: \(response.error!.localizedDescription)")
+                                        }
+                                        else if response["value"].bool! {
                                             
-                                            DispatchQueue.main.async(execute: {
+                                            request.getUser(loggedInUser["_id"].stringValue, completion: { (response1) in
                                                 
-                                                if (response1.error != nil) {
+                                                
+                                                DispatchQueue.main.async(execute: {
                                                     
-                                                    print("error: \(response1.error!.localizedDescription)")
-                                                }
-                                                    
-                                                else {
-                                                    
-                                                    let response = response1["data"]
-                                                    user.setUser(response["_id"].stringValue,
-                                                                 name: response["name"].stringValue,
-                                                                 useremail: response["email"].stringValue,
-                                                                 profilepicture: response["profilePicture"].stringValue,
-                                                                 travelconfig: "", 
-                                                                 loginType: "google",
-                                                                 socialId: loggedInUser["_id"].string!,
-                                                                 userBadge: response["userBadgeImage"].stringValue,
-                                                                 homecountry: response["homeCountry"]["name"].stringValue,
-                                                                 homecity: response["homeCity"].stringValue,
-                                                                 isloggedin: response["alreadyLoggedIn"].bool!, 
-                                                                 dataUpload:"", privacy:"" )
-                                                    
-                                                    if response1["value"].bool! {
+                                                    if (response1.error != nil) {
                                                         
-                                                        currentUser = response1["data"]
-                                                        //                                        AppDelegate.createMenuView()
-                                                        leftViewController.viewDidLoad()
+                                                        print("error: \(response1.error!.localizedDescription)")
+                                                    }
                                                         
-                                                        self.gotoNationalityPage()
+                                                    else {
+                                                        
+                                                        let response = response1["data"]
+                                                        user.setUser(response["_id"].stringValue,
+                                                                     name: response["name"].stringValue,
+                                                                     useremail: response["email"].stringValue,
+                                                                     profilepicture: response["profilePicture"].stringValue,
+                                                                     travelconfig: "", 
+                                                                     loginType: "google",
+                                                                     socialId: loggedInUser["_id"].string!,
+                                                                     userBadge: response["userBadgeImage"].stringValue,
+                                                                     homecountry: response["homeCountry"]["name"].stringValue,
+                                                                     homecity: response["homeCity"].stringValue,
+                                                                     isloggedin: response["alreadyLoggedIn"].bool!, 
+                                                                     dataUpload:"", privacy:"" )
+                                                        
+                                                        if response1["value"].bool! {
+                                                            
+                                                            currentUser = response1["data"]
+                                                            //                                        AppDelegate.createMenuView()
+                                                            leftViewController.viewDidLoad()
+                                                            
+                                                            self.gotoNationalityPage()
+                                                            
+                                                        }
+                                                        //                                    print("response fb: \(response.description)")
                                                         
                                                     }
-                                                    //                                    print("response fb: \(response.description)")
                                                     
-                                                }
+                                                })
                                                 
                                             })
+                                        }
+                                        
+                                        else {
+                                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "USER_MIGRATE_FAILED"), object: response)
+                                        }
+                                    })
+                                })                            
+                            }
+                            else {
+                                request.saveUser(json["name"]["givenName"].string!, lastName: json["name"]["familyName"].string!, email: json["emails"][0]["value"].string!, mobile: "", fbId: "", googleId: json["id"].string!, twitterId: "", instaId: "", nationality: "", profilePicture: json["image"]["url"].string!, gender: "", dob: "", completion: {(response) in                                
+                                    DispatchQueue.main.async(execute: {
+                                        
+                                        if (response.error != nil) {
                                             
-                                        })
-                                    }
-                                    
-                                    else {
-                                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "USER_MIGRATE_FAILED"), object: response)
-                                    }
+                                            print("error: \(response.error!.localizedDescription)")
+                                        }
+                                            
+                                        else {
+                                            
+                                            //                                print("response: \(response.description)")
+                                            currentUser = response["data"]
+                                            //                                    AppDelegate.createMenuView()
+                                            leftViewController.viewDidLoad()
+                                            self.gotoNationalityPage()
+                                            
+                                        }
+                                    })
                                 })
-                            })                            
+                            }
                         }
                         else {
-                            request.saveUser(json["name"]["givenName"].string!, lastName: json["name"]["familyName"].string!, email: json["emails"][0]["value"].string!, mobile: "", fbId: "", googleId: json["id"].string!, twitterId: "", instaId: "", nationality: "", profilePicture: json["image"]["url"].string!, gender: "", dob: "", completion: {(response) in                                
-                                DispatchQueue.main.async(execute: {
-                                    
-                                    if (response.error != nil) {
-                                        
-                                        print("error: \(response.error!.localizedDescription)")
-                                    }
-                                        
-                                    else {
-                                        
-                                        //                                print("response: \(response.description)")
-                                        currentUser = response["data"]
-                                        //                                    AppDelegate.createMenuView()
-                                        leftViewController.viewDidLoad()
-                                        self.gotoNationalityPage()
-                                        
-                                    }
-                                })
-                            })
+                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "SOCIAL_LOGIN_FAILED"), object: response)
                         }
                     }
                 } catch let error {
@@ -200,93 +205,99 @@ class SocialLoginClass: UIViewController {
                             
                         }
                         
-                        if loggedInUser != nil {
-                            request.changeLogin(id: loggedInUser["_id"].stringValue, email: email, facebookID: json["id"].string!, googleID: nil, completion: { (responsess) in
-                                
-                                DispatchQueue.main.async(execute: {
+                        if email != "" {
+                        
+                            if loggedInUser != nil {
+                                request.changeLogin(id: loggedInUser["_id"].stringValue, email: email, facebookID: json["id"].string!, googleID: nil, completion: { (responsess) in
                                     
-                                    if (responsess.error != nil) {
+                                    DispatchQueue.main.async(execute: {
                                         
-                                        print("error: \(responsess.error!.localizedDescription)")
-                                    }
-                                    else if responsess["value"].bool! {
-                                        
-                                        request.getUser(loggedInUser["_id"].stringValue, completion: { (response1) in
-                                            DispatchQueue.main.async(execute: {
-                                                print("response11: \(response1)")
-                                                if (response1.error != nil) {
-                                                    
-                                                    print("error: \(response1.error!.localizedDescription)")
-                                                }
-                                                    
-                                                else {
-                                                    let response = response1["data"]
-                                                    print("id : \(response["_id"].stringValue)")
-                                                    user.setUser(response["_id"].stringValue,
-                                                                 name: response["name"].stringValue,
-                                                                 useremail: response["email"].stringValue,
-                                                                 profilepicture: response["profilePicture"].stringValue,
-                                                                 travelconfig: "", 
-                                                                 loginType: "facebook",
-                                                                 socialId: loggedInUser["_id"].string!,
-                                                                 userBadge: response["userBadgeImage"].stringValue,
-                                                                 homecountry: response["homeCountry"]["name"].stringValue,
-                                                                 homecity: response["homeCity"].stringValue,
-                                                                 isloggedin: response["alreadyLoggedIn"].bool!, 
-                                                                 dataUpload:"", privacy:"" )
-                                                    
-                                                    if response1["value"].bool! {
+                                        if (responsess.error != nil) {
+                                            
+                                            print("error: \(responsess.error!.localizedDescription)")
+                                        }
+                                        else if responsess["value"].bool! {
+                                            
+                                            request.getUser(loggedInUser["_id"].stringValue, completion: { (response1) in
+                                                DispatchQueue.main.async(execute: {
+                                                    print("response11: \(response1)")
+                                                    if (response1.error != nil) {
                                                         
-                                                        currentUser = response1["data"]
-                                                        //                                        AppDelegate.createMenuView()
-                                                        leftViewController.viewDidLoad()
+                                                        print("error: \(response1.error!.localizedDescription)")
+                                                    }
                                                         
-                                                        self.gotoNationalityPage()
+                                                    else {
+                                                        let response = response1["data"]
+                                                        print("id : \(response["_id"].stringValue)")
+                                                        user.setUser(response["_id"].stringValue,
+                                                                     name: response["name"].stringValue,
+                                                                     useremail: response["email"].stringValue,
+                                                                     profilepicture: response["profilePicture"].stringValue,
+                                                                     travelconfig: "", 
+                                                                     loginType: "facebook",
+                                                                     socialId: loggedInUser["_id"].string!,
+                                                                     userBadge: response["userBadgeImage"].stringValue,
+                                                                     homecountry: response["homeCountry"]["name"].stringValue,
+                                                                     homecity: response["homeCity"].stringValue,
+                                                                     isloggedin: response["alreadyLoggedIn"].bool!, 
+                                                                     dataUpload:"", privacy:"" )
+                                                        
+                                                        if response1["value"].bool! {
+                                                            
+                                                            currentUser = response1["data"]
+                                                            //                                        AppDelegate.createMenuView()
+                                                            leftViewController.viewDidLoad()
+                                                            
+                                                            self.gotoNationalityPage()
+                                                            
+                                                        }
+                                                        //                                    print("response fb: \(response.description)")
                                                         
                                                     }
-                                                    //                                    print("response fb: \(response.description)")
                                                     
-                                                }
+                                                })
                                                 
                                             })
-                                            
-                                        })
-                                    }
+                                        }
+                                        
+                                        else {
+                                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "USER_MIGRATE_FAILED"), object: response)
+                                        }
+                                    })
+                                })                        
+                            }
+                            else {
+                                request.saveUser(json["first_name"].string!, lastName: json["last_name"].string!, email: email, mobile: mobile, fbId: json["id"].string!, googleId: "", twitterId: "", instaId: "", nationality: "", profilePicture: json["picture"]["data"]["url"].string!, gender: json["gender"].string!, dob: "", completion: {(response) in
                                     
-                                    else {
-                                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "USER_MIGRATE_FAILED"), object: response)
-                                    }
-                                })
-                            })                        
-                        }
-                        else {
-                            request.saveUser(json["first_name"].string!, lastName: json["last_name"].string!, email: email, mobile: mobile, fbId: json["id"].string!, googleId: "", twitterId: "", instaId: "", nationality: "", profilePicture: json["picture"]["data"]["url"].string!, gender: json["gender"].string!, dob: "", completion: {(response) in
-                                
-                                DispatchQueue.main.async(execute: {
-                                    
-                                    if (response.error != nil) {
+                                    DispatchQueue.main.async(execute: {
                                         
-                                        print("error: \(response.error!.localizedDescription)")
-                                    }
-                                        
-                                    else {
-                                        
-                                        if response["value"].bool! {
+                                        if (response.error != nil) {
                                             
-                                            currentUser = response["data"]
-                                            //                                        AppDelegate.createMenuView()
-                                            leftViewController.viewDidLoad()
+                                            print("error: \(response.error!.localizedDescription)")
+                                        }
                                             
-                                            self.gotoNationalityPage()
+                                        else {
+                                            
+                                            if response["value"].bool! {
+                                                
+                                                currentUser = response["data"]
+                                                //                                        AppDelegate.createMenuView()
+                                                leftViewController.viewDidLoad()
+                                                
+                                                self.gotoNationalityPage()
+                                                
+                                            }
+                                            //                                    print("response fb: \(response.description)")
                                             
                                         }
-                                        //                                    print("response fb: \(response.description)")
                                         
-                                    }
-                                    
+                                    })
                                 })
-                            })
-                            
+                                
+                            }
+                        }
+                        else{
+                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "SOCIAL_LOGIN_FAILED"), object: response)
                         }
                         
                     }
