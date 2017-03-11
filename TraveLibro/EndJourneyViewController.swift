@@ -311,6 +311,9 @@ class EndJourneyViewController: UIViewController {
         
         for (n,i) in newJson {
             var rateState = self.getRatingImage(rate: i["rating"].stringValue)
+            
+            
+            
             let rate = ShowRating(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 150))
             rate.rating.setImage(UIImage(named:rateState["image"].stringValue), for: .normal)
             rate.rating.setBackgroundImage(UIImage(named:rateState["back"].stringValue), for: .normal)
