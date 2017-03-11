@@ -66,6 +66,9 @@ class RatingCheckIn: UIView {
             let rating = AddRating(frame: CGRect(x: 0, y: 0, width: width - 40, height: 335))
             rating.post = photosOtg.postTop
             rating.checkIn = self
+            rating.whichView = "otg"
+
+            rating.switchSmily()
             rating.json = self.review
             print("get Review \(rating.json)")
             if review != nil  {

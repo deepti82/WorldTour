@@ -221,10 +221,10 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="travel_life" translatesAutoresizingMaskIntoConstraints="NO" id="4kG-Xj-KQE">
-                            <rect key="frame" x="335" y="61" width="23" height="21"/>
+                            <rect key="frame" x="328" y="57" width="30" height="30"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="21" id="1Wf-jE-hZS"/>
-                                <constraint firstAttribute="width" constant="23" id="s6j-ZS-1Wc"/>
+                                <constraint firstAttribute="height" constant="30" id="1Wf-jE-hZS"/>
+                                <constraint firstAttribute="width" constant="30" id="s6j-ZS-1Wc"/>
                             </constraints>
                         </imageView>
                     </subviews>
@@ -232,7 +232,7 @@
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="4kG-Xj-KQE" secondAttribute="trailing" constant="17" id="1et-s1-Yuh"/>
                         <constraint firstItem="qQ1-vh-dXj" firstAttribute="top" secondItem="HWH-5K-hPB" secondAttribute="top" constant="67" id="AH1-ui-pdr"/>
-                        <constraint firstItem="4kG-Xj-KQE" firstAttribute="top" secondItem="HWH-5K-hPB" secondAttribute="top" constant="61" id="CmO-sI-O2M"/>
+                        <constraint firstItem="4kG-Xj-KQE" firstAttribute="top" secondItem="HWH-5K-hPB" secondAttribute="top" constant="57" id="CmO-sI-O2M"/>
                         <constraint firstItem="qQ1-vh-dXj" firstAttribute="top" secondItem="gdo-V6-Bi9" secondAttribute="top" id="ID2-pJ-0d3"/>
                         <constraint firstItem="iPD-zs-z05" firstAttribute="leading" secondItem="gdo-V6-Bi9" secondAttribute="trailing" constant="4" id="JmB-sE-rm0"/>
                         <constraint firstItem="qQ1-vh-dXj" firstAttribute="baseline" secondItem="iPD-zs-z05" secondAttribute="baseline" id="bXz-1E-MFy"/>

@@ -154,6 +154,15 @@ class ActivityFeedFooterBasic: UIView {
         
         let rating = AddRating(frame: CGRect(x: 0, y: 0, width: width - 40, height: 335))
         rating.activityJson = postTop
+        
+        if postTop["type"].stringValue == "travel-life" {
+            rating.whichView = "otg"
+            rating.switchSmily()
+        }else{
+            rating.whichView = ""
+            rating.switchSmily()
+        }
+        
         rating.activityBasic = self
         rating.checkView = "activityFeed"
         

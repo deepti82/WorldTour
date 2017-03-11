@@ -21,6 +21,7 @@ class AddRating: UIView, UITextViewDelegate {
     @IBOutlet weak var reviewTextView: UITextView!
     @IBOutlet var stars: [UIButton]!
     @IBOutlet weak var smiley: UIButton!
+    @IBOutlet weak var addReviewText: UILabel!
     
     var post:Post!
     var checkIn:RatingCheckIn!
@@ -35,6 +36,7 @@ class AddRating: UIView, UITextViewDelegate {
     let moodArr = ["Disappointed", "Sad", "Good", "Super", "In Love"]
     let imageArr = ["disapointed", "sad", "good", "superface1", "love"]
     var navController = UINavigationController()
+    var whichView:String = ""
     
     func popToaster(text:String) {
         let msg = Toast(text: text)
@@ -149,6 +151,38 @@ class AddRating: UIView, UITextViewDelegate {
             })
         }
     }
+    
+    func switchSmily() {
+        
+        for star in stars {
+            star.setImage(UIImage(named: "star_uncheck"), for: UIControlState())
+            star.setImage(UIImage(named: "star_check"), for: .selected)
+            star.setImage(UIImage(named: "star_check"), for: [.highlighted, .selected])
+            if whichView == "otg" {
+            star.imageView?.tintColor = mainOrangeColor
+            }else{
+                star.imageView?.tintColor = endJourneyColor
+
+            }
+            star.adjustsImageWhenHighlighted = false
+            star.addTarget(self, action: #selector(AddRating.ratingButtonTapped), for: .touchDown)
+        }
+        stars[0].isSelected = true
+
+        
+        if whichView == "otg" {
+            self.smiley.setBackgroundImage(UIImage(named:"orangebox"), for: UIControlState())
+            self.addReviewText.textColor = mainOrangeColor
+
+            
+        }else{
+            self.smiley.setBackgroundImage(UIImage(named:"box8"), for: UIControlState())
+            self.addReviewText.textColor = endJourneyColor
+
+            
+        }
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
@@ -158,14 +192,6 @@ class AddRating: UIView, UITextViewDelegate {
         reviewTextView.delegate = self
         reviewTextView.returnKeyType = .done
         
-        for star in stars {
-            star.setImage(UIImage(named: "star_uncheck"), for: UIControlState())
-            star.setImage(UIImage(named: "star_check"), for: .selected)
-            star.setImage(UIImage(named: "star_check"), for: [.highlighted, .selected])
-            star.adjustsImageWhenHighlighted = false
-            star.addTarget(self, action: #selector(AddRating.ratingButtonTapped), for: .touchDown)
-        }
-        stars[0].isSelected = true
         
         //        self.clipsToBounds = true
     }
