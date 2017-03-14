@@ -32,8 +32,8 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.isTranslucent = false
-        print(navigationController?.navigationBar.isTranslucent)
     }
+    
     override func viewWillDisappear(_ animated: Bool) {
         navigationController?.navigationBar.isTranslucent = true
     }
@@ -175,7 +175,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
         myView5.photoBottomView2.tag = 14
         layout.addSubview(myView5)
         
-        let footer = FooterViewNew(frame: CGRect(x: 0, y: self.view.frame.height - 65, width: self.view.frame.width, height: 65))
+        let footer = FooterViewNew(frame: CGRect(x: 0, y: self.view.frame.height - (self.navigationController?.navigationBar.frame.size.height)! - (UIApplication.shared.statusBarFrame.size.height) - 65, width: self.view.frame.width, height: 65))
         footer.localLifeIcon.tintColor = mainGreenColor
         self.view.addSubview(footer)
         self.detectLocation(UIButton())
@@ -185,6 +185,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         globalNavigationController = self.navigationController
     }
     
