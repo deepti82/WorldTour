@@ -34,7 +34,7 @@ class AddRating: UIView, UITextViewDelegate {
     var postId = ""
     var loader = LoadingOverlay()
     let moodArr = ["Disappointed", "Sad", "Good", "Super", "In Love"]
-    let imageArr = ["disapointed", "sad", "good", "superface1", "love"]
+    let imageArr = ["disapointed", "sad", "good", "superface (1)", "love"]
     var navController = UINavigationController()
     var whichView:String = ""
     
