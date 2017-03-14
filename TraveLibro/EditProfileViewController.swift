@@ -12,7 +12,7 @@ import Toaster
 class EditProfileViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
 
     @IBOutlet weak var editTableViewCell: UITableView!
-    let labels = ["Profile Photo", "16 Jan 1988", "Yash Chudasama", "Favourite Destination", "Where Do You Live?", "Nationality", "Male"]
+    let labels = ["Profile Photo", "16 Jan 1988", "Yash Chudasama", "Favourite Destination - ", "Where Do You Live?", "Nationality", "Male"]
     var myView: Int = 0
     let imagePicker = UIImagePickerController()
     var keyboardUp = false
@@ -157,6 +157,23 @@ class EditProfileViewController: UIViewController, UITableViewDataSource, UITabl
             return cell            
         }
         
+        else if (indexPath as NSIndexPath).section == 3 {    //Favourite Destination
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: "destinationCell") as! DestinationTextFieldCell
+            
+            let paddingView = UILabel(frame: CGRect(x: 5, y: 0, width: 150, height: cell.destinationTextField.frame.size.height))
+            paddingView.text = labels[(indexPath as NSIndexPath).section]
+            paddingView.font = avenirFont
+            paddingView.textAlignment = .left
+            cell.destinationTextField.leftView = paddingView
+            cell.destinationTextField.leftViewMode = UITextFieldViewMode.always            
+            cell.destinationTextField.text = currentUser["dream_destination"].stringValue
+            
+            return cell            
+        }
+        
+        
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "textFieldCell") as! TextFieldTableViewCell
         cell.textField.text = labels[(indexPath as NSIndexPath).section]
         if indexPath.section == 2 { //Name
@@ -268,6 +285,16 @@ class EditProfileViewController: UIViewController, UITableViewDataSource, UITabl
                 }                
             } else {
                 alert(message: "Please Select City.", title: "Select City")
+            }
+        }
+        else if textField.tag == 28 {
+            
+            if textField.text != "" {
+                
+                let destination = textField.text!
+                if destination != currentUser["dream_destination"].stringValue {
+                    editedValues["dream_destination"] = destination                    
+                }                
             }
         }
     }
@@ -425,5 +452,10 @@ class TextFieldTableViewCell: UITableViewCell, UITextFieldDelegate {
 class DateTypeTextFieldTableViewCell: UITableViewCell, UITextFieldDelegate {
     
     @IBOutlet weak var datetypeTextField: UITextField!
+}
+
+class DestinationTextFieldCell : UITableViewCell, UITextFieldDelegate{
+    @IBOutlet weak var destinationTextField: UITextField!
+    
 }
 
