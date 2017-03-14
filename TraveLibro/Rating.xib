@@ -50,7 +50,7 @@
                     <rect key="frame" x="0.0" y="36" width="400" height="109"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="iBj-3n-r4D">
-                            <rect key="frame" x="16" y="82" width="158" height="10"/>
+                            <rect key="frame" x="16" y="82" width="157.5" height="10"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ow2-hC-YgK">
                                     <rect key="frame" x="0.0" y="0.0" width="10" height="10"/>
@@ -62,13 +62,13 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="14 Jan, 2014 | " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hTm-PF-T0l">
-                                    <rect key="frame" x="15" y="0.0" width="66" height="10"/>
+                                    <rect key="frame" x="15" y="0.0" width="65.5" height="10"/>
                                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="10"/>
                                     <color key="textColor" red="0.17254901959999999" green="0.2156862745" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y1O-Hh-nnV">
-                                    <rect key="frame" x="86" y="0.0" width="1" height="10"/>
+                                    <rect key="frame" x="85.5" y="0.0" width="1" height="10"/>
                                     <color key="backgroundColor" red="0.17254901959999999" green="0.2156862745" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="10" id="aas-yl-3wQ"/>
@@ -77,7 +77,7 @@
                                     </constraints>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b7W-WN-9Y0">
-                                    <rect key="frame" x="92" y="0.0" width="10" height="10"/>
+                                    <rect key="frame" x="91.5" y="0.0" width="10" height="10"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="10" id="4Ps-fr-gDy"/>
                                     </constraints>
@@ -86,7 +86,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="01:20 pm" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ecK-i2-aiq">
-                                    <rect key="frame" x="107" y="0.0" width="51" height="10"/>
+                                    <rect key="frame" x="106.5" y="0.0" width="51" height="10"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="51" id="utQ-cW-sgP"/>
                                     </constraints>
@@ -136,7 +136,7 @@
                         </stackView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c9b-qI-EhI">
                             <rect key="frame" x="16" y="75" width="364" height="0.0"/>
-                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
+                            <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="16"/>
                             <color key="textColor" red="0.17254901960784313" green="0.21568627450980393" blue="0.3411764705882353" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
@@ -165,7 +165,6 @@
                 <constraint firstItem="HCc-b6-9Wj" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="XMX-fw-4QI"/>
                 <constraint firstItem="gDE-6v-4jE" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="aAy-4g-SBg"/>
                 <constraint firstItem="HCc-b6-9Wj" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="h8R-mH-dy7"/>
-                <constraint firstItem="gDE-6v-4jE" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="z1r-AF-kkm"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

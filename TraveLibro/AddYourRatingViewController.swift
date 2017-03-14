@@ -107,24 +107,24 @@ class AddYourRatingViewController: UIViewController {
             
             let heightDifference = rating.reviewDescription.frame.height - rating.textViewHeight
             rating.frame.size.height -= heightDifference
-            let width = CGFloat(2)
+//            let width = CGFloat(2)
             
             
-            border.frame = CGRect(x: 0, y: rating.frame.size.height - width, width:  rating.frame.size.width, height: 2)
-            border.borderColor = UIColor(colorLiteralRed: 0/255, green: 0/255, blue: 0/255, alpha: 0.5).cgColor
-            border.borderWidth = width
-            rating.layer.addSublayer(border)
-            rating.layer.masksToBounds = true
+//            border.frame = CGRect(x: 0, y: rating.frame.size.height - width, width:  rating.frame.size.width, height: rating.frame.size.height)
+//            border.borderColor = UIColor(colorLiteralRed: 0/255, green: 0/255, blue: 0/255, alpha: 0.5).cgColor
+//            border.borderWidth = width
+//            rating.layer.addSublayer(border)
+//            rating.layer.masksToBounds = true
         }
         else {
             
             let heightDifference = rating.textViewHeight - rating.reviewDescription.frame.height 
             rating.frame.size.height += heightDifference
-            border.frame = CGRect(x: 0, y: rating.frame.size.height - width, width:  rating.frame.size.width, height: 2)
-            border.borderColor = UIColor(colorLiteralRed: 0/255, green: 0/255, blue: 0/255, alpha: 0.5).cgColor
-            border.borderWidth = width
-            rating.layer.addSublayer(border)
-            rating.layer.masksToBounds = true
+//            border.frame = CGRect(x: 0, y: rating.frame.size.height - width, width:  rating.frame.size.width, height: rating.frame.size.height)
+//            border.borderColor = UIColor(colorLiteralRed: 0/255, green: 0/255, blue: 0/255, alpha: 0.5).cgColor
+//            border.borderWidth = width
+//            rating.layer.addSublayer(border)
+//            rating.layer.masksToBounds = true
 
         }
         print(post["rating"].intValue)
