@@ -10,7 +10,7 @@ import UIKit
 
 class UserProfileSettingsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
-    let labels = ["Edit Profile - a little more about me", "Privacy", "Report a Problem"]
+    let labels = ["Little More About Me", "Privacy", "Report a Problem"]
     let sideImages = ["edit_profile_icon", "privacy_icon", "report_icon"]
     
     @IBOutlet weak var settingsTableView: UITableView!
@@ -73,24 +73,7 @@ class UserProfileSettingsViewController: UIViewController, UITableViewDataSource
         let cell = tableView.dequeueReusableCell(withIdentifier: "profileCell") as! MainProfileTableViewCell
         cell.profileImage.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(currentUser["profilePicture"])", width: 100))
         cell.profileName.text = currentUser["name"].stringValue
-        
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"                
-        let date = dateFormatter.date(from: currentUser["dob"].stringValue)
-        if date != nil {
-            
-            dateFormatter.dateFormat = "dd MMM yyyy"
-            cell.DoB.text = dateFormatter.string(from: date! as Date);            
-        }
-        
-        if cell.DoB.text == "" {
-            
-            let dateFormatter = DateFormatter()
-            let dateObj = NSDate()
-            dateFormatter.dateFormat = "dd MMM yyyy"
-            cell.DoB.text = dateFormatter.string(from: dateObj as Date);
-        } 
+        cell.DoB.text = "Edit Profile"
         return cell
         
     }
@@ -184,9 +167,8 @@ class UserProfileSettingsViewController: UIViewController, UITableViewDataSource
 class MainProfileTableViewCell: UITableViewCell {
     
     @IBOutlet weak var profileImage: UIImageView!
-    @IBOutlet weak var profileName: UILabel!
+    @IBOutlet weak var profileName: UILabel!    
     @IBOutlet weak var DoB: UILabel!
-    
 }
 
 class SettingsTableViewCell: UITableViewCell {

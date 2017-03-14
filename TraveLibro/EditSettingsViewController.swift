@@ -24,10 +24,16 @@ class EditSettingsViewController: UIViewController {
         
         switch whichView {
         case "MAMView":
-            self.title = "Edit More About Me"
+            self.title = "More About Me"
+ 
+            let titleText = NSMutableAttributedString(string: "Click here", attributes: [NSUnderlineStyleAttributeName: NSUnderlineStyle.styleSingle.rawValue,
+                                                                                         NSFontAttributeName : UIFont(name: "Avenir-Heavy", size: 14)!,
+                                                                                         NSForegroundColorAttributeName: mainBlueColor])
+            titleText.append(getRegularString(string: " to change your travel preferences"))
+            
             let titleView = UIButton(frame: CGRect(x: 0, y: 0, width: 300, height: 30))
             titleView.center = CGPoint(x: self.view.frame.width/2 , y: 100)
-            titleView.setTitle("Click here to change your travel preferences", for: UIControlState())
+            titleView.setAttributedTitle(titleText, for: .normal)
             titleView.titleLabel?.font = avenirFont!
             titleView.setTitleColor(UIColor(red: 88/255, green: 88/255, blue: 88/255, alpha: 1), for: UIControlState())
             titleView.backgroundColor = UIColor.clear
@@ -37,14 +43,7 @@ class EditSettingsViewController: UIViewController {
             MAMtextView = MoreAboutMe(frame: CGRect(x: 0, y: 140, width: self.view.frame.width, height: 150))
             MAMtextView.backgroundColor = UIColor.white
             self.view.addSubview(MAMtextView)
-            break
-            
-        case "NewPswdView":
-            self.title = "Reset Password"
-            print("in new pswd view")
-            let resetpswd = ResetPassword(frame: CGRect(x: 0, y: 80, width: self.view.frame.width, height: 250))
-            self.view.addSubview(resetpswd)
-            break
+            break        
         
         case "ReportView":
             self.title = "Report a problem"
