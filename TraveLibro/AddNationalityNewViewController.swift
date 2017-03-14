@@ -12,9 +12,20 @@ import Toaster
 
 class AddNationalityNewViewController: UIViewController, UIPickerViewDelegate {
     
-    var allCountries: [JSON] = [["name":"India"],["name":"USA"]]
+    var allCountries: [JSON] = []
     var nationalityID = ""
+    var loader = LoadingOverlay()
+    
     internal var isFromSettings: Bool!
+    
+    @IBOutlet weak var addNationality: UILabel!
+    @IBOutlet weak var addNationalityButton: UIButton!
+    @IBOutlet weak var pickNationalityMainView: UIView!
+    @IBOutlet weak var nationalityPickerView: UIPickerView!
+    @IBOutlet weak var userNationatilty: UIButton!
+    
+    
+    //MARK: - Actions
     
     @IBAction func AddNationality(_ sender: AnyObject) {
         
@@ -36,12 +47,6 @@ class AddNationalityNewViewController: UIViewController, UIPickerViewDelegate {
         
     }
     
-    @IBOutlet weak var addNationality: UILabel!
-    @IBOutlet weak var addNationalityButton: UIButton!
-    @IBOutlet weak var pickNationalityMainView: UIView!
-    @IBOutlet weak var nationalityPickerView: UIPickerView!
-    @IBOutlet weak var userNationatilty: UIButton!
-    
     @IBAction func userNationatiltyButtonTap(_ sender: AnyObject) {
         
         pickNationalityMainView.isHidden = false
@@ -49,11 +54,12 @@ class AddNationalityNewViewController: UIViewController, UIPickerViewDelegate {
     }
     
     
+    //MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        getDarkBackGround(self)
-        navigationController?.isNavigationBarHidden = false
         
+        navigationController?.isNavigationBarHidden = false
         getDarkBackGroundBlur(self)
         
         if isFromSettings != nil && isFromSettings == true {
@@ -72,6 +78,14 @@ class AddNationalityNewViewController: UIViewController, UIPickerViewDelegate {
             self.customNavigationBar(left: nil, right: rightButton)
         }
         
+        let hintLabel = UILabel(frame: CGRect(x: 20, y: 0, width: screenWidth - 40, height: 30))
+        hintLabel.center = CGPoint(x: hintLabel.center.x, y: self.view.center.y - 100)
+        hintLabel.font = avenirFont
+        hintLabel.text = "Click on country name to edit"
+        hintLabel.textColor = UIColor.white
+        hintLabel.textAlignment = .center
+        self.view.addSubview(hintLabel)
+        
         nationalityPickerView.delegate = self
         
         self.title = "Country of Origin"        
@@ -86,52 +100,35 @@ class AddNationalityNewViewController: UIViewController, UIPickerViewDelegate {
             
         }
         
-//        let toolBar = UIToolbar()
-//        toolBar.barStyle = UIBarStyle.default
-//        toolBar.isTranslucent = true
-//        //        toolBar.tintColor = UIColor(red: 76/255, green: 217/255, blue: 100/255, alpha: 1)
-//        toolBar.sizeToFit()
-//        
-//        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.plain, target: self, action: #selector(AddNationalityNewViewController.donePickerView(_:)))
-//        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
-//        let cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.plain, target: self, action: #selector(AddNationalityNewViewController.cancelPickerView(_:)))
-//        
-//        toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
-//        toolBar.isUserInteractionEnabled = true
-//        
-//        toolBar.frame = CGRect(x: 0, y: 0,width: pickNationalityMainView.frame.width,height: 30)
-//        pickNationalityMainView.addSubview(toolBar)
+        loader.showOverlay(self.view)
         
+        fetchCountries()
         
-        
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    func fetchCountries() {
         
         request.getAllCountries({(response) in
             
             DispatchQueue.main.async(execute: {
-                print("countries")
-                print(response)
+                self.loader.hideOverlayView()
+                
                 if response.error != nil {
-                    
                     print("error: \(response.error?.localizedDescription)")
-                    
-                }else {
-                    print("in else")
-                    if response["value"] == true {
-                        print("in else of if part")
-                        
-                        self.allCountries = response["data"].array!
-//                        print("countries data: \(self.allCountries)")
-                        self.nationalityPickerView.reloadAllComponents()
-                        
-                    }
-                
                 }
-                
-                
+                else {
+                    if response["value"] == true {
+                        self.allCountries = response["data"].array!
+                        self.nationalityPickerView.reloadAllComponents()
+                    }                    
+                }
             })
-            
         })
-        
     }
     
     
@@ -176,11 +173,9 @@ class AddNationalityNewViewController: UIViewController, UIPickerViewDelegate {
         userNationatilty.setTitle(allCountries[row]["name"].string, for: UIControlState())
         nationalityID = allCountries[row]["_id"].string!        
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+    
+    
+    //MARK: - Save
     
     func saveCountry(_ sender: UIButton) {
         

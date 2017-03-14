@@ -12,7 +12,7 @@ import Toaster
 class EditProfileViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
 
     @IBOutlet weak var editTableViewCell: UITableView!
-    let labels = ["Profile Photo", "16 Jan 1988", "Yash Chudasama", "Dream Destination", "Favourite City", "Nationality", "Male"]
+    let labels = ["Profile Photo", "16 Jan 1988", "Yash Chudasama", "Favourite Destination", "Where Do You Live?", "Nationality", "Male"]
     var myView: Int = 0
     let imagePicker = UIImagePickerController()
     var keyboardUp = false
@@ -27,11 +27,12 @@ class EditProfileViewController: UIViewController, UITableViewDataSource, UITabl
     //MARK:- Lifecycle
     
     override func viewDidLoad() {
-        super.viewDidLoad()        
+        super.viewDidLoad()
+        
+        getDarkBackGround(self)
         genderValue = ""
-        imagePicker.delegate = self       
-//        NotificationCenter.default.addObserver(self, selector: #selector(EditProfileViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-//        NotificationCenter.default.addObserver(self, selector: #selector(EditProfileViewController.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        imagePicker.delegate = self
+        editTableViewCell.tableFooterView = UIView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -61,10 +62,42 @@ class EditProfileViewController: UIViewController, UITableViewDataSource, UITabl
         return labels.count
     }
     
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 0 {
+            return 1
+        }
+        return 15
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: 30))
+        headerView.backgroundColor = UIColor.clear
+        return headerView
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        return 1
+        
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        if (indexPath as NSIndexPath).section == 0 {
+            
+            return 75
+        }
+        
+        return 50
+        
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if (indexPath as NSIndexPath).section == 0 {    //Profile photo
             let cell = tableView.dequeueReusableCell(withIdentifier: "profilePhotoCell") as! ProfilePhotoTableViewCell
+            makeTLProfilePicture(cell.profilePhoto)
             if pickerImage != nil {
                 cell.profilePhoto.image = pickerImage
             }
@@ -79,21 +112,14 @@ class EditProfileViewController: UIViewController, UITableViewDataSource, UITabl
         else if (indexPath as NSIndexPath).section == 1 {   //DOB
             let cell = tableView.dequeueReusableCell(withIdentifier: "dateTypeTextFieldCell") as! DateTypeTextFieldTableViewCell
             cell.datetypeTextField.delegate = self
-            
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"                
-            let date = dateFormatter.date(from: currentUser["dob"].stringValue)
-            if date != nil {
-                dateFormatter.dateFormat = "dd MMM yyyy"
-                cell.datetypeTextField.text = dateFormatter.string(from: date! as Date);                
+                            
+            let date = currentUser["dob"].string
+            if date != nil { 
+                cell.datetypeTextField.text = getDateFormat(date!, format: "dd MMM yyyy")                
             }
             
-            
-            if cell.datetypeTextField.text == "" {
-                let dateFormatter = DateFormatter()
-                let dateObj = NSDate()
-                dateFormatter.dateFormat = "dd MMM yyyy"
-                cell.datetypeTextField.text = dateFormatter.string(from: dateObj as Date);
+            if cell.datetypeTextField.text == "" {                
+                cell.datetypeTextField.text = "Birthdate"
             }
             
             cell.datetypeTextField.contentVerticalAlignment = .center
@@ -115,13 +141,20 @@ class EditProfileViewController: UIViewController, UITableViewDataSource, UITabl
             return cell
         }
         
-        else if (indexPath as NSIndexPath).section == 4 || (indexPath as NSIndexPath).section == 5 {    //Nationality || City
+        else if (indexPath as NSIndexPath).section == 4 {    //City
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "EditNationalityCell") as! EditProfileTableViewCell
-            cell.editLabel.text = labels[(indexPath as NSIndexPath).section]
+            cell.editLabel.text = "\(labels[(indexPath as NSIndexPath).section]) - \(currentUser["homeCity"].stringValue)"
             cell.accessoryType = .disclosureIndicator
             return cell
+        }
             
+        else if (indexPath as NSIndexPath).section == 5 {    //Nationality
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: "EditNationalityCell") as! EditProfileTableViewCell
+            cell.editLabel.text = "\(labels[(indexPath as NSIndexPath).section]) - \(currentUser["homeCountry"]["name"].stringValue)"
+            cell.accessoryType = .disclosureIndicator
+            return cell            
         }
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "textFieldCell") as! TextFieldTableViewCell
@@ -141,19 +174,10 @@ class EditProfileViewController: UIViewController, UITableViewDataSource, UITabl
         
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        return 1
-        
-    }
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-//        myView = tableView.indexPathForSelectedRow!.section
+
         switch (indexPath as NSIndexPath).section {
         case 0:
-            //            let moveAndScaleVC = storyboard?.instantiateViewControllerWithIdentifier("") as! SetProfilePictureViewController
-            //            self.navigationController?.pushViewController(moveAndScaleVC, animated: true)
             
             shouldSave = false
             let actionSheetControllerIOS8: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
@@ -209,22 +233,6 @@ class EditProfileViewController: UIViewController, UITableViewDataSource, UITabl
         
     }
     
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        
-        return 15
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
-        if (indexPath as NSIndexPath).section == 0 {
-            
-            return 75
-        }
-        
-        return 50
-        
-    }
-    
     
     //MARK: - Text Field Delegate
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
@@ -261,38 +269,6 @@ class EditProfileViewController: UIViewController, UITableViewDataSource, UITabl
             } else {
                 alert(message: "Please Select City.", title: "Select City")
             }
-        }
-    }
-    
-    
-    //MARK: - Notification for Keyboard Handler
-    
-    func keyboardWillShow(_ notification: Notification) {
-        
-        if let keyboardSize = ((notification as NSNotification).userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            
-            if !keyboardUp {
-                
-                self.view.frame.origin.y -= keyboardSize.height
-                keyboardUp = true
-                
-            }
-            
-            
-        }
-        
-    }
-    
-    func keyboardWillHide(_ notification: Notification) {
-        if let keyboardSize = ((notification as NSNotification).userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            
-            if keyboardUp {
-                
-                self.view.frame.origin.y += keyboardSize.height
-                keyboardUp = false
-                
-            }
-            
         }
     }
     

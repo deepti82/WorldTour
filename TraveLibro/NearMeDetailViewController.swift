@@ -106,6 +106,12 @@ class NearMeDetailViewController: UIViewController {
                         
                     } else {
                         self.address.isHidden = true
+                        let width = CGFloat(2)
+                        self.border.frame = CGRect(x: 0, y: self.detailView.frame.height - width, width: self.view.frame.size.width, height: 2)
+                        self.border.borderColor = UIColor(colorLiteralRed: 0/255, green: 0/255, blue: 0/255, alpha: 0.5).cgColor
+                        self.border.borderWidth = width
+                        self.detailView.layer.addSublayer(self.border)
+                        self.detailView.layer.masksToBounds = true
                     }
                     
                     if self.nearMeDetailJSON["international_phone_number"].string != nil && self.nearMeDetailJSON["international_phone_number"].string != "" {

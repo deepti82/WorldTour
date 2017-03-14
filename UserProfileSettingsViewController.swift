@@ -20,6 +20,8 @@ class UserProfileSettingsViewController: UIViewController, UITableViewDataSource
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        getDarkBackGround(self)
+        
         self.setNavigationBarItem()
                 
         settingsTableView.tableFooterView = UIView()
@@ -53,37 +55,28 @@ class UserProfileSettingsViewController: UIViewController, UITableViewDataSource
         return 3
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        if (indexPath as NSIndexPath).section == 2 {
-            
-            let cell = tableView.dequeueReusableCell(withIdentifier: "aboutCell") as! AboutTableViewCell
-            return cell
-            
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 0 {
+            return 1
         }
+        return 30
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
-        else if (indexPath as NSIndexPath).section == 1 {
-            
-           let cell = tableView.dequeueReusableCell(withIdentifier: "settingsCell") as! SettingsTableViewCell
-           cell.settingsLabel.text = labels[(indexPath as NSIndexPath).item]            
-           cell.LabelIcon.image = UIImage(named: sideImages[indexPath.row])
-           return cell
-        }
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: "profileCell") as! MainProfileTableViewCell
-        cell.profileImage.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(currentUser["profilePicture"])", width: 100))
-        cell.profileName.text = currentUser["name"].stringValue
-        cell.DoB.text = "Edit Profile"
-        return cell
-        
+        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: 30))
+        headerView.backgroundColor = UIColor.clear
+        return headerView
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if section == 1 {
-            
             return labels.count
-            
+        }
+        
+        if section == 2 {
+            return 2
         }
         
         return 1
@@ -100,14 +93,34 @@ class UserProfileSettingsViewController: UIViewController, UITableViewDataSource
         
     }
     
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        return 30
+        if (indexPath as NSIndexPath).section == 2 {
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: "aboutCell") as! AboutTableViewCell
+            cell.aboutTL.text = indexPath.row == 0 ? "About Us" : "Terms & Conditions"
+            return cell
+        }
+        
+        else if (indexPath as NSIndexPath).section == 1 {
+            
+           let cell = tableView.dequeueReusableCell(withIdentifier: "settingsCell") as! SettingsTableViewCell
+           cell.settingsLabel.text = labels[(indexPath as NSIndexPath).item]            
+           cell.LabelIcon.image = UIImage(named: sideImages[indexPath.row])
+           return cell
+        }
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "profileCell") as! MainProfileTableViewCell
+        makeTLProfilePicture(cell.profileImage)
+        cell.profileImage.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(currentUser["profilePicture"])", width: 100))
+        cell.profileName.text = currentUser["name"].stringValue
+        cell.DoB.text = "Edit Profile"
+        return cell
+        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        print("selecting section \(indexPath.section) row \(indexPath.row)")
         switch (indexPath as NSIndexPath).section {
         case 0:            
             let profileEditVC = storyboard?.instantiateViewController(withIdentifier: "EditProfile") as! EditProfileViewController
@@ -120,11 +133,6 @@ class UserProfileSettingsViewController: UIViewController, UITableViewDataSource
                 editMAMVC.whichView = "MAMView"
                 self.navigationController?.pushViewController(editMAMVC, animated: true)
                 break
-//            case 1:
-//                let dataUsageVC = storyboard?.instantiateViewController(withIdentifier: "SettingsVC") as! SettingsViewController
-//                dataUsageVC.dataSourceOption = "dataUploadOptions"
-//                self.navigationController?.pushViewController(dataUsageVC, animated: true)
-//                break
             case 1:
                 let privacyVC = storyboard?.instantiateViewController(withIdentifier: "SettingsVC") as! SettingsViewController
                 privacyVC.dataSourceOption = "privacyOptions"
@@ -150,16 +158,6 @@ class UserProfileSettingsViewController: UIViewController, UITableViewDataSource
         settingsTableView.deselectRow(at: indexPath, animated: true)
         
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 
