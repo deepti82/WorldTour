@@ -135,10 +135,10 @@
                     </constraints>
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7gS-xn-TMX">
-                    <rect key="frame" x="0.0" y="322" width="375" height="36"/>
+                    <rect key="frame" x="0.0" y="320" width="375" height="38"/>
                     <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="36" id="gUS-YS-Iv4"/>
+                        <constraint firstAttribute="height" constant="38" id="gUS-YS-Iv4"/>
                     </constraints>
                 </view>
                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ETa-jN-hPY">
