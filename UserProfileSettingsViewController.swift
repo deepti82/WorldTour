@@ -148,7 +148,7 @@ class UserProfileSettingsViewController: UIViewController, UITableViewDataSource
             }
         case 2:
             let aboutUsVC = storyboard?.instantiateViewController(withIdentifier: "EditSettings") as! EditSettingsViewController
-            aboutUsVC.whichView = "AboutUsView"
+            aboutUsVC.whichView = (indexPath.row == 0) ? "AboutUsView" : "terms&conditions"
             self.navigationController?.pushViewController(aboutUsVC, animated: true)
             break
         default:
