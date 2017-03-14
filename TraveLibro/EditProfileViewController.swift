@@ -18,6 +18,7 @@ class EditProfileViewController: UIViewController, UITableViewDataSource, UITabl
     var keyboardUp = false
     var pickerImage: UIImage?
     var currentTextField:UITextField?
+    var datePickerView: UIDatePicker!
     
     private var shouldSave  = true
     
@@ -29,8 +30,8 @@ class EditProfileViewController: UIViewController, UITableViewDataSource, UITabl
         super.viewDidLoad()        
         genderValue = ""
         imagePicker.delegate = self       
-        NotificationCenter.default.addObserver(self, selector: #selector(EditProfileViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(EditProfileViewController.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(EditProfileViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(EditProfileViewController.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -345,17 +346,12 @@ class EditProfileViewController: UIViewController, UITableViewDataSource, UITabl
     
     //MARK: - Date Picker Delegate
     
-    func handleDatePicker(sender: UIDatePicker) {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd MMM yyyy"
-        currentTextField?.text = dateFormatter.string(from: sender.date as Date)
-    }
-    
     @IBAction func datetypeTextFieldSelected(_ sender: UITextField) {
         sender.inputAccessoryView = createPickerToolBar()
         
-        let datePickerView : UIDatePicker = UIDatePicker()
+        datePickerView = UIDatePicker()
         datePickerView.datePickerMode = UIDatePickerMode.date
+        datePickerView.backgroundColor = UIColor.white
         
         //setting Default Date
         let dateFormatter = DateFormatter()
@@ -364,7 +360,6 @@ class EditProfileViewController: UIViewController, UITableViewDataSource, UITabl
         datePickerView.date = date!
         datePickerView.maximumDate = NSDate() as Date        
         sender.inputView = datePickerView
-        datePickerView.addTarget(self, action:#selector(self.handleDatePicker(sender:)), for: UIControlEvents.valueChanged)
     }
     
     func createPickerToolBar() -> UIToolbar {
@@ -382,11 +377,16 @@ class EditProfileViewController: UIViewController, UITableViewDataSource, UITabl
         toolbar.sizeToFit()
         toolbar.setItems([cancelButton, spaceButton, doneButton], animated: false)
         toolbar.isUserInteractionEnabled = true
+        toolbar.barTintColor = mainBlueColor
+        
         return toolbar
     }
     
     @IBAction func doneButtonTabbed(sender: UIButton) {
         currentTextField?.resignFirstResponder()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd MMM yyyy"
+        currentTextField?.text = dateFormatter.string(from: datePickerView.date as Date)        
         editedValues["dob"] = currentTextField?.text
         currentTextField = nil
     }
