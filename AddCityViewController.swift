@@ -44,12 +44,15 @@ class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewD
                             self.locationData = response["data"]["name"].string
                             print("location: \(self.locationData)")
                             
-                            if self.locationData != nil {
-                                //TODO:Check this if autoSave should be supported
+                            if self.locationData != nil {                                
                                 self.cityTextField.text = self.locationData!
-                                self.saveCity(UIButton())
+                                if (self.isFromSettings != nil && self.isFromSettings == true) {
+                                    //TODO:Check this if autoSave should be supported
+                                }
+                                else {
+                                    self.saveCity(UIButton())                                    
+                                }
                             }
-                            
                         }
                         else {
                             
