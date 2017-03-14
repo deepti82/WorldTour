@@ -19,7 +19,7 @@ class ProfilePicFancy: UIView {
         super.init(frame: frame)
         loadViewFromNib ()
         
-        makeTLProfilePicture(image)
+        
         
     }
     

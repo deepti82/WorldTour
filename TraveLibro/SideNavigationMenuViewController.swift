@@ -24,10 +24,16 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
     var myProfileViewController: UIViewController!
     var signOutViewController: UIViewController!
     
-    let labels = ["Popular Journeys", "Popular Itinerary", "Popular Bloggers", "Invite Friends", "Rate Us", "Feedback", "Log Out", "Local Life"]
+    let labels = ["Popular Journeys", "Popular Itinerary", "Popular Bloggers", "Invite Friends", "Rate Us", "Feedback", "Log Out"]
     
     @IBOutlet weak var profileViewHeightConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var star5: UIImageView!
+    @IBOutlet weak var star4: UIImageView!
+    @IBOutlet weak var star3: UIImageView!
+    @IBOutlet weak var star2: UIImageView!
+    @IBOutlet weak var star1: UIImageView!
+    @IBOutlet weak var starstack: UIStackView!
     @IBOutlet weak var sideTableView: UITableView!
     @IBOutlet weak var settingsButton: UIButton!
     @IBOutlet weak var userBadgeLabel: UILabel!
@@ -49,6 +55,11 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        profileName.shadowColor = UIColor.black
+        profileName.shadowOffset = CGSize(width: 2, height: 2)
+        profileName.layer.masksToBounds = true
+
+        
         loginLabel.isHidden = true
 //        backgroundImage.addBlurEffect(80)
 
@@ -67,6 +78,8 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         profile.waves.isHidden = true
         makeSideNavigation(profile.image)
 
+        makeMenuProfilePicture(profile.image)
+        
         sideTableView.tableFooterView = UIView(frame: CGRect.zero)
         updateProfilePicture()
         
@@ -117,15 +130,15 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        sideTableView.reloadData()
-        
-        if currentUser != nil {            
-            userBadgeLabel.isHidden = false
-        }
-        else {            
-            profileName.text = "Login / Sign up"
-            userBadgeLabel.isHidden = true
-        }
+//        sideTableView.reloadData()
+//        
+//        if currentUser != nil {            
+//            userBadgeLabel.isHidden = false
+//        }
+//        else {            
+//            profileName.text = "Login / Sign up"
+//            userBadgeLabel.isHidden = true
+//        }
     }   
     
     func updateProfilePicture() {
@@ -149,7 +162,7 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
                 profile.flag.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(currentUser["homeCountry"]["flag"].stringValue)", width: 100))
             }
             
-            makeTLProfilePicture(profilePicture)
+            makeMenuProfilePicture(profilePicture)
 //            backgroundImage!.addBlurEffect(30, times: 1)
         }
         else {

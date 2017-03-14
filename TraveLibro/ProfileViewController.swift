@@ -193,7 +193,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         profileView.addSubview(profile)
         footer = FooterViewNew(frame: CGRect(x: 0, y: self.view.frame.height - 65, width: self.view.frame.width, height: 65))
         self.view.addSubview(footer)
-        
+        makeTLProfilePicture(profile.image)
         profilePicture.isHidden = true
         
         MAMatterView.layer.opacity = 0.0

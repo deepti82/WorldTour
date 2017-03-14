@@ -112,7 +112,7 @@ class NearMeListViewController: UIViewController, UITableViewDataSource, UITable
         cell.contentView.backgroundColor = UIColor.white.withAlphaComponent(0.8)
         cell.contentView.layer.cornerRadius = 10
         cell.contentView.layer.masksToBounds = true
-        cell.view.layer.cornerRadius = 10
+//        cell.view.layer.cornerRadius = 10
 //        let width = CGFloat(10)
 //        border.frame = CGRect(x: 0, y: cell.contentView.frame.height - width, width: self.view.frame.size.width, height: cell.contentView.frame.height)
 //        border.borderColor = UIColor(colorLiteralRed: 0/255, green: 0/255, blue: 0/255, alpha: 0.5).cgColor
@@ -206,5 +206,4 @@ class NearMeListCell: UITableViewCell {
     @IBOutlet weak var listAddress: UILabel!
     @IBOutlet weak var starStackView: UIStackView!
     @IBOutlet var stars: [UIButton]!
-    @IBOutlet weak var view: UIView!
 }
