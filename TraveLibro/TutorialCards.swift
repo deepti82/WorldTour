@@ -452,8 +452,11 @@ class TutorialCards: UIView {
         let nib = UINib(nibName: "TutorialCards", bundle: bundle)
         let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
         view.frame = bounds
-        view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        self.addSubview(view);
+        view.autoresizingMask = [.flexibleWidth, .flexibleHeight]        
+        self.addSubview(view)
+        
+        makeTLProfilePicture(profileImage)
+        
     }
 
 }

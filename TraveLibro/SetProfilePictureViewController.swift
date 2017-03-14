@@ -23,7 +23,7 @@ class SetProfilePictureViewController: UIViewController, UIImagePickerController
     override func viewDidLoad() {
         super.viewDidLoad()
         getDarkBackGroundBlur(self)
-        loader.showOverlay(self.view)
+        
         let leftButton = UIButton()
         leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
         leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
@@ -165,6 +165,8 @@ class SetProfilePictureViewController: UIViewController, UIImagePickerController
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
 
+        loader.showOverlay(self.view)
+        
         tempImage = info[UIImagePickerControllerEditedImage] as! UIImage
         uploadView.addButtonPic.image = tempImage
         

@@ -1,27 +1,37 @@
 
 import UIKit
-
+import TAPageControl
 
 var cardTitle: String!
 var selectedOptions: [String] = []
 let rightButton = UIButton()
 
 class DisplayCardsViewController: UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
-
+    
     internal var isFromSettings:Bool? = false
     
     let titles = ["Your kind of a holiday", "You usually go", "Prefer to travel", "Your ideal holiday type"]
     let checkBoxNumber = [6, 3, 8, 11]
     
-    
+    var pageControl = TAPageControl()    
     var dataIndex = 0
     
     //MARK:- Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         getDarkBackGroundBlur(self)
+        
+        pageControl = TAPageControl()
+        pageControl.currentPage = dataIndex
+        pageControl.numberOfPages = titles.count
+        pageControl.contentMode = .center
+        self.view.addSubview(pageControl)
+        
+        let originalPageControl: UIPageControl = UIPageControl.appearance(whenContainedInInstancesOf: [DisplayCardsViewController.self])
+        originalPageControl.pageIndicatorTintColor = UIColor.clear
+        originalPageControl.currentPageIndicatorTintColor = UIColor.clear
         
         let myVC = viewControllerAtIndex(0) as! SignupCardsViewController
         let viewControllers = [myVC]
@@ -41,10 +51,16 @@ class DisplayCardsViewController: UIPageViewController, UIPageViewControllerData
         
         setViewControllers(viewControllers, direction: .forward, animated: true, completion: nil)
         
-//        self.pvc = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
+        //        self.pvc = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
         
     }
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        pageControl.frame = CGRect(x: self.view.center.x, y: screenHeight - 15, width: 60, height: 30)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -55,11 +71,11 @@ class DisplayCardsViewController: UIPageViewController, UIPageViewControllerData
     
     func nextPage(_ sender: AnyObject) {
         
-        print("index: \(dataIndex)")
-        
         dataIndex = dataIndex + 1
         
-//        viewControllerAtIndex(dataIndex)
+        //        pageControl.currentPage = dataIndex
+        
+        //        viewControllerAtIndex(dataIndex)
         
         travelConfig[cardTitle] = selectedOptions
         
@@ -78,7 +94,7 @@ class DisplayCardsViewController: UIPageViewController, UIPageViewControllerData
             rightButton.titleLabel?.font = UIFont(name: "Avenir-Roman", size: 16)
             
         }
-        
+            
         else if dataIndex > 3 {
             
             finishQuestions(sender)
@@ -94,10 +110,10 @@ class DisplayCardsViewController: UIPageViewController, UIPageViewControllerData
             _ = viewControllerAtIndex(dataIndex)
         }        
         
-//        travelConfig["holidayType"]!.filter{
-//            !contains(travelConfig["preferToTravel"]!, $0)
-//        }
-//        print("travel config 1: \(travelConfig)")
+        //        travelConfig["holidayType"]!.filter{
+        //            !contains(travelConfig["preferToTravel"]!, $0)
+        //        }
+        //        print("travel config 1: \(travelConfig)")
         
         if travelConfig["preferToTravel"] != nil && travelConfig["holidayType"] != nil {
             
@@ -124,7 +140,7 @@ class DisplayCardsViewController: UIPageViewController, UIPageViewControllerData
                     
                     print("error: \(response.error?.localizedDescription)")
                 }
-                
+                    
                 else {
                     
                     if response["value"].bool! {
@@ -139,8 +155,8 @@ class DisplayCardsViewController: UIPageViewController, UIPageViewControllerData
                         }                       
                         else {
                             let home = self.storyboard!.instantiateViewController(withIdentifier: "Home") as! HomeViewController
-    //                        self.slideMenuController()?.changeMainViewController(home, close: true)
-    //                        home.initialEntrance = true
+                            //                        self.slideMenuController()?.changeMainViewController(home, close: true)
+                            //                        home.initialEntrance = true
                             self.navigationController!.pushViewController(home, animated: true)
                         }
                         
@@ -161,8 +177,8 @@ class DisplayCardsViewController: UIPageViewController, UIPageViewControllerData
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         
         dataIndex = dataIndex - 1
-//        selectedOptions = []
-//        print("no problem in json")
+        //        selectedOptions = []
+        //        print("no problem in json")
         
         let vc = viewController as! SignupCardsViewController
         var index = vc.pageIndex  as Int
@@ -172,6 +188,9 @@ class DisplayCardsViewController: UIPageViewController, UIPageViewControllerData
         }
         
         index = index - 1
+        
+        //        pageControl.currentPage = index
+        
         return viewControllerAtIndex(index)
     }
     
@@ -179,8 +198,6 @@ class DisplayCardsViewController: UIPageViewController, UIPageViewControllerData
         
         travelConfig[cardTitle] = selectedOptions
         print("\(cardTitle): \(selectedOptions)")
-//        dataIndex = dataIndex + 1
-//        selectedOptions = []
         
         let vc = viewController as! SignupCardsViewController
         var index = vc.pageIndex  as Int
@@ -198,7 +215,7 @@ class DisplayCardsViewController: UIPageViewController, UIPageViewControllerData
         
         return viewControllerAtIndex(index)
         
-    }    
+    }
     
     func viewControllerAtIndex(_ index: Int) -> UIViewController {
         
@@ -213,7 +230,7 @@ class DisplayCardsViewController: UIPageViewController, UIPageViewControllerData
             selectedOptions = []
             cardTitle = "preferToTravel"
         case 3:
-//            selectedOptions = []
+            //            selectedOptions = []
             cardTitle = "holidayType"
         default:
             break
@@ -227,6 +244,8 @@ class DisplayCardsViewController: UIPageViewController, UIPageViewControllerData
         myVC.cardTitle = titles[index]
         myVC.pageIndex = index
         myVC.checkBoxes = CGFloat(checkBoxNumber[index])
+        
+        pageControl.currentPage = index
         return myVC
     }
     
@@ -239,5 +258,5 @@ class DisplayCardsViewController: UIPageViewController, UIPageViewControllerData
         
         return dataIndex
     }
-
+    
 }

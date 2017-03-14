@@ -14,6 +14,7 @@ class AddNationalityNewViewController: UIViewController, UIPickerViewDelegate {
     
     var allCountries: [JSON] = []
     var nationalityID = ""
+    var hintLabel: UILabel!
     var loader = LoadingOverlay()
     
     internal var isFromSettings: Bool!
@@ -78,12 +79,13 @@ class AddNationalityNewViewController: UIViewController, UIPickerViewDelegate {
             self.customNavigationBar(left: nil, right: rightButton)
         }
         
-        let hintLabel = UILabel(frame: CGRect(x: 20, y: 0, width: screenWidth - 40, height: 30))
+        hintLabel = UILabel(frame: CGRect(x: 20, y: 0, width: screenWidth - 40, height: 30))
         hintLabel.center = CGPoint(x: hintLabel.center.x, y: self.view.center.y - 100)
         hintLabel.font = avenirFont
         hintLabel.text = "Click on country name to edit"
         hintLabel.textColor = UIColor.white
         hintLabel.textAlignment = .center
+        hintLabel.isHidden = true
         self.view.addSubview(hintLabel)
         
         nationalityPickerView.delegate = self
@@ -97,7 +99,7 @@ class AddNationalityNewViewController: UIViewController, UIPickerViewDelegate {
             userNationatilty.isHidden = false
             userNationatilty.setTitle(currentUser["homeCountry"]["name"].stringValue, for: .normal)
             nationalityID = currentUser["homeCountry"]["_id"].stringValue
-            
+            hintLabel.isHidden = false
         }
         
         loader.showOverlay(self.view)
@@ -171,7 +173,8 @@ class AddNationalityNewViewController: UIViewController, UIPickerViewDelegate {
         addNationality.isHidden = true
         addNationalityButton.isHidden = true
         userNationatilty.setTitle(allCountries[row]["name"].string, for: UIControlState())
-        nationalityID = allCountries[row]["_id"].string!        
+        nationalityID = allCountries[row]["_id"].string!
+        hintLabel.isHidden = false
     }
     
     
