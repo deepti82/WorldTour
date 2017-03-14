@@ -109,20 +109,32 @@
             <constraints>
                 <constraint firstItem="S2r-8m-C9I" firstAttribute="leading" secondItem="LlX-0B-Jrw" secondAttribute="trailing" constant="3" id="112-0r-mqH"/>
                 <constraint firstAttribute="trailing" secondItem="SEc-wq-zad" secondAttribute="trailing" id="1Rl-Li-NWV"/>
+                <constraint firstItem="LlX-0B-Jrw" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="5hK-Gm-tYU"/>
+                <constraint firstAttribute="trailing" secondItem="Ksi-Aa-PZn" secondAttribute="trailing" id="6gO-In-2In"/>
                 <constraint firstItem="8Zx-3e-7LH" firstAttribute="top" secondItem="LlX-0B-Jrw" secondAttribute="top" id="Dcp-nL-WwK"/>
+                <constraint firstItem="SEc-wq-zad" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Knp-tw-V3Y"/>
+                <constraint firstAttribute="trailing" secondItem="qcY-U9-ghf" secondAttribute="trailing" id="LdZ-Ma-Qxs"/>
                 <constraint firstItem="Ksi-Aa-PZn" firstAttribute="top" secondItem="SEc-wq-zad" secondAttribute="bottom" constant="3" id="MIX-6D-paF"/>
                 <constraint firstItem="Ksi-Aa-PZn" firstAttribute="width" secondItem="8Zx-3e-7LH" secondAttribute="width" id="Q8d-O4-W04"/>
+                <constraint firstItem="Ksi-Aa-PZn" firstAttribute="leading" secondItem="LlX-0B-Jrw" secondAttribute="trailing" constant="3" id="SQu-OC-Tk5"/>
                 <constraint firstItem="LlX-0B-Jrw" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="SjS-uR-ZtP"/>
+                <constraint firstItem="SEc-wq-zad" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="VAC-hU-0CS"/>
                 <constraint firstItem="LlX-0B-Jrw" firstAttribute="top" secondItem="qcY-U9-ghf" secondAttribute="bottom" constant="3" id="WWY-T8-ete"/>
+                <constraint firstItem="qcY-U9-ghf" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="X4P-O5-UbZ"/>
+                <constraint firstAttribute="trailing" secondItem="SEc-wq-zad" secondAttribute="trailing" id="YrQ-Pd-Xv5"/>
                 <constraint firstAttribute="trailing" secondItem="qcY-U9-ghf" secondAttribute="trailing" id="b1Y-QW-tVU"/>
                 <constraint firstItem="8Zx-3e-7LH" firstAttribute="leading" secondItem="LlX-0B-Jrw" secondAttribute="leading" id="bb2-ID-SIK"/>
                 <constraint firstItem="SEc-wq-zad" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="bd0-tl-VUi"/>
+                <constraint firstItem="Ksi-Aa-PZn" firstAttribute="leading" secondItem="8Zx-3e-7LH" secondAttribute="trailing" constant="3" id="bfQ-Jg-NDX"/>
                 <constraint firstItem="Ksi-Aa-PZn" firstAttribute="leading" secondItem="S2r-8m-C9I" secondAttribute="leading" id="ctg-jU-zKn"/>
                 <constraint firstItem="qcY-U9-ghf" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="dUH-ig-efQ"/>
                 <constraint firstItem="qcY-U9-ghf" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="fAd-AJ-iNL"/>
+                <constraint firstAttribute="trailing" secondItem="S2r-8m-C9I" secondAttribute="trailing" id="hYJ-Jl-dud"/>
                 <constraint firstItem="8Zx-3e-7LH" firstAttribute="top" secondItem="SEc-wq-zad" secondAttribute="bottom" constant="3" id="iGk-dK-kM8"/>
                 <constraint firstItem="S2r-8m-C9I" firstAttribute="top" secondItem="qcY-U9-ghf" secondAttribute="bottom" constant="3" id="mMH-Fn-Xok"/>
+                <constraint firstItem="qcY-U9-ghf" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="n2P-aM-lTq"/>
                 <constraint firstItem="SEc-wq-zad" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="qSH-3O-MT4"/>
+                <constraint firstItem="8Zx-3e-7LH" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="yYy-od-8jw"/>
                 <constraint firstAttribute="bottom" secondItem="LlX-0B-Jrw" secondAttribute="bottom" constant="13" id="zYo-N5-oFP"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>

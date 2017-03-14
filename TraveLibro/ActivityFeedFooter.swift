@@ -153,8 +153,6 @@ class ActivityFeedFooter: UIView {
             border1.removeFromSuperlayer()
             border.isHidden = false
             let width = CGFloat(2)
-            
-            
             border.frame = CGRect(x: 0, y: self.frame.size.height - width, width:  self.frame.size.width, height: self.frame.size.height)
             border.borderColor = UIColor(colorLiteralRed: 0/255, green: 0/255, blue: 0/255, alpha: 0.5).cgColor
             border.borderWidth = width

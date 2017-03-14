@@ -17,7 +17,7 @@ class RatingCheckIn: UIView {
     var backgroundReview:UIView!
     var review:JSON!
     let moodArr = ["Disappointed", "Sad", "Good", "Super", "In Love"]
-    let imageArr = ["disapointed", "sad", "good", "superface", "love"]
+    let imageArr = ["disapointed", "sad", "good", "superface (1)", "love"]
     var whichView:String = ""
 
     override init(frame: CGRect) {

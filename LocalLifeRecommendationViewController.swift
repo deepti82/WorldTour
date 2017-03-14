@@ -157,7 +157,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
         myView4.photoBottomView2.tag = 12
         layout.addSubview(myView4)
         
-        let myView5 = LocalLifeRecommends(frame: CGRect(x: 0, y: -10, width: self.view.frame.width, height: 188))
+        let myView5 = LocalLifeRecommends(frame: CGRect(x: 0, y: -13, width: self.view.frame.width, height: 188))
         myView5.photoTop.isHidden = true
         myView5.clipsToBounds = true
         myView5.photoBottom1.image = UIImage(named: "bgairport")
@@ -390,7 +390,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
         self.title = "Activity Feed"
         self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Avenir-Medium", size: 18)!]
         let leftButton = UIButton()
-        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        leftButton.frame = CGRect(x: -5, y: 0, width: 30, height: 30)
         leftButton.setImage(UIImage(named: "menu_left_icon"), for: UIControlState())
         leftButton.imageView?.image = leftButton.imageView?.image!.withRenderingMode(.alwaysTemplate)
         leftButton.imageView?.tintColor = UIColor.white

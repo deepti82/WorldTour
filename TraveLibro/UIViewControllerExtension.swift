@@ -20,7 +20,7 @@ extension UIViewController {
         case "3":
             return ["image":"good","back":"orangebox"]
         case "4":
-            return ["image":"superface","back":"orangebox"]
+            return ["image":"superface (1)","back":"orangebox"]
         case "5":
             return ["image":"love","back":"orangebox"]
         default:

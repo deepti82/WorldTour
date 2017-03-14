@@ -21,6 +21,7 @@ class NearMeDetailViewController: UIViewController {
     
     var nearMeLat: Double!
     var nearMeLong: Double!
+    let border = CALayer()
     
     @IBOutlet weak var detailView: UIView!
     @IBOutlet weak var name: UILabel!
@@ -38,10 +39,18 @@ class NearMeDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let width = CGFloat(2)
+        border.frame = CGRect(x: 0, y: detailView.frame.height - width, width:  detailView.frame.size.width, height: 2)
+        border.borderColor = UIColor(colorLiteralRed: 0/255, green: 0/255, blue: 0/255, alpha: 0.5).cgColor
+        border.borderWidth = width
+        detailView.layer.addSublayer(border)
+        detailView.layer.masksToBounds = true
+        
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         getDarkBackGround(self)
         navigationController?.hidesBarsOnSwipe = false
-        
+        detailView.layer.cornerRadius = 10
         detailView.backgroundColor = UIColor.white.withAlphaComponent(0.8)
         detailView.isHidden = true
         

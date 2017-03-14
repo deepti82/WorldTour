@@ -11,7 +11,7 @@ import UIKit
 class ShowRating: UIView {
     
     let moodArr = ["Disappointed", "Sad", "Good", "Super", "In Love"]
-    let imageArr = ["disapointed", "sad", "good", "superface", "love"]
+    let imageArr = ["disapointed", "sad", "good", "superface (1)", "love"]
     
     @IBOutlet weak var rating: UIButton!
     @IBOutlet weak var ratingLabel: UILabel!

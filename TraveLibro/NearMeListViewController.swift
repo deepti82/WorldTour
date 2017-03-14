@@ -20,7 +20,8 @@ class NearMeListViewController: UIViewController, UITableViewDataSource, UITable
     var lat: Double!
     var long: Double!
     let locationManager = CLLocationManager()
-
+    let border = CALayer()
+    
     @IBOutlet weak var nearMeListTableView: UITableView!
     
     override func viewDidLoad() {
@@ -37,6 +38,7 @@ class NearMeListViewController: UIViewController, UITableViewDataSource, UITable
         locationManager.startMonitoringSignificantLocationChanges()
         nearMeListTableView.delegate = self
         nearMeListTableView.dataSource = self
+        
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -108,6 +110,15 @@ class NearMeListViewController: UIViewController, UITableViewDataSource, UITable
         cell.contentView.backgroundColor = UIColor.white.withAlphaComponent(0.8)
         cell.contentView.layer.cornerRadius = 10
         cell.contentView.layer.masksToBounds = true
+        
+        let width = CGFloat(2)
+        border.frame = CGRect(x: 0, y: cell.contentView.frame.height - width, width:  cell.contentView.frame.size.width, height: 2)
+        border.borderColor = UIColor(colorLiteralRed: 0/255, green: 0/255, blue: 0/255, alpha: 0.5).cgColor
+        border.borderWidth = width
+        cell.contentView.layer.addSublayer(border)
+        cell.contentView.layer.masksToBounds = true
+
+        
                for star in cell.stars {
             star.setImage(UIImage(named: "star_uncheck")?.withRenderingMode(.alwaysTemplate), for: UIControlState())
             star.setImage(UIImage(named: "star_check")?.withRenderingMode(.alwaysTemplate), for: .selected)

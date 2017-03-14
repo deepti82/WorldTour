@@ -26,7 +26,7 @@ class AddRatingCountries: UIView, UITextViewDelegate {
     @IBOutlet weak var countryCount: UILabel!
     
     let moodArr = ["Disappointed", "Sad", "Good", "Super", "In Love"]
-    let imageArr = ["disapointed", "sad", "good", "superface", "love"]
+    let imageArr = ["disapointed", "sad", "good", "superface (1)", "love"]
     let parent = EndJourneyViewController()
     var countryVisitedData: JSON!
     var journeyData: JSON!
