@@ -27,9 +27,12 @@ class EditProfileViewController: UIViewController, UITableViewDataSource, UITabl
     //MARK:- Lifecycle
     
     override func viewDidLoad() {
-        super.viewDidLoad()        
+        super.viewDidLoad()
+        
+        getDarkBackGround(self)
         genderValue = ""
-        imagePicker.delegate = self       
+        imagePicker.delegate = self
+        editTableViewCell.tableFooterView = UIView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -59,10 +62,42 @@ class EditProfileViewController: UIViewController, UITableViewDataSource, UITabl
         return labels.count
     }
     
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 0 {
+            return 1
+        }
+        return 15
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: 30))
+        headerView.backgroundColor = UIColor.clear
+        return headerView
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        return 1
+        
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        if (indexPath as NSIndexPath).section == 0 {
+            
+            return 75
+        }
+        
+        return 50
+        
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if (indexPath as NSIndexPath).section == 0 {    //Profile photo
             let cell = tableView.dequeueReusableCell(withIdentifier: "profilePhotoCell") as! ProfilePhotoTableViewCell
+            makeTLProfilePicture(cell.profilePhoto)
             if pickerImage != nil {
                 cell.profilePhoto.image = pickerImage
             }
@@ -139,12 +174,6 @@ class EditProfileViewController: UIViewController, UITableViewDataSource, UITabl
         
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        return 1
-        
-    }
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
         switch (indexPath as NSIndexPath).section {
@@ -201,22 +230,6 @@ class EditProfileViewController: UIViewController, UITableViewDataSource, UITabl
         }
         
         self.editTableViewCell.deselectRow(at: indexPath, animated: true)
-        
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        
-        return 15
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
-        if (indexPath as NSIndexPath).section == 0 {
-            
-            return 75
-        }
-        
-        return 50
         
     }
     
