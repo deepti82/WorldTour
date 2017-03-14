@@ -220,7 +220,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         
         pageControl.frame = CGRect(x: self.view.center.x, y: signInFooter.frame.origin.y - 15, width: 60, height: 30)
         
-        toggleSoundButton.frame = CGRect(x: self.view.frame.maxX - 60, y: signInFooter.frame.origin.y - 30, width: 40, height: 32)
+        toggleSoundButton.frame = CGRect(x: self.view.frame.maxX - 60, y: signInFooter.frame.origin.y - 60, width: 40, height: 32)
         
         profileVC = self.storyboard?.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
         

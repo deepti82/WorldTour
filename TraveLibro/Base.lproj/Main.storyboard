@@ -3182,7 +3182,7 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yash Chudasama" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QGx-wo-FEr">
-                                        <rect key="frame" x="37" y="160" width="140" height="21"/>
+                                        <rect key="frame" x="37" y="164" width="140" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="fax-Eb-heg"/>
                                         </constraints>
@@ -3191,7 +3191,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="rcj-kI-UDJ">
-                                        <rect key="frame" x="38" y="184" width="95" height="15"/>
+                                        <rect key="frame" x="38" y="186" width="95" height="15"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star_uncheck" translatesAutoresizingMaskIntoConstraints="NO" id="6Y8-Pf-tcf">
                                                 <rect key="frame" x="0.0" y="0.0" width="15" height="15"/>
@@ -3249,10 +3249,10 @@
                                     <constraint firstItem="rcj-kI-UDJ" firstAttribute="leading" secondItem="QGx-wo-FEr" secondAttribute="leading" constant="1" id="5Ch-C1-C7u"/>
                                     <constraint firstItem="4z0-xx-Vkt" firstAttribute="leading" secondItem="QGx-wo-FEr" secondAttribute="leading" id="5az-WM-HLI"/>
                                     <constraint firstAttribute="trailing" secondItem="QEz-KU-2ft" secondAttribute="trailing" id="66i-sA-5Qw"/>
-                                    <constraint firstItem="QGx-wo-FEr" firstAttribute="top" secondItem="cuB-wH-gMA" secondAttribute="bottom" constant="-1" id="6Ge-7R-UHC"/>
+                                    <constraint firstItem="QGx-wo-FEr" firstAttribute="top" secondItem="cuB-wH-gMA" secondAttribute="bottom" constant="3" id="6Ge-7R-UHC"/>
                                     <constraint firstItem="QEz-KU-2ft" firstAttribute="leading" secondItem="cuB-wH-gMA" secondAttribute="leading" id="8uM-Zz-F3H"/>
-                                    <constraint firstItem="QEz-KU-2ft" firstAttribute="top" secondItem="rcj-kI-UDJ" secondAttribute="bottom" constant="5" id="ARy-mt-0SZ"/>
-                                    <constraint firstItem="QGx-wo-FEr" firstAttribute="top" secondItem="m6b-7k-SSs" secondAttribute="bottom" constant="40" id="BOV-Av-5oO"/>
+                                    <constraint firstItem="QEz-KU-2ft" firstAttribute="top" secondItem="rcj-kI-UDJ" secondAttribute="bottom" constant="3" id="ARy-mt-0SZ"/>
+                                    <constraint firstItem="QGx-wo-FEr" firstAttribute="top" secondItem="m6b-7k-SSs" secondAttribute="bottom" constant="44" id="BOV-Av-5oO"/>
                                     <constraint firstItem="Gvn-ef-G8g" firstAttribute="leading" secondItem="QGx-wo-FEr" secondAttribute="leading" id="JIH-hh-Erw"/>
                                     <constraint firstAttribute="height" constant="207" id="Sr6-gG-V4F"/>
                                     <constraint firstAttribute="bottom" secondItem="4z0-xx-Vkt" secondAttribute="bottom" constant="25" id="Tqq-ta-yQz"/>
@@ -3268,7 +3268,7 @@
                                     <outletCollection property="gestureRecognizers" destination="fe5-dA-YQL" appends="YES" id="qYK-NL-HNB"/>
                                 </connections>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="69" sectionHeaderHeight="1" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="HCR-ah-fub">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="63" sectionHeaderHeight="1" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="HCR-ah-fub">
                                 <rect key="frame" x="0.0" y="208" width="375" height="459"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -3278,21 +3278,21 @@
                                 <color key="separatorColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="69" id="dJA-yb-pOY" customClass="SideMenuTableViewCell" customModule="TraveLibro" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="1" width="375" height="69"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="63" id="dJA-yb-pOY" customClass="SideMenuTableViewCell" customModule="TraveLibro" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="1" width="375" height="63"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dJA-yb-pOY" id="53B-XP-GCm">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="68"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="62"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Popular Journeys" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uFz-Pg-xJb">
-                                                    <rect key="frame" x="23" y="27" width="132" height="22"/>
+                                                    <rect key="frame" x="23" y="32" width="132" height="16.5"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y6o-5j-1d2">
-                                                    <rect key="frame" x="23" y="14" width="352" height="1"/>
+                                                    <rect key="frame" x="23" y="13" width="352" height="1"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="1" id="2Ki-Q5-0dt"/>
@@ -3301,11 +3301,11 @@
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
-                                                <constraint firstAttribute="bottomMargin" secondItem="uFz-Pg-xJb" secondAttribute="bottom" constant="12" id="6xa-c3-QTv"/>
-                                                <constraint firstItem="uFz-Pg-xJb" firstAttribute="top" secondItem="y6o-5j-1d2" secondAttribute="bottom" constant="12" id="Jom-uP-UNF"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="uFz-Pg-xJb" secondAttribute="bottom" constant="6" id="6xa-c3-QTv"/>
+                                                <constraint firstItem="uFz-Pg-xJb" firstAttribute="top" secondItem="y6o-5j-1d2" secondAttribute="bottom" constant="18" id="Jom-uP-UNF"/>
                                                 <constraint firstItem="y6o-5j-1d2" firstAttribute="trailing" secondItem="53B-XP-GCm" secondAttribute="trailingMargin" constant="8" id="JrF-Av-BVe"/>
                                                 <constraint firstItem="uFz-Pg-xJb" firstAttribute="leading" secondItem="53B-XP-GCm" secondAttribute="leadingMargin" constant="15" id="hxm-lj-CT5"/>
-                                                <constraint firstItem="uFz-Pg-xJb" firstAttribute="centerY" secondItem="53B-XP-GCm" secondAttribute="centerY" constant="3" id="oLM-YH-iH3"/>
+                                                <constraint firstItem="uFz-Pg-xJb" firstAttribute="centerY" secondItem="53B-XP-GCm" secondAttribute="centerY" constant="9" id="oLM-YH-iH3"/>
                                                 <constraint firstItem="y6o-5j-1d2" firstAttribute="leading" secondItem="uFz-Pg-xJb" secondAttribute="leading" id="xf7-E7-88G"/>
                                             </constraints>
                                         </tableViewCellContentView>
