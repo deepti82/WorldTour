@@ -16,6 +16,7 @@ class AddNationalityNewViewController: UIViewController, UIPickerViewDelegate {
     var nationalityID = ""
     var hintLabel: UILabel!
     var loader = LoadingOverlay()
+    var index = 0
     
     internal var isFromSettings: Bool!
     
@@ -36,8 +37,19 @@ class AddNationalityNewViewController: UIViewController, UIPickerViewDelegate {
     
     @IBAction func donePickerView(_ sender: AnyObject) {
         
+        userNationatilty.isHidden = false
+        addNationality.isHidden = true
+        addNationalityButton.isHidden = true
+        userNationatilty.setTitle(allCountries[index]["name"].string, for: UIControlState())
+        nationalityID = allCountries[index]["_id"].string!
+        hintLabel.isHidden = false
         pickNationalityMainView.isHidden = true
-        saveCountry(sender as! UIButton)
+        print("\n userNationatilty :\(userNationatilty.titleLabel?.text)")
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.saveCountry(sender as! UIButton)            
+        }
+        
         
     }
     
@@ -169,12 +181,7 @@ class AddNationalityNewViewController: UIViewController, UIPickerViewDelegate {
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
-        userNationatilty.isHidden = false
-        addNationality.isHidden = true
-        addNationalityButton.isHidden = true
-        userNationatilty.setTitle(allCountries[row]["name"].string, for: UIControlState())
-        nationalityID = allCountries[row]["_id"].string!
-        hintLabel.isHidden = false
+        index = row        
     }
     
     
