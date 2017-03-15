@@ -704,7 +704,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         loader.hideOverlayView()
         request.getJourney(currentUser["_id"].string!, completion: {(response) in
             DispatchQueue.main.async(execute: {
-                
+                print("\(#line) : \(response)")
                 loader.hideOverlayView()
                 if response.error != nil {
                     print("error: \(response.error!.localizedDescription)")

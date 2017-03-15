@@ -29,7 +29,7 @@ class SearchElement: UIView {
         gradient.frame = self.gradientView.bounds
         gradient.frame.size.width = gradientView.frame.width + 15
         gradient.colors = [transparent, blackColour]
-        gradient.locations = [0.0, 0.75]
+        gradient.locations = [0.0, 0.90]
         
         self.gradientView.layer.addSublayer(gradient)
         
