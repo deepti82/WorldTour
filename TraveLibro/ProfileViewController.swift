@@ -365,7 +365,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     }
     
     func search(_ sender: AnyObject) {
-        let searchVC = storyboard?.instantiateViewController(withIdentifier: "Search") as! SearchViewController
+        let searchVC = storyboard?.instantiateViewController(withIdentifier: "Search") as! MainSearchViewController
         globalNavigationController.pushViewController(searchVC, animated: true)
     }
     

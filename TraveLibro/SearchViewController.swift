@@ -11,7 +11,6 @@ var globalSearchViewController: SearchViewController!
 class SearchViewController: UIViewController, UITextFieldDelegate {
     
     var search: SearchFieldView!
-    @IBOutlet var SearchView: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,38 +21,18 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
         loader.showOverlay(self.view)
         scrollView.isScrollEnabled = true
         
-       
-        search = SearchFieldView(frame: CGRect(x: 10, y: 8, width: self.view.frame.width - 20 , height: 30))
-        search.searchField.returnKeyType = .done
-        search.searchField.delegate = self
-        
-        SearchView.addSubview(search)
-  
-        transparentCardWhite(SearchView)
-        search.searchField.attributedPlaceholder = NSAttributedString(string:  "Search", attributes: [NSForegroundColorAttributeName: mainBlueColor])
-        search.leftLine.backgroundColor = mainOrangeColor
-        search.rightLine.backgroundColor = mainOrangeColor
-        search.bottomLine.backgroundColor = mainOrangeColor
-        search.searchButton.tintColor = mainOrangeColor
-        
-        let tapout = UITapGestureRecognizer(target: self, action: #selector(self.searchTable(_:)))
-        search.SearchView.addGestureRecognizer(tapout)
-
         scrollView.autoresizingMask = UIViewAutoresizing.flexibleWidth
         scrollView.autoresizingMask = UIViewAutoresizing.flexibleHeight
         
-        let searchView = Search(frame: CGRect(x: 0, y: 130, width: self.view.frame.width, height: 675))
+        let searchView = Search(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 675))
         scrollView.contentSize = CGSize(width: 0, height: 800)
         searchView.setData()
         self.scrollView.addSubview(searchView)
         
-        setTopNavigation("Search")
-        // Do any additional setup after loading the view.
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -66,43 +45,4 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
         
     }
     
-    func searchTable(_ sender: UITapGestureRecognizer) {
-        let searchTable = storyboard?.instantiateViewController(withIdentifier: "searchTable") as! SearchTableViewController
-        print(search.searchField)
-        searchTable.newSearch = search.searchField.text!
-//        searchTable.searchController.searchBar.text = search.searchField.text
-        globalNavigationController.pushViewController(searchTable, animated: true)
-        print("hello")
-//        search.searchField.placeholder = ""
     }
-
-    func setTopNavigation(_ text: String) {
-        let leftButton = UIButton()
-        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-        leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
-        leftButton.addTarget(self, action: #selector(self.goBack(_:)), for: .touchUpInside)
-        let rightButton = UIView()
-        self.title = text
-        self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Avenir-Medium", size: 18)!]
-        
-        self.customNavigationBar(left: leftButton, right: rightButton)
-    }
-    
-    
-    
-    func goBack(_ sender:AnyObject) {
-        self.navigationController!.popViewController(animated: true)
-    }
-
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-}

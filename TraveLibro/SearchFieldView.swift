@@ -21,6 +21,7 @@ class SearchFieldView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
+        transparentCardWhite(self)
         
     }
     
@@ -36,5 +37,14 @@ class SearchFieldView: UIView {
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view);
     }
+    @IBAction func onSearch(_ sender: UITextField) {
+        print(searchField.text!)
+        if searchField.text! == "" {
+            globalMainSearchViewController.changeView(switchView: "slider")
+        }else{
+            globalMainSearchViewController.changeView(switchView: "table")
+        }
+    }
+    
 
 }

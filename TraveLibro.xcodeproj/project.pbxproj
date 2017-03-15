@@ -450,6 +450,7 @@
 		FC0B9AA11E23BE2E005D9206 /* TextBoxContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0B9AA01E23BE2E005D9206 /* TextBoxContainer.swift */; };
 		FC13D1CE1E603073008FC77D /* SearchElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC13D1CD1E603073008FC77D /* SearchElement.swift */; };
 		FC13D1D01E60309D008FC77D /* SearchElement.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC13D1CF1E60309D008FC77D /* SearchElement.xib */; };
+		FC259C291E79014D00AF815A /* MainSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC259C281E79014D00AF815A /* MainSearchViewController.swift */; };
 		FC3248CD1DEDACD600ACDF85 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3248CC1DEDACD600ACDF85 /* VideoViewController.swift */; };
 		FC49DCFA1DE6D04D00B0DEF3 /* ImgLyKitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC49DCF91DE6D04D00B0DEF3 /* ImgLyKitViewController.swift */; };
 		FC807AD11E3C9B3300609E9B /* TripPhotoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC807AD01E3C9B3300609E9B /* TripPhotoLayout.swift */; };
@@ -966,6 +967,7 @@
 		FC0B9AA01E23BE2E005D9206 /* TextBoxContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextBoxContainer.swift; sourceTree = "<group>"; };
 		FC13D1CD1E603073008FC77D /* SearchElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchElement.swift; sourceTree = "<group>"; };
 		FC13D1CF1E60309D008FC77D /* SearchElement.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchElement.xib; sourceTree = "<group>"; };
+		FC259C281E79014D00AF815A /* MainSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainSearchViewController.swift; sourceTree = "<group>"; };
 		FC3248CC1DEDACD600ACDF85 /* VideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
 		FC49DCF91DE6D04D00B0DEF3 /* ImgLyKitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImgLyKitViewController.swift; sourceTree = "<group>"; };
 		FC807AD01E3C9B3300609E9B /* TripPhotoLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripPhotoLayout.swift; sourceTree = "<group>"; };
@@ -2130,6 +2132,7 @@
 				840E256E1E5EF423003220FE /* LoaderViewController.swift */,
 				FCB571941E66DBF2002D4C30 /* LikeTableViewController.swift */,
 				FCEB1BF91E69447C00418812 /* LikeUserViewController.swift */,
+				FC259C281E79014D00AF815A /* MainSearchViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -3453,6 +3456,7 @@
 				C28A92451D0E83FD00CFEC7A /* FilterRestaurants.swift in Sources */,
 				C23EB1D11CFEC865005B5CE8 /* PhotoBar.swift in Sources */,
 				3A38275E1DDEE4BB007F181D /* NearMeListViewController.swift in Sources */,
+				FC259C291E79014D00AF815A /* MainSearchViewController.swift in Sources */,
 				FC807AD61E3CAB1700609E9B /* TripPhotoHeader.swift in Sources */,
 				C23EB1DF1CFEF352005B5CE8 /* EndLocalLife.swift in Sources */,
 				C25443501CD7391900C2C6CD /* OnTheGoViewController.swift in Sources */,

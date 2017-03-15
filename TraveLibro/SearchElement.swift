@@ -12,12 +12,28 @@ class SearchElement: UIView {
 
     @IBOutlet weak var image: UIImageView!
     @IBOutlet weak var imageLable: UILabel!
+    @IBOutlet weak var gradientView: UIView!
     var index = ""
     var feeds:JSON = []
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
+        
+        
+        let gradient = CAGradientLayer()
+        
+        let blackColour = UIColor.black.withAlphaComponent(0.8).cgColor as CGColor
+        let transparent = UIColor.clear.cgColor as CGColor
+        
+        gradient.frame = gradientView.bounds
+//        gradient.frame.size.width = gradientView.frame.width
+        gradient.colors = [transparent, blackColour]
+        gradient.locations = [0.0, 0.75]
+        
+        gradientView.layer.addSublayer(gradient)
+        
+        
         let tapRecognizer = UITapGestureRecognizer()
         tapRecognizer.numberOfTapsRequired = 1
         tapRecognizer.addTarget(self, action: #selector(self.toggleFullscreen))

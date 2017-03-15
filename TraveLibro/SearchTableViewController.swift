@@ -8,9 +8,8 @@
 
 import UIKit
 import DKChainableAnimationKit
-
-class SearchTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchDisplayDelegate, UISearchBarDelegate, UISearchResultsUpdating {
-    var searchController: UISearchController!
+var globalSearchTableViewController: SearchTableViewController!
+class SearchTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var hashtagsTable: UITableView!
     @IBOutlet weak var searchTable: UITableView!
     @IBOutlet weak var hashTagSlide: UIView!
@@ -28,23 +27,20 @@ class SearchTableViewController: UIViewController, UITableViewDelegate, UITableV
     var newSearch:String = ""
     override func viewDidLoad() {
         super.viewDidLoad()
+        globalSearchTableViewController = self
         loader.showOverlay(self.view)
         print(newSearch)
         transparentCardWhite(selectStrip)
+        transparentCardWhite(noTravellersStrip)
         sliderView.isHidden = false
         hashTagSlide.isHidden = true
         getDarkBackGround(self)
         noTravellersStrip.isHidden = true
-        configureSearchController()
-        setTopNavigation("Search")
         
-        searchController.searchBar.text = self.newSearch
-        // Do any additional setup after loading the view.
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     
@@ -89,16 +85,20 @@ class SearchTableViewController: UIViewController, UITableViewDelegate, UITableV
         DispatchQueue.main.async {
             
             self.searchTable.reloadData()
-            //        self.searchController.searchResultsController?.reloadInputViews()
-            //        self.searchController.searchResultsTableView.reloadData()
+            
         }}
     
     func searchPeople(search: String) {
+        self.searchTextGlob = search
         loadStatus = false
+        print(self.page)
         if search != "" {
             loader.hideOverlayView()
             request.getPeopleSearch(currentUser["_id"].stringValue, search: search, pageNumber: self.page, completion:{(request) in
+                DispatchQueue.main.async(execute: {
+
                 if request["data"].count > 0 {
+                    
                     if self.page == 1 {
                         self.allData = []
                         self.allData = request["data"].array!
@@ -114,18 +114,23 @@ class SearchTableViewController: UIViewController, UITableViewDelegate, UITableV
                     self.refreshUI()
                     
                 }else{
+                    
                     self.loadStatus = false
                 }
+                    if self.allData.count == 0 {
+                        self.searchTable.isHidden = true
+                        self.noTravellersStrip.text = "No Traveller Found"
+                        self.noTravellersStrip.isHidden = false
+                    }else{
+                        self.searchTable.isHidden = false
+                        self.noTravellersStrip.isHidden = true
+                    }
+                })
             })
             
         }
     }
-    
-    func updateSearchResults(for searchController: UISearchController) {
-        
-        // code here
-        
-    }
+  
     
     func searchHashtags(search: String) {
        
@@ -133,8 +138,10 @@ class SearchTableViewController: UIViewController, UITableViewDelegate, UITableV
         if search != "" {
             loader.hideOverlayView()
             request.getHashtagSearch(search, pageNumber: page, completion:{(request) in
+                DispatchQueue.main.async(execute: {
+
                 if request["data"].count > 0 {
-                   
+                    
                     if self.page == 1 {
                         self.allData = []
                         self.allData = request["data"].array!
@@ -150,24 +157,27 @@ class SearchTableViewController: UIViewController, UITableViewDelegate, UITableV
                     self.refreshUI()
                     loader.hideOverlayView()
                 }else{
+                    
                     self.loadStatus = false
                 }
+                    
+                    if self.allData.count == 0 {
+                        self.searchTable.isHidden = true
+                        self.noTravellersStrip.text = "No Hashtags Found"
+
+                        self.noTravellersStrip.isHidden = false
+                    }else{
+                        self.searchTable.isHidden = false
+                        self.noTravellersStrip.isHidden = true
+                    }
+                    
+                })
             })
         }
         
         
     }
     
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        searchTextGlob = searchText
-        self.page = 1
-        print(searchText)
-        if selectedStatus == "people" {
-            self.searchPeople(search: searchText)
-        } else {
-            self.searchHashtags(search: searchText)
-        }
-    }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         print("in loading")
@@ -190,8 +200,10 @@ class SearchTableViewController: UIViewController, UITableViewDelegate, UITableV
         hashTagSlide.isHidden = true
         selectedStatus = "people"
         allData = []
-        self.refreshUI()
+        refreshUI()
+        searchTable.isHidden = true
         page = 1
+        searchPeople(search: searchTextGlob)
     }
     
     @IBAction func hashtags(_ sender: UIButton) {
@@ -200,39 +212,11 @@ class SearchTableViewController: UIViewController, UITableViewDelegate, UITableV
         sliderView.isHidden = true
         selectedStatus = "hashtags"
         allData = []
-        self.refreshUI()
+        refreshUI()
+        searchTable.isHidden = true
         page = 1
+        searchHashtags(search: searchTextGlob)
         
-    }
-    
-    func configureSearchController() {
-        
-        searchController = UISearchController(searchResultsController: nil)
-        searchController.searchResultsUpdater = self
-        searchController.dimsBackgroundDuringPresentation = false
-        searchController.searchBar.delegate = self
-        searchController.searchBar.sizeToFit()
-        searchTable.tableHeaderView = searchController.searchBar
-        
-    }
-    
-    
-    func setTopNavigation(_ text: String) {
-        let leftButton = UIButton()
-        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-        leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
-        leftButton.addTarget(self, action: #selector(self.goBack(_:)), for: .touchUpInside)
-        let rightButton = UIView()
-        self.title = text
-        self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Avenir-Medium", size: 18)!]
-        
-        self.customNavigationBar(left: leftButton, right: rightButton)
-    }
-    
-    
-    
-    func goBack(_ sender:AnyObject) {
-        self.navigationController!.popViewController(animated: true)
     }
     
     

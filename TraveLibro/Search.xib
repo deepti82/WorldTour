@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -22,13 +22,13 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="XpZ-TS-wqR">
-                    <rect key="frame" x="0.0" y="259.5" width="375" height="190"/>
+                    <rect key="frame" x="0.0" y="289.5" width="375" height="220"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="190" id="m6A-oz-TJG"/>
+                        <constraint firstAttribute="height" constant="220" id="m6A-oz-TJG"/>
                     </constraints>
                 </scrollView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Popular Itineraries" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A2x-Je-ZgF">
-                    <rect key="frame" x="8" y="232" width="158" height="19.5"/>
+                    <rect key="frame" x="8" y="262" width="158" height="19.5"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="158" id="8PV-il-FkJ"/>
                     </constraints>
@@ -37,7 +37,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="248" text="Popular Bloggers" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ftL-JM-846">
-                    <rect key="frame" x="8" y="457.5" width="158" height="19.5"/>
+                    <rect key="frame" x="8" y="517.5" width="158" height="19.5"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="158" id="oIJ-Nb-tG4"/>
                     </constraints>
@@ -56,15 +56,15 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="mS8-lu-shk">
-                    <rect key="frame" x="0.0" y="34" width="375" height="190"/>
+                    <rect key="frame" x="0.0" y="34" width="375" height="220"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="190" id="0em-RK-9He"/>
+                        <constraint firstAttribute="height" constant="220" id="0em-RK-9He"/>
                     </constraints>
                 </scrollView>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ace-fp-pTO">
-                    <rect key="frame" x="0.0" y="485" width="375" height="190"/>
+                    <rect key="frame" x="0.0" y="545" width="375" height="220"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="190" id="Fk9-BL-wVk"/>
+                        <constraint firstAttribute="height" constant="220" id="Fk9-BL-wVk"/>
                     </constraints>
                 </scrollView>
             </subviews>
