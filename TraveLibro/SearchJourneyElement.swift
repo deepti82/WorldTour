@@ -26,7 +26,8 @@ class SearchJourneyElement: UIView {
         super.init(frame: frame)
         loadViewFromNib ()
         
-        makeTLProfilePictureBorderWhite(creatorPic)
+//        makeTLProfilePictureBorderWhite(creatorPic)
+        makeTLProfilePictureFollowers(creatorPic)
         
 //        let gradient = CAGradientLayer()
 //        
