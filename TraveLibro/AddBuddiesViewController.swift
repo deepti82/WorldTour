@@ -132,7 +132,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
         search.bottomLine.backgroundColor = mainOrangeColor
         search.searchButton.tintColor = mainOrangeColor
         saveButton.setTitleColor(mainOrangeColor, for: UIControlState())
-        
+        search.searchField.textColor = UIColor.white
         
     }
     

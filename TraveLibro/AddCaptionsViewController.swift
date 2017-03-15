@@ -215,7 +215,7 @@ class AddCaptionsViewController: UIViewController, UITextFieldDelegate, ToolStac
             captionTextView.resignFirstResponder()
             
             if(imageArr[currentImageIndex].caption == "") {
-                captionTextView.text = "  Add a caption..."
+                captionTextView.text = "  Add caption..."
             } else {
                 captionTextView.text = imageArr[currentImageIndex].caption
             }
@@ -307,7 +307,7 @@ class AddCaptionsViewController: UIViewController, UITextFieldDelegate, ToolStac
         }
 
         if(imageArr[currentImageIndex].caption == "") {
-            captionTextView.text = "  Add a caption..."
+            captionTextView.text = "  Add caption..."
         } else {
             captionTextView.text = imageArr[currentImageIndex].caption
         }
@@ -345,7 +345,7 @@ class AddCaptionsViewController: UIViewController, UITextFieldDelegate, ToolStac
         if string == "\n" {
             captionTextView.resignFirstResponder()
             if captionTextView.text == "" {
-                captionTextView.text = "  Add a caption..."
+                captionTextView.text = "  Add caption..."
             }
             return true
         }
@@ -353,7 +353,7 @@ class AddCaptionsViewController: UIViewController, UITextFieldDelegate, ToolStac
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        if captionTextView.text == "  Add a caption..." {
+        if captionTextView.text == "  Add caption..." {
             captionTextView.text = ""
         }
     }

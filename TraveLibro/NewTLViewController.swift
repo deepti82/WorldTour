@@ -704,7 +704,11 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         loader.hideOverlayView()
         request.getJourney(currentUser["_id"].string!, completion: {(response) in
             DispatchQueue.main.async(execute: {
+<<<<<<< HEAD
                 print("\(#line) : \(response)")
+=======
+                print("response\(response)")
+>>>>>>> origin/level-3-
                 loader.hideOverlayView()
                 if response.error != nil {
                     print("error: \(response.error!.localizedDescription)")
@@ -1234,7 +1238,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         checkIn.newTl = self
         checkIn.scrollView = mainScroll
         layout.addSubview(checkIn)
-        addHeightToLayout(height: checkIn.frame.height + 50.0)
+        addHeightToLayout(height: checkIn.frame.height + 50)
     }
     
     func showPost(_ whichPost: String, post: JSON) {
@@ -2091,7 +2095,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         let categoryVC = storyboard?.instantiateViewController(withIdentifier: "kindOfJourneyVC") as! KindOfJourneyOTGViewController
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationController?.pushViewController(categoryVC, animated: true)
-        otgView.closeBuddies.isHidden = false
         //        showDetailsFn()
         otgView.drawLineView3.isHidden = true
         otgView.drawLineView4.isHidden = false
@@ -2128,6 +2131,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
                             self.otgView.journeyDetails.isHidden = false
                             self.otgView.buddyStack.isHidden = true
                             self.otgView.addBuddiesButton.isHidden = false
+                            self.otgView.closeBuddies.isHidden = false
                         }
 
                         
@@ -2322,6 +2326,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         
         otgView.buddyStack.isHidden = false
         otgView.addBuddiesButton.isHidden = true
+        otgView.closeBuddies.isHidden = true
         infoButton.isHidden = true
         addPostsButton.isHidden = false
 //        otgView.lineThree.isHidden = false

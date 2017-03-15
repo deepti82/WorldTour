@@ -7,7 +7,7 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
     
     var imageName = ""
     
-    var profile:ProfilePicFancy! = ProfilePicFancy()
+    var profile:profilePicNavigation! = profilePicNavigation()
     
     var mainViewController: UIViewController!
     var homeController:UIViewController!
@@ -73,12 +73,18 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
 
         NotificationCenter.default.addObserver(self, selector: #selector(updateProfilePicture), name: NSNotification.Name(rawValue: "currentUserUpdated"), object: nil)
         
-        profile = ProfilePicFancy(frame: CGRect(x: 0, y: 0, width: profileNew.frame.width, height: profileNew.frame.height))
+        profile = profilePicNavigation(frame: CGRect(x: 0, y: 0, width: profileNew.frame.width, height: profileNew.frame.height))
         profileNew.addSubview(profile)
-        profile.waves.isHidden = true
+//        profile.waves.isHidden = true
         makeSideNavigation(profile.image)
 
         makeMenuProfilePicture(profile.image)
+        
+        profile.image.frame.size.height = 116
+        profile.image.frame.size.width = 110
+        
+        profile.flag.frame.size.height = 25
+        profile.flag.frame.size.width = 32
         
         sideTableView.tableFooterView = UIView(frame: CGRect.zero)
         updateProfilePicture()
