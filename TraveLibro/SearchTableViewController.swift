@@ -209,7 +209,7 @@ class SearchTableViewController: UIViewController, UITableViewDelegate, UITableV
         
         searchController = UISearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = self
-        searchController.dimsBackgroundDuringPresentation = true
+        searchController.dimsBackgroundDuringPresentation = false
         searchController.searchBar.delegate = self
         searchController.searchBar.sizeToFit()
         searchTable.tableHeaderView = searchController.searchBar

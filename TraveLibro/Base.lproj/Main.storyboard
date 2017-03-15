@@ -6271,10 +6271,10 @@
             </objects>
             <point key="canvasLocation" x="15196" y="495.20239880059972"/>
         </scene>
-        <!--Search View Controller-->
+        <!--View Controller-->
         <scene sceneID="KNW-Fe-LdC">
             <objects>
-                <viewController storyboardIdentifier="Search" useStoryboardIdentifierAsRestorationIdentifier="YES" id="qBt-YS-c1x" customClass="SearchViewController" customModule="TraveLibro" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Search" useStoryboardIdentifierAsRestorationIdentifier="YES" id="qBt-YS-c1x" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="NRn-sG-row"/>
                         <viewControllerLayoutGuide type="bottom" id="n8a-1f-VAf"/>
@@ -6283,35 +6283,44 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jwh-xw-o8F">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                            </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="htT-12-Cvm">
                                 <rect key="frame" x="0.0" y="20" width="375" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="cST-OB-dkm"/>
                                 </constraints>
                             </view>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aHw-dL-OEy">
+                                <rect key="frame" x="0.0" y="60" width="375" height="607"/>
+                                <connections>
+                                    <segue destination="RiH-Me-fe9" kind="embed" id="elJ-NC-417"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cYp-wl-YXx">
+                                <rect key="frame" x="0.0" y="60" width="375" height="607"/>
+                                <connections>
+                                    <segue destination="ehw-eN-Y2B" kind="embed" id="IKy-5Z-nEF"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Jwh-xw-o8F" firstAttribute="leading" secondItem="XFd-Wm-ATx" secondAttribute="leading" id="498-o5-sc0"/>
+                            <constraint firstItem="cYp-wl-YXx" firstAttribute="top" secondItem="htT-12-Cvm" secondAttribute="bottom" id="5sN-7Z-L3Y"/>
+                            <constraint firstItem="aHw-dL-OEy" firstAttribute="top" secondItem="htT-12-Cvm" secondAttribute="bottom" id="CQb-1x-n3m"/>
                             <constraint firstItem="htT-12-Cvm" firstAttribute="leading" secondItem="XFd-Wm-ATx" secondAttribute="leading" id="G8m-Em-CRq"/>
+                            <constraint firstItem="n8a-1f-VAf" firstAttribute="top" secondItem="aHw-dL-OEy" secondAttribute="bottom" id="Hne-Ce-2J4"/>
                             <constraint firstItem="htT-12-Cvm" firstAttribute="top" secondItem="NRn-sG-row" secondAttribute="bottom" id="N7S-WY-bh5"/>
-                            <constraint firstAttribute="trailing" secondItem="Jwh-xw-o8F" secondAttribute="trailing" id="VaU-Du-Hcn"/>
-                            <constraint firstItem="Jwh-xw-o8F" firstAttribute="top" secondItem="XFd-Wm-ATx" secondAttribute="top" id="dan-7r-MOg"/>
+                            <constraint firstAttribute="trailing" secondItem="aHw-dL-OEy" secondAttribute="trailing" id="VFo-OT-IHT"/>
+                            <constraint firstItem="n8a-1f-VAf" firstAttribute="top" secondItem="cYp-wl-YXx" secondAttribute="bottom" id="ZdH-KE-LCA"/>
                             <constraint firstAttribute="trailing" secondItem="htT-12-Cvm" secondAttribute="trailing" id="ebK-h8-hwN"/>
-                            <constraint firstAttribute="bottom" secondItem="Jwh-xw-o8F" secondAttribute="bottom" id="tW3-FX-fJy"/>
+                            <constraint firstItem="cYp-wl-YXx" firstAttribute="leading" secondItem="XFd-Wm-ATx" secondAttribute="leading" id="hla-8d-m54"/>
+                            <constraint firstAttribute="trailing" secondItem="cYp-wl-YXx" secondAttribute="trailing" id="kvd-Sq-Qwi"/>
+                            <constraint firstItem="aHw-dL-OEy" firstAttribute="leading" secondItem="XFd-Wm-ATx" secondAttribute="leading" id="l5x-hM-3R5"/>
                         </constraints>
                     </view>
-                    <connections>
-                        <outlet property="SearchView" destination="htT-12-Cvm" id="sa5-TI-VJA"/>
-                        <outlet property="scrollView" destination="Jwh-xw-o8F" id="Nbu-tA-XWh"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f4y-fE-0d3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="15972" y="483.50824587706148"/>
+            <point key="canvasLocation" x="15946" y="125"/>
         </scene>
         <!--Search Table View Controller-->
         <scene sceneID="X37-B0-UJT">
@@ -6322,11 +6331,11 @@
                         <viewControllerLayoutGuide type="bottom" id="lpA-ic-Kjy"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="TlN-bW-6yf">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="607"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7TL-ak-Fv5">
-                                <rect key="frame" x="0.0" y="20" width="375" height="40"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uI1-E4-tcw">
                                         <rect key="frame" x="0.0" y="5" width="131" height="30"/>
@@ -6367,13 +6376,13 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Traveller Found" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hlf-hU-nVM">
-                                <rect key="frame" x="0.0" y="68" width="375" height="82"/>
+                                <rect key="frame" x="0.0" y="48" width="375" height="42"/>
                                 <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="17"/>
                                 <color key="textColor" red="0.97104974509999997" green="0.9750611347" blue="0.98709530339999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" tag="1" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="82" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LvD-WD-w8s">
-                                <rect key="frame" x="0.0" y="61" width="375" height="606"/>
+                                <rect key="frame" x="0.0" y="41" width="375" height="566"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.80239207469999996" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="search" rowHeight="82" id="9nI-H6-uxz" customClass="searchPeople" customModule="TraveLibro" customModuleProvider="target">
@@ -6465,7 +6474,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HdZ-tm-uGA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="16698.400000000001" y="484.40779610194909"/>
+            <point key="canvasLocation" x="17044" y="266"/>
         </scene>
         <!--Invite Friends-->
         <scene sceneID="ufH-S9-kQj">
@@ -11736,6 +11745,33 @@
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HF1-hx-BYQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+        <!--Search View Controller-->
+        <scene sceneID="xnH-6V-Hdo">
+            <objects>
+                <viewController id="RiH-Me-fe9" customClass="SearchViewController" customModule="TraveLibro" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="KD0-64-V49">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="607"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ldW-kb-oH6">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="607"/>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ldW-kb-oH6" firstAttribute="top" secondItem="KD0-64-V49" secondAttribute="top" id="UIk-rG-tFh"/>
+                            <constraint firstItem="ldW-kb-oH6" firstAttribute="leading" secondItem="KD0-64-V49" secondAttribute="leading" id="kER-KH-X4P"/>
+                            <constraint firstAttribute="bottom" secondItem="ldW-kb-oH6" secondAttribute="bottom" id="tt6-w9-TDX"/>
+                            <constraint firstAttribute="trailing" secondItem="ldW-kb-oH6" secondAttribute="trailing" id="ugf-Vg-Dbb"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="scrollView" destination="ldW-kb-oH6" id="rhb-QO-5AY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="l8t-7b-ier" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
     </scenes>

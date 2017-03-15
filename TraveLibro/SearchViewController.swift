@@ -7,22 +7,25 @@
 //
 
 import UIKit
-
-class SearchViewController: UIViewController {
+var globalSearchViewController: SearchViewController!
+class SearchViewController: UIViewController, UITextFieldDelegate {
     
     var search: SearchFieldView!
     @IBOutlet var SearchView: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        globalSearchViewController = self
         self.automaticallyAdjustsScrollViewInsets = false
         print("in search view controller")
         getDarkBackGround(self)
         loader.showOverlay(self.view)
         scrollView.isScrollEnabled = true
+        
        
         search = SearchFieldView(frame: CGRect(x: 10, y: 8, width: self.view.frame.width - 20 , height: 30))
         search.searchField.returnKeyType = .done
+        search.searchField.delegate = self
         
         SearchView.addSubview(search)
   
@@ -39,7 +42,7 @@ class SearchViewController: UIViewController {
         scrollView.autoresizingMask = UIViewAutoresizing.flexibleWidth
         scrollView.autoresizingMask = UIViewAutoresizing.flexibleHeight
         
-        let searchView = Search(frame: CGRect(x: 0, y: 105, width: self.view.frame.width, height: 675))
+        let searchView = Search(frame: CGRect(x: 0, y: 130, width: self.view.frame.width, height: 675))
         scrollView.contentSize = CGSize(width: 0, height: 800)
         searchView.setData()
         self.scrollView.addSubview(searchView)
@@ -51,6 +54,16 @@ class SearchViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        let searchTable = storyboard?.instantiateViewController(withIdentifier: "searchTable") as! SearchTableViewController
+        searchTable.newSearch = textField.text!
+        searchTable.searchPeople(search: textField.text!)
+        globalNavigationController.pushViewController(searchTable, animated: true)
+        return true
+        
     }
     
     func searchTable(_ sender: UITapGestureRecognizer) {
