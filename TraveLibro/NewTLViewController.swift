@@ -936,8 +936,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     
     func addCheckInTL(sender: UIButton) {
         
-        let checkInVC = storyboard?.instantiateViewController(withIdentifier: "checkInSearch") as! CheckInSearchViewController
-        checkInVC.whichView = "TL"
+        let checkInVC = storyboard?.instantiateViewController(withIdentifier: "checkInSearch") as! MainSearchViewController
+//        checkInVC.whichView = "TL"
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationController?.pushViewController(checkInVC, animated: true)
         

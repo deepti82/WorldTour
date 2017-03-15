@@ -1787,7 +1787,6 @@ class Navigation {
                 do {
                     
                     let result = try JSONSerialization.jsonObject(with: data!, options: []) as! [String:AnyObject]
-                    print("response: \(JSON(result))")
                     completion(JSON(result))
                     
                 } catch {
@@ -1829,7 +1828,6 @@ class Navigation {
                 do {
                     
                     let result = try JSONSerialization.jsonObject(with: data!, options: []) as! [String:AnyObject]
-                    print("response: \(JSON(result))")
                     completion(JSON(result))
                     
                 } catch {

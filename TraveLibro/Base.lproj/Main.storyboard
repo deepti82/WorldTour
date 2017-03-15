@@ -6271,10 +6271,10 @@
             </objects>
             <point key="canvasLocation" x="15196" y="495.20239880059972"/>
         </scene>
-        <!--View Controller-->
+        <!--Main Search View Controller-->
         <scene sceneID="KNW-Fe-LdC">
             <objects>
-                <viewController storyboardIdentifier="Search" useStoryboardIdentifierAsRestorationIdentifier="YES" id="qBt-YS-c1x" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Search" useStoryboardIdentifierAsRestorationIdentifier="YES" id="qBt-YS-c1x" customClass="MainSearchViewController" customModule="TraveLibro" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="NRn-sG-row"/>
                         <viewControllerLayoutGuide type="bottom" id="n8a-1f-VAf"/>
@@ -6284,19 +6284,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="htT-12-Cvm">
-                                <rect key="frame" x="0.0" y="20" width="375" height="40"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="cST-OB-dkm"/>
+                                    <constraint firstAttribute="height" constant="50" id="cST-OB-dkm"/>
                                 </constraints>
                             </view>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aHw-dL-OEy">
-                                <rect key="frame" x="0.0" y="60" width="375" height="607"/>
+                                <rect key="frame" x="0.0" y="70" width="375" height="597"/>
                                 <connections>
                                     <segue destination="RiH-Me-fe9" kind="embed" id="elJ-NC-417"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cYp-wl-YXx">
-                                <rect key="frame" x="0.0" y="60" width="375" height="607"/>
+                                <rect key="frame" x="0.0" y="70" width="375" height="597"/>
                                 <connections>
                                     <segue destination="ehw-eN-Y2B" kind="embed" id="IKy-5Z-nEF"/>
                                 </connections>
@@ -6317,10 +6317,15 @@
                             <constraint firstItem="aHw-dL-OEy" firstAttribute="leading" secondItem="XFd-Wm-ATx" secondAttribute="leading" id="l5x-hM-3R5"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="SearchView" destination="htT-12-Cvm" id="tzM-PK-ZT4"/>
+                        <outlet property="searchSlider" destination="aHw-dL-OEy" id="BPc-YP-MOX"/>
+                        <outlet property="searchTable" destination="cYp-wl-YXx" id="W3s-k0-xfv"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f4y-fE-0d3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="15946" y="125"/>
+            <point key="canvasLocation" x="15921" y="495"/>
         </scene>
         <!--Search Table View Controller-->
         <scene sceneID="X37-B0-UJT">
@@ -6331,7 +6336,7 @@
                         <viewControllerLayoutGuide type="bottom" id="lpA-ic-Kjy"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="TlN-bW-6yf">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="607"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="597"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7TL-ak-Fv5">
@@ -6376,13 +6381,16 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Traveller Found" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hlf-hU-nVM">
-                                <rect key="frame" x="0.0" y="48" width="375" height="42"/>
-                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="17"/>
-                                <color key="textColor" red="0.97104974509999997" green="0.9750611347" blue="0.98709530339999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <rect key="frame" x="0.0" y="41" width="375" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="mdQ-Vq-PS8"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="17"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" tag="1" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="82" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LvD-WD-w8s">
-                                <rect key="frame" x="0.0" y="41" width="375" height="566"/>
+                                <rect key="frame" x="0.0" y="41" width="375" height="556"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.80239207469999996" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="search" rowHeight="82" id="9nI-H6-uxz" customClass="searchPeople" customModule="TraveLibro" customModuleProvider="target">
@@ -6449,17 +6457,16 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Hlf-hU-nVM" firstAttribute="top" secondItem="7TL-ak-Fv5" secondAttribute="bottom" constant="8" symbolic="YES" id="4eG-uE-KMP"/>
                             <constraint firstAttribute="trailing" secondItem="7TL-ak-Fv5" secondAttribute="trailing" id="52r-07-D6Z"/>
                             <constraint firstItem="LvD-WD-w8s" firstAttribute="top" secondItem="7TL-ak-Fv5" secondAttribute="bottom" constant="1" id="9bg-37-wKQ"/>
                             <constraint firstItem="LvD-WD-w8s" firstAttribute="trailing" secondItem="7TL-ak-Fv5" secondAttribute="trailing" id="H5r-ka-4YC"/>
-                            <constraint firstItem="LvD-WD-w8s" firstAttribute="trailing" secondItem="Hlf-hU-nVM" secondAttribute="trailing" id="IdV-xr-E6O"/>
                             <constraint firstItem="7TL-ak-Fv5" firstAttribute="leading" secondItem="TlN-bW-6yf" secondAttribute="leading" id="JBd-ih-beb"/>
-                            <constraint firstItem="LvD-WD-w8s" firstAttribute="leading" secondItem="Hlf-hU-nVM" secondAttribute="leading" id="LsO-2E-B39"/>
                             <constraint firstItem="LvD-WD-w8s" firstAttribute="leading" secondItem="7TL-ak-Fv5" secondAttribute="leading" id="RvU-vy-c40"/>
                             <constraint firstItem="LvD-WD-w8s" firstAttribute="bottom" secondItem="lpA-ic-Kjy" secondAttribute="top" id="SEo-23-vey"/>
-                            <constraint firstItem="lpA-ic-Kjy" firstAttribute="top" secondItem="Hlf-hU-nVM" secondAttribute="bottom" constant="517" id="aoU-aT-yuV"/>
+                            <constraint firstItem="Hlf-hU-nVM" firstAttribute="leading" secondItem="TlN-bW-6yf" secondAttribute="leading" id="ebf-w9-bcf"/>
                             <constraint firstItem="7TL-ak-Fv5" firstAttribute="top" secondItem="apX-6N-M5U" secondAttribute="bottom" id="j3l-Xn-m5W"/>
+                            <constraint firstAttribute="trailing" secondItem="Hlf-hU-nVM" secondAttribute="trailing" id="sVk-s1-ffx"/>
+                            <constraint firstItem="Hlf-hU-nVM" firstAttribute="top" secondItem="7TL-ak-Fv5" secondAttribute="bottom" constant="1" id="zVC-6S-IUi"/>
                         </constraints>
                     </view>
                     <connections>
@@ -6474,7 +6481,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HdZ-tm-uGA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="17044" y="266"/>
+            <point key="canvasLocation" x="16745" y="495"/>
         </scene>
         <!--Invite Friends-->
         <scene sceneID="ufH-S9-kQj">
@@ -11751,12 +11758,16 @@
         <scene sceneID="xnH-6V-Hdo">
             <objects>
                 <viewController id="RiH-Me-fe9" customClass="SearchViewController" customModule="TraveLibro" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="6fC-LX-OU5"/>
+                        <viewControllerLayoutGuide type="bottom" id="ehI-56-44f"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="KD0-64-V49">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="607"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="597"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ldW-kb-oH6">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="607"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="597"/>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -11773,6 +11784,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l8t-7b-ier" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="15921" y="1162"/>
         </scene>
     </scenes>
     <resources>

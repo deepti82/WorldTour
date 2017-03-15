@@ -202,7 +202,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
     func checkInTap(_ sender: UIButton) {
         
         print("checkInButtonWasTapped")
-        let checkInOneVC = storyboard?.instantiateViewController(withIdentifier: "checkInSearch") as! CheckInSearchViewController
+        let checkInOneVC = storyboard?.instantiateViewController(withIdentifier: "checkInSearch") as! MainSearchViewController
         self.navigationController?.pushViewController(checkInOneVC, animated: true)
         
     }
@@ -418,7 +418,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
     
     func searchTop(_ sender: UIButton){
         
-        let searchVC = storyboard?.instantiateViewController(withIdentifier: "Search") as! SearchViewController
+        let searchVC = storyboard?.instantiateViewController(withIdentifier: "Search") as! CategoriseCheckInViewController
         globalNavigationController.pushViewController(searchVC, animated: true)
         
     }
