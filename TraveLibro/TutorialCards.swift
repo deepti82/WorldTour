@@ -26,7 +26,12 @@ class TutorialCards: UIView {
         let CBLabels = [["Island & Beach", "City", "Safari", "Mountains", "Cruise", "Countryside"],
                         ["By the map", "By the road", "A little bit of both"],
                         ["Family", "Friends", "Partner/Spouse", "Solo", "Business", "Blogger", "Group Tour", "Photographer"],
-                        ["Luxury", "Backpacking", "Green Travelling", "Pocket Friendly", "Romance", "Sports & Adventure", "History & Culture", "Spirituality & Wellness", "Shopping", "Food & Wine", "Festivals"]]
+                        ["Luxury", "Backpacking", "Green Travelling", "Pocket Friendly", "Romance", "Sports & Adventure", "History & Culture", "Spirituality & Wellness", "Shopping", "Food & Wine", "Festivals"]]        
+        let CGButtonTitle = [["Islands & Beaches", "Cities", "Safaris", "Mountains", "Cruises", "Countrysides"],
+                             ["By the map", "Where the road takes you", "A little bit of both"],
+                             ["Family", "Friends", "Partner/ Spouse", "Solo", "Business", "Blogger", "Group Tour", "Photographer"],
+                             ["Luxury", "Backpacking", "Green Travelling", "Pocket Friendly", "Romance", "Sports & Adventure", "History & Culture", "Spirituality & Wellness", "Shopping", "Food & Wine", "Festival"]]
+        
         print("cardTitle: \(cardTitle.text)")
         
         print("checkbox: \(checkBoxNumber)")
@@ -68,24 +73,14 @@ class TutorialCards: UIView {
             
         }
         
-        //        if options.contains(buttonRight.titleLabel!.text!) {
-        //
-        //            checkBoxTap(buttonRight)
-        //        }
-        //
-        //        if options.contains(buttonLeft.titleLabel!.text!) {
-        //
-        //            checkBoxTap(buttonLeft)
-        //        }
-        
         switch checkBoxNumber {
         case 6: //KindOfHoliday
             let checkboxGroupOne = CardCheckBoxes(frame: CGRect(x: 20, y: 0, width: checkBoxView.frame.width - 125, height: 120))
 //            checkboxGroupOne.center.x = 366/2
             checkboxGroupOne.buttonLeft.setImage(UIImage(named: CBButtons[0][1]), for: UIControlState())
-            checkboxGroupOne.buttonLeft.setTitle(CBButtons[0][1], for: UIControlState())
+            checkboxGroupOne.buttonLeft.setTitle(CGButtonTitle[0][1], for: UIControlState())
             checkboxGroupOne.buttonRight.setImage(UIImage(named: CBButtons[0][0]), for: UIControlState())
-            checkboxGroupOne.buttonRight.setTitle(CBButtons[0][0], for: UIControlState())
+            checkboxGroupOne.buttonRight.setTitle(CGButtonTitle[0][0], for: UIControlState())
             checkboxGroupOne.labelLeft.text = CBLabels[0][1]
             checkboxGroupOne.labelRight.text = CBLabels[0][0]
             if options.contains(checkboxGroupOne.buttonRight.titleLabel!.text!) {
@@ -101,9 +96,9 @@ class TutorialCards: UIView {
             
             let checkboxGroupTwo = CardCheckBoxes(frame: CGRect(x: 20, y: 115, width: checkBoxView.frame.width  - 125, height: 120))
             checkboxGroupTwo.buttonLeft.setImage(UIImage(named: CBButtons[0][3]), for: UIControlState())
-            checkboxGroupTwo.buttonLeft.setTitle(CBButtons[0][3], for: UIControlState())
+            checkboxGroupTwo.buttonLeft.setTitle(CGButtonTitle[0][3], for: UIControlState())
             checkboxGroupTwo.buttonRight.setImage(UIImage(named: CBButtons[0][2]), for: UIControlState())
-            checkboxGroupTwo.buttonRight.setTitle(CBButtons[0][2], for: UIControlState())
+            checkboxGroupTwo.buttonRight.setTitle(CGButtonTitle[0][2], for: UIControlState())
             checkboxGroupTwo.labelLeft.text = CBLabels[0][3]
             checkboxGroupTwo.labelRight.text = CBLabels[0][2]
             if options.contains(checkboxGroupTwo.buttonRight.titleLabel!.text!) {
@@ -119,9 +114,9 @@ class TutorialCards: UIView {
             
             let checkboxGroupThree = CardCheckBoxes(frame: CGRect(x: 20, y: 235, width: checkBoxView.frame.width - 125, height: 120))
             checkboxGroupThree.buttonLeft.setImage(UIImage(named: CBButtons[0][5]), for: UIControlState())
-            checkboxGroupThree.buttonLeft.setTitle(CBButtons[0][5], for: UIControlState())
+            checkboxGroupThree.buttonLeft.setTitle(CGButtonTitle[0][5], for: UIControlState())
             checkboxGroupThree.buttonRight.setImage(UIImage(named: CBButtons[0][4]), for: UIControlState())
-            checkboxGroupThree.buttonRight.setTitle(CBButtons[0][4], for: UIControlState())
+            checkboxGroupThree.buttonRight.setTitle(CGButtonTitle[0][4], for: UIControlState())
             checkboxGroupThree.labelLeft.text = CBLabels[0][5]
             checkboxGroupThree.labelRight.text = CBLabels[0][4]
             if options.contains(checkboxGroupThree.buttonRight.titleLabel!.text!) {
@@ -142,9 +137,9 @@ class TutorialCards: UIView {
             checkboxGroupOne.buttonLeft.tag = 1
             checkboxGroupOne.buttonRight.tag = 1
             checkboxGroupOne.buttonLeft.setImage(UIImage(named: CBButtons[1][1]), for: UIControlState())
-            checkboxGroupOne.buttonLeft.setTitle(CBButtons[1][1], for: UIControlState())
+            checkboxGroupOne.buttonLeft.setTitle(CGButtonTitle[1][1], for: UIControlState())
             checkboxGroupOne.buttonRight.setImage(UIImage(named: CBButtons[1][0]), for: UIControlState())
-            checkboxGroupOne.buttonRight.setTitle(CBButtons[1][0], for: UIControlState())
+            checkboxGroupOne.buttonRight.setTitle(CGButtonTitle[1][0], for: UIControlState())
             checkboxGroupOne.labelLeft.text = CBLabels[1][1]
             checkboxGroupOne.labelRight.text = CBLabels[1][0]
             if options.contains(checkboxGroupOne.buttonRight.titleLabel!.text!) {
@@ -162,9 +157,9 @@ class TutorialCards: UIView {
             checkboxGroupTwo.buttonRight.tag = 1
             checkboxGroupTwo.center.x = (checkBoxView.frame.width + 25)/2
             checkboxGroupTwo.buttonLeft.removeFromSuperview()
-            checkboxGroupTwo.buttonLeft.setTitle(CBButtons[1][2], for: UIControlState())
+            checkboxGroupTwo.buttonLeft.setTitle(CGButtonTitle[1][2], for: UIControlState())
             checkboxGroupTwo.buttonRight.setImage(UIImage(named: CBButtons[1][2]), for: UIControlState())
-            checkboxGroupTwo.buttonRight.setTitle(CBButtons[1][2], for: UIControlState())
+            checkboxGroupTwo.buttonRight.setTitle(CGButtonTitle[1][2], for: UIControlState())
             checkboxGroupTwo.buttonLeft.setImage(UIImage(named: CBButtons[1][2]), for: UIControlState())
             checkboxGroupTwo.labelLeft.removeFromSuperview()
             checkboxGroupTwo.labelRight.text = CBLabels[1][2]
@@ -184,9 +179,9 @@ class TutorialCards: UIView {
         case 8: //travelPreference
             let checkboxGroupOne = CardCheckBoxes(frame: CGRect(x: 20, y: 0, width: checkBoxView.frame.width - 125, height: 120))
             checkboxGroupOne.buttonLeft.setImage(UIImage(named: CBButtons[2][1]), for: UIControlState())
-            checkboxGroupOne.buttonLeft.setTitle(CBButtons[2][1], for: UIControlState())
+            checkboxGroupOne.buttonLeft.setTitle(CGButtonTitle[2][1], for: UIControlState())
             checkboxGroupOne.buttonRight.setImage(UIImage(named: CBButtons[2][0]), for: UIControlState())
-            checkboxGroupOne.buttonRight.setTitle(CBButtons[2][0], for: UIControlState())
+            checkboxGroupOne.buttonRight.setTitle(CGButtonTitle[2][0], for: UIControlState())
             checkboxGroupOne.labelLeft.text = CBLabels[2][1]
             checkboxGroupOne.labelRight.text = CBLabels[2][0]
             if options.contains(checkboxGroupOne.buttonRight.titleLabel!.text!) {
@@ -202,9 +197,9 @@ class TutorialCards: UIView {
             
             let checkboxGroupTwo = CardCheckBoxes(frame: CGRect(x: 20, y: 125, width: checkBoxView.frame.width - 125, height: 120))
             checkboxGroupTwo.buttonLeft.setImage(UIImage(named: CBButtons[2][3]), for: UIControlState())
-            checkboxGroupTwo.buttonLeft.setTitle(CBButtons[2][3], for: UIControlState())
+            checkboxGroupTwo.buttonLeft.setTitle(CGButtonTitle[2][3], for: UIControlState())
             checkboxGroupTwo.buttonRight.setImage(UIImage(named: CBButtons[2][2]), for: UIControlState())
-            checkboxGroupTwo.buttonRight.setTitle(CBButtons[2][2], for: UIControlState())
+            checkboxGroupTwo.buttonRight.setTitle(CGButtonTitle[2][2], for: UIControlState())
             checkboxGroupTwo.labelLeft.text = CBLabels[2][3]
             checkboxGroupTwo.labelRight.text = CBLabels[2][2]
             if options.contains(checkboxGroupTwo.buttonRight.titleLabel!.text!) {
@@ -220,9 +215,9 @@ class TutorialCards: UIView {
             
             let checkboxGroupThree = CardCheckBoxes(frame: CGRect(x: 20, y: 250, width: checkBoxView.frame.width - 125, height: 120))
             checkboxGroupThree.buttonLeft.setImage(UIImage(named: CBButtons[2][5]), for: UIControlState())
-            checkboxGroupThree.buttonLeft.setTitle(CBButtons[2][5], for: UIControlState())
+            checkboxGroupThree.buttonLeft.setTitle(CGButtonTitle[2][5], for: UIControlState())
             checkboxGroupThree.buttonRight.setImage(UIImage(named: CBButtons[2][4]), for: UIControlState())
-            checkboxGroupThree.buttonRight.setTitle(CBButtons[2][4], for: UIControlState())
+            checkboxGroupThree.buttonRight.setTitle(CGButtonTitle[2][4], for: UIControlState())
             checkboxGroupThree.labelLeft.text = CBLabels[2][5]
             checkboxGroupThree.labelRight.text = CBLabels[2][4]
             if options.contains(checkboxGroupThree.buttonRight.titleLabel!.text!) {
@@ -238,9 +233,9 @@ class TutorialCards: UIView {
             
             let checkboxGroupFour = CardCheckBoxes(frame: CGRect(x: 20, y: 375, width: checkBoxView.frame.width - 125, height: 120))
             checkboxGroupFour.buttonLeft.setImage(UIImage(named: CBButtons[2][7]), for: UIControlState())
-            checkboxGroupFour.buttonLeft.setTitle(CBButtons[2][7], for: UIControlState())
+            checkboxGroupFour.buttonLeft.setTitle(CGButtonTitle[2][7], for: UIControlState())
             checkboxGroupFour.buttonRight.setImage(UIImage(named: CBButtons[2][6]), for: UIControlState())
-            checkboxGroupFour.buttonRight.setTitle(CBButtons[2][6], for: UIControlState())
+            checkboxGroupFour.buttonRight.setTitle(CGButtonTitle[2][6], for: UIControlState())
             checkboxGroupFour.labelLeft.text = CBLabels[2][7]
             checkboxGroupFour.labelRight.text = CBLabels[2][6]
             if options.contains(checkboxGroupFour.buttonRight.titleLabel!.text!) {
@@ -260,9 +255,9 @@ class TutorialCards: UIView {
 //            rightButton.hidden = false
             let checkboxGroupOne = CardCheckBoxes(frame: CGRect(x: 20, y: 0, width: checkBoxView.frame.width - 125, height: 120))
             checkboxGroupOne.buttonLeft.setImage(UIImage(named: CBButtons[3][1]), for: UIControlState())
-            checkboxGroupOne.buttonLeft.setTitle(CBButtons[3][1], for: UIControlState())
+            checkboxGroupOne.buttonLeft.setTitle(CGButtonTitle[3][1], for: UIControlState())
             checkboxGroupOne.buttonRight.setImage(UIImage(named: CBButtons[3][0]), for: UIControlState())
-            checkboxGroupOne.buttonRight.setTitle(CBButtons[3][0], for: UIControlState())
+            checkboxGroupOne.buttonRight.setTitle(CGButtonTitle[3][0], for: UIControlState())
             checkboxGroupOne.labelLeft.text = CBLabels[3][1]
             checkboxGroupOne.labelRight.text = CBLabels[3][0]
             if options.contains(checkboxGroupOne.buttonRight.titleLabel!.text!) {
@@ -278,9 +273,9 @@ class TutorialCards: UIView {
             
             let checkboxGroupTwo = CardCheckBoxes(frame: CGRect(x: 20, y: 125, width: checkBoxView.frame.width - 125, height: 120))
             checkboxGroupTwo.buttonLeft.setImage(UIImage(named: CBButtons[3][3]), for: UIControlState())
-            checkboxGroupTwo.buttonLeft.setTitle(CBButtons[3][3], for: UIControlState())
+            checkboxGroupTwo.buttonLeft.setTitle(CGButtonTitle[3][3], for: UIControlState())
             checkboxGroupTwo.buttonRight.setImage(UIImage(named: CBButtons[3][2]), for: UIControlState())
-            checkboxGroupTwo.buttonRight.setTitle(CBButtons[3][2], for: UIControlState())
+            checkboxGroupTwo.buttonRight.setTitle(CGButtonTitle[3][2], for: UIControlState())
             checkboxGroupTwo.labelLeft.text = CBLabels[3][3]
             checkboxGroupTwo.labelRight.text = CBLabels[3][2]
             if options.contains(checkboxGroupTwo.buttonRight.titleLabel!.text!) {
@@ -296,9 +291,9 @@ class TutorialCards: UIView {
             
             let checkboxGroupThree = CardCheckBoxes(frame: CGRect(x: 20, y: 250, width: checkBoxView.frame.width - 125, height: 120))
             checkboxGroupThree.buttonLeft.setImage(UIImage(named: CBButtons[3][5]), for: UIControlState())
-            checkboxGroupThree.buttonLeft.setTitle(CBButtons[3][5], for: UIControlState())
+            checkboxGroupThree.buttonLeft.setTitle(CGButtonTitle[3][5], for: UIControlState())
             checkboxGroupThree.buttonRight.setImage(UIImage(named: CBButtons[3][4]), for: UIControlState())
-            checkboxGroupThree.buttonRight.setTitle(CBButtons[3][4], for: UIControlState())
+            checkboxGroupThree.buttonRight.setTitle(CGButtonTitle[3][4], for: UIControlState())
             checkboxGroupThree.labelLeft.text = CBLabels[3][5]
             checkboxGroupThree.labelRight.text = CBLabels[3][4]
             if options.contains(checkboxGroupThree.buttonRight.titleLabel!.text!) {
@@ -314,9 +309,9 @@ class TutorialCards: UIView {
             
             let checkboxGroupFour = CardCheckBoxes(frame: CGRect(x: 20, y: 375, width: checkBoxView.frame.width - 125, height: 120))
             checkboxGroupFour.buttonLeft.setImage(UIImage(named: CBButtons[3][7]), for: UIControlState())
-            checkboxGroupFour.buttonLeft.setTitle(CBButtons[3][7], for: UIControlState())
+            checkboxGroupFour.buttonLeft.setTitle(CGButtonTitle[3][7], for: UIControlState())
             checkboxGroupFour.buttonRight.setImage(UIImage(named: CBButtons[3][6]), for: UIControlState())
-            checkboxGroupFour.buttonRight.setTitle(CBButtons[3][6], for: UIControlState())
+            checkboxGroupFour.buttonRight.setTitle(CGButtonTitle[3][6], for: UIControlState())
             checkboxGroupFour.labelLeft.text = CBLabels[3][7]
             checkboxGroupFour.labelRight.text = CBLabels[3][6]
             if options.contains(checkboxGroupFour.buttonRight.titleLabel!.text!) {
@@ -332,9 +327,9 @@ class TutorialCards: UIView {
             
             let checkboxGroupFive = CardCheckBoxes(frame: CGRect(x: 20, y: 500, width: checkBoxView.frame.width - 125, height: 120))
             checkboxGroupFive.buttonLeft.setImage(UIImage(named: CBButtons[3][9]), for: UIControlState())
-            checkboxGroupFive.buttonLeft.setTitle(CBButtons[3][9], for: UIControlState())
+            checkboxGroupFive.buttonLeft.setTitle(CGButtonTitle[3][9], for: UIControlState())
             checkboxGroupFive.buttonRight.setImage(UIImage(named: CBButtons[3][8]), for: UIControlState())
-            checkboxGroupFive.buttonRight.setTitle(CBButtons[3][8], for: UIControlState())
+            checkboxGroupFive.buttonRight.setTitle(CGButtonTitle[3][8], for: UIControlState())
             checkboxGroupFive.labelLeft.text = CBLabels[3][9]
             checkboxGroupFive.labelRight.text = CBLabels[3][8]
             if options.contains(checkboxGroupFive.buttonRight.titleLabel!.text!) {
@@ -352,8 +347,8 @@ class TutorialCards: UIView {
             checkboxGroupSix.center.x = (checkBoxView.frame.width + 25)/2
             checkboxGroupSix.buttonLeft.removeFromSuperview()
             checkboxGroupSix.buttonRight.setImage(UIImage(named: CBButtons[3][10]), for: UIControlState())
-            checkboxGroupSix.buttonRight.setTitle(CBButtons[3][10], for: UIControlState())
-            checkboxGroupSix.buttonLeft.setTitle(CBButtons[3][10], for: UIControlState())
+            checkboxGroupSix.buttonRight.setTitle(CGButtonTitle[3][10], for: UIControlState())
+            checkboxGroupSix.buttonLeft.setTitle(CGButtonTitle[3][10], for: UIControlState())
             checkboxGroupSix.labelLeft.removeFromSuperview()
             checkboxGroupSix.labelRight.text = CBLabels[3][10]
             if options.contains(checkboxGroupSix.buttonRight.titleLabel!.text!) {

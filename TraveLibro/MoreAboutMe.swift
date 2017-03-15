@@ -47,31 +47,31 @@ class MoreAboutMe: UIView {
             pronoun2 = "him"
         }
         var usuallyGo = ""
-        switch(currentUser["travelConfig"]["usuallyGo"].stringValue) {
+        switch(currentUser["travelConfig"]["usuallyGo"][0].stringValue) {
         case "A little bit of both":
             usuallyGo = "by the map or where the road takes \(pronoun2)"
             
         case "By the map":
             usuallyGo = "by the map"
             
-        case "By the road":
+        case "Where the road takes you":
             usuallyGo = "where the road takes \(pronoun2)"
             
         default:
             usuallyGo = "by the map"
         }
         switch(kindOfHoliday) {
-        case "Island&Beach":
+        case "Islands & Beaches":
             kindOfHolidayFinal = "islands and beaches"
-        case "City":
+        case "Cities":
             kindOfHolidayFinal = "cities"
-        case "Safari":
+        case "Safaris":
             kindOfHolidayFinal = "safaries"
         case "Mountains":
             kindOfHolidayFinal = "mountains"
         case "Cruise":
             kindOfHolidayFinal = "cruises"
-        case "Countryside":
+        case "Countrysides":
             kindOfHolidayFinal = "countrysides"
         default:
             kindOfHolidayFinal = "islands and beaches"
@@ -85,7 +85,7 @@ class MoreAboutMe: UIView {
             preferStatement  = "\(pronoun) prefers to travel with family"
         case "Solo":
             preferStatement  = "\(pronoun) prefers to travel solo"
-        case "Partner":
+        case "Partner/ Spouse":
             preferStatement  = "\(pronoun) prefers to travel with their partner"
         case "Business":
             preferStatement  = "\(pronoun) prefers to travel on business"
@@ -93,6 +93,8 @@ class MoreAboutMe: UIView {
             preferStatement  = "\(pronoun) is a Blogger"
         case "Group Tour":
             preferStatement  = "\(pronoun) prefers to travel on a group tour"
+        case "Photographer":
+            preferStatement  = "\(pronoun) is a Photographer"
         default:
             preferStatement  = "\(pronoun) prefers to travel with friends"
         }

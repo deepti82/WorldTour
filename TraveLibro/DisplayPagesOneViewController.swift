@@ -49,8 +49,7 @@ class DisplayPagesOneViewController: UIViewController {
         self.title = "\(fullCircle)    \(emptyCircle)    \(emptyCircle)     \(emptyCircle)"
         self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName : UIFont(name: "FontAwesome", size: 10)!]
         
-        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self
-            .popVC(_:)))
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.popVC(_:)))
         swipeRight.direction = UISwipeGestureRecognizerDirection.right
         self.view.addGestureRecognizer(swipeRight)
         
