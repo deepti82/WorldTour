@@ -14,7 +14,7 @@ class EditSettingsViewController: UIViewController, UIWebViewDelegate {
     internal var whichView = "noView"
     var report:ReportProblem = ReportProblem()
     var MAMtextView = MoreAboutMe()
-    
+    var indicator: UIActivityIndicatorView?    
     
     //MARK: - Lifecycle
     
@@ -69,6 +69,9 @@ class EditSettingsViewController: UIViewController, UIWebViewDelegate {
             self.view.backgroundColor = UIColor.clear
             self.title = (whichView == "AboutUsView") ? "About us" : "Terms & Conditions" 
             let aboutUsWebView = UIWebView(frame: CGRect(x: 0, y: 65, width: screenWidth, height: screenHeight-65))
+            if whichView == "AboutUsView" {
+                aboutUsWebView.frame = CGRect(x: -5, y: 0, width: screenWidth+5, height: screenHeight)
+            }
             aboutUsWebView.delegate = self
             aboutUsWebView.loadRequest(NSURLRequest(url: pdfPath) as URLRequest)
             aboutUsWebView.backgroundColor = UIColor.clear
@@ -146,10 +149,24 @@ class EditSettingsViewController: UIViewController, UIWebViewDelegate {
     
     func webViewDidStartLoad(_ webView: UIWebView) {
         print("\n\n webViewDidStartLoad \n\n")
+        
+        if indicator == nil {
+            indicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+            indicator?.center = self.view.center
+            indicator?.activityIndicatorViewStyle = .gray
+            indicator?.hidesWhenStopped = true
+            indicator?.startAnimating()
+            self.view.addSubview(indicator!)
+        }
     }
     
     func webViewDidFinishLoad(_ webView: UIWebView) {
         print("\n\n webViewDidFinishLoad \n\n")
+        if indicator != nil {
+            indicator?.stopAnimating()
+            indicator?.removeFromSuperview()
+            indicator = nil
+        }
     }
     
 }

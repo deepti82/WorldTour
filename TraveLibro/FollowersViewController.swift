@@ -8,7 +8,7 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
     
     @IBOutlet weak var followerTable: UITableView!
    
-    var whichView: String!
+    var whichView: String!   
     
     @IBOutlet weak var searchView: UIView!
     @IBOutlet weak var headerText: UILabel!    
@@ -94,7 +94,7 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
                     self.headerText.text = "Following (\(followers.count))"
                     self.followerTable.reloadData()
                     loader.hideOverlayView()
-                    if (self.searchText == "" && (followers.first!["following"].intValue != 1)) {
+                    if (self.searchText == "" && (followers.count > 0 && followers.first!["following"].intValue != 1)) {
                         self.noFollowingFound()
                     }
                 }
@@ -102,13 +102,8 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
                     
                     print("response error: \(response["error"])")
                 }
-                
-                
             })
-            
-            
         })
-        
     }
     
     func getFollowers() {
