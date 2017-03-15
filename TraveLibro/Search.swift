@@ -94,7 +94,7 @@ class Search: UIView {
             if i == "0" {
                 xco = 0
             }
-            elementJourney = SearchJourneyElement(frame: CGRect(x: xco, y: 0, width: Int(globalSearchViewController.view.frame.width), height: 220))
+            elementJourney = SearchJourneyElement(frame: CGRect(x: 0, y: 0, width: Int(globalSearchViewController.view.frame.width), height: 220))
             elementJourney.imageLable.text = iti["name"].stringValue
             elementJourney.image.hnk_setImageFromURL(getImageURL(iti["startLocationPic"].stringValue, width: 300))
             elementJourney.setData(data: iti, tabs: "journey")

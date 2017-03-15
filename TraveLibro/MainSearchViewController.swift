@@ -74,6 +74,12 @@ class MainSearchViewController: UIViewController, UITextFieldDelegate {
         self.customNavigationBar(left: leftButton, right: rightButton)
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        search.searchField.resignFirstResponder()
+        return true
+        
+    }
+    
     func goBack(_ sender:AnyObject) {
         self.navigationController!.popViewController(animated: true)
     }

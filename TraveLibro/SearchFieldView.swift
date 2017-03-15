@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SearchFieldView: UIView {
+class SearchFieldView: UIView, UITextFieldDelegate {
 
     @IBOutlet weak var searchField: UITextField!
     @IBOutlet weak var SearchView: UIView!
