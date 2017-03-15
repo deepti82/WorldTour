@@ -430,7 +430,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         }
         
         var checkIn = PhotosOTG()
-        checkIn = PhotosOTG(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: setHeight(view: checkIn, thoughts: thoughts, photos: post["photos"].array!.count)))
+        checkIn = PhotosOTG(frame: CGRect(x: 0, y: 50, width: self.view.frame.width, height: setHeight(view: checkIn, thoughts: thoughts, photos: post["photos"].array!.count)))
         checkIn.clipsToBounds = true
         checkIn.commentButton.addTarget(self, action: #selector(NewTLViewController.sendComments(_:)), for: .touchUpInside)
         checkIn.optionsButton.addTarget(self, action: #selector(NewTLViewController.chooseOptions(_:)), for: .touchUpInside)
@@ -1234,7 +1234,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         checkIn.newTl = self
         checkIn.scrollView = mainScroll
         layout.addSubview(checkIn)
-        addHeightToLayout(height: checkIn.frame.height + 50.0)
+        addHeightToLayout(height: checkIn.frame.height + 50)
     }
     
     func showPost(_ whichPost: String, post: JSON) {
@@ -1294,7 +1294,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         
         self.editPost(post["_id"].string!)
         var checkIn = PhotosOTG()
-        checkIn = PhotosOTG(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: setHeight(view: checkIn, thoughts: thoughts, photos: post["photos"].array!.count)))
+        checkIn = PhotosOTG(frame: CGRect(x: 0, y: 50, width: self.view.frame.width, height: setHeight(view: checkIn, thoughts: thoughts, photos: post["photos"].array!.count)))
         checkIn.likeButton.setTitle(post["uniqueId"].string!, for: .normal)
         checkIn.likeViewLabel.text = "\(post["likeCount"].stringValue) Likes"
         checkIn.commentCount.text = "\(post["commentCount"].stringValue) Comments"
