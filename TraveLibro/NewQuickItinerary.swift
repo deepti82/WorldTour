@@ -9,7 +9,7 @@
 import UIKit
 import Spring
 
-class NewQuickItinerary: UIView {
+class NewQuickItinerary: SpringView {
 
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var itineraryButton: UIButton!
