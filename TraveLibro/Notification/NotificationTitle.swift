@@ -209,7 +209,7 @@ class NotificationTitle: UIView {
             notificationType == "itineraryRequest" {
             str5 = data["data"]["name"].stringValue
             
-            message.append(getRedString(string: str5))
+            message.append(getBoldString(string: str5))
         }
         
         
@@ -217,7 +217,7 @@ class NotificationTitle: UIView {
         NFMessageLabel.frame = CGRect(x: NFMessageLabel.frame.origin.x, y: NFMessageLabel.frame.origin.y, width: NFMessageLabel.frame.size.width,
                                       height: heightForView(text: (firstName + str2 + str3 + str4 + str5 + "offset  ") , font: NFMessageLabel.font, width: NFMessageLabel.frame.size.width) + 10)
         
-        return (NFMessageLabel.frame.size.height+CGFloat(10))   //10 is Offset hence added
+        return NFMessageLabel.frame.size.height
     }
     
     func checkIfComment(notificationData: JSON) -> Bool {

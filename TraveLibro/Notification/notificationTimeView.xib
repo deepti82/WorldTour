@@ -24,11 +24,11 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="387" height="27"/>
+            <rect key="frame" x="0.0" y="0.0" width="387" height="22"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ccg-Ib-sSF">
-                    <rect key="frame" x="0.0" y="5" width="300" height="17"/>
+                    <rect key="frame" x="0.0" y="0.0" width="300" height="17"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wg6-Eo-5rX">
                             <rect key="frame" x="0.0" y="5" width="25" height="12"/>
@@ -41,12 +41,12 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fuq-7C-XqY">
-                            <rect key="frame" x="90" y="5" width="1" height="15"/>
+                            <rect key="frame" x="90" y="5" width="1" height="12"/>
                             <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                             <color key="tintColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="1" id="9Wk-YX-gNC"/>
-                                <constraint firstAttribute="height" constant="15" id="9lW-eT-Vr2"/>
+                                <constraint firstAttribute="height" constant="12" id="9lW-eT-Vr2"/>
                             </constraints>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nTO-LU-sc6">
@@ -99,7 +99,7 @@
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="Ccg-Ib-sSF" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="2vN-G4-9Qx"/>
+                <constraint firstItem="Ccg-Ib-sSF" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="2vN-G4-9Qx"/>
                 <constraint firstItem="Ccg-Ib-sSF" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="MOW-4c-NWN"/>
                 <constraint firstAttribute="bottom" secondItem="Ccg-Ib-sSF" secondAttribute="bottom" constant="5" id="t1I-oo-8xr"/>
             </constraints>

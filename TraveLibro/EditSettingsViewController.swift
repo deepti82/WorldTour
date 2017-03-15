@@ -148,8 +148,6 @@ class EditSettingsViewController: UIViewController, UIWebViewDelegate {
     //MARK:- Webview Delegates
     
     func webViewDidStartLoad(_ webView: UIWebView) {
-        print("\n\n webViewDidStartLoad \n\n")
-        
         if indicator == nil {
             indicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
             indicator?.center = self.view.center
@@ -161,7 +159,6 @@ class EditSettingsViewController: UIViewController, UIWebViewDelegate {
     }
     
     func webViewDidFinishLoad(_ webView: UIWebView) {
-        print("\n\n webViewDidFinishLoad \n\n")
         if indicator != nil {
             indicator?.stopAnimating()
             indicator?.removeFromSuperview()

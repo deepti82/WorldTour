@@ -18,6 +18,11 @@ class NotificationFollowPermission: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
+        
+        NFLeftButton.layer.cornerRadius = 5.0
+        NFRightButton.layer.cornerRadius = 5.0
+        NFStatusLabel.layer.cornerRadius = 5.0
+        NFStatusLabel.layer.masksToBounds = true
     }
     
     required init?(coder aDecoder: NSCoder) {

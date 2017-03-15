@@ -41,7 +41,7 @@ class NotificationDefaultCell: UITableViewCell {
     
     func createView(notificationData: JSON?, helper: NotificationSubViewController?) {
         
-        var yPos = 10
+        var yPos = 0
         var width: Int = Int(self.frame.size.width)
         width = Int(UIScreen.main.bounds.width)        
         

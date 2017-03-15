@@ -69,6 +69,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
     
     func pullToRefreshCalled() {        
         currentPageNumber = 0
+        hasNext = true
         getNotification()
     }
     
@@ -87,19 +88,14 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
                 DispatchQueue.main.async(execute: {
                     self.loader.hideOverlayView()
                     
-                    if response.error != nil {
-                        
-                        print("error: \(response.error!.localizedDescription)")
+                    if self.refreshControl.isRefreshing {
                         self.refreshControl.endRefreshing()
-                        
+                    }
+                    
+                    if response.error != nil {
+                        print("error: \(response.error!.localizedDescription)")                        
                     }
                     else if response["value"].bool! {
-                        
-                        
-                        if self.refreshControl.isRefreshing {
-                            self.notifications = []
-                            self.refreshControl.endRefreshing()
-                        }
                         
                         ToastCenter.default.cancelAll()
                         let newResponse = response["data"].array!
@@ -109,9 +105,14 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
                         }
                         
                         if self.notifications.isEmpty {
-                            self.notifications = newResponse
-                            if newResponse.isEmpty {
-                                Toast(text: "No notifications for you....").show()
+                            if newResponse.isEmpty {                                
+                                let errorAlert = UIAlertController(title: "", message: "No notifications for you ", preferredStyle: UIAlertControllerStyle.alert)
+                                let DestructiveAction = UIAlertAction(title: "Ok", style: .destructive) {
+                                    (result : UIAlertAction) -> Void in
+                                    self.popVC(UIButton())
+                                }
+                                errorAlert.addAction(DestructiveAction)
+                                self.navigationController?.present(errorAlert, animated: true, completion: nil)
                             }
                         }
                         else {                        
@@ -119,19 +120,23 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
                         }
                         
                         if !(newResponse.isEmpty) {
+                            self.notifications = []
+                            self.notifications = newResponse
                             self.notifyTableView.reloadData()                            
                         }                        
                     }
                     else {
-                        
                         print("response error!")
-                        self.refreshControl.endRefreshing()
-                        
                     }
                     
                 })
                 
             })
+        }
+        else{
+            if self.refreshControl.isRefreshing {
+                self.refreshControl.endRefreshing()
+            }
         }
     }
     
@@ -167,9 +172,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         return notifications.count
-        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -309,8 +312,8 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
             }
             cell?.backgroundColor = UIColor.clear
             
-            currentCellHeight = (cell?.totalHeight)!            
-//            tableView.reloadRows(at: [indexPath], with: .none)            
+            currentCellHeight = (cell?.totalHeight)!
+            
             return cell!
             
             
@@ -334,20 +337,6 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
             cell?.backgroundColor = UIColor.clear
             currentCellHeight = (cell?.totalHeight)!
             return cell!
-            
-            
-//        case "userFollowing":
-//            var cell = tableView.dequeueReusableCell(withIdentifier: "followCell", for: indexPath) as? NotificationFollowCell
-//            if cell == nil {
-//                cell = NotificationFollowCell.init(style: .default, reuseIdentifier: "followCell", notificationData: cellNotificationData, helper: self) 
-//            }
-//            else{
-//                cell?.setData(notificationData: cellNotificationData, helper: self)
-//            }
-//            
-//            cell?.backgroundColor = UIColor.clear
-//            currentCellHeight = (cell?.totalHeight)!
-//            return cell!
             
             
         case "userFollowingRequest":

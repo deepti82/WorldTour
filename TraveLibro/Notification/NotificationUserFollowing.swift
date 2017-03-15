@@ -15,6 +15,7 @@ class NotificationUserFollowing: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
+        NFFollowButton.layer.cornerRadius = 5.0
     }
     
     required init?(coder aDecoder: NSCoder) {

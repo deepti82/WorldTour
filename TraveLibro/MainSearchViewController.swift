@@ -20,9 +20,11 @@ class MainSearchViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         globalMainSearchViewController = self
         changeView(switchView: "slider")
+        
         search = SearchFieldView(frame: CGRect(x: 10, y: 8, width: self.view.frame.width - 20 , height: 30))
         search.searchField.returnKeyType = .done
         search.searchField.delegate = self
+        search.searchField.addTarget(self, action: Selector(("onChange:")), for: .editingChanged)
         
         SearchView.addSubview(search)
         
@@ -37,6 +39,7 @@ class MainSearchViewController: UIViewController, UITextFieldDelegate {
         search.SearchView.addGestureRecognizer(tapout)
         
         
+        
         setTopNavigation("Search")
 
         
@@ -44,6 +47,15 @@ class MainSearchViewController: UIViewController, UITextFieldDelegate {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    func onChange(textField: UITextField) {
+        print(textField.text!)
+        if textField.text! == "" {
+            self.changeView(switchView: "slider")
+        }else{
+            self.changeView(switchView: "table")
+        }
     }
     
     func searchTable(_ sender: UITapGestureRecognizer) {
@@ -60,6 +72,12 @@ class MainSearchViewController: UIViewController, UITextFieldDelegate {
         self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Avenir-Medium", size: 18)!]
         
         self.customNavigationBar(left: leftButton, right: rightButton)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        search.searchField.resignFirstResponder()
+        return true
+        
     }
     
     func goBack(_ sender:AnyObject) {
