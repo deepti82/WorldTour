@@ -102,21 +102,21 @@ class MoreAboutMe: UIView {
         
         let MessageString = NSMutableAttributedString()
         
-        MessageString.append(getBoldString(string: name))
+        MessageString.append(getBoldString(string: name, size: 14))
         
-        MessageString.append(getRegularString(string: " loves to travel and explore "))
+        MessageString.append(getRegularString(string: " loves to travel and explore ", size: 14))
         
-        MessageString.append(getBoldString(string: "\(kindOfHolidayFinal). "))
+        MessageString.append(getBoldString(string: "\(kindOfHolidayFinal). ", size: 14))
 
         
-        MessageString.append(getRegularString(string: "\(pronoun) usually goes "))
+        MessageString.append(getRegularString(string: "\(pronoun) usually goes ", size: 14))
 
-        MessageString.append(getBoldString(string: "\(usuallyGo). \(preferStatement). \(name)'s"))
+        MessageString.append(getBoldString(string: "\(usuallyGo). \(preferStatement). \(name)'s", size: 14))
 
         
-        MessageString.append(getRegularString(string: " ideal holiday type is "))
+        MessageString.append(getRegularString(string: " ideal holiday type is ", size: 14))
         
-        MessageString.append(getBoldString(string: "\(holidayType)."))
+        MessageString.append(getBoldString(string: "\(holidayType).", size: 14))
         
         mainTextView.attributedText = MessageString
     }

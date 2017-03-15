@@ -58,7 +58,7 @@ class NotificationPhotoCell: UITableViewCell {
         self.contentView.addSubview(NFHeader)        
 //        yPos = yPos + Int(NFHeader.frame.size.height)        
         
-        NFTitle = NotificationTitle(frame: CGRect.zero) as NotificationTitle
+        NFTitle = NotificationTitle(frame: CGRect(x: 0, y: 0, width: Int(screenWidth - HEADER_HEIGHT - IMAGE_HEIGHT), height: TITLE_HEIGHT)) as NotificationTitle
         self.contentView.addSubview(NFTitle)
         yPos = yPos + Int(NFTitle.frame.size.height)
         
@@ -121,7 +121,7 @@ class NotificationPhotoCell: UITableViewCell {
         NFFooter.updateReadStatus(read: notificationData["status"].stringValue)
         NFFooter.frame = CGRect(x: 0, y: NFTime.frame.origin.y, width: screenWidth, height: FOOTER_HEIGHT)
         
-        totalHeight += CGFloat(5)
+        totalHeight += CGFloat(8)
         
         NFBackground.frame = CGRect(x: 0, y: 0, width: screenWidth, height: totalHeight)        
         

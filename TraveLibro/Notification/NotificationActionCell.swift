@@ -91,7 +91,8 @@ class NotificationActionCell: UITableViewCell {
         let xPos = NFHeader.frame.origin.x + NFHeader.frame.size.width
         
         let titleHeight = NFTitle.setMessageLabel(data: notificationData)
-        NFTitle.frame = CGRect(x: xPos, y: 0, width: screenWidth - xPos, height: titleHeight)
+//        NFTitle.frame = CGRect(x: xPos, y: 0, width: screenWidth - xPos, height: titleHeight)
+        NFTitle.frame = CGRect(x: xPos, y: 0, width: screenWidth - xPos - IMAGE_HEIGHT, height: titleHeight)
         totalHeight += titleHeight
         
         NFPermission.NFLeftButton.removeTarget(helper, action: #selector(helper.journeyEndTabbed(_:)), for: .touchUpInside)
@@ -102,6 +103,7 @@ class NotificationActionCell: UITableViewCell {
         NFPermission.NFRightButton.removeTarget(helper, action: #selector(helper.journeyDeclineTabbed(_:)), for: .touchUpInside)
         NFPermission.NFRightButton.removeTarget(helper, action: #selector(helper.itineraryDeclinedTabbed(_:)), for: .touchUpInside)
         
+        NFPermission.NFViewButton.isHidden = true
         
         if notificationData["answeredStatus"].stringValue == "" {
             
@@ -113,7 +115,8 @@ class NotificationActionCell: UITableViewCell {
                 
                 let msg = "Would you like to end your journey as well?"
                 let messageHeight = (heightForView(text: msg, font: NFMessage.NFMessageLabel.font, width: screenWidth - xPos) + CGFloat(10))
-                NFMessage.NFMessageLabel.text = msg
+                NFMessage.NFMessageLabel.attributedText = getRegularString(string: msg, size: 12)
+                
                 NFMessage.NFMessageLabel.frame = CGRect(x: 0, y: 0, width: screenWidth - xPos - 10, height: messageHeight)
                 NFMessage.frame = CGRect(x: xPos, y: totalHeight, width: screenWidth - xPos, height: messageHeight)        
                 totalHeight += messageHeight            
@@ -126,17 +129,17 @@ class NotificationActionCell: UITableViewCell {
             }
             else if notificationData["type"] == "journeyRequest" {
                 
-                let message = NSMutableAttributedString(string: "Accept ")        
-                let firstName = notificationData["userFrom"]["name"].stringValue        
-                message.append(getBoldString(string: firstName))
+//                let message = getRegularString(string: "Accept ", size: 12)        
+//                let firstName = notificationData["userFrom"]["name"].stringValue        
+//                message.append(getBoldString(string: firstName, size: 12))
+//                
+//                message.append(getRegularString(string: "'s request to create your travel memories together. ", size: 12))
                 
-                message.append(getRegularString(string: "'s request to create your travel memories together. "))
-                
-                let messageHeight = (heightForView(text: "Accept "+firstName+"'s request to create your travel memories together.        ", font: NFMessage.NFMessageLabel.font, width: screenWidth) + CGFloat(10))
-                NFMessage.NFMessageLabel.attributedText = message
-                NFMessage.NFMessageLabel.frame = CGRect(x: 0, y: 0, width: screenWidth - xPos - 10, height: messageHeight) 
-                NFMessage.frame = CGRect(x: xPos, y: totalHeight, width: screenWidth - xPos, height: messageHeight + 10)                
-                totalHeight += messageHeight
+//                let messageHeight = (heightForView(text: "Accept "+firstName+"'s request to create your travel memories together.        ", font: NFMessage.NFMessageLabel.font, width: screenWidth) + CGFloat(10))
+//                NFMessage.NFMessageLabel.attributedText = message
+//                NFMessage.NFMessageLabel.frame = CGRect(x: 0, y: 0, width: screenWidth - xPos - 10, height: messageHeight) 
+//                NFMessage.frame = CGRect(x: xPos, y: totalHeight, width: screenWidth - xPos, height: messageHeight + 10)                
+//                totalHeight += messageHeight
                 
                 NFPermission.NFLeftButton.setTitle("Accept", for: .normal)
                 NFPermission.NFLeftButton.addTarget(helper, action: #selector(helper.journeyAcceptTabbed(_:)), for: .touchUpInside)
@@ -144,7 +147,10 @@ class NotificationActionCell: UITableViewCell {
                 NFPermission.NFRightButton.setTitle("Decline", for: .normal)
                 NFPermission.NFRightButton.addTarget(helper, action: #selector(helper.journeyDeclineTabbed(_:)), for: .touchUpInside)
             }
-            else if notificationData["type"] == "itineraryRequest" {                 
+            else if notificationData["type"] == "itineraryRequest" {
+                
+                NFPermission.NFViewButton.isHidden = false
+                
                 NFMessage.frame = CGRect.zero
                 
                 NFPermission.NFLeftButton.setTitle("Accept", for: .normal)
@@ -169,6 +175,7 @@ class NotificationActionCell: UITableViewCell {
                 NFPermission.NFStatusLabel.text = notificationData["answeredStatus"].stringValue == "reject" ? " Rejected " : " Accepted "
             }
             else if notificationData["type"] == "itineraryRequest"{
+                NFPermission.NFViewButton.isHidden = false
                 NFPermission.NFStatusLabel.text = notificationData["answeredStatus"].stringValue == "reject" ? " Rejected " : " Accepted "
             } 
         }
@@ -183,7 +190,7 @@ class NotificationActionCell: UITableViewCell {
         NFFooter.frame = CGRect(x: 0, y: totalHeight, width: screenWidth, height: FOOTER_HEIGHT)
         totalHeight += CGFloat(FOOTER_HEIGHT)
         
-        totalHeight += CGFloat(5)
+        totalHeight += CGFloat(8)
         
         NFBackground.frame = CGRect(x: 0, y: 0, width: screenWidth, height: totalHeight)        
     }

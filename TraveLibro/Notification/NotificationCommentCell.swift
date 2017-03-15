@@ -87,7 +87,8 @@ class NotificationCommentCell: UITableViewCell {
         let xPos = NFHeader.frame.origin.x + NFHeader.frame.size.width
         
         let titleHeight = NFTitle.setMessageLabel(data: notificationData)
-        NFTitle.frame = CGRect(x: xPos, y: 0, width: screenWidth - xPos, height: titleHeight)
+//        NFTitle.frame = CGRect(x: xPos, y: 0, width: screenWidth - xPos, height: titleHeight)
+        NFTitle.frame = CGRect(x: xPos, y: 0, width: screenWidth - xPos - IMAGE_HEIGHT, height: titleHeight)
         totalHeight += titleHeight
         
         let messageHeight = (heightForView(text: notificationData["data"]["thoughts"].stringValue, font: NFMessage.NFMessageLabel.font, width: screenWidth) + CGFloat(10))
@@ -103,7 +104,7 @@ class NotificationCommentCell: UITableViewCell {
         NFFooter.frame = CGRect(x: 0, y: totalHeight, width: screenWidth, height: FOOTER_HEIGHT)
         totalHeight += CGFloat(FOOTER_HEIGHT)
         
-        totalHeight += CGFloat(5)
+        totalHeight += CGFloat(8)
         
         NFBackground.frame = CGRect(x: 0, y: 0, width: screenWidth, height: totalHeight)
         

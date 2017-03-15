@@ -32,7 +32,7 @@ class EditSettingsViewController: UIViewController, UIWebViewDelegate {
             let titleText = NSMutableAttributedString(string: "Click here", attributes: [NSUnderlineStyleAttributeName: NSUnderlineStyle.styleSingle.rawValue,
                                                                                          NSFontAttributeName : UIFont(name: "Avenir-Heavy", size: 14)!,
                                                                                          NSForegroundColorAttributeName: mainBlueColor])
-            titleText.append(getRegularString(string: " to change your travel preferences"))
+            titleText.append(getRegularString(string: " to change your travel preferences", size: 12))
             
             let titleView = UIButton(frame: CGRect(x: 0, y: 0, width: 300, height: 30))
             titleView.center = CGPoint(x: self.view.frame.width/2 , y: 100)
@@ -73,6 +73,7 @@ class EditSettingsViewController: UIViewController, UIWebViewDelegate {
                 aboutUsWebView.frame = CGRect(x: -5, y: 0, width: screenWidth+5, height: screenHeight)
             }
             aboutUsWebView.delegate = self
+            aboutUsWebView.scalesPageToFit = true
             aboutUsWebView.loadRequest(NSURLRequest(url: pdfPath) as URLRequest)
             aboutUsWebView.backgroundColor = UIColor.clear
             self.view.addSubview(aboutUsWebView)

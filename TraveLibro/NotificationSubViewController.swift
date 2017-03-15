@@ -122,7 +122,10 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
                         if !(newResponse.isEmpty) {
                             self.notifications = []
                             self.notifications = newResponse
-                            self.notifyTableView.reloadData()                            
+                            self.notifyTableView.reloadData()
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: { 
+                                self.notifyTableView.reloadData()
+                            })                            
                         }                        
                     }
                     else {

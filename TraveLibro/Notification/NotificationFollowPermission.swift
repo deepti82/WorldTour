@@ -12,7 +12,8 @@ class NotificationFollowPermission: UIView {
 
     
     @IBOutlet weak var NFLeftButton: UIButton!
-    @IBOutlet weak var NFRightButton: UIButton!    
+    @IBOutlet weak var NFRightButton: UIButton!
+    @IBOutlet weak var NFViewButton: UIButton!
     @IBOutlet weak var NFStatusLabel: UILabel!
     
     override init(frame: CGRect) {
@@ -21,6 +22,7 @@ class NotificationFollowPermission: UIView {
         
         NFLeftButton.layer.cornerRadius = 5.0
         NFRightButton.layer.cornerRadius = 5.0
+        NFViewButton.layer.cornerRadius = 5.0
         NFStatusLabel.layer.cornerRadius = 5.0
         NFStatusLabel.layer.masksToBounds = true
     }

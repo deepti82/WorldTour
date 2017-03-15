@@ -36,8 +36,6 @@ class SearchFieldView: UIView, UITextFieldDelegate {
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view);
-    }
-    
-    
+    }    
 
 }

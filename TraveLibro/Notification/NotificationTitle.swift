@@ -37,7 +37,7 @@ class NotificationTitle: UIView {
         
         let message = NSMutableAttributedString(string: "")        
         let firstName = data["userFrom"]["name"].stringValue        
-        message.append(getBoldString(string: firstName))
+        message.append(getBoldString(string: firstName, size: 12))
         
         let notificationType = data["type"].stringValue
         
@@ -135,7 +135,7 @@ class NotificationTitle: UIView {
             break
         }        
         
-        message.append(getRegularString(string: str2))
+        message.append(getRegularString(string: str2, size: 12))
         
         
         var str3 = ""
@@ -166,7 +166,7 @@ class NotificationTitle: UIView {
                 }
             }
             
-            message.append(getBoldString(string: str3))
+            message.append(getBoldString(string: str3, size: 12))
         }
         
         
@@ -188,11 +188,11 @@ class NotificationTitle: UIView {
             str4 = data["data"]["type"].stringValue.capitalized + " - "
         }
         
-        message.append(getBoldString(string: str4))
+        message.append(getBoldString(string: str4, size: 12))
         
         if notificationType == "postFirstTime" {
             str4 = " for first time "
-            message.append(getRegularString(string: str4))
+            message.append(getRegularString(string: str4, size: 12))
         }
         
         var str5 = ""
@@ -209,13 +209,14 @@ class NotificationTitle: UIView {
             notificationType == "itineraryRequest" {
             str5 = data["data"]["name"].stringValue
             
-            message.append(getBoldString(string: str5))
+            message.append(getBoldString(string: str5, size: 12))
         }
         
         
         NFMessageLabel.attributedText = message
         NFMessageLabel.frame = CGRect(x: NFMessageLabel.frame.origin.x, y: NFMessageLabel.frame.origin.y, width: NFMessageLabel.frame.size.width,
                                       height: heightForView(text: (firstName + str2 + str3 + str4 + str5 + "offset  ") , font: NFMessageLabel.font, width: NFMessageLabel.frame.size.width) + 10)
+//        NFMessageLabel.sizeToFit()
         
         return NFMessageLabel.frame.size.height
     }
