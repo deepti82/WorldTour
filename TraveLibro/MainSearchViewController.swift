@@ -28,13 +28,14 @@ class MainSearchViewController: UIViewController, UITextFieldDelegate {
         
         SearchView.addSubview(search)
         
-        transparentCardWhite(SearchView)
+        transparentCardWhiteSearch(SearchView)
         search.searchField.attributedPlaceholder = NSAttributedString(string:  "Search", attributes: [NSForegroundColorAttributeName: mainBlueColor])
+        search.backgroundColor = UIColor.clear
         search.leftLine.backgroundColor = mainOrangeColor
         search.rightLine.backgroundColor = mainOrangeColor
         search.bottomLine.backgroundColor = mainOrangeColor
         search.searchButton.tintColor = mainOrangeColor
-        
+        getDarkBackGround(self)
         let tapout = UITapGestureRecognizer(target: self, action: #selector(self.searchTable(_:)))
         search.SearchView.addGestureRecognizer(tapout)
         
