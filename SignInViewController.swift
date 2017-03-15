@@ -150,8 +150,6 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
     
     func loadData() {
         
-        print("\n\n LoadData called \n\n")
-        
         let videoWidth = videoScrollView.frame.width
         videoHeight = screenHeight
         videoScrollView.delegate = self

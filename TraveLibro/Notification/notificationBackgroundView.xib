@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -19,17 +19,17 @@
             <rect key="frame" x="0.0" y="0.0" width="500" height="300"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view alpha="0.94999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rDd-9q-awo">
-                    <rect key="frame" x="2" y="5" width="496" height="290"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rDd-9q-awo">
+                    <rect key="frame" x="2" y="2" width="496" height="298"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
                 </view>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="rDd-9q-awo" secondAttribute="bottom" constant="5" id="0U1-eK-vYs"/>
+                <constraint firstAttribute="bottom" secondItem="rDd-9q-awo" secondAttribute="bottom" id="0U1-eK-vYs"/>
                 <constraint firstItem="rDd-9q-awo" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="2" id="aV0-9O-bpV"/>
                 <constraint firstAttribute="trailing" secondItem="rDd-9q-awo" secondAttribute="trailing" constant="2" id="bd3-hD-efi"/>
-                <constraint firstItem="rDd-9q-awo" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="el2-9c-Xe3"/>
+                <constraint firstItem="rDd-9q-awo" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="2" id="el2-9c-Xe3"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>

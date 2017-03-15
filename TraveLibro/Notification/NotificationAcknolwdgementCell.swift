@@ -47,7 +47,7 @@ class NotificationAcknolwdgementCell: UITableViewCell {
     
     func createView(notificationData: JSON?, helper: NotificationSubViewController?) {
         
-        var yPos = 10
+        var yPos = 0
         var width: Int = Int(self.frame.size.width)
         width = Int(UIScreen.main.bounds.width)        
         
@@ -78,13 +78,13 @@ class NotificationAcknolwdgementCell: UITableViewCell {
     
     func setData(notificationData: JSON, helper: NotificationSubViewController) {        
         
-        totalHeight = CGFloat(10)
+        totalHeight = CGFloat(0)
         
         NFHeader.setHeaderData(data: notificationData)
         let xPos = NFHeader.frame.origin.x + NFHeader.frame.size.width
         
         let titleHeight = NFTitle.setMessageLabel(data: notificationData)
-        NFTitle.frame = CGRect(x: xPos, y: 10, width: screenWidth - xPos, height: titleHeight)        
+        NFTitle.frame = CGRect(x: xPos, y: 0, width: screenWidth - xPos, height: titleHeight)        
         totalHeight += titleHeight
         
         NFTime.frame = CGRect(x: xPos, y: totalHeight, width: screenWidth - xPos, height: TIME_HEIGHT)
@@ -93,6 +93,8 @@ class NotificationAcknolwdgementCell: UITableViewCell {
         NFFooter.updateReadStatus(read: notificationData["status"].stringValue)
         NFFooter.frame = CGRect(x: 0, y: totalHeight, width: screenWidth, height: FOOTER_HEIGHT)
         totalHeight += CGFloat(FOOTER_HEIGHT)
+        
+        totalHeight += CGFloat(5)
         
         NFBackground.frame = CGRect(x: 0, y: 0, width: screenWidth, height: totalHeight)
     }

@@ -23,10 +23,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" image="logo-default" translatesAutoresizingMaskIntoConstraints="NO" id="Wzf-6A-prz">
-                    <rect key="frame" x="5" y="5" width="310" height="240"/>
+                    <rect key="frame" x="5" y="5" width="310" height="245"/>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="red_video_play_icon" translatesAutoresizingMaskIntoConstraints="NO" id="clj-JB-OIc">
-                    <rect key="frame" x="129" y="105" width="62" height="41"/>
+                    <rect key="frame" x="129" y="107" width="62" height="41"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <color key="tintColor" red="0.93818825483322144" green="0.41770917177200317" blue="0.13715940713882446" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
@@ -39,7 +39,7 @@
                 <constraint firstItem="clj-JB-OIc" firstAttribute="centerX" secondItem="Wzf-6A-prz" secondAttribute="centerX" id="2aV-zR-wnz"/>
                 <constraint firstItem="clj-JB-OIc" firstAttribute="centerY" secondItem="Wzf-6A-prz" secondAttribute="centerY" id="3af-oZ-6TJ"/>
                 <constraint firstItem="clj-JB-OIc" firstAttribute="width" secondItem="Wzf-6A-prz" secondAttribute="width" multiplier="0.2" id="6KM-qw-hkt"/>
-                <constraint firstAttribute="bottom" secondItem="Wzf-6A-prz" secondAttribute="bottom" constant="5" id="ER1-K6-X77"/>
+                <constraint firstAttribute="bottom" secondItem="Wzf-6A-prz" secondAttribute="bottom" id="ER1-K6-X77"/>
                 <constraint firstItem="Wzf-6A-prz" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="KPh-Ft-cgS"/>
                 <constraint firstAttribute="trailing" secondItem="Wzf-6A-prz" secondAttribute="trailing" constant="5" id="Siw-6Z-lgE"/>
                 <constraint firstItem="Wzf-6A-prz" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="5" id="VoR-YA-AFX"/>

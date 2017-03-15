@@ -493,9 +493,9 @@ class EndJourneyViewController: UIViewController {
                                     print("journey ended toaster")
 //                                    let tstr = Toast(text: "Journey ended successfully. Have a good life.")
 //                                    tstr.show()
-                                    self.goBack()
-
-                                    
+                                    DispatchQueue.main.async(execute: {
+                                        self.goBack()
+                                    })                                    
                                 })
                             }
                         })

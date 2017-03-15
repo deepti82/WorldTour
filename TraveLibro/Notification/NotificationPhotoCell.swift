@@ -49,7 +49,7 @@ class NotificationPhotoCell: UITableViewCell {
     
     func createView(notificationData: JSON?, helper: NotificationSubViewController?) {
         
-        var yPos = 10
+        var yPos = 0
         var width: Int = Int(self.frame.size.width)
         width = Int(UIScreen.main.bounds.width)        
              
@@ -85,17 +85,17 @@ class NotificationPhotoCell: UITableViewCell {
     
     func setData(notificationData: JSON, helper: NotificationSubViewController) {
         
-        totalHeight = CGFloat(10)
+        totalHeight = CGFloat(0)
         
         NFHeader.setHeaderData(data: notificationData)
         let xPos = NFHeader.frame.origin.x + NFHeader.frame.size.width
         
         let titleHeight = NFTitle.setMessageLabel(data: notificationData)
-        NFTitle.frame = CGRect(x: xPos, y: 10, width: screenWidth - xPos - IMAGE_HEIGHT, height: titleHeight)        
+        NFTitle.frame = CGRect(x: xPos, y: 0, width: screenWidth - xPos - IMAGE_HEIGHT, height: titleHeight)        
         
         NFPhoto.NFPhotoImage.image = UIImage(named: "logo-default")
         
-        NFPhoto.frame = CGRect(x: screenWidth - IMAGE_HEIGHT, y: CGFloat(10), width: IMAGE_HEIGHT, height: IMAGE_HEIGHT)
+        NFPhoto.frame = CGRect(x: screenWidth - IMAGE_HEIGHT, y: CGFloat(0), width: IMAGE_HEIGHT, height: IMAGE_HEIGHT)
         if notificationData["type"] == "journeyMentionComment" ||
             notificationData["type"] == "journeyComment" ||
             notificationData["type"] == "journeyLike" ||
@@ -115,12 +115,13 @@ class NotificationPhotoCell: UITableViewCell {
         }        
         totalHeight += IMAGE_HEIGHT
         
-        NFTime.frame = CGRect(x: xPos, y: totalHeight, width: screenWidth - xPos, height: TIME_HEIGHT)
-        NFTime.setTimeData(date: notificationData["updatedAt"].stringValue)        
+        NFTime.frame = CGRect(x: xPos, y: IMAGE_HEIGHT - TIME_HEIGHT + 10, width: screenWidth - xPos, height: TIME_HEIGHT)
+        NFTime.setTimeData(date: notificationData["updatedAt"].stringValue)
         
         NFFooter.updateReadStatus(read: notificationData["status"].stringValue)
-        NFFooter.frame = CGRect(x: 0, y: totalHeight, width: screenWidth, height: FOOTER_HEIGHT)
-        totalHeight += CGFloat(FOOTER_HEIGHT)
+        NFFooter.frame = CGRect(x: 0, y: NFTime.frame.origin.y, width: screenWidth, height: FOOTER_HEIGHT)
+        
+        totalHeight += CGFloat(5)
         
         NFBackground.frame = CGRect(x: 0, y: 0, width: screenWidth, height: totalHeight)        
         
