@@ -36,7 +36,7 @@
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vacation all i ever wanted" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CzS-AG-4ci">
-                    <rect key="frame" x="0.0" y="146" width="150" height="44"/>
+                    <rect key="frame" x="0.0" y="138" width="150" height="44"/>
                     <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="16"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
@@ -44,7 +44,7 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="CzS-AG-4ci" secondAttribute="bottom" id="2RW-iO-LHz"/>
+                <constraint firstAttribute="bottom" secondItem="CzS-AG-4ci" secondAttribute="bottom" constant="8" id="2RW-iO-LHz"/>
                 <constraint firstAttribute="trailing" secondItem="ICV-zC-o9O" secondAttribute="trailing" id="4L0-Ea-HDS"/>
                 <constraint firstAttribute="bottom" secondItem="ICV-zC-o9O" secondAttribute="bottom" id="B6S-25-orr"/>
                 <constraint firstItem="ICV-zC-o9O" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="GA2-wE-hIf"/>

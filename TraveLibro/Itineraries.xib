@@ -339,7 +339,7 @@
         <image name="empty_icon" width="80" height="80"/>
         <image name="graph" width="102" height="102"/>
         <image name="likeButton" width="128" height="128"/>
-        <image name="logo-default" width="16" height="16"/>
+        <image name="logo-default" width="600" height="600"/>
         <image name="luxury_icon" width="51" height="60"/>
         <image name="options_icon" width="30" height="30"/>
         <image name="reviews" width="60" height="60"/>

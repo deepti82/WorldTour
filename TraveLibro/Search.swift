@@ -9,7 +9,7 @@
 import UIKit
 
 class Search: UIView {
-
+    
     @IBOutlet var popularBloggersScroll: UIScrollView!
     @IBOutlet var PopularItinerariesScroll: UIScrollView!
     @IBOutlet weak var popularJourneyScroll: UIScrollView!
@@ -18,6 +18,7 @@ class Search: UIView {
     var horizontalScrollBlogger:HorizontalLayout!
     var horizontalScrollJourney:HorizontalLayout!
     var element: SearchElement!
+    var elementJourney: SearchJourneyElement!
     var data: JSON = []
     
     override init(frame: CGRect) {
@@ -28,7 +29,7 @@ class Search: UIView {
         PopularItinerariesScroll.isScrollEnabled = true
         popularBloggersScroll.isScrollEnabled = true
         PopularItinerariesScroll.contentSize = CGSize(width: 2000, height: 0)
-           }
+    }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -47,18 +48,18 @@ class Search: UIView {
         
         self.horizontalScrollBlogger = HorizontalLayout(height: popularBloggersScroll.frame.height)
         self.popularBloggersScroll.addSubview(horizontalScrollBlogger)
-
+        
         self.horizontalScrollJourney = HorizontalLayout(height: popularJourneyScroll.frame.height)
         self.popularJourneyScroll.addSubview(horizontalScrollJourney)
-
+        
     }
     
     func setData() {
         request.getHomePage(completion: {(request) in
             DispatchQueue.main.async(execute: {
-            loader.hideOverlayView()
-            self.data = request["data"]
-            self.setItinerary(data: self.data["itinerary"])
+                loader.hideOverlayView()
+                self.data = request["data"]
+                self.setItinerary(data: self.data["itinerary"])
                 self.setJourney(data: self.data["journey"])
                 self.setBloggers(data: self.data["user"])
             })
@@ -66,14 +67,18 @@ class Search: UIView {
     }
     
     func setItinerary(data: JSON) {
-        for iti in data {
+        for (i, iti) in data {
+            var xco = 4
+            if i == "0" {
+                xco = 0
+            }
             
-            element = SearchElement(frame: CGRect(x: 8, y: 0, width: 165, height: 220))
-            element.imageLable.text = iti.1["name"].stringValue
+            element = SearchElement(frame: CGRect(x: xco, y: 0, width: 165, height: 220))
+            element.imageLable.text = iti["name"].stringValue
             
-            element.image.hnk_setImageFromURL(getImageURL(iti.1["coverPhoto"].stringValue, width: 300))
-            element.setData(data: iti.1, tabs: "itinerary")
-
+            element.image.hnk_setImageFromURL(getImageURL(iti["coverPhoto"].stringValue, width: 300))
+            element.setData(data: iti, tabs: "itinerary")
+            
             horizontalScrollItinerary.addSubview(element)
         }
         
@@ -83,12 +88,17 @@ class Search: UIView {
     }
     
     func setJourney(data: JSON) {
-         for iti in data {
-        element = SearchElement(frame: CGRect(x: 8, y: 0, width: globalSearchViewController.view.frame.width, height: 220))
-            element.imageLable.text = iti.1["name"].stringValue
-            element.image.hnk_setImageFromURL(getImageURL(iti.1["startLocationPic"].stringValue, width: 300))
-            element.setData(data: iti.1, tabs: "journey")
-        horizontalScrollJourney.addSubview(element)
+        print("journey journey \(data)")
+        for (i, iti) in data {
+            var xco = 4
+            if i == "0" {
+                xco = 0
+            }
+            elementJourney = SearchJourneyElement(frame: CGRect(x: xco, y: 0, width: Int(globalSearchViewController.view.frame.width), height: 220))
+            elementJourney.imageLable.text = iti["name"].stringValue
+            elementJourney.image.hnk_setImageFromURL(getImageURL(iti["startLocationPic"].stringValue, width: 300))
+            elementJourney.setData(data: iti, tabs: "journey")
+            horizontalScrollJourney.addSubview(elementJourney)
         }
         
         self.horizontalScrollJourney.layoutSubviews()
@@ -97,18 +107,22 @@ class Search: UIView {
     }
     
     func setBloggers(data: JSON) {
-        for iti in data {
-        element = SearchElement(frame: CGRect(x: 8, y: 0, width: 165, height: 220))
-            element.imageLable.text = iti.1["name"].stringValue
-            element.image.hnk_setImageFromURL(getImageURL(iti.1["profilePicture"].stringValue, width: 300))
-            element.setData(data: iti.1, tabs: "user")
-        horizontalScrollBlogger.addSubview(element)
+        for (i, iti) in data {
+            var xco = 4
+            if i == "0" {
+                xco = 0
+            }
+            element = SearchElement(frame: CGRect(x: xco, y: 0, width: 165, height: 220))
+            element.imageLable.text = iti["name"].stringValue
+            element.image.hnk_setImageFromURL(getImageURL(iti["profilePicture"].stringValue, width: 300))
+            element.setData(data: iti, tabs: "user")
+            horizontalScrollBlogger.addSubview(element)
         }
         
         self.horizontalScrollBlogger.layoutSubviews()
         self.popularBloggersScroll.contentSize = CGSize(width: self.horizontalScrollBlogger.frame.width, height: self.horizontalScrollBlogger.frame.height)
         
     }
-
-
+    
+    
 }

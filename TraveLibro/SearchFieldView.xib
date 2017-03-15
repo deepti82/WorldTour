@@ -37,9 +37,6 @@
                             <color key="textColor" red="0.13725490200000001" green="0.1764705882" blue="0.2901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
                             <textInputTraits key="textInputTraits"/>
-                            <connections>
-                                <action selector="onSearch:" destination="-1" eventType="editingChanged" id="aTw-NP-gIr"/>
-                            </connections>
                         </textField>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NSV-aM-uEQ">
                             <rect key="frame" x="0.0" y="39" width="360" height="1"/>
