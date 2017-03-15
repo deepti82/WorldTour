@@ -24,7 +24,7 @@ class MainSearchViewController: UIViewController, UITextFieldDelegate {
         search = SearchFieldView(frame: CGRect(x: 10, y: 8, width: self.view.frame.width - 20 , height: 30))
         search.searchField.returnKeyType = .done
         search.searchField.delegate = self
-        search.searchField.addTarget(self, action: Selector(("onChange:")), for: .editingChanged)
+        search.searchField.addTarget(self, action: #selector(self.onChange), for: .editingChanged)
         
         SearchView.addSubview(search)
         
@@ -50,9 +50,9 @@ class MainSearchViewController: UIViewController, UITextFieldDelegate {
         super.didReceiveMemoryWarning()
     }
     
-    func onChange(textField: UITextField) {
-        print(textField.text!)
-        if textField.text! == "" {
+    func onChange() {
+        print(search.searchField.text!)
+        if search.searchField.text! == "" {
             self.changeView(switchView: "slider")
         }else{
             self.changeView(switchView: "table")
