@@ -152,7 +152,7 @@ class EndJourneyViewController: UIViewController {
         
         
         
-        endJourney = EndJourneyView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 420))
+        endJourney = EndJourneyView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 420))
         endJourney.tag = 100
         endJourney.changeConstraint(height: 90)
         transparentCardWhite(endJourney.accesoriesVew)
@@ -171,21 +171,21 @@ class EndJourneyViewController: UIViewController {
         
         getAllImages()
         
-        endJourney.userDp.image = nil
+//        endJourney.userDp.image = nil
         endJourney.buddiesImages[0].image = nil
         endJourney.buddiesImages[1].image = nil
         
-        if currentUser["profilePicture"] != "" {
-            DispatchQueue.main.async(execute: {
-                self.endJourney.userDp.hnk_setImageFromURL(URL(string:"\(adminUrl)upload/readFile?file=\(currentUser["profilePicture"])")!)
-            })
-            
-        } else {
-            endJourney.userDp.image = UIImage(named: "darkBg")
-        }
-        
-        makeTLProfilePictureBorderWhite(endJourney.userDp)
-        endJourney.endJourneyTitle.text = "\(currentUser["name"]) has ended this Journey."
+//        if currentUser["profilePicture"] != "" {
+//            DispatchQueue.main.async(execute: {
+////                self.endJourney.userDp.hnk_setImageFromURL(URL(string:"\(adminUrl)upload/readFile?file=\(currentUser["profilePicture"])")!)
+//            })
+//            
+//        } else {
+//            endJourney.userDp.image = UIImage(named: "darkBg")
+//        }
+//        
+//        makeTLProfilePictureBorderWhite(endJourney.userDp)
+//        endJourney.endJourneyTitle.text = "\(currentUser["name"]) has ended this Journey."
         
         //  add buddies
         if buddies.count >= 3 {
