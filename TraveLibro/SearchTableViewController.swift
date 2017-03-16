@@ -30,11 +30,11 @@ class SearchTableViewController: UIViewController, UITableViewDelegate, UITableV
         globalSearchTableViewController = self
         loader.showOverlay(self.view)
         print(newSearch)
-        transparentCardWhite(selectStrip)
+//        transparentCardWhite(selectStrip)
         transparentCardWhite(noTravellersStrip)
         sliderView.isHidden = false
         hashTagSlide.isHidden = true
-        getDarkBackGround(self)
+//        getDarkBackGround(self)
         noTravellersStrip.isHidden = true
         
     }

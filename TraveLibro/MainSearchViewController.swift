@@ -29,7 +29,7 @@ class MainSearchViewController: UIViewController, UITextFieldDelegate {
         
         SearchView.addSubview(search)
         
-        transparentCardWhiteSearch(SearchView)
+        transparentCardWhite(SearchView)
         search.searchField.attributedPlaceholder = NSAttributedString(string:  "Search", attributes: [NSForegroundColorAttributeName: mainBlueColor])
         search.backgroundColor = UIColor.clear
         search.leftLine.backgroundColor = mainOrangeColor

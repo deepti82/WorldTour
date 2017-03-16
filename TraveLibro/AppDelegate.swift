@@ -29,7 +29,7 @@ let navGreen = UIColor(red: 17/255, green: 211/255, blue: 203/255, alpha: 1) // 
 let navBlue = UIColor(red: 44/255, green: 55/255, blue: 87/255, alpha: 1) // #2c3757
 let navOrange = UIColor(red: 255/255, green: 103/255, blue: 89/255, alpha: 1) // #ff6759
 let avenirFont = UIFont(name: "Avenir-Roman", size: 14)
-let avenirBold = UIFont(name: "Avenir-Medium", size: 14)
+let avenirBold = UIFont(name: "Avenir-Heavy", size: 14)
 let FontAwesomeFont = UIFont(name: "FontAwesome", size: 14)
 let NAVIGATION_FONT = UIFont(name: "Avenir-Roman", size: 18)
 

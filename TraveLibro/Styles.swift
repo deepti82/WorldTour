@@ -406,9 +406,6 @@ func darkBlur(_ view: UIView) {
 
 }
 
-func transparentCardWhiteSearch(_ view: UIView){
-    view.backgroundColor = UIColor(colorLiteralRed: 255/255, green: 255/255, blue: 255/255, alpha: 0.8)
-}
 
 
 func transparentCardWhite(_ view: UIView){
