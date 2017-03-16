@@ -123,11 +123,17 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
                         }
                         
                         if !(newResponse.isEmpty) {
+                            var indexx = 0
                             if self.refreshControl.isRefreshing || self.notifications.isEmpty {
                                 self.notifications = []                                
                                 self.notifications = newResponse
+                                indexx = 0
+                            }
+                            else{
+                                indexx = (self.notifications.count - 1)
                             }
                             self.notifyTableView.reloadData()
+                            self.notifyTableView.scrollToRow(at: NSIndexPath.init(row: indexx, section: 0) as IndexPath as IndexPath, at: .none, animated: true)
                             DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: { 
                                 self.notifyTableView.reloadData()
                             })                            

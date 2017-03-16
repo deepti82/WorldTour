@@ -50,6 +50,7 @@ var HUD: UIActivityIndicatorView?
 let request = Navigation()
 let shared = LoadingOverlay()
 var coverImageGrid = ""
+var popularView = "popular"
 
 let user = User()
 
@@ -363,7 +364,7 @@ func isConnectedToNetwork() -> Bool {
 
 func categoryImage(_ str: String) -> String {
     var retStr = ""
-    switch str {
+    switch str.lowercased() {
         
     case "adventure":
         retStr =  "adventure"
