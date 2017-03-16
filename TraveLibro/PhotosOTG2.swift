@@ -38,7 +38,9 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
         header.photosTitle.layer.zPosition = 5
         self.postTop = post;
         post.getThought()
-        header.photosTitle.text = post.finalThought
+        header.photosTitle.attributedText = post.finalThought
+        print(header.photosTitle.attributedText!)
+        print(post.finalThought)
         post.getTypeOfPost()
         
         if(post.postCreator != nil) {

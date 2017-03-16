@@ -44,7 +44,6 @@ class PhotosOTGHeader: UIView {
         
         let bundle = Bundle(for: type(of: self))
         let nib = UINib(nibName: "PhotosOTGHeader", bundle: bundle)
-
        
         let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
         view.frame = bounds

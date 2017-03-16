@@ -240,7 +240,7 @@ class PhotosOTG: UIView {
     func generatePost(_ post: Post) {
         self.postTop = post;
         post.getThought()
-        self.photosTitle.text = post.finalThought
+        self.photosTitle.attributedText = post.finalThought
         
         if(!post.post_isOffline) {
             self.UploadToCloud.alpha = 0

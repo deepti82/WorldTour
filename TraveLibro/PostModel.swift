@@ -36,7 +36,7 @@ public class Post {
     let date = Expression<String>("date")
     let buddyDb = Expression<String>("buddyDb")
     
-    var finalThought:String!
+    var finalThought = NSMutableAttributedString(string: "")
     
     var typeOfPost:String!
     var post_uniqueId:String!
@@ -204,48 +204,111 @@ public class Post {
     
     func getThought () {
         let post = self
-        var retText = ""
+        var retText = NSMutableAttributedString(string: "")
         if(post.post_thoughts != nil && post.post_thoughts != "") {
-            retText = post.post_thoughts
+            retText.append(getRegularString(string: post.post_thoughts, size: 15))
             if(post.post_location != nil && post.post_location != "") {
-                retText = retText + " at " + post.post_location
+//                retText = retText + " at " + post.post_location
+                retText.append(getRegularString(string: post.post_thoughts, size: 15))
+                retText.append(getRegularString(string: " at ", size: 15))
+                retText.append(getBoldString(string: post.post_location, size: 15))
                 if(post.buddyJson.count == 1) {
-                    retText = retText + " with " + post.buddyJson[0]["name"].stringValue
+//                    retText = retText + " with " + post.buddyJson[0]["name"].stringValue
+                    retText.append(getRegularString(string: post.post_thoughts, size: 15))
+                    retText.append(getRegularString(string: " with ", size: 15))
+                    retText.append(getBoldString(string: post.buddyJson[0]["name"].stringValue, size: 15))
                 } else if (post.buddyJson.count == 2) {
-                    retText = retText + " with " + post.buddyJson[0]["name"].stringValue + " and " + post.buddyJson[1]["name"].stringValue
+                    retText.append(getRegularString(string: post.post_thoughts, size: 15))
+                    retText.append(getRegularString(string: "with ", size: 15))
+                    retText.append(getBoldString(string: post.buddyJson[0]["name"].stringValue, size: 15))
+                    retText.append(getRegularString(string: " and ", size: 15))
+                    retText.append(getBoldString(string: post.buddyJson[1]["name"].stringValue, size: 15))
+//                    retText = retText + " with " + post.buddyJson[0]["name"].stringValue + " and " + post.buddyJson[1]["name"].stringValue
                 } else if (post.buddyJson.count > 2) {
                     let n = post.buddyJson.count - 1
-                    retText = retText + " with " + post.buddyJson[0]["name"].stringValue + " and " + String(n) + " others"
-                }
-            } else {
-                if(post.buddyJson.count == 1) {
-                    retText = retText + " with " + post.buddyJson[0]["name"].stringValue
-                } else if (post.buddyJson.count == 2) {
-                    retText = retText + " with " + post.buddyJson[0]["name"].stringValue + " and " + post.buddyJson[1]["name"].stringValue
-                } else if (post.buddyJson.count > 2) {
-                    let n = post.buddyJson.count - 1
-                    retText = retText + " with " + post.buddyJson[0]["name"].stringValue + " and " + String(n) + " others"
+                    retText.append(getRegularString(string: post.post_thoughts, size: 15))
+                    retText.append(getRegularString(string: " with ", size: 15))
+                    retText.append(getBoldString(string: post.buddyJson[0]["name"].stringValue, size: 15))
+                    retText.append(getRegularString(string: " and ", size: 15))
+                    retText.append(getRegularString(string: String(n), size: 15))
+                    retText.append(getRegularString(string: " others", size: 15))
+//                    retText = retText + " with " + post.buddyJson[0]["name"].stringValue + " and " + String(n) + " others"
                 }
             }
+//            } else {
+//                if(post.buddyJson.count == 1) {
+//                    retText.append(getRegularString(string: post.post_thoughts, size: 15))
+//                    retText.append(getRegularString(string: " with ", size: 15))
+//                    retText.append(getBoldString(string: post.buddyJson[0]["name"].stringValue, size: 15))
+//
+////                    retText = retText + " with " + post.buddyJson[0]["name"].stringValue
+//                } else if (post.buddyJson.count == 2) {
+////                    retText = retText + " with " + post.buddyJson[0]["name"].stringValue + " and " + post.buddyJson[1]["name"].stringValue
+//                    retText.append(getRegularString(string: post.post_thoughts, size: 15))
+//                    retText.append(getRegularString(string: " with ", size: 15))
+//                    retText.append(getBoldString(string: post.buddyJson[0]["name"].stringValue, size: 15))
+//                    retText.append(getRegularString(string: " and ", size: 15))
+//                    retText.append(getBoldString(string: post.buddyJson[1]["name"].stringValue, size: 15))
+//                } else if (post.buddyJson.count > 2) {
+//                    let n = post.buddyJson.count - 1
+//                    
+//                    retText.append(getRegularString(string: post.post_thoughts, size: 15))
+//                    retText.append(getRegularString(string: " with ", size: 15))
+//                    retText.append(getBoldString(string: post.buddyJson[0]["name"].stringValue, size: 15))
+//                    retText.append(getRegularString(string: " and ", size: 15))
+//                    retText.append(getRegularString(string: String(n), size: 15))
+//                    retText.append(getRegularString(string: " others ", size: 15))
+//
+////                    retText = retText + " with " + post.buddyJson[0]["name"].stringValue + " and " + String(n) + " others"
+//                }
+//            }
         } else {
             if(post.post_location != nil && post.post_location != "") {
-                retText = "At " + post.post_location
+                retText.append(getRegularString(string: "At ", size: 15))
+                retText.append(getBoldString(string: (post.post_location), size: 15))
+//                retText = "At " + post.post_location
                 if(post.buddyJson.count == 1) {
-                    retText = retText + " with " + post.buddyJson[0]["name"].stringValue
+                    retText.append(getRegularString(string: " with ", size: 15))
+                    retText.append(getBoldString(string: post.buddyJson[0]["name"].stringValue, size: 15))
+//                    retText = retText + " with " + post.buddyJson[0]["name"].stringValue
                 } else if (post.buddyJson.count == 2) {
-                    retText = retText + " with " + post.buddyJson[0]["name"].stringValue + " and " + post.buddyJson[1]["name"].stringValue
+                    retText.append(getRegularString(string: post.post_thoughts, size: 15))
+                    retText.append(getRegularString(string: " with ", size: 15))
+                    retText.append(getBoldString(string: post.buddyJson[0]["name"].stringValue, size: 15))
+                    retText.append(getRegularString(string: " and ", size: 15))
+                    retText.append(getBoldString(string: post.buddyJson[1]["name"].stringValue, size: 15))
+//                    retText = retText + " with " + post.buddyJson[0]["name"].stringValue + " and " + post.buddyJson[1]["name"].stringValue
                 } else if (post.buddyJson.count > 2) {
                     let n = post.buddyJson.count - 1
-                    retText = retText + " with " + post.buddyJson[0]["name"].stringValue + " and " + String(n) + " others"
+//                    retText = retText + " with " + post.buddyJson[0]["name"].stringValue + " and " + String(n) + " others"
+                    retText.append(getRegularString(string: post.post_thoughts, size: 15))
+                    retText.append(getRegularString(string: " with", size: 15))
+                    retText.append(getBoldString(string: post.buddyJson[0]["name"].stringValue, size: 15))
+                    retText.append(getRegularString(string: " and ", size: 15))
+                    retText.append(getRegularString(string: String(n), size: 15))
+                    retText.append(getRegularString(string: " others ", size: 15))
+
                 }
             } else {
                 if(post.buddyJson.count == 1) {
-                    retText = "With " + post.buddyJson[0]["name"].stringValue
+//                    retText = "With " + post.buddyJson[0]["name"].stringValue
+                    retText.append(getRegularString(string: "With ", size: 15))
+                    retText.append(getBoldString(string: post.buddyJson[0]["name"].stringValue, size: 15))
                 } else if (post.buddyJson.count == 2) {
-                    retText = "With " + post.buddyJson[0]["name"].stringValue + " and " + post.buddyJson[1]["name"].stringValue
+                    retText.append(getRegularString(string: "With ", size: 20))
+                    retText.append(getBoldString(string: post.buddyJson[0]["name"].stringValue, size: 15))
+                    retText.append(getRegularString(string: " and ", size: 15))
+                    retText.append(getBoldString(string: post.buddyJson[1]["name"].stringValue, size: 15))
+//                    retText = "With " + post.buddyJson[0]["name"].stringValue + " and " + post.buddyJson[1]["name"].stringValue
                 } else if (post.buddyJson.count > 2) {
                     let n = post.buddyJson.count - 1
-                    retText = "With " + post.buddyJson[0]["name"].stringValue + " and " + String(n) + " others"
+//                    retText = "With " + post.buddyJson[0]["name"].stringValue + " and " + String(n) + " others"
+                    retText.append(getRegularString(string: post.post_thoughts, size: 15))
+                    retText.append(getRegularString(string: "With ", size: 15))
+                    retText.append(getBoldString(string: post.buddyJson[0]["name"].stringValue, size: 15))
+                    retText.append(getRegularString(string: " and ", size: 15))
+                    retText.append(getRegularString(string: String(n), size: 15))
+                    retText.append(getRegularString(string: " others", size: 15))
                 }
             }
         }
