@@ -86,6 +86,7 @@ class MainSearchViewController: UIViewController, UITextFieldDelegate {
     }
     
     func changeView(switchView: String) {
+        print(globalSearchTableViewController.selectedStatus)
         if switchView == "slider" {
             self.searchSlider.isHidden = false
             self.searchTable.isHidden = true
@@ -93,7 +94,11 @@ class MainSearchViewController: UIViewController, UITextFieldDelegate {
             self.searchSlider.isHidden = true
             self.searchTable.isHidden = false
             globalSearchTableViewController.page = 1
-            globalSearchTableViewController.searchPeople(search: search.searchField.text!)
+            if globalSearchTableViewController.selectedStatus == "hashtags" {
+                globalSearchTableViewController.searchHashtags(search: search.searchField.text!)
+            }else{
+                globalSearchTableViewController.searchPeople(search: search.searchField.text!)
+            }
         }
     }
     
