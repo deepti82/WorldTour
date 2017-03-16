@@ -15,6 +15,7 @@ class MainSearchViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var SearchView: UIView!
     @IBOutlet weak var searchSlider: UIView!
     @IBOutlet weak var searchTable: UIView!
+    var whichView: String = "slider"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -82,11 +83,17 @@ class MainSearchViewController: UIViewController, UITextFieldDelegate {
     }
     
     func goBack(_ sender:AnyObject) {
-        self.navigationController!.popViewController(animated: true)
+        print(whichView)
+        if whichView == "slider" {
+            self.navigationController!.popViewController(animated: true)
+        }else{
+            changeView(switchView: "slider")
+        }
     }
     
     func changeView(switchView: String) {
         print(globalSearchTableViewController.selectedStatus)
+        whichView = switchView
         if switchView == "slider" {
             self.searchSlider.isHidden = false
             self.searchTable.isHidden = true
