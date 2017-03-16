@@ -92,7 +92,7 @@ class NotificationCommentCell: UITableViewCell {
         totalHeight += titleHeight
         
         let messageHeight = (heightForView(text: notificationData["data"]["thoughts"].stringValue, font: NFMessage.NFMessageLabel.font, width: screenWidth) + CGFloat(10))
-        NFMessage.NFMessageLabel.text = notificationData["data"]["thoughts"].stringValue
+        NFMessage.NFMessageLabel.attributedText = getRegularString(string: notificationData["data"]["thoughts"].stringValue, size: 12)
         NFMessage.NFMessageLabel.frame = CGRect(x: 0, y: 0, width: screenWidth - xPos - 10, height: messageHeight)
         NFMessage.frame = CGRect(x: xPos, y: totalHeight, width: screenWidth - xPos, height: messageHeight)        
         totalHeight += messageHeight

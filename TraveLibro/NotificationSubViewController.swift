@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Toaster
 
 class NotificationSubViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -22,6 +21,9 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
     var hasNext = true
     var currentCellHeight = CGFloat(10)
     var loader = LoadingOverlay()
+    var lastContentOffset: CGFloat!
+    var isScrollingDown = true
+    
     @IBOutlet weak var notifyTableView: UITableView!
     
     
@@ -56,6 +58,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        lastContentOffset = notifyTableView.contentOffset.y
         globalNavigationController = self.navigationController
     }
     
@@ -81,23 +84,18 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         
         if hasNext {
             
-            Toast(text: "Please wait ...").show()
+//            Toast(text: "Please wait ...").show()
             
             request.getNotify(currentUser["_id"].string!, pageNumber: currentPageNumber,  completion: {(response) in
                 
                 DispatchQueue.main.async(execute: {
                     self.loader.hideOverlayView()
                     
-                    if self.refreshControl.isRefreshing {
-                        self.refreshControl.endRefreshing()
-                    }
-                    
                     if response.error != nil {
                         print("error: \(response.error!.localizedDescription)")                        
                     }
                     else if response["value"].bool! {
                         
-                        ToastCenter.default.cancelAll()
                         let newResponse = response["data"].array!
                         
                         if newResponse.isEmpty {
@@ -120,8 +118,10 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
                         }
                         
                         if !(newResponse.isEmpty) {
-                            self.notifications = []
-                            self.notifications = newResponse
+                            if self.refreshControl.isRefreshing || self.notifications.isEmpty {
+                                self.notifications = []                                
+                                self.notifications = newResponse
+                            }
                             self.notifyTableView.reloadData()
                             DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: { 
                                 self.notifyTableView.reloadData()
@@ -130,6 +130,10 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
                     }
                     else {
                         print("response error!")
+                    }
+                    
+                    if self.refreshControl.isRefreshing {
+                        self.refreshControl.endRefreshing()
                     }
                     
                 })
@@ -291,7 +295,6 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         case "postMentionComment":            
             
             if cellNotificationData["data"]["thoughts"].stringValue != "" && canLoadCommentCell(data: cellNotificationData) {
-                print("\n CellData: \(cellNotificationData)")
                 
                 var cell = tableView.dequeueReusableCell(withIdentifier: "commentCell", for: indexPath) as? NotificationCommentCell
                 if cell == nil {
@@ -400,8 +403,6 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         
         let cellNotificationData = notifications[indexPath.row]
         print("\n Selected Notification of type : \(cellNotificationData["type"].stringValue)")
-        print("\n cellData: \(cellNotificationData) \n\n")
-        
         gotoActivityFeed()
     }
     
@@ -417,29 +418,32 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
 //            cell.alpha = 1
 //        }
         
-//        var translation : CATransform3D
-//        
-//        translation = CATransform3DMakeTranslation(0, 480, 0);
-//        
-//        //2. Define the initial state (Before the animation)
-//        cell.layer.shadowColor = UIColor.black.cgColor
-//        cell.layer.shadowOffset = CGSize(width: 10, height: 10)
-//        cell.alpha = 0;
-//        cell.layer.transform = translation;
-//        cell.layer.anchorPoint = CGPoint(x: 0, y: 0.5)        
-//        //!!!FIX for issue #1 Cell position wrong------------
-//        if(cell.layer.position.x != 0){
-//            cell.layer.position = CGPoint(x: 0, y: cell.layer.position.y)
-//        }
-//        
-//        //4. Define the final state (After the animation) and commit the animation
-//        UIView.beginAnimations("translation", context: nil)
-//        UIView.setAnimationDuration(0.5)
-//        cell.layer.transform = CATransform3DIdentity;
-//        cell.alpha = 1;
-//        cell.layer.shadowOffset = CGSize(width: 0, height: 0)
-//        UIView.commitAnimations()
-//        
+        if isScrollingDown {
+            var translation : CATransform3D
+            
+            translation = CATransform3DMakeTranslation(0, 480, 0);
+            
+            //2. Define the initial state (Before the animation)
+            cell.layer.shadowColor = UIColor.black.cgColor
+            cell.layer.shadowOffset = CGSize(width: 10, height: 10)
+            cell.alpha = 0;
+            cell.layer.transform = translation;
+            cell.layer.anchorPoint = CGPoint(x: 0, y: 0.5)        
+            //!!!FIX for issue #1 Cell position wrong------------
+            if(cell.layer.position.x != 0){
+                cell.layer.position = CGPoint(x: 0, y: cell.layer.position.y)
+            }
+            
+            //4. Define the final state (After the animation) and commit the animation
+            UIView.beginAnimations("translation", context: nil)
+            UIView.setAnimationDuration(0.6)
+            cell.layer.transform = CATransform3DIdentity;
+            cell.alpha = 1;
+            cell.layer.shadowOffset = CGSize(width: 0, height: 0)
+            UIView.commitAnimations()
+        }
+        
+        
         if notifications.count > 0 && indexPath.row == (notifications.count - 1) {            
             if hasNext {
                 self.getNotification()
@@ -468,8 +472,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
                                             
                                         }
                                         else if response["value"].bool! {
-                                            
-                                            Toast(text: response["data"].stringValue).show()                                        
+                                            self.loader.showOverlay(self.view)
                                             self.gotoOTG()                                        
                                         }
                                         else {
@@ -501,25 +504,26 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
                                         
                                         DispatchQueue.main.async(execute: {
                                             
-                                            Toast(text: "Please wait..").show()
                                             if response.error != nil {
                                                 
                                                 print("error: \(response.error!.localizedDescription)")
                                                 
                                             }
                                             else if response["value"].bool! {
-                                                
-                                                Toast(text: response["data"].stringValue).show()
                                                 self.refreshControl.beginRefreshing()
                                                 self.pullToRefreshCalled()
                                                 
                                             }
                                             else {
                                                 
-                                                Toast(text: response["error"].stringValue).show()
-                                                
+                                                let errorAlert = UIAlertController(title: "Error", message: response["error"].stringValue, preferredStyle: UIAlertControllerStyle.alert)
+                                                let DestructiveAction = UIAlertAction(title: "Ok", style: .destructive) {
+                                                    (result : UIAlertAction) -> Void in
+                                                    //Cancel Action
+                                                }            
+                                                errorAlert.addAction(DestructiveAction)
+                                                self.navigationController?.present(errorAlert, animated: true, completion: nil)
                                             }
-                                            
                                         })
                                         
             }
@@ -542,24 +546,24 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
             
             DispatchQueue.main.async(execute: {
                 
-                Toast(text: "Please wait..").show()
-                
                 if response.error != nil {
                     
                     print("error: \(response.error!.localizedDescription)")
                     
                 }
                 else if response["value"].bool! {
-                    
-                    Toast(text: response["data"].stringValue).show()
                     self.refreshControl.beginRefreshing()
                     self.pullToRefreshCalled()
                     
                 }
                 else {
-                    
-                    Toast(text: response["error"].stringValue).show()
-                    
+                    let errorAlert = UIAlertController(title: "Error", message: response["error"].stringValue, preferredStyle: UIAlertControllerStyle.alert)
+                    let DestructiveAction = UIAlertAction(title: "Ok", style: .destructive) {
+                        (result : UIAlertAction) -> Void in
+                        //Cancel Action
+                    }            
+                    errorAlert.addAction(DestructiveAction)
+                    self.navigationController?.present(errorAlert, animated: true, completion: nil)
                 }
             })
         }
@@ -573,23 +577,24 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         request.respondToItineraryRequest(notificationId: tabbedCellData["_id"].stringValue, itineraryID: tabbedCellData["data"]["_id"].stringValue, answeredStatus: "accept") { (response) in
             DispatchQueue.main.async(execute: {
                 
-                Toast(text: "Please wait..").show()
-                
                 if response.error != nil {
                     
                     print("error: \(response.error!.localizedDescription)")
                     
                 }
                 else if response["value"].bool! {
-                    
-                    Toast(text: response["data"].stringValue).show()
                     self.refreshControl.beginRefreshing()
                     self.pullToRefreshCalled()
-                    
                 }
                 else {
                     
-                    Toast(text: response["error"].stringValue).show()
+                    let errorAlert = UIAlertController(title: "Error", message: response["error"].stringValue, preferredStyle: UIAlertControllerStyle.alert)
+                    let DestructiveAction = UIAlertAction(title: "Ok", style: .destructive) {
+                        (result : UIAlertAction) -> Void in
+                        //Cancel Action
+                    }            
+                    errorAlert.addAction(DestructiveAction)
+                    self.navigationController?.present(errorAlert, animated: true, completion: nil)
                     
                 }
             })
@@ -603,38 +608,44 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         request.respondToItineraryRequest(notificationId: tabbedCellData["_id"].stringValue, itineraryID: tabbedCellData["data"]["_id"].stringValue, answeredStatus: "reject") { (response) in
             DispatchQueue.main.async(execute: {
                 
-                Toast(text: "Please wait..").show()
-                
                 if response.error != nil {
                     
                     print("error: \(response.error!.localizedDescription)")
                     
                 }
                 else if response["value"].bool! {
-                    
-                    Toast(text: response["data"].stringValue).show()
                     self.refreshControl.beginRefreshing()
                     self.pullToRefreshCalled()
-                    
                 }
                 else {
-                    
-                    Toast(text: response["error"].stringValue).show()
-                    
+                    let errorAlert = UIAlertController(title: "Error", message: response["error"].stringValue, preferredStyle: UIAlertControllerStyle.alert)
+                    let DestructiveAction = UIAlertAction(title: "Ok", style: .destructive) {
+                        (result : UIAlertAction) -> Void in
+                        //Cancel Action
+                    }            
+                    errorAlert.addAction(DestructiveAction)
+                    self.navigationController?.present(errorAlert, animated: true, completion: nil)
                 }
             })
         }        
     }    
     
+    func itineraryViewTabbed(_ sender: UIButton) {
+        
+        let tabbedCellData = notifications[sender.tag]
+        
+        gotoDetailItinerary(itineraryID: tabbedCellData["data"]["_id"].stringValue)
+        
+    }
+    
     
     //MARK: - Button Action Helpers
     
     func gotoOTG() {
-        
-        print(user.getExistingUser())
-        
         request.getUser(user.getExistingUser(), completion: {(request) in
             DispatchQueue.main.async {
+                
+                self.loader.hideOverlayView()                
                 currentUser = request["data"]
                 let tlVC = (UIStoryboard(name: "Main", bundle: nil)).instantiateViewController(withIdentifier: "newTL") as! NewTLViewController
                 tlVC.isJourney = false
@@ -645,7 +656,6 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
                 globalNavigationController?.pushViewController(tlVC, animated: false)
             }
         })
-        
     }
     
     func gotoEndJourney(journeyID : String, notificationId: String) {
@@ -657,10 +667,17 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
     }
     
     func gotoActivityFeed() {
-        
         let tlVC = storyboard!.instantiateViewController(withIdentifier: "activityFeeds") as! ActivityFeedsController
         tlVC.displayData = "activity"
         globalNavigationController?.pushViewController(tlVC, animated: false)
+    }
+    
+    func gotoDetailItinerary(itineraryID: String) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "EachItineraryViewController") as! EachItineraryViewController
+        controller.fromOutSide = itineraryID        
+        globalNavigationController?.setNavigationBarHidden(false, animated: true)
+        globalNavigationController?.pushViewController(controller, animated: true)
     }
     
     
@@ -675,6 +692,14 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
             hideHeaderAndFooter(false);
         }
         
+        if (lastContentOffset > scrollView.contentOffset.y) {
+            isScrollingDown = false
+        }
+        else if (lastContentOffset! < scrollView.contentOffset.y) { 
+            isScrollingDown = true
+        }
+        
+        lastContentOffset = scrollView.contentOffset.y
     }
     
     func hideHeaderAndFooter(_ isShow:Bool) {

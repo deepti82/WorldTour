@@ -15,6 +15,7 @@ class NotificationFollowPermission: UIView {
     @IBOutlet weak var NFRightButton: UIButton!
     @IBOutlet weak var NFViewButton: UIButton!
     @IBOutlet weak var NFStatusLabel: UILabel!
+    @IBOutlet weak var NFViewButtonXpos: NSLayoutConstraint!
     
     override init(frame: CGRect) {
         super.init(frame: frame)

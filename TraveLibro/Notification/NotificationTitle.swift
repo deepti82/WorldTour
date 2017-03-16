@@ -104,7 +104,7 @@ class NotificationTitle: UIView {
             
         case "journeyRequest":
             let gen = data["userFrom"]["gender"].stringValue
-            str2 = " wants to tag you in " + (gen == "male" ? "his" : "her") + " On The Go Journey - "
+            str2 = " wants to tag you in " + (gen == "male" ? "his" : "her") + " "
             
         case "journeyMentionComment":
             str2 = " has mentioned you in a comment On The Go Journey -  "
@@ -121,8 +121,7 @@ class NotificationTitle: UIView {
             str2 = " has rejected your request to join the "
             
         case "itineraryRequest":
-            let gen = data["userFrom"]["gender"].stringValue
-            str2 = " wants to tag you in " + (gen == "male" ? "his" : "her") + " itinerary - "
+            str2 = " wants to tag you in an itinerary - "
             
         case "itineraryMentionComment":
             str2 = " has mentioned you in a comment On "
@@ -172,8 +171,8 @@ class NotificationTitle: UIView {
         
         var str4 = "" 
         
-        if notificationType == "journeyComment" {
-            str4 = "On Go Journey "
+        if notificationType == "journeyComment" || notificationType == "journeyRequest"{
+            str4 = "On Go Journey - "
         }
         else if notificationType == "journeyReject" {
             str4 = "On Go Activity - "

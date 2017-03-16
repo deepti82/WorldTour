@@ -103,6 +103,8 @@ class NotificationActionCell: UITableViewCell {
         NFPermission.NFRightButton.removeTarget(helper, action: #selector(helper.journeyDeclineTabbed(_:)), for: .touchUpInside)
         NFPermission.NFRightButton.removeTarget(helper, action: #selector(helper.itineraryDeclinedTabbed(_:)), for: .touchUpInside)
         
+        NFPermission.NFViewButton.removeTarget(helper, action: #selector(helper.itineraryViewTabbed(_:)), for: .touchUpInside)
+        
         NFPermission.NFViewButton.isHidden = true
         
         if notificationData["answeredStatus"].stringValue == "" {
@@ -150,6 +152,7 @@ class NotificationActionCell: UITableViewCell {
             else if notificationData["type"] == "itineraryRequest" {
                 
                 NFPermission.NFViewButton.isHidden = false
+                NFPermission.NFViewButtonXpos.constant = 156
                 
                 NFMessage.frame = CGRect.zero
                 
@@ -158,6 +161,9 @@ class NotificationActionCell: UITableViewCell {
                 
                 NFPermission.NFRightButton.setTitle("Decline", for: .normal)
                 NFPermission.NFRightButton.addTarget(helper, action: #selector(helper.itineraryDeclinedTabbed(_:)), for: .touchUpInside)
+                
+                NFPermission.NFViewButton.setTitle("View", for: .normal)
+                NFPermission.NFViewButton.addTarget(helper, action: #selector(helper.itineraryViewTabbed(_:)), for: .touchUpInside)
             }
         }
         else {
@@ -176,7 +182,12 @@ class NotificationActionCell: UITableViewCell {
             }
             else if notificationData["type"] == "itineraryRequest"{
                 NFPermission.NFViewButton.isHidden = false
+                NFPermission.NFViewButtonXpos.constant = 78
+                
                 NFPermission.NFStatusLabel.text = notificationData["answeredStatus"].stringValue == "reject" ? " Rejected " : " Accepted "
+                
+                NFPermission.NFViewButton.setTitle("View", for: .normal)
+                NFPermission.NFViewButton.addTarget(helper, action: #selector(helper.itineraryViewTabbed(_:)), for: .touchUpInside)
             } 
         }
         
