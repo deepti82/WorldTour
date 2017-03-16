@@ -101,6 +101,7 @@
 		443757C91E6C0152007C0851 /* forgotPasswordView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 443757C81E6C0152007C0851 /* forgotPasswordView.xib */; };
 		443757CB1E6C0551007C0851 /* ForgotPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443757CA1E6C0551007C0851 /* ForgotPassword.swift */; };
 		4437CE671E782A7C00AFA0EA /* Terms&Conditions.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4437CE661E782A7C00AFA0EA /* Terms&Conditions.pdf */; };
+		44434C511E7AD55600344C7C /* PrivacyPolicy.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 44434C501E7AD55500344C7C /* PrivacyPolicy.pdf */; };
 		446FDD231E6535EC00C09EFB /* EmptyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446FDD221E6535EC00C09EFB /* EmptyTableViewCell.swift */; };
 		44725D2D1E5ADBB70074D925 /* NotificationCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44725D2C1E5ADBB70074D925 /* NotificationCommentCell.swift */; };
 		44725D2F1E5B06580074D925 /* NotificationDefaultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44725D2E1E5B06580074D925 /* NotificationDefaultCell.swift */; };
@@ -620,6 +621,7 @@
 		443757C81E6C0152007C0851 /* forgotPasswordView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = forgotPasswordView.xib; sourceTree = "<group>"; };
 		443757CA1E6C0551007C0851 /* ForgotPassword.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPassword.swift; sourceTree = "<group>"; };
 		4437CE661E782A7C00AFA0EA /* Terms&Conditions.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Terms&Conditions.pdf"; sourceTree = "<group>"; };
+		44434C501E7AD55500344C7C /* PrivacyPolicy.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = PrivacyPolicy.pdf; sourceTree = "<group>"; };
 		446FDD221E6535EC00C09EFB /* EmptyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EmptyTableViewCell.swift; path = PopularJourney/EmptyTableViewCell.swift; sourceTree = "<group>"; };
 		44725D2C1E5ADBB70074D925 /* NotificationCommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationCommentCell.swift; path = Notification/NotificationCommentCell.swift; sourceTree = "<group>"; };
 		44725D2E1E5B06580074D925 /* NotificationDefaultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationDefaultCell.swift; path = Notification/NotificationDefaultCell.swift; sourceTree = "<group>"; };
@@ -1105,6 +1107,7 @@
 				443225A81E668332008AB156 /* mylife.mp4 */,
 				443225A91E668332008AB156 /* travellife.mp4 */,
 				4437CE661E782A7C00AFA0EA /* Terms&Conditions.pdf */,
+				44434C501E7AD55500344C7C /* PrivacyPolicy.pdf */,
 				1A944E101CCB4567007EB5BD /* LaunchScreen.storyboard */,
 				1A944E131CCB4567007EB5BD /* Info.plist */,
 			);
@@ -3062,6 +3065,7 @@
 				C23EB1E31CFF049D005B5CE8 /* AddPostsLocalLife.xib in Resources */,
 				4437CE671E782A7C00AFA0EA /* Terms&Conditions.pdf in Resources */,
 				C2AC5D1B1CF32CE0008E5887 /* PopularJourneyView.xib in Resources */,
+				44434C511E7AD55600344C7C /* PrivacyPolicy.pdf in Resources */,
 				C267301F1D279D7900F2C822 /* AddNewOTG.xib in Resources */,
 				C24F84F71D00546F002EA203 /* NoCountriesVisited.xib in Resources */,
 				848DE53E1E791A55001CCDCF /* profilePicNavigation.xib in Resources */,

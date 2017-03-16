@@ -57,17 +57,25 @@ class EditSettingsViewController: UIViewController, UIWebViewDelegate {
             
         case "terms&conditions":
             fallthrough
+        case "privacyPolicy":
+            fallthrough
         case "AboutUsView":
             var pdfPath : URL!
             if whichView == "terms&conditions" {
-                 pdfPath = NSURL(fileURLWithPath: (Bundle.main.path(forResource: "Terms&Conditions", ofType:"pdf"))!) as URL
+                self.title = "Terms & Conditions"
+                pdfPath = NSURL(fileURLWithPath: (Bundle.main.path(forResource: "Terms&Conditions", ofType:"pdf"))!) as URL
+            }
+            else if whichView == "privacyPolicy" {
+                self.title = "Privacy Policy"
+                pdfPath = NSURL(fileURLWithPath: (Bundle.main.path(forResource: "PrivacyPolicy", ofType:"pdf"))!) as URL
             }
             else {
+                self.title = "About Us"
                 pdfPath = NSURL(string: "http://travelibro.net/#/about-travelibro")! as URL
             }
             
             self.view.backgroundColor = UIColor.clear
-            self.title = (whichView == "AboutUsView") ? "About us" : "Terms & Conditions" 
+             
             let aboutUsWebView = UIWebView(frame: CGRect(x: 0, y: 65, width: screenWidth, height: screenHeight-65))
             if whichView == "AboutUsView" {
                 aboutUsWebView.frame = CGRect(x: -5, y: 0, width: screenWidth+5, height: screenHeight)
@@ -75,7 +83,7 @@ class EditSettingsViewController: UIViewController, UIWebViewDelegate {
             aboutUsWebView.delegate = self
             aboutUsWebView.scalesPageToFit = true
             aboutUsWebView.loadRequest(NSURLRequest(url: pdfPath) as URLRequest)
-            aboutUsWebView.backgroundColor = UIColor.clear
+            aboutUsWebView.backgroundColor = UIColor.white
             self.view.addSubview(aboutUsWebView)
             break
             

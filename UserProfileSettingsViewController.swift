@@ -52,7 +52,7 @@ class UserProfileSettingsViewController: UIViewController, UITableViewDataSource
     
     func numberOfSections(in tableView: UITableView) -> Int {
         
-        return 3
+        return 5
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -75,10 +75,6 @@ class UserProfileSettingsViewController: UIViewController, UITableViewDataSource
             return labels.count
         }
         
-        if section == 2 {
-            return 2
-        }
-        
         return 1
     }
     
@@ -95,19 +91,33 @@ class UserProfileSettingsViewController: UIViewController, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if (indexPath as NSIndexPath).section == 2 {
-            
-            let cell = tableView.dequeueReusableCell(withIdentifier: "aboutCell") as! AboutTableViewCell
-            cell.aboutTL.text = indexPath.row == 0 ? "About Us" : "Terms & Conditions"
-            return cell
-        }
-        
-        else if (indexPath as NSIndexPath).section == 1 {
+        if (indexPath as NSIndexPath).section == 1 {
             
            let cell = tableView.dequeueReusableCell(withIdentifier: "settingsCell") as! SettingsTableViewCell
            cell.settingsLabel.text = labels[(indexPath as NSIndexPath).item]            
            cell.LabelIcon.image = UIImage(named: sideImages[indexPath.row])
            return cell
+        }
+            
+        else if (indexPath as NSIndexPath).section == 2 {
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: "aboutCell") as! AboutTableViewCell
+            cell.aboutTL.text = "About Us"
+            return cell
+        }
+            
+        else if (indexPath as NSIndexPath).section == 3 {
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: "aboutCell") as! AboutTableViewCell
+            cell.aboutTL.text = "Terms & Conditions"
+            return cell
+        }
+            
+        else if (indexPath as NSIndexPath).section == 4 {
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: "aboutCell") as! AboutTableViewCell
+            cell.aboutTL.text = "Privacy policy"
+            return cell
         }
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "profileCell") as! MainProfileTableViewCell
@@ -126,6 +136,7 @@ class UserProfileSettingsViewController: UIViewController, UITableViewDataSource
             let profileEditVC = storyboard?.instantiateViewController(withIdentifier: "EditProfile") as! EditProfileViewController
             self.navigationController?.pushViewController(profileEditVC, animated: true)
             break
+            
         case 1:
             switch (indexPath as NSIndexPath).row {
             case 0:                
@@ -146,11 +157,25 @@ class UserProfileSettingsViewController: UIViewController, UITableViewDataSource
             default:
                 break
             }
+            
         case 2:
             let aboutUsVC = storyboard?.instantiateViewController(withIdentifier: "EditSettings") as! EditSettingsViewController
-            aboutUsVC.whichView = (indexPath.row == 0) ? "AboutUsView" : "terms&conditions"
+            aboutUsVC.whichView = "AboutUsView"
             self.navigationController?.pushViewController(aboutUsVC, animated: true)
             break
+            
+        case 3:
+            let aboutUsVC = storyboard?.instantiateViewController(withIdentifier: "EditSettings") as! EditSettingsViewController
+            aboutUsVC.whichView = "terms&conditions"
+            self.navigationController?.pushViewController(aboutUsVC, animated: true)
+            break
+            
+        case 4:
+            let aboutUsVC = storyboard?.instantiateViewController(withIdentifier: "EditSettings") as! EditSettingsViewController
+            aboutUsVC.whichView = "privacyPolicy"
+            self.navigationController?.pushViewController(aboutUsVC, animated: true)
+            break
+            
         default:
             break
         }
