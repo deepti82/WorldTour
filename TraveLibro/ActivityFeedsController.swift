@@ -24,16 +24,18 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
     var displayData: String = "activity"
     var loader = LoadingOverlay()
     var uploadingView:UploadingToCloud!
+    var checkpoint = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("in did load")
         createNavigation()
         globalActivityFeedsController = self
         activityScroll.delegate = self
         getDarkBackGround(self)
         layout = VerticalLayout(width: screenWidth)
         activityScroll.addSubview(layout)
-        getActivity(pageNumber: pageno)
+//        getActivity(pageNumber: pageno)
         loader.showOverlay(self.view)
         
         self.mainFooter = FooterViewNew(frame: CGRect(x: 0, y: self.view.frame.height - 65, width: self.view.frame.width, height: 65))
@@ -47,6 +49,14 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        print("in appear")
+            self.layout.removeAll()
+            displayData = popularView
+            createNavigation()
+            getActivity(pageNumber: 1)
+        
+        
+        print("display data : \(displayData) : \(checkpoint)")
         NotificationCenter.default.addObserver(self, selector: #selector(globalActivityFeedsController.demonote(_:)), name: NSNotification.Name(rawValue: "UPLOAD_ITINERARY"), object: nil)
         globalNavigationController = self.navigationController
     }
@@ -108,6 +118,9 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
     
     func getActivity(pageNumber: Int) {
         print("notification called \(displayData)")
+        if checkpoint {
+            checkpoint = false
+        }
         if displayData == "activity" {
             print("in activity")
             request.getActivityFeeds(currentUser["_id"].stringValue, pageNumber: pageNumber, completion: {(request, localLifeJsons,quickJsons) in
@@ -224,6 +237,7 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
                         for post in request["data"].array! {
                             self.feeds.arrayObject?.append(post)
                             let checkIn = ActivityFeedsLayout(width: self.view.frame.width)
+                            checkIn.displayData = self.displayData
                             checkIn.feeds = post
                             checkIn.scrollView = self.activityScroll
                             checkIn.createProfileHeader(feed: post)

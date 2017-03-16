@@ -29,7 +29,9 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
     var activityFeedImage: ActivityFeedImageView!
     var activityDetailItinerary: ActivityDetailItinerary!
     var activityQuickItinerary: ActivityFeedQuickItinerary!
+    var popularItinerary: PopularItinerary!
     var feeds: JSON = []
+    var displayData: String = ""
     
     var scrollView:UIScrollView!
     
@@ -37,9 +39,11 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
     
     func createProfileHeader(feed:JSON) {
         
-        headerLayout(feed: feed)
+        if displayData != "popitinerary" {
+            headerLayout(feed: feed)
+        }
         
-        //        videosAndPhotosLayout(feed: feed)
+        
         
         middleLayoout(feed:feed)
         
@@ -109,7 +113,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             
             
             
-            self.addSubview(mainPhoto)           
+            self.addSubview(mainPhoto)
             
             let imgStr = getImageURL(feed["photos"][0]["name"].stringValue, width: 300)
             
@@ -200,7 +204,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
     
     func openSingleVideo(_ sender: AnyObject) {
         let singlePhotoController = storyboard?.instantiateViewController(withIdentifier: "singlePhoto") as! SinglePhotoViewController
-//        singlePhotoController.mainImage?.image = sender.image
+        //        singlePhotoController.mainImage?.image = sender.image
         singlePhotoController.index = sender.view.tag
         singlePhotoController.type = "Video"
         singlePhotoController.postId = feeds["_id"].stringValue
@@ -211,6 +215,21 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
     func footerLayout(feed:JSON) {
         if(feed["type"].stringValue == "ended-journey" || feed["type"].stringValue == "quick-itinerary" || feed["type"].stringValue == "detail-itinerary" || feed["type"].stringValue == "on-the-go-journey") {
             print("in review")
+            
+            if displayData == "popitinerary" {
+                footerView = ActivityFeedFooterBasic(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 65))
+                
+                //            footerView.postTop = feed
+                footerView.topLayout = self
+                footerView.localLifeTravelImage.isHidden = true
+                footerView.type = "ActivityFeeds"
+                
+                footerView.setCommentCount(feed["commentCount"].intValue)
+                footerView.setLikeCount(feed["likeCount"].intValue)
+                footerView.setView(feed:feed)
+                self.addSubview(footerView)
+
+            }else{
             footerViewReview = ActivityFeedFooter(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 65))
             footerViewReview.postTop = feed
             footerViewReview.topLayout = self
@@ -223,6 +242,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             self.addSubview(footerViewReview)
             //            dropView = DropShadow2(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 2))
             //            self.addSubview(dropView)
+            }
             
             
         } else {
@@ -253,29 +273,49 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             tapRecognizer.numberOfTapsRequired = 1
             tapRecognizer.addTarget(self, action: #selector(self.toggleFullscreen))
             activityFeedImage.addGestureRecognizer(tapRecognizer)
-
+            
             activityFeedImage.clipsToBounds = true
             
             self.addSubview(activityFeedImage)
         case "quick-itinerary":
-//            print("moto : \(feed)")
-            activityQuickItinerary = ActivityFeedQuickItinerary(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 500))
-            let tapRecognizer = UITapGestureRecognizer()
-            tapRecognizer.numberOfTapsRequired = 1
-            tapRecognizer.addTarget(self, action: #selector(self.gotoDetail))
-            activityQuickItinerary.addGestureRecognizer(tapRecognizer)
-            activityQuickItinerary.fillData(feed: feed)
-            self.addSubview(activityQuickItinerary)
+            if self.displayData == "popitinerary" {
+                popularItinerary = PopularItinerary(frame: CGRect(x: 0, y: 10, width: self.frame.width, height: 400))
+                let tapRecognizer = UITapGestureRecognizer()
+                tapRecognizer.numberOfTapsRequired = 1
+                tapRecognizer.addTarget(self, action: #selector(self.gotoDetail))
+                popularItinerary.addGestureRecognizer(tapRecognizer)
+                popularItinerary.fillData(feed: feed)
+                self.addSubview(popularItinerary)
+            }else{
+                activityQuickItinerary = ActivityFeedQuickItinerary(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 500))
+                let tapRecognizer = UITapGestureRecognizer()
+                tapRecognizer.numberOfTapsRequired = 1
+                tapRecognizer.addTarget(self, action: #selector(self.gotoDetail))
+                activityQuickItinerary.addGestureRecognizer(tapRecognizer)
+                activityQuickItinerary.fillData(feed: feed)
+                self.addSubview(activityQuickItinerary)
+            }
             
         case "detail-itinerary":
-            activityDetailItinerary = ActivityDetailItinerary(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 500))
-            activityDetailItinerary.fillData(feed: feed)
-            self.addSubview(activityDetailItinerary)
-            let tapRecognizer = UITapGestureRecognizer()
-            tapRecognizer.numberOfTapsRequired = 1
-            tapRecognizer.addTarget(self, action: #selector(self.showDetailedItinerary(_:)))
-            activityDetailItinerary.addGestureRecognizer(tapRecognizer)
-
+            if self.displayData == "popitinerary" {
+                popularItinerary = PopularItinerary(frame: CGRect(x: 0, y: 10, width: self.frame.width, height: 400))
+                let tapRecognizer = UITapGestureRecognizer()
+                tapRecognizer.numberOfTapsRequired = 1
+                tapRecognizer.addTarget(self, action: #selector(self.showDetailedItinerary(_:)))
+                popularItinerary.addGestureRecognizer(tapRecognizer)
+                popularItinerary.fillData(feed: feed)
+                self.addSubview(popularItinerary)
+                
+            }else{
+                activityDetailItinerary = ActivityDetailItinerary(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 500))
+                activityDetailItinerary.fillData(feed: feed)
+                self.addSubview(activityDetailItinerary)
+                let tapRecognizer = UITapGestureRecognizer()
+                tapRecognizer.numberOfTapsRequired = 1
+                tapRecognizer.addTarget(self, action: #selector(self.showDetailedItinerary(_:)))
+                activityDetailItinerary.addGestureRecognizer(tapRecognizer)
+            }
+            
         default:
             print("default")
             videosAndPhotosLayout(feed:feed)
@@ -286,7 +326,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "EachItineraryViewController") as! EachItineraryViewController
-        controller.fromOutSide = feeds["_id"].stringValue        
+        controller.fromOutSide = feeds["_id"].stringValue
         globalNavigationController?.setNavigationBarHidden(false, animated: true)
         globalNavigationController?.pushViewController(controller, animated: true)
         
@@ -363,13 +403,13 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
     }
     
     func showDetailedItinerary(_ sender: UIButton) {
-        if currentUser != nil {            
+        if currentUser != nil {
             print("detail itinerary clicked \(feeds["_id"].stringValue)")
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let controller = storyboard.instantiateViewController(withIdentifier: "EachItineraryViewController") as! EachItineraryViewController
             controller.fromOutSide = feeds["_id"].stringValue
             globalNavigationController?.setNavigationBarHidden(false, animated: true)
-            globalNavigationController?.pushViewController(controller, animated: true)            
+            globalNavigationController?.pushViewController(controller, animated: true)
         }
         else {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
@@ -395,16 +435,16 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
                 
             }else {
                 
-            }            
+            }
         }
         else {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
-        }        
+        }
     }
     
     func setText(text: String) {
         textHeader.headerText.text = text
-//        self.addSubview(textHeader)
+        //        self.addSubview(textHeader)
     }
     
     func addPhotoToLayout(_ post: JSON, startIndex: Int) {
@@ -432,7 +472,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
     
     func openSinglePhoto(_ sender: AnyObject) {
         let singlePhotoController = storyboard?.instantiateViewController(withIdentifier: "singlePhoto") as! SinglePhotoViewController
-//        singlePhotoController.mainImage?.image = sender.image
+        //        singlePhotoController.mainImage?.image = sender.image
         singlePhotoController.index = sender.view.tag
         singlePhotoController.postId = feeds["_id"].stringValue
         globalNavigationController.pushViewController(singlePhotoController, animated: true)

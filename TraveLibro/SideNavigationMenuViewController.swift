@@ -100,6 +100,7 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         self.popJourneysController = UINavigationController(rootViewController: PJController)
         
         let EDController = storyboard!.instantiateViewController(withIdentifier: "activityFeeds") as! ActivityFeedsController
+        
         EDController.displayData = "popitinerary"
         self.exploreDestinationsController = UINavigationController(rootViewController: EDController)
         
@@ -262,8 +263,10 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         switch((indexPath as NSIndexPath).row)
         {
         case 0:
+            popularView = "popular"
             self.slideMenuController()?.changeMainViewController(self.popJourneysController, close: true)
         case 1:
+            popularView = "popitinerary"
             self.slideMenuController()?.changeMainViewController(self.exploreDestinationsController, close: true)
         case 2:
             self.slideMenuController()?.changeMainViewController(self.popBloggersController, close: true)        

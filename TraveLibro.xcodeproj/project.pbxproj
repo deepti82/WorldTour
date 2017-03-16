@@ -484,6 +484,8 @@
 		FCCA8F231E28BA0E00775985 /* TripSummaryFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCCA8F221E28BA0E00775985 /* TripSummaryFooter.xib */; };
 		FCCA8F251E28C38D00775985 /* TripSummaryFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCA8F241E28C38D00775985 /* TripSummaryFooter.swift */; };
 		FCCA8F281E28DCE900775985 /* TripSummaryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCCA8F271E28DCE900775985 /* TripSummaryView.xib */; };
+		FCCFAADF1E7A810600F01DE6 /* PopularItinerary.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCCFAADE1E7A810600F01DE6 /* PopularItinerary.xib */; };
+		FCCFAAE11E7A813400F01DE6 /* PopularItinerary.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCFAAE01E7A813400F01DE6 /* PopularItinerary.swift */; };
 		FCD52B5E1E7936CA00CD64C2 /* SearchJourneyElement.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCD52B5D1E7936CA00CD64C2 /* SearchJourneyElement.xib */; };
 		FCD52B601E79376000CD64C2 /* SearchJourneyElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD52B5F1E79376000CD64C2 /* SearchJourneyElement.swift */; };
 		FCDF49081E25586C00ED9A32 /* previewBase.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCDF49071E25586C00ED9A32 /* previewBase.xib */; };
@@ -1003,6 +1005,8 @@
 		FCCA8F221E28BA0E00775985 /* TripSummaryFooter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TripSummaryFooter.xib; sourceTree = "<group>"; };
 		FCCA8F241E28C38D00775985 /* TripSummaryFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripSummaryFooter.swift; sourceTree = "<group>"; };
 		FCCA8F271E28DCE900775985 /* TripSummaryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TripSummaryView.xib; sourceTree = "<group>"; };
+		FCCFAADE1E7A810600F01DE6 /* PopularItinerary.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopularItinerary.xib; sourceTree = "<group>"; };
+		FCCFAAE01E7A813400F01DE6 /* PopularItinerary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopularItinerary.swift; sourceTree = "<group>"; };
 		FCD52B5D1E7936CA00CD64C2 /* SearchJourneyElement.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchJourneyElement.xib; sourceTree = "<group>"; };
 		FCD52B5F1E79376000CD64C2 /* SearchJourneyElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchJourneyElement.swift; sourceTree = "<group>"; };
 		FCDF49071E25586C00ED9A32 /* previewBase.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = previewBase.xib; sourceTree = "<group>"; };
@@ -1266,6 +1270,7 @@
 				FCB3D17C1E5D70520041B121 /* OnlyLine */,
 				FC13D1D11E6035F6008FC77D /* SearchElement */,
 				FCD52B611E79377000CD64C2 /* SearchJourneyElement */,
+				FCCFAAE21E7A819E00F01DE6 /* PopularItinerary */,
 			);
 			name = UIViews;
 			sourceTree = "<group>";
@@ -2737,6 +2742,15 @@
 			name = TripSummaryFooter;
 			sourceTree = "<group>";
 		};
+		FCCFAAE21E7A819E00F01DE6 /* PopularItinerary */ = {
+			isa = PBXGroup;
+			children = (
+				FCCFAADE1E7A810600F01DE6 /* PopularItinerary.xib */,
+				FCCFAAE01E7A813400F01DE6 /* PopularItinerary.swift */,
+			);
+			name = PopularItinerary;
+			sourceTree = "<group>";
+		};
 		FCD52B611E79377000CD64C2 /* SearchJourneyElement */ = {
 			isa = PBXGroup;
 			children = (
@@ -3000,6 +3014,7 @@
 				C245776C1D1D4F8200C6568C /* NewProfilePosts.xib in Resources */,
 				C22138F61D547A0A008D9DEE /* QuickItineraryFour.xib in Resources */,
 				C24F84E91D004304002EA203 /* ReportProblem.xib in Resources */,
+				FCCFAADF1E7A810600F01DE6 /* PopularItinerary.xib in Resources */,
 				1A4CA11E1CCE180C00EE9A90 /* AddCircle.xib in Resources */,
 				C2A27A401CEDAF9100F74DD1 /* SignInToolbar.xib in Resources */,
 				443225AC1E668332008AB156 /* travellife.mp4 in Resources */,
@@ -3246,6 +3261,7 @@
 				C263E3A51D1E5D0C00D274FE /* NewThoughtsView.swift in Sources */,
 				FC807AD11E3C9B3300609E9B /* TripPhotoLayout.swift in Sources */,
 				FC9A0C1C1E0932E300BC3F7A /* CountrySummary.swift in Sources */,
+				FCCFAAE11E7A813400F01DE6 /* PopularItinerary.swift in Sources */,
 				C2DCB36E1CE723C3006E5CBD /* RatingReviewViewController.swift in Sources */,
 				845C432E1E2FCE4200800F51 /* ActivityFeedFooter.swift in Sources */,
 				C27F6C011CF03E280049F012 /* ProfileMainView.swift in Sources */,
