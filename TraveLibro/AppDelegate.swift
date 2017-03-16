@@ -297,6 +297,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
+    
+    //MARK: - Navigation Delegate
+    
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
         var prevVC = UIViewController()
         if (navigationController.viewControllers.count > 1 ) {

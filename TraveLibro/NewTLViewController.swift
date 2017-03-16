@@ -1972,9 +1972,14 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     }
     
     func closeView(_ sender: UIButton) {
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
-        self.navigationController!.popViewController(animated: true)
         
+        if (self.navigationController?.viewControllers.count)! > 1 {
+            self.navigationController?.setNavigationBarHidden(false, animated: true)
+            self.navigationController!.popViewController(animated: true)
+        }
+        else {
+            leftViewController.profileTap(UIButton())
+        }        
     }
     
     //    var keyboardHidden = false

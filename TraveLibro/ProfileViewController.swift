@@ -66,16 +66,8 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         }
         
         
-    }
+    }  
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-    }
     
     var allCount: JSON!
 
@@ -124,6 +116,8 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     }
     
     
+    //MARK: - Lifecycle
+    
     override func viewDidLoad() {
         print("my user oooouuu.")
         print(user.getExistingUser())
@@ -164,7 +158,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         rightButton.frame = CGRect(x: -10, y: 8, width: 30, height: 30)
         self.setOnlyRightNavigationButton(rightButton)
         let customView = UIView(frame:(CGRect(x: 0, y: self.view.frame.size.height - 75, width: self.view.frame.width, height: 75)))
-        self.orangeTab = OrangeButton(frame: CGRect(x: 5, y: self.view.frame.size.height - 125, width: self.view.frame.size.width - 10, height: 50))
+        self.orangeTab = OrangeButton(frame: CGRect.zero)
         orangeTab.orangeButtonTitle.titleLabel?.font = UIFont(name: "Avenir-Heavy", size: 16)
         orangeTab.orangeButtonTitle.setTitle("My Life", for: UIControlState())
         let fontAwesomeLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 40, height: orangeTab.frame.size.height))
@@ -182,7 +176,25 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         MAMButton.transform = MAMButton.transform.rotated(by: CGFloat(M_PI))
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.orangeTab.frame = CGRect(x: 5, y: self.view.frame.size.height - 125, width: self.view.frame.size.width - 10, height: 50)
+    }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        globalNavigationController = self.navigationController
+        self.getUser()
+    }    
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
     
     func onLoaded() {
         self.loader.hideOverlayView()
@@ -282,11 +294,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     }
     
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        globalNavigationController = self.navigationController
-        self.getUser()
-    }
+    
     
     func getUser() {
         var usr = user.getExistingUser()
@@ -358,10 +366,6 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     
     func MAMStacKTap(_ sender: UITapGestureRecognizer) {
         self.MAMTapped(sender)
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
     }
     
     func search(_ sender: AnyObject) {

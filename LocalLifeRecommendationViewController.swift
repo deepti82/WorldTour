@@ -12,7 +12,7 @@ import UIKit
 import CoreLocation
 import Toaster
 
-class LocalLifeRecommendationViewController: UIViewController, UIImagePickerControllerDelegate,UINavigationControllerDelegate, CLLocationManagerDelegate, UITextViewDelegate {
+class LocalLifeRecommendationViewController: UIViewController, UIImagePickerControllerDelegate,UINavigationControllerDelegate, CLLocationManagerDelegate, UITextViewDelegate, UIScrollViewDelegate {
     var currentTime =  ""
     var addView:AddActivityNew!
     var backView:UIView!
@@ -25,18 +25,12 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
     var locValue:CLLocationCoordinate2D!
     var json:JSON!
     var loader = LoadingOverlay()
-    @IBOutlet weak var thisScroll: UIScrollView!
     var layout:VerticalLayout!
+    var mainFooter: FooterViewNew!
     
+    @IBOutlet weak var thisScroll: UIScrollView!
     @IBOutlet weak var plusButton: UIButton!
     
-    override func viewWillAppear(_ animated: Bool) {
-        navigationController?.navigationBar.isTranslucent = false
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        navigationController?.navigationBar.isTranslucent = true
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,6 +45,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
         createNavigation("Local Life")
         
         self.thisScroll.addSubview(layout)
+        self.thisScroll.delegate = self
         
         titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 40))
         titleLabel.center = CGPoint(x: self.view.frame.width/2, y: 20)
@@ -175,13 +170,19 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
         myView5.photoBottomView2.tag = 14
         layout.addSubview(myView5)
         
-        let footer = FooterViewNew(frame: CGRect(x: 0, y: self.view.frame.height - (self.navigationController?.navigationBar.frame.size.height)! - (UIApplication.shared.statusBarFrame.size.height) - 65, width: self.view.frame.width, height: 65))
-        footer.localLifeIcon.tintColor = mainGreenColor
-        self.view.addSubview(footer)
+        self.mainFooter = FooterViewNew(frame: CGRect.zero)
+        mainFooter.localLifeIcon.tintColor = mainGreenColor
+        self.view.addSubview(mainFooter)
+        
         self.detectLocation(UIButton())
         self.changeAddButton(false)
         self.addHeightToLayout();
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.mainFooter.frame = CGRect(x: 0, y: self.view.frame.height - 65, width: self.view.frame.width, height: 65)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -550,6 +551,29 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
             tstr.show()
         }
         
+    }
+    
+    
+    //MARK: - Scroll Delegate
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        if scrollView.panGestureRecognizer.translation(in: scrollView).y < 0 {
+            hideHeaderAndFooter(true);
+        }
+        else{
+            hideHeaderAndFooter(false);
+        }
+    }
+    
+    func hideHeaderAndFooter(_ isShow:Bool) {
+        if(isShow) {
+            self.navigationController?.setNavigationBarHidden(true, animated: true)
+            self.mainFooter.frame.origin.y = self.view.frame.height + 95
+        } else {
+            self.navigationController?.setNavigationBarHidden(false, animated: true)
+            self.mainFooter.frame.origin.y = self.view.frame.height - 65
+        }
     }
 
 }

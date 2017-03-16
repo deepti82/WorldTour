@@ -66,22 +66,18 @@ class FooterViewNew: UIView {
     //MARK:- Footer Actions
     
     func gotoOTG(_ sender: UITapGestureRecognizer) {
-        print("user which which user")
-        print(user.getExistingUser())
         
         if currentUser != nil {
-            
             request.getUser(user.getExistingUser(), completion: {(request) in
                 DispatchQueue.main.async {
                     currentUser = request["data"]
-                    let tlVC = storyboard!.instantiateViewController(withIdentifier: "newTL") as! NewTLViewController
-                    tlVC.isJourney = false
+                    let vc = storyboard!.instantiateViewController(withIdentifier: "newTL") as! NewTLViewController
+                    vc.isJourney = false
                     if(currentUser["journeyId"].stringValue == "-1") {
                         isJourneyOngoing = false
-                        tlVC.showJourneyOngoing(journey: JSON(""))
-                        //                self.navigationController?.navigationBar.isHidden = true
+                        vc.showJourneyOngoing(journey: JSON(""))
                     }
-                    globalNavigationController?.pushViewController(tlVC, animated: false)
+                    self.setVC(newViewController: vc)
                 }
             })
         }
@@ -93,14 +89,13 @@ class FooterViewNew: UIView {
     }
     
     func gotoFeed(_ sender: UITapGestureRecognizer) {
-        
         if currentUser != nil {
             request.getUser(user.getExistingUser(), completion: {(request) in
                 DispatchQueue.main.async {
                     currentUser = request["data"]
-                    let tlVC = storyboard!.instantiateViewController(withIdentifier: "activityFeeds") as! ActivityFeedsController
-                    tlVC.displayData = "activity"
-                    globalNavigationController?.pushViewController(tlVC, animated: false)
+                    let vc = storyboard!.instantiateViewController(withIdentifier: "activityFeeds") as! ActivityFeedsController
+                    vc.displayData = "activity"
+                    self.setVC(newViewController: vc)
                 }
             })            
         }
@@ -109,13 +104,13 @@ class FooterViewNew: UIView {
         }
     }
     
-    func openNotifications(_ sender: UITapGestureRecognizer) {
+    func openNotifications(_ sender: UITapGestureRecognizer) {        
         if currentUser != nil {
             request.getUser(user.getExistingUser(), completion: {(request) in
                 DispatchQueue.main.async {
                     currentUser = request["data"]
-                    let vc = storyboard?.instantiateViewController(withIdentifier: "notifySub") as! NotificationSubViewController                
-                    globalNavigationController?.pushViewController(vc, animated: false)
+                    let vc = storyboard?.instantiateViewController(withIdentifier: "notifySub") as! NotificationSubViewController
+                    self.setVC(newViewController: vc)
                 }
             })            
         }
@@ -124,20 +119,31 @@ class FooterViewNew: UIView {
         }
     }
     
-    func goToLocalLife(_ sender : AnyObject) {
-        
+    func goToLocalLife(_ sender : AnyObject) {        
         if currentUser != nil {
             request.getUser(user.getExistingUser(), completion: {(request) in
                 DispatchQueue.main.async {
                     currentUser = request["data"]
                     let vc = storyboard?.instantiateViewController(withIdentifier: "localLife") as! LocalLifeRecommendationViewController
-                    globalNavigationController?.pushViewController(vc, animated: false)
+                    self.setVC(newViewController: vc)
                 }
             })            
         }
         else {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: ["type":1])
         }        
+    }
+    
+    func setVC(newViewController : UIViewController) {
+
+        let nvc = UINavigationController(rootViewController: newViewController)
+        leftViewController.mainViewController = nvc
+        leftViewController.slideMenuController()?.changeMainViewController(leftViewController.mainViewController, close: true)
+        
+        nvc.navigationBar.barTintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 0.1)
+        nvc.navigationBar.barStyle = .blackTranslucent
+        nvc.navigationBar.isTranslucent = true
+        nvc.delegate = UIApplication.shared.delegate as! UINavigationControllerDelegate? 
     }
     
 }

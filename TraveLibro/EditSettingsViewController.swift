@@ -167,4 +167,8 @@ class EditSettingsViewController: UIViewController, UIWebViewDelegate {
         }
     }
     
+    func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {
+        print("\n Webview loading failed with error : \(error.localizedDescription)")
+    }
+    
 }

@@ -38,13 +38,17 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
 //        getActivity(pageNumber: pageno)
         loader.showOverlay(self.view)
         
-        self.mainFooter = FooterViewNew(frame: CGRect(x: 0, y: self.view.frame.height - 65, width: self.view.frame.width, height: 65))
+        self.mainFooter = FooterViewNew(frame: CGRect.zero)
         self.mainFooter.layer.zPosition = 5
         self.view.addSubview(self.mainFooter)
         
         let i = PostImage()
         i.uploadPhotos()
-
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.mainFooter.frame = CGRect(x: 0, y: self.view.frame.height - 65, width: self.view.frame.width, height: 65)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -325,13 +329,13 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
     
     func hideHeaderAndFooter(_ isShow:Bool) {
         if(isShow) {
-            scrollTopConstraint.constant = 0
+//            scrollTopConstraint.constant = 0
             
             self.navigationController?.setNavigationBarHidden(true, animated: true)
 
             self.mainFooter.frame.origin.y = self.view.frame.height + 95
         } else {
-            scrollTopConstraint.constant = (self.navigationController?.navigationBar.frame.size.height)!
+//            scrollTopConstraint.constant = (self.navigationController?.navigationBar.frame.size.height)!
             
             self.navigationController?.setNavigationBarHidden(false, animated: true)
 

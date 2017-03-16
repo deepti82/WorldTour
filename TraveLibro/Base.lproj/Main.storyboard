@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="VtJ-Bg-RGy">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="VtJ-Bg-RGy">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -4053,7 +4053,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Z6B-S3-6qq">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="photoCell" id="LxJ-uo-h23" customClass="NotificationPhotoCell" customModule="TraveLibro" customModuleProvider="target">
@@ -4137,7 +4137,7 @@
                         <constraints>
                             <constraint firstItem="Z6B-S3-6qq" firstAttribute="bottom" secondItem="uqb-li-brX" secondAttribute="top" id="ALq-Va-eSF"/>
                             <constraint firstAttribute="trailing" secondItem="Z6B-S3-6qq" secondAttribute="trailing" id="F3y-Gi-aW4"/>
-                            <constraint firstItem="Z6B-S3-6qq" firstAttribute="top" secondItem="hAU-au-aIi" secondAttribute="top" constant="64" id="Zqe-Qc-dHk"/>
+                            <constraint firstItem="Z6B-S3-6qq" firstAttribute="top" secondItem="hAU-au-aIi" secondAttribute="top" id="Zqe-Qc-dHk"/>
                             <constraint firstItem="Z6B-S3-6qq" firstAttribute="leading" secondItem="hAU-au-aIi" secondAttribute="leading" id="f3Y-zQ-JA1"/>
                         </constraints>
                     </view>
@@ -10847,7 +10847,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kOd-Pw-FBz">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -10855,7 +10855,7 @@
                             <constraint firstItem="et9-wN-XOi" firstAttribute="top" secondItem="kOd-Pw-FBz" secondAttribute="bottom" id="3Ow-eC-Uth"/>
                             <constraint firstItem="kOd-Pw-FBz" firstAttribute="leading" secondItem="hL6-8P-lXO" secondAttribute="leading" id="GPJ-sy-f5J"/>
                             <constraint firstAttribute="trailing" secondItem="kOd-Pw-FBz" secondAttribute="trailing" id="Kkm-mL-HLn"/>
-                            <constraint firstItem="kOd-Pw-FBz" firstAttribute="top" secondItem="hL6-8P-lXO" secondAttribute="top" constant="64" id="uaX-IT-MtX"/>
+                            <constraint firstItem="kOd-Pw-FBz" firstAttribute="top" secondItem="hL6-8P-lXO" secondAttribute="top" id="uaX-IT-MtX"/>
                         </constraints>
                     </view>
                     <connections>
@@ -11174,7 +11174,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="175" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="F1c-rG-8u1">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="popularCell" rowHeight="200" id="zpt-iE-LFc" customClass="PopularBloggerTableViewCell" customModule="TraveLibro" customModuleProvider="target">
@@ -11443,7 +11443,7 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="F1c-rG-8u1" firstAttribute="top" secondItem="zoq-bI-u7d" secondAttribute="top" constant="64" id="0io-q2-79a"/>
+                            <constraint firstItem="F1c-rG-8u1" firstAttribute="top" secondItem="zoq-bI-u7d" secondAttribute="top" id="0io-q2-79a"/>
                             <constraint firstItem="F1c-rG-8u1" firstAttribute="leading" secondItem="zoq-bI-u7d" secondAttribute="leading" id="C2E-VU-5BE"/>
                             <constraint firstAttribute="trailing" secondItem="F1c-rG-8u1" secondAttribute="trailing" id="Otn-N7-4Nc"/>
                             <constraint firstItem="mZX-JF-fzf" firstAttribute="top" secondItem="F1c-rG-8u1" secondAttribute="bottom" id="iIj-HX-2lo"/>

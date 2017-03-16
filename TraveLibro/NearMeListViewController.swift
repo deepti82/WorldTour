@@ -172,15 +172,6 @@ class NearMeListViewController: UIViewController, UITableViewDataSource, UITable
         return invisibleView
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        navigationController?.navigationBar.isTranslucent = false
-        print(navigationController?.navigationBar.isTranslucent)
-    }
-    override func viewWillDisappear(_ animated: Bool) {
-        navigationController?.navigationBar.isTranslucent = true
-    }
-
-    
     func setTopNavigation(_ text: String) {
         let leftButton = UIButton()
         leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)

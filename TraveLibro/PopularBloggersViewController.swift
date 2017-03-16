@@ -33,7 +33,7 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
         
         loader.showOverlay(self.view)
         
-        self.mainFooter = FooterViewNew(frame: CGRect(x: 0, y: self.view.frame.height - 65, width: self.view.frame.width, height: 65))
+        self.mainFooter = FooterViewNew(frame: CGRect.zero)
         self.mainFooter.layer.zPosition = 5
         self.view.addSubview(self.mainFooter)
         
@@ -42,6 +42,11 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
         userTableView.addSubview(refreshControl)
         
         getPopulerUser(pageNum : pagenum )
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.mainFooter.frame = CGRect(x: 0, y: self.view.frame.height - 65, width: self.view.frame.width, height: 65)        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -259,13 +264,13 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
     
     func hideHeaderAndFooter(_ isShow:Bool) {
         if(isShow) {
-            tableTopConstraint.constant = 0
+//            tableTopConstraint.constant = 0
             
             self.navigationController?.setNavigationBarHidden(true, animated: true)
             
             self.mainFooter.frame.origin.y = self.view.frame.height + 95
         } else {
-            tableTopConstraint.constant = (self.navigationController?.navigationBar.frame.size.height)! + 21
+//            tableTopConstraint.constant = (self.navigationController?.navigationBar.frame.size.height)! + 21
             
             self.navigationController?.setNavigationBarHidden(false, animated: true)
             
