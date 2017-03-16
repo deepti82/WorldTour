@@ -91,10 +91,11 @@ class NotificationCommentCell: UITableViewCell {
         NFTitle.frame = CGRect(x: xPos, y: 0, width: screenWidth - xPos - IMAGE_HEIGHT, height: titleHeight)
         totalHeight += titleHeight
         
-        let messageHeight = (heightForView(text: notificationData["data"]["thoughts"].stringValue, font: NFMessage.NFMessageLabel.font, width: screenWidth) + CGFloat(10))
+        let messageHeight = (heightForView(text: notificationData["data"]["thoughts"].stringValue, font: NFMessage.NFMessageLabel.font, width: (screenWidth - xPos - IMAGE_HEIGHT)) + CGFloat(10))
         NFMessage.NFMessageLabel.attributedText = getRegularString(string: notificationData["data"]["thoughts"].stringValue, size: 12)
-        NFMessage.NFMessageLabel.frame = CGRect(x: 0, y: 0, width: screenWidth - xPos - 10, height: messageHeight)
-        NFMessage.frame = CGRect(x: xPos, y: totalHeight, width: screenWidth - xPos, height: messageHeight)        
+        NFMessage.NFMessageLabel.sizeToFit()
+        NFMessage.NFMessageLabel.frame = CGRect(x: 0, y: 0, width: screenWidth - xPos - IMAGE_HEIGHT - 10, height: messageHeight)
+        NFMessage.frame = CGRect(x: xPos, y: totalHeight, width: screenWidth - xPos - IMAGE_HEIGHT, height: messageHeight)        
         totalHeight += messageHeight
         
         NFTime.frame = CGRect(x: xPos, y: totalHeight, width: screenWidth - xPos, height: TIME_HEIGHT)

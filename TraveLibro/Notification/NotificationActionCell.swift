@@ -181,8 +181,11 @@ class NotificationActionCell: UITableViewCell {
                 NFPermission.NFStatusLabel.text = notificationData["answeredStatus"].stringValue == "reject" ? " Rejected " : " Accepted "
             }
             else if notificationData["type"] == "itineraryRequest"{
-                NFPermission.NFViewButton.isHidden = false
-                NFPermission.NFViewButtonXpos.constant = 78
+                
+                if (notificationData["answeredStatus"].stringValue != "reject") {
+                    NFPermission.NFViewButton.isHidden = false
+                    NFPermission.NFViewButtonXpos.constant = 78
+                }
                 
                 NFPermission.NFStatusLabel.text = notificationData["answeredStatus"].stringValue == "reject" ? " Rejected " : " Accepted "
                 

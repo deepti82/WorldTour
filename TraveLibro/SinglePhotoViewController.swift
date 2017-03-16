@@ -49,6 +49,7 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate, iCarouselDeleg
     var imageRightSwipe: UISwipeGestureRecognizer!
     
     var isSpecialHandling = false
+    var shouldShowBottomView = true
     
     //MARK: - Lifecycle
     
@@ -364,7 +365,10 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate, iCarouselDeleg
             self.commentText.text = "0 Comment"
         }
         
-        self.bottomView.isHidden = false        
+        if shouldShowBottomView {
+            self.bottomView.isHidden = false            
+        }
+                
     }
     
     func fromVideoFunction(data:JSON) {
@@ -397,7 +401,9 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate, iCarouselDeleg
             self.commentText.text = "\(self.commentCount) Comment"
         }
         
-        self.bottomView.isHidden = false
+        if shouldShowBottomView {
+            self.bottomView.isHidden = false            
+        }
         self.mainImage.isHidden = false
         
 //        self.mainImage.addGestureRecognizer(imageLeftSwipe)
@@ -676,26 +682,5 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate, iCarouselDeleg
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         bgImage.addSubview(blurEffectView)
     }
-    
-//    func setPhotos(indexNumber:Int) {
-//        print("in indexed....  \(allDataCollection[indexNumber])")
-//        self.mainImage.hnk_setImageFromURL(getImageURL(allDataCollection[indexNumber]["name"].stringValue, width: 200))
-//        
-//        self.bottomView.isHidden = false
-//        self.mainImage.isHidden = false
-//        
-//        let imageLeftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(self.leftSwipe(_:)))
-//        let imageRightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(self.rightSwipe(_:)))
-//        
-//        imageLeftSwipe.direction = .left
-//        imageRightSwipe.direction = .right
-//        
-//        self.mainImage.addGestureRecognizer(imageLeftSwipe)
-//        self.mainImage.addGestureRecognizer(imageRightSwipe)
-//    }
-    
-//    override func popVC(_ sender: UIButton) {
-//        self.navigationController!.popViewController(animated: true)
-//    }
     
 }

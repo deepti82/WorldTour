@@ -212,10 +212,14 @@ class NotificationTitle: UIView {
         }
         
         
+        NFMessageLabel.numberOfLines = 0
+        NFMessageLabel.lineBreakMode = .byWordWrapping
+        
         NFMessageLabel.attributedText = message
+        NFMessageLabel.sizeToFit()
+        
         NFMessageLabel.frame = CGRect(x: NFMessageLabel.frame.origin.x, y: NFMessageLabel.frame.origin.y, width: NFMessageLabel.frame.size.width,
                                       height: heightForView(text: (firstName + str2 + str3 + str4 + str5 + "offset  ") , font: NFMessageLabel.font, width: NFMessageLabel.frame.size.width) + 10)
-//        NFMessageLabel.sizeToFit()
         
         return NFMessageLabel.frame.size.height
     }

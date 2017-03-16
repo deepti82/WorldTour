@@ -114,6 +114,7 @@ class EachItineraryPhotosViewController: UIViewController, UICollectionViewDataS
         singlePhotoController.whichView = "detail_itinerary"
         singlePhotoController.photos = self.photoJSON
         singlePhotoController.postId = "unknown"
+        singlePhotoController.shouldShowBottomView = selectedItinerary["status"].boolValue
         
         self.dismiss(animated: true) {
             print("globalNavigationController: \(globalNavigationController)")

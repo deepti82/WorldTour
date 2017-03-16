@@ -19,6 +19,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
     let refreshControl = UIRefreshControl()
     var currentPageNumber = 0
     var hasNext = true
+    var isLoading = false
     var currentCellHeight = CGFloat(10)
     var loader = LoadingOverlay()
     var lastContentOffset: CGFloat!
@@ -78,18 +79,22 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
     
     func getNotification() {
         
-        currentPageNumber += 1
-        
-        print("\n Fetching data for pageNumber: \(currentPageNumber)")
-        
-        if hasNext {
+        if hasNext && !isLoading {
             
-//            Toast(text: "Please wait ...").show()
+            isLoading = true
+            
+            currentPageNumber += 1
+            
+            print("\n Fetching data for pageNumber: \(currentPageNumber)")
+            
+            showBottomLoader(onView: self.notifyTableView)
             
             request.getNotify(currentUser["_id"].string!, pageNumber: currentPageNumber,  completion: {(response) in
                 
                 DispatchQueue.main.async(execute: {
+                    self.isLoading = false
                     self.loader.hideOverlayView()
+                    hideBottomLoader()
                     
                     if response.error != nil {
                         print("error: \(response.error!.localizedDescription)")                        
@@ -339,6 +344,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
             }
             cell?.NFPermission.NFLeftButton.tag = indexPath.row
             cell?.NFPermission.NFRightButton.tag = indexPath.row
+            cell?.NFPermission.NFViewButton.tag = indexPath.row
             
             cell?.backgroundColor = UIColor.clear
             currentCellHeight = (cell?.totalHeight)!
@@ -441,14 +447,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
             cell.alpha = 1;
             cell.layer.shadowOffset = CGSize(width: 0, height: 0)
             UIView.commitAnimations()
-        }
-        
-        
-        if notifications.count > 0 && indexPath.row == (notifications.count - 1) {            
-            if hasNext {
-                self.getNotification()
-            }
-        }
+        }        
     }
     
     //MARK:- Button Action
@@ -634,6 +633,8 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         
         let tabbedCellData = notifications[sender.tag]
         
+        print("\n TabbedCellData : \(tabbedCellData)")
+        
         gotoDetailItinerary(itineraryID: tabbedCellData["data"]["_id"].stringValue)
         
     }
@@ -700,6 +701,14 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         }
         
         lastContentOffset = scrollView.contentOffset.y
+        
+        if(notifyTableView.contentOffset.y >= (notifyTableView.contentSize.height - notifyTableView.frame.size.height)) {
+            if notifications.count > 0 {            
+                if hasNext {
+                    self.getNotification()
+                }
+            }
+        }
     }
     
     func hideHeaderAndFooter(_ isShow:Bool) {
@@ -709,7 +718,8 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
             self.navigationController?.setNavigationBarHidden(true, animated: true)
             
             self.mainFooter.frame.origin.y = self.view.frame.height + 95
-        } else {
+        }
+        else {
             tableTopConstraint.constant = (self.navigationController?.navigationBar.frame.size.height)! + 21
             
             self.navigationController?.setNavigationBarHidden(false, animated: true)

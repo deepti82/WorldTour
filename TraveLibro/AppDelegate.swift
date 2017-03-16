@@ -45,6 +45,7 @@ var notificationsViewController: UIViewController!
 var travelLifeViewController: UIViewController!
 var hasLoggedInOnce = false
 var onlyOnce = true
+var HUD: UIActivityIndicatorView?
 
 let request = Navigation()
 let shared = LoadingOverlay()
@@ -325,6 +326,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
     
 }
 
+//MARK: - Other Functions
+
 func isConnectedToNetwork() -> Bool {
     
     var zeroAddress = sockaddr_in(sin_len: 0, sin_family: 0, sin_port: 0, sin_addr: in_addr(s_addr: 0), sin_zero: (0, 0, 0, 0, 0, 0, 0, 0))
@@ -399,5 +402,31 @@ func addTopBorder(_ color: UIColor, view: UIView, borderWidth: CGFloat) {
     border.backgroundColor = color.cgColor
     border.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: borderWidth)
     view.layer.addSublayer(border)
+}
+
+
+func showBottomLoader(onView: UIView) {
+    
+    if HUD == nil {
+        HUD = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+        HUD?.color = mainOrangeColor
+        HUD?.hidesWhenStopped = true
+        HUD?.center = CGPoint(x: onView.center.x, y: onView.frame.size.height - 115)
+        HUD?.startAnimating()
+        onView.addSubview(HUD!)
+    }
+    else{
+        print("\n\n Already animating bottom loading indicator \n\n")
+    }
+}
+
+
+func hideBottomLoader() {
+    
+    if HUD != nil {
+        HUD?.stopAnimating()
+        HUD?.removeFromSuperview()
+        HUD = nil
+    }
 }
 

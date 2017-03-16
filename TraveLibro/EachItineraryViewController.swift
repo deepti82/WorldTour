@@ -55,12 +55,24 @@ class EachItineraryViewController: UIViewController, UITableViewDataSource, UITa
     @IBAction func TapPhotos(_ sender: UIButton) {
         
         if editJson != nil {
-            let modalContent = self.storyboard?.instantiateViewController(withIdentifier: "itineraryPhotos") as! EachItineraryPhotosViewController
-            modalContent.selectedItinerary = editJson!
-            modalContent.modalPresentationStyle = .fullScreen
-            _ = modalContent.popoverPresentationController
+            if (editJson?["photos"].arrayValue.count)! > 0 {
+                let modalContent = self.storyboard?.instantiateViewController(withIdentifier: "itineraryPhotos") as! EachItineraryPhotosViewController
+                modalContent.selectedItinerary = editJson!
+                modalContent.modalPresentationStyle = .fullScreen
+                _ = modalContent.popoverPresentationController
+                
+                self.present(modalContent, animated: true, completion: nil)
+            }
+            else {
+                let errorAlert = UIAlertController(title: "", message: "No photos found", preferredStyle: UIAlertControllerStyle.alert)
+                let DestructiveAction = UIAlertAction(title: "Ok", style: .destructive) {
+                    (result : UIAlertAction) -> Void in
+                    //Cancel Action
+                }            
+                errorAlert.addAction(DestructiveAction)
+                self.navigationController?.present(errorAlert, animated: true, completion: nil)
+            }
             
-            self.present(modalContent, animated: true, completion: nil)
         }        
     }
     
@@ -115,6 +127,15 @@ class EachItineraryViewController: UIViewController, UITableViewDataSource, UITa
                     self.editJson = json["data"];
                     self.allButtons = [self.tab_0, self.tab_1, self.tab_2, self.tab_3, self.tab_4, self.tab_more]
                     self.setCountryTabs()
+                }
+                else{
+                    let errorAlert = UIAlertController(title: "Error", message: "Itinerary not found", preferredStyle: UIAlertControllerStyle.alert)
+                    let DestructiveAction = UIAlertAction(title: "Ok", style: .destructive) {
+                        (result : UIAlertAction) -> Void in
+                        _ = self.navigationController?.popViewController(animated: true)
+                    }
+                    errorAlert.addAction(DestructiveAction)
+                    self.navigationController?.present(errorAlert, animated: true, completion: nil)
                 }
             })
         })
