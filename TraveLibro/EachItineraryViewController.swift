@@ -185,7 +185,9 @@ class EachItineraryViewController: UIViewController, UITableViewDataSource, UITa
             
         }
         
-        else if cityLabels[(indexPath as NSIndexPath).row] == "Stayed At" ||  cityLabels[(indexPath as NSIndexPath).row] == "Ate At" || cityLabels[(indexPath as NSIndexPath).row] == "Must Do's" {
+        else if cityLabels[(indexPath as NSIndexPath).row] == "Stayed At" ||
+            cityLabels[(indexPath as NSIndexPath).row] == "Ate At" ||
+            cityLabels[(indexPath as NSIndexPath).row] == "Must Do's" {
             
             let childCell = tableView.dequeueReusableCell(withIdentifier: "childCellOne") as! ItineraryAccordionChildCellTableViewCell            
             let selectedCity = (currentShowingCountry?["cityVisited"].arrayValue)?[isSelectedIndex! - 1]
@@ -232,10 +234,20 @@ class EachItineraryViewController: UIViewController, UITableViewDataSource, UITa
         }
         
         
-        let parentCell = tableView.dequeueReusableCell(withIdentifier: "parentCell") as!
-        ItineraryAccordionParentCellTableViewCell
-        parentCell.cityName.text = cityLabels[(indexPath as NSIndexPath).row]
-        parentCell.dayLabel.text = dayLabels[(indexPath as NSIndexPath).row]
+        let parentCell = tableView.dequeueReusableCell(withIdentifier: "parentCell") as! ItineraryAccordionParentCellTableViewCell
+        parentCell.cityName.text = cityLabels[indexPath.row]
+        parentCell.dayLabel.text = dayLabels[indexPath.row]
+        
+        var isExpandedLocal = false
+        if isExpanded {
+            let index = cityLabels.indexOf(value: "Stayed At")
+            let reqIndex = index! - 1
+            if indexPath.row == reqIndex {
+                isExpandedLocal = true
+            }
+        }
+        
+        parentCell.arrowImageView.image = UIImage(named: (isExpandedLocal ? "arrowup" : "arrowdown"))
         return parentCell
         
     }
@@ -268,7 +280,7 @@ class EachItineraryViewController: UIViewController, UITableViewDataSource, UITa
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-            
+        
         if (indexPath as NSIndexPath).row != 0 && cityLabels[(indexPath as NSIndexPath).row] != "little more" && cityLabels[(indexPath as NSIndexPath).row] != "Ate At" && cityLabels[(indexPath as NSIndexPath).row] != "Stayed At" && cityLabels[(indexPath as NSIndexPath).row] != "Must Do's" && cityLabels[(indexPath as NSIndexPath).row] != "little more" {
             
             if (isExpanded == true) {
@@ -293,29 +305,26 @@ class EachItineraryViewController: UIViewController, UITableViewDataSource, UITa
                     }
                     
                     expandParent(isExpanded, index: isSelectedIndex!)
-                    
+                    //Code to focus on specific row
+//                    if (tableView.indexPathsForVisibleRows?.contains(NSIndexPath(row: indexPath.row + 3, section: 0) as IndexPath))! {
+                        tableView.scrollToRow(at: NSIndexPath(row: isSelectedIndex!, section: 0) as IndexPath, at: .top, animated: true)
+//                    }
                 }
-                
-                
             }
                 
-        else {
-            isExpanded = true
-            isSelectedIndex = (indexPath as NSIndexPath).item
-            print("in if statement 3")
-            expandParent(isExpanded, index: (indexPath as NSIndexPath).item)
+            else {
+                isExpanded = true
+                isSelectedIndex = (indexPath as NSIndexPath).item
+                print("in if statement 3")
+                expandParent(isExpanded, index: (indexPath as NSIndexPath).item)
+                
+                //Code to focus on specific row
+                if (tableView.indexPathsForVisibleRows?.contains(NSIndexPath(row: indexPath.row, section: 0) as IndexPath))! {
+                    tableView.scrollToRow(at: NSIndexPath(row: 1, section: 0) as IndexPath, at: .top, animated: true)
+                }
+//                (cityLabels.count - 1)
+            }
         }
-            
-        }
-        
-//        if cityLabels[(indexPath as NSIndexPath).row] == "Ate At" || cityLabels[(indexPath as NSIndexPath).row] == "Stayed At" || cityLabels[(indexPath as NSIndexPath).row] == "Must Do" {
-//            
-//            let exploreHotelsVC = storyboard?.instantiateViewController(withIdentifier: "eachCityPagerStripVC") as! EachCityPagerViewController
-//            exploreHotelsVC.whichView = cityLabels[(indexPath as NSIndexPath).row]
-//            self.navigationController?.pushViewController(exploreHotelsVC, animated: true)
-//            
-//        }
-        
     }
     
     func expandParent(_ isExpanded: Bool, index: Int) -> Void {
@@ -364,7 +373,7 @@ class EachItineraryViewController: UIViewController, UITableViewDataSource, UITa
     
     func setCountryTabs() {
         
-        self.title = editJson?["name"].stringValue
+        self.title = getFirstLetterCapitalizedString(nameOfString: (editJson?["name"].stringValue)!)
         
         photosButton.setTitle((editJson?["name"].stringValue)! + " Photos", for: .normal)
         
@@ -419,6 +428,8 @@ class EachItineraryViewController: UIViewController, UITableViewDataSource, UITa
         
         if editJson != nil {
             
+            isExpanded = false
+            
             currentShowingCountry = (editJson?["countryVisited"].arrayValue)?[countryIndex]
              
             print("\n CountryData : \(currentShowingCountry) \n")
@@ -459,14 +470,7 @@ class ItineraryAccordionParentCellTableViewCell: UITableViewCell {
     
     @IBOutlet weak var cityName: UILabel!
     @IBOutlet weak var dayLabel: UILabel!
-    @IBOutlet weak var buttonLabel: UIButton!
-    
-    @IBAction func buttonTap(_ sender: AnyObject) {
-    
-        sender.setTitle("-", for: .selected)
-        
-    }
-    
+    @IBOutlet weak var arrowImageView: UIImageView!
 }
 
 class ItineraryAccordionChildCellTableViewCell: UITableViewCell {

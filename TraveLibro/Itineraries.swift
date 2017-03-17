@@ -86,11 +86,11 @@ class Itineraries: UIView {
         profileIcon.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(editJson["creator"]["profilePicture"].stringValue)", width: 100))
         profileName.text = "By " + editJson["creator"]["name"].stringValue
         coverImage.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(editJson["coverPhoto"].stringValue)", width: 100))
-        daysLabel.text = editJson["duration"].stringValue + " days"
-        
-        itineraryName.text = editJson["name"].stringValue
-        itineraryCost.text = editJson["currency"].stringValue + " " + editJson["cost"].stringValue
-        itineraryDates.text = convertDateFormate(dateStr: editJson["startTime"].stringValue) + " to " + convertDateFormate(dateStr: editJson["endTime"].stringValue)
+        daysLabel.text = editJson["duration"].stringValue + "\nDays"
+                
+        itineraryName.text = getFirstLetterCapitalizedString(nameOfString: editJson["name"].stringValue)
+        itineraryCost.text = editJson["currency"].stringValue + " " + getDigitWithCommaStandards(originalDigitStr: editJson["cost"].stringValue)
+        itineraryDates.text = getDateFormat(editJson["startTime"].stringValue, format: "dd MMM, yyyy") + " to " + getDateFormat(editJson["endTime"].stringValue, format: "dd MMM, yyyy") 
         
         itineraryTypeStack.isHidden = false
         

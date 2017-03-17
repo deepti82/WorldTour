@@ -464,8 +464,6 @@ func makeSideNavigation(_ image: UIImageView) {
     
 }
 
-
-
 func getDateFormat(_ date: String, format: String) -> String {
     
     let globalDateFormatter = DateFormatter()
@@ -500,11 +498,6 @@ func loader(_ view: UIView) {
     view.addSubview(imageView1)
  
 }
-
-//func removeLoader(View: UIImage) {
-//    
-//}
-
 
 func heightForView(text:String, font:UIFont, width:CGFloat) -> CGFloat{
     let label:UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: width, height: CGFloat.greatestFiniteMagnitude))
@@ -616,6 +609,21 @@ func setFollowButtonTitle(button:UIButton, followType: Int) {
     }
 }
 
+func getFirstLetterCapitalizedString(nameOfString : String) -> String {    
+    let index = nameOfString.index(nameOfString.startIndex, offsetBy: 0)
+    return "\(String(nameOfString[index]).uppercased())\(String(nameOfString.characters.dropFirst()))"
+}
+
+func getDigitWithCommaStandards(originalDigitStr : String) -> String {
+    
+    let numberFormatter = NumberFormatter()
+    numberFormatter.numberStyle = .decimal
+    let currency = numberFormatter.string(from: NSNumber(value: (Int64(originalDigitStr))!))
+    if currency != nil {
+        return currency!
+    }
+    return ""
+}
 
 
 //LoadingOverlay.shared.showOverlay(self.view)

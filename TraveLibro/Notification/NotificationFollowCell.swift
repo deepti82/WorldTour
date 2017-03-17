@@ -88,7 +88,6 @@ class NotificationFollowCell: UITableViewCell {
     
     func setData(notificationData: JSON, helper: NotificationSubViewController) {
         
-        print("\n data : \(notificationData)")
         totalHeight = CGFloat(0)
         
         NFHeader.setHeaderData(data: notificationData)

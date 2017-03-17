@@ -54,6 +54,7 @@ class LocalLifePostsViewController: UIViewController, UIScrollViewDelegate, CLLo
         navigationController?.navigationBar.isTranslucent = false
         print(navigationController?.navigationBar.isTranslucent)
     }
+    
     override func viewWillDisappear(_ animated: Bool) {
         navigationController?.navigationBar.isTranslucent = true
     }

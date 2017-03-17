@@ -96,6 +96,7 @@ class FooterViewNew: UIView {
                     currentUser = request["data"]
                     let vc = storyboard!.instantiateViewController(withIdentifier: "activityFeeds") as! ActivityFeedsController
                     vc.displayData = "activity"
+                    popularView = "activity"
                     self.setVC(newViewController: vc)
                 }
             })            
