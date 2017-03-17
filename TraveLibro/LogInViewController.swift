@@ -36,14 +36,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
         leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
         leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-        
-//        let rightButton = UIButton()
-//        rightButton.setImage(UIImage(named: "arrow_next_fa"), forState: .Normal)
-//        rightButton.addTarget(self, action: #selector(VerifyEmailViewController.selectNationality(_:)), forControlEvents: .TouchUpInside)
-//        rightButton.frame = CGRectMake(0, 8, 30, 30)
-        
         self.customNavigationBar(left: leftButton, right: nil)
-    
         
         logIn = LogInView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 450))
         logIn.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/2)
@@ -68,6 +61,11 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)        
     }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()        
+    }
+    
     
     //MARK: - Button Actions
     
@@ -155,10 +153,6 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
             self.forgotView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight)            
         }        
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()        
-    }
     
     func requestForgotPassword() {
             
@@ -217,8 +211,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         UIView.animate(withDuration: 1) {
             self.forgotView.frame = CGRect(x: 0, y: screenHeight, width: screenWidth, height: screenHeight)
             self.forgotView.removeFromSuperview()
-        }
-        
+        }       
     }
     
     

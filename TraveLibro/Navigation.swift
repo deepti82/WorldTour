@@ -1348,7 +1348,6 @@ class Navigation {
                 else
                 {
                     json  = JSON(data: response.data)
-                    print(json)
                     completion(json)
                 }
             }

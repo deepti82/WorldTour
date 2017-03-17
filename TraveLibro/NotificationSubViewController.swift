@@ -92,7 +92,18 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
             
             request.getNotify(currentUser["_id"].string!, pageNumber: currentPageNumber,  completion: {(response) in
                 
-                DispatchQueue.main.async(execute: {
+                let refreshing = self.refreshControl.isRefreshing
+                DispatchQueue.main.sync(execute: {
+                    
+                    if self.refreshControl.isRefreshing {
+                        self.refreshControl.endRefreshing()
+                    }
+                    
+                })
+                
+//                DispatchQueue.main.async(execute: {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+                    
                     self.isLoading = false
                     self.loader.hideOverlayView()
                     hideBottomLoader()
@@ -125,7 +136,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
                         
                         if !(newResponse.isEmpty) {
                             var indexx = 0
-                            if self.refreshControl.isRefreshing || self.notifications.isEmpty {
+                            if refreshing || self.notifications.isEmpty {
                                 self.notifications = []                                
                                 self.notifications = newResponse
                                 indexx = 0
@@ -133,21 +144,17 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
                             else{
                                 indexx = (self.notifications.count - 1)
                             }
+                            print("\n Reload called \n")
                             self.notifyTableView.reloadData()
                             self.notifyTableView.scrollToRow(at: NSIndexPath.init(row: indexx, section: 0) as IndexPath as IndexPath, at: .none, animated: true)
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: { 
-                                self.notifyTableView.reloadData()
-                            })                            
+//                            DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: { 
+//                                self.notifyTableView.reloadData()
+//                            })                            
                         }                        
                     }
                     else {
                         print("response error!")
-                    }
-                    
-                    if self.refreshControl.isRefreshing {
-                        self.refreshControl.endRefreshing()
-                    }
-                    
+                    }                    
                 })
                 
             })
@@ -290,8 +297,6 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
             fallthrough
         case "photoLike":
             fallthrough
-        case "journeyAccept":
-            fallthrough
         case "journeyMentionComment":
             fallthrough
         case "journeyComment":
@@ -371,7 +376,8 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
             currentCellHeight = (cell?.totalHeight)!
             return cell!
             
-            
+        case "journeyAccept":
+            fallthrough
         case "userFollowing":
             fallthrough
         case "userFollowingResponse":
