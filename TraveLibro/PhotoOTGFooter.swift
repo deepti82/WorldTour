@@ -8,6 +8,7 @@
 
 import UIKit
 import Spring
+import AVFoundation
 
 class PhotoOTGFooter: UIView {
     
@@ -32,6 +33,10 @@ class PhotoOTGFooter: UIView {
     var PhotoOtg:PhotosOTG2!
     var likeCount:Int = 0
     var commentCounts:Int = 0
+    let like =  Bundle.main.path(forResource: "tiny1", ofType: "mp3")!
+    var audioPlayer = AVAudioPlayer()
+
+    
     let border = CALayer()
     let border1 = CALayer()
     override init(frame: CGRect) {
@@ -45,6 +50,18 @@ class PhotoOTGFooter: UIView {
     
     
     func loadViewFromNib() {
+        
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: like))
+//            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryAmbient)
+//            try AVAudioSession.sharedInstance().setActive(true)
+        }
+        catch{
+            print(error)
+        }
+//         audioPlayer = AVAudioPlayer(contentsOfURL: like, error: nil)
+        audioPlayer.prepareToPlay()
+        
         let bundle = Bundle(for: type(of: self))
         let nib = UINib(nibName: "PhotoOTGFooter", bundle: bundle)
         let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
@@ -203,7 +220,7 @@ class PhotoOTGFooter: UIView {
     }
     
     @IBAction func sendLikes(_ sender: UIButton) {
-        
+        audioPlayer.play()
         likeButton.animation = "pop"
         likeButton.velocity = 2
         likeButton.force = 2

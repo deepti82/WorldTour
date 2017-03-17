@@ -107,7 +107,6 @@ class NearMeListViewController: UIViewController, UITableViewDataSource, UITable
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "nearMeList", for: indexPath) as! NearMeListCell
                
-        
         cell.backgroundColor = UIColor.clear
         cell.contentView.backgroundColor = UIColor.white.withAlphaComponent(0.8)
         cell.contentView.layer.cornerRadius = 10
@@ -197,4 +196,5 @@ class NearMeListCell: UITableViewCell {
     @IBOutlet weak var listAddress: UILabel!
     @IBOutlet weak var starStackView: UIStackView!
     @IBOutlet var stars: [UIButton]!
+    @IBOutlet weak var shadowView: UIView!
 }

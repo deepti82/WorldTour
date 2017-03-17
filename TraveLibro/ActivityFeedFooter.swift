@@ -8,6 +8,7 @@
 
 import UIKit
 import Spring
+import AVFoundation
 
 class ActivityFeedFooter: UIView {
     
@@ -32,7 +33,8 @@ class ActivityFeedFooter: UIView {
     @IBOutlet weak var commentCount: UILabel!
     var topLayout:VerticalLayout!
     var type="ActivityFeeds"
-    
+    let like =  Bundle.main.path(forResource: "tiny1", ofType: "mp3")!
+    var audioPlayer = AVAudioPlayer()
     var likeCount:Int = 0
     var commentCounts:Int = 0
     var reviewCount:Int = 0
@@ -71,6 +73,18 @@ class ActivityFeedFooter: UIView {
         let tapout1 = UITapGestureRecognizer(target: self, action: #selector(ActivityFeedFooter.showLike(_:)))
         tapout1.numberOfTapsRequired = 1
         likeViewLabel.addGestureRecognizer(tapout1)
+        
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: like))
+            //            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryAmbient)
+            //            try AVAudioSession.sharedInstance().setActive(true)
+        }
+        catch{
+            print(error)
+        }
+        //         audioPlayer = AVAudioPlayer(contentsOfURL: like, error: nil)
+        audioPlayer.prepareToPlay()
+
         
     }
     func showLike(_ sender: UITapGestureRecognizer) {
@@ -197,6 +211,7 @@ class ActivityFeedFooter: UIView {
             self.likeButton.tintColor = mainOrangeColor
             
         } else {
+            self.likeButton.setImage(UIImage(named: "likeButton"), for: .normal)
             self.likeButton.tag = 0
             self.likeButton.tintColor = mainBlueColor
         }
@@ -205,7 +220,7 @@ class ActivityFeedFooter: UIView {
     @IBAction func sendLikes(_ sender: UIButton) {
         
         if currentUser != nil {
-            
+            audioPlayer.play()
             likeButton.animation = "pop"
             likeButton.velocity = 2
             likeButton.force = 2
