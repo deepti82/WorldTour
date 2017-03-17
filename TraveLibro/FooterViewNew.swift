@@ -92,6 +92,7 @@ class FooterViewNew: UIView {
         if currentUser != nil {
             request.getUser(user.getExistingUser(), completion: {(request) in
                 DispatchQueue.main.async {
+                    popularView = "activity"
                     currentUser = request["data"]
                     let vc = storyboard!.instantiateViewController(withIdentifier: "activityFeeds") as! ActivityFeedsController
                     vc.displayData = "activity"

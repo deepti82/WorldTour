@@ -99,6 +99,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     }
     
     func optionsAction(_ sender: UIButton) {
+        
         let optionsController = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
         
         optionsController.addAction(UIAlertAction(title: "Edit Category", style: .default, handler: { action -> Void in
@@ -777,6 +778,11 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
 
     
     func getAllPosts(_ posts: [JSON]) {
+        
+        if endJourneyView != nil {
+            endJourneyView.removeFromSuperview()
+        }
+        
         for post in posts {
             if post["type"].string! == "join" {
                 if !self.prevPosts.contains(post) {
@@ -798,7 +804,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
             }
         }
         print("lets go \(jouurneyToShow)")
-        if jouurneyToShow["endTime"] != nil {
+        if whichJourney == "end" {
             endJourneyView = EndJourneyMyLife(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 329))
             
             if jouurneyToShow["post"].count > 0 {
@@ -1031,11 +1037,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         super.viewDidLoad()
         loader.showOverlay(self.view)
         
-//        if currentUser["_id"].stringValue == userm.getExistingUser() {
-//            addPostsButton.isHidden = false
-//        }else{
-//            addPostsButton.isHidden = true
-//        }
+        
 
         ToastView.appearance().backgroundColor = endJourneyColor
 
@@ -1110,7 +1112,13 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         self.mainFooter.travelLifeIcon.tintColor = mainOrangeColor
     
         infoButton.isHidden = true
-        addPostsButton.isHidden = true
+//        addPostsButton.isHidden = true
+        
+        if currentUser["_id"].stringValue == userm.getExistingUser() {
+            addPostsButton.isHidden = false
+        }else{
+            addPostsButton.isHidden = true
+        }
         
         self.view.bringSubview(toFront: infoButton)
         self.view.bringSubview(toFront: addPostsButton)

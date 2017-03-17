@@ -152,11 +152,18 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         self.navigationController?.isNavigationBarHidden = false
         getDarkBackGround(self)
         profilePicture.contentMode = .scaleAspectFit
+        
+        if displayData == "search" {
+            createNavigation()
+        }else{
+    
         let rightButton = UIButton()
         rightButton.setImage(UIImage(named: "search_toolbar"), for: UIControlState())
         rightButton.addTarget(self, action: #selector(ProfileViewController.search(_:)), for: .touchUpInside)
         rightButton.frame = CGRect(x: -10, y: 8, width: 30, height: 30)
         self.setOnlyRightNavigationButton(rightButton)
+        }
+        
         let customView = UIView(frame:(CGRect(x: 0, y: self.view.frame.size.height - 75, width: self.view.frame.width, height: 75)))
         self.orangeTab = OrangeButton(frame: CGRect.zero)
         orangeTab.orangeButtonTitle.titleLabel?.font = UIFont(name: "Avenir-Heavy", size: 16)
@@ -174,6 +181,30 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         MAMStack.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.MAMStacKTap(_:))))
         locationIcon.text = String(format: "%C", faicon["location"]!)
         MAMButton.transform = MAMButton.transform.rotated(by: CGFloat(M_PI))
+    }
+    
+    func createNavigation() {
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        
+        self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Avenir-Medium", size: 18)!]
+        let leftButton = UIButton()
+        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
+        leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
+
+        leftButton.imageView?.image = leftButton.imageView?.image!.withRenderingMode(.alwaysTemplate)
+        leftButton.imageView?.tintColor = UIColor.white
+//        leftButton.addTarget(self, action: #selector(self.openSideMenu(_:)), for: .touchUpInside)
+        
+        
+        let rightButton = UIButton()
+        rightButton.setImage(UIImage(named: "search_toolbar"), for: UIControlState())
+//        rightButton.addTarget(self, action: #selector(self.searchTop(_:)), for: .touchUpInside)
+        rightButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        
+            self.customNavigationBar(left: leftButton, right: nil)
+            
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {

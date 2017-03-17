@@ -91,7 +91,6 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
             self.title = "Popular Itinerary"
         }else{
             self.title = selectedHash
-
         }
         
         self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Avenir-Medium", size: 18)!]
@@ -116,9 +115,6 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
         }
         self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
-    
-    
-    
     
     func getActivity(pageNumber: Int) {
         print("notification called \(displayData)")
