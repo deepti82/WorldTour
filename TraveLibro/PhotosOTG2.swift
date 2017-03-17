@@ -192,6 +192,13 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
             footerView.setLikeCount(post.post_likeCount)
             footerView.setCommentCount(post.post_commentCount)
             footerView.setLikeSelected(post.post_likeDone)
+            
+            if post.postCreator["_id"].stringValue == user.getExistingUser() {
+                footerView.optionButton.isHidden = false
+            }else{
+                footerView.optionButton.isHidden = true
+            }
+            
             self.addSubview(footerView)
 //            dropView = DropShadow1(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 2))
 //            self.addSubview(dropView)

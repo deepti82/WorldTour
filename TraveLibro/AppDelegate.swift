@@ -408,6 +408,12 @@ func addTopBorder(_ color: UIColor, view: UIView, borderWidth: CGFloat) {
     view.layer.addSublayer(border)
 }
 
+func noInternet(view: UIView) {
+    var uploadingView: UploadingToCloud!
+    uploadingView = UploadingToCloud(frame: CGRect(x: 0, y: 64, width: navigation.view.frame.width, height: 23))
+    uploadingView.uploadText.text = "No internet connection."
+    view.addSubview(uploadingView)
+}
 
 func showBottomLoader(onView: UIView) {
     

@@ -130,11 +130,11 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
                     
                     
                     let maxheight = screenHeight - ( 60 + 113 )
-                    if(finalHeight > maxheight) {
-                        self.mainPhoto.frame.size.height = maxheight
-                    } else {
-                        self.mainPhoto.frame.size.height = finalHeight
-                    }
+//                    if(finalHeight > maxheight) {
+//                        self.mainPhoto.frame.size.height = maxheight
+//                    } else {
+//                        self.mainPhoto.frame.size.height = finalHeight
+//                    }
                 }
                 
                 self.mainPhoto.frame.size.width = self.frame.width
@@ -267,10 +267,13 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
     func middleLayoout(feed:JSON) {
         switch feed["type"].stringValue {
         case "on-the-go-journey","ended-journey":
-            activityFeedImage = ActivityFeedImageView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 500))
+            activityFeedImage = ActivityFeedImageView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.width))
             activityFeedImage.fillData(feed: feed)
             let tapRecognizer = UITapGestureRecognizer()
             tapRecognizer.numberOfTapsRequired = 1
+            if displayData == "popular" {
+                activityFeedImage.OnTheGOText.isHidden = true
+            }
             tapRecognizer.addTarget(self, action: #selector(self.toggleFullscreen))
             activityFeedImage.addGestureRecognizer(tapRecognizer)
             
@@ -287,7 +290,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
                 popularItinerary.fillData(feed: feed)
                 self.addSubview(popularItinerary)
             }else{
-                activityQuickItinerary = ActivityFeedQuickItinerary(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 500))
+                activityQuickItinerary = ActivityFeedQuickItinerary(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.width))
                 let tapRecognizer = UITapGestureRecognizer()
                 tapRecognizer.numberOfTapsRequired = 1
                 tapRecognizer.addTarget(self, action: #selector(self.gotoDetail))
@@ -307,7 +310,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
                 self.addSubview(popularItinerary)
                 
             }else{
-                activityDetailItinerary = ActivityDetailItinerary(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 500))
+                activityDetailItinerary = ActivityDetailItinerary(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.width))
                 activityDetailItinerary.fillData(feed: feed)
                 self.addSubview(activityDetailItinerary)
                 let tapRecognizer = UITapGestureRecognizer()

@@ -734,7 +734,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         })
         
     }
-
+    //MARK: - getone journey added.
     func getOneJourney() {
         request.getJourneyById(fromOutSide, completion: {(response) in
             DispatchQueue.main.async(execute: {
@@ -807,6 +807,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
             endJourneyView = EndJourneyMyLife(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 329))
             
             if jouurneyToShow["post"].count > 0 {
+                
                 endJourneyView.placeLabel.text = jouurneyToShow["post"][jouurneyToShow["post"].count - 1]["city"].string
 
             }else{
@@ -1047,12 +1048,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         self.setTopNavigation(text: "On The Go")
         globalNewTLViewController = self;
         getDarkBackGroundNew(self)
-        if fromOutSide == "" {
-            getJourney()
-        }else{
-            getOneJourney()
-        }
-        mainScroll.delegate = self
+                mainScroll.delegate = self
         
         
         
@@ -1113,10 +1109,18 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         infoButton.isHidden = true
 //        addPostsButton.isHidden = true
         
-        if currentUser["_id"].stringValue == userm.getExistingUser() {
-            addPostsButton.isHidden = false
+        if fromOutSide == "" {
+            getJourney()
         }else{
             addPostsButton.isHidden = true
+            getOneJourney()
+        }
+
+        
+        if fromOutSide != "" {
+            addPostsButton.isHidden = true
+        }else{
+            addPostsButton.isHidden = false
         }
         
         self.view.bringSubview(toFront: infoButton)
@@ -2335,19 +2339,27 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         otgView.addBuddiesButton.isHidden = true
         otgView.closeBuddies.isHidden = true
         infoButton.isHidden = true
-        addPostsButton.isHidden = false
+//        addPostsButton.isHidden = false
 //        otgView.lineThree.isHidden = false
         
-                if currentUser["_id"].stringValue == userm.getExistingUser() {
-                    if fromType == "ended-journey" {
-                        toolbarView.isHidden = true
-                    }else{
-
-                    toolbarView.isHidden = false
-                    }
-                }else{
-                    toolbarView.isHidden = true
-                }
+        
+        if fromOutSide == "" {
+            toolbarView.isHidden = false
+        }else{
+            toolbarView.isHidden = true
+        }
+        
+        
+//                if currentUser["_id"].stringValue == userm.getExistingUser() {
+//                    if fromType == "ended-journey" {
+//                        toolbarView.isHidden = true
+//                    }else{
+//
+//                    toolbarView.isHidden = false
+//                    }
+//                }else{
+//                    toolbarView.isHidden = true
+//                }
 
         
     }
