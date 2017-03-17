@@ -20,10 +20,6 @@ class CategoriseCheckInViewController: UIViewController, UICollectionViewDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
-//       setCheckInNavigationBarItem(addCheckIn)
-        
         let leftButton = UIButton()
         leftButton.setImage(UIImage(named: "close_fa"), for: UIControlState())
         leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)

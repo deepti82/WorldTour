@@ -148,7 +148,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
             self.window?.rootViewController = slideMenuController
             nvc.navigationBar.barTintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 0.1)
             nvc.navigationBar.barStyle = .blackTranslucent
-            nvc.navigationBar.isTranslucent = true
+            nvc.navigationBar.isTranslucent = false
             nvc.delegate = self
             
 //            globalNavigationController = nvc
@@ -174,7 +174,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
                     }
                     nvc.navigationBar.barTintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 0.1)
                     nvc.navigationBar.barStyle = .blackTranslucent
-                    nvc.navigationBar.isTranslucent = true
+                    nvc.navigationBar.isTranslucent = false
                     nvc.delegate = self
                     
 //                    globalNavigationController = nvc

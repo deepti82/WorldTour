@@ -43,16 +43,6 @@ class ListPhotosViewController: UIViewController {
         
     }
     
-    
-    override func viewWillAppear(_ animated: Bool) {
-        print("navigationBar")
-        self.navigationController?.navigationBar.isTranslucent = false
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        self.navigationController?.navigationBar.isTranslucent = true
-    }
-    
     func getJourneyPhotos() {
         loader.hideOverlayView()
         print("in list view \(type)")

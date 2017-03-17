@@ -53,14 +53,10 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        print("\n istranslucent : \(self.navigationController?.navigationBar.isTranslucent)")
-        print("in appear")
-            self.layout.removeAll()
-            displayData = popularView
-            createNavigation()
-            getActivity(pageNumber: 1)
-        
-        
+        self.layout.removeAll()
+        displayData = popularView
+        createNavigation()
+        getActivity(pageNumber: 1)
         print("display data : \(displayData) : \(checkpoint)")
         NotificationCenter.default.addObserver(self, selector: #selector(globalActivityFeedsController.demonote(_:)), name: NSNotification.Name(rawValue: "UPLOAD_ITINERARY"), object: nil)
         globalNavigationController = self.navigationController
