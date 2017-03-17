@@ -77,9 +77,6 @@ class QuickItineraryPreviewViewController: UIViewController {
             
         }
         
-        
-        
-        
         self.createNavigation()
         previewLayout = VerticalLayout(width:self.view.frame.width)
         previewScroll.addSubview(previewLayout)

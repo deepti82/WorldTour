@@ -18,6 +18,7 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
     var scrollView:UIScrollView!
     var rateButton:RatingCheckIn!
     var dropView: DropShadow1!
+    var journeyUSer: String = ""
     func generatePost(_ post:Post) {
         
         self.layer.cornerRadius = 5.0
@@ -208,6 +209,13 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
                 rateButton = RatingCheckIn(frame: CGRect(x: 0, y: 0, width: width, height: 150))
                 rateButton.photosOtg = self;
                 rateButton.whichView = "otg"
+                print("]]]]]]]]]]] \(post.jsonPost)")
+                rateButton.journeyUser = self.journeyUSer
+//                if post.jsonPost["journeyCreator"]["_id"].stringValue != user.getExistingUser() {
+//                    rateButton.isUserInteractionEnabled = false
+//                }else{
+//                    rateButton.isUserInteractionEnabled = true
+//                }
                 rateButton.rateCheckInLabel.text = "Rate " + post.post_location
                 print("helloshowmejsonpost")
                 print(post.jsonPost)

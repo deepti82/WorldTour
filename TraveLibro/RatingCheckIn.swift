@@ -19,6 +19,7 @@ class RatingCheckIn: UIView {
     let moodArr = ["Disappointed", "Sad", "Good", "Super", "In Love"]
     let imageArr = ["disapointed", "sad", "good", "superface (1)", "love"]
     var whichView:String = ""
+    var journeyUser:String = ""
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -54,7 +55,11 @@ class RatingCheckIn: UIView {
     }
     
     @IBAction func ratePost(_ sender: Any) {
-        if isUserMe(user: currentUser["_id"].stringValue) {
+        print("--------------")
+        print(isUserMe(user: currentUser["_id"].stringValue))
+        print(self.journeyUser)
+        print(currentUser["_id"].stringValue)
+        if (isUserMe(user: currentUser["_id"].stringValue)) && (self.journeyUser == currentUser["_id"].stringValue) {
             let tapout = UITapGestureRecognizer(target: self, action: #selector(RatingCheckIn.reviewTapOut(_:)))
             
             backgroundReview = UIView(frame: (globalNavigationController.topViewController?.view.frame)!)

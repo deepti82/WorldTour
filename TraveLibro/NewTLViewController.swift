@@ -1242,6 +1242,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         let checkIn = PhotosOTG2(width: layout.frame.width)
         checkIn.generatePost(post)
         checkIn.newTl = self
+        checkIn.journeyUSer = myJourney["journeyCreator"]["_id"].stringValue
         checkIn.scrollView = mainScroll
         layout.addSubview(checkIn)
         addHeightToLayout(height: checkIn.frame.height + 50)
