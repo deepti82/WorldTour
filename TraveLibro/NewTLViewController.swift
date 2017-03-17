@@ -445,7 +445,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
             label.mentionColor = UIColor(red: 238.0/255, green: 85.0/255, blue: 96.0/255, alpha: 1)
             label.URLColor = UIColor(red: 85.0/255, green: 238.0/255, blue: 151.0/255, alpha: 1)
             label.handleMentionTap {
-                checkIn.animation.makeY(-25).animate(0.0)
+                checkIn.animation.makeY(50).animate(0.0)
                 let actionSheetControllerIOS8: UIAlertController = UIAlertController(title: "Mention", message: $0, preferredStyle: .alert)
                 let cancelActionButton: UIAlertAction = UIAlertAction(title: "OK", style: .default) {action -> Void in}
                 actionSheetControllerIOS8.addAction(cancelActionButton)
@@ -485,7 +485,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
             checkIn.mainPhoto.addGestureRecognizer(likeMainPhoto)
             checkIn.mainPhoto.isUserInteractionEnabled = true
             //            print("photobar count: \(photos.count)")
-            
             var count = 4
             if photos.count < 5 {
                 

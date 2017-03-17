@@ -209,24 +209,24 @@ public class Post {
             retText.append(getRegularString(string: post.post_thoughts, size: 15))
             if(post.post_location != nil && post.post_location != "") {
 //                retText = retText + " at " + post.post_location
-                retText.append(getRegularString(string: post.post_thoughts, size: 15))
+//                retText.append(getRegularString(string: post.post_thoughts, size: 15))
                 retText.append(getRegularString(string: " at ", size: 15))
                 retText.append(getBoldString(string: post.post_location, size: 15))
                 if(post.buddyJson.count == 1) {
 //                    retText = retText + " with " + post.buddyJson[0]["name"].stringValue
-                    retText.append(getRegularString(string: post.post_thoughts, size: 15))
+//                    retText.append(getRegularString(string: post.post_thoughts, size: 15))
                     retText.append(getRegularString(string: " with ", size: 15))
                     retText.append(getBoldString(string: post.buddyJson[0]["name"].stringValue, size: 15))
                 } else if (post.buddyJson.count == 2) {
-                    retText.append(getRegularString(string: post.post_thoughts, size: 15))
-                    retText.append(getRegularString(string: "with ", size: 15))
+//                    retText.append(getRegularString(string: post.post_thoughts, size: 15))
+                    retText.append(getRegularString(string: " with ", size: 15))
                     retText.append(getBoldString(string: post.buddyJson[0]["name"].stringValue, size: 15))
                     retText.append(getRegularString(string: " and ", size: 15))
                     retText.append(getBoldString(string: post.buddyJson[1]["name"].stringValue, size: 15))
 //                    retText = retText + " with " + post.buddyJson[0]["name"].stringValue + " and " + post.buddyJson[1]["name"].stringValue
                 } else if (post.buddyJson.count > 2) {
                     let n = post.buddyJson.count - 1
-                    retText.append(getRegularString(string: post.post_thoughts, size: 15))
+//                    retText.append(getRegularString(string: post.post_thoughts, size: 15))
                     retText.append(getRegularString(string: " with ", size: 15))
                     retText.append(getBoldString(string: post.buddyJson[0]["name"].stringValue, size: 15))
                     retText.append(getRegularString(string: " and ", size: 15))

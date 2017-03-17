@@ -13,6 +13,7 @@ import EventKitUI
 import BSImagePicker
 import Photos
 import CoreLocation
+var photos = PhotosOTG()
 
 extension NewTLViewController {
     
@@ -605,7 +606,7 @@ extension NewTLViewController {
         
     }
     func scrollToBottom() {
-        let bottomOffset = CGPoint(x: 0, y: mainScroll.contentSize.height - mainScroll.bounds.size.height)
+        let bottomOffset = CGPoint(x: 0, y: mainScroll.contentSize.height - mainScroll.bounds.size.height - 130)
         mainScroll.setContentOffset(bottomOffset, animated: true)
     }
     
