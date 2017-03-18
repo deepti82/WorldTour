@@ -214,53 +214,22 @@ func openSingleVideo(_ sender: AnyObject) {
 
 
 func footerLayout(feed:JSON) {
-    if(feed["type"].stringValue == "ended-journey" || feed["type"].stringValue == "quick-itinerary" || feed["type"].stringValue == "detail-itinerary" || feed["type"].stringValue == "on-the-go-journey") {
-        print("in review")
-        
-        if displayData == "popitinerary" {
-            footerView = ActivityFeedFooterBasic(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 65))
-            
-            //            footerView.postTop = feed
-            footerView.topLayout = self
-            footerView.localLifeTravelImage.isHidden = true
-            footerView.type = ""
-            
-            footerView.setCommentCount(feed["commentCount"].intValue)
-            footerView.setLikeCount(feed["likeCount"].intValue)
-            footerView.setView(feed:feed)
-            self.addSubview(footerView)
-            
-        }else{
-            footerViewReview = ActivityFeedFooter(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 65))
-            footerViewReview.postTop = feed
-            footerViewReview.topLayout = self
-            footerViewReview.type = ""
-            footerViewReview.setCommentCount(footerViewReview.postTop["commentCount"].intValue)
-            footerViewReview.setLikeCount(footerViewReview.postTop["likeCount"].intValue)
-            footerViewReview.setReviewCount(count: footerViewReview.postTop["userReviewCount"].intValue)
-            //footerViewReview.reviewButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ActivityFeedsLayout.rateButtonTapped(_:))))
-            
-            self.addSubview(footerViewReview)
-            //            dropView = DropShadow2(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 2))
-            //            self.addSubview(dropView)
-        }
-        
-        
-    } else {
         print("in footer")
         footerView = ActivityFeedFooterBasic(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 65))
         
         //            footerView.postTop = feed
         footerView.topLayout = self
         footerView.type = ""
-        
+//        footerView.localLifeTravelImage.image = UIImage(named: "travel_life")
+//
+//        footerView.localLifeTravelImage.tintColor = mainOrangeColor
+
         footerView.setCommentCount(feed["commentCount"].intValue)
         footerView.setLikeCount(feed["likeCount"].intValue)
         footerView.setView(feed:feed)
         self.addSubview(footerView)
         //            dropView = DropShadow2(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 2))
         //            self.addSubview(dropView)
-    }
     
     
 }
@@ -272,9 +241,7 @@ func middleLayoout(feed:JSON) {
         activityFeedImage.fillData(feed: feed)
         let tapRecognizer = UITapGestureRecognizer()
         tapRecognizer.numberOfTapsRequired = 1
-        if displayData == "popular" {
-            activityFeedImage.OnTheGOText.isHidden = true
-        }
+        activityFeedImage.OnTheGOText.isHidden = true
         tapRecognizer.addTarget(self, action: #selector(self.toggleFullscreen))
         activityFeedImage.addGestureRecognizer(tapRecognizer)
         
@@ -431,7 +398,7 @@ func toggleFullscreen(_ sender: UIButton){
             
             print(feeds["_id"])
             print(feeds["type"])
-            globalActivityFeedsController.navigationController!.pushViewController(controller, animated: false)
+            globalPopularController.navigationController!.pushViewController(controller, animated: false)
             
             //            globalNewTLViewController.toolbarView.isHidden = true
             //            globalNewTLViewController.hideVisual.isHidden = true
@@ -462,7 +429,7 @@ func addPhotoToLayout(_ post: JSON, startIndex: Int) {
         photosButton.frame.size.width = 82
         let urlStr = getImageURL(post["photos"][i]["name"].stringValue, width: 300)
         photosButton.hnk_setImageFromURL(urlStr)
-        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action: #selector(ActivityFeedsLayout.openSinglePhoto(_:)))
+        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action: #selector(PopularLayout.openSinglePhoto(_:)))
         photosButton.isUserInteractionEnabled = true
         photosButton.addGestureRecognizer(tapGestureRecognizer)
         //photosButton.layer.cornerRadius = 5.0
@@ -512,13 +479,13 @@ func rateButtonTapped(_ sender: AnyObject) {
     
     closeButton.titleLabel?.font = UIFont(name: "FontAwesome", size: 14)
     closeButton.setTitle(close, for: UIControlState())
-    closeButton.addTarget(self, action: #selector(ActivityFeedsLayout.exitDialog(_:)), for: .touchUpInside)
+    closeButton.addTarget(self, action: #selector(PopularLayout.exitDialog(_:)), for: .touchUpInside)
     blackBg.addSubview(closeButton)
     
     let ratingDialog = AddRating(frame: CGRect(x: 0, y: 0, width: activityFeed.view.frame.width - 40, height: 400))
     ratingDialog.center = CGPoint(x: activityFeed.view.frame.width/2, y: activityFeed.view.frame.height/2)
     
-    ratingDialog.postReview.addTarget(self, action: #selector(ActivityFeedsLayout.closeDialog(_:)), for: .touchUpInside)
+    ratingDialog.postReview.addTarget(self, action: #selector(PopularLayout.closeDialog(_:)), for: .touchUpInside)
     blackBg.addSubview(ratingDialog)
     
 }

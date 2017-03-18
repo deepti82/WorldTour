@@ -137,7 +137,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
         
         let nationality = storyboard.instantiateViewController(withIdentifier: "nationalityNew") as!AddNationalityNewViewController
         
-        let PJController = storyboard!.instantiateViewController(withIdentifier: "activityFeeds") as! ActivityFeedsController
+        let PJController = storyboard!.instantiateViewController(withIdentifier: "popular") as! PopularController
         PJController.displayData = "popular"
         
         leftViewController.mainViewController = nvc
