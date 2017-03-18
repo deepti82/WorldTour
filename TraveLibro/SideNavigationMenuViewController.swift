@@ -85,11 +85,11 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         let homeController = storyboard!.instantiateViewController(withIdentifier: "Home") as! HomeViewController
         self.homeController = UINavigationController(rootViewController: homeController)
         
-        let PJController = storyboard!.instantiateViewController(withIdentifier: "activityFeeds") as! ActivityFeedsController
+        let PJController = storyboard!.instantiateViewController(withIdentifier: "popular") as! PopularController
         PJController.displayData = "popular"
         self.popJourneysController = UINavigationController(rootViewController: PJController)
         
-        let EDController = storyboard!.instantiateViewController(withIdentifier: "activityFeeds") as! ActivityFeedsController
+        let EDController = storyboard!.instantiateViewController(withIdentifier: "popular") as! PopularController
         
         EDController.displayData = "popitinerary"
         self.exploreDestinationsController = UINavigationController(rootViewController: EDController)

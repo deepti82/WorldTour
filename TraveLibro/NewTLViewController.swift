@@ -1245,7 +1245,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         let checkIn = PhotosOTG2(width: layout.frame.width)
         checkIn.generatePost(post)
         checkIn.newTl = self
-        checkIn.journeyUSer = myJourney["journeyCreator"]["_id"].stringValue
+        checkIn.journeyUser = myJourney["journeyCreator"]["_id"].stringValue
         checkIn.scrollView = mainScroll
         layout.addSubview(checkIn)
         addHeightToLayout(height: checkIn.frame.height + 50)
@@ -1476,6 +1476,10 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
                     let rateButton = RatingCheckIn(frame: CGRect(x: 0, y: -4, width: width, height: 150))
                     rateButton.rateCheckInLabel.text = "Rate \(post["checkIn"]["location"])?"
                     rateButton.rateCheckInButton.addTarget(self, action: #selector(NewTLViewController.addRatingPost(_:)), for: .touchUpInside)
+                    
+                    if myJourney != nil {
+                            rateButton.journeyUser = myJourney["journeyCreator"]["_id"].stringValue
+                    }
                     
                     rateButton.review = post["checkIn"]
                     rateButton.rateCheckInButton.setTitle(post["_id"].string!, for: .normal)

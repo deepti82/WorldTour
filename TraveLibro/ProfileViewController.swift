@@ -157,7 +157,6 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         if displayData == "search" {
             createNavigation()
         }else{
-    
         let rightButton = UIButton()
         rightButton.setImage(UIImage(named: "search_toolbar"), for: UIControlState())
         rightButton.addTarget(self, action: #selector(ProfileViewController.search(_:)), for: .touchUpInside)
@@ -179,6 +178,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         customView.backgroundColor = UIColor.white
         self.view.addSubview(customView)
         orangeTab.orangeButtonTitle.addTarget(self, action: #selector(ProfileViewController.MyLifeDetailsShow(_:)), for: .touchUpInside)
+        
         MAMStack.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.MAMStacKTap(_:))))
         locationIcon.text = String(format: "%C", faicon["location"]!)
         MAMButton.transform = MAMButton.transform.rotated(by: CGFloat(M_PI))

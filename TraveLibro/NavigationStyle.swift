@@ -83,15 +83,15 @@ extension UIViewController {
     func setOnlyRightNavigationButton(_ button: UIButton) {
         
         self.setNavigationBarItem()
-//        self.addLeftBarButtonWithImage(UIImage(named: "menu_left_icon")!)        
-//        let rightBarButton = UIBarButtonItem()
-//        rightBarButton.customView = button
-//        self.navigationItem.rightBarButtonItem = rightBarButton
-//        
-//        //self.addRightBarButtonWithImage(UIImage(named: "ic_notifications_black_24dp")!)
-//        self.slideMenuController()?.removeLeftGestures()
-//        self.slideMenuController()?.removeRightGestures()
-//        self.slideMenuController()?.addLeftGestures()
+        self.addLeftBarButtonWithImage(UIImage(named: "menu_left_icon")!)        
+        let rightBarButton = UIBarButtonItem()
+        rightBarButton.customView = button
+        self.navigationItem.rightBarButtonItem = rightBarButton
+        
+        //self.addRightBarButtonWithImage(UIImage(named: "ic_notifications_black_24dp")!)
+        self.slideMenuController()?.removeLeftGestures()
+        self.slideMenuController()?.removeRightGestures()
+        self.slideMenuController()?.addLeftGestures()
         //        self.slideMenuController()?.addRightGestures()
         
     }

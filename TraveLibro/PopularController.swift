@@ -7,29 +7,223 @@
 //
 
 import UIKit
+var globalPopularController: PopularController!
+class PopularController: UIViewController, UIScrollViewDelegate {
 
-class PopularController: UIViewController {
-
+    @IBOutlet weak var popularScroll: UIScrollView!
+    var layout: VerticalLayout!
+    var feeds: JSON! = []
+    var pageno = 1
+    var loadStatus: Bool = true
+    var mainFooter: FooterViewNew!
+    var displayData: String = "activity"
+    var loader = LoadingOverlay()
+    var uploadingView:UploadingToCloud!
+    var checkpoint = true
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        print("in did load")
+        createNavigation()
+        globalPopularController = self
+        popularScroll.delegate = self
+        getDarkBackGround(self)
+        layout = VerticalLayout(width: screenWidth)
+        popularScroll.addSubview(layout)
+                getActivity(pageNumber: pageno)
+        loader.showOverlay(self.view)
+        
+        self.mainFooter = FooterViewNew(frame: CGRect.zero)
+        self.mainFooter.layer.zPosition = 5
+        self.view.addSubview(self.mainFooter)
+        
+        let i = PostImage()
+        i.uploadPhotos()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.mainFooter.frame = CGRect(x: 0, y: self.view.frame.height - 65, width: self.view.frame.width, height: 65)
     }
-    */
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        displayData = "activity"
+    }
+    
+    func demonote(_ notification: Notification) {
+        print("notification called")
+        if currentUser != nil{
+            displayData = "activity"
+            getActivity(pageNumber: 1)
+        }
+    }
+    
+    func openSideMenu(_ sender: AnyObject) {
+        self.slideMenuController()?.addLeftGestures()
+        self.slideMenuController()?.toggleLeft()
+    }
+    func searchTop(_ sender: AnyObject) {
+        let searchVC = storyboard?.instantiateViewController(withIdentifier: "Search") as! MainSearchViewController
+        globalNavigationController.pushViewController(searchVC, animated: true)
+    }
+    func createNavigation() {
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        if displayData == "activity" {
+            self.title = "Activity Feed"
+        }else if displayData == "popular"{
+            self.title = "Popular Journeys"
+        }else if displayData == "popitinerary" {
+            self.title = "Popular Itinerary"
+        }else{
+            self.title = selectedHash
+        }
+        
+        self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Avenir-Medium", size: 18)!]
+        let leftButton = UIButton()
+        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        leftButton.setImage(UIImage(named: "menu_left_icon"), for: UIControlState())
+        leftButton.imageView?.image = leftButton.imageView?.image!.withRenderingMode(.alwaysTemplate)
+        leftButton.imageView?.tintColor = UIColor.white
+        leftButton.addTarget(self, action: #selector(self.openSideMenu(_:)), for: .touchUpInside)
+        
+        
+        let rightButton = UIButton()
+        rightButton.setImage(UIImage(named: "search_toolbar"), for: UIControlState())
+        rightButton.addTarget(self, action: #selector(self.searchTop(_:)), for: .touchUpInside)
+        rightButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        if displayData != "popular" && displayData != "popitinerary" {
+            self.customNavigationBar(left: leftButton, right: rightButton)
+            
+        }else{
+            self.customNavigationBar(left: leftButton, right: nil)
+            
+        }
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
+    func getActivity(pageNumber: Int) {
+        print("notification called \(displayData)")
+        if checkpoint {
+            checkpoint = false
+        }
+        
+        if displayData == "popular" {
+            let userr = User()
+            
+            request.getPopularJourney(userId: userr.getExistingUser(), pagenumber: pageNumber, completion: {(request) in
+                DispatchQueue.main.async(execute: {
+                    self.loader.hideOverlayView()
+                    if request["data"] != "" {
+                        self.loadStatus = true
+                        for post in request["data"].array! {
+                            self.feeds.arrayObject?.append(post)
+                            let checkIn = PopularLayout(width: self.view.frame.width)
+                            checkIn.feeds = post
+                            checkIn.scrollView = self.popularScroll
+                            checkIn.createProfileHeader(feed: post)
+                            checkIn.popular = self
+                            self.layout.addSubview(checkIn)
+                            self.addHeightToLayout()
+                            
+                        }
+                        self.addHeightToLayout()
+                    }else{
+                        self.loadStatus = false
+                    }
+                })
+            })
+            
+        } else if displayData == "popitinerary" {
+            let userr = User()
+            
+            request.getPopularItinerary(userId: userr.getExistingUser(), pagenumber: pageNumber, completion: {(request) in
+                DispatchQueue.main.async(execute: {
+                    self.loader.hideOverlayView()
+                    if request["data"] != "" {
+                        self.loadStatus = true
+                        for post in request["data"].array! {
+                            self.feeds.arrayObject?.append(post)
+                            let checkIn = PopularLayout(width: self.view.frame.width)
+                            checkIn.displayData = self.displayData
+                            checkIn.feeds = post
+                            checkIn.scrollView = self.popularScroll
+                            checkIn.createProfileHeader(feed: post)
+                            checkIn.popular = self
+                            self.layout.addSubview(checkIn)
+                            self.addHeightToLayout()
+                            
+                        }
+                        
+                        self.addHeightToLayout()
+                    }else{
+                        self.loadStatus = false
+                    }
+                })
+            })
+        }
+        
+    }
+    
+    func addHeightToLayout() {
+        self.layout.layoutSubviews()
+        self.popularScroll.contentSize = CGSize(width: self.layout.frame.width, height: self.layout.frame.height + 60)
+        
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if isConnectedToNetwork() {
+            if scrollView.contentOffset.y >= (scrollView.contentSize.height - scrollView.frame.size.height) {
+                if loadStatus {
+                    print("in load more of data.")
+                    pageno = pageno + 1
+                    getActivity(pageNumber: pageno)
+                }
+            }
+        }
+        for postView in layout.subviews {
+            if(postView is ActivityFeedsLayout) {
+                let feeds = postView as! ActivityFeedsLayout
+                if(feeds.videoContainer != nil) {
+                    feeds.videoToPlay()
+                }
+            }
+        }
+        
+        
+        if scrollView.panGestureRecognizer.translation(in: scrollView).y < 0 {
+            hideHeaderAndFooter(true);
+        }
+        else{
+            hideHeaderAndFooter(false);
+        }
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
+    func hideHeaderAndFooter(_ isShow:Bool) {
+        if(isShow) {
+            //            scrollTopConstraint.constant = 0
+            
+            self.navigationController?.setNavigationBarHidden(true, animated: true)
+            
+            self.mainFooter.frame.origin.y = self.view.frame.height + 95
+        } else {
+            //            scrollTopConstraint.constant = (self.navigationController?.navigationBar.frame.size.height)!
+            
+            self.navigationController?.setNavigationBarHidden(false, animated: true)
+            
+            self.mainFooter.frame.origin.y = self.view.frame.height - 65
+            
+        }
+    }
+
 
 }
