@@ -78,7 +78,7 @@ class EditSettingsViewController: UIViewController, UIWebViewDelegate {
              
             let aboutUsWebView = UIWebView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight-65))
             if whichView == "AboutUsView" {
-                aboutUsWebView.frame = CGRect(x: -5, y: -15, width: screenWidth+5, height: screenHeight)
+                aboutUsWebView.frame = CGRect(x: -5, y: -64, width: screenWidth+5, height: screenHeight)
             }
             aboutUsWebView.delegate = self
             aboutUsWebView.scalesPageToFit = true
