@@ -308,6 +308,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     }
     
     func newPost(_ sender: UIButton) {
+        hideHeaderAndFooter(true)
         hideAddActivity()
         let post  = Post();
         
@@ -518,7 +519,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         
         checkIn.tag = 11
         layout.addSubview(checkIn)
-        addHeightToLayout(height: checkIn.frame.height + 50.0)
+        hideHeaderAndFooter(true)
+        addHeightToLayout(height: checkIn.frame.height + 50)
         
         
     }
@@ -1816,6 +1818,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     
     func removeHeightFromLayout(_ height: CGFloat) {
         addHeightToLayout(height:height)
+        hideHeaderAndFooter(false)
     }
     
     func configurePost(_ post: JSON) {

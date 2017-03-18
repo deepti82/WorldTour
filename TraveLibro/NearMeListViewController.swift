@@ -21,7 +21,7 @@ class NearMeListViewController: UIViewController, UITableViewDataSource, UITable
     var long: Double!
     let locationManager = CLLocationManager()
     let border = CALayer()
-    
+    let layer1 = CAShapeLayer()
   
    
     @IBOutlet weak var nearMeListTableView: UITableView!
@@ -108,17 +108,26 @@ class NearMeListViewController: UIViewController, UITableViewDataSource, UITable
         let cell = tableView.dequeueReusableCell(withIdentifier: "nearMeList", for: indexPath) as! NearMeListCell
                
         cell.backgroundColor = UIColor.clear
+        
+        cell.contentView.layer.shadowColor = UIColor.black.cgColor
+        cell.contentView.layer.shadowOffset = CGSize(width: 2.0, height: 5.0)
+        cell.contentView.layer.shadowOpacity = 1.0
         cell.contentView.backgroundColor = UIColor.white.withAlphaComponent(0.8)
         cell.contentView.layer.cornerRadius = 10
         cell.contentView.layer.masksToBounds = true
-//        cell.view.layer.cornerRadius = 10
-//        let width = CGFloat(10)
-//        border.frame = CGRect(x: 0, y: cell.contentView.frame.height - width, width: self.view.frame.size.width, height: cell.contentView.frame.height)
-//        border.borderColor = UIColor(colorLiteralRed: 0/255, green: 0/255, blue: 0/255, alpha: 0.5).cgColor
-//        border.borderWidth = width
-//        cell.contentView.layer.addSublayer(border)
-//        cell.contentView.layer.masksToBounds = true
-
+        
+        
+        
+//        let shadowPath = UIBezierPath(rect: CGRect(x: 0, y: cell.contentView.frame.size.height - 2, width: screenWidth, height: 4))
+//        cell.contentView.layer.cornerRadius = 10
+//        cell.contentView.backgroundColor = UIColor.white.withAlphaComponent(0.8)
+//        cell.contentView.isHidden = true
+//        self.layer1.masksToBounds = true
+//        self.layer1.shadowColor = UIColor.black.cgColor
+//        self.layer1.shadowOffset = CGSize(width: 0.0, height: 5.0)
+//        self.layer1.shadowOpacity = 0.5
+//        self.layer1.shadowPath = shadowPath.cgPath
+//        cell.contentView.layer.addSublayer(self.layer1)
 
         
                for star in cell.stars {
@@ -196,5 +205,4 @@ class NearMeListCell: UITableViewCell {
     @IBOutlet weak var listAddress: UILabel!
     @IBOutlet weak var starStackView: UIStackView!
     @IBOutlet var stars: [UIButton]!
-    @IBOutlet weak var shadowView: UIView!
 }

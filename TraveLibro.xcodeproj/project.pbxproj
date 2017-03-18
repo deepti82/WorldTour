@@ -146,6 +146,7 @@
 		845C432C1E2FB14800800F51 /* ActivityFeedFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 845C432B1E2FB14800800F51 /* ActivityFeedFooter.xib */; };
 		845C432E1E2FCE4200800F51 /* ActivityFeedFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845C432D1E2FCE4200800F51 /* ActivityFeedFooter.swift */; };
 		8480F2851E7BDD4900D54FEB /* tiny1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8480F2841E7BDD4900D54FEB /* tiny1.mp3 */; };
+		8480F2871E7C336300D54FEB /* 100_100.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8480F2861E7C336300D54FEB /* 100_100.gif */; };
 		848DE53E1E791A55001CCDCF /* profilePicNavigation.xib in Resources */ = {isa = PBXBuildFile; fileRef = 848DE53D1E791A55001CCDCF /* profilePicNavigation.xib */; };
 		848DE5401E791AF9001CCDCF /* profilePicnavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848DE53F1E791AF9001CCDCF /* profilePicnavigation.swift */; };
 		84E61E451E377665009A740F /* OtgCardUITextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84E61E441E377665009A740F /* OtgCardUITextView.xib */; };
@@ -669,6 +670,7 @@
 		845C432B1E2FB14800800F51 /* ActivityFeedFooter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivityFeedFooter.xib; sourceTree = "<group>"; };
 		845C432D1E2FCE4200800F51 /* ActivityFeedFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityFeedFooter.swift; sourceTree = "<group>"; };
 		8480F2841E7BDD4900D54FEB /* tiny1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = tiny1.mp3; sourceTree = "<group>"; };
+		8480F2861E7C336300D54FEB /* 100_100.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 100_100.gif; sourceTree = "<group>"; };
 		848DE53D1E791A55001CCDCF /* profilePicNavigation.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = profilePicNavigation.xib; sourceTree = "<group>"; };
 		848DE53F1E791AF9001CCDCF /* profilePicnavigation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = profilePicnavigation.swift; sourceTree = "<group>"; };
 		84E61E441E377665009A740F /* OtgCardUITextView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OtgCardUITextView.xib; sourceTree = "<group>"; };
@@ -1104,6 +1106,7 @@
 				1A944E0B1CCB4567007EB5BD /* Main.storyboard */,
 				1A944E0E1CCB4567007EB5BD /* Assets.xcassets */,
 				8480F2841E7BDD4900D54FEB /* tiny1.mp3 */,
+				8480F2861E7C336300D54FEB /* 100_100.gif */,
 				368A568F1E3CD6E600DC8A19 /* loader.gif */,
 				368A56911E3CDB5C00DC8A19 /* loader2.gif */,
 				443225A71E668332008AB156 /* locallife.mp4 */,
@@ -3001,6 +3004,7 @@
 				840599881E3CDBA6004E0696 /* DropShadow2.xib in Resources */,
 				C2A27A4C1CEDC99E00F74DD1 /* SignUpFullView.xib in Resources */,
 				845C432C1E2FB14800800F51 /* ActivityFeedFooter.xib in Resources */,
+				8480F2871E7C336300D54FEB /* 100_100.gif in Resources */,
 				1A65E7AA1CD72F1F009374DA /* Avenir-Light.ttf in Resources */,
 				C24B455F1D0ACF4F002EA009 /* FilterItineraries.xib in Resources */,
 				C27F6C031CF06A130049F012 /* MomentsTab.xib in Resources */,

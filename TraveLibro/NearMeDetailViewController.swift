@@ -24,6 +24,7 @@ class NearMeDetailViewController: UIViewController {
     let border = CALayer()
     let layer1 = CAShapeLayer()
     
+    @IBOutlet weak var dropShadow: UIView!
     @IBOutlet weak var detailView: UIView!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var distance: UILabel!
@@ -43,6 +44,10 @@ class NearMeDetailViewController: UIViewController {
         
         
         
+        detailView.layer.shadowColor = UIColor.black.cgColor
+        detailView.layer.shadowOffset = CGSize(width: 0.0, height: 5.0)
+        detailView.layer.shadowOpacity = 1.0
+
         
 //        let width = CGFloat(2)
 //        border.frame = CGRect(x: 0, y: self.detailView.frame.height - width, width: self.view.frame.size.width, height: 2)
@@ -58,10 +63,18 @@ class NearMeDetailViewController: UIViewController {
         detailView.backgroundColor = UIColor.white.withAlphaComponent(0.8)
         detailView.isHidden = true
         
-        directions.layer.borderWidth = 2.0
-        directions.layer.borderColor = mainOrangeColor.cgColor
-        directions.layer.cornerRadius = 5.0
-        directions.clipsToBounds = true
+//        let shadowPath = UIBezierPath(rect: CGRect(x: 0, y: self.dropShadow.frame.origin.y, width: screenWidth, height: 4))
+//        self.layer1.masksToBounds = false
+//        self.layer1.shadowColor = UIColor.black.cgColor
+//        self.layer1.shadowOffset = CGSize(width: 0.0, height: 5.0)
+//        self.layer1.shadowOpacity = 0.5
+//        self.layer1.shadowPath = shadowPath.cgPath
+//        self.dropShadow.layer.addSublayer(self.layer1)
+        
+//        directions.layer.borderWidth = 2.0
+//        directions.layer.borderColor = mainOrangeColor.cgColor
+//        directions.layer.cornerRadius = 5.0
+//        directions.clipsToBounds = true
         
         getPlaceDetail()
         setTopNavigation(nearMeType)
@@ -72,6 +85,12 @@ class NearMeDetailViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+    
     }
     
     func getPlaceDetail() {
@@ -100,29 +119,11 @@ class NearMeDetailViewController: UIViewController {
                         self.nearMeAddress = NSMutableAttributedString(string: "Address :", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Heavy", size: 14)!])
                         self.nearMeAddress.append(NSAttributedString(string: " \(self.nearMeDetailJSON["vicinity"].string!)", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: 14)!]))
                         self.address.attributedText = self.nearMeAddress
-                        let shadowPath = UIBezierPath(rect: CGRect(x: 0, y: self.detailView.frame.size.height + self.address.frame.size.height - 2, width: screenWidth, height: 4))
-                        self.layer1.masksToBounds = false
-                        self.layer1.shadowColor = UIColor.black.cgColor
-                        self.layer1.shadowOffset = CGSize(width: 0.0, height: 5.0)
-                        self.layer1.shadowOpacity = 0.5
-                        self.layer1.shadowPath = shadowPath.cgPath
-                        self.detailView.layer.addSublayer(self.layer1)
-//                        let width = CGFloat(2)
-//                        self.border.frame = CGRect(x: 0, y: self.detailView.frame.height + self.address.frame.height - width, width: self.view.frame.size.width, height: 2)
-//                        self.border.borderColor = UIColor(colorLiteralRed: 0/255, green: 0/255, blue: 0/255, alpha: 0.5).cgColor
-//                        self.border.borderWidth = width
-//                        self.detailView.layer.addSublayer(self.border)
-//                        self.detailView.layer.masksToBounds = true
-
+                        
+//
                         
                     } else {
                         self.address.isHidden = true
-//                        let width = CGFloat(2)
-//                        self.border.frame = CGRect(x: 0, y: self.detailView.frame.height - width, width: self.view.frame.size.width, height: 2)
-//                        self.border.borderColor = UIColor(colorLiteralRed: 0/255, green: 0/255, blue: 0/255, alpha: 0.5).cgColor
-//                        self.border.borderWidth = width
-//                        self.detailView.layer.addSublayer(self.border)
-//                        self.detailView.layer.masksToBounds = true
                     }
                     
                     if self.nearMeDetailJSON["international_phone_number"].string != nil && self.nearMeDetailJSON["international_phone_number"].string != "" {
