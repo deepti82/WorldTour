@@ -1915,6 +1915,15 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         })
     }
     
+    func toProfile(_ sender: AnyObject) {
+        print("clickedddd")
+//        print(self.buddiesJson)
+        //        print("clicked \(currentFeed)")
+        //        selectedPeople = currentFeed["user"]["_id"].stringValue
+        //        let profile = storyboard.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
+        //        profile.displayData = "search"
+        //        globalNavigationController.pushViewController(profile, animated: true)
+    }
     
     func newOtg(_ sender: UIButton) {
         
@@ -1929,9 +1938,18 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         //        getScrollView(height, journey: JSON(""))
         
         otgView = startOTGView(frame: CGRect(x: 0, y: 50, width: mainScroll.frame.width, height: mainScroll.frame.height))
-        if myJourney["journeyCreator"]["_id"].stringValue != user.getExistingUser() {
-            otgView.optionsButton.isHidden = true
+        print("ooooooooo\(myJourney)")
+        otgView.buddiesJson = self.addedBuddies
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(self.toProfile(_:)))
+        otgView.dpFriendOne.addGestureRecognizer(tapGestureRecognizer)
+        
+        if myJourney != nil {
+            if myJourney["journeyCreator"]["_id"].stringValue != user.getExistingUser() {
+                otgView.optionsButton.isHidden = true
+            }
         }
+        
         otgView.shoewImage.alpha = 0
 //        otgView.bonVoyageLabel.alpha = 0
         otgView.lineOne.alpha = 0

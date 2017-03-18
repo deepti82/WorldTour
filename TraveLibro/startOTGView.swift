@@ -57,6 +57,7 @@ class startOTGView: UIView {
     @IBOutlet weak var shoewImage: SpringImageView!
     @IBOutlet var buddyStackPictures: [UIImageView]!
     @IBOutlet weak var optionsButton: UIButton!
+    var buddiesJson: [JSON] = []
     
     
     override init(frame: CGRect) {
@@ -78,6 +79,15 @@ class startOTGView: UIView {
         drawLineView4.isHidden = true
         
         closeBuddies.isHidden = true
+        
+        //MARK: - profile page
+        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(self.toProfile(_:)))
+        self.dpFriendOne.addGestureRecognizer(tapGestureRecognizer)
+        self.dpFriendTwo.addGestureRecognizer(tapGestureRecognizer)
+        self.dpFriendThree.addGestureRecognizer(tapGestureRecognizer)
+
+        
+        
 //        drawLine3.isHidden = true
 //        drawLine3.isHidden = true
         
@@ -160,6 +170,16 @@ class startOTGView: UIView {
         timestampDate.shadowOffset = CGSize(width: 2, height: 1)
         timestampDate.layer.masksToBounds = true
         
+    }
+    
+    func toProfile(_ sender: AnyObject) {
+        print("clickedddd")
+        print(self.buddiesJson)
+//        print("clicked \(currentFeed)")
+//        selectedPeople = currentFeed["user"]["_id"].stringValue
+//        let profile = storyboard.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
+//        profile.displayData = "search"
+//        globalNavigationController.pushViewController(profile, animated: true)
     }
     
     required init?(coder aDecoder: NSCoder) {
