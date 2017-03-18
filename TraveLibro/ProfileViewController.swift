@@ -20,6 +20,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     var myLifeVC:MyLifeViewController!
     var profile: ProfilePicFancy!
     var orangeTab:OrangeButton!
+    var customView : UIView!
     var footer:FooterViewNew!
     var MAM: MoreAboutMe!
     var displayData: String = ""
@@ -164,8 +165,8 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         self.setOnlyRightNavigationButton(rightButton)
         }
         
-        let customView = UIView(frame:(CGRect(x: 0, y: self.view.frame.size.height - 75, width: self.view.frame.width, height: 75)))
-        self.orangeTab = OrangeButton(frame: CGRect.zero)
+        customView = UIView(frame:(CGRect(x: 0, y: self.view.frame.size.height - 75, width: self.view.frame.width, height: 75)))
+        self.orangeTab = OrangeButton(frame: CGRect(x: 5, y: self.view.frame.size.height - 125, width: self.view.frame.size.width - 10, height: 50))
         orangeTab.orangeButtonTitle.titleLabel?.font = UIFont(name: "Avenir-Heavy", size: 16)
         orangeTab.orangeButtonTitle.setTitle("My Life", for: UIControlState())
         let fontAwesomeLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 40, height: orangeTab.frame.size.height))
@@ -210,6 +211,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.orangeTab.frame = CGRect(x: 5, y: self.view.frame.size.height - 125, width: self.view.frame.size.width - 10, height: 50)
+        customView.frame = CGRect(x: 0, y: self.view.frame.size.height - 75, width: self.view.frame.width, height: 75)
     }
     
     override func viewWillDisappear(_ animated: Bool) {

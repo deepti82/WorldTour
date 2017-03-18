@@ -34,6 +34,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     var buttons1 = Buttons2()
     var changeText = AddBuddiesViewController()
     var endJourneyView: EndJourneyMyLife!
+    var textFieldYPos = 0
     
     @IBOutlet weak var hideVisual: UIVisualEffectView!
     @IBOutlet weak var hideToolBar: UIStackView!
@@ -1045,7 +1046,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
 
         self.layout = VerticalLayout(width: view.frame.size.width)
         mainScroll.addSubview(layout)
-        var i  = PostImage();
+        let i  = PostImage();
         i.uploadPhotos()
         self.setTopNavigation(text: "On The Go")
         globalNewTLViewController = self;
@@ -1054,7 +1055,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         
         
         
-        self.infoView = TripInfoOTG(frame: CGRect(x: 0, y: 64, width: self.view.frame.width, height: 1000))
+        self.infoView = TripInfoOTG(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 1000))
         
         
         mainScroll.showsVerticalScrollIndicator = false
@@ -2022,6 +2023,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
 //    var viewHeight = 0
     
     func keyboardWillShow(_ notification: Notification) {
+        print("\n isTranslucent : \(self.navigationController?.navigationBar.isTranslucent)")
 //        view.frame.origin.y = CGFloat(viewHeight)
         if let keyboardSize = ((notification as NSNotification).userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             
@@ -2038,8 +2040,9 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         
     }
     func keyboardWillHide(_ notification: Notification) {
+        print("\n isTranslucent : \(self.navigationController?.navigationBar.isTranslucent)")
         if let keyboardSize = ((notification as NSNotification).userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.view.frame.origin.y != 0{
+            if self.view.frame.origin.y != self.navigationController?.navigationBar.frame.size.height{
                 self.view.frame.origin.y += keyboardSize.height
                 print("helololol")
                 print(keyboardSize.height)
@@ -2047,6 +2050,9 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         }
     }
     
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+//        textFieldYPos = textField.frame.origin.y
+    }
     
         
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -2227,6 +2233,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
             case "solo":
                 print("10")
                 kindOfJourneyStack.append("solo")
+            case "betterhalf":
+                fallthrough
             case "partner":
                 print("11")
                 kindOfJourneyStack.append("partner")

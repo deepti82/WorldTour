@@ -3140,6 +3140,30 @@ class Navigation {
 //    }
     
     
+    //MARK: - Unread Notification's Count
+    
+    func getUnreadNotificationCount(_ id: String, completion: @escaping ((JSON) -> Void)) {
+        
+        do {
+            let opt = try HTTP.POST(adminUrl + "notification/getUnread", parameters: ["user": id])
+            var json = JSON(1);
+            opt.start {response in
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    json  = JSON(data: response.data)
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+
+        }
+    }
+    
+    
     //MARK: - Notification's OnClick Requests
     
     func acceptJourney(_ id: String, uniqueId: String, notificationId: String, inMiddle: Bool, completion: @escaping ((JSON) -> Void)) {

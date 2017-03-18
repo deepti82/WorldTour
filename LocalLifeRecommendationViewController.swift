@@ -238,7 +238,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
             let vibrancyEffect = UIVibrancyEffect(blurEffect: darkBlur)
             let vibrancyEffectView = UIVisualEffectView(effect: vibrancyEffect)
             blurView.contentView.addSubview(vibrancyEffectView)
-            self.newScroll = UIScrollView(frame: CGRect(x: 0, y: 60, width: self.view.frame.width, height: self.view.frame.height - 60))
+            self.newScroll = UIScrollView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
             self.backView.addSubview(self.newScroll)
             self.addView = AddActivityNew()
             //        self.addView.buddyAdded(myJourney["buddies"].arrayValue)
@@ -348,7 +348,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
         self.currentTime = dateFormatterTwo.string(from: Date())
         
         if(self.addView.imageArr.count > 0 || self.addView.videoURL != nil || thoughts.characters.count > 0 || location.characters.count > 0) {
-            let po = post.setPost(currentUser["_id"].string!, JourneyId: "", Type: "local-life", Date: self.currentTime, Location: location, Category: category, Latitude: lat, Longitude: lng, Country: self.addView.currentCountry, City: self.addView.currentCity, thoughts: thoughts, buddies: buddies!, imageArr: self.addView.imageArr,videoURL:self.addView.videoURL, videoCaption:self.addView.videoCaption)
+            _ = post.setPost(currentUser["_id"].string!, JourneyId: "", Type: "local-life", Date: self.currentTime, Location: location, Category: category, Latitude: lat, Longitude: lng, Country: self.addView.currentCountry, City: self.addView.currentCity, thoughts: thoughts, buddies: buddies!, imageArr: self.addView.imageArr,videoURL:self.addView.videoURL, videoCaption:self.addView.videoCaption)
             
             goToActivity();
         }

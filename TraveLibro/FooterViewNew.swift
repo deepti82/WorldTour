@@ -8,6 +8,19 @@
 
 import UIKit
 
+var footerSharedInstance: FooterViewNew? = nil
+
+func sharedInstance(newFrame: CGRect) -> FooterViewNew {
+    
+    if footerSharedInstance == nil {
+        footerSharedInstance = FooterViewNew(frame: newFrame)
+    }
+    
+    footerSharedInstance?.setBadge()
+    
+    return footerSharedInstance!
+}
+
 class FooterViewNew: UIView {
     
     @IBOutlet var footerIconImages: [UIImageView]!
@@ -19,9 +32,13 @@ class FooterViewNew: UIView {
     @IBOutlet weak var TLView: UIView!
     @IBOutlet weak var lowerMainView: UIView!
     @IBOutlet weak var upperMainView: UIView!
+    @IBOutlet weak var badgeButton: UIButton!
+    
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
         loadViewFromNib ()
         
         for icon in footerIconImages {
@@ -33,8 +50,13 @@ class FooterViewNew: UIView {
         upperMainView.layer.cornerRadius = 20
         upperMainView.layer.borderWidth = 2
         
+        badgeButton.layer.cornerRadius = (badgeButton.frame.size.width/2)
+        
         upperMainView.layer.borderColor = UIColor(red: 57/255, green: 66/255, blue: 106/255, alpha: 1).cgColor
         
+        footerSharedInstance = self
+        
+        setBadge()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -143,10 +165,22 @@ class FooterViewNew: UIView {
         leftViewController.mainViewController = nvc
         leftViewController.slideMenuController()?.changeMainViewController(leftViewController.mainViewController, close: true)
         
-        nvc.navigationBar.barTintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 0.1)
-        nvc.navigationBar.barStyle = .blackTranslucent
-        nvc.navigationBar.isTranslucent = false
+        UIViewController().customiseNavigation()
         nvc.delegate = UIApplication.shared.delegate as! UINavigationControllerDelegate? 
+    }
+    
+    func setBadge() {
+        if UserDefaults.standard.value(forKey: "notificationCount") != nil {
+            let notificationCount = UserDefaults.standard.value(forKey: "notificationCount") as! Int            
+            if notificationCount > 0 {
+                self.badgeButton.isHidden = false
+                self.badgeButton.setTitle(String(notificationCount), for: .normal)
+                self.badgeButton.titleLabel?.sizeToFit()
+            }           
+        }
+        else {
+            self.badgeButton.isHidden = true
+        }
     }
     
 }
