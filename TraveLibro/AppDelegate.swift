@@ -209,7 +209,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
             
             print("Received Notification - \(notification?.payload.notificationID) - \(notification?.payload.title)")
             
-        }, handleNotificationAction: nil, settings: [kOSSettingsKeyAutoPrompt : false, kOSSettingsKeyInAppAlerts : false])
+        }, handleNotificationAction: nil, settings: [kOSSettingsKeyAutoPrompt : true, kOSSettingsKeyInAppAlerts : false])
         faicon["magic"] = 0xf0d0
         faicon["clock"] = 0xf017
         faicon["calendar"] = 0xf073
