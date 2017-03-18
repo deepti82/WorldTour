@@ -50,16 +50,6 @@ class LocalLifePostsViewController: UIViewController, UIScrollViewDelegate, CLLo
         addHeightToLayout()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        navigationController?.navigationBar.isTranslucent = false
-        print(navigationController?.navigationBar.isTranslucent)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        navigationController?.navigationBar.isTranslucent = true
-    }
-
-    
     func addHeightToLayout() {
         self.layout.layoutSubviews()
         self.scrollView.contentSize = CGSize(width: self.layout.frame.width, height: self.layout.frame.height)

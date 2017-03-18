@@ -14,6 +14,8 @@ class QuickItineraryPreviewViewController: UIViewController {
     @IBOutlet weak var previewScroll: UIScrollView!
     var previewLayout: VerticalLayout!
     var selectedQuick: JSON = []
+    var footer: FooterViewNew!
+    var footerAbove: previewBase!
     
     func loadPreview() {
         let prev = QuickItineraryPreview(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 837))
@@ -77,9 +79,6 @@ class QuickItineraryPreviewViewController: UIViewController {
             
         }
         
-        
-        
-        
         self.createNavigation()
         previewLayout = VerticalLayout(width:self.view.frame.width)
         previewScroll.addSubview(previewLayout)
@@ -89,28 +88,22 @@ class QuickItineraryPreviewViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        
         print(quickItinery)
         print(currentUser)
         self.title = "Itinerary Preview"
         
         
-        let footer = FooterViewNew(frame: CGRect(x: 0, y: self.view.frame.height - 65, width: self.view.frame.width, height: 65))
+        footer = FooterViewNew(frame: CGRect.zero)
         footer.layer.zPosition = 1000
         
-        footer.layer.shadowColor = UIColor.black.cgColor
-        footer.layer.shadowOpacity = 0.5
-        footer.layer.shadowOffset = CGSize.zero
-        footer.layer.shadowRadius = 10
-        
-        footer.feedView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(UIViewController.goToFeed(_:))))
-        footer.notifyView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(UIViewController.gotoNotifications(_:))))
-        footer.LLView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(UIViewController.gotoLocalLife(_:))))
-        footer.TLView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(UIViewController.gotoTravelLife(_:))))
         footer.backgroundColor = UIColor.white
         self.view.addSubview(footer)
         
         
-        let footerAbove = previewBase(frame: CGRect(x: 0, y: self.view.frame.height - 105, width: self.view.frame.width, height: 40))
+        footerAbove = previewBase(frame: CGRect.zero)
         footerAbove.layer.zPosition = 900
         footerAbove.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.showPhoto(_:))))
 
@@ -129,6 +122,16 @@ class QuickItineraryPreviewViewController: UIViewController {
             })
         }
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        footer.frame = CGRect(x: 0, y: self.view.frame.size.height - 65, width: screenWidth, height: 65)
+        footerAbove.frame = CGRect(x: 0, y: self.view.frame.size.height - 105, width: screenWidth, height: 40)
     }
     
     func showQuickPhotos() {
@@ -169,21 +172,20 @@ class QuickItineraryPreviewViewController: UIViewController {
     
     
     func createNavigation() {
+        
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         
         let leftButton = UIButton()
         leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
         leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
-        
         leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         
         let rightButton = UIButton()
         rightButton.titleLabel?.font = UIFont(name: "avenirBold", size: 20)
         rightButton.setTitle("Done", for: .normal)
         rightButton.addTarget(self, action: #selector(QuickItineraryPreviewViewController.donePage(_:)), for: .touchUpInside)
-        self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Avenir-Medium", size: 20)!]
         rightButton.frame = CGRect(x: 20, y: 8, width: 45, height: 30)
-        print("selected status \(selectedQuickI)")
+        
         if selectedQuickI == "" {
             self.customNavigationBar(left: leftButton, right: rightButton)
 
@@ -195,18 +197,17 @@ class QuickItineraryPreviewViewController: UIViewController {
                 self.customNavigationBar(left: leftButton, right: rightButton)
             }else{
                 print("in else")
-            self.customNavigationBar(left: leftButton, right: nil)
+                self.customNavigationBar(left: leftButton, right: nil)
             }
-
         }
         self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
-    func alertControllerBackgroundTapped()
-    {
+    func alertControllerBackgroundTapped() {
         print("back clicked")
         self.dismiss(animated: true, completion: nil)
     }
+    
     func donePage(_ sender: UIButton) {
         let actionSheet: UIAlertController = UIAlertController(title: "", message: "", preferredStyle: .actionSheet)
         

@@ -46,16 +46,7 @@ class AddYourRatingViewController: UIViewController {
         scroll.addSubview(layout)
         
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        print("navigationBar")
-        navigationController?.navigationBar.isTranslucent = false
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-         navigationController?.navigationBar.isTranslucent = true
-    }
-    
+        
     func createNavigation() {
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         

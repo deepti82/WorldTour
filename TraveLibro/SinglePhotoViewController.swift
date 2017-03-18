@@ -140,6 +140,10 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate, iCarouselDeleg
         mainImage.isHidden = true
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }

@@ -61,21 +61,11 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
 
         
         loginLabel.isHidden = true
-//        backgroundImage.addBlurEffect(80)
-
-        
-//        let bgImage = UIImageView(frame:self.view.frame)
-//        bgImage.image = UIImage(named: "darkBgNew")
-//        bgImage.layer.zPosition = -1
-//        bgImage.isUserInteractionEnabled = false
-//        self.view.addSubview(bgImage)
-//        self.view.sendSubview(toBack: bgImage)        
 
         NotificationCenter.default.addObserver(self, selector: #selector(updateProfilePicture), name: NSNotification.Name(rawValue: "currentUserUpdated"), object: nil)
         
         profile = profilePicNavigation(frame: CGRect(x: 0, y: 0, width: profileNew.frame.width, height: profileNew.frame.height))
         profileNew.addSubview(profile)
-//        profile.waves.isHidden = true
         makeSideNavigation(profile.image)
 
         makeMenuProfilePicture(profile.image)
@@ -211,7 +201,6 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
             }
             
             makeMenuProfilePicture(profilePicture)
-//            backgroundImage!.addBlurEffect(30, times: 1)
         }
         else {
             profile.flag.isHidden = true

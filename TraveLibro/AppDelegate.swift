@@ -148,7 +148,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
             self.window?.rootViewController = slideMenuController
             nvc.navigationBar.barTintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 0.1)
             nvc.navigationBar.barStyle = .blackTranslucent
-            nvc.navigationBar.isTranslucent = true
+            nvc.navigationBar.isTranslucent = false
             nvc.delegate = self
             
 //            globalNavigationController = nvc
@@ -174,7 +174,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
                     }
                     nvc.navigationBar.barTintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 0.1)
                     nvc.navigationBar.barStyle = .blackTranslucent
-                    nvc.navigationBar.isTranslucent = true
+                    nvc.navigationBar.isTranslucent = false
                     nvc.delegate = self
                     
 //                    globalNavigationController = nvc
@@ -408,6 +408,12 @@ func addTopBorder(_ color: UIColor, view: UIView, borderWidth: CGFloat) {
     view.layer.addSublayer(border)
 }
 
+func noInternet(view: UIView) {
+    var uploadingView: UploadingToCloud!
+    uploadingView = UploadingToCloud(frame: CGRect(x: 0, y: 64, width: navigation.view.frame.width, height: 23))
+    uploadingView.uploadText.text = "No internet connection."
+    view.addSubview(uploadingView)
+}
 
 func showBottomLoader(onView: UIView) {
     

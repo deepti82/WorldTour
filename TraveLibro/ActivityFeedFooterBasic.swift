@@ -39,6 +39,7 @@ class ActivityFeedFooterBasic: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
+        
     }
     
     required init?(coder aDecoder: NSCoder) {

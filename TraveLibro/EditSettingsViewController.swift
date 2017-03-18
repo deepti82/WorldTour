@@ -35,7 +35,7 @@ class EditSettingsViewController: UIViewController, UIWebViewDelegate {
             titleText.append(getRegularString(string: " to change your travel preferences", size: 12))
             
             let titleView = UIButton(frame: CGRect(x: 0, y: 0, width: 300, height: 30))
-            titleView.center = CGPoint(x: self.view.frame.width/2 , y: 100)
+            titleView.center = CGPoint(x: self.view.frame.width/2 , y: 36)
             titleView.setAttributedTitle(titleText, for: .normal)
             titleView.titleLabel?.font = avenirFont!
             titleView.setTitleColor(UIColor(red: 88/255, green: 88/255, blue: 88/255, alpha: 1), for: UIControlState())
@@ -43,14 +43,14 @@ class EditSettingsViewController: UIViewController, UIWebViewDelegate {
             titleView.addTarget(self, action: #selector(EditSettingsViewController.editPreferences(_:)), for: .touchUpInside)
             self.view.addSubview(titleView)
             
-            MAMtextView = MoreAboutMe(frame: CGRect(x: 0, y: 140, width: self.view.frame.width, height: 150))
+            MAMtextView = MoreAboutMe(frame: CGRect(x: 0, y: 76, width: self.view.frame.width, height: 150))
             MAMtextView.backgroundColor = UIColor.white
             self.view.addSubview(MAMtextView)
             break        
         
         case "ReportView":
             self.title = "Report a problem"
-            report = ReportProblem(frame: CGRect(x: 0, y: 80, width: self.view.frame.width, height: 300))
+            report = ReportProblem(frame: CGRect(x: 0, y: 15, width: self.view.frame.width, height: 300))
             report.submitButton.addTarget(self, action: #selector(EditSettingsViewController.submitComplaint(_:)), for: .touchUpInside)
             self.view.addSubview(report)
             break
@@ -76,9 +76,9 @@ class EditSettingsViewController: UIViewController, UIWebViewDelegate {
             
             self.view.backgroundColor = UIColor.clear
              
-            let aboutUsWebView = UIWebView(frame: CGRect(x: 0, y: 65, width: screenWidth, height: screenHeight-65))
+            let aboutUsWebView = UIWebView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight-65))
             if whichView == "AboutUsView" {
-                aboutUsWebView.frame = CGRect(x: -5, y: 0, width: screenWidth+5, height: screenHeight)
+                aboutUsWebView.frame = CGRect(x: -5, y: -15, width: screenWidth+5, height: screenHeight)
             }
             aboutUsWebView.delegate = self
             aboutUsWebView.scalesPageToFit = true
@@ -89,15 +89,14 @@ class EditSettingsViewController: UIViewController, UIWebViewDelegate {
             
         default:
             break
-        }
-        
+        }        
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if whichView == "MAMView" {
             MAMtextView.reloadTravelPrefeces()
-        }
+        }        
     }
     
     override func didReceiveMemoryWarning() {

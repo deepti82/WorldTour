@@ -609,9 +609,12 @@ func setFollowButtonTitle(button:UIButton, followType: Int) {
     }
 }
 
-func getFirstLetterCapitalizedString(nameOfString : String) -> String {    
-    let index = nameOfString.index(nameOfString.startIndex, offsetBy: 0)
-    return "\(String(nameOfString[index]).uppercased())\(String(nameOfString.characters.dropFirst()))"
+func getFirstLetterCapitalizedString(nameOfString : String) -> String {
+    if nameOfString.characters.count > 1 {
+        let index = nameOfString.index(nameOfString.startIndex, offsetBy: 0)
+        return "\(String(nameOfString[index]).uppercased())\(String(nameOfString.characters.dropFirst()))"
+    }
+    return nameOfString
 }
 
 func getDigitWithCommaStandards(originalDigitStr : String) -> String {

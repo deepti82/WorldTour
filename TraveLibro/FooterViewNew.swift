@@ -52,6 +52,7 @@ class FooterViewNew: UIView {
         
         let tlTap = UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.gotoOTG(_:)))
         self.TLView.addGestureRecognizer(tlTap)
+        
         let fvTap = UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.gotoFeed(_:)))
         self.feedView.addGestureRecognizer(fvTap)
         
@@ -144,7 +145,7 @@ class FooterViewNew: UIView {
         
         nvc.navigationBar.barTintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 0.1)
         nvc.navigationBar.barStyle = .blackTranslucent
-        nvc.navigationBar.isTranslucent = true
+        nvc.navigationBar.isTranslucent = false
         nvc.delegate = UIApplication.shared.delegate as! UINavigationControllerDelegate? 
     }
     

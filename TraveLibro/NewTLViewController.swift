@@ -736,7 +736,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         })
         
     }
-
+    //MARK: - getone journey added.
     func getOneJourney() {
         request.getJourneyById(fromOutSide, completion: {(response) in
             DispatchQueue.main.async(execute: {
@@ -809,6 +809,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
             endJourneyView = EndJourneyMyLife(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 329))
             
             if jouurneyToShow["post"].count > 0 {
+                
                 endJourneyView.placeLabel.text = jouurneyToShow["post"][jouurneyToShow["post"].count - 1]["city"].string
 
             }else{
@@ -1049,12 +1050,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         self.setTopNavigation(text: "On The Go")
         globalNewTLViewController = self;
         getDarkBackGroundNew(self)
-        if fromOutSide == "" {
-            getJourney()
-        }else{
-            getOneJourney()
-        }
-        mainScroll.delegate = self
+                mainScroll.delegate = self
         
         
         
@@ -1115,10 +1111,18 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         infoButton.isHidden = true
 //        addPostsButton.isHidden = true
         
-        if currentUser["_id"].stringValue == userm.getExistingUser() {
-            addPostsButton.isHidden = false
+        if fromOutSide == "" {
+            getJourney()
         }else{
             addPostsButton.isHidden = true
+            getOneJourney()
+        }
+
+        
+        if fromOutSide != "" {
+            addPostsButton.isHidden = true
+        }else{
+            addPostsButton.isHidden = false
         }
         
         self.view.bringSubview(toFront: infoButton)
@@ -1240,6 +1244,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         let checkIn = PhotosOTG2(width: layout.frame.width)
         checkIn.generatePost(post)
         checkIn.newTl = self
+        checkIn.journeyUSer = myJourney["journeyCreator"]["_id"].stringValue
         checkIn.scrollView = mainScroll
         layout.addSubview(checkIn)
         addHeightToLayout(height: checkIn.frame.height + 50)
@@ -1927,7 +1932,9 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         //        getScrollView(height, journey: JSON(""))
         
         otgView = startOTGView(frame: CGRect(x: 0, y: 50, width: mainScroll.frame.width, height: mainScroll.frame.height))
-        
+        if myJourney["journeyCreator"]["_id"].stringValue != user.getExistingUser() {
+            otgView.optionsButton.isHidden = true
+        }
         otgView.shoewImage.alpha = 0
 //        otgView.bonVoyageLabel.alpha = 0
         otgView.lineOne.alpha = 0
@@ -2338,19 +2345,27 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         otgView.addBuddiesButton.isHidden = true
         otgView.closeBuddies.isHidden = true
         infoButton.isHidden = true
-        addPostsButton.isHidden = false
+//        addPostsButton.isHidden = false
 //        otgView.lineThree.isHidden = false
         
-                if currentUser["_id"].stringValue == userm.getExistingUser() {
-                    if fromType == "ended-journey" {
-                        toolbarView.isHidden = true
-                    }else{
-
-                    toolbarView.isHidden = false
-                    }
-                }else{
-                    toolbarView.isHidden = true
-                }
+        
+        if fromOutSide == "" {
+            toolbarView.isHidden = false
+        }else{
+            toolbarView.isHidden = true
+        }
+        
+        
+//                if currentUser["_id"].stringValue == userm.getExistingUser() {
+//                    if fromType == "ended-journey" {
+//                        toolbarView.isHidden = true
+//                    }else{
+//
+//                    toolbarView.isHidden = false
+//                    }
+//                }else{
+//                    toolbarView.isHidden = true
+//                }
 
         
     }
@@ -2657,7 +2672,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
                             self.mainScroll.animation.makeY(60.0).animate(0.7)
                             self.otgView.animation.makeY(0.0).animate(0.7)
                             
-                            self.scrollToBottom()
+                            self.scrollToBottom1()
                         }
                         else {
                             
