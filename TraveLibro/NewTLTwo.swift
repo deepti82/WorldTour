@@ -609,9 +609,16 @@ extension NewTLViewController {
         
     }
     func scrollToBottom() {
-        let bottomOffset = CGPoint(x: 0, y: mainScroll.contentSize.height - mainScroll.bounds.size.height - 130)
+        let bottomOffset = CGPoint(x: 0, y: mainScroll.contentSize.height - mainScroll.bounds.size.height)
         mainScroll.setContentOffset(bottomOffset, animated: true)
     }
+    
+    
+    func scrollToBottom1() {
+        let bottomOffset = CGPoint(x: 0, y: mainScroll.contentSize.height - mainScroll.bounds.size.height - 140)
+        mainScroll.setContentOffset(bottomOffset, animated: true)
+    }
+
     
     func getJourneyBuddies(journey: JSON) {
         addedBuddies = journey["buddies"].array!
