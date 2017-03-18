@@ -167,7 +167,7 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
         }
         if self.comments[indexPath.row]["user"]["_id"].string! == usr {
             
-            let more = UITableViewRowAction(style: .normal, title: "edit") { action, index in
+            let more = UITableViewRowAction(style: .normal, title: "") { action, index in
                 self.addComment.text = self.comments[indexPath.row]["text"].string!
                 self.previousHashtags = self.getHashtagsFromText(oldText: self.comments[indexPath.row]["text"].string!)
                 self.editComment = self.comments[indexPath.row]
@@ -177,7 +177,7 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
 //            moreImage.contentMode = .center
 //            moreImage.backgroundColor = mainOrangeColor
 //            more.backgroundColor = UIColor(patternImage: UIImage(named: "penciltranswhite")!)
-            let favorite = UITableViewRowAction(style: .normal, title: "delete") { action, index in
+            let favorite = UITableViewRowAction(style: .normal, title: " ") { action, index in
                 print("delete button tapped")
                 request.deleteComment(commentId: self.comments[indexPath.row]["_id"].string!, completion: {(response) in
                     
@@ -204,10 +204,11 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
                 
             }
             let favoriteImage = UIImageView(frame: CGRect(x: 0, y: 0, width: 60, height: 40))
-            favoriteImage.image = UIImage(named: "cross_icon")
-            favoriteImage.contentMode = .center
-            favoriteImage.backgroundColor = mainOrangeColor
-            favorite.backgroundColor = mainOrangeColor
+            favoriteImage.image = UIImage(named: "backtranswhite (1)")
+            favorite.backgroundColor = UIColor(patternImage: favoriteImage.image!)
+//            favoriteImage.contentMode = .center
+//            favoriteImage.backgroundColor = mainOrangeColor
+//            favorite.backgroundColor = mainOrangeColor
             
             return [more, favorite]
         }
@@ -245,7 +246,7 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
                 actionSheet.addAction(abusiveActionButton)
                 self.present(actionSheet, animated: true, completion: nil)
             }
-//            report.backgroundColor = UIColor(patternImage: UIImage(named: "report")!)
+            report.backgroundColor = UIColor(patternImage: UIImage(named: "trashtranswhite (1)")!)
             
             return [share, report]
         }

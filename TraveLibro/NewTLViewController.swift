@@ -1816,7 +1816,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         self.layout.layoutSubviews()
         self.mainScroll.contentSize = CGSize(width: self.layout.frame.width, height: self.layout.frame.height + 60)
         if(height != 500) {
-            self.scrollToBottom()
+            self.scrollToBottom1()
         }
         
     }
@@ -2672,7 +2672,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
                             self.mainScroll.animation.makeY(60.0).animate(0.7)
                             self.otgView.animation.makeY(0.0).animate(0.7)
                             
-                            self.scrollToBottom1()
+                            self.scrollToBottom()
                         }
                         else {
                             

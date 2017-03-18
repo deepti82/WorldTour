@@ -35,7 +35,7 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="400" height="145"/>
+            <rect key="frame" x="0.0" y="0.0" width="400" height="163"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HCc-b6-9Wj" customClass="drawLine" customModule="TraveLibro" customModuleProvider="target">
@@ -157,21 +157,32 @@
                         <constraint firstItem="ztF-ws-nNS" firstAttribute="top" secondItem="gDE-6v-4jE" secondAttribute="top" constant="25" id="w6S-Au-Deu"/>
                     </constraints>
                 </view>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bottom_-Drop-Shadow" translatesAutoresizingMaskIntoConstraints="NO" id="mv4-ZG-DM7">
+                    <rect key="frame" x="0.0" y="145" width="400" height="18"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="18" id="0iJ-AZ-5X8"/>
+                        <constraint firstAttribute="width" constant="400" id="U0l-Tu-VeY"/>
+                    </constraints>
+                </imageView>
             </subviews>
             <constraints>
                 <constraint firstItem="HCc-b6-9Wj" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="2Mm-m7-4TK"/>
+                <constraint firstItem="mv4-ZG-DM7" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Bum-xM-QWc"/>
                 <constraint firstItem="gDE-6v-4jE" firstAttribute="top" secondItem="HCc-b6-9Wj" secondAttribute="bottom" constant="2" id="OKD-yH-AdF"/>
                 <constraint firstAttribute="trailing" secondItem="gDE-6v-4jE" secondAttribute="trailing" id="PU1-3l-lSN"/>
                 <constraint firstItem="HCc-b6-9Wj" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="XMX-fw-4QI"/>
                 <constraint firstItem="gDE-6v-4jE" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="aAy-4g-SBg"/>
                 <constraint firstItem="HCc-b6-9Wj" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="h8R-mH-dy7"/>
+                <constraint firstItem="mv4-ZG-DM7" firstAttribute="top" secondItem="gDE-6v-4jE" secondAttribute="bottom" id="sCF-yN-DgZ"/>
+                <constraint firstAttribute="trailing" secondItem="mv4-ZG-DM7" secondAttribute="trailing" id="xcf-PV-wdy"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="-52" y="-32.5"/>
+            <point key="canvasLocation" x="-52" y="-23.5"/>
         </view>
     </objects>
     <resources>
+        <image name="bottom_-Drop-Shadow" width="612" height="30"/>
         <image name="star_check" width="27" height="25"/>
         <image name="star_uncheck" width="27" height="25"/>
     </resources>

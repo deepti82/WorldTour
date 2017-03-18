@@ -615,7 +615,7 @@ extension NewTLViewController {
     
     
     func scrollToBottom1() {
-        let bottomOffset = CGPoint(x: 0, y: mainScroll.contentSize.height - mainScroll.bounds.size.height - 140)
+        let bottomOffset = CGPoint(x: 0, y: mainScroll.contentSize.height - mainScroll.bounds.size.height - 150)
         mainScroll.setContentOffset(bottomOffset, animated: true)
     }
 

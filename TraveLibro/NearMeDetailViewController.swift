@@ -44,9 +44,9 @@ class NearMeDetailViewController: UIViewController {
         
         
         
-        detailView.layer.shadowColor = UIColor.black.cgColor
-        detailView.layer.shadowOffset = CGSize(width: 0.0, height: 5.0)
-        detailView.layer.shadowOpacity = 1.0
+//        detailView.layer.shadowColor = UIColor.black.cgColor
+//        detailView.layer.shadowOffset = CGSize(width: 0.0, height: 5.0)
+//        detailView.layer.shadowOpacity = 1.0
 
         
 //        let width = CGFloat(2)

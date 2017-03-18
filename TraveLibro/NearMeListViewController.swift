@@ -109,9 +109,9 @@ class NearMeListViewController: UIViewController, UITableViewDataSource, UITable
                
         cell.backgroundColor = UIColor.clear
         
-        cell.contentView.layer.shadowColor = UIColor.black.cgColor
-        cell.contentView.layer.shadowOffset = CGSize(width: 2.0, height: 5.0)
-        cell.contentView.layer.shadowOpacity = 1.0
+//        cell.contentView.layer.shadowColor = UIColor.black.cgColor
+//        cell.contentView.layer.shadowOffset = CGSize(width: 2.0, height: 5.0)
+//        cell.contentView.layer.shadowOpacity = 1.0
         cell.contentView.backgroundColor = UIColor.white.withAlphaComponent(0.8)
         cell.contentView.layer.cornerRadius = 10
         cell.contentView.layer.masksToBounds = true
