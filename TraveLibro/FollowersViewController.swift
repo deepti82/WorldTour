@@ -309,6 +309,20 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
         
     }
     
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if filter != nil && shouldShowSearchResults {
+            selectedPeople = filter[indexPath.row]["_id"].stringValue
+        
+        }else{
+            selectedPeople = followers[indexPath.row]["_id"].stringValue
+        }
+        let profile = storyboard?.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
+        profile.displayData = "search"
+        globalNavigationController.pushViewController(profile, animated: true)
+        
+    }
+    
     func setImage(_ imageView: UIImageView, imageName: String) {
         
         let isUrl = verifyUrl(imageName)

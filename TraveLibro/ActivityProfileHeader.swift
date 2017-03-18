@@ -46,10 +46,21 @@ class ActivityProfileHeader: UIView {
         super.init(coder: aDecoder)
     }
     
+    func toProfile(_ sender: AnyObject) {
+        print("clicked \(currentFeed)")
+        selectedPeople = currentFeed["user"]["_id"].stringValue
+        let profile = storyboard.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
+        profile.displayData = "search"
+        globalNavigationController.pushViewController(profile, animated: true)
+    }
+    
     func fillProfileHeader(feed:JSON) {
         currentFeed = feed
         
-        
+        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(self.toProfile(_:)))
+        self.profilePic.addGestureRecognizer(tapGestureRecognizer)
+        self.userName.addGestureRecognizer(tapGestureRecognizer)
+
         //header icon
         var typeOfPost = getTypeOfPost(feed)
         if(typeOfPost != nil) {

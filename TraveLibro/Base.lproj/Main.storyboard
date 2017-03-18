@@ -6953,7 +6953,9 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="India" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XW7-9R-xg9">
+
                                                     <rect key="frame" x="157.5" y="7" width="60" height="36"/>
+
                                                     <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="26"/>
                                                     <color key="textColor" red="0.98823529480000005" green="0.31372550129999999" blue="0.27843138579999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -9022,8 +9024,10 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
+
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bottom_-Drop-Shadow" translatesAutoresizingMaskIntoConstraints="NO" id="ZSo-y5-ieX">
                                 <rect key="frame" x="0.0" y="221" width="375" height="11"/>
+
                                 <constraints>
                                     <constraint firstAttribute="height" constant="11" id="6oX-qI-PSj"/>
                                     <constraint firstAttribute="width" constant="375" id="DpY-rd-yBZ"/>
@@ -10905,7 +10909,36 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oo3-PW-qII" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="10508" y="2703.5982008995506"/>
+            <point key="canvasLocation" x="10263" y="2704"/>
+        </scene>
+        <!--Popular Controller-->
+        <scene sceneID="rtm-5A-cCf">
+            <objects>
+                <viewController id="cnB-iL-RBV" customClass="PopularController" customModule="TraveLibro" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fbB-Xh-ZeY"/>
+                        <viewControllerLayoutGuide type="bottom" id="WB5-bm-y42"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="VR3-of-JAv">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="37G-RI-kLj">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="37G-RI-kLj" firstAttribute="leading" secondItem="VR3-of-JAv" secondAttribute="leading" id="f7r-55-N8C"/>
+                            <constraint firstAttribute="trailing" secondItem="37G-RI-kLj" secondAttribute="trailing" id="iTX-DS-5g3"/>
+                            <constraint firstItem="WB5-bm-y42" firstAttribute="top" secondItem="37G-RI-kLj" secondAttribute="bottom" id="lIP-uC-fMb"/>
+                            <constraint firstItem="37G-RI-kLj" firstAttribute="top" secondItem="VR3-of-JAv" secondAttribute="top" id="zpd-rT-atZ"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wop-uy-8sW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="11029.6" y="2711.6941529235382"/>
         </scene>
         <!--Quick Photos Collection View Controller-->
         <scene sceneID="u5k-vp-dMR">

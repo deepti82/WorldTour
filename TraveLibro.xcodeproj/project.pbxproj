@@ -479,6 +479,7 @@
 		FCBF88CC1E2E343B0092CB9D /* ActivityFeedsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCBF88CB1E2E343B0092CB9D /* ActivityFeedsController.swift */; };
 		FCBF88CE1E2E58660092CB9D /* ActivityProfileHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCBF88CD1E2E58660092CB9D /* ActivityProfileHeader.xib */; };
 		FCBF88D01E2E588E0092CB9D /* ActivityProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCBF88CF1E2E588E0092CB9D /* ActivityProfileHeader.swift */; };
+		FCC035FC1E7D37D8006767E2 /* PopularController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC035FB1E7D37D8006767E2 /* PopularController.swift */; };
 		FCCA8F171E28AE7200775985 /* TripSummaryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCCA8F161E28AE7200775985 /* TripSummaryCell.xib */; };
 		FCCA8F191E28B5BC00775985 /* TripSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCA8F181E28B5BC00775985 /* TripSummaryView.swift */; };
 		FCCA8F1B1E28B61C00775985 /* TripSummaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCA8F1A1E28B61C00775985 /* TripSummaryCell.swift */; };
@@ -1003,6 +1004,7 @@
 		FCBF88CB1E2E343B0092CB9D /* ActivityFeedsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityFeedsController.swift; sourceTree = "<group>"; };
 		FCBF88CD1E2E58660092CB9D /* ActivityProfileHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivityProfileHeader.xib; sourceTree = "<group>"; };
 		FCBF88CF1E2E588E0092CB9D /* ActivityProfileHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityProfileHeader.swift; sourceTree = "<group>"; };
+		FCC035FB1E7D37D8006767E2 /* PopularController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopularController.swift; sourceTree = "<group>"; };
 		FCCA8F161E28AE7200775985 /* TripSummaryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TripSummaryCell.xib; sourceTree = "<group>"; };
 		FCCA8F181E28B5BC00775985 /* TripSummaryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripSummaryView.swift; sourceTree = "<group>"; };
 		FCCA8F1A1E28B61C00775985 /* TripSummaryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripSummaryCell.swift; sourceTree = "<group>"; };
@@ -2152,6 +2154,7 @@
 				FCB571941E66DBF2002D4C30 /* LikeTableViewController.swift */,
 				FCEB1BF91E69447C00418812 /* LikeUserViewController.swift */,
 				FC259C281E79014D00AF815A /* MainSearchViewController.swift */,
+				FCC035FB1E7D37D8006767E2 /* PopularController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -3230,6 +3233,7 @@
 			files = (
 				FCBF88CC1E2E343B0092CB9D /* ActivityFeedsController.swift in Sources */,
 				3AF187121D786BF200A86BC1 /* DisplayPagesFourViewController.swift in Sources */,
+				FCC035FC1E7D37D8006767E2 /* PopularController.swift in Sources */,
 				3A7A7D901DE5A921005F409C /* SinglePhotoViewController.swift in Sources */,
 				FCBF88D01E2E588E0092CB9D /* ActivityProfileHeader.swift in Sources */,
 				842485011E13BF4600083115 /* PhotosOTGView.swift in Sources */,
