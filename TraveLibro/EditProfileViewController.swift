@@ -164,7 +164,7 @@ class EditProfileViewController: UIViewController, UITableViewDataSource, UITabl
             let paddingView = UILabel(frame: CGRect(x: 5, y: 0, width: 150, height: cell.destinationTextField.frame.size.height))
             paddingView.text = labels[(indexPath as NSIndexPath).section]
             paddingView.textColor = mainBlueColor
-            paddingView.font = avenirFont
+            paddingView.font = avenirBold
             paddingView.textAlignment = .left
             cell.destinationTextField.leftView = paddingView
             cell.destinationTextField.leftViewMode = UITextFieldViewMode.always            

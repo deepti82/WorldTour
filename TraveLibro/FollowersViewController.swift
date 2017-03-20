@@ -250,7 +250,6 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
         }
 
         if filter != nil && shouldShowSearchResults {
-            print("in ONE")
             cell.profileName.text = filter[(indexPath as NSIndexPath).row]["name"].string!
             cell.urlSlurg.text =  filter[(indexPath as NSIndexPath).row]["urlSlug"].string!
             let image = filter[(indexPath as NSIndexPath).row]["profilePicture"].string!
@@ -278,7 +277,6 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
         }
             
         else if followers.count != 0 {
-            print("in TWO")
             cell.profileName.text = followers[(indexPath as NSIndexPath).row]["name"].string!
             cell.urlSlurg.text = "@\(followers[(indexPath as NSIndexPath).row]["urlSlug"].string!)"
             if followers[(indexPath as NSIndexPath).row]["profilePicture"] != nil {
@@ -349,78 +347,94 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
     
     //MARK: - Follow Actions
     
-    func followUser(_ followName: String) {
+    func followUser(_ followName: String, sender: UIButton) {
         
         var followId: String!
         
         print("followers: \(followers)")
+        
+        var Index = 0
         
         for i in 0 ..< followers.count {
             
             if followers[i]["urlSlug"].string! == followName {
                 
                 followId = followers[i]["_id"].string!
+                Index = i
                 
             }
             
         }
         
         request.followUser(currentUser["_id"].string!, followUserId: followId, completion: {(response) in
-            
-            if response.error != nil {
-                
-                print("error: \(response.error!.localizedDescription)")
-                
-            }
-            else if response["value"].bool! {
-                
-                print("response arrived!")
-
-                
-            }
-            else {
-                
-                print("error: \(response["error"])")
-                
-            }
+            DispatchQueue.main.async(execute: {
+                if response.error != nil {
+                    
+                    print("error: \(response.error!.localizedDescription)")
+                    
+                }
+                else if response["value"].bool! {
+                    print("response arrived!")
+//                    var newJson = followers[Index]
+//                    newJson["following"] = JSON(response["data"]["responseValue"].stringValue)
+//                    followers[Index] = newJson
+//                    self.followerTable.reloadData()
+//                    self.followerTable.reloadRows(at: [NSIndexPath(row: Index, section: 0) as IndexPath], with: .automatic)
+                    
+                    setFollowButtonTitle(button: sender, followType: response["data"]["responseValue"].intValue)
+                }
+                else {
+                    
+                    print("error: \(response["error"])")
+                    
+                }
             })
-
-        
+            })       
     }
     
-    func unFollowUser(_ unfollowName: String) {
+    func unFollowUser(_ unfollowName: String, sender: UIButton) {
         
         var unfollowId: String!
         
         print("followers: \(followers)")
+        
+        var Index = 0
         
         for i in 0 ..< followers.count {
             
             if followers[i]["urlSlug"].string! == unfollowName {
                 
                 unfollowId = followers[i]["_id"].string!
+                Index = i
                 
             }
             
         }
         
         request.unfollow(currentUser["_id"].string!, unFollowId: unfollowId, completion: {(response) in
+            DispatchQueue.main.async(execute: {
+                if response.error != nil {
+                    
+                    print("error: \(response.error!.localizedDescription)")
+                    
+                }
+                else if response["value"].bool! {
+                    
+                    print("response arrived!")
+//                    var newJson = followers[Index]
+//                    newJson["following"] = JSON(response["data"]["responseValue"].stringValue)
+//                    followers[Index] = newJson
+//                    self.followerTable.reloadData()
+//                    self.followerTable.reloadRows(at: [NSIndexPath(row: Index, section: 0) as IndexPath], with: .automatic)
+                    setFollowButtonTitle(button: sender, followType: response["data"]["responseValue"].intValue)
+                }
+                else {
+                    
+                    print("error: \(response["error"])")
+                    
+                }                
+            })
             
-            if response.error != nil {
-                
-                print("error: \(response.error!.localizedDescription)")
-                
-            }
-            else if response["value"].bool! {
-                
-                print("response arrived!")
-                
-            }
-            else {
-                
-                print("error: \(response["error"])")
-                
-            }
         })
         
         
@@ -459,7 +473,7 @@ class FollowersCell: UITableViewCell {
         if sender.tag == 0 {
             
             print("profile name follow: \(profileName.text)")
-            parent.followUser(getURLSlug(slug: urlSlurg.text!))
+            parent.followUser(getURLSlug(slug: urlSlurg.text!), sender: sender)
             sender.tag = 1
             sender.setImage(UIImage(named:"following"), for: .normal)
             sender.contentMode = .scaleAspectFit
@@ -470,7 +484,7 @@ class FollowersCell: UITableViewCell {
             
         else if sender.tag == 1 {
             print("profile name unfollow: \(profileName.text)")
-            parent.unFollowUser(getURLSlug(slug: urlSlurg.text!))
+            parent.unFollowUser(getURLSlug(slug: urlSlurg.text!), sender: sender)
             sender.tag = 0
             sender.setImage(UIImage(named:"follow"), for: .normal)
             sender.contentMode = .scaleAspectFit

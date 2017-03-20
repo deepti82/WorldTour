@@ -50,7 +50,7 @@ class EditSettingsViewController: UIViewController, UIWebViewDelegate {
             break        
         
         case "ReportView":
-            self.title = "Report a problem"
+            self.title = "Report A Problem"
             report = ReportProblem(frame: CGRect(x: 0, y: 15, width: self.view.frame.width, height: 300))
             report.submitButton.addTarget(self, action: #selector(EditSettingsViewController.submitComplaint(_:)), for: .touchUpInside)
             self.view.addSubview(report)

@@ -100,7 +100,13 @@ class Itineraries: UIView {
        
                 
         itineraryName.text = getFirstLetterCapitalizedString(nameOfString: editJson["name"].stringValue)
-        itineraryCost.text = editJson["currency"].stringValue + " " + getDigitWithCommaStandards(originalDigitStr: editJson["cost"].stringValue)
+        if editJson["cost"].intValue > 0 {
+            itineraryCost.text = editJson["currency"].stringValue + " " + getDigitWithCommaStandards(originalDigitStr: editJson["cost"].stringValue)            
+        }
+        else {
+            itineraryCost.text = ""
+        }
+        
         itineraryDates.text = getDateFormat(editJson["startTime"].stringValue, format: "dd MMM, yyyy") + " to " + getDateFormat(editJson["endTime"].stringValue, format: "dd MMM, yyyy") 
         
         itineraryTypeStack.isHidden = false

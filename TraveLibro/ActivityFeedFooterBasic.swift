@@ -1,5 +1,6 @@
 import UIKit
 import Spring
+import AVFoundation
 
 class ActivityFeedFooterBasic: UIView {
     
@@ -26,7 +27,9 @@ class ActivityFeedFooterBasic: UIView {
     var topLayout:VerticalLayout!
     var backgroundReview: UIView!
     var newRating:JSON!
-    
+    let like =  Bundle.main.path(forResource: "tiny1", ofType: "mp3")!
+    var audioPlayer = AVAudioPlayer()
+
     var type="ActivityFeeds"
     var footerType = ""
     var dropView: DropShadow2!
@@ -75,6 +78,17 @@ class ActivityFeedFooterBasic: UIView {
         let tapout1 = UITapGestureRecognizer(target: self, action: #selector(ActivityFeedFooterBasic.showLike(_:)))
         tapout1.numberOfTapsRequired = 1
         likeViewLabel.addGestureRecognizer(tapout1)
+        
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: like))
+            //            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryAmbient)
+            //            try AVAudioSession.sharedInstance().setActive(true)
+        }
+        catch{
+            print(error)
+        }
+        //         audioPlayer = AVAudioPlayer(contentsOfURL: like, error: nil)
+        audioPlayer.prepareToPlay()
     
     }
     
@@ -370,7 +384,11 @@ class ActivityFeedFooterBasic: UIView {
     }
     
     @IBAction func sendLikes(_ sender: UIButton) {
+<<<<<<< HEAD
         if currentUser != nil {
+=======
+        audioPlayer.play()
+>>>>>>> origin/level-3-
         likeButton.animation = "pop"
         likeButton.velocity = 2
         likeButton.force = 2

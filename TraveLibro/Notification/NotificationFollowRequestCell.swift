@@ -97,18 +97,32 @@ class NotificationFollowRequestCell: UITableViewCell {
 //        NFFollowDetails.frame = CGRect(x: 0, y: totalHeight, width: screenWidth, height: DETAILS_HEIGHT)
 //        totalHeight += CGFloat(DETAILS_HEIGHT)
         
-        NFPermission.NFLeftButton.isHidden = false
-        NFPermission.NFRightButton.isHidden = false
-        NFPermission.NFStatusLabel.isHidden = true
+        NFPermission.NFLeftButton.removeTarget(helper, action: #selector(helper.userFollowingAcceptTabbed(_:)), for: .touchUpInside)
+        NFPermission.NFRightButton.removeTarget(helper, action: #selector(helper.userFollowingDeclinedTabbed(_:)), for: .touchUpInside)
         
-        NFPermission.NFLeftButton.removeTarget(helper, action: #selector(helper.journeyAcceptTabbed(_:)), for: .touchUpInside)
-        NFPermission.NFRightButton.removeTarget(helper, action: #selector(helper.journeyDeclineTabbed(_:)), for: .touchUpInside)
+        NFPermission.NFViewButton.isHidden = true
         
-        NFPermission.NFLeftButton.setTitle("Accept", for: .normal)
-        NFPermission.NFLeftButton.addTarget(helper, action: #selector(helper.journeyAcceptTabbed(_:)), for: .touchUpInside)
-        
-        NFPermission.NFRightButton.setTitle("Decline", for: .normal)
-        NFPermission.NFRightButton.addTarget(helper, action: #selector(helper.journeyDeclineTabbed(_:)), for: .touchUpInside)        
+        if notificationData["answeredStatus"].stringValue == "" {
+            
+            NFPermission.NFLeftButton.isHidden = false
+            NFPermission.NFRightButton.isHidden = false
+            NFPermission.NFStatusLabel.isHidden = true
+            
+            NFPermission.NFLeftButton.setTitle("Accept", for: .normal)
+            NFPermission.NFLeftButton.addTarget(helper, action: #selector(helper.userFollowingAcceptTabbed(_:)), for: .touchUpInside)
+            
+            NFPermission.NFRightButton.setTitle("Decline", for: .normal)
+            NFPermission.NFRightButton.addTarget(helper, action: #selector(helper.userFollowingDeclinedTabbed(_:)), for: .touchUpInside)
+        }
+        else {
+            
+            NFPermission.NFLeftButton.isHidden = true
+            NFPermission.NFRightButton.isHidden = true
+            
+            NFPermission.NFStatusLabel.isHidden = false
+            
+            NFPermission.NFStatusLabel.text = notificationData["answeredStatus"].stringValue == "reject" ? " Rejected " : " Accepted "                        
+        }
         
         NFPermission.frame = CGRect(x: xPos, y: totalHeight, width: screenWidth - xPos, height: BUTTON_HEIGHT)
         totalHeight += BUTTON_HEIGHT

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -11,8 +11,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="Search" customModule="TraveLibro" customModuleProvider="target">
             <connections>
-                <outlet property="PopularItinerariesScroll" destination="XpZ-TS-wqR" id="1hH-Kq-0sP"/>
-                <outlet property="popularBloggersScroll" destination="Ace-fp-pTO" id="Uz6-ig-CXT"/>
+                <outlet property="PopularItinerariesScroll" destination="Ace-fp-pTO" id="ayO-Mc-F83"/>
+                <outlet property="popularBloggersScroll" destination="XpZ-TS-wqR" id="vgB-je-Wo4"/>
                 <outlet property="popularJourneyScroll" destination="mS8-lu-shk" id="mbU-xn-bbb"/>
             </connections>
         </placeholder>
@@ -22,13 +22,13 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="249" bounces="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XpZ-TS-wqR">
-                    <rect key="frame" x="0.0" y="291.5" width="375" height="220"/>
+                    <rect key="frame" x="0.0" y="292" width="375" height="220"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="220" id="m6A-oz-TJG"/>
                     </constraints>
                 </scrollView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Popular Itineraries" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A2x-Je-ZgF">
-                    <rect key="frame" x="8" y="262" width="158" height="21.5"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Popular Bloggers" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A2x-Je-ZgF">
+                    <rect key="frame" x="8" y="262" width="158" height="22"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="158" id="8PV-il-FkJ"/>
                     </constraints>
@@ -38,8 +38,8 @@
                     <color key="shadowColor" red="0.15328633790000001" green="0.11381015930000001" blue="0.24658963079999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <size key="shadowOffset" width="0.0" height="2"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="248" text="Popular Bloggers" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ftL-JM-846">
-                    <rect key="frame" x="8" y="519.5" width="158" height="21.5"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="248" text="Popular Itineraries" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ftL-JM-846">
+                    <rect key="frame" x="8" y="520" width="158" height="22"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="158" id="oIJ-Nb-tG4"/>
                     </constraints>
@@ -68,7 +68,7 @@
                     </constraints>
                 </scrollView>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ace-fp-pTO">
-                    <rect key="frame" x="0.0" y="549" width="375" height="220"/>
+                    <rect key="frame" x="0.0" y="550" width="375" height="220"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="220" id="Fk9-BL-wVk"/>
                     </constraints>
@@ -82,7 +82,7 @@
                         <color key="titleShadowColor" red="0.15328633790000001" green="0.11381015930000001" blue="0.24658963079999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                     <connections>
-                        <action selector="toItinerary:" destination="-1" eventType="touchUpInside" id="7J4-ZV-9Ds"/>
+                        <action selector="toBloggers:" destination="-1" eventType="touchUpInside" id="yC4-8q-Vhe"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="967-Fj-HWM">
@@ -98,7 +98,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xAV-RC-LYS">
-                    <rect key="frame" x="324" y="514.5" width="43" height="30"/>
+                    <rect key="frame" x="324" y="515" width="43" height="30"/>
                     <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="13"/>
                     <size key="titleShadowOffset" width="0.0" height="2"/>
                     <state key="normal" title="See All">
@@ -106,7 +106,7 @@
                         <color key="titleShadowColor" red="0.15328633790000001" green="0.11381015930000001" blue="0.24658963079999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                     <connections>
-                        <action selector="toBloggers:" destination="-1" eventType="touchUpInside" id="q4Y-aA-9as"/>
+                        <action selector="toItinerary:" destination="-1" eventType="touchUpInside" id="WlQ-Ka-ahz"/>
                     </connections>
                 </button>
             </subviews>

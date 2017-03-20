@@ -379,6 +379,9 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
             else{
                 cell?.setData(notificationData: cellNotificationData, helper: self)
             }
+            cell?.NFPermission.NFLeftButton.tag = indexPath.row
+            cell?.NFPermission.NFRightButton.tag = indexPath.row
+            cell?.NFPermission.NFViewButton.tag = indexPath.row
             
             cell?.backgroundColor = UIColor.clear
             currentCellHeight = (cell?.totalHeight)!
@@ -658,6 +661,59 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         
         gotoDetailItinerary(itineraryID: tabbedCellData["data"]["_id"].stringValue)
         
+    }
+    
+    func userFollowingAcceptTabbed(_ sender: UIButton) {
+        
+        let tabbedCellData = notifications[sender.tag]
+        
+        request.respondToFollowRequest(token: tabbedCellData["data"]["token"].stringValue, answeredStatus: "accept") { (response) in
+            DispatchQueue.main.async(execute: {
+                if response.error != nil {
+                    print("error: \(response.error!.localizedDescription)")
+                }
+                else if response["value"].bool! {
+                    self.refreshControl.beginRefreshing()
+                    self.pullToRefreshCalled()
+                }
+                else {
+                    let errorAlert = UIAlertController(title: "Error", message: response["error"]["message"].stringValue, preferredStyle: UIAlertControllerStyle.alert)
+                    let DestructiveAction = UIAlertAction(title: "Ok", style: .destructive) {
+                        (result : UIAlertAction) -> Void in
+                        //Cancel Action
+                    }
+                    errorAlert.addAction(DestructiveAction)
+                    self.navigationController?.present(errorAlert, animated: true, completion: nil)
+                }
+            })
+        }
+    }
+    
+    func userFollowingDeclinedTabbed(_ sender: UIButton) {        
+        
+        let tabbedCellData = notifications[sender.tag]
+        
+        request.respondToFollowRequest(token: tabbedCellData["data"]["token"].stringValue, answeredStatus: "reject") { (response) in
+            DispatchQueue.main.async(execute: {
+                
+                if response.error != nil {
+                    print("error: \(response.error!.localizedDescription)")
+                }
+                else if response["value"].bool! {
+                    self.refreshControl.beginRefreshing()
+                    self.pullToRefreshCalled()
+                }
+                else {
+                    let errorAlert = UIAlertController(title: "Error", message: response["error"]["message"].stringValue, preferredStyle: UIAlertControllerStyle.alert)
+                    let DestructiveAction = UIAlertAction(title: "Ok", style: .destructive) {
+                        (result : UIAlertAction) -> Void in
+                        //Cancel Action
+                    }            
+                    errorAlert.addAction(DestructiveAction)
+                    self.navigationController?.present(errorAlert, animated: true, completion: nil)
+                }
+            })
+        }
     }
     
     
