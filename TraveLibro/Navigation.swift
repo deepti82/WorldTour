@@ -1929,6 +1929,40 @@ class Navigation {
         }
     }
     
+    //MARK: -  Global Like
+    func globalLike(_ id: String, userId: String, unlike: Bool, type: String, completion: @escaping ((JSON) -> Void)) {
+        
+        do {
+            
+            
+            var params = ["journey": id, "user": userId, "unlike": unlike] as [String : Any]
+            
+            if !unlike {
+                
+                params = ["journey": id, "user": userId]
+            }
+            
+            print("like post: \(params)")
+            
+            let opt = try HTTP.POST(adminUrl + "journey/likeJourney", parameters: [params])
+            var json = JSON(1);
+            opt.start {response in
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    json  = JSON(data: response.data)
+                    print(json)
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+    }
+    
+    
     //  ITINERARY
     func likeItinerary(_ id: String, userId: String, userName: String, unlike: Bool, itinerary: String, completion: @escaping ((JSON) -> Void)) {
         

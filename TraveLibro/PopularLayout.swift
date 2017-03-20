@@ -217,7 +217,8 @@ class PopularLayout: VerticalLayout, PlayerDelegate {
         print("in footer")
         footerView = ActivityFeedFooterBasic(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 65))
         footerView.topLayout = self
-        footerView.type = ""
+        footerView.type = "popular"
+        footerView.footerType = feed["type"].stringValue
         if (feed["type"].stringValue == "detail-itinerary") || feed["type"].stringValue == "quick-itinerary"{
             footerView.follow.isHidden = false
         }

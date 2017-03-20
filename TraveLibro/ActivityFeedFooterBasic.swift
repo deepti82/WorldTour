@@ -237,6 +237,8 @@ class ActivityFeedFooterBasic: UIView {
     
     @IBAction func sendComments(_ sender: UIButton) {
         print("in activity feed layout \(type)")
+        if currentUser != nil {
+
         if type == "TripPhotos" {
             let comment = storyboard?.instantiateViewController(withIdentifier: "photoComment") as! PhotoCommentViewController
             comment.postId = photoPostId
@@ -267,10 +269,13 @@ class ActivityFeedFooterBasic: UIView {
             globalNavigationController?.pushViewController(comment, animated: true)
         }
         
-        
     }
-    
-    
+    else {
+    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
+    }
+    }
+
+
     func setLikeCount(_ post_likeCount:Int!) {
         if(post_likeCount != nil) {
             self.likeCount = post_likeCount
@@ -365,7 +370,7 @@ class ActivityFeedFooterBasic: UIView {
     }
     
     @IBAction func sendLikes(_ sender: UIButton) {
-        
+        if currentUser != nil {
         likeButton.animation = "pop"
         likeButton.velocity = 2
         likeButton.force = 2
@@ -448,8 +453,8 @@ class ActivityFeedFooterBasic: UIView {
                 })
             }
         }else{
-            
-            request.likePost(postTop["uniqueId"].stringValue, userId: currentUser["_id"].string!, unlike: hasLiked, completion: {(response) in
+            print("oooooooooo")
+            request.globalLike(postTop["_id"].stringValue, userId: currentUser["_id"].stringValue, unlike: hasLiked, type: postTop["type"].stringValue, completion: {(response) in
                 DispatchQueue.main.async(execute: {
                     if response.error != nil {
                         print("error: \(response.error!.localizedDescription)")
@@ -476,8 +481,15 @@ class ActivityFeedFooterBasic: UIView {
                 })
             })
         }
+        
     }
+    else {
+    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
+    }
+
     
+    }
+
     @IBAction func optionClick(_ sender: UIButton) {
         let actionSheetControllerIOS8: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
@@ -529,7 +541,9 @@ class ActivityFeedFooterBasic: UIView {
             {action -> Void in
                 
             }
-            actionSheetControllerIOS8.addAction(UnFollow)
+            if self.type != "popular" {
+                actionSheetControllerIOS8.addAction(UnFollow)
+            }
             
             let reportActionButton: UIAlertAction = UIAlertAction(title: "Report", style: .default)
             {action -> Void in
