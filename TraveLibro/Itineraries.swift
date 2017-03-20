@@ -84,6 +84,8 @@ class Itineraries: UIView {
     
     func setItineraryData(editJson : JSON) {
         profileIcon.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(editJson["creator"]["profilePicture"].stringValue)", width: 100))
+        makeBuddiesTLProfilePicture1(profileIcon)
+        
         profileName.text = "By " + editJson["creator"]["name"].stringValue
         coverImage.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(editJson["coverPhoto"].stringValue)", width: 100))
         daysLabel.text = editJson["duration"].stringValue + "\nDays"

@@ -375,7 +375,7 @@ class EachItineraryViewController: UIViewController, UITableViewDataSource, UITa
         
         self.title = getFirstLetterCapitalizedString(nameOfString: (editJson?["name"].stringValue)!)
         
-        photosButton.setTitle((editJson?["name"].stringValue)! + " Photos", for: .normal)
+//        photosButton.setTitle((editJson?["name"].stringValue)! + " Photos", for: .normal)
         
         for button in allButtons {
             button.isHidden = true
