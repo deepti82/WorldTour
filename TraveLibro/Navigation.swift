@@ -2021,6 +2021,44 @@ class Navigation {
         }
     }
     
+    func commentOn(id: String, userId: String, commentText: String, hashtags: [String], mentions: [String], photoId: String, type: String, videoId: String, journeyId: String, itineraryId: String, completion: @escaping ((JSON) -> Void)) {
+        
+        do {
+            
+            var params = ["post": id, "user":  userId, "text": commentText, "type": "photo", "hashtag" : hashtags, "photo": photoId] as [String : Any]
+            
+            switch type {
+            case "post":
+                params = ["post": id, "user":  userId, "text": commentText, "type": "post", "hashtag" : hashtags] as [String : Any]
+            case "itinerary":
+                params = ["itinerary": id, "user":  userId, "text": commentText, "type": "itinerary", "hashtag" : hashtags] as [String : Any]
+            case "journey":
+                params = ["journey": id, "user":  userId, "text": commentText, "type": "journey", "hashtag" : hashtags] as [String : Any]
+            default:
+                params = ["post": id, "user":  userId, "text": commentText, "type": "post", "hashtag" : hashtags] as [String : Any]
+            }
+            
+            
+            print("set photo comment params: \(params)")
+            
+            let opt = try HTTP.POST(adminUrl + "comment/addComment", parameters: [params])
+            var json = JSON(1);
+            opt.start {response in
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    json  = JSON(data: response.data)
+                    print(json)
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+    }
+    
     func commentOnPhotos(id: String, postId: String, userId: String, commentText: String, hashtags: [String], mentions: [String], photoId: String, completion: @escaping ((JSON) -> Void)) {
         
         do {

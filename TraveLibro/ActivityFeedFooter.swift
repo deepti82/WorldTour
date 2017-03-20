@@ -97,7 +97,7 @@ class ActivityFeedFooter: UIView {
     }
     
     @IBAction func sendComments(_ sender: UIButton) {
-        
+        print("??//////// \(postTop["type"].stringValue)")
         if currentUser != nil {
             let comment = storyboard?.instantiateViewController(withIdentifier: "CommentsVC") as! CommentsViewController
             comment.postId = postTop["uniqueId"].stringValue
@@ -105,12 +105,12 @@ class ActivityFeedFooter: UIView {
             switch postTop["type"].stringValue {
             case "ended-journey", "on-the-go-journey":
                 comment.type = "journey"
-            case "quick-itinerary", "detailed-itinerary":
+            case "quick-itinerary", "detail-itinerary":
                 comment.type = "itinerary"
             case "travel-life", "local-life":
                 comment.type = "post"
             default:
-                comment.type = "photo"
+                comment.type = "post"
             }
             globalNavigationController?.setNavigationBarHidden(false, animated: true)
             globalNavigationController?.pushViewController(comment, animated: true)

@@ -374,7 +374,7 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
         }else{
             usr = userm.getExistingUser()
         }
-        request.commentOnPost(postId: ids, userId: usr, commentText: comment, hashtags: hashtags, mentions: mentions, completion: {(response) in
+        request.commentOn(id: ids, userId: usr, commentText: comment, hashtags: hashtags, mentions: mentions, photoId: "", type: self.type, videoId: "", journeyId: ids, itineraryId: ids, completion: {(response) in
             
             DispatchQueue.main.async(execute: {
                 
@@ -399,7 +399,7 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func getAllComments() {
-        
+        print("?????????? \(self.type)")
         request.getComments(ids, type: self.type, userId: currentUser["_id"].string!, pageno: 1, completion: {(response) in
             
             DispatchQueue.main.async(execute: {

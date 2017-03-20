@@ -124,6 +124,7 @@ class PhotoOTGFooter: UIView {
         let comment = storyboard?.instantiateViewController(withIdentifier: "CommentsVC") as! CommentsViewController
         comment.postId = postTop.post_uniqueId
         comment.ids = postTop.post_ids
+        
         comment.footerView = self;
         globalNavigationController?.setNavigationBarHidden(false, animated: true)
         globalNavigationController?.pushViewController(comment, animated: true)
