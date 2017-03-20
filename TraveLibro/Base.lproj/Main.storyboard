@@ -3566,7 +3566,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HEf-Pa-zSZ">
-                                        <rect key="frame" x="94.5" y="245" width="154" height="30"/>
+                                        <rect key="frame" x="95" y="245" width="154" height="30"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="more about me... " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m1F-gD-cCl">
                                                 <rect key="frame" x="0.0" y="0.0" width="124" height="30"/>
@@ -11266,17 +11266,17 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dmz-e0-XCZ">
                                                     <rect key="frame" x="81" y="38" width="180" height="28"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="travel Photographer" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fE0-gK-M4s">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="travel Blogger" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fE0-gK-M4s">
                                                             <rect key="frame" x="43" y="3" width="137" height="22"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="22" id="yqZ-7T-Sds"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" name="DJBMyMoodRingSaysBlah" family="DJB My Mood Ring Says Blah" pointSize="14"/>
-                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="textColor" red="0.17254901960784313" green="0.21568627450980393" blue="0.3411764705882353" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photographer" translatesAutoresizingMaskIntoConstraints="NO" id="neZ-n5-ziG">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blogger" translatesAutoresizingMaskIntoConstraints="NO" id="neZ-n5-ziG">
                                                             <rect key="frame" x="15" y="2" width="20" height="23"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="20" id="lHO-sP-DGr"/>
@@ -11307,7 +11307,7 @@
                                                         </mask>
                                                     </variation>
                                                 </view>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-default" translatesAutoresizingMaskIntoConstraints="NO" id="lX8-ul-C5W">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-default" translatesAutoresizingMaskIntoConstraints="NO" id="lX8-ul-C5W">
                                                     <rect key="frame" x="16" y="23" width="75" height="75"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="lX8-ul-C5W" secondAttribute="height" multiplier="1:1" id="d4I-qj-tke"/>
@@ -11382,7 +11382,7 @@
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="28" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GEP-AL-T2h">
                                                             <rect key="frame" x="30" y="0.0" width="16" height="20"/>
                                                             <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
-                                                            <color key="textColor" red="0.082352943720000002" green="0.098039217289999994" blue="0.21176470820000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="textColor" red="0.17254901960784313" green="0.21568627450980393" blue="0.3411764705882353" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GTY-Pj-nae">
@@ -11402,7 +11402,7 @@
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NBW-xf-Wun">
                                                             <rect key="frame" x="98" y="0.0" width="8" height="20"/>
                                                             <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
-                                                            <color key="textColor" red="0.082352943720000002" green="0.098039217289999994" blue="0.21176470820000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="textColor" red="0.17254901960784313" green="0.21568627450980393" blue="0.3411764705882353" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3hH-RU-IJG">
@@ -11423,7 +11423,7 @@
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OnP-Yp-6YI">
                                                             <rect key="frame" x="158" y="0.0" width="8" height="20"/>
                                                             <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
-                                                            <color key="textColor" red="0.082352943720000002" green="0.098039217289999994" blue="0.21176470820000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="textColor" red="0.17254901960784313" green="0.21568627450980393" blue="0.3411764705882353" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
@@ -11432,7 +11432,7 @@
                                                     <rect key="frame" x="316" y="28" width="49" height="34"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="16"/>
                                                     <state key="normal" title="Follow">
-                                                        <color key="titleColor" red="0.082352943720000002" green="0.098039217289999994" blue="0.21176470820000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="titleColor" red="0.17254901960784313" green="0.21568627450980393" blue="0.3411764705882353" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
                                                     <connections>
                                                         <action selector="followButtonClicked:" destination="bZ0-aF-wox" eventType="touchUpInside" id="Dya-QR-FRh"/>
@@ -11448,7 +11448,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Andrea Christina" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z9E-wp-HxO">
                                                     <rect key="frame" x="99" y="70" width="141" height="25"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="18"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="textColor" red="0.17254901960784313" green="0.21568627450980393" blue="0.3411764705882353" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -11898,6 +11898,7 @@
         <image name="backpacking" width="100" height="100"/>
         <image name="bandra_worli_sea_link" width="700" height="476"/>
         <image name="beach_checkin" width="115" height="115"/>
+        <image name="blogger" width="100" height="100"/>
         <image name="bluebox" width="130" height="130"/>
         <image name="bottom_-Drop-Shadow" width="612" height="30"/>
         <image name="business" width="100" height="100"/>
@@ -11938,7 +11939,6 @@
         <image name="paris" width="811" height="563"/>
         <image name="partner" width="100" height="100"/>
         <image name="photobar1" width="60" height="60"/>
-        <image name="photographer" width="100" height="100"/>
         <image name="photos_icon" width="100" height="83"/>
         <image name="profile_pic_new" width="150" height="150"/>
         <image name="religious" width="100" height="100"/>

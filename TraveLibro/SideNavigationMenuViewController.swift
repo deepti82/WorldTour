@@ -229,7 +229,7 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! SideMenuTableViewCell
         cell.menuLabel.text = labels[(indexPath as NSIndexPath).item]
         cell.menuLabel.shadowColor = UIColor.black
-        cell.menuLabel.shadowOffset = CGSize(width: 2, height: 2)
+        cell.menuLabel.shadowOffset = CGSize(width: 3, height: 3)
         cell.menuLabel.layer.masksToBounds = true
         
         if indexPath.row == 6 && !(currentUser != nil) {     // Login/Logout Option
