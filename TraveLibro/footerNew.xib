@@ -194,7 +194,7 @@
                     </constraints>
                 </view>
                 <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tAf-V2-SrM">
-                    <rect key="frame" x="377" y="2" width="25" height="25"/>
+                    <rect key="frame" x="366" y="2" width="25" height="25"/>
                     <color key="backgroundColor" red="1" green="0.40392156862745099" blue="0.3411764705882353" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="25" id="1bv-9m-N4A"/>
@@ -210,13 +210,13 @@
             <constraints>
                 <constraint firstItem="8Sd-Tw-WNK" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="1X5-uN-tYc"/>
                 <constraint firstItem="omO-vk-ce0" firstAttribute="leading" secondItem="FAH-cp-FRl" secondAttribute="trailing" constant="16" id="42Q-sK-fFL"/>
-                <constraint firstAttribute="trailing" secondItem="tAf-V2-SrM" secondAttribute="trailing" constant="5" id="6fA-gp-47q"/>
                 <constraint firstItem="gP7-LO-s7L" firstAttribute="leading" secondItem="8Sd-Tw-WNK" secondAttribute="trailing" constant="13" id="CPI-xb-pwE"/>
                 <constraint firstItem="8Sd-Tw-WNK" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" constant="-1" id="Fkb-xw-uaD"/>
                 <constraint firstItem="8Sd-Tw-WNK" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" constant="-1" id="Ozt-Qq-D4U"/>
                 <constraint firstAttribute="bottom" secondItem="wbj-3m-z2P" secondAttribute="bottom" id="QHz-hp-vk7"/>
                 <constraint firstAttribute="bottom" secondItem="8Sd-Tw-WNK" secondAttribute="bottom" constant="5" id="V0P-N9-jnh"/>
                 <constraint firstItem="gP7-LO-s7L" firstAttribute="top" secondItem="tAf-V2-SrM" secondAttribute="bottom" constant="-10" id="VDo-Kz-LID"/>
+                <constraint firstItem="tAf-V2-SrM" firstAttribute="leading" secondItem="2OT-9G-de8" secondAttribute="trailing" id="pbU-7R-HOh"/>
                 <constraint firstItem="wbj-3m-z2P" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="17" id="vMU-3R-Dia"/>
                 <constraint firstAttribute="trailing" secondItem="wbj-3m-z2P" secondAttribute="trailing" id="y2N-Ge-OaL"/>
                 <constraint firstItem="wbj-3m-z2P" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="yfk-AP-csc"/>

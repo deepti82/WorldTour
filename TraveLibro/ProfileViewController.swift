@@ -124,6 +124,8 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         print(user.getExistingUser())
         super.viewDidLoad()
         
+        getUnreadNotificationCount()
+        
         loader.showOverlay(self.view)
         self.title = ""
 //        scrollImage.isScrollEnabled =  true
@@ -513,7 +515,6 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         if toggle {
-            
             MAMTapped(nil)
         }
         

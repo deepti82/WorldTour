@@ -110,7 +110,7 @@ class LikeCell: UITableViewCell {
         if sender.tag == 0 {
             
             print("profile name follow: \(profileName.text)")
-            parent.followUser(profileName.text!)
+            parent.followUser(profileName.text!, sender: sender)
             sender.tag = 1
             sender.setImage(UIImage(named:"following"), for: .normal)
             sender.contentMode = .scaleAspectFit
@@ -121,7 +121,7 @@ class LikeCell: UITableViewCell {
             
         else {
             print("profile name unfollow: \(profileName.text)")
-            parent.unFollowUser(profileName.text!)
+            parent.unFollowUser(profileName.text!, sender: sender)
             sender.tag = 0
             sender.setImage(UIImage(named:"follow"), for: .normal)
             sender.contentMode = .scaleAspectFit
