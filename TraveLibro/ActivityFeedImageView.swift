@@ -38,9 +38,9 @@ class ActivityFeedImageView: UIView {
         super.init(frame: frame)
         loadViewFromNib ()
        transparentCardWhite(ActivityImageView)
-        makeTLProfilePictureBorderWhiteCorner(flagOne)
-        makeTLProfilePictureBorderWhiteCorner(flageTwo)
-        makeTLProfilePictureBorderWhiteCorner(flagThree)
+        makeFlagBorderWhiteCorner(flagOne)
+        makeFlagBorderWhiteCorner(flageTwo)
+        makeFlagBorderWhiteCorner(flagThree)
         kindOfJourneyOne.tintColor = UIColor.white
         kindOfJourneyTwo.tintColor = UIColor.white
         kindOfJourneyThree.tintColor = UIColor.white

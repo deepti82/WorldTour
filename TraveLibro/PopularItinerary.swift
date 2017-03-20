@@ -51,9 +51,9 @@ class PopularItinerary: UIView {
 
         
         transparentCardWhite(activityFeedQuickView)
-        makeTLProfilePictureBorderWhiteCorner(activityQuickFlagOne)
-        makeTLProfilePictureBorderWhiteCorner(activityQuickFlagTwo)
-        makeTLProfilePictureBorderWhiteCorner(activityFeedQuickThree)
+        makeFlagBorderWhiteCorner(activityQuickFlagOne)
+        makeFlagBorderWhiteCorner(activityQuickFlagTwo)
+        makeFlagBorderWhiteCorner(activityFeedQuickThree)
         
     }
     
@@ -72,9 +72,9 @@ class PopularItinerary: UIView {
         if feed["currency"] != nil && feed["currency"].stringValue != "null" {
             budget.text?.append(feed["currency"].stringValue)
         }
-//        if feed["cost"] != nil  {
+        if (feed["cost"] != nil) && (feed["cost"] != 0) {
             budget.text = feed["cost"].stringValue
-//        }
+        }
         
         
         if feed["duration"] > 1 {
