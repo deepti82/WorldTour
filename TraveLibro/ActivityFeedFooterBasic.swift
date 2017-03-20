@@ -384,11 +384,8 @@ class ActivityFeedFooterBasic: UIView {
     }
     
     @IBAction func sendLikes(_ sender: UIButton) {
-<<<<<<< HEAD
         if currentUser != nil {
-=======
         audioPlayer.play()
->>>>>>> origin/level-3-
         likeButton.animation = "pop"
         likeButton.velocity = 2
         likeButton.force = 2
