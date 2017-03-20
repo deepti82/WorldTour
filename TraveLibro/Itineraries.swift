@@ -88,7 +88,16 @@ class Itineraries: UIView {
         
         profileName.text = "By " + editJson["creator"]["name"].stringValue
         coverImage.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(editJson["coverPhoto"].stringValue)", width: 100))
-        daysLabel.text = editJson["duration"].stringValue + "\nDays"
+        if editJson["duration"].stringValue == "" {
+            daysBG.isHidden = true
+            daysLabel.isHidden = true
+        }else {
+             daysLabel.text = editJson["duration"].stringValue + "\nDays"
+            daysBG.isHidden = false
+            daysLabel.isHidden = false
+            
+        }
+       
                 
         itineraryName.text = getFirstLetterCapitalizedString(nameOfString: editJson["name"].stringValue)
         itineraryCost.text = editJson["currency"].stringValue + " " + getDigitWithCommaStandards(originalDigitStr: editJson["cost"].stringValue)
