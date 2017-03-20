@@ -71,10 +71,10 @@ class NearMeDetailViewController: UIViewController {
 //        self.layer1.shadowPath = shadowPath.cgPath
 //        self.dropShadow.layer.addSublayer(self.layer1)
         
-//        directions.layer.borderWidth = 2.0
-//        directions.layer.borderColor = mainOrangeColor.cgColor
-//        directions.layer.cornerRadius = 5.0
-//        directions.clipsToBounds = true
+        directions.layer.borderWidth = 2.0
+        directions.layer.borderColor = mainOrangeColor.cgColor
+        directions.layer.cornerRadius = 5.0
+        directions.clipsToBounds = true
         
         getPlaceDetail()
         setTopNavigation(nearMeType)
@@ -129,7 +129,8 @@ class NearMeDetailViewController: UIViewController {
                     if self.nearMeDetailJSON["international_phone_number"].string != nil && self.nearMeDetailJSON["international_phone_number"].string != "" {
                     
                         self.nearMePhone = NSMutableAttributedString(string: "Phone :", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Heavy", size: 14)!])
-                        self.nearMePhone.append(NSAttributedString(string: " \(self.nearMeDetailJSON["international_phone_number"])", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: 14)!]))
+                        self.nearMePhone.append(NSAttributedString(string: " \(self.nearMeDetailJSON["international_phone_number"])", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: 14)!, NSUnderlineStyleAttributeName:  NSUnderlineStyle.styleSingle.rawValue]))
+//                        self.nearMePhone.append(NSAttributedString(string: " \(self.nearMeDetailJSON["international_phone_number"])", attributes: [NSUnderlineStyleAttributeName: NSUnderlineStyle.styleSingle]))
                         self.phone.attributedText = self.nearMePhone
                         let tap = UITapGestureRecognizer(target: self, action: #selector(NearMeDetailViewController.callTap(_:)))
                         self.phone.addGestureRecognizer(tap)
@@ -141,9 +142,11 @@ class NearMeDetailViewController: UIViewController {
                     
                     if self.nearMeDetailJSON["opening_hours"]["weekday_text"][self.getWeekDay()!].string != nil && self.nearMeDetailJSON["opening_hours"]["weekday_text"][self.getWeekDay()!].string != "" {
                     
-                        self.nearMeOpeningHours = NSMutableAttributedString(string: "Opening Hours :", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Heavy", size: 14)!])
-                        self.nearMeOpeningHours.append(NSAttributedString(string: " \(self.nearMeDetailJSON["opening_hours"]["weekday_text"][self.getWeekDay()!])", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: 14)!]))
+                        self.nearMeOpeningHours = NSMutableAttributedString(string: "Open Until :", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: 14)!])
+                        self.nearMeOpeningHours.append(NSAttributedString(string: " \(self.nearMeDetailJSON["opening_hours"]["weekday_text"][self.getWeekDay()!])", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Heavy", size: 14)!]))
+                        self.openingHours.numberOfLines = 2
                         self.openingHours.attributedText = self.nearMeOpeningHours
+                        
                         
                     } else {
                         self.openingHours.isHidden = true

@@ -10,6 +10,7 @@ import UIKit
 import CoreLocation
 var globalNearMe:NearMeListViewController!
 class NearMeListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate {
+    var local = ""
     var loader = LoadingOverlay()
     var city: String!
     var nearMeType: String!

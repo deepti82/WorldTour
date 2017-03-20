@@ -392,7 +392,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
         self.title = "Activity Feed"
         self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Avenir-Medium", size: 18)!]
         let leftButton = UIButton()
-        leftButton.frame = CGRect(x: -5, y: 0, width: 30, height: 30)
+        leftButton.frame = CGRect(x: -10, y: 0, width: 30, height: 30)
         leftButton.setImage(UIImage(named: "menu_left_icon"), for: UIControlState())
         leftButton.imageView?.image = leftButton.imageView?.image!.withRenderingMode(.alwaysTemplate)
         leftButton.imageView?.tintColor = UIColor.white

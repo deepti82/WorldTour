@@ -51,7 +51,7 @@ class Itineraries: UIView {
         gradient.locations = [0.0, 0.75]
         
         gradientView.layer.addSublayer(gradient)
-        
+        profileIcon.layer.cornerRadius = 5
         profileIcon.layer.zPosition = 10
         profileName.layer.zPosition = 10
         daysLabel.layer.zPosition = 10

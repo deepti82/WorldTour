@@ -167,17 +167,17 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
         }
         if self.comments[indexPath.row]["user"]["_id"].string! == usr {
             
-            let more = UITableViewRowAction(style: .normal, title: "") { action, index in
+            let more = UITableViewRowAction(style: .normal, title: "                       ") { action, index in
                 self.addComment.text = self.comments[indexPath.row]["text"].string!
                 self.previousHashtags = self.getHashtagsFromText(oldText: self.comments[indexPath.row]["text"].string!)
                 self.editComment = self.comments[indexPath.row]
                 self.isEdit = true
             }
-//            let moreImage = UIImageView(image: UIImage(named: "penciltranswhite"))
-//            moreImage.contentMode = .center
-//            moreImage.backgroundColor = mainOrangeColor
-//            more.backgroundColor = UIColor(patternImage: UIImage(named: "penciltranswhite")!)
-            let favorite = UITableViewRowAction(style: .normal, title: " ") { action, index in
+            let moreImage = UIImageView(image: UIImage(named: "penciltranswhite"))
+            moreImage.contentMode = .center
+            moreImage.backgroundColor = mainOrangeColor
+            more.backgroundColor = UIColor(patternImage: UIImage(named: "penciltranswhite")!)
+            let favorite = UITableViewRowAction(style: .normal, title: "                       ") { action, index in
                 print("delete button tapped")
                 request.deleteComment(commentId: self.comments[indexPath.row]["_id"].string!, completion: {(response) in
                     
@@ -203,10 +203,13 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
                 
                 
             }
-            let favoriteImage = UIImageView(frame: CGRect(x: 0, y: 0, width: 60, height: 40))
+            let favoriteImage = UIImageView(frame: CGRect(x: 0, y: 0, width: 80, height: 40))
             favoriteImage.image = UIImage(named: "backtranswhite (1)")
+            favoriteImage.contentMode = .center
+            favoriteImage.clipsToBounds = true
+            favoriteImage.contentMode = .scaleAspectFit
             favorite.backgroundColor = UIColor(patternImage: favoriteImage.image!)
-//            favoriteImage.contentMode = .center
+            
 //            favoriteImage.backgroundColor = mainOrangeColor
 //            favorite.backgroundColor = mainOrangeColor
             
