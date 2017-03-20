@@ -10,7 +10,7 @@ import UIKit
 
 class UserProfileSettingsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
-    let labels = ["Little More About Me", "Privacy", "Report a Problem"]
+    let labels = ["Little More About Me", "Privacy", "Report A Problem"]
     let sideImages = ["edit_profile_icon", "privacy_icon", "report_icon"]
     
     @IBOutlet weak var settingsTableView: UITableView!
@@ -116,7 +116,7 @@ class UserProfileSettingsViewController: UIViewController, UITableViewDataSource
         else if (indexPath as NSIndexPath).section == 4 {
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "aboutCell") as! AboutTableViewCell
-            cell.aboutTL.text = "Privacy policy"
+            cell.aboutTL.text = "Privacy Policy"
             return cell
         }
         
