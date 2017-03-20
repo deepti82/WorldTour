@@ -264,9 +264,8 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
             self.slideMenuController()?.changeMainViewController(self.popBloggersController, close: true)        
         case 3:
             self.shareButtonClicked(sender: cell)
-//            self.slideMenuController()?.changeMainViewController(self.inviteFriendsController, close: true)
         case 4:
-            self.slideMenuController()?.changeMainViewController(self.rateUsController, close: true)
+            self.rateUsButtonClicked()
         case 5:
             if currentUser != nil {
                 self.slideMenuController()?.changeMainViewController(self.feedbackController, close: true)
@@ -321,7 +320,18 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
             self.present(activityVC, animated: true, completion: nil)
         }
     }
-
+    
+    //MARK: - Rate Us
+    func rateUsButtonClicked() {
+        let loader = LoadingOverlay()
+        loader.showOverlay(self.view)
+        let appID = "1056641759"
+        let urlStr = "itms-apps://itunes.apple.com/app/travelibro/id" + appID
+        UIApplication.shared.open((NSURL(string: urlStr) as! URL), options: [:]) { (done) in
+            loader.hideOverlayView()
+        }
+    }
+ 
 }
 
 class SideMenuTableViewCell: UITableViewCell {
