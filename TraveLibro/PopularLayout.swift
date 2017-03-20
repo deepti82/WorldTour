@@ -218,7 +218,7 @@ class PopularLayout: VerticalLayout, PlayerDelegate {
         footerView = ActivityFeedFooterBasic(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 65))
         footerView.topLayout = self
         footerView.type = ""
-        if (feed["type"].stringValue == "detail-itinerary") && feed["type"].stringValue == "quick-itinerary"{
+        if (feed["type"].stringValue == "detail-itinerary") || feed["type"].stringValue == "quick-itinerary"{
             footerView.follow.isHidden = false
         }
         footerView.setCommentCount(feed["commentCount"].intValue)
