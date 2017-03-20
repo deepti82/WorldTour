@@ -89,6 +89,7 @@ extension NewTLViewController {
         newScroll.bounces = false
         newScroll.bouncesZoom = false
         self.addView = AddActivityNew()
+        self.addView.thoughtsTextView.delegate = self
         self.addView.buddyAdded(myJourney["buddies"].arrayValue)
         
         self.addView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: self.view.frame.size.height)

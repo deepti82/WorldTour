@@ -34,7 +34,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     var buttons1 = Buttons2()
     var changeText = AddBuddiesViewController()
     var endJourneyView: EndJourneyMyLife!
-    var textFieldYPos = 0
+    var textFieldYPos = CGFloat(0)
+    var difference = CGFloat(0)
     
     @IBOutlet weak var hideVisual: UIVisualEffectView!
     @IBOutlet weak var hideToolBar: UIStackView!
@@ -2022,40 +2023,65 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         }        
     }
     
-    //    var keyboardHidden = false
-    
-//    var viewHeight = 0
+    //MARK: - Keyboard Handling
     
     func keyboardWillShow(_ notification: Notification) {
-        print("\n isTranslucent : \(self.navigationController?.navigationBar.isTranslucent)")
-//        view.frame.origin.y = CGFloat(viewHeight)
-        if let keyboardSize = ((notification as NSNotification).userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+        if let keyboardSize = ((notification as NSNotification).userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {            
+            let keyboardYpos = self.view.frame.height - keyboardSize.height
             
-            
-            //            if !keyboardHidden {
-            if self.view.frame.origin.y == 0{
-                self.view.frame.origin.y -= keyboardSize.height
-                //                keyboardHidden = true
-                //            }
-                print("keyboardchange karde")
-                print(keyboardSize.height)
+            if keyboardYpos < textFieldYPos {
+                difference = textFieldYPos - keyboardYpos
+                self.view.frame.origin.y -= difference 
+            }
+            else {
+                difference = CGFloat(0)
             }
         }
-        
     }
+    
     func keyboardWillHide(_ notification: Notification) {
-        print("\n isTranslucent : \(self.navigationController?.navigationBar.isTranslucent)")
-        if let keyboardSize = ((notification as NSNotification).userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.view.frame.origin.y != self.navigationController?.navigationBar.frame.size.height{
-                self.view.frame.origin.y += keyboardSize.height
-                print("helololol")
-                print(keyboardSize.height)
-            }
-        }
+        self.view.frame.origin.y += difference
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-//        textFieldYPos = textField.frame.origin.y
+        textFieldYPos = textField.frame.origin.y + textField.frame.size.height
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        textFieldYPos = 0
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        
+        if text == "\n" {
+            
+            addView.thoughtsTextView.resignFirstResponder()
+            
+            if addView.thoughtsTextView.text == "" {
+                
+                addView.thoughtsTextView.text = "Fill Me In..."
+                
+            }
+            return true
+            
+        }
+        
+        let newText = (textView.text as NSString).replacingCharacters(in: range, with: text)
+        let number = newText.characters.count
+        addView.countCharacters(number)
+        return number <= 180
+        
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        textFieldYPos = textView.frame.origin.y + textView.frame.size.height
+        if addView.thoughtsTextView.text == "Fill Me In..." {
+            addView.thoughtsTextView.text = ""
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        textFieldYPos = 0
     }
     
         
