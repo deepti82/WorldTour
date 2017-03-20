@@ -23,7 +23,7 @@ class EditSettingsViewController: UIViewController, UIWebViewDelegate {
        
         self.automaticallyAdjustsScrollViewInsets = false
         
-        print("view: \(whichView)")
+        getDarkBackGround(self)
         
         switch whichView {
         case "MAMView":
@@ -31,8 +31,9 @@ class EditSettingsViewController: UIViewController, UIWebViewDelegate {
  
             let titleText = NSMutableAttributedString(string: "Click here", attributes: [NSUnderlineStyleAttributeName: NSUnderlineStyle.styleSingle.rawValue,
                                                                                          NSFontAttributeName : UIFont(name: "Avenir-Heavy", size: 14)!,
-                                                                                         NSForegroundColorAttributeName: mainBlueColor])
-            titleText.append(getRegularString(string: " to change your travel preferences", size: 12))
+                                                                                         NSForegroundColorAttributeName: UIColor.white])
+            titleText.append(NSMutableAttributedString(string: " to change your travel preferences." , 
+                                                       attributes: [NSFontAttributeName: UIFont(name: "Avenir-Medium", size: CGFloat(12))!, NSForegroundColorAttributeName: UIColor.white]))
             
             let titleView = UIButton(frame: CGRect(x: 0, y: 0, width: 300, height: 30))
             titleView.center = CGPoint(x: self.view.frame.width/2 , y: 36)
@@ -44,7 +45,7 @@ class EditSettingsViewController: UIViewController, UIWebViewDelegate {
             self.view.addSubview(titleView)
             
             MAMtextView = MoreAboutMe(frame: CGRect(x: 0, y: 76, width: self.view.frame.width, height: 150))
-            MAMtextView.backgroundColor = UIColor.white
+            MAMtextView.backgroundColor = UIColor(white: 1, alpha: 0.8)
             self.view.addSubview(MAMtextView)
             break        
         

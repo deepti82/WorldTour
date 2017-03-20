@@ -13,7 +13,7 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
     
     var postId = ""
     var comments: [JSON] = []
-    var otherId = ""
+    var ids = ""
     var hashtags: [String] = []
     var mentions: [String] = []
     var mentionSuggestions: [JSON] = []
@@ -21,6 +21,8 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
     var previousHashtags: [String] = []
     var editComment: JSON!
     var footerView: PhotoOTGFooter!
+    var type: String = ""
+    
     @IBOutlet weak var addCommentLabel: UILabel!
     @IBOutlet weak var mentionSuggestionsTable: UITableView!
     @IBOutlet weak var hashTagSuggestionsTable: UITableView!
@@ -372,7 +374,7 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
         }else{
             usr = userm.getExistingUser()
         }
-        request.commentOnPost(id: postId, postId: otherId, userId: usr, commentText: comment, hashtags: hashtags, mentions: mentions, completion: {(response) in
+        request.commentOnPost(postId: ids, userId: usr, commentText: comment, hashtags: hashtags, mentions: mentions, completion: {(response) in
             
             DispatchQueue.main.async(execute: {
                 
@@ -398,7 +400,7 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func getAllComments() {
         
-        request.getComments(otherId, userId: currentUser["_id"].string!, pageno: 1, completion: {(response) in
+        request.getComments(ids, type: self.type, userId: currentUser["_id"].string!, pageno: 1, completion: {(response) in
             
             DispatchQueue.main.async(execute: {
                 

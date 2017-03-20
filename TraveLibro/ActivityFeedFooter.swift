@@ -101,8 +101,17 @@ class ActivityFeedFooter: UIView {
         if currentUser != nil {
             let comment = storyboard?.instantiateViewController(withIdentifier: "CommentsVC") as! CommentsViewController
             comment.postId = postTop["uniqueId"].stringValue
-            comment.otherId = postTop["_id"].stringValue
-            
+            comment.ids = postTop["_id"].stringValue
+            switch postTop["type"].stringValue {
+            case "ended-journey", "on-the-go-journey":
+                comment.type = "journey"
+            case "quick-itinerary", "detailed-itinerary":
+                comment.type = "itinerary"
+            case "travel-life", "local-life":
+                comment.type = "post"
+            default:
+                comment.type = "photo"
+            }
             globalNavigationController?.setNavigationBarHidden(false, animated: true)
             globalNavigationController?.pushViewController(comment, animated: true)
         }

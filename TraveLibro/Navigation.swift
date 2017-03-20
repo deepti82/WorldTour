@@ -1995,11 +1995,11 @@ class Navigation {
     }
     
     
-    func commentOnPost(id: String, postId: String, userId: String, commentText: String, hashtags: [String], mentions: [String], completion: @escaping ((JSON) -> Void)) {
+    func commentOnPost(postId: String, userId: String, commentText: String, hashtags: [String], mentions: [String], completion: @escaping ((JSON) -> Void)) {
         
         do {
             
-            let params = ["uniqueId": id, "post": postId, "user":  userId, "text": commentText, "type": "post", "hashtag" : hashtags, "tagUser": []] as [String : Any]
+            let params = ["post": postId, "user":  userId, "text": commentText, "type": "post", "hashtag" : hashtags, "tagUser": []] as [String : Any]
               
             print("set comment params: \(params)")
             
@@ -2073,15 +2073,31 @@ class Navigation {
         }
     }
     
-    func getComments(_ id: String, userId: String, pageno: Int, completion: @escaping ((JSON) -> Void)) {
+    func getComments(_ id: String, type: String, userId: String, pageno: Int, completion: @escaping ((JSON) -> Void)) {
         
         do {
+            print("getComments \(["_id": id, "user": userId, "pagenumber": pageno])")
             
-//            let params =
+            var params = ["_id": id, "user": userId, "pagenumber": pageno] as [String : Any]
+            var url = ""
             
-//            print("comment params: \(params)")
+            switch type {
+            case "post":
+                url = "post/getPostComment"
+            case "photo":
+                url = "postphotos/getPostComment"
+            case "video":
+                url = "postvideos/getPostComment"
+            case "itinerary":
+                url = "itinerary/getItineraryComment"
+            case "journey":
+                url = "journey/getJourneyComment"
+            default:
+                url = "post/getPostComment"
+            }
             
-            let opt = try HTTP.POST(adminUrl + "post/getPostComment", parameters: ["_id": id, "user": userId, "pagenumber": pageno])
+            let opt = try HTTP.POST(adminUrl + url, parameters: params)
+            
             var json = JSON(1);
             opt.start {response in
                 if let err = response.error {
@@ -2150,6 +2166,33 @@ class Navigation {
             print("got an error creating the request: \(error)")
         }
     }
+
+    func getJourneyComments(_ id: String, userId: String, pageno: Int, completion: @escaping ((JSON) -> Void)) {
+        
+        do {
+            
+            let params = ["_id": id, "user": userId, "pagenumber": pageno] as [String : Any]
+            
+            print("comment params: \(params)")
+            
+            let opt = try HTTP.POST(adminUrl + "journey/getPostComment", parameters: [params])
+            var json = JSON(1);
+            opt.start {response in
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    json  = JSON(data: response.data)
+                    print(json)
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+    }
+
     
     func editPost(_ id: String, location:String, categoryLocation: String, thoughts: String, completion: @escaping ((JSON) -> Void)) {
         
