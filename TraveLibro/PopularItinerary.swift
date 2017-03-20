@@ -74,6 +74,9 @@ class PopularItinerary: UIView {
         }
         if (feed["cost"] != nil) && (feed["cost"] != 0) {
             budget.text = feed["cost"].stringValue
+            budget.isHidden = false
+        }else{
+            budget.isHidden = true
         }
         
         
