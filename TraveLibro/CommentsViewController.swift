@@ -23,6 +23,7 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
     var footerView: PhotoOTGFooter!
     var type: String = ""
     
+    @IBOutlet weak var bottomSpaceToSuperview: NSLayoutConstraint!
     @IBOutlet weak var addCommentLabel: UILabel!
     @IBOutlet weak var mentionSuggestionsTable: UITableView!
     @IBOutlet weak var hashTagSuggestionsTable: UITableView!
@@ -114,35 +115,29 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func closeAdd(_ sender:UIButton) {
         _ = globalNavigationController?.popViewController(animated: true)
-        
     }
     
-    var viewHeight = 0
+    
+    //MARK: - Keyboard Handling
+    
     func keyboardWillShow(_ notification: Notification) {
-        view.frame.origin.y = CGFloat(viewHeight)
         if let keyboardSize = ((notification as NSNotification).userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.view.frame.origin.y == 0{
-                self.view.frame.origin.y -= 258
-            }
+            commentsTable.scrollToRow(at: (NSIndexPath(row: (comments.count-1), section: 0)) as IndexPath, at: .top, animated: true)
+            bottomSpaceToSuperview.constant = keyboardSize.height
         }
-        
-    }
-    
-    func textViewDidBeginEditing(_ textView: UITextView) {
-     addCommentLabel.isHidden = true
-    }
-    
-    
-    
-    func textViewDidEndEditing(_ textView: UITextView) {
-        addCommentLabel.isHidden = false
     }
     
     func keyboardWillHide(_ notification: Notification) {
-        if let keyboardSize = ((notification as NSNotification).userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.view.frame.origin.y != 0{
-                self.view.frame.origin.y += keyboardSize.height
-            }
+        bottomSpaceToSuperview.constant = 0
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        addCommentLabel.isHidden = true
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if addComment.text == "" {
+            addCommentLabel.isHidden = false            
         }
     }
     
@@ -151,8 +146,15 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
         addComment.resignFirstResponder()
         sendComment(nil)
         return true
-        
     }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if (text == "\n") {
+            textView.resignFirstResponder()
+        }
+        return true
+    }
+    
     
     var removedHashtags: [String] = []
     var addedHashtags: [String] = []
