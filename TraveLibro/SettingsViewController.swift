@@ -23,6 +23,9 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        getDarkBackGround(self)
+        
         let count: CGFloat = CGFloat(labels.count)
         heightConstraintTable?.constant = count * 75
         print("NSLayoutConstraint: \(heightConstraintTable)")
@@ -48,7 +51,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        var index:Int? = 1
+        var index:Int? = (currentUser["status"].stringValue == "private") ? 1 : 0
         
         if dataSourceOption == "dataUploadOptions" {
             index = labels.indexOf(value: localLoggedInUser.dataupload)
@@ -152,8 +155,9 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
             let footerLabel = UILabel(frame: CGRect(x: 0, y: 0, 
                                                     width: tableView.frame.size.width, 
                                                     height: self.tableView(tableView, heightForFooterInSection: section)))
-            footerLabel.font = UIFont(name: "Avenir-Medium", size: 14)
-            footerLabel.text = "When you select your account to be private only, your followers can view your My Life - Journeys, Moments abd Reviews."            
+            footerLabel.font = avenirFont
+            footerLabel.text = "When you select your account to be private only, your followers can view your My Life - Journeys, Moments abd Reviews."
+            footerLabel.textColor = UIColor.white
             footerLabel.textAlignment = .center
             footerLabel.numberOfLines = 0
             footerLabel.lineBreakMode = .byWordWrapping
@@ -182,8 +186,15 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
             }
             else {
                 if localLoggedInUser.Privacy != selectedOption {
-                    user.updateUserPrivacy(currentUser["_id"].stringValue, privacy: selectedOption)
-                    Toast(text:"Profile updated").show()
+                    request.editUser(currentUser["_id"].stringValue, editField: "status", editFieldValue: (selectedOption == "Private - My Followers") ? "private" : "public", completion: { (response) in
+                        DispatchQueue.main.async(execute: {
+                            if response["value"].bool!{
+                                currentUser = response["data"]
+                                user.updateUserPrivacy(currentUser["_id"].stringValue, privacy: self.selectedOption)
+                                Toast(text:"Profile updated").show()
+                            }
+                        })
+                    })
                 }
             }           
         }
