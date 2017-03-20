@@ -1378,7 +1378,7 @@
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ys7-Fc-d8x" userLabel="grayView">
                                 <rect key="frame" x="8" y="635" width="360" height="12"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="12" id="9Wh-dA-7qr"/>
                                 </constraints>
@@ -1390,7 +1390,6 @@
                                     <constraint firstAttribute="height" constant="40" id="qHr-Mu-Zje"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="17"/>
-                                <inset key="titleEdgeInsets" minX="-40" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <inset key="imageEdgeInsets" minX="100" minY="12" maxX="250" maxY="12"/>
                                 <state key="normal" title="Itinerary Photos" backgroundImage="orangeFooter">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1408,7 +1407,7 @@
                                 </constraints>
                             </view>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photos_icon" translatesAutoresizingMaskIntoConstraints="NO" id="0lI-m5-UaI">
-                                <rect key="frame" x="98" y="620" width="25" height="25"/>
+                                <rect key="frame" x="120" y="620" width="25" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="25" id="AlR-ID-wAw"/>
                                     <constraint firstAttribute="width" secondItem="0lI-m5-UaI" secondAttribute="height" multiplier="1:1" id="XC7-Tr-vjd"/>
@@ -1424,7 +1423,7 @@
                             <constraint firstItem="6z5-Nf-xd7" firstAttribute="leading" secondItem="9fL-JM-BIB" secondAttribute="leading" constant="23" id="Dmo-Y8-qIX"/>
                             <constraint firstAttribute="trailing" secondItem="6z5-Nf-xd7" secondAttribute="trailing" constant="23" id="HQs-Gv-XL8"/>
                             <constraint firstItem="Y2Y-Mc-iEO" firstAttribute="leading" secondItem="slJ-i0-JN1" secondAttribute="leading" id="IFj-a3-18i"/>
-                            <constraint firstItem="6z5-Nf-xd7" firstAttribute="leading" secondItem="0lI-m5-UaI" secondAttribute="trailing" constant="-100" id="Jd6-9c-len"/>
+                            <constraint firstItem="6z5-Nf-xd7" firstAttribute="leading" secondItem="0lI-m5-UaI" secondAttribute="trailing" constant="-122" id="Jd6-9c-len"/>
                             <constraint firstItem="ys7-Fc-d8x" firstAttribute="leading" secondItem="9fL-JM-BIB" secondAttribute="leading" constant="8" id="Mhl-R3-7dX"/>
                             <constraint firstItem="0lI-m5-UaI" firstAttribute="top" secondItem="6z5-Nf-xd7" secondAttribute="top" constant="8" id="Z6B-9v-XGN"/>
                             <constraint firstItem="uVv-k4-0Zm" firstAttribute="leading" secondItem="9fL-JM-BIB" secondAttribute="leading" id="bio-ty-E76"/>
@@ -3566,7 +3565,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HEf-Pa-zSZ">
-                                        <rect key="frame" x="95" y="245" width="154" height="30"/>
+                                        <rect key="frame" x="94.5" y="245" width="154" height="30"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="more about me... " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m1F-gD-cCl">
                                                 <rect key="frame" x="0.0" y="0.0" width="124" height="30"/>
