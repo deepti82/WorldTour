@@ -75,8 +75,7 @@ class ActivityFeedFooterBasic: UIView {
         let tapout1 = UITapGestureRecognizer(target: self, action: #selector(ActivityFeedFooterBasic.showLike(_:)))
         tapout1.numberOfTapsRequired = 1
         likeViewLabel.addGestureRecognizer(tapout1)
-        
-        
+    
     }
     
     
@@ -253,7 +252,7 @@ class ActivityFeedFooterBasic: UIView {
         }else{
             let comment = storyboard?.instantiateViewController(withIdentifier: "CommentsVC") as! CommentsViewController
             comment.postId = postTop["uniqueId"].stringValue
-            comment.otherId = postTop["_id"].stringValue
+            comment.ids = postTop["_id"].stringValue
             
             globalNavigationController?.setNavigationBarHidden(false, animated: true)
             globalNavigationController?.pushViewController(comment, animated: true)

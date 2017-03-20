@@ -192,18 +192,17 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
         leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
-
         leftButton.imageView?.image = leftButton.imageView?.image!.withRenderingMode(.alwaysTemplate)
         leftButton.imageView?.tintColor = UIColor.white
-//        leftButton.addTarget(self, action: #selector(self.openSideMenu(_:)), for: .touchUpInside)
         
         
         let rightButton = UIButton()
-        rightButton.setImage(UIImage(named: "search_toolbar"), for: UIControlState())
-//        rightButton.addTarget(self, action: #selector(self.searchTop(_:)), for: .touchUpInside)
-        rightButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        rightButton.setTitle("requested", for: .normal)
         
-            self.customNavigationBar(left: leftButton, right: nil)
+//        rightButton.addTarget(self, action: #selector(self.searchTop(_:)), for: .touchUpInside)
+        rightButton.frame = CGRect(x: 0, y: 0, width: 60, height: 30)
+        
+            self.customNavigationBar(left: leftButton, right: rightButton)
             
         self.navigationController?.setNavigationBarHidden(false, animated: true)
     }

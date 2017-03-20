@@ -209,16 +209,15 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
                 rateButton = RatingCheckIn(frame: CGRect(x: 0, y: 0, width: width, height: 150))
                 rateButton.photosOtg = self;
                 rateButton.whichView = "otg"
-                print("]]]]]]]]]]] \(post.jsonPost)")
                 rateButton.journeyUser = self.journeyUser
-//                if post.jsonPost["journeyCreator"]["_id"].stringValue != user.getExistingUser() {
-//                    rateButton.isUserInteractionEnabled = false
-//                }else{
-//                    rateButton.isUserInteractionEnabled = true
-//                }
+                print("postuser \(post.postCreator["_id"].stringValue)")
+                print("current user \(user.getExistingUser())")
+                if post.postCreator["_id"].stringValue != user.getExistingUser() {
+                    rateButton.showRating = false
+                }else{
+                    rateButton.showRating = true
+                }
                 rateButton.rateCheckInLabel.text = "Rate " + post.post_location
-                print("helloshowmejsonpost")
-                print(post.jsonPost)
                 if((post.jsonPost["review"].count) > 0) {
 //                    self.rateButton.rateCheckInButton.setBackgroundImage(UIImage(named:"box8"), for: UIControlState())
 

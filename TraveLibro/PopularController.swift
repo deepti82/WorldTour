@@ -48,7 +48,7 @@ class PopularController: UIViewController, UIScrollViewDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+        globalNavigationController = self.navigationController
     }
     
     override func viewWillDisappear(_ animated: Bool) {

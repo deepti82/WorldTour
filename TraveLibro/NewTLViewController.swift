@@ -1813,7 +1813,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         print("comment button tapped")
         let comment = storyboard?.instantiateViewController(withIdentifier: "CommentsVC") as! CommentsViewController
         comment.postId = sender.titleLabel!.text!
-        comment.otherId = sender.title(for: .application)!
+        comment.ids = sender.title(for: .application)!
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationController?.pushViewController(comment, animated: true)
     }
