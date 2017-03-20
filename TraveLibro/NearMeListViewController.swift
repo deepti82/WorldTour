@@ -23,8 +23,9 @@ class NearMeListViewController: UIViewController, UITableViewDataSource, UITable
     let locationManager = CLLocationManager()
     let border = CALayer()
     let layer1 = CAShapeLayer()
-  
-   
+    var fromLocal:Bool = false
+    
+    
     @IBOutlet weak var nearMeListTableView: UITableView!
     
     override func viewDidLoad() {
@@ -64,7 +65,7 @@ class NearMeListViewController: UIViewController, UITableViewDataSource, UITable
         print(nearMeType)
         
         if lat != nil && long != nil {
-    
+            
             request.getNearMeList(lat: "\(lat!)", long: "\(long!)", type: nearMeType, completion: {(response) in
                 DispatchQueue.main.async(execute: {
                     
@@ -75,7 +76,7 @@ class NearMeListViewController: UIViewController, UITableViewDataSource, UITable
                         
                         self.nearMeListJSON = response["data"].array!
                         self.nearMeListTableView.reloadData()
-                    self.loader.hideOverlayView()
+                        self.loader.hideOverlayView()
                     }
                     else {
                         print("response error")
@@ -107,40 +108,48 @@ class NearMeListViewController: UIViewController, UITableViewDataSource, UITable
         tableView.estimatedRowHeight = 100
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "nearMeList", for: indexPath) as! NearMeListCell
-               
+        
         cell.backgroundColor = UIColor.clear
         
-//        cell.contentView.layer.shadowColor = UIColor.black.cgColor
-//        cell.contentView.layer.shadowOffset = CGSize(width: 2.0, height: 5.0)
-//        cell.contentView.layer.shadowOpacity = 1.0
+        //        cell.contentView.layer.shadowColor = UIColor.black.cgColor
+        //        cell.contentView.layer.shadowOffset = CGSize(width: 2.0, height: 5.0)
+        //        cell.contentView.layer.shadowOpacity = 1.0
         cell.contentView.backgroundColor = UIColor.white.withAlphaComponent(0.8)
         cell.contentView.layer.cornerRadius = 10
         cell.contentView.layer.masksToBounds = true
         
         
         
-//        let shadowPath = UIBezierPath(rect: CGRect(x: 0, y: cell.contentView.frame.size.height - 2, width: screenWidth, height: 4))
-//        cell.contentView.layer.cornerRadius = 10
-//        cell.contentView.backgroundColor = UIColor.white.withAlphaComponent(0.8)
-//        cell.contentView.isHidden = true
-//        self.layer1.masksToBounds = true
-//        self.layer1.shadowColor = UIColor.black.cgColor
-//        self.layer1.shadowOffset = CGSize(width: 0.0, height: 5.0)
-//        self.layer1.shadowOpacity = 0.5
-//        self.layer1.shadowPath = shadowPath.cgPath
-//        cell.contentView.layer.addSublayer(self.layer1)
-
+        //        let shadowPath = UIBezierPath(rect: CGRect(x: 0, y: cell.contentView.frame.size.height - 2, width: screenWidth, height: 4))
+        //        cell.contentView.layer.cornerRadius = 10
+        //        cell.contentView.backgroundColor = UIColor.white.withAlphaComponent(0.8)
+        //        cell.contentView.isHidden = true
+        //        self.layer1.masksToBounds = true
+        //        self.layer1.shadowColor = UIColor.black.cgColor
+        //        self.layer1.shadowOffset = CGSize(width: 0.0, height: 5.0)
+        //        self.layer1.shadowOpacity = 0.5
+        //        self.layer1.shadowPath = shadowPath.cgPath
+        //        cell.contentView.layer.addSublayer(self.layer1)
         
-               for star in cell.stars {
-            star.setImage(UIImage(named: "star_uncheck")?.withRenderingMode(.alwaysTemplate), for: UIControlState())
-            star.setImage(UIImage(named: "star_check")?.withRenderingMode(.alwaysTemplate), for: .selected)
-            star.setImage(UIImage(named: "star_check")?.withRenderingMode(.alwaysTemplate), for: [.highlighted, .selected])
+        
+        for star in cell.stars {
+                star.setImage(UIImage(named: "star_uncheck")?.withRenderingMode(.alwaysTemplate), for: UIControlState())
+                star.setImage(UIImage(named: "star_check")?.withRenderingMode(.alwaysTemplate), for: .selected)
+                star.setImage(UIImage(named: "star_check")?.withRenderingMode(.alwaysTemplate), for: [.highlighted, .selected])
+            
+            if fromLocal {
+                star.imageView?.tintColor = endJourneyColor
+            }else{
+                star.imageView?.tintColor = mainOrangeColor
+                
+            }
+            
             //star.imageView?.tintColor = UIColor.darkGray
             star.adjustsImageWhenHighlighted = false
             
         }
         
-    
+        
         
         cell.listName.text = nearMeListJSON[indexPath.section]["name"].string!
         nearMeAddress = NSMutableAttributedString(string: "Address:", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Heavy", size: 14)!])
@@ -160,6 +169,7 @@ class NearMeListViewController: UIViewController, UITableViewDataSource, UITable
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let nearMeDetailController = storyboard?.instantiateViewController(withIdentifier: "nearMeDetail") as! NearMeDetailViewController
         nearMeDetailController.nearMeType = nearMeType
+        nearMeDetailController.fromLocal = self.fromLocal
         //nearMeDetailController.nearMeDetailJSON = nearMeListJSON[indexPath.section]
         nearMeDetailController.nearMePlaceId = nearMeListJSON[indexPath.section]["place_id"].string!
         nearMeDetailController.currentLat = lat
@@ -167,7 +177,7 @@ class NearMeListViewController: UIViewController, UITableViewDataSource, UITable
         if nearMeListJSON[indexPath.section]["rating"] != nil {
             nearMeDetailController.nearMeRating = Int(roundf(nearMeListJSON[indexPath.section]["rating"].float!))
         }
-
+        
         navigationController?.pushViewController(nearMeDetailController, animated: true)
     }
     
@@ -197,8 +207,8 @@ class NearMeListViewController: UIViewController, UITableViewDataSource, UITable
     func goBack(_ sender:AnyObject) {
         self.navigationController!.popViewController(animated: true)
     }
-
-
+    
+    
 }
 
 class NearMeListCell: UITableViewCell {

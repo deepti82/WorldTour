@@ -38,6 +38,7 @@ class NearMeDetailViewController: UIViewController {
     var nearMeAddress = NSMutableAttributedString()
     var nearMePhone = NSMutableAttributedString()
     var nearMeOpeningHours = NSMutableAttributedString()
+    var fromLocal:Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,8 +72,16 @@ class NearMeDetailViewController: UIViewController {
 //        self.layer1.shadowPath = shadowPath.cgPath
 //        self.dropShadow.layer.addSublayer(self.layer1)
         
+        if fromLocal {
+            directions.layer.borderColor = endJourneyColor.cgColor
+            directions.setTitleColor(endJourneyColor, for: .normal)
+
+        }else{
+            directions.layer.borderColor = mainOrangeColor.cgColor
+            directions.setTitleColor(mainOrangeColor, for: .normal)
+        }
+        
         directions.layer.borderWidth = 2.0
-        directions.layer.borderColor = mainOrangeColor.cgColor
         directions.layer.cornerRadius = 5.0
         directions.clipsToBounds = true
         
@@ -156,6 +165,14 @@ class NearMeDetailViewController: UIViewController {
                         star.setImage(UIImage(named: "star_uncheck")?.withRenderingMode(.alwaysTemplate), for: UIControlState())
                         star.setImage(UIImage(named: "star_check")?.withRenderingMode(.alwaysTemplate), for: .selected)
                         star.setImage(UIImage(named: "star_check")?.withRenderingMode(.alwaysTemplate), for: [.highlighted, .selected])
+                        
+                        if self.fromLocal {
+                            star.imageView?.tintColor = endJourneyColor
+                        }else{
+                            star.imageView?.tintColor = mainOrangeColor
+                            
+                        }
+                        
                         star.adjustsImageWhenHighlighted = false
                     }
                     

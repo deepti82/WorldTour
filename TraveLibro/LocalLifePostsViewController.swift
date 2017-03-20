@@ -231,6 +231,7 @@ class LocalLifePostsViewController: UIViewController, UIScrollViewDelegate, CLLo
    
     func gotoNearMe(_ sender:AnyObject) {
             let nearMeListController = storyboard?.instantiateViewController(withIdentifier: "nearMeListVC") as! NearMeListViewController
+        nearMeListController.fromLocal = true
     nearMeListController.nearMeType = self.nearMeType
     self.navigationController?.pushViewController(nearMeListController, animated: true)
     }

@@ -532,6 +532,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
             }
             
             let nearMeListController = storyboard?.instantiateViewController(withIdentifier: "nearMeListVC") as! NearMeListViewController
+            nearMeListController.fromLocal = true
             nearMeListController.nearMeType = category
             
             let localLifeListController = storyboard?.instantiateViewController(withIdentifier: "localLifePosts") as! LocalLifePostsViewController
