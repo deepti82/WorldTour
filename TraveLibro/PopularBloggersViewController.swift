@@ -19,6 +19,7 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
     var hasNext = true
     let refreshControl = UIRefreshControl()
     var mainFooter: FooterViewNew!
+    var back: Bool = false
     
     @IBOutlet weak var userTableView: UITableView!
     
@@ -26,8 +27,11 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.setNavigationBarItemText("Popular Bloggers")
+        if back {
+            createNavigation()
+        }else{
+            self.setNavigationBarItemText("Popular Bloggers")
+        }
         
         getDarkBackGround(self)
         

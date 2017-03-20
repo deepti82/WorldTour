@@ -20,11 +20,27 @@ class PopularController: UIViewController, UIScrollViewDelegate {
     var loader = LoadingOverlay()
     var uploadingView:UploadingToCloud!
     var checkpoint = true
+    var back:Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         print("in did load")
-        createNavigation()
+        
+        if displayData == "activity" {
+            self.title = "Activity Feed"
+        }else if displayData == "popular"{
+            self.title = "Popular Journeys"
+        }else if displayData == "popitinerary" {
+            self.title = "Popular Itinerary"
+        }else{
+            self.title = selectedHash
+        }
+        
+        if back {
+            createNavigationBack()
+        }else{
+            createNavigation()
+        }
         globalPopularController = self
         popularScroll.delegate = self
         getDarkBackGround(self)
@@ -72,17 +88,22 @@ class PopularController: UIViewController, UIScrollViewDelegate {
         let searchVC = storyboard?.instantiateViewController(withIdentifier: "Search") as! MainSearchViewController
         globalNavigationController.pushViewController(searchVC, animated: true)
     }
+        
+    func createNavigationBack() {
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        
+        let leftButton = UIButton()
+        leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
+        leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
+        
+        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        
+        self.customNavigationBar(left: leftButton, right: nil)
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
     func createNavigation() {
         self.navigationController?.setNavigationBarHidden(false, animated: true)
-        if displayData == "activity" {
-            self.title = "Activity Feed"
-        }else if displayData == "popular"{
-            self.title = "Popular Journeys"
-        }else if displayData == "popitinerary" {
-            self.title = "Popular Itinerary"
-        }else{
-            self.title = selectedHash
-        }
         
         self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Avenir-Medium", size: 18)!]
         let leftButton = UIButton()

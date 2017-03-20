@@ -81,6 +81,9 @@
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" red="0.15328633790000001" green="0.11381015930000001" blue="0.24658963079999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
+                    <connections>
+                        <action selector="toItinerary:" destination="-1" eventType="touchUpInside" id="7J4-ZV-9Ds"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="967-Fj-HWM">
                     <rect key="frame" x="324" y="3" width="43" height="30"/>
@@ -90,6 +93,9 @@
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" red="0.15328633790000001" green="0.11381015930000001" blue="0.24658963079999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
+                    <connections>
+                        <action selector="toJourney:" destination="-1" eventType="touchUpInside" id="mH9-ME-0KW"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xAV-RC-LYS">
                     <rect key="frame" x="324" y="514.5" width="43" height="30"/>
@@ -99,6 +105,9 @@
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" red="0.15328633790000001" green="0.11381015930000001" blue="0.24658963079999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
+                    <connections>
+                        <action selector="toBloggers:" destination="-1" eventType="touchUpInside" id="q4Y-aA-9as"/>
+                    </connections>
                 </button>
             </subviews>
             <constraints>

@@ -197,10 +197,10 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         
         
         let rightButton = UIButton()
-        rightButton.setTitle("requested", for: .normal)
+        rightButton.setTitle("Follow", for: .normal)
         
 //        rightButton.addTarget(self, action: #selector(self.searchTop(_:)), for: .touchUpInside)
-        rightButton.frame = CGRect(x: 0, y: 0, width: 60, height: 30)
+        rightButton.frame = CGRect(x: 0, y: 0, width: 70, height: 30)
         
             self.customNavigationBar(left: leftButton, right: rightButton)
             
