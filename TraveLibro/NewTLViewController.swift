@@ -34,6 +34,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     var buttons1 = Buttons2()
     var changeText = AddBuddiesViewController()
     var endJourneyView: EndJourneyMyLife!
+    var textFieldYPos = CGFloat(0)
+    var difference = CGFloat(0)
     
     @IBOutlet weak var hideVisual: UIVisualEffectView!
     @IBOutlet weak var hideToolBar: UIStackView!
@@ -1045,7 +1047,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
 
         self.layout = VerticalLayout(width: view.frame.size.width)
         mainScroll.addSubview(layout)
-        var i  = PostImage();
+        let i  = PostImage();
         i.uploadPhotos()
         self.setTopNavigation(text: "On The Go")
         globalNewTLViewController = self;
@@ -1054,7 +1056,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         
         
         
-        self.infoView = TripInfoOTG(frame: CGRect(x: 0, y: 64, width: self.view.frame.width, height: 1000))
+        self.infoView = TripInfoOTG(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 1000))
         
         
         mainScroll.showsVerticalScrollIndicator = false
@@ -1244,7 +1246,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         let checkIn = PhotosOTG2(width: layout.frame.width)
         checkIn.generatePost(post)
         checkIn.newTl = self
-        checkIn.journeyUSer = myJourney["journeyCreator"]["_id"].stringValue
+        checkIn.journeyUser = myJourney["journeyCreator"]["_id"].stringValue
         checkIn.scrollView = mainScroll
         layout.addSubview(checkIn)
         addHeightToLayout(height: checkIn.frame.height + 50)
@@ -1475,6 +1477,10 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
                     let rateButton = RatingCheckIn(frame: CGRect(x: 0, y: -4, width: width, height: 150))
                     rateButton.rateCheckInLabel.text = "Rate \(post["checkIn"]["location"])?"
                     rateButton.rateCheckInButton.addTarget(self, action: #selector(NewTLViewController.addRatingPost(_:)), for: .touchUpInside)
+                    
+                    if myJourney != nil {
+                            rateButton.journeyUser = myJourney["journeyCreator"]["_id"].stringValue
+                    }
                     
                     rateButton.review = post["checkIn"]
                     rateButton.rateCheckInButton.setTitle(post["_id"].string!, for: .normal)
@@ -2017,36 +2023,66 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         }        
     }
     
-    //    var keyboardHidden = false
-    
-//    var viewHeight = 0
+    //MARK: - Keyboard Handling
     
     func keyboardWillShow(_ notification: Notification) {
-//        view.frame.origin.y = CGFloat(viewHeight)
-        if let keyboardSize = ((notification as NSNotification).userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+        if let keyboardSize = ((notification as NSNotification).userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {            
+            let keyboardYpos = self.view.frame.height - keyboardSize.height
             
-            
-            //            if !keyboardHidden {
-            if self.view.frame.origin.y == 0{
-                self.view.frame.origin.y -= keyboardSize.height
-                //                keyboardHidden = true
-                //            }
-                print("keyboardchange karde")
-                print(keyboardSize.height)
+            if keyboardYpos < textFieldYPos {
+                difference = textFieldYPos - keyboardYpos
+                self.view.frame.origin.y -= difference 
             }
-        }
-        
-    }
-    func keyboardWillHide(_ notification: Notification) {
-        if let keyboardSize = ((notification as NSNotification).userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.view.frame.origin.y != 0{
-                self.view.frame.origin.y += keyboardSize.height
-                print("helololol")
-                print(keyboardSize.height)
+            else {
+                difference = CGFloat(0)
             }
         }
     }
     
+    func keyboardWillHide(_ notification: Notification) {
+        self.view.frame.origin.y += difference
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textFieldYPos = textField.frame.origin.y + textField.frame.size.height
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        textFieldYPos = 0
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        
+        if text == "\n" {
+            
+            addView.thoughtsTextView.resignFirstResponder()
+            
+            if addView.thoughtsTextView.text == "" {
+                
+                addView.thoughtsTextView.text = "Fill Me In..."
+                
+            }
+            return true
+            
+        }
+        
+        let newText = (textView.text as NSString).replacingCharacters(in: range, with: text)
+        let number = newText.characters.count
+        addView.countCharacters(number)
+        return number <= 180
+        
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        textFieldYPos = textView.frame.origin.y + textView.frame.size.height
+        if addView.thoughtsTextView.text == "Fill Me In..." {
+            addView.thoughtsTextView.text = ""
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        textFieldYPos = 0
+    }
     
         
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -2227,6 +2263,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
             case "solo":
                 print("10")
                 kindOfJourneyStack.append("solo")
+            case "betterhalf":
+                fallthrough
             case "partner":
                 print("11")
                 kindOfJourneyStack.append("partner")

@@ -9,6 +9,7 @@ class ActivityFeedFooterBasic: UIView {
     var postTop:JSON!
     
     
+    @IBOutlet weak var follow: UILabel!
     @IBOutlet weak var dropShadowActivity: UIView!
     @IBOutlet var starImageArray: [UIImageView]!
     @IBOutlet weak var ratingStack: UIStackView!
@@ -56,6 +57,7 @@ class ActivityFeedFooterBasic: UIView {
         self.addSubview(view)
         //        transparentCardWhite(footerColorView)
         
+        self.follow.isHidden = true
         let tapout = UITapGestureRecognizer(target: self, action: #selector(ActivityFeedFooterBasic.checkMyRating(_:)))
         ratingStack.addGestureRecognizer(tapout)
         likeButton.tintColor = mainBlueColor
@@ -89,9 +91,12 @@ class ActivityFeedFooterBasic: UIView {
             localLifeTravelImage.image = UIImage(named: "travel_life")
             localLifeTravelImage.tintColor = mainOrangeColor
             
-        }else{
+        }else if feed["type"].stringValue == "local-life" {
             localLifeTravelImage.image = UIImage(named: "local_life")
             localLifeTravelImage.tintColor = endJourneyColor
+        }else{
+            localLifeTravelImage.image = UIImage(named: "travel_life")
+            localLifeTravelImage.tintColor = mainOrangeColor
         }
         
         if feed["photos"] != nil {

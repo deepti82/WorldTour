@@ -20,6 +20,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     var myLifeVC:MyLifeViewController!
     var profile: ProfilePicFancy!
     var orangeTab:OrangeButton!
+    var customView : UIView!
     var footer:FooterViewNew!
     var MAM: MoreAboutMe!
     var displayData: String = ""
@@ -156,7 +157,6 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         if displayData == "search" {
             createNavigation()
         }else{
-    
         let rightButton = UIButton()
         rightButton.setImage(UIImage(named: "search_toolbar"), for: UIControlState())
         rightButton.addTarget(self, action: #selector(ProfileViewController.search(_:)), for: .touchUpInside)
@@ -164,8 +164,8 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         self.setOnlyRightNavigationButton(rightButton)
         }
         
-        let customView = UIView(frame:(CGRect(x: 0, y: self.view.frame.size.height - 75, width: self.view.frame.width, height: 75)))
-        self.orangeTab = OrangeButton(frame: CGRect.zero)
+        customView = UIView(frame:(CGRect(x: 0, y: self.view.frame.size.height - 75, width: self.view.frame.width, height: 75)))
+        self.orangeTab = OrangeButton(frame: CGRect(x: 5, y: self.view.frame.size.height - 125, width: self.view.frame.size.width - 10, height: 50))
         orangeTab.orangeButtonTitle.titleLabel?.font = UIFont(name: "Avenir-Heavy", size: 16)
         orangeTab.orangeButtonTitle.setTitle("My Life", for: UIControlState())
         let fontAwesomeLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 40, height: orangeTab.frame.size.height))
@@ -178,6 +178,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         customView.backgroundColor = UIColor.white
         self.view.addSubview(customView)
         orangeTab.orangeButtonTitle.addTarget(self, action: #selector(ProfileViewController.MyLifeDetailsShow(_:)), for: .touchUpInside)
+        
         MAMStack.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.MAMStacKTap(_:))))
         locationIcon.text = String(format: "%C", faicon["location"]!)
         MAMButton.transform = MAMButton.transform.rotated(by: CGFloat(M_PI))
@@ -210,6 +211,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.orangeTab.frame = CGRect(x: 5, y: self.view.frame.size.height - 125, width: self.view.frame.size.width - 10, height: 50)
+        customView.frame = CGRect(x: 0, y: self.view.frame.size.height - 75, width: self.view.frame.width, height: 75)
     }
     
     override func viewWillDisappear(_ animated: Bool) {

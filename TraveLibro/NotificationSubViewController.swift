@@ -50,7 +50,6 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         
         getNotification()
         
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -88,6 +87,10 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         if hasNext && !isLoading {
             
             isLoading = true
+            
+            DispatchQueue.global().async(execute: { 
+                getUnreadNotificationCount()
+            })
             
             currentPageNumber += 1
             

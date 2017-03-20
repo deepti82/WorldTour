@@ -11,6 +11,9 @@ import OneSignal
 import SystemConfiguration
 
 import Haneke
+
+import UserNotificationsUI
+
 let cache = Shared.dataCache
 
 
@@ -134,7 +137,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
         
         let nationality = storyboard.instantiateViewController(withIdentifier: "nationalityNew") as!AddNationalityNewViewController
         
-        let PJController = storyboard!.instantiateViewController(withIdentifier: "activityFeeds") as! ActivityFeedsController
+        let PJController = storyboard!.instantiateViewController(withIdentifier: "popular") as! PopularController
         PJController.displayData = "popular"
         
         leftViewController.mainViewController = nvc
@@ -146,13 +149,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
             let slideMenuController = SlideMenuController(mainViewController:nvc, leftMenuViewController: leftViewController)
             
             self.window?.rootViewController = slideMenuController
-            nvc.navigationBar.barTintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 0.1)
-            nvc.navigationBar.barStyle = .blackTranslucent
-            nvc.navigationBar.isTranslucent = false
-            nvc.delegate = self
-            
-//            globalNavigationController = nvc
-            
+            UIViewController().customiseNavigation()
         } 
         else {
             request.getUser(user.getExistingUser(), completion: {(request) in
@@ -170,14 +167,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
                         
                         let slideMenuController = SlideMenuController(mainViewController:nvc, leftMenuViewController: leftViewController)
                         
+                        getUnreadNotificationCount()
+                        
                         self.window?.rootViewController = slideMenuController
                     }
-                    nvc.navigationBar.barTintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 0.1)
-                    nvc.navigationBar.barStyle = .blackTranslucent
-                    nvc.navigationBar.isTranslucent = false
-                    nvc.delegate = self
-                    
-//                    globalNavigationController = nvc
+                    UIViewController().customiseNavigation()
                 }
             })
         }
@@ -186,11 +180,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
     
     //MARK:- Application Delegates
     
+        
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         createMenuView()
         _ = AppDelegate.getDatabase()
         
-        
+        UNUserNotificationCenter.current().requestAuthorization(options: [.badge, .alert, .sound]) { (granted, error) in
+            if granted{
+                application.registerForRemoteNotifications()
+            }
+        }
         
         UINavigationBar.appearance().backgroundColor = mainBlueColor
         UIBarButtonItem.appearance().tintColor = UIColor.white
@@ -199,17 +198,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
         
 //        OneSignal.initWithLaunchOptions(launchOptions, appId: "bf8baf0a-dcfb-4a30-a0c1-ee67cae2feb1")
         
-        OneSignal.initWithLaunchOptions(launchOptions, appId: "bf8baf0a-dcfb-4a30-a0c1-ee67cae2feb1", handleNotificationReceived:             { (notification) in
-            let payload: OSNotificationPayload? = notification?.payload
+        OneSignal.initWithLaunchOptions(launchOptions, appId: "bf8baf0a-dcfb-4a30-a0c1-ee67cae2feb1", handleNotificationReceived: { (notification) in
             
+            if UserDefaults.standard.value(forKey: "notificationCount") != nil {
+                var notificationCount = UserDefaults.standard.value(forKey: "notificationCount") as! Int
+                notificationCount += 1
+                UserDefaults.standard.set(notificationCount, forKey: "notificationCount")
+                print("\n Notifi: \(notification?.payload.badge)")
+            }
+            
+            let payload: OSNotificationPayload? = notification?.payload           
             
             let fullMessage: String? = payload?.body
             
             print("Recived no" + fullMessage!)
             
-            print("Received Notification - \(notification?.payload.notificationID) - \(notification?.payload.title)")
+            print("Received Notification - \(notification?.payload.notificationID) - \(notification?.payload.title)")            
+
+            footerSharedInstance?.setBadge()
             
-        }, handleNotificationAction: nil, settings: [kOSSettingsKeyAutoPrompt : true, kOSSettingsKeyInAppAlerts : false])
+        }, handleNotificationAction: nil, settings: [kOSSettingsKeyAutoPrompt : true, kOSSettingsKeyInAppAlerts : true])
+
         faicon["magic"] = 0xf0d0
         faicon["clock"] = 0xf017
         faicon["calendar"] = 0xf073
@@ -297,7 +306,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
-    
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        print("\n error :\(error.localizedDescription)")
+    }
+
     //MARK: - Navigation Delegate
     
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
@@ -439,4 +451,25 @@ func hideBottomLoader() {
         HUD = nil
     }
 }
+
+func getUnreadNotificationCount() {
+    
+    request.getUnreadNotificationCount(currentUser["_id"].stringValue) { (response) in
+        
+        DispatchQueue.main.async(execute: { 
+            
+            if response.error != nil {
+                print("\n Error : \(response.error?.localizedDescription)")
+            }
+            
+            else if response["value"].bool! {
+                let notificationCount = response["data"].intValue
+                UserDefaults.standard.set(notificationCount, forKey: "notificationCount")
+                footerSharedInstance?.setBadge()
+            }            
+        })
+    }
+    
+}
+
 

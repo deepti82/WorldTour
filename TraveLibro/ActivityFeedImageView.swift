@@ -19,6 +19,7 @@ class ActivityFeedImageView: UIView {
     @IBOutlet weak var countryStackView: UIStackView!
     @IBOutlet weak var photoVideoCheckInCount: UIStackView!
 
+    @IBOutlet weak var blueBox: UIImageView!
     @IBOutlet weak var daysLabel: UILabel!
     @IBOutlet weak var days: UILabel!
     @IBOutlet weak var kindOfJourneyThree: UIImageView!
@@ -37,9 +38,9 @@ class ActivityFeedImageView: UIView {
         super.init(frame: frame)
         loadViewFromNib ()
        transparentCardWhite(ActivityImageView)
-        makeTLProfilePictureBorderWhiteCorner(flagOne)
-        makeTLProfilePictureBorderWhiteCorner(flageTwo)
-        makeTLProfilePictureBorderWhiteCorner(flagThree)
+        makeFlagBorderWhiteCorner(flagOne)
+        makeFlagBorderWhiteCorner(flageTwo)
+        makeFlagBorderWhiteCorner(flagThree)
         kindOfJourneyOne.tintColor = UIColor.white
         kindOfJourneyTwo.tintColor = UIColor.white
         kindOfJourneyThree.tintColor = UIColor.white
@@ -58,10 +59,16 @@ class ActivityFeedImageView: UIView {
     
     func fillData(feed:JSON) {
         
-        self.days.text = feed["duration"].stringValue
+        self.daysLabel.text = feed["duration"].stringValue
+        
+        if feed["duration"].intValue == 0 || feed["duration"] == nil {
+            self.blueBox.isHidden = true
+            self.days.isHidden = true
+            self.daysLabel.isHidden = true
+        }
         
         if feed["duration"].intValue < 2 {
-            self.daysLabel.text = "Day"
+            self.days.text = "Day"
         }else{
             self.days.text = "Days"
         }
@@ -85,15 +92,21 @@ class ActivityFeedImageView: UIView {
         for category in stackView.subviews {
             category.isHidden = true
         }
+        
         if feed["kindOfJourney"][0] != nil {
+            print("in 0th \(feed["kindOfJourney"][2])")
             kindOfJourneyOne.isHidden = false
-            kindOfJourneyOne.image = UIImage(named: categoryImage(feed["kingOfJourney"][2].stringValue) )
+            kindOfJourneyOne.image = UIImage(named: categoryImage(feed["kindOfJourney"][2].stringValue) )
         }
         if feed["kindOfJourney"][1] != nil {
+            print("in 1th \(feed["kindOfJourney"][1])")
+
             kindOfJourneyTwo.isHidden = false
             kindOfJourneyTwo.image = UIImage(named: categoryImage(feed["kindOfJourney"][1].stringValue))
         }
         if feed["kindOfJourney"][2] != nil {
+            print("in 2th \(feed["kindOfJourney"][0])")
+
             kindOfJourneyThree.isHidden = false
             kindOfJourneyThree.image = UIImage(named: categoryImage(feed["kindOfJourney"][0].stringValue))
         }

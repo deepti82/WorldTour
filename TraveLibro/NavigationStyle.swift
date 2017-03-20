@@ -41,9 +41,6 @@ extension UIViewController {
     
     func customNavigationBar(left: UIButton?, right: AnyObject?) {
         
-        //       navigationController?.navigationBar.barTintColor = UIColor(colorLiteralRed: 48/255, green: 53/255, blue: 87/255, alpha: 0.9)
-        //        self.navigationController?.toolbar.barTintColor = UIColor(colorLiteralRed: 48/255, green: 53/255, blue: 87/255, alpha: 0.9)
-        
         customiseNavigation()
         
         if left != nil {
@@ -86,15 +83,15 @@ extension UIViewController {
     func setOnlyRightNavigationButton(_ button: UIButton) {
         
         self.setNavigationBarItem()
-//        self.addLeftBarButtonWithImage(UIImage(named: "menu_left_icon")!)        
-//        let rightBarButton = UIBarButtonItem()
-//        rightBarButton.customView = button
-//        self.navigationItem.rightBarButtonItem = rightBarButton
-//        
-//        //self.addRightBarButtonWithImage(UIImage(named: "ic_notifications_black_24dp")!)
-//        self.slideMenuController()?.removeLeftGestures()
-//        self.slideMenuController()?.removeRightGestures()
-//        self.slideMenuController()?.addLeftGestures()
+        self.addLeftBarButtonWithImage(UIImage(named: "menu_left_icon")!)        
+        let rightBarButton = UIBarButtonItem()
+        rightBarButton.customView = button
+        self.navigationItem.rightBarButtonItem = rightBarButton
+        
+        //self.addRightBarButtonWithImage(UIImage(named: "ic_notifications_black_24dp")!)
+        self.slideMenuController()?.removeLeftGestures()
+        self.slideMenuController()?.removeRightGestures()
+        self.slideMenuController()?.addLeftGestures()
         //        self.slideMenuController()?.addRightGestures()
         
     }

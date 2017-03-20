@@ -34,7 +34,7 @@
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y0s-Ge-AQp">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="190"/>
-                    <color key="backgroundColor" red="0.13725490200000001" green="0.1764705882" blue="0.2901960784" alpha="0.2343482448630137" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.4005779109589041" colorSpace="custom" customColorSpace="sRGB"/>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E4o-Y0-S93">
                     <rect key="frame" x="0.0" y="130" width="375" height="60"/>
@@ -48,20 +48,20 @@
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="By Editor" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sci-5n-J1o">
-                            <rect key="frame" x="54" y="33" width="58" height="20"/>
-                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
+                            <rect key="frame" x="54" y="33" width="59" height="20"/>
+                            <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bluebox" translatesAutoresizingMaskIntoConstraints="NO" id="3ee-ON-Zbl">
-                            <rect key="frame" x="327" y="12" width="43" height="43"/>
+                            <rect key="frame" x="320" y="5" width="50" height="50"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="43" id="3OC-VC-WLC"/>
-                                <constraint firstAttribute="height" constant="43" id="RGi-dp-4Sx"/>
+                                <constraint firstAttribute="width" constant="50" id="3OC-VC-WLC"/>
+                                <constraint firstAttribute="height" constant="50" id="RGi-dp-4Sx"/>
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Days" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p1x-sy-tY2">
-                            <rect key="frame" x="328" y="33" width="42" height="17"/>
+                            <rect key="frame" x="325" y="31" width="42" height="17"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="42" id="EVQ-zV-ie1"/>
                             </constraints>
@@ -70,9 +70,9 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="123" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GUb-PQ-7Qk">
-                            <rect key="frame" x="330" y="16" width="36" height="24"/>
+                            <rect key="frame" x="323" y="14" width="43" height="24"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="36" id="XFM-1i-S2V"/>
+                                <constraint firstAttribute="width" constant="43" id="XFM-1i-S2V"/>
                             </constraints>
                             <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="17"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -81,9 +81,9 @@
                     </subviews>
                     <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="1"/>
                     <constraints>
-                        <constraint firstAttribute="trailing" secondItem="p1x-sy-tY2" secondAttribute="trailing" constant="5" id="4ZS-kS-Tnd"/>
-                        <constraint firstAttribute="bottom" secondItem="p1x-sy-tY2" secondAttribute="bottom" constant="10" id="K8v-aN-Wc5"/>
-                        <constraint firstAttribute="bottom" secondItem="GUb-PQ-7Qk" secondAttribute="bottom" constant="20" id="MIj-BF-cNP"/>
+                        <constraint firstAttribute="trailing" secondItem="p1x-sy-tY2" secondAttribute="trailing" constant="8" id="4ZS-kS-Tnd"/>
+                        <constraint firstAttribute="bottom" secondItem="p1x-sy-tY2" secondAttribute="bottom" constant="12" id="K8v-aN-Wc5"/>
+                        <constraint firstAttribute="bottom" secondItem="GUb-PQ-7Qk" secondAttribute="bottom" constant="22" id="MIj-BF-cNP"/>
                         <constraint firstAttribute="height" constant="60" id="RmH-bL-P8S"/>
                         <constraint firstAttribute="bottom" secondItem="Bwu-OY-ZjD" secondAttribute="bottom" constant="5" id="SD7-cN-vhi"/>
                         <constraint firstItem="Bwu-OY-ZjD" firstAttribute="leading" secondItem="E4o-Y0-S93" secondAttribute="leading" constant="5" id="WSA-RC-Urg"/>
@@ -100,7 +100,7 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                     <color key="shadowColor" red="0.17254901959999999" green="0.2156862745" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
-                    <size key="shadowOffset" width="1" height="-1"/>
+                    <size key="shadowOffset" width="1" height="1"/>
                 </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

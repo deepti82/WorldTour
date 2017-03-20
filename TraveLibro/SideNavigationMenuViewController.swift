@@ -85,11 +85,11 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         let homeController = storyboard!.instantiateViewController(withIdentifier: "Home") as! HomeViewController
         self.homeController = UINavigationController(rootViewController: homeController)
         
-        let PJController = storyboard!.instantiateViewController(withIdentifier: "activityFeeds") as! ActivityFeedsController
+        let PJController = storyboard!.instantiateViewController(withIdentifier: "popular") as! PopularController
         PJController.displayData = "popular"
         self.popJourneysController = UINavigationController(rootViewController: PJController)
         
-        let EDController = storyboard!.instantiateViewController(withIdentifier: "activityFeeds") as! ActivityFeedsController
+        let EDController = storyboard!.instantiateViewController(withIdentifier: "popular") as! PopularController
         
         EDController.displayData = "popitinerary"
         self.exploreDestinationsController = UINavigationController(rootViewController: EDController)
@@ -228,6 +228,9 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! SideMenuTableViewCell
         cell.menuLabel.text = labels[(indexPath as NSIndexPath).item]
+        cell.menuLabel.shadowColor = UIColor.black
+        cell.menuLabel.shadowOffset = CGSize(width: 3, height: 3)
+        cell.menuLabel.layer.masksToBounds = true
         
         if indexPath.row == 6 && !(currentUser != nil) {     // Login/Logout Option
             cell.menuLabel.text = "Login"            
@@ -261,9 +264,8 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
             self.slideMenuController()?.changeMainViewController(self.popBloggersController, close: true)        
         case 3:
             self.shareButtonClicked(sender: cell)
-//            self.slideMenuController()?.changeMainViewController(self.inviteFriendsController, close: true)
         case 4:
-            self.slideMenuController()?.changeMainViewController(self.rateUsController, close: true)
+            self.rateUsButtonClicked()
         case 5:
             if currentUser != nil {
                 self.slideMenuController()?.changeMainViewController(self.feedbackController, close: true)
@@ -318,7 +320,18 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
             self.present(activityVC, animated: true, completion: nil)
         }
     }
-
+    
+    //MARK: - Rate Us
+    func rateUsButtonClicked() {
+        let loader = LoadingOverlay()
+        loader.showOverlay(self.view)
+        let appID = "1056641759"
+        let urlStr = "itms-apps://itunes.apple.com/app/travelibro/id" + appID
+        UIApplication.shared.open((NSURL(string: urlStr) as! URL), options: [:]) { (done) in
+            loader.hideOverlayView()
+        }
+    }
+ 
 }
 
 class SideMenuTableViewCell: UITableViewCell {

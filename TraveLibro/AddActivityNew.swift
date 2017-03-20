@@ -9,7 +9,7 @@ import Player
 
 var globalAddActivityNew:AddActivityNew!
 
-class AddActivityNew: SpringView, UITextViewDelegate, PlayerDelegate, UITextFieldDelegate {
+class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
     @IBOutlet weak var viewContainerView: UIView!
     @IBOutlet weak var addLocationText: UITextField!
     @IBOutlet weak var finalImageTag: UIImageView!
@@ -141,7 +141,7 @@ class AddActivityNew: SpringView, UITextViewDelegate, PlayerDelegate, UITextFiel
         getStylesOn(thoughtsFinalView)
         getStylesOn(tagFriendsView)
         
-        thoughtsTextView.delegate = self
+//        thoughtsTextView.delegate = self
         thoughtsTextView.returnKeyType = .done
         
         postButton.layer.cornerRadius = 5.0
@@ -242,34 +242,34 @@ class AddActivityNew: SpringView, UITextViewDelegate, PlayerDelegate, UITextFiel
         button.setTitle(edit, for: .normal)
     }
     
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        if thoughtsTextView.text == "Fill Me In..." {
-            thoughtsTextView.text = ""
-        }
-    }
-    
-    
-    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        
-        if text == "\n" {
-            
-            thoughtsTextView.resignFirstResponder()
-            
-            if thoughtsTextView.text == "" {
-                
-                thoughtsTextView.text = "Fill Me In..."
-                
-            }
-            return true
-            
-        }
-        
-        let newText = (textView.text as NSString).replacingCharacters(in: range, with: text)
-        let number = newText.characters.count
-        self.countCharacters(number)
-        return number <= 180
-        
-    }
+//    func textViewDidBeginEditing(_ textView: UITextView) {
+//        if thoughtsTextView.text == "Fill Me In..." {
+//            thoughtsTextView.text = ""
+//        }
+//    }
+//    
+//    
+//    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+//        
+//        if text == "\n" {
+//            
+//            thoughtsTextView.resignFirstResponder()
+//            
+//            if thoughtsTextView.text == "" {
+//                
+//                thoughtsTextView.text = "Fill Me In..."
+//                
+//            }
+//            return true
+//            
+//        }
+//        
+//        let newText = (textView.text as NSString).replacingCharacters(in: range, with: text)
+//        let number = newText.characters.count
+//        self.countCharacters(number)
+//        return number <= 180
+//        
+//    }
     
     func countCharacters(_ number:Int) {
         thoughtsCharacterCount.text = String(180 - number)
@@ -388,7 +388,10 @@ class AddActivityNew: SpringView, UITextViewDelegate, PlayerDelegate, UITextFiel
                     cameraConf.showCameraRoll = false
                     cameraConf.maximumVideoLength = 60
                     
-                    
+//                    let timeLabel = UILabel(frame: CGRect(x: 50, y: 100, width: 200, height: 40))
+//                    timeLabel.text = "time :"
+//                    timeLabel.textColor = UIColor.white                    
+//                    cameraConf.timeLabelConfigurationClosure = timeLabel
                     
                     cameraConf.videoOutputSettings = [
                         "AVVideoCodecKey": AVVideoCodecH264 as AnyObject,
@@ -405,7 +408,14 @@ class AddActivityNew: SpringView, UITextViewDelegate, PlayerDelegate, UITextFiel
                 }
                 builder.separatorColor = UIColor.white
             }
+            
+//            let timeLabel = UILabel(frame: CGRect(x: 50, y: 100, width: 200, height: 40))
+//            timeLabel.text = "time :"
+//            timeLabel.textColor = UIColor.white
+//            self.addSubview(timeLabel)
+            
             self.cameraViewController = CameraViewController(configuration:configuration)
+//            timeLabel.text = self.cameraViewController.recordingTimeLabel.text
             self.cameraViewController.completionBlock = self.completionVideoBlock
             globalNavigationController.topViewController?.present(self.cameraViewController, animated: true, completion: nil)
         })
@@ -694,7 +704,7 @@ class AddActivityNew: SpringView, UITextViewDelegate, PlayerDelegate, UITextFiel
             
             let imagePickerController = UIImagePickerController()
             if(self.typeOfAddActivtiy == "CreateLocalLife") {
-                imagePickerController.delegate = globalLocalLife as! (UIImagePickerControllerDelegate & UINavigationControllerDelegate)?
+                imagePickerController.delegate = globalLocalLife as (UIImagePickerControllerDelegate & UINavigationControllerDelegate)?
                 imagePickerController.navigationBar.isTranslucent = true
                 imagePickerController.navigationBar.barTintColor = mainBlueColor
                 imagePickerController.navigationBar.tintColor = UIColor.white

@@ -153,7 +153,10 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
         
         cell.userIcon.layer.masksToBounds = false
         cell.userIcon.layer.borderColor = UIColor.clear.cgColor
-        cell.userIcon.layer.cornerRadius = cell.userIcon.frame.size.width/2
+        cell.userIcon.layer.cornerRadius = (37/100) * cell.userIcon.frame.size.width
+        cell.userIcon.layer.borderWidth = 2.0
+        cell.userIcon.layer.borderColor = UIColor.lightGray.cgColor
+        cell.userIcon.contentMode = .scaleAspectFill
         cell.userIcon.clipsToBounds = true
         
         cell.userName.text = cellData["name"].stringValue

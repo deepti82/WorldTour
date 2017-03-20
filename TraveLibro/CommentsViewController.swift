@@ -111,7 +111,7 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
     
     
     func closeAdd(_ sender:UIButton) {
-        globalNavigationController?.popViewController(animated: true)
+        _ = globalNavigationController?.popViewController(animated: true)
         
     }
     

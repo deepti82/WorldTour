@@ -27,6 +27,8 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
     var loader = LoadingOverlay()
     var layout:VerticalLayout!
     var mainFooter: FooterViewNew!
+    var textFieldYPos = CGFloat(0)
+    var difference = CGFloat(0)
     
     @IBOutlet weak var thisScroll: UIScrollView!
     @IBOutlet weak var plusButton: UIButton!
@@ -225,9 +227,8 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
             var darkBlur: UIBlurEffect!
             var blurView: UIVisualEffectView!
             self.backView = UIView();
-            self.backView.frame = self.view.frame
+            self.backView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: self.view.frame.size.height)
             self.view.addSubview(self.backView)
-            self.backView.frame = self.view.frame
             darkBlur = UIBlurEffect(style: .dark)
             blurView = UIVisualEffectView(effect: darkBlur)
             blurView.frame.size.height = self.backView.frame.height
@@ -238,12 +239,13 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
             let vibrancyEffect = UIVibrancyEffect(blurEffect: darkBlur)
             let vibrancyEffectView = UIVisualEffectView(effect: vibrancyEffect)
             blurView.contentView.addSubview(vibrancyEffectView)
-            self.newScroll = UIScrollView(frame: CGRect(x: 0, y: 60, width: self.view.frame.width, height: self.view.frame.height - 60))
+            self.newScroll = UIScrollView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
             self.backView.addSubview(self.newScroll)
             self.addView = AddActivityNew()
+            self.addView.thoughtsTextView.delegate = self
             //        self.addView.buddyAdded(myJourney["buddies"].arrayValue)
             self.addView.typeOfAddActivtiy = "CreateLocalLife"
-            self.addView.frame = self.view.frame
+            self.addView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: self.view.frame.size.height)
             self.addView.newScroll = self.newScroll;
             self.newScroll.addSubview(self.addView)
             self.newScroll.contentSize.height = self.view.frame.height
@@ -348,7 +350,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
         self.currentTime = dateFormatterTwo.string(from: Date())
         
         if(self.addView.imageArr.count > 0 || self.addView.videoURL != nil || thoughts.characters.count > 0 || location.characters.count > 0) {
-            let po = post.setPost(currentUser["_id"].string!, JourneyId: "", Type: "local-life", Date: self.currentTime, Location: location, Category: category, Latitude: lat, Longitude: lng, Country: self.addView.currentCountry, City: self.addView.currentCity, thoughts: thoughts, buddies: buddies!, imageArr: self.addView.imageArr,videoURL:self.addView.videoURL, videoCaption:self.addView.videoCaption)
+            _ = post.setPost(currentUser["_id"].string!, JourneyId: "", Type: "local-life", Date: self.currentTime, Location: location, Category: category, Latitude: lat, Longitude: lng, Country: self.addView.currentCountry, City: self.addView.currentCity, thoughts: thoughts, buddies: buddies!, imageArr: self.addView.imageArr,videoURL:self.addView.videoURL, videoCaption:self.addView.videoCaption)
             
             goToActivity();
         }
@@ -576,4 +578,48 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
         }
     }
 
+    //MARK: - Text Delegate
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        
+        if text == "\n" {
+            
+            addView.thoughtsTextView.resignFirstResponder()
+            
+            if addView.thoughtsTextView.text == "" {
+                
+                addView.thoughtsTextView.text = "Fill Me In..."
+                
+            }
+            return true
+            
+        }
+        
+        let newText = (textView.text as NSString).replacingCharacters(in: range, with: text)
+        let number = newText.characters.count
+        addView.countCharacters(number)
+        return number <= 180
+        
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        textFieldYPos = textView.frame.origin.y + textView.frame.size.height
+        if addView.thoughtsTextView.text == "Fill Me In..." {
+            addView.thoughtsTextView.text = ""
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        textFieldYPos = 0
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textFieldYPos = textField.frame.origin.y + textField.frame.size.height
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        textFieldYPos = 0
+    }
+    
+    
 }

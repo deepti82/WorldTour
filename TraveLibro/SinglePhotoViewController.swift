@@ -104,15 +104,12 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate, iCarouselDeleg
         }
         
         
-        carouselView = iCarousel(frame: mainImage.frame)
-        carouselView.type = iCarouselType.linear      //iCarouselTypeCylinder
+        carouselView = iCarousel(frame: mainImage.frame)        
         carouselView.isHidden = true
         carouselView.clipsToBounds = true	
         carouselView.isPagingEnabled = true
         carouselView.backgroundColor = UIColor.clear
         carouselView.bounces = false
-        carouselView.delegate = self
-        carouselView.dataSource = self
         self.view.addSubview(carouselView)
         self.view.bringSubview(toFront: bottomView)
         
@@ -135,13 +132,19 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate, iCarouselDeleg
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        carouselView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight)
-        print("carouselView.frame : \(carouselView.frame)")
+        carouselView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: self.view.frame.size.height)
         mainImage.isHidden = true
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
+        carouselView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: self.view.frame.size.height - 5)
+        print("carouselView.frame : \(carouselView.frame)")
+        
+        carouselView.type = iCarouselType.linear      //iCarouselTypeCylinder
+        carouselView.delegate = self
+        carouselView.dataSource = self
     }
     
     override func didReceiveMemoryWarning() {

@@ -35,7 +35,7 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
         getDarkBackGround(self)
         layout = VerticalLayout(width: screenWidth)
         activityScroll.addSubview(layout)
-//        getActivity(pageNumber: pageno)
+        getActivity(pageNumber: pageno)
         loader.showOverlay(self.view)
         
         self.mainFooter = FooterViewNew(frame: CGRect.zero)
@@ -53,11 +53,7 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.layout.removeAll()
-        displayData = popularView
-        createNavigation()
-        getActivity(pageNumber: 1)
-        print("display data : \(displayData) : \(checkpoint)")
+        
         NotificationCenter.default.addObserver(self, selector: #selector(globalActivityFeedsController.demonote(_:)), name: NSNotification.Name(rawValue: "UPLOAD_ITINERARY"), object: nil)
         globalNavigationController = self.navigationController
     }

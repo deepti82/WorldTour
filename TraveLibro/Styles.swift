@@ -454,6 +454,16 @@ func makeTLProfilePictureBorderWhiteCorner(_ image: UIImageView) {
     
 }
 
+func makeFlagBorderWhiteCorner(_ image: UIImageView) {
+    
+    image.layer.cornerRadius = (50/100) * image.frame.width
+    image.layer.borderWidth = 2.0
+    image.layer.borderColor = UIColor.white.cgColor
+    image.clipsToBounds = true
+    image.contentMode = UIViewContentMode.scaleAspectFill
+    
+}
+
 func makeSideNavigation(_ image: UIImageView) {
     
     image.layer.cornerRadius = (41/100) * image.frame.width

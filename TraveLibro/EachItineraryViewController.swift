@@ -369,7 +369,7 @@ class EachItineraryViewController: UIViewController, UITableViewDataSource, UITa
     }
     
     
-    //MARK: - Set Itinerari Data
+    //MARK: - Set Itinerary Data
     
     func setCountryTabs() {
         
