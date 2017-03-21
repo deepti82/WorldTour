@@ -56,11 +56,7 @@ class RatingCheckIn: UIView {
     }
     
     @IBAction func ratePost(_ sender: Any) {
-        print("-------------- \(showRating)")
-        print(isUserMe(user: currentUser["_id"].stringValue))
-        print(self.journeyUser)
-        print(currentUser["_id"].stringValue)
-        
+                
         if self.journeyUser == user.getExistingUser() {
         
             let tapout = UITapGestureRecognizer(target: self, action: #selector(RatingCheckIn.reviewTapOut(_:)))
