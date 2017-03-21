@@ -63,7 +63,7 @@ class ActivityProfileHeader: UIView {
         self.userName.addGestureRecognizer(tapGestureRecognizer)
 
         //header icon
-        var typeOfPost = getTypeOfPost(feed)
+        let typeOfPost = getTypeOfPost(feed)
         if(typeOfPost != nil) {
             switch(typeOfPost) {
             case "Location":

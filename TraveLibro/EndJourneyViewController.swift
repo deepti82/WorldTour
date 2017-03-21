@@ -335,7 +335,7 @@ class EndJourneyViewController: UIViewController {
         print("journey id: \(sender)")
         
         let tapout = UITapGestureRecognizer(target: self, action: #selector(EndJourneyViewController.reviewTapOut(_:)))
-        backgroundReview = UIView(frame: self.view.frame)
+        backgroundReview = UIView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: self.view.frame.size.height))
         backgroundReview.addGestureRecognizer(tapout)
         backgroundReview.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.4)
         self.view.addSubview(backgroundReview)

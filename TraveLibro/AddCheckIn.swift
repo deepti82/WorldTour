@@ -42,11 +42,8 @@ class AddCheckIn: UIView, UITextViewDelegate {
             
             print("in the if statement1")
             textView.text = nil
-            textView.textColor = UIColor.black
-            
+            textView.textColor = mainBlueColor
         }
-        
-        
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {

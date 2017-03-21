@@ -189,10 +189,10 @@ public class Post {
                 p.post_dateDay = changeDate(givenFormat: "yyyy-MM-dd'T'HH:mm:ss.SSZ", getFormat: "dd-MM-yyyy", date: p.post_date, isDate: true)
                 p.post_dateTime = changeDate(givenFormat: "yyyy-MM-dd'T'HH:mm:ss.SSZ", getFormat: "h:mm a", date: p.post_date, isDate: false)
                 
-                var i = PostImage();
+                let i = PostImage();
                 p.imageArr = i.getAllImages(postNo: post[id])
                 
-                var v = PostVideo();
+                let v = PostVideo();
                 p.videoArr = v.getAll(postNo: post[id])
                 allPosts.append(p)
                 
@@ -204,7 +204,7 @@ public class Post {
     
     func getThought () {
         let post = self
-        var retText = NSMutableAttributedString(string: "")
+        let retText = NSMutableAttributedString(string: "")
         if(post.post_thoughts != nil && post.post_thoughts != "") {
             retText.append(getRegularString(string: post.post_thoughts, size: 15))
             if(post.post_location != nil && post.post_location != "") {
