@@ -222,7 +222,7 @@ class PhotoOTGFooter: UIView {
         } else {
             self.likeButton.tag = 0
             self.likeButton.setImage(UIImage(named: "likeButton"), for: .normal)
-            self.likeButton.tintColor = mainBlueColor
+           
         }
         
     }

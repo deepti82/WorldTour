@@ -221,6 +221,7 @@ class ActivityFeedFooter: UIView {
     }
     
     func setLikeSelected (_ isSelected:Bool) {
+         self.likeButton.setImage(UIImage(named: "likeButton"), for: .normal)
         if(isSelected) {
             self.likeButton.tag = 1
             self.likeButton.setImage(UIImage(named: "favorite-heart-button"), for: .normal)
@@ -229,7 +230,8 @@ class ActivityFeedFooter: UIView {
         } else {
             self.likeButton.setImage(UIImage(named: "likeButton"), for: .normal)
             self.likeButton.tag = 0
-            self.likeButton.tintColor = mainBlueColor
+            likeButton.tintAdjustmentMode = .dimmed
+            likeButton.tintColor = mainBlueColor
         }
     }
     

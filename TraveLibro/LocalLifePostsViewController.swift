@@ -56,6 +56,12 @@ class LocalLifePostsViewController: UIViewController, UIScrollViewDelegate, CLLo
         
     }
     
+    
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        setTopNavigation(text: nearMeType)
+//    }
+    
     func rateButtonTapped(_ sender: AnyObject) {
         
         blackBg = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))

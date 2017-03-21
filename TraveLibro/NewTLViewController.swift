@@ -1086,7 +1086,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         
         mainScroll.clipsToBounds = true
         
-        self.addPostsButton = UIButton(frame: CGRect(x: self.view.frame.width - 80, y: self.view.frame.height - 120, width: 65, height: 65))
+        self.addPostsButton = UIButton(frame: CGRect(x: self.view.frame.width - 80, y: self.view.frame.height - 184, width: 65, height: 65))
 //        self.addPostsButton.layer.cornerRadius = 30
         let origImage = UIImage(named: "darkgreycircle");
         let tintedImage = origImage?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)

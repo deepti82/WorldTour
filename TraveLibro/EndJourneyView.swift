@@ -46,7 +46,7 @@ class EndJourneyView: UIView {
         let blackColour = UIColor.black.withAlphaComponent(0.8).cgColor as CGColor
         let transparent = UIColor.clear.cgColor as CGColor
         
-        gradient.frame = self.gradientView.bounds
+        gradient.frame = self.bounds
         gradient.frame.size.width = gradientView.frame.width + 15
         gradient.colors = [transparent, blackColour]
         gradient.locations = [0.0, 0.90]

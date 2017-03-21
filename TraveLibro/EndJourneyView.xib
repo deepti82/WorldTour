@@ -36,10 +36,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Jf-xS-F3Z">
-                    <rect key="frame" x="0.0" y="358" width="358" height="62"/>
+                    <rect key="frame" x="0.0" y="358" width="358" height="56"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g6C-ZG-Kli">
-                            <rect key="frame" x="157.5" y="11" width="42" height="42"/>
+                            <rect key="frame" x="158" y="11" width="42" height="42"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="42" id="6Ho-55-FcM"/>
                                 <constraint firstAttribute="width" constant="42" id="g8z-eD-v1b"/>
@@ -58,10 +58,10 @@
                     <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="g6C-ZG-Kli" firstAttribute="centerX" secondItem="4Jf-xS-F3Z" secondAttribute="centerX" id="9w6-NS-0zH"/>
-                        <constraint firstAttribute="height" constant="62" id="Lef-aq-auf"/>
+                        <constraint firstAttribute="height" constant="56" id="Lef-aq-auf"/>
                         <constraint firstItem="g6C-ZG-Kli" firstAttribute="leading" secondItem="vvQ-Ec-ZOC" secondAttribute="trailing" constant="14.5" id="NGI-D7-0U1"/>
-                        <constraint firstItem="g6C-ZG-Kli" firstAttribute="centerY" secondItem="4Jf-xS-F3Z" secondAttribute="centerY" constant="1" id="V8q-pi-f02"/>
-                        <constraint firstItem="vvQ-Ec-ZOC" firstAttribute="centerY" secondItem="4Jf-xS-F3Z" secondAttribute="centerY" constant="1.25" id="X3d-Rd-OMI"/>
+                        <constraint firstItem="g6C-ZG-Kli" firstAttribute="centerY" secondItem="4Jf-xS-F3Z" secondAttribute="centerY" constant="4" id="V8q-pi-f02"/>
+                        <constraint firstItem="vvQ-Ec-ZOC" firstAttribute="centerY" secondItem="4Jf-xS-F3Z" secondAttribute="centerY" constant="4.25" id="X3d-Rd-OMI"/>
                     </constraints>
                 </view>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-default" translatesAutoresizingMaskIntoConstraints="NO" id="59V-h0-f4K">
@@ -153,8 +153,10 @@
                 <constraint firstAttribute="trailing" secondItem="59V-h0-f4K" secondAttribute="trailing" id="Pw2-WD-7R9"/>
                 <constraint firstItem="4Jf-xS-F3Z" firstAttribute="top" secondItem="ETa-jN-hPY" secondAttribute="bottom" constant="6" id="Ucl-EQ-1Ra"/>
                 <constraint firstItem="59V-h0-f4K" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Vqa-EG-bB1"/>
+                <constraint firstAttribute="trailing" secondItem="4Jf-xS-F3Z" secondAttribute="trailing" id="dUD-gr-w12"/>
                 <constraint firstItem="4Jf-xS-F3Z" firstAttribute="trailing" secondItem="59V-h0-f4K" secondAttribute="trailing" id="dxO-uS-89J"/>
                 <constraint firstItem="59V-h0-f4K" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="jA9-T7-047"/>
+                <constraint firstItem="4Jf-xS-F3Z" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="rbq-Zj-1g3"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="26" y="-74"/>
