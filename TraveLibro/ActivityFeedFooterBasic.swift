@@ -151,13 +151,18 @@ class ActivityFeedFooterBasic: UIView {
     
     func showLike(_ sender: UITapGestureRecognizer) {
         print("in footer tap out \(postTop)")
+        if currentUser != nil {
         let feedVC = storyboard!.instantiateViewController(withIdentifier: "likeTable") as! LikeUserViewController
         feedVC.postId = postTop["_id"].stringValue
         feedVC.type = postTop["type"].stringValue
         feedVC.title = postTop["name"].stringValue
         globalNavigationController.pushViewController(feedVC, animated: true)
     }
-    
+    else {
+    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
+    }
+    }
+
     @IBAction func rateThisClicked(_ sender: UIButton) {
         openRating()
     }
@@ -269,10 +274,11 @@ class ActivityFeedFooterBasic: UIView {
             let comment = storyboard?.instantiateViewController(withIdentifier: "CommentsVC") as! CommentsViewController
             comment.postId = postTop["uniqueId"].stringValue
             comment.ids = postTop["_id"].stringValue
+            comment.footerViewBasic = self
             switch postTop["type"].stringValue {
             case "ended-journey", "on-the-go-journey":
                 comment.type = "journey"
-            case "quick-itinerary", "detailed-itinerary":
+            case "quick-itinerary", "detail-itinerary":
                 comment.type = "itinerary"
             case "travel-life", "local-life":
                 comment.type = "post"

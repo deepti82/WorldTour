@@ -127,7 +127,7 @@ class PhotoOTGFooter: UIView {
         comment.postId = postTop.post_uniqueId
         comment.ids = postTop.post_ids
         
-        comment.footerView = self;
+        comment.footerViewOtg = self;
         globalNavigationController?.setNavigationBarHidden(false, animated: true)
         globalNavigationController?.pushViewController(comment, animated: true)
         }

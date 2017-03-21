@@ -20,7 +20,9 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
     var hashtagSuggestions: [JSON] = []
     var previousHashtags: [String] = []
     var editComment: JSON!
-    var footerView: PhotoOTGFooter!
+    var footerViewOtg: PhotoOTGFooter!
+    var footerViewFooter: ActivityFeedFooter!
+    var footerViewBasic: ActivityFeedFooterBasic!
     var type: String = ""
     
     @IBOutlet weak var bottomSpaceToSuperview: NSLayoutConstraint!
@@ -455,8 +457,14 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
         case 1:
             return hashtagSuggestions.count
         default:
-            if(footerView != nil) {
-                footerView.setCommentCount(comments.count)
+            if(footerViewOtg != nil) {
+                footerViewOtg.setCommentCount(comments.count)
+            }
+            if(footerViewFooter != nil) {
+                footerViewFooter.setCommentCount(comments.count)
+            }
+            if(footerViewBasic != nil) {
+                footerViewBasic.setCommentCount(comments.count)
             }
             return comments.count
         }

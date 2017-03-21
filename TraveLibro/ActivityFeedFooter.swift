@@ -89,11 +89,17 @@ class ActivityFeedFooter: UIView {
     }
     func showLike(_ sender: UITapGestureRecognizer) {
         print("in footer tap out \(postTop)")
+        if currentUser != nil {
+
         let feedVC = storyboard!.instantiateViewController(withIdentifier: "likeTable") as! LikeUserViewController
         feedVC.postId = postTop["_id"].stringValue
         feedVC.type = postTop["type"].stringValue
         feedVC.title = postTop["name"].stringValue
         globalNavigationController.pushViewController(feedVC, animated: true)
+        }
+        else {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
+        }
     }
     
     @IBAction func sendComments(_ sender: UIButton) {
@@ -102,6 +108,7 @@ class ActivityFeedFooter: UIView {
             let comment = storyboard?.instantiateViewController(withIdentifier: "CommentsVC") as! CommentsViewController
             comment.postId = postTop["uniqueId"].stringValue
             comment.ids = postTop["_id"].stringValue
+            comment.footerViewFooter = self
             switch postTop["type"].stringValue {
             case "ended-journey", "on-the-go-journey":
                 comment.type = "journey"
@@ -248,8 +255,8 @@ class ActivityFeedFooter: UIView {
                 sender.tag = 1
             }
             
-            if (postTop["type"].stringValue == "quick-itinerary" || postTop["type"].stringValue == "detail-itinerary") {
-                request.likeItinerary(postTop["uniqueId"].stringValue, userId: currentUser["_id"].string!, userName: currentUser["name"].string!, unlike: hasLiked, itinerary: postTop["_id"].stringValue, completion: {(response) in
+            
+                request.globalLike(postTop["_id"].stringValue, userId: currentUser["_id"].string!, unlike: hasLiked, type: postTop["type"].stringValue, completion: {(response) in
                     DispatchQueue.main.async(execute: {
                         if response.error != nil {
                             print("error: \(response.error!.localizedDescription)")
@@ -273,34 +280,6 @@ class ActivityFeedFooter: UIView {
                         }
                     })
                 })
-            }
-            else if (postTop["type"].stringValue == "ended-journey" || postTop["type"].stringValue == "on-the-go-journey") {
-                request.likeStartEnd(postTop["uniqueId"].stringValue, userId: currentUser["_id"].string!, userName: currentUser["name"].string!, unlike: hasLiked, journey: postTop["_id"].stringValue, completion: {(response) in
-                    DispatchQueue.main.async(execute: {
-                        if response.error != nil {
-                            print("error: \(response.error!.localizedDescription)")
-                        }
-                        else if response["value"].bool! {
-                            if sender.tag == 1 {
-                                self.setLikeSelected(true)
-                                self.likeCount = self.likeCount + 1
-                                self.setLikeCount(self.likeCount)
-                            } else {
-                                self.setLikeSelected(false)
-                                if self.likeCount <= 0 {
-                                    self.likeCount = 0
-                                } else {
-                                    self.likeCount = self.likeCount - 1
-                                }
-                                self.setLikeCount(self.likeCount)
-                            }
-                        }
-                        else {
-                            
-                        }
-                    })
-                })
-            }            
         }
         else {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
