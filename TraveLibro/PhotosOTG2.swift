@@ -23,7 +23,7 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
         
         self.layer.cornerRadius = 5.0
         self.clipsToBounds = true
-        
+        print("iiiii \(journeyUser)")
         //header generation only
         
         header = PhotosOTGHeader(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 102 ))
@@ -210,7 +210,7 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
                 rateButton.photosOtg = self;
                 rateButton.whichView = "otg"
                 rateButton.journeyUser = self.journeyUser
-                print("postuser \(post.postCreator["_id"].stringValue)")
+                print("postuser \(self.journeyUser)")
                 print("current user \(user.getExistingUser())")
                 if post.postCreator["_id"].stringValue != user.getExistingUser() {
                     rateButton.showRating = false

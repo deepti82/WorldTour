@@ -16,7 +16,7 @@ class RatingCheckIn: UIView {
     var photosOtg:PhotosOTG2!
     var backgroundReview:UIView!
     var review:JSON!
-    var showRating: Bool!
+    var showRating: Bool! = true
     let moodArr = ["Disappointed", "Sad", "Good", "Super", "In Love"]
     let imageArr = ["disapointed", "sad", "good", "superface (1)", "love"]
     var whichView:String = ""
@@ -56,11 +56,13 @@ class RatingCheckIn: UIView {
     }
     
     @IBAction func ratePost(_ sender: Any) {
-        print("--------------")
+        print("-------------- \(showRating)")
         print(isUserMe(user: currentUser["_id"].stringValue))
         print(self.journeyUser)
         print(currentUser["_id"].stringValue)
-        if showRating! {
+        
+        if self.journeyUser == user.getExistingUser() {
+        
             let tapout = UITapGestureRecognizer(target: self, action: #selector(RatingCheckIn.reviewTapOut(_:)))
             
             backgroundReview = UIView(frame: (globalNavigationController.topViewController?.view.frame)!)

@@ -726,7 +726,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
                     isJourneyOngoing = true
                     self.journeyStart = true
                     self.myJourney = response["data"]
-                    print(self.myJourney);
+                    print("line no : \(self.myJourney)");
                     self.journeyID = self.myJourney["_id"].stringValue
                     self.journeyName = self.myJourney["name"].stringValue
                     self.isInitialLoad = false
@@ -1244,9 +1244,10 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     
     func addPostLayout(_ post:Post) {
         let checkIn = PhotosOTG2(width: layout.frame.width)
+        checkIn.journeyUser = myJourney["user"]["_id"].stringValue
+
         checkIn.generatePost(post)
         checkIn.newTl = self
-        checkIn.journeyUser = myJourney["journeyCreator"]["_id"].stringValue
         checkIn.scrollView = mainScroll
         layout.addSubview(checkIn)
         addHeightToLayout(height: checkIn.frame.height + 50)
@@ -1477,7 +1478,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
                     let rateButton = RatingCheckIn(frame: CGRect(x: 0, y: -4, width: width, height: 150))
                     rateButton.rateCheckInLabel.text = "Rate \(post["checkIn"]["location"])?"
                     rateButton.rateCheckInButton.addTarget(self, action: #selector(NewTLViewController.addRatingPost(_:)), for: .touchUpInside)
-                    
+                    print(">>>>>>>>>>>> \(myJourney)")
                     if myJourney != nil {
                             rateButton.journeyUser = myJourney["journeyCreator"]["_id"].stringValue
                     }
