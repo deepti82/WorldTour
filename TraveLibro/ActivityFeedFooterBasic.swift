@@ -404,8 +404,7 @@ class ActivityFeedFooterBasic: UIView {
                 sender.tag = 1
             }
             if type == "TripPhotos" {
-                if footerType == "photos" {
-                    request.postPhotosLike(photoId, postId: photoPostId, userId: currentUser["_id"].string!, userName: currentUser["name"].string!, unlike: hasLiked, completion: {(response) in
+                    request.globalLike(photoId, userId: currentUser["_id"].stringValue, unlike: hasLiked, type: footerType, completion: {(response) in
                         
                         DispatchQueue.main.async(execute: {
                             
@@ -435,38 +434,7 @@ class ActivityFeedFooterBasic: UIView {
                         })
                         
                     })
-                }else if footerType == "videos"{
-                    request.postVideoLike(photoId, postId: photoPostId, userId: currentUser["_id"].string!, userName: currentUser["name"].string!, unlike: hasLiked, completion: {(response) in
-                        
-                        DispatchQueue.main.async(execute: {
-                            
-                            if response.error != nil {
-                                print("error: \(response.error!.localizedDescription)")
-                            }
-                            else if response["value"].bool! {
-                                if sender.tag == 1 {
-                                    self.setLikeSelected(true)
-                                    self.likeCount = self.likeCount + 1
-                                    self.setLikeCount(self.likeCount)
-                                }
-                                else {
-                                    self.setLikeSelected(false)
-                                    if self.likeCount <= 0 {
-                                        self.likeCount = 0
-                                    } else {
-                                        self.likeCount = self.likeCount - 1
-                                    }
-                                    self.setLikeCount(self.likeCount)
-                                }
-                            }
-                            else {
-                                
-                            }
-                            
-                        })
-                        
-                    })
-                }
+                
             }else{
                 print("oooooooooo")
                 request.globalLike(postTop["_id"].stringValue, userId: currentUser["_id"].stringValue, unlike: hasLiked, type: postTop["type"].stringValue, completion: {(response) in

@@ -1933,18 +1933,39 @@ class Navigation {
     func globalLike(_ id: String, userId: String, unlike: Bool, type: String, completion: @escaping ((JSON) -> Void)) {
         
         do {
+            var tap = ""
+            var url = ""
+            switch type {
+            case "detail-itinerary", "quick-itinerary":
+                tap = "itinerary"
+                url = "itinerary/updateLikeItinerary"
+            case "ended-journey", "on-the-go-journey":
+                tap = "journey"
+                url = "journey/likeJourney"
+            case "travel-life", "local-life":
+                tap = "post"
+                url = "post/updateLikePost"
+            case "photos":
+                tap = "photoId"
+                url = "postphotos/updateLikePost"
+            case "videos":
+                tap = "videoId"
+                url = "postvideos/updateLikePost"
+            default:
+                tap = "post"
+                url = "post/updateLikePost"
+            }
             
-            
-            var params = ["journey": id, "user": userId, "unlike": unlike] as [String : Any]
+            var params = [tap: id, "user": userId, "unlike": unlike] as [String : Any]
             
             if !unlike {
                 
-                params = ["journey": id, "user": userId]
+                params = [tap: id, "user": userId]
             }
             
-            print("like post: \(params)")
+            print("like post: \(params) \(type)")
             
-            let opt = try HTTP.POST(adminUrl + "journey/likeJourney", parameters: [params])
+            let opt = try HTTP.POST(adminUrl + url, parameters: [params])
             var json = JSON(1);
             opt.start {response in
                 if let err = response.error {
