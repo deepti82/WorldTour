@@ -199,13 +199,8 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
             moreImage.contentMode = .scaleAspectFit
             moreImage.clipsToBounds = true
             more.backgroundColor = UIColor(patternImage: moreImage.image!)
-<<<<<<< HEAD
             
-            
-            let favorite = UITableViewRowAction(style: .default, title: "        ") { action, index in
-=======
             let favorite = UITableViewRowAction(style: .default, title: "\u{2715}\n Delete" ) { action, index in
->>>>>>> origin/level-3-
                 print("delete button tapped")
                 request.deleteComment(commentId: self.comments[indexPath.row]["_id"].string!, completion: {(response) in
                     
