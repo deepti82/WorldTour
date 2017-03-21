@@ -226,12 +226,12 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
                 
                 
             }
-            let favoriteImage = UIImageView(frame: CGRect(x: 0, y: 0, width: 60, height: 200))
+//            let favoriteImage = UIImageView(frame: CGRect(x: 0, y: 0, width: 60, height: 200))
+//            
+//            favoriteImage.image = UIImage(named: "trashtranswhite (2)")
+//            favoriteImage.contentMode = .top
             
-            favoriteImage.image = UIImage(named: "trashtranswhite (2)")
-            favoriteImage.contentMode = .top
-            
-            favorite.backgroundColor = UIColor(patternImage: favoriteImage.image!)
+            favorite.backgroundColor = mainOrangeColor
     
 //            favoriteImage.backgroundColor = mainOrangeColor
 //            favorite.backgroundColor = mainOrangeColor
