@@ -70,6 +70,7 @@ class PopularController: UIViewController, UIScrollViewDelegate {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         displayData = "activity"
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
     
     func demonote(_ notification: Notification) {
@@ -160,7 +161,8 @@ class PopularController: UIViewController, UIScrollViewDelegate {
                 })
             })
             
-        } else if displayData == "popitinerary" {
+        }
+        else if displayData == "popitinerary" {
             let userr = User()
             
             request.getPopularItinerary(userId: userr.getExistingUser(), pagenumber: pageNumber, completion: {(request) in

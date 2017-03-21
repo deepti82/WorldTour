@@ -246,7 +246,7 @@ class EachItineraryViewController: UIViewController, UITableViewDataSource, UITa
                 isExpandedLocal = true
             }
         }
-        
+        parentCell.arrowImageView.tintColor = mainBlueColor
         parentCell.arrowImageView.image = UIImage(named: (isExpandedLocal ? "arrowup" : "arrowdown"))
         return parentCell
         

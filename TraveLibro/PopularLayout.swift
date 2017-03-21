@@ -220,7 +220,10 @@ class PopularLayout: VerticalLayout, PlayerDelegate {
         footerView.type = "popular"
         footerView.footerType = feed["type"].stringValue
         if (feed["type"].stringValue == "detail-itinerary") || feed["type"].stringValue == "quick-itinerary"{
-            footerView.follow.isHidden = false
+            print("\n\n Feed : \(feed) \n\n\n\n  following : \(feed["following"].stringValue) \n\n")
+            footerView.followBtn.isHidden = false
+            setFollowButtonTitle(button: footerView.followBtn, followType: feed["following"].intValue)
+            footerView.followBtn.addTarget(self, action: #selector(PopularLayout.followBtnClicked(_:)), for: .touchUpInside)
         }
         footerView.setCommentCount(feed["commentCount"].intValue)
         footerView.setLikeCount(feed["likeCount"].intValue)
@@ -531,6 +534,60 @@ class PopularLayout: VerticalLayout, PlayerDelegate {
         }
         return str
         
+    }
+    
+    @IBAction func followBtnClicked(_ sender: UIButton) {
+        
+        if currentUser != nil {
+            if footerView.followBtn.titleLabel?.text == "Follow" {
+                request.followUser(currentUser["_id"].string!, followUserId: feeds["user"]["_id"].stringValue, completion: {(response) in
+                    
+                    DispatchQueue.main.async(execute: {
+                        
+                        if response.error != nil {
+                            
+                            print("error: \(response.error!.localizedDescription)")
+                            
+                        }
+                        else if response["value"].bool! {
+                            
+                            print("response arrived!")
+                            setFollowButtonTitle(button: self.footerView.followBtn, followType: response["data"]["responseValue"].intValue)
+                        }
+                        else {
+                            
+                            print("error: \(response["error"])")
+                            
+                        }
+                    })
+                })
+            }
+            else if footerView.followBtn.titleLabel?.text == "Following" {
+                request.unfollow(currentUser["_id"].string!, unFollowId: feeds["user"]["_id"].stringValue, completion: {(response) in
+                    DispatchQueue.main.async(execute: {
+                        if response.error != nil {
+                            
+                            print("error: \(response.error!.localizedDescription)")
+                            
+                        }
+                        else if response["value"].bool! {
+                            
+                            print("response arrived!")
+                            setFollowButtonTitle(button: self.footerView.followBtn, followType: response["data"]["responseValue"].intValue)
+                            
+                        }
+                        else {
+                            
+                            print("error: \(response["error"])")
+                            
+                        }
+                    })
+                })
+            }
+        }
+        else {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
+        }
     }
     
 }

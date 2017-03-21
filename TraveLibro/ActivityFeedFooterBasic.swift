@@ -10,7 +10,7 @@ class ActivityFeedFooterBasic: UIView {
     var postTop:JSON!
     
     
-    @IBOutlet weak var follow: UILabel!
+    @IBOutlet weak var followBtn: UIButton!
     @IBOutlet weak var dropShadowActivity: UIView!
     @IBOutlet var starImageArray: [UIImageView]!
     @IBOutlet weak var ratingStack: UIStackView!
@@ -60,7 +60,7 @@ class ActivityFeedFooterBasic: UIView {
         self.addSubview(view)
         //        transparentCardWhite(footerColorView)
         
-        self.follow.isHidden = true
+        self.followBtn.isHidden = true
         let tapout = UITapGestureRecognizer(target: self, action: #selector(ActivityFeedFooterBasic.checkMyRating(_:)))
         ratingStack.addGestureRecognizer(tapout)
         likeButton.tintColor = mainBlueColor
@@ -385,30 +385,92 @@ class ActivityFeedFooterBasic: UIView {
     
     @IBAction func sendLikes(_ sender: UIButton) {
         if currentUser != nil {
-        audioPlayer.play()
-        likeButton.animation = "pop"
-        likeButton.velocity = 2
-        likeButton.force = 2
-        likeButton.damping = 10
-        likeButton.curve = "spring"
-        likeButton.animateTo()
-        
-        print("like button tapped \(sender.titleLabel!.text)")
-        
-        var hasLiked = false
-        if sender.tag == 1 {
-            hasLiked = true
-            sender.tag = 0
-        }
-        else {
-            sender.tag = 1
-        }
-        if type == "TripPhotos" {
-            if footerType == "photos" {
-                request.postPhotosLike(photoId, postId: photoPostId, userId: currentUser["_id"].string!, userName: currentUser["name"].string!, unlike: hasLiked, completion: {(response) in
-                    
-                    DispatchQueue.main.async(execute: {
+            audioPlayer.play()
+            likeButton.animation = "pop"
+            likeButton.velocity = 2
+            likeButton.force = 2
+            likeButton.damping = 10
+            likeButton.curve = "spring"
+            likeButton.animateTo()
+            
+            print("like button tapped \(sender.titleLabel!.text)")
+            
+            var hasLiked = false
+            if sender.tag == 1 {
+                hasLiked = true
+                sender.tag = 0
+            }
+            else {
+                sender.tag = 1
+            }
+            if type == "TripPhotos" {
+                if footerType == "photos" {
+                    request.postPhotosLike(photoId, postId: photoPostId, userId: currentUser["_id"].string!, userName: currentUser["name"].string!, unlike: hasLiked, completion: {(response) in
                         
+                        DispatchQueue.main.async(execute: {
+                            
+                            if response.error != nil {
+                                print("error: \(response.error!.localizedDescription)")
+                            }
+                            else if response["value"].bool! {
+                                if sender.tag == 1 {
+                                    self.setLikeSelected(true)
+                                    self.likeCount = self.likeCount + 1
+                                    self.setLikeCount(self.likeCount)
+                                }
+                                else {
+                                    self.setLikeSelected(false)
+                                    if self.likeCount <= 0 {
+                                        self.likeCount = 0
+                                    } else {
+                                        self.likeCount = self.likeCount - 1
+                                    }
+                                    self.setLikeCount(self.likeCount)
+                                }
+                            }
+                            else {
+                                
+                            }
+                            
+                        })
+                        
+                    })
+                }else if footerType == "videos"{
+                    request.postVideoLike(photoId, postId: photoPostId, userId: currentUser["_id"].string!, userName: currentUser["name"].string!, unlike: hasLiked, completion: {(response) in
+                        
+                        DispatchQueue.main.async(execute: {
+                            
+                            if response.error != nil {
+                                print("error: \(response.error!.localizedDescription)")
+                            }
+                            else if response["value"].bool! {
+                                if sender.tag == 1 {
+                                    self.setLikeSelected(true)
+                                    self.likeCount = self.likeCount + 1
+                                    self.setLikeCount(self.likeCount)
+                                }
+                                else {
+                                    self.setLikeSelected(false)
+                                    if self.likeCount <= 0 {
+                                        self.likeCount = 0
+                                    } else {
+                                        self.likeCount = self.likeCount - 1
+                                    }
+                                    self.setLikeCount(self.likeCount)
+                                }
+                            }
+                            else {
+                                
+                            }
+                            
+                        })
+                        
+                    })
+                }
+            }else{
+                print("oooooooooo")
+                request.globalLike(postTop["_id"].stringValue, userId: currentUser["_id"].stringValue, unlike: hasLiked, type: postTop["type"].stringValue, completion: {(response) in
+                    DispatchQueue.main.async(execute: {
                         if response.error != nil {
                             print("error: \(response.error!.localizedDescription)")
                         }
@@ -431,78 +493,14 @@ class ActivityFeedFooterBasic: UIView {
                         else {
                             
                         }
-                        
                     })
-                    
-                })
-            }else if footerType == "videos"{
-                request.postVideoLike(photoId, postId: photoPostId, userId: currentUser["_id"].string!, userName: currentUser["name"].string!, unlike: hasLiked, completion: {(response) in
-                    
-                    DispatchQueue.main.async(execute: {
-                        
-                        if response.error != nil {
-                            print("error: \(response.error!.localizedDescription)")
-                        }
-                        else if response["value"].bool! {
-                            if sender.tag == 1 {
-                                self.setLikeSelected(true)
-                                self.likeCount = self.likeCount + 1
-                                self.setLikeCount(self.likeCount)
-                            }
-                            else {
-                                self.setLikeSelected(false)
-                                if self.likeCount <= 0 {
-                                    self.likeCount = 0
-                                } else {
-                                    self.likeCount = self.likeCount - 1
-                                }
-                                self.setLikeCount(self.likeCount)
-                            }
-                        }
-                        else {
-                            
-                        }
-                        
-                    })
-                    
                 })
             }
-        }else{
-            print("oooooooooo")
-            request.globalLike(postTop["_id"].stringValue, userId: currentUser["_id"].stringValue, unlike: hasLiked, type: postTop["type"].stringValue, completion: {(response) in
-                DispatchQueue.main.async(execute: {
-                    if response.error != nil {
-                        print("error: \(response.error!.localizedDescription)")
-                    }
-                    else if response["value"].bool! {
-                        if sender.tag == 1 {
-                            self.setLikeSelected(true)
-                            self.likeCount = self.likeCount + 1
-                            self.setLikeCount(self.likeCount)
-                        }
-                        else {
-                            self.setLikeSelected(false)
-                            if self.likeCount <= 0 {
-                                self.likeCount = 0
-                            } else {
-                                self.likeCount = self.likeCount - 1
-                            }
-                            self.setLikeCount(self.likeCount)
-                        }
-                    }
-                    else {
-                        
-                    }
-                })
-            })
+            
         }
-        
-    }
-    else {
-    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
-    }
-
-    
+        else {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
+        }
     }
 
     @IBAction func optionClick(_ sender: UIButton) {

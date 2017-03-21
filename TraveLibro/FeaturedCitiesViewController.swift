@@ -112,6 +112,11 @@ class FeaturedCitiesViewController: UIViewController, UITableViewDelegate, UITab
         
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+    }
+    
 //    func indicatorInfoForPagerTabStrip(pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
 //        
 ////        switch whichView {
@@ -433,16 +438,6 @@ class FeaturedCitiesViewController: UIViewController, UITableViewDelegate, UITab
 //        
 //    }
     
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
     override func viewDidAppear(_ animated: Bool) {
         
