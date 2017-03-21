@@ -655,6 +655,7 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate, iCarouselDeleg
             
             let key = photos[carousel.currentItemIndex]["_id"].string!
             let currentJson = carouselDict.value(forKey: key) as? JSON
+            singlePhotoJSON = currentJson
             
             print("\n CurrentJSON : \(currentJson) key :\(key)  current index: \(carousel.currentItemIndex)")
             
