@@ -133,6 +133,9 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
         bottomSpaceToSuperview.constant = 0
     }
     
+    
+    //MARK: - TextView Delegates
+    
     func textViewDidBeginEditing(_ textView: UITextView) {
         addCommentLabel.isHidden = true
     }
@@ -153,6 +156,14 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if (text == "\n") {
             textView.resignFirstResponder()
+        }
+        else {
+            if textView.text == "" && text == "" {
+                addCommentLabel.isHidden = false
+            }
+            else{
+                addCommentLabel.isHidden = true
+            }
         }
         return true
     }
