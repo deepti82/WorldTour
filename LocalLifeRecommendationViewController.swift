@@ -421,7 +421,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
     
     func searchTop(_ sender: UIButton){
         
-        let searchVC = storyboard?.instantiateViewController(withIdentifier: "Search") as! CategoriseCheckInViewController
+        let searchVC = storyboard?.instantiateViewController(withIdentifier: "Search") as! MainSearchViewController
         globalNavigationController.pushViewController(searchVC, animated: true)
         
     }

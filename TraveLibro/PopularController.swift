@@ -123,7 +123,7 @@ class PopularController: UIViewController, UIScrollViewDelegate {
             self.customNavigationBar(left: leftButton, right: rightButton)
             
         }else{
-            self.customNavigationBar(left: leftButton, right: nil)
+            self.customNavigationBar(left: leftButton, right: rightButton)
             
         }
         self.navigationController?.setNavigationBarHidden(false, animated: true)
