@@ -218,7 +218,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
 
             footerSharedInstance?.setBadge()
             
-        }, handleNotificationAction: nil, settings: [kOSSettingsKeyAutoPrompt : true, kOSSettingsKeyInAppAlerts : true])
+        }, handleNotificationAction: nil, settings: [kOSSettingsKeyInFocusDisplayOption : OSNotificationDisplayType.none.rawValue])
 
         faicon["magic"] = 0xf0d0
         faicon["clock"] = 0xf017
