@@ -249,6 +249,7 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate, iCarouselDeleg
         let comment = storyboard?.instantiateViewController(withIdentifier: "photoComment") as! PhotoCommentViewController
         comment.postId = (whichView == "detail_itinerary" ? photos[carouselView.currentItemIndex]["itinerary"].stringValue : postId!)
         comment.commentText = self.commentText
+        print("[[[[]]]] \(singlePhotoJSON)")
         if singlePhotoJSON != nil {
             comment.otherId = singlePhotoJSON["name"].string!
             comment.photoId = singlePhotoJSON["_id"].string!
@@ -256,7 +257,6 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate, iCarouselDeleg
         if(self.type == "Video") {
             comment.type = "Video"
         }
-        //self.navigationController?.pushViewController(comment, animated: true)
         self.navigationController?.pushViewController(comment, animated: true)
     }
     

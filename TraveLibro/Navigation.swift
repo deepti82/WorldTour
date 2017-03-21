@@ -1132,9 +1132,13 @@ class Navigation {
     
     func getJourneyById(_ id: String, completion: @escaping ((JSON) -> Void)) {
         do {
-            print("User: \(currentUser["_id"])")
-            print("_ID: \(id)")
-            let opt = try HTTP.POST(adminUrl + "journey/getoneApp", parameters: ["user": currentUser["_id"],"_id":id])
+            var params = ["_id":id]
+            if currentUser != nil {
+                params = ["user": currentUser["_id"].stringValue, "_id":id]
+            }else{
+                params = ["_id":id]
+            }
+            let opt = try HTTP.POST(adminUrl + "journey/getoneApp", parameters: params)
             var json = JSON(1);
             opt.start {response in
                 if let err = response.error {
@@ -2086,9 +2090,13 @@ class Navigation {
             case "post":
                 params = ["post": id, "user":  userId, "text": commentText, "type": "post", "hashtag" : hashtags] as [String : Any]
             case "itinerary":
-                params = ["itinerary": id, "user":  userId, "text": commentText, "type": "itinerary", "hashtag" : hashtags] as [String : Any]
+                params = ["itinerary": itineraryId, "user":  userId, "text": commentText, "type": "itinerary", "hashtag" : hashtags] as [String : Any]
             case "journey":
-                params = ["journey": id, "user":  userId, "text": commentText, "type": "journey", "hashtag" : hashtags] as [String : Any]
+                params = ["journey": journeyId, "user":  userId, "text": commentText, "type": "journey", "hashtag" : hashtags] as [String : Any]
+            case "Photo":
+                params = ["photo": photoId, "user":  userId, "text": commentText, "type": "photo", "hashtag" : hashtags] as [String : Any]
+            case "Video":
+                params = ["video": videoId, "user":  userId, "text": commentText, "type": "video", "hashtag" : hashtags] as [String : Any]
             default:
                 params = ["post": id, "user":  userId, "text": commentText, "type": "post", "hashtag" : hashtags] as [String : Any]
             }

@@ -493,8 +493,8 @@ class PhotoCommentViewController: UIViewController, UITableViewDataSource, UITab
         }else{
             usr = userm.getExistingUser()
         }
-        if(self.type == "Video" ) {
-            request.commentOnVideos(id: otherId, postId: postId, userId: usr, commentText: comment, hashtags: hashtags, mentions: mentions, videoId: photoId, completion: {(response) in
+        
+        request.commentOn(id: "", userId: usr, commentText: comment, hashtags: hashtags, mentions: mentions, photoId: photoId, type: self.type, videoId: photoId, journeyId: "", itineraryId: "", completion: {(response) in
                 
                 DispatchQueue.main.async(execute: {
                     
@@ -511,32 +511,6 @@ class PhotoCommentViewController: UIViewController, UITableViewDataSource, UITab
                     }
                 })
             })
-        } else {
-            request.commentOnPhotos(id: otherId, postId: postId, userId: usr, commentText: comment, hashtags: hashtags, mentions: mentions, photoId: photoId, completion: {(response) in
-                
-                DispatchQueue.main.async(execute: {
-                    
-                    if response.error != nil {
-                        
-                        print("error: \(response.error!.localizedDescription)")
-                        
-                    }
-                    else if response["value"].bool! {
-                        
-                        self.getAllComments()
-                    }
-                    else {
-                        
-                        
-                    }
-                    
-                })
-                
-            })
-        }
-        
-        
-        
     }
     
     func getAllComments() {
