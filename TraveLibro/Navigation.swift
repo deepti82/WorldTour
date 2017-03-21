@@ -2193,8 +2193,8 @@ class Navigation {
             
             var params = ["_id": id, "user": userId, "pagenumber": pageno] as [String : Any]
             var url = ""
-            
-            switch type {
+        
+            switch type.lowercased() {
             case "post":
                 url = "post/getPostComment"
             case "photo":

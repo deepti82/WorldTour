@@ -136,7 +136,7 @@ class PhotoCommentViewController: UIViewController, UITableViewDataSource, UITab
         default:
             print(comments.count)
             if comments.count != nil {
-//                self.commentText.text = "\(comments.count) Comments"
+                self.commentText.text = "\(comments.count) Comments"
 
             }
             return comments.count

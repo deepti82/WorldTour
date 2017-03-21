@@ -396,7 +396,7 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
         }else{
             usr = userm.getExistingUser()
         }
-        request.commentOn(id: ids, userId: usr, commentText: comment, hashtags: hashtags, mentions: mentions, photoId: "", type: self.type, videoId: "", journeyId: ids, itineraryId: ids, completion: {(response) in
+        request.commentOn(id: ids, userId: usr, commentText: comment, hashtags: hashtags, mentions: mentions, photoId: ids, type: self.type, videoId: ids, journeyId: ids, itineraryId: ids, completion: {(response) in
             
             DispatchQueue.main.async(execute: {
                 

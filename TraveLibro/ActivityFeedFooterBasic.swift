@@ -255,14 +255,14 @@ class ActivityFeedFooterBasic: UIView {
     }
     
     @IBAction func sendComments(_ sender: UIButton) {
-        print("in activity feed layout \(type)")
+        print("in activity feed layout \(postTop)")
         if currentUser != nil {
 
         if type == "TripPhotos" {
-            let comment = storyboard?.instantiateViewController(withIdentifier: "photoComment") as! PhotoCommentViewController
+            let comment = storyboard?.instantiateViewController(withIdentifier: "CommentsVC") as! CommentsViewController
             comment.postId = photoPostId
-            comment.otherId = postTop["name"].stringValue
-            comment.photoId = photoId
+            comment.ids = postTop["_id"].stringValue
+            comment.footerViewBasic = self
             if(self.footerType == "videos") {
                 comment.type = "Video"
             }else{
