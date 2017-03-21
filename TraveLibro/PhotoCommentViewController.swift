@@ -30,6 +30,7 @@ class PhotoCommentViewController: UIViewController, UITableViewDataSource, UITab
     @IBOutlet weak var mentionTableView: UITableView!
     @IBOutlet weak var hashtagTableView: UITableView!
 
+    @IBOutlet weak var bottomLayoutConstraint: NSLayoutConstraint!
     @IBOutlet weak var editComment: UITextView!
     @IBOutlet weak var navigationBar: UINavigationBar!
     
@@ -47,7 +48,8 @@ class PhotoCommentViewController: UIViewController, UITableViewDataSource, UITab
         NotificationCenter.default.addObserver(self, selector: #selector(PhotoCommentViewController.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         editComment.returnKeyType = .done
         editComment.delegate = self
-
+        editComment.text = "Add a comment"
+        editComment.textColor = UIColor.lightGray
         // Do any additional setup after loading the view.
     }
     
@@ -136,7 +138,7 @@ class PhotoCommentViewController: UIViewController, UITableViewDataSource, UITab
         default:
             print(comments.count)
             if comments.count != nil {
-//                self.commentText.text = "\(comments.count) Comments"
+                self.commentText.text = "\(comments.count) Comments"
 
             }
             return comments.count
@@ -323,7 +325,7 @@ class PhotoCommentViewController: UIViewController, UITableViewDataSource, UITab
     }
     
      override func popVC(_ sender: UIButton) {
-        self.navigationController?.popViewController(animated: true)
+        _ = self.navigationController?.popViewController(animated: true)
     }
     
     var textVar = ""
@@ -408,40 +410,63 @@ class PhotoCommentViewController: UIViewController, UITableViewDataSource, UITab
         
     }
     
-    var viewHeight = 0
+    //MARK: - Keyboard Handling
     
     func keyboardWillShow(_ notification: Notification) {
-        view.frame.origin.y = CGFloat(viewHeight)
         if let keyboardSize = ((notification as NSNotification).userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            
-            
-            //            if !keyboardHidden {
-            if self.view.frame.origin.y == 0{
-                self.view.frame.origin.y -= 258
-                print("ye tym bhi karna hai\(keyboardSize.height)")
-                //                keyboardHidden = true
-                //            }
+            if comments.count > 0 {
+                commentTableView.scrollToRow(at: (NSIndexPath(row: (comments.count-1), section: 0)) as IndexPath, at: .top, animated: true)
             }
+            bottomLayoutConstraint.constant = keyboardSize.height
         }
-        
     }
     
     func keyboardWillHide(_ notification: Notification) {
-        if let keyboardSize = ((notification as NSNotification).userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.view.frame.origin.y != 0{
-                self.view.frame.origin.y += keyboardSize.height
-                print("ye tym bhi karna hai plus\(keyboardSize.height)")
-            }
-        }
+        bottomLayoutConstraint.constant = 0
     }
     
+    
+    //MARK: - TextView Delegates
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
         editComment.resignFirstResponder()
         sendComments(nil)
         return true
     }
     
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if (text == "\n") {
+            textView.resignFirstResponder()
+        }
+//        else {
+//            if textView.text == "" && text == "" {
+//                textView.text = "Add a comment"
+//                textView.textColor = UIColor.lightGray
+//            }
+//            else{
+//                textView.textColor = mainBlueColor
+////                addCommentLabel.isHidden = true
+//            }
+//        }
+        return true
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == UIColor.lightGray {
+            textView.text = nil
+            textView.textColor = mainBlueColor
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            textView.text = "Add a comment"
+            textView.textColor = UIColor.lightGray
+        }
+    }
+    
+    //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 //        if (segue.identifier == "myEmbeddedSegue") {
 //            print("hashtag segue")
 //            let childViewController = segue.destination as! SuggestionsViewController
@@ -493,8 +518,8 @@ class PhotoCommentViewController: UIViewController, UITableViewDataSource, UITab
         }else{
             usr = userm.getExistingUser()
         }
-        if(self.type == "Video" ) {
-            request.commentOnVideos(id: otherId, postId: postId, userId: usr, commentText: comment, hashtags: hashtags, mentions: mentions, videoId: photoId, completion: {(response) in
+        
+        request.commentOn(id: "", userId: usr, commentText: comment, hashtags: hashtags, mentions: mentions, photoId: photoId, type: self.type, videoId: photoId, journeyId: "", itineraryId: "", completion: {(response) in
                 
                 DispatchQueue.main.async(execute: {
                     
@@ -511,32 +536,6 @@ class PhotoCommentViewController: UIViewController, UITableViewDataSource, UITab
                     }
                 })
             })
-        } else {
-            request.commentOnPhotos(id: otherId, postId: postId, userId: usr, commentText: comment, hashtags: hashtags, mentions: mentions, photoId: photoId, completion: {(response) in
-                
-                DispatchQueue.main.async(execute: {
-                    
-                    if response.error != nil {
-                        
-                        print("error: \(response.error!.localizedDescription)")
-                        
-                    }
-                    else if response["value"].bool! {
-                        
-                        self.getAllComments()
-                    }
-                    else {
-                        
-                        
-                    }
-                    
-                })
-                
-            })
-        }
-        
-        
-        
     }
     
     func getAllComments() {

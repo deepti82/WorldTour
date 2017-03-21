@@ -47,7 +47,7 @@ class FeedbackViewController: UIViewController, UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
        
         commentTextBox.text = ""
-        commentTextBox.textColor = UIColor.black
+        commentTextBox.textColor = mainBlueColor
         
     }
     

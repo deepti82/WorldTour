@@ -20,7 +20,9 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
     var hashtagSuggestions: [JSON] = []
     var previousHashtags: [String] = []
     var editComment: JSON!
-    var footerView: PhotoOTGFooter!
+    var footerViewOtg: PhotoOTGFooter!
+    var footerViewFooter: ActivityFeedFooter!
+    var footerViewBasic: ActivityFeedFooterBasic!
     var type: String = ""
     
     @IBOutlet weak var bottomSpaceToSuperview: NSLayoutConstraint!
@@ -122,7 +124,9 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func keyboardWillShow(_ notification: Notification) {
         if let keyboardSize = ((notification as NSNotification).userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            commentsTable.scrollToRow(at: (NSIndexPath(row: (comments.count-1), section: 0)) as IndexPath, at: .top, animated: true)
+            if comments.count > 0 {
+                commentsTable.scrollToRow(at: (NSIndexPath(row: (comments.count-1), section: 0)) as IndexPath, at: .top, animated: true)
+            }
             bottomSpaceToSuperview.constant = keyboardSize.height
         }
     }
@@ -130,6 +134,9 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
     func keyboardWillHide(_ notification: Notification) {
         bottomSpaceToSuperview.constant = 0
     }
+    
+    
+    //MARK: - TextView Delegates
     
     func textViewDidBeginEditing(_ textView: UITextView) {
         addCommentLabel.isHidden = true
@@ -151,6 +158,14 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if (text == "\n") {
             textView.resignFirstResponder()
+        }
+        else {
+            if textView.text == "" && text == "" {
+                addCommentLabel.isHidden = false
+            }
+            else{
+                addCommentLabel.isHidden = true
+            }
         }
         return true
     }
@@ -386,7 +401,7 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
         }else{
             usr = userm.getExistingUser()
         }
-        request.commentOn(id: ids, userId: usr, commentText: comment, hashtags: hashtags, mentions: mentions, photoId: "", type: self.type, videoId: "", journeyId: ids, itineraryId: ids, completion: {(response) in
+        request.commentOn(id: ids, userId: usr, commentText: comment, hashtags: hashtags, mentions: mentions, photoId: ids, type: self.type, videoId: ids, journeyId: ids, itineraryId: ids, completion: {(response) in
             
             DispatchQueue.main.async(execute: {
                 
@@ -447,8 +462,14 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
         case 1:
             return hashtagSuggestions.count
         default:
-            if(footerView != nil) {
-                footerView.setCommentCount(comments.count)
+            if(footerViewOtg != nil) {
+                footerViewOtg.setCommentCount(comments.count)
+            }
+            if(footerViewFooter != nil) {
+                footerViewFooter.setCommentCount(comments.count)
+            }
+            if(footerViewBasic != nil) {
+                footerViewBasic.setCommentCount(comments.count)
             }
             return comments.count
         }

@@ -78,6 +78,7 @@ var globalPostImage:[PostImage] = []
 var currentJourney:JSON = []
 var selectedHash:String = ""
 var selectedPeople:String = ""
+var selectedUser:JSON = []
 var selectedQuickI:String = ""
 var selectedDetail:String = ""
 var whichJourney:String = ""
@@ -152,7 +153,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
             UIViewController().customiseNavigation()
         } 
         else {
-            request.getUser(user.getExistingUser(), completion: {(request) in
+            request.getUser(user.getExistingUser(), urlSlug: nil, completion: {(request) in
                 DispatchQueue.main.async {
                     currentUser = request["data"]
                     if request["data"]["alreadyLoggedIn"] == false {

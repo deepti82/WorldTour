@@ -52,7 +52,7 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
         
         if whichView == "Following" {
             self.title = "Following"
-            headerText.text = "Following (counting)"
+            headerText.text = " "
             configureSearchController()
             getFollowing()
             
@@ -71,14 +71,14 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
 //            searchViewHeightConstraint.constant = 0
             configureSearchController()            
             getFollowers()
-            headerText.text = "Followers (counting)"
+            headerText.text = " "
         }
     }
     
     func getFollowing() {
         
         print("inside following function")
-        request.getFollowing(currentUser["_id"].string!, searchText: searchText, completion: {(response) in
+        request.getFollowing(user.getExistingUser(), searchText: searchText, urlSlug:currentUser["urlSlug"].stringValue,  completion: {(response) in
             
             DispatchQueue.main.async(execute: {
                 
@@ -109,7 +109,7 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
     func getFollowers() {
         
         print("inside following function")
-        request.getFollowers(currentUser["_id"].string!, searchText: searchText, completion: {(response) in
+        request.getFollowers(user.getExistingUser(), searchText: searchText, urlSlug:currentUser["urlSlug"].stringValue,  completion: {(response) in
             
             DispatchQueue.main.async(execute: {
                 self.headerText.text = "Following (0)"
@@ -311,9 +311,11 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if filter != nil && shouldShowSearchResults {
             selectedPeople = filter[indexPath.row]["_id"].stringValue
+            selectedUser = filter[indexPath.row]
         
         }else{
             selectedPeople = followers[indexPath.row]["_id"].stringValue
+            selectedUser = followers[indexPath.row]
         }
         let profile = storyboard?.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
         profile.displayData = "search"
@@ -366,7 +368,7 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
             
         }
         
-        request.followUser(currentUser["_id"].string!, followUserId: followId, completion: {(response) in
+        request.followUser(user.getExistingUser(), followUserId: followId, completion: {(response) in
             DispatchQueue.main.async(execute: {
                 if response.error != nil {
                     
@@ -411,7 +413,7 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
             
         }
         
-        request.unfollow(currentUser["_id"].string!, unFollowId: unfollowId, completion: {(response) in
+        request.unfollow(user.getExistingUser(), unFollowId: unfollowId, completion: {(response) in
             DispatchQueue.main.async(execute: {
                 if response.error != nil {
                     

@@ -202,7 +202,7 @@ class SearchLocationTableViewController: UITableViewController, UISearchBarDeleg
         }
         
         globalAddActivityNew.putLocationName(myCell.placeName.text!, placeId: myId)
-        self.navigationController?.popViewController(animated: true)
+        _ = self.navigationController?.popViewController(animated: true)
     }
 
 }

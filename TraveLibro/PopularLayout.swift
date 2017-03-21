@@ -220,7 +220,6 @@ class PopularLayout: VerticalLayout, PlayerDelegate {
         footerView.type = "popular"
         footerView.footerType = feed["type"].stringValue
         if (feed["type"].stringValue == "detail-itinerary") || feed["type"].stringValue == "quick-itinerary"{
-            print("\n\n Feed : \(feed) \n\n\n\n  following : \(feed["following"].stringValue) \n\n")
             footerView.followBtn.isHidden = false
             setFollowButtonTitle(button: footerView.followBtn, followType: feed["following"].intValue)
             footerView.followBtn.addTarget(self, action: #selector(PopularLayout.followBtnClicked(_:)), for: .touchUpInside)
@@ -386,7 +385,6 @@ class PopularLayout: VerticalLayout, PlayerDelegate {
     }
     
     func toggleFullscreen(_ sender: UIButton){
-        print("clicked....")
         if currentUser != nil {
             if feeds["type"].stringValue == "on-the-go-journey" || feeds["type"].stringValue == "ended-journey"{
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -394,8 +392,6 @@ class PopularLayout: VerticalLayout, PlayerDelegate {
                 controller.fromOutSide = feeds["_id"].stringValue
                 controller.fromType = feeds["type"].stringValue
                 
-                print(feeds["_id"])
-                print(feeds["type"])
                 globalPopularController.navigationController!.pushViewController(controller, animated: false)
                 
                 //            globalNewTLViewController.toolbarView.isHidden = true
@@ -465,8 +461,6 @@ class PopularLayout: VerticalLayout, PlayerDelegate {
     }
     
     func rateButtonTapped(_ sender: AnyObject) {
-        
-        print("review clickedd")
         
         blackBg = UIView(frame: CGRect(x: 0, y: 0, width: activityFeed.view.frame.width, height: activityFeed.view.frame.height))
         blackBg.backgroundColor = UIColor.black.withAlphaComponent(0.7)
@@ -545,19 +539,13 @@ class PopularLayout: VerticalLayout, PlayerDelegate {
                     DispatchQueue.main.async(execute: {
                         
                         if response.error != nil {
-                            
                             print("error: \(response.error!.localizedDescription)")
-                            
                         }
                         else if response["value"].bool! {
-                            
-                            print("response arrived!")
                             setFollowButtonTitle(button: self.footerView.followBtn, followType: response["data"]["responseValue"].intValue)
                         }
                         else {
-                            
                             print("error: \(response["error"])")
-                            
                         }
                     })
                 })
@@ -566,20 +554,13 @@ class PopularLayout: VerticalLayout, PlayerDelegate {
                 request.unfollow(currentUser["_id"].string!, unFollowId: feeds["user"]["_id"].stringValue, completion: {(response) in
                     DispatchQueue.main.async(execute: {
                         if response.error != nil {
-                            
                             print("error: \(response.error!.localizedDescription)")
-                            
                         }
                         else if response["value"].bool! {
-                            
-                            print("response arrived!")
                             setFollowButtonTitle(button: self.footerView.followBtn, followType: response["data"]["responseValue"].intValue)
-                            
                         }
                         else {
-                            
                             print("error: \(response["error"])")
-                            
                         }
                     })
                 })

@@ -121,13 +121,19 @@ class PhotoOTGFooter: UIView {
     
     @IBAction func sendComments(_ sender: UIButton) {
         print("comment clicked")
+        if currentUser != nil {
+
         let comment = storyboard?.instantiateViewController(withIdentifier: "CommentsVC") as! CommentsViewController
         comment.postId = postTop.post_uniqueId
         comment.ids = postTop.post_ids
         
-        comment.footerView = self;
+        comment.footerViewOtg = self;
         globalNavigationController?.setNavigationBarHidden(false, animated: true)
         globalNavigationController?.pushViewController(comment, animated: true)
+        }
+        else {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
+        }
     }
     
     
@@ -218,9 +224,12 @@ class PhotoOTGFooter: UIView {
             self.likeButton.setImage(UIImage(named: "likeButton"), for: .normal)
             self.likeButton.tintColor = mainBlueColor
         }
+        
     }
     
     @IBAction func sendLikes(_ sender: UIButton) {
+        if currentUser != nil {
+
         audioPlayer.play()
         likeButton.animation = "pop"
         likeButton.velocity = 2
@@ -292,7 +301,11 @@ class PhotoOTGFooter: UIView {
             })
         })
     }
-    
+    else {
+    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
+    }
+    }
+
     @IBAction func optionClick(_ sender: UIButton) {
         let actionSheetControllerIOS8: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let cancelActionButton: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel) { action -> Void in

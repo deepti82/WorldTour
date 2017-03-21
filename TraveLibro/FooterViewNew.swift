@@ -91,7 +91,7 @@ class FooterViewNew: UIView {
     func gotoOTG(_ sender: UITapGestureRecognizer) {
         
         if currentUser != nil {
-            request.getUser(user.getExistingUser(), completion: {(request) in
+            request.getUser(user.getExistingUser(), urlSlug: nil, completion: {(request) in
                 DispatchQueue.main.async {
                     currentUser = request["data"]
                     let vc = storyboard!.instantiateViewController(withIdentifier: "newTL") as! NewTLViewController
@@ -113,7 +113,7 @@ class FooterViewNew: UIView {
     
     func gotoFeed(_ sender: UITapGestureRecognizer) {
         if currentUser != nil {
-            request.getUser(user.getExistingUser(), completion: {(request) in
+            request.getUser(user.getExistingUser(), urlSlug: nil, completion: {(request) in
                 DispatchQueue.main.async {
                     popularView = "activity"
                     currentUser = request["data"]
@@ -131,7 +131,7 @@ class FooterViewNew: UIView {
     
     func openNotifications(_ sender: UITapGestureRecognizer) {        
         if currentUser != nil {
-            request.getUser(user.getExistingUser(), completion: {(request) in
+            request.getUser(user.getExistingUser(), urlSlug: nil, completion: {(request) in
                 DispatchQueue.main.async {
                     currentUser = request["data"]
                     let vc = storyboard?.instantiateViewController(withIdentifier: "notifySub") as! NotificationSubViewController
@@ -146,7 +146,7 @@ class FooterViewNew: UIView {
     
     func goToLocalLife(_ sender : AnyObject) {        
         if currentUser != nil {
-            request.getUser(user.getExistingUser(), completion: {(request) in
+            request.getUser(user.getExistingUser(), urlSlug: nil, completion: {(request) in
                 DispatchQueue.main.async {
                     currentUser = request["data"]
                     let vc = storyboard?.instantiateViewController(withIdentifier: "localLife") as! LocalLifeRecommendationViewController

@@ -116,10 +116,14 @@ class Navigation {
         }
     }
     
-    func getUser(_ id: String, completion: @escaping ((JSON) -> Void)) {
+    func getUser(_ id: String, urlSlug: String?, completion: @escaping ((JSON) -> Void)) {
         
         var json = JSON(1);
-        let params = ["_id":id]
+        var params = ["_id":id]
+        if urlSlug != nil {
+            params["urlSlug"] = urlSlug!
+        }
+        
         do {
             let opt = try HTTP.POST(adminUrl + "user/getOne", parameters: params)
             //            print("request: \(opt)")
@@ -940,11 +944,15 @@ class Navigation {
         }
     }
     
-    func getFollowers(_ userId: String, searchText: String, completion: @escaping ((JSON) -> Void)) {
+    func getFollowers(_ userId: String, searchText: String, urlSlug:String?, completion: @escaping ((JSON) -> Void)) {
         
         do {
             
-            let params = ["_id": userId, "search": searchText]
+            var params = ["_id": userId, "search": searchText]
+            
+            if urlSlug != nil {
+                params["urlSlug"] = urlSlug!
+            }
             
             let opt = try HTTP.POST(adminUrl + "user/getFollowers", parameters: params)
             var json = JSON(1);
@@ -988,11 +996,15 @@ class Navigation {
         }
     }
     
-    func getFollowing(_ userId: String, searchText: String, completion: @escaping ((JSON) -> Void)) {
+    func getFollowing(_ userId: String, searchText: String, urlSlug: String?, completion: @escaping ((JSON) -> Void)) {
         
         do {
             
-            let params = ["_id": userId, "search": searchText]
+            var params = ["_id": userId, "search": searchText]
+            
+            if urlSlug != nil {
+               params["urlSlug"] = urlSlug!
+            }
             
             let opt = try HTTP.POST(adminUrl + "user/getFollowing", parameters: params)
             var json = JSON(1);
@@ -1132,9 +1144,13 @@ class Navigation {
     
     func getJourneyById(_ id: String, completion: @escaping ((JSON) -> Void)) {
         do {
-            print("User: \(currentUser["_id"])")
-            print("_ID: \(id)")
-            let opt = try HTTP.POST(adminUrl + "journey/getoneApp", parameters: ["user": currentUser["_id"],"_id":id])
+            var params = ["_id":id]
+            if currentUser != nil {
+                params = ["user": currentUser["_id"].stringValue, "_id":id]
+            }else{
+                params = ["_id":id]
+            }
+            let opt = try HTTP.POST(adminUrl + "journey/getoneApp", parameters: params)
             var json = JSON(1);
             opt.start {response in
                 if let err = response.error {
@@ -1933,18 +1949,39 @@ class Navigation {
     func globalLike(_ id: String, userId: String, unlike: Bool, type: String, completion: @escaping ((JSON) -> Void)) {
         
         do {
+            var tap = ""
+            var url = ""
+            switch type {
+            case "detail-itinerary", "quick-itinerary":
+                tap = "itinerary"
+                url = "itinerary/updateLikeItinerary"
+            case "ended-journey", "on-the-go-journey":
+                tap = "journey"
+                url = "journey/likeJourney"
+            case "travel-life", "local-life":
+                tap = "post"
+                url = "post/updateLikePost"
+            case "photos", "Image":
+                tap = "photoId"
+                url = "postphotos/updateLikePost"
+            case "videos", "Video":
+                tap = "videoId"
+                url = "postvideos/updateLikePost"
+            default:
+                tap = "post"
+                url = "post/updateLikePost"
+            }
             
-            
-            var params = ["journey": id, "user": userId, "unlike": unlike] as [String : Any]
+            var params = [tap: id, "user": userId, "unlike": unlike] as [String : Any]
             
             if !unlike {
                 
-                params = ["journey": id, "user": userId]
+                params = [tap: id, "user": userId]
             }
             
-            print("like post: \(params)")
+            print("like post: \(params) \(type)")
             
-            let opt = try HTTP.POST(adminUrl + "journey/likeJourney", parameters: [params])
+            let opt = try HTTP.POST(adminUrl + url, parameters: [params])
             var json = JSON(1);
             opt.start {response in
                 if let err = response.error {
@@ -2065,9 +2102,13 @@ class Navigation {
             case "post":
                 params = ["post": id, "user":  userId, "text": commentText, "type": "post", "hashtag" : hashtags] as [String : Any]
             case "itinerary":
-                params = ["itinerary": id, "user":  userId, "text": commentText, "type": "itinerary", "hashtag" : hashtags] as [String : Any]
+                params = ["itinerary": itineraryId, "user":  userId, "text": commentText, "type": "itinerary", "hashtag" : hashtags] as [String : Any]
             case "journey":
-                params = ["journey": id, "user":  userId, "text": commentText, "type": "journey", "hashtag" : hashtags] as [String : Any]
+                params = ["journey": journeyId, "user":  userId, "text": commentText, "type": "journey", "hashtag" : hashtags] as [String : Any]
+            case "Photo":
+                params = ["photo": photoId, "user":  userId, "text": commentText, "type": "photo", "hashtag" : hashtags] as [String : Any]
+            case "Video":
+                params = ["video": videoId, "user":  userId, "text": commentText, "type": "video", "hashtag" : hashtags] as [String : Any]
             default:
                 params = ["post": id, "user":  userId, "text": commentText, "type": "post", "hashtag" : hashtags] as [String : Any]
             }
@@ -2152,8 +2193,8 @@ class Navigation {
             
             var params = ["_id": id, "user": userId, "pagenumber": pageno] as [String : Any]
             var url = ""
-            
-            switch type {
+        
+            switch type.lowercased() {
             case "post":
                 url = "post/getPostComment"
             case "photo":

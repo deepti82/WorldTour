@@ -116,7 +116,7 @@ class PhotosOTG: UIView {
         
         
         photosTitle.numberOfLines = 0
-        let customType = ActiveType.custom(pattern: "\\swith\\b") //Regex that looks for "with"
+        _ = ActiveType.custom(pattern: "\\swith\\b") //Regex that looks for "with"
         likeButton.tintColor = mainBlueColor
         commentButton.tintColor = mainBlueColor
         shareButton.tintColor = mainBlueColor

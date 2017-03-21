@@ -151,13 +151,18 @@ class ActivityFeedFooterBasic: UIView {
     
     func showLike(_ sender: UITapGestureRecognizer) {
         print("in footer tap out \(postTop)")
+        if currentUser != nil {
         let feedVC = storyboard!.instantiateViewController(withIdentifier: "likeTable") as! LikeUserViewController
         feedVC.postId = postTop["_id"].stringValue
         feedVC.type = postTop["type"].stringValue
         feedVC.title = postTop["name"].stringValue
         globalNavigationController.pushViewController(feedVC, animated: true)
     }
-    
+    else {
+    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
+    }
+    }
+
     @IBAction func rateThisClicked(_ sender: UIButton) {
         openRating()
     }
@@ -165,7 +170,7 @@ class ActivityFeedFooterBasic: UIView {
     func openRating() {
         let tapout = UITapGestureRecognizer(target: self, action: #selector(ActivityFeedFooterBasic.reviewTapOut(_:)))
         
-        backgroundReview = UIView(frame: (globalNavigationController.topViewController?.view.frame)!)
+        backgroundReview = UIView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: (globalNavigationController.topViewController?.view.frame.size.height)!))
         backgroundReview.addGestureRecognizer(tapout)
         backgroundReview.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.4)
         globalNavigationController.topViewController?.view.addSubview(backgroundReview)
@@ -250,14 +255,14 @@ class ActivityFeedFooterBasic: UIView {
     }
     
     @IBAction func sendComments(_ sender: UIButton) {
-        print("in activity feed layout \(type)")
+        print("in activity feed layout \(postTop)")
         if currentUser != nil {
 
         if type == "TripPhotos" {
-            let comment = storyboard?.instantiateViewController(withIdentifier: "photoComment") as! PhotoCommentViewController
+            let comment = storyboard?.instantiateViewController(withIdentifier: "CommentsVC") as! CommentsViewController
             comment.postId = photoPostId
-            comment.otherId = postTop["name"].stringValue
-            comment.photoId = photoId
+            comment.ids = postTop["_id"].stringValue
+            comment.footerViewBasic = self
             if(self.footerType == "videos") {
                 comment.type = "Video"
             }else{
@@ -269,10 +274,11 @@ class ActivityFeedFooterBasic: UIView {
             let comment = storyboard?.instantiateViewController(withIdentifier: "CommentsVC") as! CommentsViewController
             comment.postId = postTop["uniqueId"].stringValue
             comment.ids = postTop["_id"].stringValue
+            comment.footerViewBasic = self
             switch postTop["type"].stringValue {
             case "ended-journey", "on-the-go-journey":
                 comment.type = "journey"
-            case "quick-itinerary", "detailed-itinerary":
+            case "quick-itinerary", "detail-itinerary":
                 comment.type = "itinerary"
             case "travel-life", "local-life":
                 comment.type = "post"
@@ -404,8 +410,7 @@ class ActivityFeedFooterBasic: UIView {
                 sender.tag = 1
             }
             if type == "TripPhotos" {
-                if footerType == "photos" {
-                    request.postPhotosLike(photoId, postId: photoPostId, userId: currentUser["_id"].string!, userName: currentUser["name"].string!, unlike: hasLiked, completion: {(response) in
+                    request.globalLike(photoId, userId: currentUser["_id"].stringValue, unlike: hasLiked, type: footerType, completion: {(response) in
                         
                         DispatchQueue.main.async(execute: {
                             
@@ -435,38 +440,7 @@ class ActivityFeedFooterBasic: UIView {
                         })
                         
                     })
-                }else if footerType == "videos"{
-                    request.postVideoLike(photoId, postId: photoPostId, userId: currentUser["_id"].string!, userName: currentUser["name"].string!, unlike: hasLiked, completion: {(response) in
-                        
-                        DispatchQueue.main.async(execute: {
-                            
-                            if response.error != nil {
-                                print("error: \(response.error!.localizedDescription)")
-                            }
-                            else if response["value"].bool! {
-                                if sender.tag == 1 {
-                                    self.setLikeSelected(true)
-                                    self.likeCount = self.likeCount + 1
-                                    self.setLikeCount(self.likeCount)
-                                }
-                                else {
-                                    self.setLikeSelected(false)
-                                    if self.likeCount <= 0 {
-                                        self.likeCount = 0
-                                    } else {
-                                        self.likeCount = self.likeCount - 1
-                                    }
-                                    self.setLikeCount(self.likeCount)
-                                }
-                            }
-                            else {
-                                
-                            }
-                            
-                        })
-                        
-                    })
-                }
+                
             }else{
                 print("oooooooooo")
                 request.globalLike(postTop["_id"].stringValue, userId: currentUser["_id"].stringValue, unlike: hasLiked, type: postTop["type"].stringValue, completion: {(response) in

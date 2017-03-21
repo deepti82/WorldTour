@@ -63,7 +63,7 @@ class SignupCardsViewController: UIViewController {
     
     func getUser() {
         
-        request.getUser(currentUser["_id"].string!, completion: {(response) in
+        request.getUser(currentUser["_id"].string!, urlSlug: nil, completion: {(response) in
             
             DispatchQueue.main.async(execute: {
                 self.loader.hideOverlayView()

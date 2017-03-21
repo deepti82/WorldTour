@@ -49,6 +49,7 @@ class ActivityProfileHeader: UIView {
     func toProfile(_ sender: AnyObject) {
         print("clicked \(currentFeed)")
         selectedPeople = currentFeed["user"]["_id"].stringValue
+        selectedUser = currentFeed["user"]
         let profile = storyboard.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
         profile.displayData = "search"
         globalNavigationController.pushViewController(profile, animated: true)
@@ -62,7 +63,7 @@ class ActivityProfileHeader: UIView {
         self.userName.addGestureRecognizer(tapGestureRecognizer)
 
         //header icon
-        var typeOfPost = getTypeOfPost(feed)
+        let typeOfPost = getTypeOfPost(feed)
         if(typeOfPost != nil) {
             switch(typeOfPost) {
             case "Location":
