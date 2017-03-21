@@ -200,7 +200,7 @@ open class LoadingOverlay{
         print("show loader")
         loader = UIView(frame:CGRect(x: 0, y: 0, width: 100, height: 100))
         view.addSubview(loader)
-        loader.center = view.center
+        loader.center = CGPoint(x: view.center.x, y: ((view.frame.size.height/2) - ( globalNavigationController != nil ? (globalNavigationController?.navigationBar.frame.size.height)! : 0) ))
         let imageView1 = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
         imageView1.backgroundColor = UIColor.clear
         imageView1.image = UIImage.gif(name: "100_100")

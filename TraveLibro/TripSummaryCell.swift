@@ -19,6 +19,7 @@ class TripSummaryCell: UIButton {
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
+        category.tintColor = UIColor(hex: "#2c3757")
     }
     
     required init?(coder aDecoder: NSCoder) {

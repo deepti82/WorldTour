@@ -28,6 +28,7 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
     
     @IBOutlet weak var profileViewHeightConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var myLifeDropShadow: UILabel!
     @IBOutlet weak var star5: UIImageView!
     @IBOutlet weak var star4: UIImageView!
     @IBOutlet weak var star3: UIImageView!
@@ -60,7 +61,11 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         profileName.layer.masksToBounds = true
 
         
-        loginLabel.isHidden = true
+        myLifeDropShadow.shadowColor = UIColor.black
+        myLifeDropShadow.shadowOffset = CGSize(width: 2, height: 2)
+        myLifeDropShadow.layer.masksToBounds = true
+        
+
 
         NotificationCenter.default.addObserver(self, selector: #selector(updateProfilePicture), name: NSNotification.Name(rawValue: "currentUserUpdated"), object: nil)
         
@@ -140,10 +145,12 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
     
     func updateProfilePicture() {
         if currentUser != nil {
+            starstack.isHidden = false
             profile.flag.isHidden = false
             profileName.text = currentUser["name"].stringValue
             imageName = currentUser["profilePicture"].stringValue
-            
+            loginLabel.isHidden = true
+            profileName.isHidden = false
             if currentUser["userBadgeName"].string == "newbie"{
             star1.image = UIImage(named: "star_check")
             star1.tintColor  = UIColor.white
@@ -181,6 +188,7 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
                 star5.tintColor  = UIColor.white
             } else {
                 starstack.isHidden = true
+                
             }
 
             
@@ -204,6 +212,9 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         }
         else {
             profile.flag.isHidden = true
+            starstack.isHidden = true
+            loginLabel.isHidden = false
+            profileName.isHidden = true
         }
     }
     
@@ -230,7 +241,7 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! SideMenuTableViewCell
         cell.menuLabel.text = labels[(indexPath as NSIndexPath).item]
         cell.menuLabel.shadowColor = UIColor.black
-        cell.menuLabel.shadowOffset = CGSize(width: 3, height: 3)
+        cell.menuLabel.shadowOffset = CGSize(width: 2, height: 2)
         cell.menuLabel.layer.masksToBounds = true
         
         if indexPath.row == 6 && !(currentUser != nil) {     // Login/Logout Option
