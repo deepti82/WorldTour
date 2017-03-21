@@ -156,56 +156,19 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate, iCarouselDeleg
     @IBAction func sendLike(_ sender: UIButton) {
        likeButton.animation = "pop"
         likeButton.animateTo()
-        
-        if(self.type == "Video") {
-            request.postVideoLike(videos[carouselView.currentItemIndex]["_id"].string!, postId: postId!, userId: currentUser["_id"].string!, userName: currentUser["name"].string!, unlike: hasLiked!, completion: {(response) in
-                
-                DispatchQueue.main.async(execute: {
-                    self.loader.hideOverlayView()
-                    if response.error != nil {
-                        
-                        print("error: \(response.error!.localizedDescription)")
-                        
-                    }
-                    else if response["value"].bool! {
-                        
-                        if !self.hasLiked! {
-                            
-                            sender.setImage(UIImage(named: "favorite-heart-button")?.withRenderingMode(.alwaysTemplate), for: UIControlState())
-                            self.likeCount = Int(self.likeCount) + 1
-                            self.likeText.text = "\(self.likeCount) Likes"
-                            self.hasLiked = !self.hasLiked
-                            
-                        }
-                        else {
-                            
-                            sender.setImage(UIImage(named: "likeButton"), for: UIControlState())
-                            self.likeCount = Int(self.likeCount) - 1
-                            self.likeText.text = "\(self.likeCount) Likes"
-                            self.hasLiked = !self.hasLiked
-                            
-                        }
-                        
-                    }
-                    else {
-                        
-                    }
-                    
-                })
-                
-            })
-        }
-        else {
             
             var val = ""
             if whichView == "detail_itinerary" {
-                val = photos[carouselView.currentItemIndex]["itinerary"].stringValue
+                val = photos[carouselView.currentItemIndex]["_id"].string!
             }
             else {
-                val = postId
+                val = photos[carouselView.currentItemIndex]["_id"].string!
+            }
+            if self.type == "Video" {
+                val = videos[carouselView.currentItemIndex]["_id"].string!
             }
             
-            request.postPhotosLike(photos[carouselView.currentItemIndex]["_id"].string!, postId: val, userId: currentUser["_id"].string!, userName: currentUser["name"].string!, unlike: hasLiked!, completion: {(response) in
+            request.globalLike(val, userId: currentUser["_id"].string!, unlike: hasLiked!, type: self.type, completion: {(response) in
                 
                 DispatchQueue.main.async(execute: {
                     self.loader.hideOverlayView()
@@ -242,7 +205,7 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate, iCarouselDeleg
                 })
                 
             })
-        }
+        
     }
     
     @IBAction func sendComment(_ sender: UIButton) {
