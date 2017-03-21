@@ -18,6 +18,7 @@ public class QuickItinerary {
     let id = Expression<Int64>("id")
     let quickJson = Expression<String>("quickJson")
     let status = Expression<Bool>("status")
+    let editId = Expression<String>("editId")
 
     
     init() {
@@ -45,13 +46,31 @@ public class QuickItinerary {
             print("ERROR OCCURED");
         }
     }
+    func save(_ quickItinerary:JSON,imageArr:[PostImage],statusVal:Bool,oldId:String) {
+        print("save clicked")
+        let photoinsert = self.post.insert(
+            self.quickJson <- quickItinerary.rawString()!,
+            self.status <- statusVal,
+            self.editId <- oldId
+        )
+        do {
+            let postId = try db.run(photoinsert)
+            let actualId = Int(postId) + 30000
+            for image in imageArr {
+                image.postId = Int(actualId)
+                image.save()
+            }
+        } catch _ {
+            print("ERROR OCCURED");
+        }
+    }
     
     func getAll() -> [JSON] {
         var retVal:[JSON] = []
         
         do {
             var check = false;
-            let query = post.select(id,quickJson,status)
+            let query = post.select(id,quickJson,status,editId)
             for post1 in try db.prepare(query) {
                 check = true
                 let p = LocalLifePostModel();
@@ -93,7 +112,7 @@ public class QuickItinerary {
     func upload() {
         do {
             var check = false;
-            let query = post.select(id,quickJson,status)
+            let query = post.select(id,quickJson,status,editId)
                 .limit(1)
             for post1 in try db.prepare(query) {
                 check = true
@@ -103,6 +122,7 @@ public class QuickItinerary {
                 
                 let id_temp = Int(post1[id])
                 let quickItinery:JSON = JSON(data: (String(post1[quickJson])?.data(using: .utf8))! )
+                let editid_temp = String(post1[editId])
                 let status_temp = Bool(post1[status])
                 
                 let actualId = Int(post1[id]) + 30000
@@ -115,8 +135,8 @@ public class QuickItinerary {
                 for img in p.imageArr {
                     photosJson.append(img.parseJson())
                 }
-                
-                request.postQuickitenary(title: quickItinery["title"].stringValue, year: quickItinery["year"].int!, month: quickItinery["month"].stringValue, duration:quickItinery["duration"].int!, description:quickItinery["description"].stringValue, itineraryType:quickItinery["itineraryType"], countryVisited:quickItinery["countryVisited"],photos:photosJson,status:status_temp,  completion: {(response) in
+                request.postQuickitenary(title: quickItinery["title"].stringValue, year: quickItinery["year"].int!, month: quickItinery["month"].stringValue, duration:quickItinery["duration"].int!, description:quickItinery["description"].stringValue, itineraryType:quickItinery["itineraryType"], countryVisited:quickItinery["countryVisited"],photos:photosJson,status:status_temp,editId:editid_temp!,  completion: {(response) in
+                    
                     if response.error != nil {
                         print("response: \(response.error?.localizedDescription)")
                     }
@@ -136,16 +156,15 @@ public class QuickItinerary {
                     else {
                         print("response error")
                     }
+                    
                 })
+                
             }
             if(!check) {
                 if globalNewTLViewController != nil {
                     globalNewTLViewController.getJourney()
-//                    goToActivity()
-//                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "UPLOAD_ITINERARY"), object: nil)
-
                 }
-                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "UPLOAD_ITINERARY"), object: nil)
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "UPLOAD_ITINERARY"), object: nil)
             }
         }
         catch {
