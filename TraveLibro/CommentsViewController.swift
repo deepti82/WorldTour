@@ -171,17 +171,18 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
         }
         if self.comments[indexPath.row]["user"]["_id"].string! == usr {
             
-            let more = UITableViewRowAction(style: .normal, title: "                       ") { action, index in
+            let more = UITableViewRowAction(style: .normal, title: "        ") { action, index in
                 self.addComment.text = self.comments[indexPath.row]["text"].string!
                 self.previousHashtags = self.getHashtagsFromText(oldText: self.comments[indexPath.row]["text"].string!)
                 self.editComment = self.comments[indexPath.row]
                 self.isEdit = true
+                self.addCommentLabel.isHidden = true
             }
-            let moreImage = UIImageView(image: UIImage(named: "penciltranswhite"))
-            moreImage.contentMode = .center
-            moreImage.backgroundColor = mainOrangeColor
-            more.backgroundColor = UIColor(patternImage: UIImage(named: "penciltranswhite")!)
-            let favorite = UITableViewRowAction(style: .normal, title: "                       ") { action, index in
+            let moreImage = UIImageView(image: UIImage(named: "penciltranswhite (2)"))
+            moreImage.contentMode = .scaleAspectFit
+            moreImage.clipsToBounds = true
+            more.backgroundColor = UIColor(patternImage: moreImage.image!)
+            let favorite = UITableViewRowAction(style: .default, title: "        ") { action, index in
                 print("delete button tapped")
                 request.deleteComment(commentId: self.comments[indexPath.row]["_id"].string!, completion: {(response) in
                     
@@ -207,13 +208,13 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
                 
                 
             }
-            let favoriteImage = UIImageView(frame: CGRect(x: 0, y: 0, width: 80, height: 40))
-            favoriteImage.image = UIImage(named: "backtranswhite (1)")
-            favoriteImage.contentMode = .center
-            favoriteImage.clipsToBounds = true
-            favoriteImage.contentMode = .scaleAspectFit
-            favorite.backgroundColor = UIColor(patternImage: favoriteImage.image!)
+            let favoriteImage = UIImageView(frame: CGRect(x: 0, y: 0, width: 60, height: 200))
             
+            favoriteImage.image = UIImage(named: "trashtranswhite (2)")
+            favoriteImage.contentMode = .top
+            
+            favorite.backgroundColor = UIColor(patternImage: favoriteImage.image!)
+    
 //            favoriteImage.backgroundColor = mainOrangeColor
 //            favorite.backgroundColor = mainOrangeColor
             
@@ -222,16 +223,16 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
         
         else {
             
-            let share = UITableViewRowAction(style: .normal, title: "reply") { action, index in
+            let share = UITableViewRowAction(style: .normal, title: "        ") { action, index in
                 print("reply button tapped")
                 
                 let userTag = "@\(self.comments[indexPath.row]["user"]["urlSlug"].string!)"
                 self.addComment.text = userTag
                 
             }
-//            share.backgroundColor = UIColor(patternImage: UIImage(named: "reply")!)
+            share.backgroundColor = UIColor(patternImage: UIImage(named: "backtranswhite (1)")!)
             
-            let report = UITableViewRowAction(style: .normal, title: "report") { action, index in
+            let report = UITableViewRowAction(style: .normal, title: "        ") { action, index in
                 print("report button tapped")
                 let actionSheet: UIAlertController = UIAlertController(title: "Why are you reporting this comment?", message: nil, preferredStyle: .actionSheet)
                 //actionSheet.view.tintColor = UIColor.red
@@ -253,12 +254,14 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
                 actionSheet.addAction(abusiveActionButton)
                 self.present(actionSheet, animated: true, completion: nil)
             }
-            report.backgroundColor = UIColor(patternImage: UIImage(named: "trashtranswhite (1)")!)
-            
+            report.backgroundColor = UIColor(patternImage: UIImage(named: "info (3)")!)
+        
             return [share, report]
         }
         
     }
+    
+    
     
     func getHashtagsFromText(oldText: String) -> [String] {
         
@@ -302,6 +305,8 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
         }
     }
     
+
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         switch tableView.tag {

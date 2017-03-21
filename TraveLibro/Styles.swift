@@ -285,7 +285,7 @@ func makeTLProfilePictureBorderWhite(_ image: UIImageView) {
 
 func makeBuddiesTLProfilePicture1(_ image: UIImageView) {
     
-    image.layer.cornerRadius = (20/100) * image.frame.width
+    image.layer.cornerRadius = (25/100) * image.frame.width
 //    image.layer.borderWidth = 1.0
 //    image.layer.borderColor = UIColor(hex: "#868686").cgColor
     image.clipsToBounds = true
