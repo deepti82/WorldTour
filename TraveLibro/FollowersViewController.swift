@@ -245,6 +245,8 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! FollowersCell
         cell.followButton.isSelected = false
         
+        cell.setAll()
+        
         if filter != nil {
             print("\n celldata : \(filter[indexPath.row])")
         }
@@ -322,10 +324,6 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
         profile.displayData = "search"
         globalNavigationController.pushViewController(profile, animated: true)
         
-    }
-    
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        print("\n  didDeselectRowAt called \n")
     }
     
     func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
@@ -524,11 +522,29 @@ class FollowersCell: UITableViewCell {
         }
     }
     
+    func toProfile(_ sender: AnyObject) {
+        print("clicked \(currentUser)")
+//        selectedPeople = currentUser["user"]["_id"].stringValue
+//        selectedUser = currentFeed["user"]
+//        let profile = storyboard.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
+//        profile.displayData = "search"
+//        globalNavigationController.pushViewController(profile, animated: true)
+    }
+    
+    func setAll() {
+        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(self.toProfile(_:)))
+        self.profileImage.addGestureRecognizer(tapGestureRecognizer)
+    }
+    
+    
+    
     func getURLSlug(slug: String) -> String {
         var myString = slug
         myString.remove(at: myString.startIndex)
         return myString
     }
+    
+    
     
 }
 
