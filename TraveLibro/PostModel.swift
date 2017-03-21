@@ -148,10 +148,10 @@ public class Post {
                 p.post_date = String(post[date])
                 p.post_isOffline = true;
                 
-                var i = PostImage();
+                let i = PostImage();
                 p.imageArr = i.getAllImages(postNo: post[id])
                 
-                var v = PostVideo();
+                let v = PostVideo();
                 p.videoArr = v.getAll(postNo: post[id])
                 allPosts.append(p)
             }
@@ -399,7 +399,7 @@ public class Post {
                 check = true
                 let p = Post();
                 
-                var postID = post[id]
+                let postID = post[id]
                 
                 p.post_id = Int(post[id])
                 p.post_type = String(post[type])

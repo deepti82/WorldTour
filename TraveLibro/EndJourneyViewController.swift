@@ -517,7 +517,7 @@ class EndJourneyViewController: UIViewController {
                 
                 print("End Journey response : \(response)")
                 
-                request.getUser(user.getExistingUser(), completion: {(response) in
+                request.getUser(user.getExistingUser(), urlSlug: nil, completion: {(response) in
                     
                     DispatchQueue.main.async(execute: {
                         self.goBack()

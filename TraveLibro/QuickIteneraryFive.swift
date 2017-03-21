@@ -118,7 +118,6 @@ class QuickIteneraryFive: UIViewController, UICollectionViewDataSource, UICollec
                 DispatchQueue.main.async {
                     let manage1 = PHImageManager.default()
                     let option1 = PHImageRequestOptions()
-                    var n = 0
                     option1.isSynchronous = true
                     for n in 0...assets.count-1{
                         PHImageManager.default().requestImage(for: assets[n], targetSize: CGSize(width: assets[n].pixelWidth, height: assets[n].pixelHeight), contentMode: .aspectFit, options: option1, resultHandler: {(result, info) in

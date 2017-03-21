@@ -116,10 +116,14 @@ class Navigation {
         }
     }
     
-    func getUser(_ id: String, completion: @escaping ((JSON) -> Void)) {
+    func getUser(_ id: String, urlSlug: String?, completion: @escaping ((JSON) -> Void)) {
         
         var json = JSON(1);
-        let params = ["_id":id]
+        var params = ["_id":id]
+        if urlSlug != nil {
+            params["urlSlug"] = urlSlug!
+        }
+        
         do {
             let opt = try HTTP.POST(adminUrl + "user/getOne", parameters: params)
             //            print("request: \(opt)")
@@ -940,11 +944,15 @@ class Navigation {
         }
     }
     
-    func getFollowers(_ userId: String, searchText: String, completion: @escaping ((JSON) -> Void)) {
+    func getFollowers(_ userId: String, searchText: String, urlSlug:String?, completion: @escaping ((JSON) -> Void)) {
         
         do {
             
-            let params = ["_id": userId, "search": searchText]
+            var params = ["_id": userId, "search": searchText]
+            
+            if urlSlug != nil {
+                params["urlSlug"] = urlSlug!
+            }
             
             let opt = try HTTP.POST(adminUrl + "user/getFollowers", parameters: params)
             var json = JSON(1);
@@ -988,11 +996,15 @@ class Navigation {
         }
     }
     
-    func getFollowing(_ userId: String, searchText: String, completion: @escaping ((JSON) -> Void)) {
+    func getFollowing(_ userId: String, searchText: String, urlSlug: String?, completion: @escaping ((JSON) -> Void)) {
         
         do {
             
-            let params = ["_id": userId, "search": searchText]
+            var params = ["_id": userId, "search": searchText]
+            
+            if urlSlug != nil {
+               params["urlSlug"] = urlSlug!
+            }
             
             let opt = try HTTP.POST(adminUrl + "user/getFollowing", parameters: params)
             var json = JSON(1);

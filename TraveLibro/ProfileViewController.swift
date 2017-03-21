@@ -157,13 +157,13 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         profilePicture.contentMode = .scaleAspectFit
         
         if displayData == "search" {
-            createNavigation()
+//            createNavigation()
         }else{
-        let rightButton = UIButton()
-        rightButton.setImage(UIImage(named: "search_toolbar"), for: UIControlState())
-        rightButton.addTarget(self, action: #selector(ProfileViewController.search(_:)), for: .touchUpInside)
-        rightButton.frame = CGRect(x: -10, y: 8, width: 30, height: 30)
-        self.setOnlyRightNavigationButton(rightButton)
+            let rightButton = UIButton()
+            rightButton.setImage(UIImage(named: "search_toolbar"), for: UIControlState())
+            rightButton.addTarget(self, action: #selector(ProfileViewController.search(_:)), for: .touchUpInside)
+            rightButton.frame = CGRect(x: -10, y: 8, width: 30, height: 30)
+            self.setOnlyRightNavigationButton(rightButton)
         }
         
         customView = UIView(frame:(CGRect(x: 0, y: self.view.frame.size.height - 75, width: self.view.frame.width, height: 75)))
@@ -187,9 +187,9 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     }
     
     func createNavigation() {
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
+//        self.navigationController?.setNavigationBarHidden(false, animated: true)
         
-        self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Avenir-Medium", size: 18)!]
+//        self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Avenir-Medium", size: 18)!]
         let leftButton = UIButton()
         leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
@@ -199,14 +199,14 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         
         
         let rightButton = UIButton()
-        rightButton.setTitle("Follow", for: .normal)
+        rightButton.titleLabel?.font = avenirFont
+        setFollowButtonTitle(button: rightButton, followType: currentUser["following"].intValue)
+        rightButton.addTarget(self, action: #selector(self.rightFollowTapped(sender:)), for: .touchUpInside)
+        rightButton.frame = CGRect(x: 0, y: 0, width: 80, height: 30)
         
-//        rightButton.addTarget(self, action: #selector(self.searchTop(_:)), for: .touchUpInside)
-        rightButton.frame = CGRect(x: 0, y: 0, width: 70, height: 30)
-        
-            self.customNavigationBar(left: leftButton, right: rightButton)
+        self.customNavigationBar(left: leftButton, right: rightButton)
             
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
+//        self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -215,16 +215,20 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         customView.frame = CGRect(x: 0, y: self.view.frame.size.height - 75, width: self.view.frame.width, height: 75)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        self.orangeTab.frame = CGRect(x: 5, y: self.view.frame.size.height - 125, width: self.view.frame.size.width - 10, height: 50)
+        customView.frame = CGRect(x: 0, y: self.view.frame.size.height - 75, width: self.view.frame.width, height: 75)
+        
+        globalNavigationController = self.navigationController
+        self.getUser()
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        globalNavigationController = self.navigationController
-        self.getUser()
-    }    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -328,18 +332,13 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     }
     
     
-    
-    
     func getUser() {
-        var usr = user.getExistingUser()
-        if displayData == "search" {
-            usr = selectedPeople
-        }
-        request.getUser(usr, completion: {(request) in
+        request.getUser(user.getExistingUser(), urlSlug:selectedUser["urlSlug"].stringValue, completion: {(request) in
             DispatchQueue.main.async {
-//                if self.displayData == "" {
-                    currentUser = request["data"]
-//                }
+                currentUser = request["data"]
+                if self.displayData == "search" {
+                    self.createNavigation()
+                }
                 self.onLoaded()
                 self.setCount()
                 
@@ -651,6 +650,41 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
         show(viewControllerToCommit, sender: self)
+    }
+    
+    func rightFollowTapped(sender: UIButton) {
+        if sender.titleLabel?.text == "Follow" {
+            request.followUser(user.getExistingUser(), followUserId: currentUser["_id"].stringValue, completion: {(response) in
+                
+                DispatchQueue.main.async(execute: {
+                    
+                    if response.error != nil {
+                        print("error: \(response.error!.localizedDescription)")
+                    }
+                    else if response["value"].bool! {
+                        setFollowButtonTitle(button: sender, followType: response["data"]["responseValue"].intValue)
+                    }
+                    else {
+                        print("error: \(response["error"])")
+                    }
+                })
+            })
+        }
+        else if sender.titleLabel?.text == "Following" {
+            request.unfollow(user.getExistingUser(), unFollowId: currentUser["_id"].stringValue, completion: {(response) in
+                DispatchQueue.main.async(execute: {
+                    if response.error != nil {
+                        print("error: \(response.error!.localizedDescription)")
+                    }
+                    else if response["value"].bool! {
+                        setFollowButtonTitle(button: sender, followType: response["data"]["responseValue"].intValue)
+                    }
+                    else {
+                        print("error: \(response["error"])")
+                    }
+                })
+            })
+        }
     }
     
 }

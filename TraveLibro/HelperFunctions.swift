@@ -65,7 +65,7 @@ class SocialLoginClass: UIViewController {
                                         }
                                         else if response["value"].bool! {
                                             
-                                            request.getUser(loggedInUser["_id"].stringValue, completion: { (response1) in
+                                            request.getUser(loggedInUser["_id"].stringValue, urlSlug: nil, completion: { (response1) in
                                                 
                                                 
                                                 DispatchQueue.main.async(execute: {
@@ -218,7 +218,7 @@ class SocialLoginClass: UIViewController {
                                         }
                                         else if responsess["value"].bool! {
                                             
-                                            request.getUser(loggedInUser["_id"].stringValue, completion: { (response1) in
+                                            request.getUser(loggedInUser["_id"].stringValue, urlSlug: nil, completion: { (response1) in
                                                 DispatchQueue.main.async(execute: {
                                                     print("response11: \(response1)")
                                                     if (response1.error != nil) {

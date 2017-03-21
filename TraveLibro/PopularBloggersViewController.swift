@@ -199,6 +199,7 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if currentUser != nil {
             selectedPeople = allUsers[indexPath.row]["_id"].stringValue
+            selectedUser = allUsers[indexPath.row]
             let profile = self.storyboard!.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
             profile.displayData = "search"
             self.navigationController!.pushViewController(profile, animated: true)            

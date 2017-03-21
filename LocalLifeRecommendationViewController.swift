@@ -482,8 +482,6 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
         if(self.json != nil) {
             var category = ""
             let tapG = sender as! UITapGestureRecognizer
-            print(tapG.view);
-            print(tapG.view?.tag);
             let num:Int = (tapG.view?.tag)!
             switch (num) {
             case  1:
