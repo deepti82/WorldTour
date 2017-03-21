@@ -122,7 +122,9 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func keyboardWillShow(_ notification: Notification) {
         if let keyboardSize = ((notification as NSNotification).userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            commentsTable.scrollToRow(at: (NSIndexPath(row: (comments.count-1), section: 0)) as IndexPath, at: .top, animated: true)
+            if comments.count > 0 {
+                commentsTable.scrollToRow(at: (NSIndexPath(row: (comments.count-1), section: 0)) as IndexPath, at: .top, animated: true)
+            }
             bottomSpaceToSuperview.constant = keyboardSize.height
         }
     }
