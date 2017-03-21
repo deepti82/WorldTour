@@ -1795,6 +1795,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
                 } else if response["value"].bool! {
                     print("edited date time response")
                     self.journeyDateChanged(date: "\(self.dateSelected)T\(self.timeSelected).000Z")
+                    self.getJourney()
                 } else {
                     
                 }
