@@ -176,7 +176,10 @@ class FooterViewNew: UIView {
                 self.badgeButton.isHidden = false
                 self.badgeButton.setTitle(String(notificationCount), for: .normal)
                 self.badgeButton.titleLabel?.sizeToFit()
-            }           
+            }
+            else {
+                self.badgeButton.isHidden = true
+            }
         }
         else {
             self.badgeButton.isHidden = true

@@ -6,10 +6,9 @@ var followers: [JSON] = []
 
 class FollowersViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
     
-    @IBOutlet weak var followerTable: UITableView!
-   
-    var whichView: String!   
+    var whichView: String!
     
+    @IBOutlet weak var followerTable: UITableView!
     @IBOutlet weak var searchView: UIView!
     @IBOutlet weak var headerText: UILabel!    
     @IBOutlet weak var headerHeightConstraint: NSLayoutConstraint!
@@ -48,6 +47,7 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
         
         followerTable.delegate = self
         followerTable.dataSource = self
+        print("\n FollowerInteraction : \(followerTable.isUserInteractionEnabled) \n")
         followerTable.tableFooterView = UIView(frame: CGRect.zero)
         
         if whichView == "Following" {
@@ -78,7 +78,7 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
     func getFollowing() {
         
         print("inside following function")
-        request.getFollowing(user.getExistingUser(), searchText: searchText, urlSlug:currentUser["urlSlug"].stringValue,  completion: {(response) in
+        request.getFollowing(user.getExistingUser(), searchText: searchText, urlSlug:selectedUser["urlSlug"].stringValue,  completion: {(response) in
             
             DispatchQueue.main.async(execute: {
                 
@@ -109,7 +109,7 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
     func getFollowers() {
         
         print("inside following function")
-        request.getFollowers(user.getExistingUser(), searchText: searchText, urlSlug:currentUser["urlSlug"].stringValue,  completion: {(response) in
+        request.getFollowers(user.getExistingUser(), searchText: searchText, urlSlug:selectedUser["urlSlug"].stringValue,  completion: {(response) in
             
             DispatchQueue.main.async(execute: {
                 self.headerText.text = "Following (0)"
@@ -309,6 +309,7 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("\n\n didSelectRowAt : \(indexPath.row) called \n\n")
         if filter != nil && shouldShowSearchResults {
             selectedPeople = filter[indexPath.row]["_id"].stringValue
             selectedUser = filter[indexPath.row]
@@ -321,6 +322,29 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
         profile.displayData = "search"
         globalNavigationController.pushViewController(profile, animated: true)
         
+    }
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        print("\n  didDeselectRowAt called \n")
+    }
+    
+    func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
+        print("\n didHighlightRowAt \n")
+    }
+    
+    func tableView(_ tableView: UITableView, canFocusRowAt indexPath: IndexPath) -> Bool {
+        print("\n canFocusRowAt \n")
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        print("\n canEditRowAt \n ")
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        print("\n shouldHighlightRowAt \n")
+        return true
     }
     
     func setImage(_ imageView: UIImageView, imageName: String) {
