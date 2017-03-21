@@ -132,7 +132,7 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-//        sideTableView.reloadData()
+        sideTableView.reloadData()
 //        
 //        if currentUser != nil {            
 //            userBadgeLabel.isHidden = false
@@ -288,6 +288,7 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         case 6:
             if currentUser != nil {
                 user.dropTable()
+                UserDefaults.standard.set(0, forKey: "notificationCount")
             }
             self.slideMenuController()?.changeMainViewController(self.signOutViewController, close: true)
         case 7:

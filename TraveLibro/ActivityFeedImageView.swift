@@ -89,9 +89,9 @@ class ActivityFeedImageView: UIView {
             flagThree.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(feed["countryVisited"][0]["country"]["flag"])", width: 100))
         }
         
-        for category in stackView.subviews {
-            category.isHidden = true
-        }
+//        for category in stackView.subviews {
+//            category.isHidden = true
+//        }
         
         if feed["kindOfJourney"][0] != nil {
             print("in 0th \(feed["kindOfJourney"][2])")

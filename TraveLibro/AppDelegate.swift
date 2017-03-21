@@ -218,7 +218,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
 
             footerSharedInstance?.setBadge()
             
-        }, handleNotificationAction: nil, settings: [kOSSettingsKeyInFocusDisplayOption : OSNotificationDisplayType.none.rawValue])
+        }, handleNotificationAction: nil, settings: [kOSSettingsKeyInFocusDisplayOption : OSNotificationDisplayType.notification.rawValue])
 
         faicon["magic"] = 0xf0d0
         faicon["clock"] = 0xf017
@@ -304,6 +304,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
     }
     
     func applicationWillTerminate(_ application: UIApplication) {
+        UserDefaults.standard.set(0, forKey: "notificationCount")
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
@@ -462,12 +463,14 @@ func getUnreadNotificationCount() {
             if response.error != nil {
                 print("\n Error : \(response.error?.localizedDescription)")
             }
-            
             else if response["value"].bool! {
                 let notificationCount = response["data"].intValue
                 UserDefaults.standard.set(notificationCount, forKey: "notificationCount")
                 footerSharedInstance?.setBadge()
-            }            
+            }
+            else{
+                UserDefaults.standard.set(0, forKey: "notificationCount")
+            }
         })
     }
     

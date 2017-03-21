@@ -26,6 +26,9 @@ class QIViewController: UIPageViewController, UIPageViewControllerDataSource, UI
         self.delegate = self
         globalPostImage = []
         self.dataSource = self
+        
+        self.createNavigation()
+        
         ToastView.appearance().backgroundColor = mainOrangeColor
 
         let quickOne: QuickIteneraryOne = (storyboard?.instantiateViewController(withIdentifier: "quickOne")) as! QuickIteneraryOne
@@ -60,15 +63,15 @@ class QIViewController: UIPageViewController, UIPageViewControllerDataSource, UI
                         quickItinery["countryVisited"] = self.editJson["countryVisited"]
                         for (n,country) in quickItinery["countryVisited"] {
                             quickItinery["countryVisited"][Int(n)!]["name"] = country["country"]["name"]
-                            for (i,city) in country["cityVisited"] {
+                            for (i,_) in country["cityVisited"] {
                                 quickItinery["countryVisited"][Int(n)!]["cityVisited"][Int(i)!]["name"] = country["cityVisited"][Int(i)!]["city"]["name"]
                             }
                         }
                         quickFour.iniText = self.editJson["description"].stringValue
                         globalPostImage = []
                         print(self.editJson)
-                        for (n,photo) in self.editJson["photos"] {
-                            var po = PostImage();
+                        for (_,photo) in self.editJson["photos"] {
+                            let po = PostImage();
                             po.urlToData(photo["name"].stringValue)
                             quickFive.imageArr.append(po)
                             globalPostImage.append(po)

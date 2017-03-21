@@ -34,7 +34,7 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
     @IBOutlet weak var commentsTable: UITableView!
     @IBOutlet weak var addComment: UITextView!
     @IBAction func sendComment(_ sender: UIButton?) {
-        
+        print("type ::: \(self.type)")
         mentionSuggestionsTable.isHidden = true
         hashTagSuggestionsTable.isHidden = true
         hashtags = []
@@ -52,13 +52,14 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
             }
         }
         if isEdit {
+            
             let set1: Set = Set(previousHashtags)
             let set2: Set = Set(hashtags)
             let intersection = set1.intersection(set2)
             addedHashtags = Array(set2.subtracting(intersection))
             removedHashtags = Array(set1.subtracting(intersection))
             if addComment.text != "" {
-                request.editComment(type: "post", commentId: editComment["_id"].string!, commentText: addComment.text, userId: currentUser["_id"].string!, hashtag: hashtags, addedHashtags: addedHashtags, removedHashtags: removedHashtags, photoId: "", completion: {(response) in
+                request.editComment(type: self.type, commentId: editComment["_id"].string!, commentText: addComment.text, userId: currentUser["_id"].string!, hashtag: hashtags, addedHashtags: addedHashtags, removedHashtags: removedHashtags, photoId: "", completion: {(response) in
                     DispatchQueue.main.async(execute: {
 //                        loader.hideOverlayView()
                         if response.error != nil {
@@ -96,6 +97,7 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
 //        loader.showOverlay(self.view)
         super.viewDidLoad()
         getAllComments()
+        print("user....type\(type)")
         setTopNavigation("Comment")
         commentsTable.tableFooterView = UIView()
         commentsTable.estimatedRowHeight = 80.0
@@ -197,6 +199,7 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
             moreImage.contentMode = .scaleAspectFit
             moreImage.clipsToBounds = true
             more.backgroundColor = UIColor(patternImage: moreImage.image!)
+            
             let favorite = UITableViewRowAction(style: .default, title: "\u{2715}\n Delete" ) { action, index in
                 print("delete button tapped")
                 request.deleteComment(commentId: self.comments[indexPath.row]["_id"].string!, completion: {(response) in
@@ -223,12 +226,12 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
                 
                 
             }
-            let favoriteImage = UIImageView(frame: CGRect(x: 0, y: 0, width: 60, height: 200))
+//            let favoriteImage = UIImageView(frame: CGRect(x: 0, y: 0, width: 60, height: 200))
+//            
+//            favoriteImage.image = UIImage(named: "trashtranswhite (2)")
+//            favoriteImage.contentMode = .top
             
-            favoriteImage.image = UIImage(named: "trashtranswhite (2)")
-            favoriteImage.contentMode = .top
-            
-            favorite.backgroundColor = UIColor(patternImage: favoriteImage.image!)
+            favorite.backgroundColor = mainOrangeColor
     
 //            favoriteImage.backgroundColor = mainOrangeColor
 //            favorite.backgroundColor = mainOrangeColor

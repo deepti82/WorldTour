@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="VtJ-Bg-RGy">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="VtJ-Bg-RGy">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -2426,19 +2426,19 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="55" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="UoC-AF-vir">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="55" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="UoC-AF-vir">
                                 <rect key="frame" x="-4" y="100" width="383" height="562"/>
                                 <color key="backgroundColor" white="1" alpha="0.69999999999999996" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="55" id="7WS-AR-qxb" customClass="FollowersCell" customModule="TraveLibro" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="383" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7WS-AR-qxb" id="eGU-2E-euS">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" contentMode="center" tableViewCell="7WS-AR-qxb" id="eGU-2E-euS">
                                             <rect key="frame" x="0.0" y="0.0" width="383" height="54"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Manan Vora" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nsH-DB-WWM">
-                                                    <rect key="frame" x="61" y="11" width="75" height="20"/>
+                                                    <rect key="frame" x="61" y="11" width="193" height="20"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -2487,6 +2487,7 @@
                                                 <constraint firstItem="L62-1R-eqP" firstAttribute="trailing" secondItem="eGU-2E-euS" secondAttribute="trailingMargin" constant="-6" id="tpg-tR-Pie"/>
                                                 <constraint firstItem="i5x-fd-msI" firstAttribute="leading" secondItem="nsH-DB-WWM" secondAttribute="leading" id="xtv-rn-ObH"/>
                                                 <constraint firstItem="nsH-DB-WWM" firstAttribute="leading" secondItem="ZeP-NR-7ax" secondAttribute="trailing" constant="8" id="ylY-9j-f1M"/>
+                                                <constraint firstItem="L62-1R-eqP" firstAttribute="leading" secondItem="nsH-DB-WWM" secondAttribute="trailing" constant="8" id="z57-sG-l9Z"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -6880,7 +6881,8 @@
                                                     </constraints>
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Qfu-hA-SQe">
-                                                    <rect key="frame" x="16" y="97" width="197" height="20"/>
+
+                                                    <rect key="frame" x="16" y="97"
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lab" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QBp-f3-ek3">
                                                             <rect key="frame" x="0.0" y="0.0" width="23.5" height="20"/>

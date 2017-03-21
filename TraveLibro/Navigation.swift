@@ -2995,12 +2995,15 @@ class Navigation {
         
         
         do {
-            var params = ["type":type, "_id": commentId, "text": commentText, "user": userId, "hashtag": hashtag, "addHashtag": addedHashtags, "removeHashtag": removedHashtags] as [String: Any]
-            if type == "Photo" {
-                params = ["type":"photo", "_id": commentId, "text": commentText, "user": userId, "hashtag": hashtag, "addHashtag": addedHashtags, "removeHashtag": removedHashtags, "photo": photoId] as [String: Any]
-            } else {
-                params = ["type":"video", "_id": commentId, "text": commentText, "user": userId, "hashtag": hashtag, "addHashtag": addedHashtags, "removeHashtag": removedHashtags, "video": photoId] as [String: Any]
-            }
+            var params = ["type":type.lowercased(), "_id": commentId, "text": commentText, "user": userId, "hashtag": hashtag, "addHashtag": addedHashtags, "removeHashtag": removedHashtags] as [String: Any]
+            
+            
+            print(params)
+//            if type == "Photo" {
+//                params = ["type":"photo", "_id": commentId, "text": commentText, "user": userId, "hashtag": hashtag, "addHashtag": addedHashtags, "removeHashtag": removedHashtags, "photo": photoId] as [String: Any]
+//            } else {
+//                params = ["type":"video", "_id": commentId, "text": commentText, "user": userId, "hashtag": hashtag, "addHashtag": addedHashtags, "removeHashtag": removedHashtags, "video": photoId] as [String: Any]
+//            }
             
             let opt = try HTTP.POST(adminUrl + "comment/editComment", parameters: params)
             var json = JSON(1);

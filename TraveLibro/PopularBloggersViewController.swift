@@ -103,7 +103,7 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
                     if self.allUsers.isEmpty {
                         self.allUsers = newResponse
                         if newResponse.isEmpty {
-                            Toast(text: "No notifications for you....").show()
+                            Toast(text: "No bloggers....").show()
                         }
                     }
                     else {                        
