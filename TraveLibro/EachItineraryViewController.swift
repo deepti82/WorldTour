@@ -34,6 +34,7 @@ class EachItineraryViewController: UIViewController, UITableViewDataSource, UITa
     
     @IBOutlet weak var countryButtonsStackWidthConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var whiteSmallView: UIView!
     @IBOutlet weak var tab_0: UIButton!
     @IBOutlet weak var tab_1: UIButton!
     @IBOutlet weak var tab_2: UIButton!
@@ -109,6 +110,12 @@ class EachItineraryViewController: UIViewController, UITableViewDataSource, UITa
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        whiteSmallView.layer.shadowColor = UIColor.black.cgColor
+        whiteSmallView.layer.shadowOpacity = 0.5
+        whiteSmallView.layer.shadowOffset = CGSize.zero
+        whiteSmallView.layer.shadowRadius = 10
+        
         photosButton.layer.cornerRadius = 5
         
         cityLabels = [" "]

@@ -218,7 +218,7 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
 //            favoriteImage.backgroundColor = mainOrangeColor
 //            favorite.backgroundColor = mainOrangeColor
             
-            return [more, favorite]
+            return [favorite, more]
         }
         
         else {
@@ -255,8 +255,9 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
                 self.present(actionSheet, animated: true, completion: nil)
             }
             report.backgroundColor = UIColor(patternImage: UIImage(named: "info (3)")!)
+
         
-            return [share, report]
+            return [report, share]
         }
         
     }
@@ -306,6 +307,10 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
 
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return  min((44.0 * CGFloat(indexPath.row) + 1), 85)
+//    }
+    
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
@@ -469,8 +474,10 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! CommentTableViewCell
             cell.profileName.text = comments[indexPath.row]["user"]["name"].string!
             cell.profileComment.text = comments[(indexPath as NSIndexPath).row]["text"].string!
+//            cell.commentScroll.contentSize = CGSize(width: 50, height: 0)
             if textVar.contains("@"){
                 cell.profileComment.font = UIFont(name: "Avenir-Heavy", size: 14)
+//                cell.commentScroll.contentSize = CGSize(width: cell.profileComment.frame.width, height: 0)
             }else {
                 print("hello")
             }
@@ -543,6 +550,7 @@ class CommentTableViewCell: UITableViewCell {
     @IBOutlet weak var clockIcon: UILabel!
     @IBOutlet weak var calendarText: UILabel!
     @IBOutlet weak var clockText: UILabel!
+    @IBOutlet weak var commentScroll: UIScrollView!
 }
 
 class MentionSuggestionsTableViewCell: UITableViewCell {
