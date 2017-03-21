@@ -36,6 +36,7 @@ class LocalLifePostsViewController: UIViewController, UIScrollViewDelegate, CLLo
         setTopNavigation(text: nearMeType);
         self.detectLocation(UIButton())
         globalLocalLifeInside = self
+        self.navigationController?.isNavigationBarHidden = false
     }
     
     
