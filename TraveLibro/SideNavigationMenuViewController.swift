@@ -65,7 +65,7 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         myLifeDropShadow.shadowOffset = CGSize(width: 2, height: 2)
         myLifeDropShadow.layer.masksToBounds = true
         
-        loginLabel.isHidden = true
+
 
         NotificationCenter.default.addObserver(self, selector: #selector(updateProfilePicture), name: NSNotification.Name(rawValue: "currentUserUpdated"), object: nil)
         
@@ -145,10 +145,12 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
     
     func updateProfilePicture() {
         if currentUser != nil {
+            starstack.isHidden = false
             profile.flag.isHidden = false
             profileName.text = currentUser["name"].stringValue
             imageName = currentUser["profilePicture"].stringValue
-            
+            loginLabel.isHidden = true
+            profileName.isHidden = false
             if currentUser["userBadgeName"].string == "newbie"{
             star1.image = UIImage(named: "star_check")
             star1.tintColor  = UIColor.white
@@ -186,6 +188,7 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
                 star5.tintColor  = UIColor.white
             } else {
                 starstack.isHidden = true
+                
             }
 
             
@@ -209,6 +212,9 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         }
         else {
             profile.flag.isHidden = true
+            starstack.isHidden = true
+            loginLabel.isHidden = false
+            profileName.isHidden = true
         }
     }
     
