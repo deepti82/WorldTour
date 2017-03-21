@@ -50,12 +50,13 @@ class TripPhotoHeader: UIView {
 //        self.layer.mask = maskLayer
         
         let rectShape = CAShapeLayer()
-        rectShape.bounds = self.cornerRadiusView.frame
-        rectShape.position = self.cornerRadiusView.center
-        rectShape.path = UIBezierPath(roundedRect: self.cornerRadiusView.bounds, byRoundingCorners: [.topRight , .topLeft], cornerRadii: CGSize(width: 5, height: 5)).cgPath
+        rectShape.bounds = cornerRadiusView.frame
+        rectShape.position = cornerRadiusView.center
+        rectShape.path = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: [.topRight , .topLeft], cornerRadii: CGSize(width: 5, height: 5)).cgPath
         
 //        self.cornerRadiusView.layer.backgroundColor = UIColor.green.cgColor
-        self.cornerRadiusView.layer.mask = rectShape
+        cornerRadiusView.layer.mask = rectShape
+        cornerRadiusView.layer.masksToBounds = true
         
     }
     

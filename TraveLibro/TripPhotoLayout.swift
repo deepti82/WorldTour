@@ -166,7 +166,7 @@ class TripPhotoLayout: VerticalLayout, PlayerDelegate {
     
     func headerLayout(feed:JSON) {
         
-        profileHeader = TripPhotoHeader(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 68))
+        profileHeader = TripPhotoHeader(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 68))
         profileHeader.timeLabel.text = String(format: "%C", faicon["clock"]!)
         print("header header")
         print(currentJourney["createdAt"])
