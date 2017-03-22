@@ -228,6 +228,10 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
     
     //MARK: - Tableview Delegates and Datasource
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if shouldShowSearchResults && filter != nil {
@@ -311,7 +315,6 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("\n\n didSelectRowAt : \(indexPath.row) called \n\n")
         if filter != nil && shouldShowSearchResults {
             selectedPeople = filter[indexPath.row]["_id"].stringValue
             selectedUser = filter[indexPath.row]
@@ -323,26 +326,6 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
         let profile = storyboard?.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
         profile.displayData = "search"
         globalNavigationController.pushViewController(profile, animated: true)
-        
-    }
-    
-    func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
-        print("\n didHighlightRowAt \n")
-    }
-    
-    func tableView(_ tableView: UITableView, canFocusRowAt indexPath: IndexPath) -> Bool {
-        print("\n canFocusRowAt \n")
-        return true
-    }
-    
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        print("\n canEditRowAt \n ")
-        return true
-    }
-    
-    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
-        print("\n shouldHighlightRowAt \n")
-        return true
     }
     
     func setImage(_ imageView: UIImageView, imageName: String) {
