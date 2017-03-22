@@ -27,6 +27,39 @@ class MyLifeContainerViewController: UIViewController,UIScrollViewDelegate {
         self.loadData("all", pageNumber: pageNumber)
     }
     
+    func showNoData(show:Bool, type:String) {
+        if empty != nil {
+            self.empty.removeFromSuperview()
+        }
+        if show {
+            empty = EmptyScreenView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 250))
+            switch type {
+            case "all":
+                print("in moments all")
+                empty.frame.size.height = 250.0
+                empty.viewHeading.text = "Unwind​ B​y Rewinding"
+                empty.viewBody.text = "Revisit and reminisce the days gone by through brilliant pictures and videos of your travel and local life."
+                break
+            case "travel-life":
+                print("in moments tl")
+                empty.frame.size.height = 350.0
+                empty.viewHeading.text = "Travel Becomes A Reason To Take Pictures And Store Them"
+                empty.viewBody.text = "Some memories are worth sharing, travel surely tops the list. Your travels will not only inspire you to explore more of the world, you may just move another soul or two!"
+                break
+            case "local-life":
+                print("in moments ll")
+                empty.frame.size.height = 275.0
+                empty.viewHeading.text = "Suspended In Time"
+                empty.viewBody.text = "Beautiful memories created through fabulous pictures and videos of those precious moments shared with family, friends and yourself."
+                break
+            default:
+                break
+            }
+            self.view.addSubview(empty)
+//            mainView.isHidden = true
+        }
+    }
+    
     func loadData(_ type:String,pageNumber:Int) {
         loader.hideOverlayView()
         var shouldChangeVal = true
@@ -54,6 +87,15 @@ class MyLifeContainerViewController: UIViewController,UIScrollViewDelegate {
                         self.hasNext = false
                     }
                     self.addHeightToLayout()
+                    
+                    
+                    if self.layout.subviews.count == 0 {
+                        self.showNoData(show: true, type: type)
+                    }else{
+//                        self.mainView.isHidden = false
+                        self.showNoData(show: false, type: type)
+                    }
+                    
                 }
             })
         })
