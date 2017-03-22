@@ -331,7 +331,7 @@ class ActivityFeedFooterBasic: UIView {
     
     func checkHideView() {
         if(self.commentCounts == 0  && self.likeCount == 0) {
-            self.frame.size.height = 50;
+            self.frame.size.height = 53;
             
             border1.removeFromSuperlayer()
             border.isHidden = false

@@ -184,6 +184,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         MAMStack.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.MAMStacKTap(_:))))
         locationIcon.text = String(format: "%C", faicon["location"]!)
         MAMButton.transform = MAMButton.transform.rotated(by: CGFloat(M_PI))
+        loader.showOverlay(self.view)
     }
     
     func createNavigation() {
@@ -202,7 +203,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         rightButton.titleLabel?.font = avenirFont
         setFollowButtonTitle(button: rightButton, followType: currentUser["following"].intValue)
         rightButton.addTarget(self, action: #selector(self.rightFollowTapped(sender:)), for: .touchUpInside)
-        rightButton.frame = CGRect(x: 20, y: 5, width: 100, height: 40)
+        rightButton.frame = CGRect(x: 1000000, y: 5, width: 100, height: 40)
         rightButton.titleLabel?.textAlignment = .right
         self.customNavigationBar(left: leftButton, right: rightButton)
             

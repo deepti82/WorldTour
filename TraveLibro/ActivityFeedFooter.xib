@@ -83,7 +83,7 @@
                                 </label>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uwB-8n-vIP">
                                     <rect key="frame" x="8" y="52" width="359" height="0.0"/>
-                                    <color key="backgroundColor" red="0.92538958790000003" green="0.92554813619999998" blue="0.92537957429999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </view>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="reviews" translatesAutoresizingMaskIntoConstraints="NO" id="Uv5-mQ-RDg">
                                     <rect key="frame" x="150" y="67" width="15" height="15"/>
@@ -117,7 +117,7 @@
                                                         <constraint firstAttribute="width" constant="23" id="TTe-Jq-t5q"/>
                                                         <constraint firstAttribute="height" constant="23" id="t1i-90-0GP"/>
                                                     </constraints>
-                                                    <state key="normal" title="Button" image="696FA09B-5532-4493-A0E6-0FA4D1D6D250"/>
+                                                    <state key="normal" title="Button" image="E72AFB27-5A08-444F-BD7A-32D0B0450AC5"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="velocity">
                                                             <real key="value" value="2"/>
@@ -299,7 +299,7 @@
         </view>
     </objects>
     <resources>
-        <image name="696FA09B-5532-4493-A0E6-0FA4D1D6D250" width="128" height="128">
+        <image name="E72AFB27-5A08-444F-BD7A-32D0B0450AC5" width="128" height="128">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw

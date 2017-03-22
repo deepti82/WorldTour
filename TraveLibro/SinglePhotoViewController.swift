@@ -3,6 +3,7 @@ import Spring
 import Player
 import QuartzCore
 import iCarousel
+import AVFoundation
 
 class SinglePhotoViewController: UIViewController,PlayerDelegate, iCarouselDelegate, iCarouselDataSource {
 
@@ -14,6 +15,10 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate, iCarouselDeleg
     var currentImageView : UIImageView!
     var loader: LoadingOverlay = LoadingOverlay()
     var bgImage: UIImageView!
+    let like =  Bundle.main.path(forResource: "tiny1", ofType: "mp3")!
+    var audioPlayer = AVAudioPlayer()
+
+    
     
     @IBOutlet weak var mainImage: UIImageView!
     
@@ -56,6 +61,17 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate, iCarouselDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         loader.showOverlay(self.view)
+        
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: like))
+            
+        }
+        catch{
+            print(error)
+        }
+        
+        audioPlayer.prepareToPlay()
+
         
         let leftButton = UIButton(frame: CGRect(x: 20, y: 30, width: 30, height: 30))
         leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
@@ -154,8 +170,9 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate, iCarouselDeleg
     //MARK: - Actions
     
     @IBAction func sendLike(_ sender: UIButton) {
+       audioPlayer.play()
        likeButton.animation = "pop"
-        likeButton.animateTo()
+       likeButton.animateTo()
             
             var val = ""
             if whichView == "detail_itinerary" {

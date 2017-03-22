@@ -194,7 +194,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
     
     func addHeightToLayout() {
         self.layout.layoutSubviews()
-        self.thisScroll.contentSize = CGSize(width: self.layout.frame.width, height: self.layout.frame.height + 60)
+        self.thisScroll.contentSize = CGSize(width: self.layout.frame.width, height: self.layout.frame.height - 10)
     }
     
     override func didReceiveMemoryWarning() {
@@ -544,8 +544,8 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
             case 2:
                 self.navigationController?.pushViewController(nearMeListController, animated: true)
             case 3:
-                //let tstr = Toast(text: "No \(category) Available Near You")
-                //tstr.show()
+                let tstr = Toast(text: "No \(category) Available Near You")
+                tstr.show()
                 
                 self.navigationController?.pushViewController(nearMeListController, animated: true)
             default:

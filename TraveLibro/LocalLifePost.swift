@@ -211,7 +211,7 @@ class LocalLifePost: VerticalLayout, PlayerDelegate {
     
     func headerLayout(feed:JSON) {
         
-        profileHeader = ActivityProfileHeader(frame: CGRect(x: 0, y: 20, width: self.frame.width, height: 76))
+        profileHeader = ActivityProfileHeader(frame: CGRect(x: 0, y: 20, width: self.frame.width, height: 69))
         
         profileHeader.fillProfileHeader(feed:feed)
         

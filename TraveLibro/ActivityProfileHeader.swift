@@ -26,7 +26,7 @@ class ActivityProfileHeader: UIView {
         super.init(frame: frame)
         loadViewFromNib ()
         transparentCardWhite(activityProView)
-        makeTLProfilePicture(profilePic)
+        makeBuddiesTLProfilePicture(profilePic)
         category.imageView?.tintColor = mainGreenColor
         clockLabel.text = String(format: "%C", faicon["clock"]!)
         calendarLabel.text = String(format: "%C", faicon["calendar"]!)
@@ -34,7 +34,7 @@ class ActivityProfileHeader: UIView {
         
         let path = UIBezierPath(roundedRect:self.bounds,
                                 byRoundingCorners:[.topLeft, .topRight],
-                                cornerRadii: CGSize(width: 5, height:  5))
+                                cornerRadii: CGSize(width: 10, height:  10))
         
         let maskLayer = CAShapeLayer()
         
