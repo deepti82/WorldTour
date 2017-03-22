@@ -2405,7 +2405,7 @@
                         <viewControllerLayoutGuide type="top" id="Wuw-eJ-ttH"/>
                         <viewControllerLayoutGuide type="bottom" id="1mj-8d-LX4"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Nod-EJ-AhK">
+                    <view key="view" clipsSubviews="YES" contentMode="scaleToFill" id="Nod-EJ-AhK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -2426,7 +2426,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="55" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="UoC-AF-vir">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="55" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="UoC-AF-vir">
                                 <rect key="frame" x="-4" y="100" width="383" height="562"/>
                                 <color key="backgroundColor" white="1" alpha="0.69999999999999996" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -3568,7 +3568,13 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HEf-Pa-zSZ">
+<<<<<<< HEAD
                                         <rect key="frame" x="95.5" y="245" width="154" height="30"/>
+=======
+
+                                        <rect key="frame" x="95.5" y="245" width="154" height="30"/>
+
+>>>>>>> origin/level-3-
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="more about me... " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m1F-gD-cCl">
                                                 <rect key="frame" x="0.0" y="0.0" width="124" height="30"/>

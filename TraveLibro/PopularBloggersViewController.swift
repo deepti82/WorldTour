@@ -30,7 +30,7 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
         if back {
             createNavigation()
         }else{
-            self.setNavigationBarItemText("Popular Bloggers")
+            self.setTopNavigation("Popular Bloggers")
         }
         
         getDarkBackGround(self)
@@ -187,6 +187,33 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
         
     }
 
+    func setTopNavigation(_ text: String) {
+        let leftButton = UIButton()
+        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        leftButton.setImage(UIImage(named: "menu_left_icon"), for: UIControlState())
+        leftButton.imageView?.image = leftButton.imageView?.image!.withRenderingMode(.alwaysTemplate)
+        leftButton.imageView?.tintColor = UIColor.white
+        leftButton.addTarget(self, action: #selector(self.openSideMenu(_:)), for: .touchUpInside)
+        let rightButton = UIButton()
+        rightButton.setImage(UIImage(named: "search_toolbar"), for: UIControlState())
+        rightButton.addTarget(self, action: #selector(self.searchTop(_:)), for: .touchUpInside)
+        rightButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        self.title = text
+        self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Avenir-Medium", size: 18)!]
+        
+        self.customNavigationBar(left: leftButton, right: rightButton)
+        
+        
+    }
+
+    
+    func openSideMenu(_ sender: UIButton){
+        
+        self.slideMenuController()?.addLeftGestures()
+        self.slideMenuController()?.toggleLeft()
+    }
+
+    
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
                 
         if allUsers.count > 0 && indexPath.row == (allUsers.count - 1) {            
@@ -255,6 +282,12 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)            
         }        
     }
+    
+    func searchTop(_ sender: AnyObject) {
+        let searchVC = storyboard?.instantiateViewController(withIdentifier: "Search") as! MainSearchViewController
+        globalNavigationController.pushViewController(searchVC, animated: true)
+    }
+
     
     
     //MARK: - Scroll Delagtes

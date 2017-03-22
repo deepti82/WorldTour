@@ -241,14 +241,12 @@ class ActivityFeedFooter: UIView {
          self.likeButton.setImage(UIImage(named: "likeButton"), for: .normal)
         if(isSelected) {
             self.likeButton.tag = 1
-            self.likeButton.setImage(UIImage(named: "favorite-heart-button"), for: .normal)
-            self.likeButton.tintColor = mainOrangeColor
+            self.likeButton.setImage(UIImage(named: "liked"), for: .normal)
             
         } else {
             self.likeButton.setImage(UIImage(named: "likeButton"), for: .normal)
             self.likeButton.tag = 0
-            likeButton.tintAdjustmentMode = .dimmed
-            likeButton.tintColor = mainBlueColor
+            
         }
     }
     

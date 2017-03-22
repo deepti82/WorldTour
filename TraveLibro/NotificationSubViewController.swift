@@ -35,6 +35,12 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
 
         setNavigationBarItemText("Notifications")
         
+        let rightButton = UIButton()
+        rightButton.setImage(UIImage(named: "search_toolbar"), for: UIControlState())
+        rightButton.addTarget(self, action: #selector(self.search(_:)), for: .touchUpInside)
+        rightButton.frame = CGRect(x: -10, y: 8, width: 30, height: 30)
+        self.setOnlyRightNavigationButton(rightButton)
+        
         loader.showOverlay(self.view)        
         self.mainFooter = FooterViewNew(frame: CGRect.zero)
         self.mainFooter.layer.zPosition = 5
@@ -54,6 +60,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        NotificationCenter.default.addObserver(self, selector: #selector(customRemoteNotificationReceived(notification:)), name: NSNotification.Name(rawValue: "REMOTE_NOTIFICATION_RECEIVED"), object: nil)
         self.mainFooter.frame = CGRect(x: 0, y: self.view.frame.height - 65, width: self.view.frame.width, height: 65)
     }
     
@@ -65,6 +72,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self)
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
     
@@ -87,10 +95,6 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         if hasNext && !isLoading {
             
             isLoading = true
-            
-            DispatchQueue.global().async(execute: { 
-                getUnreadNotificationCount()
-            })
             
             currentPageNumber += 1
             
@@ -162,9 +166,11 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
                     }
                     else {
                         print("response error!")
-                    }                    
+                    }
+                    
+                    UserDefaults.standard.set(0, forKey: "notificationCount")
+                    updateFooterBadge()
                 })
-                
             })
         }
         else{
@@ -288,6 +294,10 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cellNotificationData = notifications[indexPath.row]
+        
+//        if indexPath.row == 0 {
+//            print("\n CellData : \(cellNotificationData) ")
+//        }
         
         let notificationType = cellNotificationData["type"].stringValue
         
@@ -803,6 +813,33 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
             
             self.mainFooter.frame.origin.y = self.view.frame.height - 65
             
+        }
+    }
+    
+    
+    //MARK: - Navigation action
+    
+    func search(_ sender: AnyObject) {
+        let searchVC = storyboard?.instantiateViewController(withIdentifier: "Search") as! MainSearchViewController
+        globalNavigationController.pushViewController(searchVC, animated: true)
+    }
+    
+    
+    //MARK: - Remote Notification Received
+    
+    func customRemoteNotificationReceived(notification: Notification) {
+        
+        let remoteNotifications = notification.object as? Array<JSON>
+        
+        if notifications.isEmpty {
+            self.refreshControl.beginRefreshing()
+            self.pullToRefreshCalled()
+        }
+        else {
+            for notificationObject in remoteNotifications! {
+                notifications.insert(notificationObject, at: 0)
+                notifyTableView.reloadData()
+            }
         }
     }
     
