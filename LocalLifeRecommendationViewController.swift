@@ -412,6 +412,8 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
     }
 
     
+   
+    
     func openSideMenu(_ sender: UIButton){
         
         self.slideMenuController()?.addLeftGestures()
@@ -544,6 +546,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
             case 3:
                 let tstr = Toast(text: "No \(category) Available Near You")
                 tstr.show()
+                self.navigationController?.pushViewController(nearMeListController, animated: true)
             default:
                 break;
             }

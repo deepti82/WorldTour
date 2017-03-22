@@ -37,6 +37,7 @@ extension UIViewController {
         self.addLeftBarButtonWithImage(UIImage(named: "menu_left_icon")!)
         self.removegestures()
         self.navigationController?.navigationBar.topItem!.title = text
+        
     }
     
     func customNavigationBar(left: UIButton?, right: AnyObject?) {

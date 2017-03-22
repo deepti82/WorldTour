@@ -188,19 +188,20 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
         }
         if self.comments[indexPath.row]["user"]["_id"].string! == usr {
             
-            let more = UITableViewRowAction(style: .normal, title: "        ") { action, index in
+            let more = UITableViewRowAction(style: .normal, title: "  Edit  ") { action, index in
                 self.addComment.text = self.comments[indexPath.row]["text"].string!
                 self.previousHashtags = self.getHashtagsFromText(oldText: self.comments[indexPath.row]["text"].string!)
                 self.editComment = self.comments[indexPath.row]
                 self.isEdit = true
                 self.addCommentLabel.isHidden = true
             }
-            let moreImage = UIImageView(image: UIImage(named: "penciltranswhite (2)"))
-            moreImage.contentMode = .scaleAspectFit
-            moreImage.clipsToBounds = true
-            more.backgroundColor = UIColor(patternImage: moreImage.image!)
+//            let moreImage = UIImageView(image: UIImage(named: "penciltranswhite (2)"))
+//            moreImage.contentMode = .scaleAspectFit
+//            moreImage.clipsToBounds = true
+//            more.backgroundColor = UIColor(patternImage: moreImage.image!)
+              more.backgroundColor = mainOrangeColor
             
-            let favorite = UITableViewRowAction(style: .default, title: "\u{2715}\n Delete" ) { action, index in
+            let favorite = UITableViewRowAction(style: .default, title: " Delete " ) { action, index in
                 print("delete button tapped")
                 request.deleteComment(commentId: self.comments[indexPath.row]["_id"].string!, completion: {(response) in
                     
@@ -231,7 +232,7 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
 //            favoriteImage.image = UIImage(named: "trashtranswhite (2)")
 //            favoriteImage.contentMode = .top
             
-            favorite.backgroundColor = mainOrangeColor
+              favorite.backgroundColor = mainOrangeColor
     
 //            favoriteImage.backgroundColor = mainOrangeColor
 //            favorite.backgroundColor = mainOrangeColor
@@ -241,16 +242,16 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
         
         else {
             
-            let share = UITableViewRowAction(style: .normal, title: "        ") { action, index in
+            let share = UITableViewRowAction(style: .normal, title: " Reply  ") { action, index in
                 print("reply button tapped")
                 
                 let userTag = "@\(self.comments[indexPath.row]["user"]["urlSlug"].string!)"
                 self.addComment.text = userTag
                 
             }
-            share.backgroundColor = UIColor(patternImage: UIImage(named: "backtranswhite (1)")!)
-            
-            let report = UITableViewRowAction(style: .normal, title: "        ") { action, index in
+//            share.backgroundColor = UIColor(patternImage: UIImage(named: "backtranswhite (1)")!)
+              share.backgroundColor = UIColor.gray
+            let report = UITableViewRowAction(style: .normal, title: " Report ") { action, index in
                 print("report button tapped")
                 let actionSheet: UIAlertController = UIAlertController(title: "Why are you reporting this comment?", message: nil, preferredStyle: .actionSheet)
                 //actionSheet.view.tintColor = UIColor.red
@@ -272,8 +273,8 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
                 actionSheet.addAction(abusiveActionButton)
                 self.present(actionSheet, animated: true, completion: nil)
             }
-            report.backgroundColor = UIColor(patternImage: UIImage(named: "info (3)")!)
-
+//            report.backgroundColor = UIColor(patternImage: UIImage(named: "info (3)")!)
+              report.backgroundColor = UIColor.red
         
             return [report, share]
         }
