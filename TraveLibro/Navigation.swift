@@ -2930,7 +2930,6 @@ class Navigation {
                 else
                 {
                     json  = JSON(data: response.data)
-                    print("hashtag response: \(json)")
                     completion(json)
                 }
             }
@@ -2944,6 +2943,7 @@ class Navigation {
         
         do {
             let params = ["search": searchText, "_id": userId, "fromTag": true] as [String: Any]
+            print(params)
             let opt = try HTTP.POST(adminUrl + "user/searchBuddy", parameters: params)
             var json = JSON(1);
             opt.start {response in
@@ -2953,7 +2953,6 @@ class Navigation {
                 else
                 {
                     json  = JSON(data: response.data)
-                    print("mention response: \(json)")
                     completion(json)
                 }
             }
