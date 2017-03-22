@@ -20,6 +20,16 @@ class SearchLocationTableViewController: UITableViewController, UISearchBarDeleg
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.isTranslucent = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.isTranslucent = false
+    }
+    
     func getSearchText() {
         
         print("in the search text \(searchString.characters.count)")
