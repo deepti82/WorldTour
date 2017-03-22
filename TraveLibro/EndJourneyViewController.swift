@@ -265,7 +265,7 @@ class EndJourneyViewController: UIViewController {
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "darkBgNew")!)
         
         //  END VERTICAL LAYOUT
-        loader.showOverlay(rateCountriesScroll)
+        loader.showOverlay(self.view)
         getJourney();
         self.title = "End Journey"
         self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Avenir-Medium", size: 18)!]
@@ -448,6 +448,7 @@ class EndJourneyViewController: UIViewController {
         DispatchQueue.main.async(execute: {
             self.endJourney.journeyCoverPic.hnk_setImageFromURL(URL(string:"\(adminUrl)upload/readFile?file=\(image)&width=500")!)
             self.loader.hideOverlayView()
+            
             //            let imageString = self.journey["startLocationPic"].string!
             //            print(imageString);
             //            if imageString.contains("http") {

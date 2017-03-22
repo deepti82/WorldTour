@@ -950,7 +950,7 @@ class Navigation {
             
             var params = ["_id": userId, "search": searchText]
             
-            if urlSlug != nil {
+            if urlSlug != nil && urlSlug != "" {
                 params["urlSlug"] = urlSlug!
             }
             
@@ -1002,7 +1002,7 @@ class Navigation {
             
             var params = ["_id": userId, "search": searchText]
             
-            if urlSlug != nil {
+            if urlSlug != nil && urlSlug != "" {
                params["urlSlug"] = urlSlug!
             }
             
@@ -3809,6 +3809,33 @@ class Navigation {
         } catch let error {
             print("got an error creating the request: \(error)")
         }
+    }
+    
+    
+    //MARK: - Logout
+    
+    func logout(email: String, completion: @escaping ((JSON) -> Void)) {
+        OneSignal.idsAvailable({(_ userId, _ pushToken) in
+            let deviceParams = userId! as String
+            do {
+                let opt = try HTTP.POST(adminUrl + "user/logoutApp", parameters: ["_id": user.getExistingUser(), "deviceId": deviceParams])
+                var json = JSON(1);
+                opt.start {response in
+                    if let err = response.error {
+                        print("error: \(err.localizedDescription)")
+                    }
+                    else
+                    {
+                        json  = JSON(data: response.data)
+                        print(json)
+                        completion(json)
+                    }
+                }
+            } catch let error {
+                print("got an error creating the request: \(error)")
+            }
+            
+            })
     }
     
 }

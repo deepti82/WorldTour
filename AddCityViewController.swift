@@ -107,6 +107,11 @@ class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewD
         }        
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.saveCity(UIButton())
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -118,60 +123,65 @@ class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         print("city name: \(cityTextField.text), \(currentUser["_id"]), \(currentUser["homeCity"].string)")
         
-        if cityTextField.text != "" {
-            
-            cityName = cityTextField.text!
-            
-            if currentUser["homeCity"].string == nil || cityTextField.text != currentUser["homeCity"].string!{
-                request.editUser(currentUser["_id"].string!, editField: "homeCity", editFieldValue: cityName, completion: {(response) in
-                    
-                    DispatchQueue.main.async(execute: {
-                        print(response["value"])
+        DispatchQueue.global().async {
+            if self.cityTextField.text != "" {
+                
+                cityName = self.cityTextField.text!
+                
+                if currentUser["homeCity"].string == nil || self.cityTextField.text != currentUser["homeCity"].string!{
+                    request.editUser(currentUser["_id"].string!, editField: "homeCity", editFieldValue: cityName, completion: {(response) in
                         
-                        if response.error != nil {
+                        DispatchQueue.main.sync(execute: {
+                            print(response["value"])
                             
-                            print("error: \(response.error?.localizedDescription)")
-                            
-                        } else if response["value"] == true {
-                            currentUser = response["data"]
-                            if self.isFromSettings != true {
-                                self.selectGender(sender)
+                            if response.error != nil {
+                                
+                                print("error: \(response.error?.localizedDescription)")
+                                
+                            } else if response["value"] == true {
+                                currentUser = response["data"]
+                                if self.isFromSettings != true {
+                                    self.selectGender(sender)
+                                }
+                                else {
+                                    Toast(text: "User's city updated").show()
+                                    if (self.navigationController?.topViewController as? AddCityViewController) != nil {
+                                        self.popVC(UIButton())
+                                    }
+                                }
+                            } else {
+                                print("response error: \(response["data"])")
                             }
-                            else {
-                                Toast(text: "User's city updated").show()
+                        })
+                        
+                    })
+                }
+                else{
+                    
+                    if self.isFromSettings != nil && self.isFromSettings == true {
+                        DispatchQueue.main.sync() {
+                            if (self.navigationController?.topViewController as? AddCityViewController) != nil {
                                 self.popVC(UIButton())
                             }
-                        } else {
-                            print("response error: \(response["data"])")
                         }
-                    })
-                    
-                })
-            }
-            else{
-                
-                if isFromSettings != nil && isFromSettings == true {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                        self.popVC(UIButton())
+                    }
+                    else {
+                        self.selectGender(sender)
+                        
                     }
                 }
-                else {
-                    self.selectGender(sender)
                 
-                }
-            }
-            
-        } else {
-            alert(message: "Please Select City.", title: "Select City")
-        }
-        
-        
-        
+            } else {
+                self.alert(message: "Please Select City.", title: "Select City")
+            }            
+        }        
     }
     
     func selectGender(_ sender: UIButton?) {
-        let selectGenderVC = self.storyboard!.instantiateViewController(withIdentifier: "selectGender") as! SelectGenderViewController
-        self.navigationController?.pushViewController(selectGenderVC, animated: true)
+        DispatchQueue.main.sync() {
+            let selectGenderVC = self.storyboard!.instantiateViewController(withIdentifier: "selectGender") as! SelectGenderViewController
+            self.navigationController?.pushViewController(selectGenderVC, animated: true)
+        }
     }
     
     

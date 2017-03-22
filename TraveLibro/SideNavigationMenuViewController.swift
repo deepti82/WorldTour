@@ -1,6 +1,5 @@
 import UIKit
 import SABlurImageView
-import Toaster
 var initialLogin = true
 
 class SideNavigationMenuViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
@@ -327,9 +326,7 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
     //MARK: - Invite
     
     func shareButtonClicked(sender: SideMenuTableViewCell) {
-        ToastCenter.default.cancelAll()
         let textToShare = "Check out this application. This is awesome life :) "
-        
         if let myWebsite = NSURL(string: "http://travelibro.com/") {
             let objectsToShare = [textToShare, myWebsite] as [Any]
             let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
