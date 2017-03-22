@@ -205,18 +205,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
                 var notificationCount = UserDefaults.standard.value(forKey: "notificationCount") as! Int
                 notificationCount += 1
                 UserDefaults.standard.set(notificationCount, forKey: "notificationCount")
-                print("\n Notifi: \(notification?.payload.badge)")
             }
             
             let payload: OSNotificationPayload? = notification?.payload           
             
             let fullMessage: String? = payload?.body
             
-            print("Recived no" + fullMessage!)
+            let data = payload?.additionalData
             
-            print("Received Notification - \(notification?.payload.notificationID) - \(notification?.payload.title)")            
-
-            footerSharedInstance?.setBadge()
+            print("Data : \(data)")
+            
+            print("Recived notifn : " + fullMessage!)
+            
+            print("Received Notification - \(notification?.payload.notificationID) - \(notification?.payload.title)")
+            
+            print("attachments : \(payload?.attachments) ")
+            
+            print("actionButtons : \(payload?.actionButtons) ")
+            
+            print("rawPayload : \(payload?.rawPayload) ")
+            
+            print("Notification : \(notification)")
+            
+            print("test1 : \(notification?.payload.badge)")
+            
+            print("test2 : \(notification?.payload.contentAvailable)")
+            
+            print("test3 : \(notification?.payload.additionalData)")
+            
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "REMOTE_NOTIFICATION_RECEIVED"), object: [notification?.payload.additionalData])
+            
+            updateFooterBadge()
+            
             
         }, handleNotificationAction: nil, settings: [kOSSettingsKeyInFocusDisplayOption : OSNotificationDisplayType.notification.rawValue])
 
@@ -291,6 +311,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
     }
     
     func applicationDidEnterBackground(_ application: UIApplication) {
+        let notificationCount = UserDefaults.standard.value(forKey: "notificationCount") as! Int
+        application.applicationIconBadgeNumber = notificationCount
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     }
@@ -466,7 +488,7 @@ func getUnreadNotificationCount() {
             else if response["value"].bool! {
                 let notificationCount = response["data"].intValue
                 UserDefaults.standard.set(notificationCount, forKey: "notificationCount")
-                footerSharedInstance?.setBadge()
+                updateFooterBadge()
             }
             else{
                 UserDefaults.standard.set(0, forKey: "notificationCount")
@@ -474,6 +496,10 @@ func getUnreadNotificationCount() {
         })
     }
     
+}
+
+func updateFooterBadge(){
+    footerSharedInstance?.setBadge()
 }
 
 
