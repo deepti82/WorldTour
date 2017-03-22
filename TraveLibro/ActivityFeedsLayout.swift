@@ -234,6 +234,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             footerViewReview.postTop = feed
             footerViewReview.topLayout = self
             footerViewReview.type = "ActivityFeeds"
+            footerViewReview.setView(feed: feed)
             footerViewReview.setCommentCount(footerViewReview.postTop["commentCount"].intValue)
             footerViewReview.setLikeCount(footerViewReview.postTop["likeCount"].intValue)
             footerViewReview.setReviewCount(count: footerViewReview.postTop["userReviewCount"].intValue)

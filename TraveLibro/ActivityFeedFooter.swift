@@ -87,6 +87,23 @@ class ActivityFeedFooter: UIView {
 
         
     }
+    func setView(feed:JSON) {
+        postTop = feed
+        //  RATING
+        if feed["type"].stringValue == "travel-life" {
+            localLifeTravelImage.image = UIImage(named: "travel_life")
+            localLifeTravelImage.tintColor = mainOrangeColor
+            
+        }else if feed["type"].stringValue == "local-life" {
+            localLifeTravelImage.image = UIImage(named: "local_life")
+            localLifeTravelImage.tintColor = endJourneyColor
+        }else{
+            localLifeTravelImage.image = UIImage(named: "travel_life")
+            localLifeTravelImage.tintColor = mainOrangeColor
+        }
+        
+    }
+    
     func showLike(_ sender: UITapGestureRecognizer) {
         print("in footer tap out \(postTop)")
         if currentUser != nil {

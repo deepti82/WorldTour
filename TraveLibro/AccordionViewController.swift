@@ -8,7 +8,8 @@
 
 import UIKit
 var globalAccordionViewController:AccordionViewController!
-
+var cellTable: UITableView!
+var allData:[JSON] = []
 
 class AccordionViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -36,6 +37,7 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        cellTable = self.tableMainView
         self.loader.showOverlay(self.view)
         //        getDarkBackGround(self)
         globalAccordionViewController = self
@@ -243,6 +245,7 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
         switch reviewType {
         case "all":
             let cell = tableView.dequeueReusableCell(withIdentifier: "allReviewsCell") as! allReviewsMLTableViewCell
+            cell.tag = indexPath.row
             cell.calendarLabel.text = String(format: "%C", faicon["calendar"]!)
             cell.clockLabel.text = String(format: "%C", faicon["clock"]!)
             cell.locationLabel.text = "\(allData[indexPath.row]["checkIn"]["city"].stringValue), \(allData[indexPath.row]["checkIn"]["country"].stringValue)"
@@ -374,6 +377,7 @@ class allReviewsMLTableViewCell: UITableViewCell {
     var backgroundReview: UIView!
     var postTop:JSON = []
     var newRating:JSON = []
+    
     let categories: [JSON] = [["title": "Transportation", "image": "planetrans"], ["title": "Hotels & Accomodations", "image": "hotels-1"], ["title": "Restaurants & Bars", "image": "restaurantsandbars"], ["title": "Nature & Parks", "image": "leaftrans"], ["title": "Sights & Landmarks", "image": "sightstrans"], ["title": "Museums & Galleries", "image": "museumstrans"], ["title": "Religious", "image": "regli"], ["title": "Shopping", "image": "shopping"], ["title": "Zoo & Aquariums", "image": "zootrans"], ["title": "Cinema & Theatres", "image": "cinematrans"], ["title": "City", "image": "city_icon"], ["title": "Health & Beauty", "image": "health_beauty"], ["title": "Rentals", "image": "rentals"], ["title": "Entertainment", "image": "entertainment"], ["title": "Essentials", "image": "essential"], ["title": "Emergency", "image": "emergency"], ["title": "Others", "image": "othersdottrans"]]
     
     @IBOutlet weak var categoryImage: UIImageView!
@@ -466,10 +470,12 @@ class allReviewsMLTableViewCell: UITableViewCell {
     func setView(feed:JSON) {
         self.review.isHidden = true
         postTop = feed
+        var cl = self
         ratingButton.addTarget(self, action: #selector(self.checkMyRating(_:)), for: .touchUpInside)
         let tapout = UITapGestureRecognizer(target: self, action: #selector(self.checkMyRatingStar(_:)))
         ratingStack.addGestureRecognizer(tapout)
         categoryImage.image = UIImage(named: getCategory(type: feed["checkIn"]["category"].stringValue))
+        categoryImage.tintColor = mainBlueColor
         
         if postTop["type"].stringValue == "travel-life" {
             ratingButton.setTitleColor(mainOrangeColor, for: .normal)
@@ -502,7 +508,7 @@ class allReviewsMLTableViewCell: UITableViewCell {
     func afterRating(starCnt:Int, review:String, type:String) {
         print(starCnt)
         if starCnt != 0 {
-            print("start rating")
+            print("start rating \(self.tag)")
             for rat in starImageArray {
                 if rat.tag > starCnt {
                     rat.image = UIImage(named: "star_uncheck")
@@ -519,11 +525,15 @@ class allReviewsMLTableViewCell: UITableViewCell {
             if review != "" {
                 self.review.isHidden = false
                 self.review.text = review
+                allData[self.tag]["review"][0]["review"].string = review
             }
 //            self.rel
             newRating = ["rating":"\(starCnt)","review":review]
             ratingStack.isHidden = false
             ratingButton.isHidden = true
+            
+            cellTable.reloadRows(at: [NSIndexPath(row:self.tag, section:0) as IndexPath], with: .automatic)
+            
         }
         
     }

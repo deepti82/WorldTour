@@ -12,7 +12,7 @@ import Toaster
 class EditProfileViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
 
     @IBOutlet weak var editTableViewCell: UITableView!
-    let labels = ["Profile Photo", "16 Jan 1988", "Yash Chudasama", "Favourite Destination - ", "Where Do You Live?", "Nationality", "Male"]
+    let labels = ["Profile Photo", "16 Jan 1988", "Yash Chudasama", "Favourite Destination -  ", "Where Do You Live?", "Nationality", "Male"]
     var myView: Int = 0
     let imagePicker = UIImagePickerController()
     var keyboardUp = false
@@ -112,6 +112,7 @@ class EditProfileViewController: UIViewController, UITableViewDataSource, UITabl
         else if (indexPath as NSIndexPath).section == 1 {   //DOB
             let cell = tableView.dequeueReusableCell(withIdentifier: "dateTypeTextFieldCell") as! DateTypeTextFieldTableViewCell
             cell.datetypeTextField.delegate = self
+            cell.datetypeTextField.text = ""
                             
             let date = currentUser["dob"].string
             if date != nil { 
@@ -359,8 +360,11 @@ class EditProfileViewController: UIViewController, UITableViewDataSource, UITabl
         
         //setting Default Date
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd MMM yyyy"        
-        let date = dateFormatter.date(from: sender.text!)
+        dateFormatter.dateFormat = "dd MMM yyyy"
+        var date = dateFormatter.date(from: sender.text!)
+        if sender.text == "Birthdate" {
+           date =  NSDate() as Date
+        }                
         datePickerView.date = date!
         datePickerView.maximumDate = NSDate() as Date        
         sender.inputView = datePickerView
