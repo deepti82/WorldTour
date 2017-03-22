@@ -19,7 +19,7 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
     var isExpanded = false
     var childCells = 0
     var selectedIndex: Int!
-    var allData:[JSON] = []
+//    var allData:[JSON] = []
     var pagenumber:Int = 1
     var empty: EmptyScreenView!
     var loader = LoadingOverlay()
@@ -138,17 +138,16 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
         request.getReviewByLoc(currentUser["_id"].stringValue, location: location, id: id, completion: {(request) in
             DispatchQueue.main.async {
                 self.loader.hideOverlayView()
-                self.allData = []
-                self.allData.append(self.getHeaderJSON())
+                allData = []
+                allData.append(self.getHeaderJSON())
                 
                 for post in request["data"].array! {
-                    self.allData.append(post)
+                    allData.append(post)
                 }
-                print("in the api load \(self.allData)")
                 self.accordionTableView.delegate = self
                 self.accordionTableView.dataSource = self
                 self.accordionTableView.reloadData()
-                if self.allData.count == 0 {
+                if allData.count == 0 {
                     self.accordionTableView.isHidden = true
                     self.showNoData(show: true)
                 }else{
@@ -160,7 +159,6 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
     
     func loadCountryCityReview(pageno:Int, type:String, json:JSON) {
         selectedView = 2
-        print(".....\(json)")
         reviewType = "reviewby"
         self.country = ""
         self.city = ""
@@ -179,21 +177,20 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
                 self.loader.hideOverlayView()
                 if request["data"].count > 0 {
                     if pageno == 1 {
-                        self.allData = []
-                        self.allData.append(self.getHeaderJSON())
+                        allData = []
+                        allData.append(self.getHeaderJSON())
                         for post in request["data"].array! {
-                            self.allData.append(post)
+                            allData.append(post)
                         }
-                        print("in get review city country \(self.allData)")
                     }else{
                         for post in request["data"].array! {
-                            self.allData.append(post)
+                            allData.append(post)
                         }
                     }
                 }
                 
                 self.accordionTableView.reloadData()
-                if self.allData.count == 0 {
+                if allData.count == 0 {
                     self.accordionTableView.isHidden = true
                     self.showNoData(show: true)
                 }else{
@@ -208,16 +205,15 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
         selectedView = 1
         reviewType = type
         loadStatus = false
-        print("getmylifereview")
         request.getMyLifeReview(currentUser["_id"].stringValue, pageNumber: pageno, type: type, completion: {(request) in
             DispatchQueue.main.async {
                 self.loader.hideOverlayView()
                 if request["data"].count > 0 {
                     if pageno == 1 {
-                        self.allData = request["data"].array!
+                        allData = request["data"].array!
                     }else{
                         for post in request["data"].array! {
-                            self.allData.append(post)
+                            allData.append(post)
                         }
                     }
                     self.loadStatus = true
@@ -227,7 +223,7 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
                 }
                 
                 self.accordionTableView.reloadData()
-                if self.allData.count == 0 {
+                if allData.count == 0 {
                     self.accordionTableView.isHidden = true
                     self.showNoData(show: true)
                 }else{
@@ -273,7 +269,6 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
                 
             }
         default:
-            print(reviewType)
             if indexPath.row == 0 {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "headerCell") as! reviewsHeaderCell
                 cell.countryTitle.text = allData[indexPath.row]["name"].stringValue
@@ -281,7 +276,6 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
             }else{
                 let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! cityLabelTableViewCell
                 
-                print("............>>>>>>>>>>>>>>>>>> \(reviewType)")
                 if reviewType == "city" {
                     cell.nameLabel.text = allData[indexPath.row]["_id"].stringValue
                     cell.seperatorView.backgroundColor = UIColor(red: 75/255, green: 203/255, blue: 187/255, alpha: 1)
@@ -297,7 +291,6 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(allData[indexPath.row])
         if reviewType == "city" {
             self.loadCountryCityReview(pageno:1, type: "city", json: allData[indexPath.row])
         } else if reviewType == "country" {
@@ -525,14 +518,16 @@ class allReviewsMLTableViewCell: UITableViewCell {
             if review != "" {
                 self.review.isHidden = false
                 self.review.text = review
-                allData[self.tag]["review"][0]["review"].string = review
+                print("After ratu \(allData[self.tag])")
+                allData[self.tag]["review"][0] = ["rating":"\(starCnt)","review":review]
+                print("demo demo \(allData[self.tag])")
             }
 //            self.rel
             newRating = ["rating":"\(starCnt)","review":review]
             ratingStack.isHidden = false
             ratingButton.isHidden = true
             
-            cellTable.reloadRows(at: [NSIndexPath(row:self.tag, section:0) as IndexPath], with: .automatic)
+//            cellTable.reloadRows(at: [NSIndexPath(row:self.tag, section:0) as IndexPath], with: .automatic)
             
         }
         
