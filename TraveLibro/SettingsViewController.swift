@@ -156,7 +156,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
                                                     width: tableView.frame.size.width, 
                                                     height: self.tableView(tableView, heightForFooterInSection: section)))
             footerLabel.font = avenirFont
-            footerLabel.text = "When you select your account to be private only, your followers can view your My Life - Journeys, Moments abd Reviews."
+            footerLabel.text = "When you select your account to be private only, your followers can view your My Life - Journeys, Moments and Reviews."
             footerLabel.textColor = UIColor.white
             footerLabel.textAlignment = .center
             footerLabel.numberOfLines = 0
