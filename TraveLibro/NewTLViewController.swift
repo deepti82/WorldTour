@@ -37,6 +37,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     var textFieldYPos = CGFloat(0)
     var difference = CGFloat(0)
     
+    @IBOutlet weak var infoButton: UIButton!
+    @IBOutlet weak var toolbarView: UIView!
     @IBOutlet weak var hideVisual: UIVisualEffectView!
     @IBOutlet weak var hideToolBar: UIStackView!
     @IBOutlet weak var mainScroll: UIScrollView!
@@ -56,8 +58,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     var buttons = NearMeOptionButton()
     var addPostsButton: UIButton!
     var mainFooter: FooterViewNew!
-    @IBOutlet weak var infoButton: UIButton!
-    @IBOutlet weak var toolbarView: UIView!
     var layout: VerticalLayout!
     var refreshControl = UIRefreshControl()
     var isInitialLoad = true
@@ -1034,6 +1034,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         globalNavigationController = self.navigationController
     }
     
@@ -1041,8 +1042,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         super.viewDidLoad()
         loader.showOverlay(self.view)
         
-        
-
         ToastView.appearance().backgroundColor = endJourneyColor
 
         self.layout = VerticalLayout(width: view.frame.size.width)
@@ -1052,7 +1051,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         self.setTopNavigation(text: "On The Go")
         globalNewTLViewController = self;
         getDarkBackGroundNew(self)
-                mainScroll.delegate = self
+        mainScroll.delegate = self
         
         
         
@@ -1206,6 +1205,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
     }
     
     func gotoProfile(_ sender: UIButton) {
@@ -1822,7 +1822,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     
     func addHeightToLayout(height: CGFloat) {
         self.layout.layoutSubviews()
-        self.mainScroll.contentSize = CGSize(width: self.layout.frame.width, height: self.layout.frame.height + 60)
+        self.mainScroll.contentSize = CGSize(width: self.layout.frame.width, height: self.layout.frame.height + 220)
         if(height != 500) {
             self.scrollToBottom1()
         }
@@ -1948,7 +1948,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         addNewView.removeFromSuperview()
         //        getScrollView(height, journey: JSON(""))
         
-        otgView = startOTGView(frame: CGRect(x: 0, y: 10, width: mainScroll.frame.width, height: mainScroll.frame.height))
+        otgView = startOTGView(frame: CGRect(x: 0, y: 0, width: mainScroll.frame.width, height: mainScroll.frame.height + 64))
         print("ooooooooo\(myJourney)")
         otgView.buddiesJson = self.addedBuddies
         
@@ -2028,25 +2028,47 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     //MARK: - Keyboard Handling
     
     func keyboardWillShow(_ notification: Notification) {
-        if let keyboardSize = ((notification as NSNotification).userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {            
-            let keyboardYpos = self.view.frame.height - keyboardSize.height
-            
-            if keyboardYpos < textFieldYPos {
-                difference = textFieldYPos - keyboardYpos
-                self.view.frame.origin.y -= difference 
+        if let keyboardSize = ((notification as NSNotification).userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            print("\n **********************\n view yPos : \(self.view.frame.origin.y) \n istranslucent : \(self.navigationController?.navigationBar.isTranslucent) \n **********************\n")
+            if self.view.frame.origin.y == 64 {
+                self.view.frame.origin.y -= keyboardSize.height
+                //                keyboardHidden = true
+                //            }
+                print("keyboardchange karde")
+                print(keyboardSize.height)
             }
-            else {
-                difference = CGFloat(0)
-            }
+//            let keyboardYpos = self.view.frame.height - keyboardSize.height
+//            
+//            if keyboardYpos < textFieldYPos {
+//                difference = textFieldYPos - keyboardYpos
+//                self.view.frame.origin.y -= difference 
+//            }
+//            else {
+//                difference = CGFloat(0)
+//            }
         }
     }
     
     func keyboardWillHide(_ notification: Notification) {
-        self.view.frame.origin.y += difference
+//        self.view.frame.origin.y += difference
+        if let keyboardSize = ((notification as NSNotification).userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y != 64{
+                self.view.frame.origin.y += keyboardSize.height
+                print("helololol")
+                print(keyboardSize.height)
+            }
+        }
     }
     
+    
+    //MARK: - Textfield Delegates
+    
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        textFieldYPos = textField.frame.origin.y + textField.frame.size.height
+        print("\n\n textFieldDidBeginEditing called\n")
+        textFieldYPos = textField.bounds.origin.y + textField.frame.size.height
+        if textField.tag == 45 {
+            textFieldYPos += 364
+        }
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
@@ -2098,7 +2120,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         otgView.drawLineView3.isHidden = false
 //        otgView.bonVoyageLabel.isHidden = true
         if textField == otgView.nameJourneyTF {
-            
+            print("\n mainscroll y : \(mainScroll.frame.origin.y) origin : \(mainScroll.bounds.origin.y )")
             setTopNavigation(text: "Select Kind of Journey");
             otgView.closeBuddies.isHidden = true
             otgView.cityView.isHidden = false
@@ -2113,7 +2135,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
             otgView.journeyName.text = otgView.nameJourneyTF.text
             journeyName = otgView.nameJourneyTF.text
             otgView.nameJourneyTF.resignFirstResponder()
-            height = 100
+            height = 164
             mainScroll.animation.makeY(mainScroll.frame.origin.y + height).thenAfter(0.3).animate(0.3)
             print("showmeTheHeight\(mainScroll.frame.origin.y + height)")
             otgView.detectLocationView.layer.opacity = 0.0
@@ -2140,6 +2162,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         otgView.bonVoyageLabel.isHidden = true
         setTopNavigation(text: "Name Your Journey");
         otgView.frame.origin.y = 300
+        otgView.nameJourneyTF.tag = 45
         otgView.nameJourneyTF.becomeFirstResponder()
         sender.animation.makeHeight(0.0).animate(0.3)
         sender.isHidden = true
