@@ -96,7 +96,7 @@ class Search: UIView {
             }
             elementJourney = SearchJourneyElement(frame: CGRect(x: 0, y: 0, width: Int(globalSearchViewController.view.frame.width), height: 220))
             elementJourney.imageLable.text = iti["name"].stringValue
-            elementJourney.image.hnk_setImageFromURL(getImageURL(iti["startLocationPic"].stringValue, width: 300))
+            elementJourney.image.hnk_setImageFromURL(getImageURL(iti["coverPhoto"].stringValue, width: 300))
             elementJourney.setData(data: iti, tabs: "journey")
             horizontalScrollJourney.addSubview(elementJourney)
         }
