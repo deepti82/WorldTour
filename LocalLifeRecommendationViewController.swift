@@ -29,7 +29,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
     var mainFooter: FooterViewNew!
     var textFieldYPos = CGFloat(0)
     var difference = CGFloat(0)
-    
+  
     @IBOutlet weak var thisScroll: UIScrollView!
     @IBOutlet weak var plusButton: UIButton!
     
@@ -544,8 +544,9 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
             case 2:
                 self.navigationController?.pushViewController(nearMeListController, animated: true)
             case 3:
-                let tstr = Toast(text: "No \(category) Available Near You")
-                tstr.show()
+                //let tstr = Toast(text: "No \(category) Available Near You")
+                //tstr.show()
+                
                 self.navigationController?.pushViewController(nearMeListController, animated: true)
             default:
                 break;

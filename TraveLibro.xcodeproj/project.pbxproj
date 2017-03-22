@@ -149,6 +149,7 @@
 		8480F2871E7C336300D54FEB /* 100_100.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8480F2861E7C336300D54FEB /* 100_100.gif */; };
 		848DE53E1E791A55001CCDCF /* profilePicNavigation.xib in Resources */ = {isa = PBXBuildFile; fileRef = 848DE53D1E791A55001CCDCF /* profilePicNavigation.xib */; };
 		848DE5401E791AF9001CCDCF /* profilePicnavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848DE53F1E791AF9001CCDCF /* profilePicnavigation.swift */; };
+		84CC75E31E8291EF0082F8CA /* 200_200.gif in Resources */ = {isa = PBXBuildFile; fileRef = 84CC75E21E8291EF0082F8CA /* 200_200.gif */; };
 		84E61E451E377665009A740F /* OtgCardUITextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84E61E441E377665009A740F /* OtgCardUITextView.xib */; };
 		84E61E471E377828009A740F /* OtgCardUITextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E61E461E377828009A740F /* OtgCardUITextView.swift */; };
 		84F25E971E5D63B300ED7A1E /* detailedItineraryMain.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84F25E961E5D63B300ED7A1E /* detailedItineraryMain.xib */; };
@@ -675,6 +676,7 @@
 		8480F2861E7C336300D54FEB /* 100_100.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 100_100.gif; sourceTree = "<group>"; };
 		848DE53D1E791A55001CCDCF /* profilePicNavigation.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = profilePicNavigation.xib; sourceTree = "<group>"; };
 		848DE53F1E791AF9001CCDCF /* profilePicnavigation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = profilePicnavigation.swift; sourceTree = "<group>"; };
+		84CC75E21E8291EF0082F8CA /* 200_200.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 200_200.gif; sourceTree = "<group>"; };
 		84E61E441E377665009A740F /* OtgCardUITextView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OtgCardUITextView.xib; sourceTree = "<group>"; };
 		84E61E461E377828009A740F /* OtgCardUITextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtgCardUITextView.swift; sourceTree = "<group>"; };
 		84F25E961E5D63B300ED7A1E /* detailedItineraryMain.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = detailedItineraryMain.xib; sourceTree = "<group>"; };
@@ -1113,6 +1115,7 @@
 				8480F2861E7C336300D54FEB /* 100_100.gif */,
 				368A568F1E3CD6E600DC8A19 /* loader.gif */,
 				368A56911E3CDB5C00DC8A19 /* loader2.gif */,
+				84CC75E21E8291EF0082F8CA /* 200_200.gif */,
 				443225A71E668332008AB156 /* locallife.mp4 */,
 				443225A81E668332008AB156 /* mylife.mp4 */,
 				443225A91E668332008AB156 /* travellife.mp4 */,
@@ -3000,6 +3003,7 @@
 				C29634EA1D06F01300E9DF71 /* SearchLocation.xib in Resources */,
 				C23EB1CB1CFEB008005B5CE8 /* CheckInLocalLife.xib in Resources */,
 				FCB3D17B1E5D6FF00041B121 /* OnlyLine.xib in Resources */,
+				84CC75E31E8291EF0082F8CA /* 200_200.gif in Resources */,
 				C28A92531D0ECB4E00CFEC7A /* FilterBlogs.xib in Resources */,
 				1A944E381CCB5AFA007EB5BD /* FooterView.xib in Resources */,
 				1A65E7AC1CD72F1F009374DA /* Avenir-Roman.ttf in Resources */,

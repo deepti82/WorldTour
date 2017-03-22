@@ -42,7 +42,7 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OGS-bv-8jn">
                             <rect key="frame" x="0.0" y="10" width="375" height="31"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nOV-nv-7zs" customClass="SpringButton" customModule="Spring">
+                                <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nOV-nv-7zs" customClass="SpringButton" customModule="Spring">
                                     <rect key="frame" x="19" y="4" width="23" height="23"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="23" id="Tjd-4k-myJ"/>
@@ -64,15 +64,15 @@
                                         <action selector="sendLikes:" destination="-1" eventType="touchUpInside" id="Caf-bF-dd1"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2DN-gJ-eGv">
+                                <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2DN-gJ-eGv">
                                     <rect key="frame" x="100" y="4" width="23" height="23"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <state key="normal" title="Button" image="shareButton"/>
                                 </button>
-                                <button opaque="NO" contentMode="scaleAspectFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NuE-eW-t9q" customClass="SpringButton" customModule="Spring">
+                                <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NuE-eW-t9q" customClass="SpringButton" customModule="Spring">
                                     <rect key="frame" x="60" y="4" width="23" height="23"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <state key="normal" title="Button" image="speech_icon"/>
+                                    <state key="normal" title="Button" image="comments"/>
                                     <connections>
                                         <action selector="sendComments:" destination="-1" eventType="touchUpInside" id="TOL-vV-GRA"/>
                                     </connections>
@@ -185,6 +185,7 @@
         </view>
     </objects>
     <resources>
+        <image name="comments" width="71" height="71"/>
         <image name="likeButton" width="128" height="128"/>
         <image name="options_icon" width="30" height="30"/>
         <image name="shareButton" width="46" height="70"/>

@@ -117,7 +117,7 @@
                                                         <constraint firstAttribute="width" constant="23" id="TTe-Jq-t5q"/>
                                                         <constraint firstAttribute="height" constant="23" id="t1i-90-0GP"/>
                                                     </constraints>
-                                                    <state key="normal" title="Button" image="04108D91-3CE6-4485-A9C1-F6B17F92B8D8"/>
+                                                    <state key="normal" title="Button" image="B1BBA0AB-9F6E-405A-9D08-538C9D401E99"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="velocity">
                                                             <real key="value" value="2"/>
@@ -138,7 +138,7 @@
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="23" id="mby-rK-19W"/>
                                                     </constraints>
-                                                    <state key="normal" title="Button" image="speech_icon"/>
+                                                    <state key="normal" title="Button" image="comments"/>
                                                     <connections>
                                                         <action selector="sendComments:" destination="-1" eventType="touchUpInside" id="q5p-xo-uhT"/>
                                                     </connections>
@@ -297,7 +297,7 @@
         </view>
     </objects>
     <resources>
-        <image name="04108D91-3CE6-4485-A9C1-F6B17F92B8D8" width="128" height="128">
+        <image name="B1BBA0AB-9F6E-405A-9D08-538C9D401E99" width="128" height="128">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
@@ -1443,6 +1443,7 @@ AAEKGQABCiEAAQokAAEKKQABCjEAAQo0AAEKRgABCkkAAQpOAAAAAAAABAEAAAAAAAAAQQAAAAAAAAAA
 AAAAAAABClA
 </mutableData>
         </image>
+        <image name="comments" width="71" height="71"/>
         <image name="options_icon" width="30" height="30"/>
         <image name="reviews" width="60" height="60"/>
         <image name="shareButton" width="46" height="70"/>
