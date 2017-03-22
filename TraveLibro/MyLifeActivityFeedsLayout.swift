@@ -171,6 +171,7 @@ class MyLifeActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             footerViewReview.postTop = feed
             footerViewReview.topLayout = self
             footerViewReview.type = "MyLifeFeeds"
+            footerViewReview.setView(feed: feed)
             footerViewReview.setCommentCount(footerViewReview.postTop["commentCount"].intValue)
             footerViewReview.setLikeCount(footerViewReview.postTop["likeCount"].intValue)
             footerViewReview.setReviewCount(count: footerViewReview.postTop["userReviewCount"].intValue)
@@ -298,6 +299,7 @@ class MyLifeActivityFeedsLayout: VerticalLayout, PlayerDelegate {
     
     func headerLayout(feed:JSON) {
         
+        
         if feed["thoughts"].stringValue != "" {
             
             //  START ACTIVITY TEXT HEADER
@@ -336,6 +338,35 @@ class MyLifeActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             self.addSubview(textHeader)
 //
         }
+        
+        //header icon
+        let typeOfPost = getTypeOfPost(feed)
+        if(typeOfPost != nil) {
+            switch(typeOfPost) {
+            case "Location":
+                self.textHeader.kindOfJourneyMyLife.image = UIImage(named: "location_icon")
+            case "Image":
+                self.textHeader.kindOfJourneyMyLife.image = UIImage(named: "camera_icon")
+                
+            case "Videos":
+                self.textHeader.kindOfJourneyMyLife.image = UIImage(named: "video")
+            case "Thoughts":
+                self.textHeader.kindOfJourneyMyLife.image = UIImage(named: "pen_icon")
+                
+            default:
+                break
+            }
+        }
+        
+        switch feed["type"].stringValue {
+        case "local-life":
+            self.textHeader.kindOfJourneyMyLife.tintColor = mainGreenColor
+        case "travel-life":
+            self.textHeader.kindOfJourneyMyLife.tintColor = mainOrangeColor
+        default:
+            self.textHeader.kindOfJourneyMyLife.isHidden = true
+        }
+        
     }
     
     func setText(text: String) {

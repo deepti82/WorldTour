@@ -1961,10 +1961,10 @@ class Navigation {
             case "travel-life", "local-life":
                 tap = "post"
                 url = "post/updateLikePost"
-            case "photos", "Image":
+            case "photos", "Image", "photo":
                 tap = "photoId"
                 url = "postphotos/updateLikePost"
-            case "videos", "Video":
+            case "videos", "Video", "video":
                 tap = "videoId"
                 url = "postvideos/updateLikePost"
             default:

@@ -144,7 +144,9 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
                     }
                 }else{
                     self.loadStatus = false
-                    
+                    if pageno == 1 {
+                        self.allData = []
+                    }
                 }
                 
                 self.mainView.reloadData()
@@ -341,6 +343,23 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
         return 1
     }
     
+    func getShortCountry(country: String) -> String {
+        let stringInput = country
+        let stringInputArr = stringInput.components(separatedBy: " ")
+        var stringNeed = ""
+        
+        if stringInputArr.count > 1 {
+            for string in stringInputArr {
+                stringNeed = stringNeed + String(string.characters.first!)
+            }
+        }else{
+            stringNeed = country
+        }
+        
+        
+        return stringNeed
+    }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         if insideView == "Monthly" {
@@ -423,13 +442,13 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "reviewsCell", for: indexPath) as! reviewsCollectionViewCell
                 if reviewType == "local-life" {
                     cell.bgImage.image = UIImage(named: "reviewsLocalLifeAlbum")
-                    cell.placeName.text = allData[indexPath.row]["name"].stringValue
+                    cell.placeName.text = getShortCountry(country: allData[indexPath.row]["name"].stringValue)
                     cell.foregroundImage.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["cityCoverPhoto"].stringValue, width: 200))
                     
                 }
                 else {
                     cell.bgImage.image = UIImage(named: "reviewsTLAlbum")
-                    cell.placeName.text = allData[indexPath.row]["name"].stringValue
+                    cell.placeName.text = getShortCountry(country: allData[indexPath.row]["name"].stringValue)
                     cell.foregroundImage.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["flag"].stringValue, width: 200))
                 }
                 
