@@ -88,6 +88,8 @@ class NotificationAcknolwdgementCell: UITableViewCell {
         NFTitle.frame = CGRect(x: xPos, y: 0, width: screenWidth - xPos - IMAGE_HEIGHT, height: titleHeight)
         totalHeight += titleHeight
         
+        totalHeight += CGFloat(8)
+        
         NFTime.frame = CGRect(x: xPos, y: totalHeight, width: screenWidth - xPos, height: TIME_HEIGHT)
         NFTime.setTimeData(date: notificationData["updatedAt"].stringValue)
         
@@ -95,7 +97,7 @@ class NotificationAcknolwdgementCell: UITableViewCell {
         NFFooter.frame = CGRect(x: 0, y: totalHeight, width: screenWidth, height: FOOTER_HEIGHT)
         totalHeight += CGFloat(FOOTER_HEIGHT)
         
-        totalHeight += CGFloat(8)
+        totalHeight += CGFloat(3)
         
         totalHeight = max(totalHeight, (NFHeader.frame.origin.y + NFHeader.frame.size.height + 5))
         NFBackground.frame = CGRect(x: 0, y: 0, width: screenWidth, height: totalHeight)

@@ -260,7 +260,7 @@ class QuickItineraryPreviewViewController: UIViewController {
 //        }
         
         let publishActionButton: UIAlertAction = UIAlertAction(title: "Publish", style: .destructive) { action -> Void in
-            var qi = QuickItinerary()
+            let qi = QuickItinerary()
             qi.save(quickItinery, imageArr: globalPostImage, statusVal: true)
             self.goToActivity()
         }
