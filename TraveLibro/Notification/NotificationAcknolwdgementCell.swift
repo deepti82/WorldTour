@@ -83,10 +83,32 @@ class NotificationAcknolwdgementCell: UITableViewCell {
         NFHeader.setHeaderData(data: notificationData)
         let xPos = NFHeader.frame.origin.x + NFHeader.frame.size.width
         
-        let titleHeight = NFTitle.setMessageLabel(data: notificationData)
-//        NFTitle.frame = CGRect(x: xPos, y: 0, width: screenWidth - xPos, height: titleHeight)
-        NFTitle.frame = CGRect(x: xPos, y: 0, width: screenWidth - xPos - IMAGE_HEIGHT, height: titleHeight)
-        totalHeight += titleHeight
+        if notificationData["type"] == "userBadge" {
+            
+            let message = getRegularString(string: "Congratulations! You have moved from  ", size: 12)        
+            let from = notificationData["data"]["from"].stringValue        
+            message.append(getBoldString(string: from, size: 12))
+            
+            message.append(getRegularString(string: " to ", size: 12))
+            
+            let to = notificationData["data"]["to"].stringValue        
+            message.append(getBoldString(string: to, size: 12))
+            
+            message.append(getRegularString(string: ". Hope you enjoy your status and grow in your journeys.", size: 12))
+            
+            let messageHeight = CGFloat(50)
+            NFTitle.NFMessageLabel.attributedText = message
+            NFTitle.NFMessageLabel.frame = CGRect(x: 0, y: 0, width: screenWidth - xPos - 10, height: messageHeight) 
+            NFTitle.frame = CGRect(x: xPos, y: totalHeight, width: screenWidth - xPos, height: messageHeight + 10)                
+            totalHeight += messageHeight
+            
+        }
+        else{
+            let titleHeight = NFTitle.setMessageLabel(data: notificationData)
+            //        NFTitle.frame = CGRect(x: xPos, y: 0, width: screenWidth - xPos, height: titleHeight)
+            NFTitle.frame = CGRect(x: xPos, y: 0, width: screenWidth - xPos - IMAGE_HEIGHT, height: titleHeight)
+            totalHeight += titleHeight
+        }
         
         totalHeight += CGFloat(8)
         

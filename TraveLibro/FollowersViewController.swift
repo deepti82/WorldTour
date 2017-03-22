@@ -183,10 +183,10 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
         searchView.clipsToBounds = true
         
         if whichView == "Following" {
-            customSearch.searchField.placeholder = "Search interesting people to follow their inspirational stories..."
+            customSearch.searchField.placeholder = "Search interesting people to follow  "
         }
         else if whichView == "Followers" {
-            customSearch.searchField.placeholder = "Search Followers"
+            customSearch.searchField.placeholder = "Search Followers  "
         }        
     }
     
