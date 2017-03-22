@@ -233,7 +233,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
             
             print("test3 : \(notification?.payload.additionalData)")
             
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "REMOTE_NOTIFICATION_RECEIVED"), object: [notification?.payload.additionalData])
+//            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "REMOTE_NOTIFICATION_RECEIVED"), object: [notification?.payload.additionalData])
             
             updateFooterBadge()
             
