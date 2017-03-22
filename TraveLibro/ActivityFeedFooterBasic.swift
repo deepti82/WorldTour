@@ -381,7 +381,6 @@ class ActivityFeedFooterBasic: UIView {
         if(isSelected) {
             self.likeButton.tag = 1
             self.likeButton.setImage(UIImage(named: "favorite-heart-button"), for: .normal)
-            self.likeButton.tintColor = mainOrangeColor
             
         } else {
             self.likeButton.tag = 0
