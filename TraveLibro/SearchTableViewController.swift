@@ -72,7 +72,7 @@ class SearchTableViewController: UIViewController, UITableViewDelegate, UITableV
             cell.peopleHashtagsImage.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["profilePicture"].stringValue, width: 200))
             noColor(cell.peopleHashtagsImage)
             cell.nameHashtagsLabel.text = allData[indexPath.row]["name"].stringValue
-            cell.slurgHashtimesLabel.text = allData[indexPath.row]["email"].stringValue
+            cell.slurgHashtimesLabel.text = allData[indexPath.row]["urlSlug"].stringValue
         }else{
             cell.hashText.isHidden = false
             cell.peopleHashtagsImage.image = UIImage()
