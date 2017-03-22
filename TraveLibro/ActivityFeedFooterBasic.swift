@@ -385,7 +385,7 @@ class ActivityFeedFooterBasic: UIView {
             
         } else {
             self.likeButton.tag = 0
-            self.likeButton.tintColor = mainBlueColor
+           self.likeButton.setImage(UIImage(named: "likeButton"), for: .normal)
         }
     }
     

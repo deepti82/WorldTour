@@ -198,6 +198,14 @@ open class LoadingOverlay{
     func showOverlay(_ view: UIView) {
         hideOverlayView()
         print("show loader")
+        
+        let darkBlur = UIBlurEffect(style: UIBlurEffectStyle.dark)
+        let blurView = UIVisualEffectView(effect: darkBlur)
+        blurView.frame.size.height = view.frame.height
+        blurView.frame.size.width = view.frame.width
+        blurView.layer.zPosition = -1
+        blurView.isUserInteractionEnabled = false
+
         loader = UIView(frame:CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height))
         
         let imageView1 = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
@@ -205,9 +213,9 @@ open class LoadingOverlay{
         imageView1.image = UIImage.gif(name: "100_100")
         imageView1.contentMode = .scaleAspectFit
         imageView1.center = CGPoint(x: view.center.x, y: ((view.frame.size.height/2) - ( globalNavigationController != nil ? (globalNavigationController?.navigationBar.frame.size.height)! : 0) ))
-        loader.addSubview(imageView1)
-        
-        loader.backgroundColor = UIColor(colorLiteralRed: 0/255, green: 0/255, blue: 0/255, alpha: 0.4)
+        blurView.addSubview(imageView1)
+         loader.addSubview(blurView)
+//        loader.backgroundColor = UIColor(colorLiteralRed: 0/255, green: 0/255, blue: 0/255, alpha: 0.4)
         view.addSubview(loader)
         
     }
