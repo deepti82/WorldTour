@@ -32,6 +32,7 @@ class SearchTableViewController: UIViewController, UITableViewDelegate, UITableV
         print(newSearch)
 //        transparentCardWhite(selectStrip)
         transparentCardWhite(noTravellersStrip)
+        //transparentCardWhite(searchTable)
         sliderView.isHidden = false
         hashTagSlide.isHidden = true
 //        getDarkBackGround(self)
@@ -66,6 +67,7 @@ class SearchTableViewController: UIViewController, UITableViewDelegate, UITableV
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "search", for: indexPath) as! searchPeople
         if selectedStatus == "people" {
+            transparentCardWhite(cell.contentView)
             cell.hashText.isHidden = true
             cell.peopleHashtagsImage.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["profilePicture"].stringValue, width: 200))
             noColor(cell.peopleHashtagsImage)

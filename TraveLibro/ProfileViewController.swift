@@ -202,8 +202,8 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         rightButton.titleLabel?.font = avenirFont
         setFollowButtonTitle(button: rightButton, followType: currentUser["following"].intValue)
         rightButton.addTarget(self, action: #selector(self.rightFollowTapped(sender:)), for: .touchUpInside)
-        rightButton.frame = CGRect(x: 0, y: 0, width: 80, height: 30)
-        
+        rightButton.frame = CGRect(x: 20, y: 5, width: 100, height: 40)
+        rightButton.titleLabel?.textAlignment = .right
         self.customNavigationBar(left: leftButton, right: rightButton)
             
 //        self.navigationController?.setNavigationBarHidden(false, animated: true)
