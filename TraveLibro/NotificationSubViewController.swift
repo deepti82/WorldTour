@@ -275,7 +275,8 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
             
             return currentCellHeight
             
-            
+        case "userBadge":
+            fallthrough
         case "itineraryRequest":
             fallthrough
         case "userFollowingResponse":
@@ -397,6 +398,8 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
             currentCellHeight = (cell?.totalHeight)!
             return cell!
             
+        case "userBadge":
+            fallthrough
         case "journeyAccept":
             fallthrough
         case "userFollowing":
@@ -420,7 +423,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
             break
         }
         
-        
+        print("\n default cellData : \(cellNotificationData)")
         var cell = tableView.dequeueReusableCell(withIdentifier: "defaultCell", for: indexPath) as? NotificationDefaultCell
         if cell == nil {
             cell = NotificationDefaultCell.init(style: .default, reuseIdentifier: "defaultCell", notificationData: cellNotificationData, helper: self) 
