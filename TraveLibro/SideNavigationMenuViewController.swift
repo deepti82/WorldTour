@@ -18,11 +18,11 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
     var inviteFriendsController:UIViewController!
     var rateUsController:UIViewController!
     var feedbackController:UIViewController!
-    var loginViewController:UIViewController!
     var settingsViewController: UIViewController!
     var localLifeController: UIViewController!
     var myProfileViewController: UIViewController!
     var signOutViewController: UIViewController!
+    var signInViewController: SignInViewController!
     
     let labels = ["Popular Journeys", "Popular Itinerary", "Popular Bloggers", "Invite Friends", "Rate Us", "Feedback", "Log Out"]
     
@@ -114,9 +114,6 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         let FBController = storyboard!.instantiateViewController(withIdentifier: "FeedbackVC") as! FeedbackViewController
         self.feedbackController = UINavigationController(rootViewController: FBController)
         
-        let loginController = storyboard!.instantiateViewController(withIdentifier: "SignUpOne") as! SignInViewController
-        self.loginViewController = UINavigationController(rootViewController: loginController)
-        
         let localLifeController = storyboard!.instantiateViewController(withIdentifier: "localLife") as! LocalLifeRecommendationViewController
         self.localLifeController = UINavigationController(rootViewController: localLifeController)
         
@@ -124,7 +121,12 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         self.myProfileViewController = UINavigationController(rootViewController: myProfileController)
         
         let signoutView = self.storyboard?.instantiateViewController(withIdentifier: "SignUpOne") as! SignInViewController
+        signoutView.shouldShowNavBar = false
         self.signOutViewController =  UINavigationController(rootViewController: signoutView)
+        
+        self.signInViewController = self.storyboard?.instantiateViewController(withIdentifier: "SignUpOne") as! SignInViewController
+        signInViewController.shouldShowNavBar = true
+//        self.signInViewController =  UINavigationController(rootViewController: signInView)
         
         self.mainViewController = UINavigationController(rootViewController: homeController)
    }
@@ -224,7 +226,8 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
             self.slideMenuController()?.changeMainViewController(self.myProfileViewController, close: true)            
         }
         else{
-            self.slideMenuController()?.changeMainViewController(self.signOutViewController, close: true)
+            closeLeft()
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
         }
     }
 
@@ -289,8 +292,13 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
             if currentUser != nil {
                 user.dropTable()
                 UserDefaults.standard.set(0, forKey: "notificationCount")
+                self.slideMenuController()?.changeMainViewController(self.signOutViewController, close: true)
             }
-            self.slideMenuController()?.changeMainViewController(self.signOutViewController, close: true)
+            else{
+                closeLeft()
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
+            }
+            
         case 7:
             if currentUser != nil {
                 self.slideMenuController()?.changeMainViewController(self.localLifeController, close: true)

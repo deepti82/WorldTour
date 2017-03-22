@@ -375,7 +375,7 @@ class AddCaptionsViewController: UIViewController, UITextFieldDelegate, ToolStac
                 self.quickIt.photosCollection.reloadData()
             }
         }
-        navigationController?.popViewController(animated: true)
+        _ = navigationController?.popViewController(animated: true)
         self.dismiss(animated: true) {
             
         }
@@ -389,7 +389,7 @@ class AddCaptionsViewController: UIViewController, UITextFieldDelegate, ToolStac
             
             
             //            if !keyboardHidden {
-            if self.view.frame.origin.y == 0{
+            if self.view.frame.origin.y == 64{
                 self.view.frame.origin.y -=  keyboardSize.height
                 print("heightminusdikha\(keyboardSize.height)")
                 //                keyboardHidden = true
@@ -400,7 +400,7 @@ class AddCaptionsViewController: UIViewController, UITextFieldDelegate, ToolStac
     }
     func keyboardWillHide(_ notification: Notification) {
         if let keyboardSize = ((notification as NSNotification).userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.view.frame.origin.y != 0{
+            if self.view.frame.origin.y != 64{
                 print("height dikha\(keyboardSize.height)")
                 self.view.frame.origin.y += keyboardSize.height
             }

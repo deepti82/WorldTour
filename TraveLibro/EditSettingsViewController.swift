@@ -78,9 +78,9 @@ class EditSettingsViewController: UIViewController, UIWebViewDelegate {
             self.view.backgroundColor = UIColor.clear
              
             let aboutUsWebView = UIWebView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight-65))
-            if whichView == "AboutUsView" {
-                aboutUsWebView.frame = CGRect(x: -5, y: -64, width: screenWidth+5, height: screenHeight)
-            }
+//            if whichView == "AboutUsView" {
+//                aboutUsWebView.frame = CGRect(x: -5, y: -64, width: screenWidth+5, height: screenHeight)
+//            }
             aboutUsWebView.delegate = self
             aboutUsWebView.scalesPageToFit = true
             aboutUsWebView.loadRequest(NSURLRequest(url: pdfPath) as URLRequest)
