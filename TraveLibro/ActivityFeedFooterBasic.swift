@@ -88,7 +88,8 @@ class ActivityFeedFooterBasic: UIView {
             print(error)
         }
         //         audioPlayer = AVAudioPlayer(contentsOfURL: like, error: nil)
-        audioPlayer.prepareToPlay()
+        //MARK: - todo
+        //audioPlayer.prepareToPlay()
     
     }
     
@@ -524,13 +525,13 @@ class ActivityFeedFooterBasic: UIView {
             
         } else {
             
-            let UnFollow: UIAlertAction = UIAlertAction(title: "UnFollow", style: .default)
-            {action -> Void in
+            //let UnFollow: UIAlertAction = UIAlertAction(title: "UnFollow", style: .default)
+            //{action -> Void in
                 
-            }
-            if self.type != "popular" {
-                actionSheetControllerIOS8.addAction(UnFollow)
-            }
+            //}
+            //if self.type != "popular" {
+            //    actionSheetControllerIOS8.addAction(UnFollow)
+            //}
             
             let reportActionButton: UIAlertAction = UIAlertAction(title: "Report", style: .default)
             {action -> Void in

@@ -440,10 +440,10 @@ class ActivityFeedFooter: UIView {
             else {
                 let cancelActionButton: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel) { action -> Void in
                 }
-                let UnFollow: UIAlertAction = UIAlertAction(title: "UnFollow", style: .default)
-                {action -> Void in
-                }
-                actionSheetControllerIOS8.addAction(UnFollow)
+                //let UnFollow: UIAlertAction = UIAlertAction(title: "UnFollow", style: .default)
+                //{action -> Void in
+                //}
+                //actionSheetControllerIOS8.addAction(UnFollow)
                 actionSheetControllerIOS8.addAction(cancelActionButton)
                 let reportActionButton: UIAlertAction = UIAlertAction(title: "Report", style: .default)
                 {action -> Void in

@@ -213,7 +213,7 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
                             
                         }
                         else if response["value"].bool! {
-                            
+                            self.isEdit = false
                             self.getAllComments()
                         }
                         else {

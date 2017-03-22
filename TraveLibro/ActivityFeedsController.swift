@@ -24,6 +24,7 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
     var displayData: String = "activity"
     var loader = LoadingOverlay()
     var uploadingView:UploadingToCloud!
+    var noInternet: UploadingToCloud!
     var checkpoint = true
     
     override func viewDidLoad() {
@@ -54,7 +55,7 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(globalActivityFeedsController.demonote(_:)), name: NSNotification.Name(rawValue: "UPLOAD_ITINERARY"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(globalActivityFeedsController.NCnote(_:)), name: NSNotification.Name(rawValue: "UPLOAD_ITINERARY"), object: nil)
         globalNavigationController = self.navigationController
     }
     
@@ -64,7 +65,7 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
     
-    func demonote(_ notification: Notification) {
+    func NCnote(_ notification: Notification) {
         print("notification called")
         if currentUser != nil{
             displayData = "activity"
@@ -107,10 +108,10 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
         rightButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         if displayData != "popular" && displayData != "popitinerary" {
             self.customNavigationBar(left: leftButton, right: rightButton)
-
+            
         }else{
             self.customNavigationBar(left: leftButton, right: nil)
-
+            
         }
         self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
@@ -139,14 +140,14 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
                             let checkIn = ActivityFeedsLayout(width: self.view.frame.width)
                             checkIn.feeds = post
                             print("post post : \(post)")
-
+                            
                             checkIn.scrollView = self.activityScroll
                             checkIn.createProfileHeader(feed: post)
                             checkIn.activityFeed = self
                             self.uploadingView = UploadingToCloud(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 23))
                             self.uploadingView.uploadText.text = "Uploading to My Life."
                             self.uploadingView.backgroundColor = endJourneyColor
-
+                            
                             self.layout.addSubview(checkIn)
                             self.layout.addSubview(self.uploadingView)
                             self.addHeightToLayout()
@@ -172,23 +173,30 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
                             self.uploadingView.uploadText.textColor = mainBlueColor
                             self.layout.addSubview(checkIn)
                             self.layout.addSubview(self.uploadingView)
-
+                            
                             self.addHeightToLayout()
                             
                         }
                         if isConnectedToNetwork() {
-                        for post in request["data"].array! {
-                             self.loader.hideOverlayView()
-                            self.feeds.arrayObject?.append(post)
-                            let checkIn = ActivityFeedsLayout(width: self.view.frame.width)
-                            checkIn.feeds = post
-                            checkIn.scrollView = self.activityScroll
-                            checkIn.createProfileHeader(feed: post)
-                            checkIn.activityFeed = self
-                            self.layout.addSubview(checkIn)
-                            self.addHeightToLayout()
-                            
-                        }
+                            for post in request["data"].array! {
+                                self.loader.hideOverlayView()
+                                self.feeds.arrayObject?.append(post)
+                                
+                                    let checkIn = ActivityFeedsLayout(width: self.view.frame.width)
+                                    checkIn.feeds = post
+                                    checkIn.scrollView = self.activityScroll
+                                    checkIn.createProfileHeader(feed: post)
+                                    checkIn.activityFeed = self
+                                        self.layout.addSubview(checkIn)
+                                        self.addHeightToLayout()
+                                
+
+                                }
+                                
+                        }else{
+                            print("no in internet")
+                            self.noInternet = UploadingToCloud(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 23))
+                            self.view.addSubview(self.noInternet)
                         }
                         
                         self.addHeightToLayout()
@@ -200,7 +208,7 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
         }
         else if displayData == "popular" {
             let userr = User()
-
+            
             request.getPopularJourney(userId: userr.getExistingUser(), pagenumber: pageNumber, completion: {(request) in
                 DispatchQueue.main.async(execute: {
                     self.loader.hideOverlayView()
@@ -216,14 +224,14 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
                             self.layout.addSubview(checkIn)
                             self.addHeightToLayout()
                             
-                        }                        
+                        }
                         self.addHeightToLayout()
                     }else{
                         self.loadStatus = false
                     }
                 })
             })
-
+            
         }
         else if displayData == "popitinerary" {
             let userr = User()
@@ -292,14 +300,22 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if isConnectedToNetwork() {
-        if scrollView.contentOffset.y >= (scrollView.contentSize.height - scrollView.frame.size.height) {
-            if loadStatus {
-                print("in load more of data.")
-                pageno = pageno + 1
-                getActivity(pageNumber: pageno)
+            if scrollView.contentOffset.y >= (scrollView.contentSize.height - scrollView.frame.size.height) {
+                if loadStatus {
+                    print("in load more of data.")
+                    pageno = pageno + 1
+                    getActivity(pageNumber: pageno)
+                }
+            }
+        }else{
+            print("no in internet")
+            if noInternet == nil {
+                self.noInternet = UploadingToCloud(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 23))
+                self.view.addSubview(self.noInternet)
+
             }
         }
-        }
+        
         for postView in layout.subviews {
             if(postView is ActivityFeedsLayout) {
                 let feeds = postView as! ActivityFeedsLayout
@@ -308,7 +324,7 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
                 }
             }
         }
-            
+        
         
         if scrollView.panGestureRecognizer.translation(in: scrollView).y < 0 {
             hideHeaderAndFooter(true);
@@ -324,18 +340,24 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
     
     func hideHeaderAndFooter(_ isShow:Bool) {
         if(isShow) {
-//            scrollTopConstraint.constant = 0
-            
+            //            scrollTopConstraint.constant = 0
+            print("in is show")
             self.navigationController?.setNavigationBarHidden(true, animated: true)
-
+            if self.noInternet != nil {
+                noInternet.isHidden = true
+            }
+            
             self.mainFooter.frame.origin.y = self.view.frame.height + 95
         } else {
-//            scrollTopConstraint.constant = (self.navigationController?.navigationBar.frame.size.height)!
-            
+            //            scrollTopConstraint.constant = (self.navigationController?.navigationBar.frame.size.height)!
+            print("in else")
             self.navigationController?.setNavigationBarHidden(false, animated: true)
-
+            if self.noInternet != nil {
+                noInternet.isHidden = false
+            }
+            
             self.mainFooter.frame.origin.y = self.view.frame.height - 65
-
+            
         }
     }
     

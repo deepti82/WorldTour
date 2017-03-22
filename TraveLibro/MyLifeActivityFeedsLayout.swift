@@ -316,10 +316,10 @@ class MyLifeActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             
             switch feed["type"].stringValue {
             case "on-the-go-journey":
-                setText(text: "Has started his " + feed["startLocation"].stringValue + " journey.")
+                setText(text: "Has started a Journey.")
                 
             case "ended-journey":
-                setText(text: "Has ended his " + feed["startLocation"].stringValue + " journey.")
+                setText(text: "Has ended this Journey.")
                 
             case "quick-itinerary":
                 setText(text: "Has uploaded a new Itinerary.")

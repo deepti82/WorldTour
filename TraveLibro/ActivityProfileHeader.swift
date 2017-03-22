@@ -61,7 +61,7 @@ class ActivityProfileHeader: UIView {
         let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(self.toProfile(_:)))
         self.profilePic.addGestureRecognizer(tapGestureRecognizer)
         self.userName.addGestureRecognizer(tapGestureRecognizer)
-
+        self.followButton.isHidden = true
         //header icon
         let typeOfPost = getTypeOfPost(feed)
         if(typeOfPost != nil) {
