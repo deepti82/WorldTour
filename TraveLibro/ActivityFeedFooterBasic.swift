@@ -50,9 +50,10 @@ class ActivityFeedFooterBasic: UIView {
         super.init(coder: aDecoder)
     }
     
-    
     func loadViewFromNib() {
+        
         let bundle = Bundle(for: type(of: self))
+        print("\n bundle : \(bundle)")
         let nib = UINib(nibName: "ActivityFeedFooterBasic", bundle: bundle)
         let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
         view.frame = bounds
@@ -78,7 +79,7 @@ class ActivityFeedFooterBasic: UIView {
         let tapout1 = UITapGestureRecognizer(target: self, action: #selector(ActivityFeedFooterBasic.showLike(_:)))
         tapout1.numberOfTapsRequired = 1
         likeViewLabel.addGestureRecognizer(tapout1)
-        
+
         let tapout2 = UITapGestureRecognizer(target: self, action: #selector(ActivityFeedFooterBasic.showComment(_:)))
         tapout2.numberOfTapsRequired = 1
         commentCount.addGestureRecognizer(tapout2)
@@ -92,11 +93,9 @@ class ActivityFeedFooterBasic: UIView {
             print(error)
         }
         //         audioPlayer = AVAudioPlayer(contentsOfURL: like, error: nil)
-        //MARK: - todo
-        //audioPlayer.prepareToPlay()
+        audioPlayer.prepareToPlay()
     
-    }
-    
+    }    
     
     
     var photoCount = 0
@@ -228,6 +227,7 @@ class ActivityFeedFooterBasic: UIView {
         backgroundReview.removeFromSuperview()
         
     }
+    
     func checkMyRating(_ sender: UITapGestureRecognizer) {
         print("check i im the creator")
         
@@ -309,6 +309,7 @@ class ActivityFeedFooterBasic: UIView {
             toCommentPage()
         }
     }
+
 
     func setLikeCount(_ post_likeCount:Int!) {
         if(post_likeCount != nil) {
