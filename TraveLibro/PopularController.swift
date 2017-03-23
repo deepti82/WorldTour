@@ -137,7 +137,7 @@ class PopularController: UIViewController, UIScrollViewDelegate {
         
         if displayData == "popular" {
             let userr = User()
-            
+            self.loadStatus = false
             request.getPopularJourney(userId: userr.getExistingUser(), pagenumber: pageNumber, completion: {(request) in
                 DispatchQueue.main.async(execute: {
                     self.loader.hideOverlayView()
@@ -156,7 +156,7 @@ class PopularController: UIViewController, UIScrollViewDelegate {
                         }
                         self.addHeightToLayout()
                     }else{
-                        self.loadStatus = false
+//                        self.loadStatus = false
                     }
                 })
             })
@@ -164,7 +164,7 @@ class PopularController: UIViewController, UIScrollViewDelegate {
         }
         else if displayData == "popitinerary" {
             let userr = User()
-            
+            self.loadStatus = false
             request.getPopularItinerary(userId: userr.getExistingUser(), pagenumber: pageNumber, completion: {(request) in
                 DispatchQueue.main.async(execute: {
                     self.loader.hideOverlayView()
@@ -185,7 +185,7 @@ class PopularController: UIViewController, UIScrollViewDelegate {
                         
                         self.addHeightToLayout()
                     }else{
-                        self.loadStatus = false
+//                        self.loadStatus = false
                     }
                 })
             })
