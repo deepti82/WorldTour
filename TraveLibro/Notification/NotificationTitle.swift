@@ -46,7 +46,7 @@ class NotificationTitle: UIView {
         switch notificationType {
            
         case "postFirstTime":
-            str2 = " has started a "
+            str2 = " has shared a "
             
         case "postTag":
             

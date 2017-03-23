@@ -1042,9 +1042,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loader.showOverlay(self.view)
-        
-        ToastView.appearance().backgroundColor = endJourneyColor
+      
+                ToastView.appearance().backgroundColor = endJourneyColor
 
         self.layout = VerticalLayout(width: view.frame.size.width)
         mainScroll.addSubview(layout)
@@ -1103,8 +1102,9 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         self.addPostsButton.imageEdgeInsets = UIEdgeInsetsMake(25, 25, 25, 25)
         self.addPostsButton.addTarget(self, action: #selector(NewTLViewController.addPosts(_:)), for: .touchUpInside)
         
-        self.addPostsButton.layer.zPosition = 5
+        //self.addPostsButton.layer.zPosition = 5
         self.view.addSubview(self.addPostsButton)
+        addPostsButton.isHidden = true
         
         self.mainFooter = FooterViewNew(frame: CGRect(x: 0, y: self.view.frame.height - 65, width: self.view.frame.width, height: 65))
         self.mainFooter.layer.zPosition = 5
@@ -1112,6 +1112,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         self.mainFooter.travelLifeIcon.tintColor = mainOrangeColor
     
         infoButton.isHidden = true
+        
 //        addPostsButton.isHidden = true
         
         if fromOutSide == "" {
@@ -1134,6 +1135,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         self.view.addSubview(TLLoader)
         self.navigationController?.setNavigationBarHidden(true, animated: true)
         mainScroll.delegate = self
+        loader.showOverlay(self.mainScroll)
         
     }
     
@@ -1203,6 +1205,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
                 }
             }
         }
+        
         
     }
     

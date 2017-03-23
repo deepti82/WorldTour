@@ -401,7 +401,7 @@ class ActivityFeedFooterBasic: UIView {
     func setLikeSelected (_ isSelected:Bool) {
         if(isSelected) {
             self.likeButton.tag = 1
-            self.likeButton.setImage(UIImage(named: "favorite-heart-button"), for: .normal)
+            self.likeButton.setImage(UIImage(named: "liked"), for: .normal)
             
         } else {
             self.likeButton.tag = 0

@@ -87,7 +87,7 @@
                                         <constraint firstAttribute="height" constant="23" id="Tch-nB-iYI"/>
                                         <constraint firstAttribute="width" constant="23" id="zsS-cd-usD"/>
                                     </constraints>
-                                    <state key="normal" title="Button" image="17C5341C-DB5F-46F9-AF19-ED4C441C32D6"/>
+                                    <state key="normal" title="Button" image="52649776-3FB9-46BC-935F-817688448A74"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="velocity">
                                             <real key="value" value="2"/>
@@ -399,7 +399,7 @@
                 <constraint firstAttribute="height" constant="23" id="hdl-St-d0p"/>
                 <constraint firstAttribute="width" constant="23" id="xTS-ak-ZsQ"/>
             </constraints>
-            <state key="normal" title="Button" image="35D7E42B-376C-4F7D-BD3C-D71058D09210"/>
+            <state key="normal" title="Button" image="53A124AE-ADF6-42BA-910D-9C07923C6B02"/>
             <userDefinedRuntimeAttributes>
                 <userDefinedRuntimeAttribute type="number" keyPath="velocity">
                     <real key="value" value="2"/>
@@ -414,7 +414,7 @@
         </button>
     </objects>
     <resources>
-        <image name="17C5341C-DB5F-46F9-AF19-ED4C441C32D6" width="128" height="128">
+        <image name="52649776-3FB9-46BC-935F-817688448A74" width="128" height="128">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
@@ -1560,7 +1560,7 @@ AAEKGQABCiEAAQokAAEKKQABCjEAAQo0AAEKRgABCkkAAQpOAAAAAAAABAEAAAAAAAAAQQAAAAAAAAAA
 AAAAAAABClA
 </mutableData>
         </image>
-        <image name="35D7E42B-376C-4F7D-BD3C-D71058D09210" width="128" height="128">
+        <image name="53A124AE-ADF6-42BA-910D-9C07923C6B02" width="128" height="128">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw

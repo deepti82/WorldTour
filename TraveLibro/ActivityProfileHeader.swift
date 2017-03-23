@@ -28,8 +28,8 @@ class ActivityProfileHeader: UIView {
         transparentCardWhite(activityProView)
         makeBuddiesTLProfilePicture(profilePic)
         category.imageView?.tintColor = mainGreenColor
-        clockLabel.text = String(format: "%C", faicon["clock"]!)
-        calendarLabel.text = String(format: "%C", faicon["calendar"]!)
+        clockLabel.text = String(format: "%C", faicon["calendar"]!)
+        calendarLabel.text = String(format: "%C", faicon["clock"]!)
         
         
         let path = UIBezierPath(roundedRect:self.bounds,

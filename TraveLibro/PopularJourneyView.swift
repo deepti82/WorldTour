@@ -51,8 +51,8 @@ class PopularJourneyView: UIView {
         makeTLProfilePictureBorderWhiteCorner(flag2)
         makeTLProfilePictureBorderWhiteCorner(flag3)
        makeBuddiesTLProfilePicture(journeyCreatorImage)
-        calendarLabel.text = String(format: "%C", faicon["calendar"]!)
-        clockLabel.text = String(format: "%C", faicon["clock"]!)
+        calendarLabel.text = String(format: "%C", faicon["clock"]!)
+        clockLabel.text = String(format: "%C", faicon["calendar"]!)
         likeLabel.text = String(format: "%C", faicon["likes"]!)       
         commentButton.tintColor = mainBlueColor
         likeButton.tintColor = mainBlueColor

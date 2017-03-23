@@ -139,6 +139,8 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     func forgotPasswordTabbed(_ sender: AnyObject) {
         
         forgotView = ForgotPassword(frame: self.view.frame)
+        forgotView.center = self.view.center
+        
         
         forgotView.backgroundView.layer.cornerRadius = 5.0
         forgotView.emailIDTxtField.delegate = self
