@@ -29,6 +29,8 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
     
     var shouldShowSearchResults = false
     
+    //MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         loader.showOverlay(self.view)
@@ -160,6 +162,16 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
         
         configureSearchController()
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.isTranslucent = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.isTranslucent = false
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
@@ -467,17 +479,6 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
             }
             
         }
-            
-//        else  {
-//            
-//            if selectedCountry.tintColor == UIColor(red: 204/255, green: 204/255, blue: 204/255, alpha: 1) {
-//                
-//                selectedCountry.tintColor = mainOrangeColor
-//                selectedYear = years[indexPath.row]
-//                
-//            }
-//            
-//        }
         
         else if whichView == "CountriesVisited" {
             
