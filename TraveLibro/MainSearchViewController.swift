@@ -21,6 +21,7 @@ class MainSearchViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         globalMainSearchViewController = self
         changeView(switchView: "slider")
+        loader.showOverlay(self.view)
         
         search = SearchFieldView(frame: CGRect(x: 10, y: 8, width: self.view.frame.width - 20 , height: 30))
         search.searchField.returnKeyType = .done
@@ -61,8 +62,14 @@ class MainSearchViewController: UIViewController, UITextFieldDelegate {
         if search.searchField.text! == "" {
             self.changeView(switchView: "slider")
         }else{
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+
             self.changeView(switchView: "table")
+            }
         }
+    }
+    func closeLoader() {
+        loader.hideOverlayView()
     }
     
     func searchTable(_ sender: UITapGestureRecognizer) {

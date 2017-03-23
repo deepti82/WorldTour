@@ -28,7 +28,6 @@ class SearchTableViewController: UIViewController, UITableViewDelegate, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
         globalSearchTableViewController = self
-        loader.showOverlay(self.view)
         print(newSearch)
 //        transparentCardWhite(selectStrip)
         transparentCardWhite(noTravellersStrip)
@@ -86,19 +85,22 @@ class SearchTableViewController: UIViewController, UITableViewDelegate, UITableV
     
     func refreshUI() {
         DispatchQueue.main.async {
-            
+    print("dispatchkjksjkhdf")
             self.searchTable.reloadData()
             
-        }}
+        }
+    }
     
     func searchPeople(search: String) {
         self.searchTextGlob = search
         loadStatus = false
         print(self.page)
         if search != "" {
-            loader.hideOverlayView()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+
             request.getPeopleSearch(currentUser["_id"].stringValue, search: search, pageNumber: self.page, completion:{(request) in
                 DispatchQueue.main.async(execute: {
+                    
 
                 if request["data"].count > 0 {
                     
@@ -130,7 +132,8 @@ class SearchTableViewController: UIViewController, UITableViewDelegate, UITableV
                     }
                 })
             })
-            
+        }
+        
         }
     }
   
@@ -139,7 +142,6 @@ class SearchTableViewController: UIViewController, UITableViewDelegate, UITableV
        
         loadStatus = false
         if search != "" {
-            loader.hideOverlayView()
             request.getHashtagSearch(search, pageNumber: page, completion:{(request) in
                 DispatchQueue.main.async(execute: {
 
@@ -158,7 +160,6 @@ class SearchTableViewController: UIViewController, UITableViewDelegate, UITableV
                     self.page = self.page + 1
                     self.loadStatus = true
                     self.refreshUI()
-                    loader.hideOverlayView()
                 }else{
                     
                     self.loadStatus = false
@@ -198,7 +199,6 @@ class SearchTableViewController: UIViewController, UITableViewDelegate, UITableV
     
     
     @IBAction func people(_ sender: Any) {
-        loader.showOverlay(self.view)
         sliderView.isHidden = false
         hashTagSlide.isHidden = true
         selectedStatus = "people"
@@ -210,7 +210,6 @@ class SearchTableViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     @IBAction func hashtags(_ sender: UIButton) {
-        loader.showOverlay(self.view)
         hashTagSlide.isHidden = false
         sliderView.isHidden = true
         selectedStatus = "hashtags"

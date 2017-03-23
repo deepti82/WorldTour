@@ -51,15 +51,14 @@ class Search: UIView {
         
         self.horizontalScrollJourney = HorizontalLayout(height: popularJourneyScroll.frame.height)
         self.popularJourneyScroll.addSubview(horizontalScrollJourney)
-        loader.showOverlay(view)
         
     }
     
     func setData() {
         request.getHomePage(completion: {(request) in
             DispatchQueue.main.async(execute: {
-                self.loader.hideOverlayView()
                 self.data = request["data"]
+                globalMainSearchViewController.closeLoader()
                 self.setItinerary(data: self.data["itinerary"])
                 self.setJourney(data: self.data["journey"])
                 self.setBloggers(data: self.data["user"])
@@ -68,7 +67,6 @@ class Search: UIView {
     }
     
     func setItinerary(data: JSON) {
-       self.loader.hideOverlayView()
         for (i, iti) in data {
             var xco = 4
             if i == "0" {

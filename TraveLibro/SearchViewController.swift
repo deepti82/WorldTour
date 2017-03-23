@@ -19,7 +19,7 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
         self.automaticallyAdjustsScrollViewInsets = false
         print("in search view controller")
         getDarkBackGround(self)
-        loader.showOverlay(self.view)
+//        loader.showOverlay(self.view)
         scrollView.isScrollEnabled = true
         
         scrollView.autoresizingMask = UIViewAutoresizing.flexibleWidth
@@ -49,6 +49,10 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
         globalNavigationController.pushViewController(searchTable, animated: true)
         return true
         
+    }
+    
+    func closeLoader() {
+        loader.hideOverlayView()
     }
     
     }

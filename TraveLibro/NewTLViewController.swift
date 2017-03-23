@@ -744,7 +744,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     func getOneJourney() {
         request.getJourneyById(fromOutSide, completion: {(response) in
             DispatchQueue.main.async(execute: {
-                
+                self.loader.hideOverlayView()
 
                 if response.error != nil {
                     print("error: \(response.error!.localizedDescription)")
