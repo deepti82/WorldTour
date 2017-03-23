@@ -141,7 +141,7 @@ class PopularController: UIViewController, UIScrollViewDelegate {
             request.getPopularJourney(userId: userr.getExistingUser(), pagenumber: pageNumber, completion: {(request) in
                 DispatchQueue.main.async(execute: {
                     self.loader.hideOverlayView()
-                    if request["data"] != "" {
+                    if !(request["data"].isEmpty) {
                         self.loadStatus = true
                         for post in request["data"].array! {
                             self.feeds.arrayObject?.append(post)
@@ -168,7 +168,7 @@ class PopularController: UIViewController, UIScrollViewDelegate {
             request.getPopularItinerary(userId: userr.getExistingUser(), pagenumber: pageNumber, completion: {(request) in
                 DispatchQueue.main.async(execute: {
                     self.loader.hideOverlayView()
-                    if request["data"] != "" {
+                    if !(request["data"].isEmpty) {
                         self.loadStatus = true
                         for post in request["data"].array! {
                             self.feeds.arrayObject?.append(post)
