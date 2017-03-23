@@ -85,6 +85,9 @@ class SignInPageViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    
+    //MARK: - Set Data
+    
     func setData() {
         print("\n LoggedInUser : \(loggedInUser)")
         

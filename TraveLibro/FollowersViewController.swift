@@ -456,18 +456,7 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
     
     func inviteButtonClicked(sender: UIButton) {
         
-        let textToShare = "Check out this application. This is awesome life :) "
-        
-        if let myWebsite = NSURL(string: "http://travelibro.com/") {
-            let objectsToShare = [textToShare, myWebsite] as [Any]
-            let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
-            
-            //Excluded Activities Code
-            activityVC.excludedActivityTypes = [UIActivityType.addToReadingList, UIActivityType.assignToContact, UIActivityType.copyToPasteboard, UIActivityType.saveToCameraRoll, UIActivityType.airDrop]
-            
-            activityVC.popoverPresentationController?.sourceView = sender            
-            self.present(activityVC, animated: true, completion: nil)
-        }
+        inviteToAppClicked(sender: sender, onView: self)
     }
 }
 

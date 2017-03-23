@@ -373,16 +373,15 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     
     func showEditActivity(_ postJson:JSON) {
         
-        var post = Post();
+        let post = Post();
         post.jsonToPost(postJson)
         
    
         var darkBlur: UIBlurEffect!
         var blurView: UIVisualEffectView!
         self.backView = UIView();
-        self.backView.frame = self.view.frame
+        self.backView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: self.view.frame.size.height)
         self.view.addSubview(self.backView)
-        self.backView.frame = self.view.frame
         darkBlur = UIBlurEffect(style: .dark)
         blurView = UIVisualEffectView(effect: darkBlur)
         blurView.frame.size.height = self.backView.frame.height
@@ -394,11 +393,11 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         let vibrancyEffectView = UIVisualEffectView(effect: vibrancyEffect)
         blurView.contentView.addSubview(vibrancyEffectView)
         
-        self.newScroll = UIScrollView(frame: CGRect(x: 0, y: 60, width: self.view.frame.width, height: self.view.frame.height - 60))
+        self.newScroll = UIScrollView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height ))
         self.backView.addSubview(self.newScroll)
         self.addView = AddActivityNew()
         
-        self.addView.frame = self.view.frame
+        self.addView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: self.view.frame.size.height)
         self.addView.editPost = post
         self.addView.newScroll = self.newScroll;
         
@@ -600,9 +599,9 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         var darkBlur: UIBlurEffect!
         var blurView: UIVisualEffectView!
         self.backView = UIView();
-        self.backView.frame = self.view.frame
+        self.backView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: self.view.frame.size.height)
         self.view.addSubview(self.backView)
-        self.backView.frame = self.view.frame
+        self.backView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: self.view.frame.size.height)
         darkBlur = UIBlurEffect(style: .dark)
         blurView = UIVisualEffectView(effect: darkBlur)
         blurView.frame.size.height = self.backView.frame.height
@@ -613,12 +612,12 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         let vibrancyEffect = UIVibrancyEffect(blurEffect: darkBlur)
         let vibrancyEffectView = UIVisualEffectView(effect: vibrancyEffect)
         blurView.contentView.addSubview(vibrancyEffectView)
-        self.newScroll = UIScrollView(frame: CGRect(x: 0, y: 60, width: self.view.frame.width, height: self.view.frame.height - 60))
+        self.newScroll = UIScrollView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height ))
         self.backView.addSubview(self.newScroll)
         self.addView = AddActivityNew()
         self.addView.buddyAdded(postJson["buddies"].arrayValue)
         
-        self.addView.frame = self.view.frame
+        self.addView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: self.view.frame.size.height)
         self.addView.editPost = post
         self.addView.newScroll = self.newScroll;
         

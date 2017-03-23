@@ -124,9 +124,8 @@ extension NewTLViewController {
         var darkBlur: UIBlurEffect!
         var blurView: UIVisualEffectView!
         self.backView = UIView();
-        self.backView.frame = self.view.frame
-        self.view.addSubview(self.backView)
-        self.backView.frame = self.view.frame
+        self.backView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: self.view.frame.size.height)
+        self.view.addSubview(self.backView)        
         darkBlur = UIBlurEffect(style: .dark)
         blurView = UIVisualEffectView(effect: darkBlur)
         blurView.frame.size.height = self.backView.frame.height
@@ -194,9 +193,8 @@ extension NewTLViewController {
         var darkBlur: UIBlurEffect!
         var blurView: UIVisualEffectView!
         self.backView = UIView();
-        self.backView.frame = self.view.frame
-        self.view.addSubview(self.backView)
-        self.backView.frame = self.view.frame
+        self.backView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: self.view.frame.size.height)
+        self.view.addSubview(self.backView)        
         darkBlur = UIBlurEffect(style: .dark)
         blurView = UIVisualEffectView(effect: darkBlur)
         blurView.frame.size.height = self.backView.frame.height

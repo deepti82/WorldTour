@@ -286,8 +286,8 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
             self.slideMenuController()?.changeMainViewController(self.exploreDestinationsController, close: true)
         case 2:
             self.slideMenuController()?.changeMainViewController(self.popBloggersController, close: true)        
-        case 3:            
-            self.shareButtonClicked(sender: cell)
+        case 3:
+            inviteToAppClicked(sender: cell, onView: self)
         case 4:
             self.rateUsButtonClicked()
         case 5:
@@ -331,23 +331,6 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
 //        cell.backgroundColor = mainGreenColor
 //        cell.menuLabel.textColor = mainBlueColor
         
-    }
-    
-    //MARK: - Invite
-    
-    func shareButtonClicked(sender: SideMenuTableViewCell) {
-        
-        let textToShare = "Check out this application. This is awesome life :) "
-        if let myWebsite = NSURL(string: "http://travelibro.com/") {
-            let objectsToShare = [textToShare, myWebsite] as [Any]
-            let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
-            
-            //Excluded Activities Code
-            activityVC.excludedActivityTypes = [UIActivityType.addToReadingList, UIActivityType.assignToContact, UIActivityType.copyToPasteboard, UIActivityType.saveToCameraRoll, UIActivityType.airDrop]
-            
-            activityVC.popoverPresentationController?.sourceView = sender
-            self.present(activityVC, animated: true, completion: nil)
-        }
     }
     
     //MARK: - Rate Us

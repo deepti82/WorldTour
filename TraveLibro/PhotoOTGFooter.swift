@@ -322,6 +322,7 @@ class PhotoOTGFooter: UIView {
         
         let EditDnt: UIAlertAction = UIAlertAction(title: "Change Date & Time", style: .default)
         { action -> Void in
+            globalNewTLViewController.hideHeaderAndFooter(true)
             globalNewTLViewController.changeDateAndTime(self)
         }
         actionSheetControllerIOS8.addAction(EditDnt)
