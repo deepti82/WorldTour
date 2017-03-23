@@ -20,12 +20,6 @@
             <rect key="frame" x="0.0" y="0.0" width="300" height="294"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Report A Problem" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LYS-ue-Nt3">
-                    <rect key="frame" x="8" y="8" width="284" height="19.5"/>
-                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
-                    <color key="textColor" red="0.3411764705882353" green="0.3411764705882353" blue="0.3411764705882353" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="jPQ-MW-ajG">
                     <rect key="frame" x="8" y="35.5" width="284" height="174"/>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -51,12 +45,9 @@
             <constraints>
                 <constraint firstItem="jPQ-MW-ajG" firstAttribute="leading" secondItem="ELf-Tp-iT3" secondAttribute="leading" id="11n-D3-7qe"/>
                 <constraint firstAttribute="trailing" secondItem="jPQ-MW-ajG" secondAttribute="trailing" constant="8" id="6Bb-0d-c4l"/>
+                <constraint firstItem="jPQ-MW-ajG" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="35.5" id="9fW-yW-7cN"/>
                 <constraint firstItem="jPQ-MW-ajG" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="Yrb-U2-3OY"/>
                 <constraint firstItem="ELf-Tp-iT3" firstAttribute="top" secondItem="jPQ-MW-ajG" secondAttribute="bottom" constant="15" id="cK5-Vb-n1B"/>
-                <constraint firstItem="jPQ-MW-ajG" firstAttribute="top" secondItem="LYS-ue-Nt3" secondAttribute="bottom" constant="8" id="k41-d7-G9H"/>
-                <constraint firstAttribute="trailing" secondItem="LYS-ue-Nt3" secondAttribute="trailing" constant="8" id="onM-kY-LiG"/>
-                <constraint firstItem="LYS-ue-Nt3" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="vJo-qa-4OK"/>
-                <constraint firstItem="LYS-ue-Nt3" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="vSn-yO-Oti"/>
                 <constraint firstItem="jPQ-MW-ajG" firstAttribute="trailing" secondItem="ELf-Tp-iT3" secondAttribute="trailing" id="xnf-tI-uGR"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
