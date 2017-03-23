@@ -9,6 +9,8 @@
 import UIKit
 import Toaster
 
+
+
 class QuickItineraryPreviewViewController: UIViewController {
     
     @IBOutlet weak var previewScroll: UIScrollView!
@@ -252,7 +254,7 @@ class QuickItineraryPreviewViewController: UIViewController {
             //        })
             
             let qi = QuickItinerary()
-            qi.save(quickItinery, imageArr: globalPostImage, statusVal: false)
+            qi.save(quickItinery, imageArr: globalPostImage, statusVal: false,oldId:editValue)
             
             self.goToActivity()
         }
@@ -262,7 +264,7 @@ class QuickItineraryPreviewViewController: UIViewController {
         
         let publishActionButton: UIAlertAction = UIAlertAction(title: "Publish", style: .destructive) { action -> Void in
             let qi = QuickItinerary()
-            qi.save(quickItinery, imageArr: globalPostImage, statusVal: true)
+            qi.save(quickItinery, imageArr: globalPostImage, statusVal: true,oldId:editValue)
             self.goToActivity()
         }
         

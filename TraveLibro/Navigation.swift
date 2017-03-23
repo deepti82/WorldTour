@@ -1295,10 +1295,17 @@ class Navigation {
         params["photos"] = JSON(photos)
         params["itineraryType"] = itineraryType
         params["countryVisited"] = countryVisited
-        
+        var url = URL(string: adminUrl + "itinerary/saveQuickItinerary")!
+        if(editId != "editId" && editId != "" ) {
+            params["_id"] = JSON(editId);
+            url = URL(string: adminUrl + "itinerary/editQuickItineraryApp")!
+        }
+
+        print(editId);
         let jsonData = try! params.rawData()
         // create post request
-        let url = URL(string: adminUrl + "itinerary/saveQuickItinerary")!
+       
+        
         let request = NSMutableURLRequest(url: url)
         request.httpMethod = "POST"
         

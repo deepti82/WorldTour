@@ -26,6 +26,8 @@ public class QuickItinerary {
             t.column(id, primaryKey: true)
             t.column(quickJson)
             t.column(status)
+            t.column(editId)
+
         })
     }
     
@@ -40,6 +42,7 @@ public class QuickItinerary {
             let actualId = Int(postId) + 30000
             for image in imageArr {
                 image.postId = Int(actualId)
+                
                 image.save()
             }
         } catch _ {
@@ -56,8 +59,10 @@ public class QuickItinerary {
         do {
             let postId = try db.run(photoinsert)
             let actualId = Int(postId) + 30000
+            print(imageArr);
             for image in imageArr {
                 image.postId = Int(actualId)
+                
                 image.save()
             }
         } catch _ {
@@ -136,7 +141,7 @@ public class QuickItinerary {
                     photosJson.append(img.parseJson())
                 }
                 request.postQuickitenary(title: quickItinery["title"].stringValue, year: quickItinery["year"].int!, month: quickItinery["month"].stringValue, duration:quickItinery["duration"].int!, description:quickItinery["description"].stringValue, itineraryType:quickItinery["itineraryType"], countryVisited:quickItinery["countryVisited"],photos:photosJson,status:status_temp,editId:editid_temp!,  completion: {(response) in
-                    
+                    print(response)
                     if response.error != nil {
                         print("response: \(response.error?.localizedDescription)")
                     }
@@ -170,7 +175,6 @@ public class QuickItinerary {
         catch {
             print("There is an error");
         }
-        
     }
     func goToActivity() {
         

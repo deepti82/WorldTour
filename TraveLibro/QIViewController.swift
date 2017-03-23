@@ -10,6 +10,8 @@ import UIKit
 import Toaster
 import iCarousel
 
+var editValue = "";
+
 class QIViewController: UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate  {
     var quick: QuickIteneraryOne!
     var selectedView = false
@@ -50,6 +52,7 @@ class QIViewController: UIPageViewController, UIPageViewControllerDataSource, UI
             inx = 0
         }        
         if(editID != nil) {
+            editValue = editID;
             request.getItinerary(editID, completion: { (json) in
                 DispatchQueue.main.async(execute: {
                     if(json["value"].boolValue) {
@@ -71,13 +74,16 @@ class QIViewController: UIPageViewController, UIPageViewControllerDataSource, UI
                         print(self.editJson)
                         for (_,photo) in self.editJson["photos"] {
                             let po = PostImage();
-                            po.urlToData(photo["name"].stringValue)
+                            po.urlToData(photo["name"].stringValue, serverID: photo["_id"].stringValue)
                             quickFive.imageArr.append(po)
                             globalPostImage.append(po)
                         }
                     }
                 })
             })
+        }
+        else {
+            editValue = "";
         }
         
     }

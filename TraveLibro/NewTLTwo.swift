@@ -83,6 +83,7 @@ extension NewTLViewController {
         blurView.layer.zPosition = -1
         blurView.isUserInteractionEnabled = false
         self.backView.addSubview(blurView)
+        
         self.newScroll = UIScrollView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
         
         self.backView.addSubview(self.newScroll)
@@ -120,22 +121,24 @@ extension NewTLViewController {
     
     func showEditAddActivity(_ post:Post) {
         hideHeaderAndFooter(false)
-//        var darkBlur: UIBlurEffect!
-//        var blurView: UIVisualEffectView!
-//        self.backView = UIView();
-//        self.backView.frame = self.view.frame
-//        self.view.addSubview(self.backView)
-//        self.backView.frame = self.view.frame
-//        darkBlur = UIBlurEffect(style: .dark)
-//        blurView = UIVisualEffectView(effect: darkBlur)
-//        blurView.frame.size.height = self.backView.frame.height
-//        blurView.frame.size.width = self.backView.frame.width
-//        blurView.layer.zPosition = -1
-//        blurView.isUserInteractionEnabled = false
-//        self.backView.addSubview(blurView)
-//        let vibrancyEffect = UIVibrancyEffect(blurEffect: darkBlur)
-//        let vibrancyEffectView = UIVisualEffectView(effect: vibrancyEffect)
-//        blurView.contentView.addSubview(vibrancyEffectView)
+        var darkBlur: UIBlurEffect!
+        var blurView: UIVisualEffectView!
+        self.backView = UIView();
+        self.backView.frame = self.view.frame
+        self.view.addSubview(self.backView)
+        self.backView.frame = self.view.frame
+        darkBlur = UIBlurEffect(style: .dark)
+        blurView = UIVisualEffectView(effect: darkBlur)
+        blurView.frame.size.height = self.backView.frame.height
+        blurView.frame.size.width = self.backView.frame.width
+        blurView.layer.zPosition = -1
+        blurView.isUserInteractionEnabled = false
+        self.backView.addSubview(blurView)
+        let vibrancyEffect = UIVibrancyEffect(blurEffect: darkBlur)
+        let vibrancyEffectView = UIVisualEffectView(effect: vibrancyEffect)
+        blurView.contentView.addSubview(vibrancyEffectView)
+        
+        
         self.newScroll = UIScrollView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
         self.backView.addSubview(self.newScroll)
         self.addView = AddActivityNew()
@@ -188,23 +191,23 @@ extension NewTLViewController {
     
     func showEditActivity(_ post:Post) {
         hideHeaderAndFooter(false)
-//        var darkBlur: UIBlurEffect!
-//        var blurView: UIVisualEffectView!
-//        self.backView = UIView();
-//        self.backView.frame = self.view.frame
-//        self.view.addSubview(self.backView)
-//        self.backView.frame = self.view.frame
-//        darkBlur = UIBlurEffect(style: .dark)
-//        blurView = UIVisualEffectView(effect: darkBlur)
-//        blurView.frame.size.height = self.backView.frame.height
-//        blurView.frame.size.width = self.backView.frame.width
-//        blurView.layer.zPosition = -1
-//        blurView.isUserInteractionEnabled = false
-//        self.backView.addSubview(blurView)
-//        let vibrancyEffect = UIVibrancyEffect(blurEffect: darkBlur)
-//        let vibrancyEffectView = UIVisualEffectView(effect: vibrancyEffect)
-//        blurView.contentView.addSubview(vibrancyEffectView)
-
+        var darkBlur: UIBlurEffect!
+        var blurView: UIVisualEffectView!
+        self.backView = UIView();
+        self.backView.frame = self.view.frame
+        self.view.addSubview(self.backView)
+        self.backView.frame = self.view.frame
+        darkBlur = UIBlurEffect(style: .dark)
+        blurView = UIVisualEffectView(effect: darkBlur)
+        blurView.frame.size.height = self.backView.frame.height
+        blurView.frame.size.width = self.backView.frame.width
+        blurView.layer.zPosition = -1
+        blurView.isUserInteractionEnabled = false
+        self.backView.addSubview(blurView)
+        let vibrancyEffect = UIVibrancyEffect(blurEffect: darkBlur)
+        let vibrancyEffectView = UIVisualEffectView(effect: vibrancyEffect)
+        blurView.contentView.addSubview(vibrancyEffectView)
+        
         self.newScroll = UIScrollView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
         self.backView.addSubview(self.newScroll)
         self.addView = AddActivityNew()

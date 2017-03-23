@@ -24,6 +24,7 @@ public class PostImage {
     let captions = Expression<String>("caption")
     let localUrl = Expression<String>("localUrl")
     let url = Expression<String>("url")
+    let editIdTable = Expression<String>("editIdTable")
     
     init() {
         do {
@@ -33,6 +34,7 @@ public class PostImage {
                 t.column(captions)
                 t.column(localUrl)
                 t.column(url)
+                t.column(editIdTable)
             })
         }
         catch {
@@ -49,6 +51,18 @@ public class PostImage {
         })
     }
     
+    func urlToData(_ str:String,serverID:String) {
+        self.serverUrl = adminUrl + "upload/readFile?file=" + str
+        self.imageUrl = URL(string: self.serverUrl)
+        self.editId = serverID;
+        cache.fetch(URL: URL(string:self.serverUrl + "&width=200")!).onSuccess({ (data) in
+            self.image = UIImage(data: data as Data)
+        })
+    }
+
+    
+    
+    
     func getDocumentsDirectory() -> URL {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         let documentsDirectory = paths[0]
@@ -58,13 +72,16 @@ public class PostImage {
     func save() {
         var filename:URL!
         var filenameOnly = "";
-        self.image = self.image.resizeWith(width: 800.0)
+        if(self.serverUrl != "") {
+            self.image = self.image.resizeWith(width: 800.0)
+        }
         if let data = UIImageJPEGRepresentation(self.image, 0.5) {
             filenameOnly = String(Date().ticks) + ".jpg"
             filename = getDocumentsDirectory().appendingPathComponent( filenameOnly )
             try? data.write(to: filename)
         }
-        let insert = photos.insert(post <- Int64(self.postId) , captions <- self.caption ,localUrl <- filenameOnly,url <- "")
+        
+        let insert = photos.insert(post <- Int64(self.postId) , captions <- self.caption ,localUrl <- filenameOnly,url <- serverUrl,editIdTable <- self.editId)
         do {
             try db.run(insert)
         }
@@ -81,13 +98,14 @@ public class PostImage {
             let localUrl = Expression<String>("localUrl")
             let url = Expression<String>("url")
             
-            let query = photos.select(id,post,captions,localUrl,url)
+            let query = photos.select(id,post,captions,localUrl,url,editIdTable)
                 .filter(post == postNo)
             for photo in try db.prepare(query) {
                 let p = PostImage();
                 p.caption = String(photo[captions])
                 p.serverUrl = String(photo[url])
                 p.imageUrl = getDocumentsDirectory().appendingPathComponent( photo[localUrl] )
+                p.editId = String(photo[editIdTable])
                 let imageData = NSData(contentsOf: p.imageUrl)
                 
                 p.image = UIImage(data: imageData as! Data)!
