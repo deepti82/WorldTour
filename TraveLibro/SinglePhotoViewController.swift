@@ -66,12 +66,10 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate, iCarouselDeleg
         
         do {
             audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: like))
-            
         }
         catch{
             print(error)
         }
-        
         audioPlayer.prepareToPlay()
 
         
@@ -141,6 +139,10 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate, iCarouselDeleg
         if whichView == "detail_itinerary" {
             getSinglePhoto(photos[index]["_id"].stringValue)
         }
+        else if whichView == "quick_local_itinerary" {            
+            isSpecialHandling = true
+            setCarouselDataDictForQuickLocalSpecialHandling()
+        }
         else {
             getPost(postId!)
         }
@@ -163,6 +165,14 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate, iCarouselDeleg
         carouselView.type = iCarouselType.linear      //iCarouselTypeCylinder
         carouselView.delegate = self
         carouselView.dataSource = self
+        
+        if whichView == "quick_local_itinerary" && isSpecialHandling {            
+            loader.hideOverlayView()
+            self.title = "Photos (\(self.photos.count))"
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
+                self.getPost("")
+            })
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -445,6 +455,14 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate, iCarouselDeleg
         }
     }
     
+    func setCarouselDataDictForQuickLocalSpecialHandling() {
+        photos = []
+        
+        for img in globalPostImage {
+            photos.append(JSON(img.editId))
+        }
+    }
+    
     func getSingleVideo(_ photoId: String) {
         if photoId == "" {
             self.fromVideoFunction(data: allDataCollection[self.currentIndex])
@@ -479,13 +497,6 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate, iCarouselDeleg
         
         print("in print print....... \(postId) index \(self.currentIndex)")
         if postId == "" {
-            
-//            if allDataCollection[self.currentIndex]["type"].stringValue == "video" {
-//                self.getSingleVideo("")
-//            } else {
-//                self.getSinglePhoto("")
-//            }
-            
             if carouselView.isHidden {
                 carouselView.isHidden = false
             }
@@ -623,8 +634,6 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate, iCarouselDeleg
             shouldCreateView = true
         }
         
-        let currentJson = photos[index]
-        
         if shouldCreateView {
             currentImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: carousel.frame.size.width*0.80, height: carousel.frame.size.height*0.70))
             currentImageView.contentMode = .scaleAspectFill
@@ -635,12 +644,18 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate, iCarouselDeleg
             currentImageView.layer.borderWidth = 0.5
             currentImageView.layer.cornerRadius = 5.0
         }
+        
         currentImageView.image = UIImage(named: "logo-default")
         
-        if currentJson != nil {            
-            currentImageView.hnk_setImageFromURL(getImageURL((currentJson["name"].stringValue), width: Int(carousel.frame.size.width*0.8)))
+        if whichView == "quick_local_itinerary" && isSpecialHandling {
+            currentImageView.image = globalPostImage[index].image
         }
-        
+        else {
+            var currentJson = photos[index]        
+            if currentJson != nil {
+                currentImageView.hnk_setImageFromURL(getImageURL((currentJson["name"].stringValue), width: Int(carousel.frame.size.width*0.8)))            
+            }
+        }
         return currentImageView
     }   
     
@@ -648,21 +663,25 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate, iCarouselDeleg
         
         if carousel.currentItemIndex != -1 {
             
-            let key = photos[carousel.currentItemIndex]["_id"].string!
-            let currentJson = carouselDict.value(forKey: key) as? JSON
-            singlePhotoJSON = currentJson
-            
-            print("\n CurrentJSON : \(currentJson) key :\(key)  current index: \(carousel.currentItemIndex)")
-            
-            if currentJson != nil {
-                self.fromPhotoFunction(data: currentJson! )
-                bgImage.hnk_setImageFromURL(getImageURL((currentJson?["name"].stringValue)!, width: Int(carousel.frame.size.width*0.8)))
+            if whichView == "quick_local_itinerary" && isSpecialHandling {
+                bgImage.image = globalPostImage[carousel.currentItemIndex].image
             }
-            else{
-                print("\n current JSON is nil")
-                print("\n Carousal : \(carouselDict)")
+            else {
+                let key = photos[carousel.currentItemIndex]["_id"].string!
+                let currentJson = carouselDict.value(forKey: key) as? JSON
+                singlePhotoJSON = currentJson
+                
+                print("\n CurrentJSON : \(currentJson) key :\(key)  current index: \(carousel.currentItemIndex)")
+                
+                if currentJson != nil {
+                    self.fromPhotoFunction(data: currentJson! )
+                    bgImage.hnk_setImageFromURL(getImageURL((currentJson?["name"].stringValue)!, width: Int(carousel.frame.size.width*0.8)))
+                }
+                else{
+                    print("\n current JSON is nil")
+                    print("\n Carousal : \(carouselDict)")
+                }
             }
-            
 //            currentIndex = carousel.currentItemIndex
             self.loadMore()
         }

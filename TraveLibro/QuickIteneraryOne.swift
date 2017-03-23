@@ -213,16 +213,6 @@ class QuickIteneraryOne: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         
     }
     
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange,
-                   replacementString string: String) -> Bool
-    {
-        if range.length + range.location > (durationTextField.text?.characters.count)! {
-            return false
-        }
-        let newLength = (durationTextField.text?.characters.count)! + string.characters.count - range.length
-        return newLength <= 3
-    }
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         durationTextField.resignFirstResponder()
         tripTitle.resignFirstResponder()

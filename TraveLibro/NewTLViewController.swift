@@ -2031,13 +2031,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     
     func keyboardWillShow(_ notification: Notification) {
         if let keyboardSize = ((notification as NSNotification).userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            print("\n **********************\n view yPos : \(self.view.frame.origin.y) \n istranslucent : \(self.navigationController?.navigationBar.isTranslucent) \n **********************\n")
             if self.view.frame.origin.y == 64 {
                 self.view.frame.origin.y -= keyboardSize.height
-                //                keyboardHidden = true
-                //            }
-                print("keyboardchange karde")
-                print(keyboardSize.height)
             }
 //            let keyboardYpos = self.view.frame.height - keyboardSize.height
 //            

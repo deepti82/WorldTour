@@ -44,6 +44,10 @@ extension UIViewController {
         
         customiseNavigation()
         
+        if let ryt = right as? UIButton {
+            ryt.contentHorizontalAlignment = .right
+        }
+        
         if left != nil {
             let leftBarButton = UIBarButtonItem()
             leftBarButton.customView = left

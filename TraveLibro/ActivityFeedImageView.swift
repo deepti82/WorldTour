@@ -113,6 +113,7 @@ class ActivityFeedImageView: UIView {
         
         nameJourneyActivityFeed.text = feed["name"].stringValue
         CameraCount.text = feed["photoCount"].stringValue
+        CameraCount.sizeToFit()
         videoCount.text = feed["videoCount"].stringValue
         checkInCount.text = feed["checkInCount"].stringValue
         

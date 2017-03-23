@@ -31,13 +31,11 @@ class EachItineraryPhotosViewController: UIViewController, UICollectionViewDataS
         
         photoJSON = (selectedItinerary["photos"].arrayValue)
         
-//        if selectedQuickI != "" {
-            itineraryNameLabel.text = "Photo(\(self.photoJSON.count))"
-            
-//        }else{
-//            itineraryNameLabel.text = "Photo(\(globalPostImage.count))"
-//            
-//        }      
+        if selectedItinerary != "" {
+            itineraryNameLabel.text = "Photo(\(self.photoJSON.count))"            
+        }else{
+            itineraryNameLabel.text = "Photo(\(globalPostImage.count))"
+        }      
         
 //        if (photoJSON.count == 0) {
 //            Toast(text: "No photos in \(selectedItinerary["name"].stringValue) itinerary").show()
@@ -62,13 +60,11 @@ class EachItineraryPhotosViewController: UIViewController, UICollectionViewDataS
     //MARK: - CollectionView Delegates
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        if selectedQuickI != "" {
+        if selectedItinerary != "" {
             return photoJSON.count
-//        }else{
-//            return globalPostImage.count
-//
-//        }
-        
+        }else{
+            return globalPostImage.count
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView,
@@ -97,13 +93,11 @@ class EachItineraryPhotosViewController: UIViewController, UICollectionViewDataS
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! EachItineraryMomentCollectionViewCell        
         
-//        if selectedQuickI != "" {
+        if selectedItinerary != "" {
             cell.photo.hnk_setImageFromURL(getImageURL(photoJSON[indexPath.row]["name"].stringValue, width: 200))
-            
-//        }else{
-//            
-//            cell.photo.image = globalPostImage[indexPath.row].image
-//        }
+        }else{
+            cell.photo.image = globalPostImage[indexPath.row].image
+        }
         
         return cell
         
@@ -112,12 +106,19 @@ class EachItineraryPhotosViewController: UIViewController, UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let singlePhotoController = self.storyboard?.instantiateViewController(withIdentifier: "singlePhoto") as! SinglePhotoViewController
-        singlePhotoController.index = indexPath.row
-        singlePhotoController.whichView = "detail_itinerary"
-        singlePhotoController.photos = self.photoJSON
-        singlePhotoController.postId = "unknown"
-        singlePhotoController.shouldShowBottomView = selectedItinerary["status"].boolValue
+        singlePhotoController.index = indexPath.row        
+       
+        if selectedItinerary != "" {
+            singlePhotoController.photos = self.photoJSON
+            singlePhotoController.whichView = "detail_itinerary"
+            singlePhotoController.shouldShowBottomView = selectedItinerary["status"].boolValue
+        }
+        else {            
+            singlePhotoController.whichView = "quick_local_itinerary"
+            singlePhotoController.shouldShowBottomView = false
+        }
         
+        singlePhotoController.postId = "unknown"        
         self.dismiss(animated: true) {
             print("globalNavigationController: \(globalNavigationController)")
             globalNavigationController.pushViewController(singlePhotoController, animated: true)

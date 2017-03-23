@@ -260,6 +260,16 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         return labels.count
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        var a = (screenHeight - 207) / 7
+        if a > 76 {
+            a = 76
+        }
+        return a
+
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let cell = tableView.cellForRow(at: indexPath) as! SideMenuTableViewCell

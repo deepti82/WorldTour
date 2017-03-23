@@ -135,11 +135,12 @@ class QuickItineraryPreviewViewController: UIViewController {
     }
     
     func showQuickPhotos() {
+        let qiPics = quickItinery["photos"].array
+        
         let modalContent = self.storyboard?.instantiateViewController(withIdentifier: "itineraryPhotos") as! EachItineraryPhotosViewController
-        modalContent.selectedItinerary = quickItinery
+        modalContent.selectedItinerary = (qiPics != nil) ? quickItinery : ""
         modalContent.modalPresentationStyle = .fullScreen
         _ = modalContent.popoverPresentationController
-        
         self.present(modalContent, animated: true, completion: nil)
     }
     
