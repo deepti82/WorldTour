@@ -482,6 +482,8 @@ class ActivityFeedFooter: UIView {
         rating.center = backgroundReview.center
         rating.layer.cornerRadius = 5
         rating.clipsToBounds = true
+        rating.addGestureRecognizer(UITapGestureRecognizer(target: self, action: nil))
+
         rating.navController = globalNavigationController
         backgroundReview.addSubview(rating)
 

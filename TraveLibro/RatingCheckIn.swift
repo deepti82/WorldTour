@@ -85,6 +85,8 @@ class RatingCheckIn: UIView {
             }
             
             rating.center = backgroundReview.center
+            rating.addGestureRecognizer(UITapGestureRecognizer(target: self, action: nil))
+
             rating.layer.cornerRadius = 5
             rating.clipsToBounds = true
             rating.navController = globalNavigationController

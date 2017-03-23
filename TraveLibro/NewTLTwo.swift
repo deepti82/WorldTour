@@ -363,6 +363,8 @@ extension NewTLViewController {
             let rating = AddRating(frame: CGRect(x: 0, y: 0, width: width - 40, height: 335))
             rating.center = backgroundReview.center
             rating.layer.cornerRadius = 5
+            rating.addGestureRecognizer(UITapGestureRecognizer(target: self, action: nil))
+
             rating.postReview.setTitle(sender.titleLabel!.text!, for: .application)
             rating.clipsToBounds = true
             rating.navController = self.navigationController!

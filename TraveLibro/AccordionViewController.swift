@@ -456,6 +456,8 @@ class allReviewsMLTableViewCell: UITableViewCell {
         rating.center = backgroundReview.center
         rating.layer.cornerRadius = 5
         rating.clipsToBounds = true
+        rating.addGestureRecognizer(UITapGestureRecognizer(target: self, action: nil))
+
         rating.navController = globalNavigationController
         backgroundReview.addSubview(rating)
     }
@@ -469,6 +471,10 @@ class allReviewsMLTableViewCell: UITableViewCell {
         ratingStack.addGestureRecognizer(tapout)
         categoryImage.image = UIImage(named: getCategory(type: feed["checkIn"]["category"].stringValue))
         categoryImage.tintColor = mainBlueColor
+        
+        calendarDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd-MM-yyyy", date: feed["UTCModified"].stringValue, isDate: true)
+        clockTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["UTCModified"].stringValue, isDate: false)
+
         
         if postTop["type"].stringValue == "travel-life" {
             ratingButton.setTitleColor(mainOrangeColor, for: .normal)
