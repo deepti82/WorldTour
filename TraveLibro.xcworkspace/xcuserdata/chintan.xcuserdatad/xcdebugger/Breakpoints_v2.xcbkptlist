@@ -25,54 +25,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "TraveLibro/PhotoOTGFooter.swift"
-            timestampString = "510175659.781203"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "275"
-            endingLineNumber = "275"
-            landmarkName = "sendLikes(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "TraveLibro/PhotoOTGFooter.swift"
-            timestampString = "510175659.781203"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "238"
-            endingLineNumber = "238"
-            landmarkName = "sendLikes(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "TraveLibro/PhotoOTGFooter.swift"
-            timestampString = "510175675.904764"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "260"
-            endingLineNumber = "260"
-            landmarkName = "sendLikes(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "TraveLibro/PostImage.swift"
             timestampString = "511967691.153391"
             startingColumnNumber = "9223372036854775807"
@@ -90,12 +42,12 @@
                   moduleName = "TraveLibro"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/chintan/Documents/iOSApp/WorldTour/TraveLibro/PostImage.swift"
-                  timestampString = "511965407.089623"
+                  timestampString = "511984715.216408"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "126"
-                  endingLineNumber = "126"
-                  offsetFromSymbolStart = "6587">
+                  startingLineNumber = "131"
+                  endingLineNumber = "131"
+                  offsetFromSymbolStart = "3976">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -105,12 +57,12 @@
                   moduleName = "TraveLibro"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/chintan/Documents/iOSApp/WorldTour/TraveLibro/PostImage.swift"
-                  timestampString = "511965407.093006"
+                  timestampString = "511984715.218603"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "119"
-                  endingLineNumber = "119"
-                  offsetFromSymbolStart = "141">
+                  startingLineNumber = "132"
+                  endingLineNumber = "132"
+                  offsetFromSymbolStart = "152">
                </Location>
             </Locations>
          </BreakpointContent>

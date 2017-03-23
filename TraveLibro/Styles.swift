@@ -702,6 +702,22 @@ func inviteToAppClicked(sender: UIView, onView:UIViewController) {
 
 
 
+func sharingUrl(url: String, onView:UIViewController) {
+    let content = url
+    
+    let objectsToShare = [content]
+    let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+    
+    //Excluded Activities Code
+    activityVC.excludedActivityTypes = [UIActivityType.addToReadingList, UIActivityType.assignToContact, UIActivityType.copyToPasteboard, UIActivityType.saveToCameraRoll, UIActivityType.airDrop]
+    
+//    activityVC.popoverPresentationController?.sourceView = sender
+    onView.present(activityVC, animated: true, completion: nil)
+}
+
+
+
+
 //LoadingOverlay.shared.showOverlay(self.view)
 ////To to long tasks
 //LoadingOverlay.shared.hideOverlayView()

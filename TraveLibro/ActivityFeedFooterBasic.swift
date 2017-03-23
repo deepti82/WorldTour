@@ -566,4 +566,10 @@ class ActivityFeedFooterBasic: UIView {
         }
         globalNavigationController.topViewController?.present(actionSheetControllerIOS8, animated: true, completion: nil)
     }
+    
+    
+    @IBAction func sharingTap(_ sender: Any) {
+        sharingUrl(url:  postTop["sharingUrl"].stringValue, onView: globalNavigationController.topViewController!)
+    }
+    
 }

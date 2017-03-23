@@ -489,6 +489,9 @@ class ActivityFeedFooter: UIView {
 
     }
     
+    @IBAction func sharingTap(_ sender: Any) {
+        sharingUrl(url:  postTop["sharingUrl"].stringValue, onView: globalNavigationController.topViewController!)
+    }
     
     func reviewTapOut(_ sender: UITapGestureRecognizer) {
         print("in footer tap out")
