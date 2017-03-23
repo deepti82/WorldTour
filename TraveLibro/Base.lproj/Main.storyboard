@@ -10324,7 +10324,7 @@
                                                             </constraints>
                                                         </imageView>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="yqW-Kl-ESe">
-                                                            <rect key="frame" x="0.0" y="0.0" width="124" height="149"/>
+                                                            <rect key="frame" x="-1" y="0.0" width="124" height="149"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="124" id="exq-MQ-2uY"/>
                                                             </constraints>
@@ -10333,7 +10333,7 @@
                                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="trailing" secondItem="DmF-N6-eIe" secondAttribute="trailing" id="1AK-bM-pkq"/>
-                                                        <constraint firstItem="yqW-Kl-ESe" firstAttribute="leading" secondItem="DmF-N6-eIe" secondAttribute="leading" id="1Kp-Js-YVt"/>
+                                                        <constraint firstItem="yqW-Kl-ESe" firstAttribute="leading" secondItem="DmF-N6-eIe" secondAttribute="leading" constant="-1" id="1Kp-Js-YVt"/>
                                                         <constraint firstItem="DmF-N6-eIe" firstAttribute="top" secondItem="UpF-CL-qV8" secondAttribute="top" id="9Ll-B2-oJd"/>
                                                         <constraint firstItem="DmF-N6-eIe" firstAttribute="centerY" secondItem="UpF-CL-qV8" secondAttribute="centerY" constant="-18" id="PEf-ji-zOq"/>
                                                         <constraint firstItem="DmF-N6-eIe" firstAttribute="leading" secondItem="UpF-CL-qV8" secondAttribute="leading" id="RjS-Kd-4hz"/>
@@ -10342,7 +10342,7 @@
                                                         <constraint firstItem="dzd-el-j5h" firstAttribute="top" secondItem="yqW-Kl-ESe" secondAttribute="bottom" constant="-0.5" id="Yf2-fI-PXk"/>
                                                         <constraint firstItem="dzd-el-j5h" firstAttribute="leading" secondItem="UpF-CL-qV8" secondAttribute="leading" constant="8" id="cL2-56-XfS"/>
                                                         <constraint firstItem="dzd-el-j5h" firstAttribute="top" secondItem="DmF-N6-eIe" secondAttribute="bottom" id="erO-mO-CHw"/>
-                                                        <constraint firstItem="yqW-Kl-ESe" firstAttribute="trailing" secondItem="DmF-N6-eIe" secondAttribute="trailing" id="l4f-ic-z7C"/>
+                                                        <constraint firstItem="yqW-Kl-ESe" firstAttribute="trailing" secondItem="DmF-N6-eIe" secondAttribute="trailing" constant="-1" id="l4f-ic-z7C"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>

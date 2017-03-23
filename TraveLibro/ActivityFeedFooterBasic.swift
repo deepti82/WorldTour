@@ -63,6 +63,7 @@ class ActivityFeedFooterBasic: UIView {
         //        transparentCardWhite(footerColorView)
         
         self.followBtn.isHidden = true
+        followBtn.titleLabel?.font = UIFont(name: "Avebir-Medium", size: 16)
         let tapout = UITapGestureRecognizer(target: self, action: #selector(ActivityFeedFooterBasic.checkMyRating(_:)))
         ratingStack.addGestureRecognizer(tapout)
         likeButton.tintColor = mainBlueColor
