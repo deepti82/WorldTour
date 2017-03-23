@@ -90,6 +90,7 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate, iCarouselDeleg
         setBackgroundBlur()
         
         bottomView.isHidden = true
+        audioButton.isHidden = true
         
         self.view.backgroundColor = UIColor.black
         bottomView.backgroundColor = UIColor.black.withAlphaComponent(0.2)
@@ -128,6 +129,7 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate, iCarouselDeleg
         carouselView.bounces = false
         self.view.addSubview(carouselView)
         self.view.bringSubview(toFront: bottomView)
+        self.view.bringSubview(toFront: audioButton)
         
         imageLeftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(self.imageSwiped(_:)))
         imageRightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(self.imageSwiped(_:)))
@@ -195,58 +197,61 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate, iCarouselDeleg
     }
     
     @IBAction func sendLike(_ sender: UIButton) {
-       audioPlayer.play()
-       likeButton.animation = "pop"
-       likeButton.animateTo()
-            
-            var val = ""
+        audioPlayer.play()
+        likeButton.animation = "pop"
+        likeButton.animateTo()
+        
+        var val = ""
+        if self.type == "Video" {
+            val = videos[index]["_id"].string!
+        }
+        else {
             if whichView == "detail_itinerary" {
                 val = photos[carouselView.currentItemIndex]["_id"].string!
             }
             else {
                 val = photos[carouselView.currentItemIndex]["_id"].string!
             }
-            if self.type == "Video" {
-                val = videos[carouselView.currentItemIndex]["_id"].string!
-            }
+        }
+        
+        
+        request.globalLike(val, userId: currentUser["_id"].string!, unlike: hasLiked!, type: self.type, completion: {(response) in
             
-            request.globalLike(val, userId: currentUser["_id"].string!, unlike: hasLiked!, type: self.type, completion: {(response) in
-                
-                DispatchQueue.main.async(execute: {
-                    self.loader.hideOverlayView()
-                    if response.error != nil {
+            DispatchQueue.main.async(execute: {
+                self.loader.hideOverlayView()
+                if response.error != nil {
+                    
+                    print("error: \(response.error!.localizedDescription)")
+                    
+                }
+                else if response["value"].bool! {
+                    
+                    if !self.hasLiked! {
                         
-                        print("error: \(response.error!.localizedDescription)")
-                        
-                    }
-                    else if response["value"].bool! {
-                        
-                        if !self.hasLiked! {
-                            
-                            sender.setImage(UIImage(named: "favorite-heart-button")?.withRenderingMode(.alwaysTemplate), for: UIControlState())
-                            self.likeCount = Int(self.likeCount) + 1
-                            self.likeText.text = "\(self.likeCount) Likes"
-                            self.hasLiked = !self.hasLiked
-                        }
-                        else {
-                            
-                            sender.setImage(UIImage(named: "likeButton"), for: UIControlState())
-                            self.likeCount = Int(self.likeCount) - 1
-                            self.likeText.text = "\(self.likeCount) Likes"
-                            self.hasLiked = !self.hasLiked
-                        }
-                        
-//                        var currentDict  = self.carouselDict.value(forKey: self.photos[self.carouselView.currentItemIndex]["_id"].string!) as! JSON                        
-//                        currentDict["likeCount"] = JSON(self.likeCount)
-//                        self.carouselDict.setObject(currentDict, forKey: (self.photos[self.carouselView.currentItemIndex]["_id"].stringValue) as NSCopying)
+                        sender.setImage(UIImage(named: "favorite-heart-button")?.withRenderingMode(.alwaysTemplate), for: UIControlState())
+                        self.likeCount = Int(self.likeCount) + 1
+                        self.likeText.text = "\(self.likeCount) Likes"
+                        self.hasLiked = !self.hasLiked
                     }
                     else {
                         
+                        sender.setImage(UIImage(named: "likeButton"), for: UIControlState())
+                        self.likeCount = Int(self.likeCount) - 1
+                        self.likeText.text = "\(self.likeCount) Likes"
+                        self.hasLiked = !self.hasLiked
                     }
                     
-                })
+                    //                        var currentDict  = self.carouselDict.value(forKey: self.photos[self.carouselView.currentItemIndex]["_id"].string!) as! JSON                        
+                    //                        currentDict["likeCount"] = JSON(self.likeCount)
+                    //                        self.carouselDict.setObject(currentDict, forKey: (self.photos[self.carouselView.currentItemIndex]["_id"].stringValue) as NSCopying)
+                }
+                else {
+                    
+                }
                 
             })
+            
+        })
         
     }
     
@@ -412,6 +417,7 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate, iCarouselDeleg
             self.commentCount = data["commentCount"].int!
             self.commentText.text = "\(self.commentCount) Comment"
         }
+        self.audioButton.isHidden = false
         
         if shouldShowBottomView {
             self.bottomView.isHidden = false            
