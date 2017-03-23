@@ -16,6 +16,7 @@ public class PostImage {
     var postId = 0
     var serverUrl = ""
     var editId = ""
+    var stripServerURL = "";
     
     let photos = Table("Photos")
     
@@ -45,6 +46,7 @@ public class PostImage {
     
     func urlToData(_ str:String) {
         self.serverUrl = adminUrl + "upload/readFile?file=" + str
+        self.stripServerURL = str;
         self.imageUrl = URL(string: self.serverUrl)
         cache.fetch(URL: URL(string:self.serverUrl + "&width=200")!).onSuccess({ (data) in
             self.image = UIImage(data: data as Data)
@@ -81,7 +83,7 @@ public class PostImage {
             try? data.write(to: filename)
         }
         
-        let insert = photos.insert(post <- Int64(self.postId) , captions <- self.caption ,localUrl <- filenameOnly,url <- serverUrl,editIdTable <- self.editId)
+        let insert = photos.insert(post <- Int64(self.postId) , captions <- self.caption ,localUrl <- filenameOnly,url <- stripServerURL,editIdTable <- self.editId)
         do {
             try db.run(insert)
         }
