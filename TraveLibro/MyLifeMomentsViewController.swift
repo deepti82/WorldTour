@@ -441,20 +441,24 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
             default:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "reviewsCell", for: indexPath) as! reviewsCollectionViewCell
                 if reviewType == "local-life" {
-                    cell.bgImage.image = UIImage(named: "review-local")
+                    cell.bgImage.image = UIImage(named: "Local_Life-2")
                     cell.placeName.text = getShortCountry(country: allData[indexPath.row]["name"].stringValue)
                     cell.foregroundImage.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["cityCoverPhoto"].stringValue, width: 200))
                     
                 }
                 else {
-                    cell.bgImage.image = UIImage(named: "review-travel")
+                    cell.bgImage.image = UIImage(named: "Travel_Life-2")
                     cell.placeName.text = getShortCountry(country: allData[indexPath.row]["name"].stringValue)
                     cell.foregroundImage.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["countryCoverPhoto"].stringValue, width: 200))
                     cell.foregroundImage.clipsToBounds = true
                     cell.foregroundImage.contentMode = .scaleAspectFill
                     
                 }
-                
+                cell.bgImage.layer.shadowColor = UIColor.black.cgColor
+                cell.bgImage.layer.shadowOffset = CGSize(width: 2, height: 2)
+                cell.bgImage.layer.masksToBounds = true
+                cell.bgImage.layer.shadowOpacity = 0.5
+
 //                cell.foregroundImage.layer.cornerRadius = cell.foregroundImage.frame.width/2
                 cell.foregroundImage.clipsToBounds = true
 //                cell.foregroundImage.layer.borderColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 1).cgColor

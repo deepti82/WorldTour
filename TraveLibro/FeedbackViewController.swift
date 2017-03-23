@@ -13,6 +13,8 @@ class FeedbackViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var commentTextBox: UITextView!
     @IBOutlet weak var submitButton: UIButton!
     
+    @IBOutlet weak var titleShadow: UILabel!
+    
     @IBAction func submitFeedback(_ sender: AnyObject) {
         
         print("submit feedback")
@@ -28,16 +30,21 @@ class FeedbackViewController: UIViewController, UITextViewDelegate {
         super.viewDidLoad()
         
         setNavigationBarItem()
-        
-        commentTextBox.text = "Comment"
+        getDarkBackGround(self)
+        commentTextBox.text = "Fill Me In"
         commentTextBox.textColor = UIColor.lightGray
         submitButton.layer.cornerRadius = 5
         submitButton.clipsToBounds = true
-        
+        titleShadow.shadowColor = UIColor.black
+        titleShadow.shadowOffset = CGSize(width: 2, height: 2)
+        titleShadow.layer.masksToBounds = true
+
         commentTextBox.delegate = self
         
     }
 
+
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -55,7 +62,7 @@ class FeedbackViewController: UIViewController, UITextViewDelegate {
         
         if commentTextBox.text == nil {
             
-            commentTextBox.text = "Comment"
+            commentTextBox.text = "Fill Me In"
             
         }
         
