@@ -524,9 +524,7 @@ class allReviewsMLTableViewCell: UITableViewCell {
             if review != "" {
                 self.review.isHidden = false
                 self.review.text = review
-                print("After ratu \(allData[self.tag])")
                 allData[self.tag]["review"][0] = ["rating":"\(starCnt)","review":review]
-                print("demo demo \(allData[self.tag])")
             }
 //            self.rel
             newRating = ["rating":"\(starCnt)","review":review]
