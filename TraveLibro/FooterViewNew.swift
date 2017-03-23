@@ -33,6 +33,7 @@ class FooterViewNew: UIView {
     @IBOutlet weak var lowerMainView: UIView!
     @IBOutlet weak var upperMainView: UIView!
     @IBOutlet weak var badgeButton: UIButton!
+    @IBOutlet weak var activityImage: UIImageView!
     
     
     

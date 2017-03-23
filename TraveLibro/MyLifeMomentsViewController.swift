@@ -327,7 +327,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
             default:
                 break
             }
-            return CGSize(width: 150, height: 75)
+            return CGSize(width: 165, height: 204)
         }
     }
     
@@ -396,7 +396,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
             case "local-life":
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "localLifeMomentsCell", for: indexPath) as! LocalLifeMomentsCollectionViewCell
                 cell.bgImage.image = UIImage(named: "logo-default")
-                cell.bgImage.transform = CGAffineTransform(rotationAngle: 0.0349066)
+//                cell.bgImage.transform = CGAffineTransform(rotationAngle: 0.0349066)
                 cell.bgImage.layer.cornerRadius = 5
                 cell.coverImage.layer.cornerRadius = cell.coverImage.frame.width/2
                 cell.coverImage.clipsToBounds = true
@@ -420,7 +420,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
                 cell.bgImage.layer.shadowOffset = CGSize(width: 10, height: 10)
                 cell.bgImage.layer.shadowColor = UIColor.black.cgColor
                 cell.bgImage.layer.shadowRadius = 10
-                cell.bgImage.transform = CGAffineTransform(rotationAngle: 0.0349066)
+//                cell.bgImage.transform = CGAffineTransform(rotationAngle: 0.0349066)
                 cell.bgImage.clipsToBounds = true
                 cell.bgImage.image = UIImage(named: "logo-default")
                 
@@ -441,21 +441,24 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
             default:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "reviewsCell", for: indexPath) as! reviewsCollectionViewCell
                 if reviewType == "local-life" {
-                    cell.bgImage.image = UIImage(named: "reviewsLocalLifeAlbum")
+                    cell.bgImage.image = UIImage(named: "review-local")
                     cell.placeName.text = getShortCountry(country: allData[indexPath.row]["name"].stringValue)
                     cell.foregroundImage.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["cityCoverPhoto"].stringValue, width: 200))
                     
                 }
                 else {
-                    cell.bgImage.image = UIImage(named: "reviewsTLAlbum")
+                    cell.bgImage.image = UIImage(named: "review-travel")
                     cell.placeName.text = getShortCountry(country: allData[indexPath.row]["name"].stringValue)
-                    cell.foregroundImage.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["flag"].stringValue, width: 200))
+                    cell.foregroundImage.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["countryCoverPhoto"].stringValue, width: 200))
+                    cell.foregroundImage.clipsToBounds = true
+                    cell.foregroundImage.contentMode = .scaleAspectFill
+                    
                 }
                 
-                cell.foregroundImage.layer.cornerRadius = cell.foregroundImage.frame.width/2
+//                cell.foregroundImage.layer.cornerRadius = cell.foregroundImage.frame.width/2
                 cell.foregroundImage.clipsToBounds = true
-                cell.foregroundImage.layer.borderColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 1).cgColor
-                cell.foregroundImage.layer.borderWidth = 3.0
+//                cell.foregroundImage.layer.borderColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 1).cgColor
+//                cell.foregroundImage.layer.borderWidth = 3.0
                 return cell
                 
             }

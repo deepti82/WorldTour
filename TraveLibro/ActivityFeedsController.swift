@@ -42,6 +42,7 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
         self.mainFooter = FooterViewNew(frame: CGRect.zero)
         self.mainFooter.layer.zPosition = 5
         self.view.addSubview(self.mainFooter)
+        mainFooter.activityImage.tintColor = mainOrangeColor
         
         let i = PostImage()
         i.uploadPhotos()

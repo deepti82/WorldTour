@@ -18,6 +18,7 @@ var TLLoader = UIActivityIndicatorView()
 var userLocation: CLLocationCoordinate2D!
 var globalNewTLViewController:NewTLViewController!
 
+
 class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, CLLocationManagerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIGestureRecognizerDelegate, UIScrollViewDelegate {
     
     var myJourney: JSON!
@@ -36,6 +37,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     var endJourneyView: EndJourneyMyLife!
     var textFieldYPos = CGFloat(0)
     var difference = CGFloat(0)
+    var loader = LoadingOverlay()
     
     @IBOutlet weak var infoButton: UIButton!
     @IBOutlet weak var toolbarView: UIView!
@@ -705,10 +707,10 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     }
     
     func getJourney() {
-        loader.hideOverlayView()
+       
         request.getJourney(currentUser["_id"].string!, completion: {(response) in
             DispatchQueue.main.async(execute: {
-                loader.hideOverlayView()
+                self.loader.hideOverlayView()
                 if response.error != nil {
                     print("error: \(response.error!.localizedDescription)")
                 }
@@ -742,7 +744,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     func getOneJourney() {
         request.getJourneyById(fromOutSide, completion: {(response) in
             DispatchQueue.main.async(execute: {
-                loader.hideOverlayView()
+                
 
                 if response.error != nil {
                     print("error: \(response.error!.localizedDescription)")
@@ -2715,7 +2717,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
                     (response) in
                     
                     DispatchQueue.main.async(execute: {
-                        loader.hideOverlayView()
+                       
                         if (response.error != nil) {
                             print("error: \(response.error?.localizedDescription)")
                         }

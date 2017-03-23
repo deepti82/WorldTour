@@ -10,7 +10,7 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate, iCarouselDeleg
     var player:Player!
     
     var carouselView: iCarousel!
-    
+    var defaultMute = true
     var photoFooterReview: ActivityFeedFooter!
     var currentImageView : UIImageView!
     var loader: LoadingOverlay = LoadingOverlay()
@@ -20,6 +20,7 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate, iCarouselDeleg
 
     
     
+    @IBOutlet weak var audioButton: UIButton!
     @IBOutlet weak var mainImage: UIImageView!
     
     @IBOutlet weak var bottomView: UIView!
@@ -60,6 +61,7 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate, iCarouselDeleg
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        audioButton.setTitle(String(format: "%C",0xf026) + "⨯", for: UIControlState())
         loader.showOverlay(self.view)
         
         do {
@@ -168,6 +170,19 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate, iCarouselDeleg
     }
     
     //MARK: - Actions
+    @IBAction func toggleSound(_ sender: Any) {
+        
+        if(defaultMute) {
+            defaultMute = false;
+            player.muted = defaultMute
+            audioButton.setTitle(String(format: "%C",0xf028), for: UIControlState())
+        } else {
+            defaultMute = true;
+            player.muted = defaultMute
+            audioButton.setTitle(String(format: "%C",0xf026) + "⨯", for: UIControlState())
+        }
+        
+    }
     
     @IBAction func sendLike(_ sender: UIButton) {
        audioPlayer.play()

@@ -259,7 +259,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         
         if currentUser != nil {
             if displayData == "search" {
-                self.title = "\(currentUser["firstName"])'s Life"
+                self.title = "My Life"
             }else{
                 self.title = "My Life"
             }

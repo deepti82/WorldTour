@@ -14,6 +14,7 @@
             <connections>
                 <outlet property="LLView" destination="8ms-aO-Ww0" id="Nzo-5x-UYM"/>
                 <outlet property="TLView" destination="omO-vk-ce0" id="ERo-B5-hWY"/>
+                <outlet property="activityImage" destination="O3F-rC-Mgv" id="1Ed-Gl-BeV"/>
                 <outlet property="badgeButton" destination="tAf-V2-SrM" id="EKo-PR-6Y6"/>
                 <outlet property="feedView" destination="FAH-cp-FRl" id="82W-11-iMJ"/>
                 <outlet property="localLifeIcon" destination="fKj-pB-sz8" id="rWq-sz-hf4"/>

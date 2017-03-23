@@ -11,6 +11,7 @@ var globalSearchViewController: SearchViewController!
 class SearchViewController: UIViewController, UITextFieldDelegate {
     
     var search: SearchFieldView!
+    var loader = LoadingOverlay()
     @IBOutlet weak var scrollView: UIScrollView!
     override func viewDidLoad() {
         super.viewDidLoad()
