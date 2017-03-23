@@ -79,6 +79,10 @@ class ActivityFeedFooterBasic: UIView {
         tapout1.numberOfTapsRequired = 1
         likeViewLabel.addGestureRecognizer(tapout1)
         
+        let tapout2 = UITapGestureRecognizer(target: self, action: #selector(ActivityFeedFooterBasic.showComment(_:)))
+        tapout2.numberOfTapsRequired = 1
+        commentCount.addGestureRecognizer(tapout2)
+        
         do {
             audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: like))
             //            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryAmbient)
@@ -255,47 +259,56 @@ class ActivityFeedFooterBasic: UIView {
         }
     }
     
+    func toCommentPage() {
+        if currentUser != nil {
+            
+            if type == "TripPhotos" {
+                let comment = storyboard?.instantiateViewController(withIdentifier: "CommentsVC") as! CommentsViewController
+                comment.postId = photoPostId
+                comment.ids = postTop["_id"].stringValue
+                comment.footerViewBasic = self
+                if(self.footerType == "videos") {
+                    comment.type = "Video"
+                }else{
+                    comment.type = "Photo"
+                }
+                globalNavigationController?.setNavigationBarHidden(false, animated: true)
+                globalNavigationController?.pushViewController(comment, animated: true)
+            }else{
+                let comment = storyboard?.instantiateViewController(withIdentifier: "CommentsVC") as! CommentsViewController
+                comment.postId = postTop["uniqueId"].stringValue
+                comment.ids = postTop["_id"].stringValue
+                comment.footerViewBasic = self
+                switch postTop["type"].stringValue {
+                case "ended-journey", "on-the-go-journey":
+                    comment.type = "journey"
+                case "quick-itinerary", "detail-itinerary":
+                    comment.type = "itinerary"
+                case "travel-life", "local-life":
+                    comment.type = "post"
+                default:
+                    comment.type = "photo"
+                }
+                globalNavigationController?.setNavigationBarHidden(false, animated: true)
+                globalNavigationController?.pushViewController(comment, animated: true)
+            }
+            
+        }
+        else {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
+        }
+    }
+    
     @IBAction func sendComments(_ sender: UIButton) {
         print("in activity feed layout \(postTop)")
-        if currentUser != nil {
+        toCommentPage()
+    }
 
-        if type == "TripPhotos" {
-            let comment = storyboard?.instantiateViewController(withIdentifier: "CommentsVC") as! CommentsViewController
-            comment.postId = photoPostId
-            comment.ids = postTop["_id"].stringValue
-            comment.footerViewBasic = self
-            if(self.footerType == "videos") {
-                comment.type = "Video"
-            }else{
-                comment.type = "Photo"
-            }
-            globalNavigationController?.setNavigationBarHidden(false, animated: true)
-            globalNavigationController?.pushViewController(comment, animated: true)
-        }else{
-            let comment = storyboard?.instantiateViewController(withIdentifier: "CommentsVC") as! CommentsViewController
-            comment.postId = postTop["uniqueId"].stringValue
-            comment.ids = postTop["_id"].stringValue
-            comment.footerViewBasic = self
-            switch postTop["type"].stringValue {
-            case "ended-journey", "on-the-go-journey":
-                comment.type = "journey"
-            case "quick-itinerary", "detail-itinerary":
-                comment.type = "itinerary"
-            case "travel-life", "local-life":
-                comment.type = "post"
-            default:
-                comment.type = "photo"
-            }
-            globalNavigationController?.setNavigationBarHidden(false, animated: true)
-            globalNavigationController?.pushViewController(comment, animated: true)
+    func showComment(_ sender: UITapGestureRecognizer) {
+        if postTop["commentCount"].intValue != 0 {
+            toCommentPage()
         }
-        
     }
-    else {
-    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
-    }
-    }
-
 
     func setLikeCount(_ post_likeCount:Int!) {
         if(post_likeCount != nil) {

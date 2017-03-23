@@ -358,10 +358,8 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
         } else {
             
             let myString = textView.text as NSString
-            
-            let myRange = myString.range(of: whichView + replacableString, options: .backwards)
-            print("my range..... \(myRange)")
-            
+            let repOf = replacableString
+            let myRange = myString.range(of: repOf, options: .backwards)
             textView.text = myString.replacingOccurrences(of: replacableString, with: modifiedString, options: .backwards, range: myRange)
             
         }
