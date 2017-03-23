@@ -90,11 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TraveLibro/Navigation.swift"
-            timestampString = "511987843.57191"
+            timestampString = "511990606.297116"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1311"
-            endingLineNumber = "1311"
+            startingLineNumber = "1352"
+            endingLineNumber = "1352"
             landmarkName = "Navigation"
             landmarkType = "3">
          </BreakpointContent>
@@ -122,11 +122,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TraveLibro/Navigation.swift"
-            timestampString = "511987843.57191"
+            timestampString = "511990606.297116"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1309"
-            endingLineNumber = "1309"
+            startingLineNumber = "1350"
+            endingLineNumber = "1350"
             landmarkName = "postLocalLifeJson(_:completion:)"
             landmarkType = "7">
          </BreakpointContent>

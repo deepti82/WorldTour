@@ -10,6 +10,8 @@ var mapKey = "AIzaSyDPH6EYKMW97XMTJzqYqA0CR4fk5l2gzE4"
 
 class Navigation {
     
+    let cache = Shared.dataCache
+    
 //    var json: JSON!
     
     func saveUser(_ firstName: String, lastName: String, email: String, mobile: String, fbId: String, googleId: String, twitterId: String, instaId: String, nationality: String, profilePicture: String, gender: String, dob: String, completion: @escaping ((JSON) -> Void)) {
@@ -119,8 +121,7 @@ class Navigation {
     
     func getUser(_ id: String, urlSlug: String?, completion: @escaping ((JSON) -> Void)) {
         
-        let cache = Shared.dataCache
-
+        
         var json = JSON(1);
         var params = ["_id":id]
         if urlSlug != nil {
@@ -129,11 +130,10 @@ class Navigation {
         
         var urlString = adminUrl + "user/getOne"
         
-        cache.fetch(key: urlString+id).onSuccess { data in
-            var json = JSON(data: data)
-            completion(json)
-            
-        }
+//        self.cache.fetch(key: urlString+id).onSuccess { data in
+//            var json = JSON(data: data)
+//            completion(json)
+//        }
         
         do {
             let opt = try HTTP.POST(adminUrl + "user/getOne", parameters: params)
@@ -152,7 +152,48 @@ class Navigation {
                     
                     json  = JSON(data: response.data)
                     
-                    cache.set(value: response.data, key: urlString+id)
+                    self.cache.set(value: response.data, key: urlString+id)
+                    
+                    completion(json)
+                    
+                    
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+        
+    }
+    
+    func getUserNoCache(_ id: String, urlSlug: String?, completion: @escaping ((JSON) -> Void)) {
+        
+        
+        var json = JSON(1);
+        var params = ["_id":id]
+        if urlSlug != nil {
+            params["urlSlug"] = urlSlug!
+        }
+        
+        var urlString = adminUrl + "user/getOne"
+        
+       
+        do {
+            let opt = try HTTP.POST(adminUrl + "user/getOne", parameters: params)
+            //            print("request: \(opt)")
+            opt.start { response in
+                
+                
+                
+                
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    
+                    
+                    json  = JSON(data: response.data)
+                    
                     
                     completion(json)
                     
@@ -1379,10 +1420,18 @@ class Navigation {
     
     
     func getNotify(_ id: String, pageNumber: Int, completion: @escaping ((JSON) -> Void)) {
+        let urlString = adminUrl + "notification/getNotification"
+        
+//        if(pageNumber == 1) {
+//            self.cache.fetch(key: urlString+id).onSuccess { data in
+//                var json = JSON(data: data)
+//                completion(json)
+//            }
+//            
+//        }
         
         do {
-            
-            let opt = try HTTP.POST(adminUrl + "notification/getNotification", parameters: ["user": id,"pagenumber":pageNumber])
+            let opt = try HTTP.POST(urlString, parameters: ["user": id,"pagenumber":pageNumber])
             var json = JSON(1);
             opt.start {response in
                 if let err = response.error {
@@ -1390,6 +1439,11 @@ class Navigation {
                 }
                 else
                 {
+                    
+                    if(pageNumber == 1) {
+                        self.cache.set(value: response.data, key: urlString+id)
+                    }
+                    
                     json  = JSON(data: response.data)
                     completion(json)
                 }
