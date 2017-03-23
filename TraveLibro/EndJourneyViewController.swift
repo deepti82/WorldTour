@@ -491,12 +491,30 @@ class EndJourneyViewController: UIViewController {
                                 
                                 request.endJourney(self.journey["_id"].string!, uniqueId: self.journey["uniqueId"].string!, user: currentUser["_id"].string!, userName: currentUser["name"].string!, buddies: self.journey["buddies"].array!, photo: self.coverImage, journeyName: self.journey["name"].stringValue, notificationID: self.notificationID, completion: {(response) in
                                     
+                                    DispatchQueue.main.async(execute: {
+                                        
+                                        if response.error != nil {
+                                            print("error: \(response.error!.localizedDescription)")
+                                        }
+                                        else if response["value"].bool! {                                            
+                                            self.goBack()
+                                        }
+                                        else {
+                                            let errorAlert = UIAlertController(title: "Error", message: response["error"].stringValue, preferredStyle: UIAlertControllerStyle.alert)
+                                            let DestructiveAction = UIAlertAction(title: "Ok", style: .destructive) {
+                                                (result : UIAlertAction) -> Void in
+                                                //Cancel Action
+                                            }            
+                                            errorAlert.addAction(DestructiveAction)
+                                            self.navigationController?.present(errorAlert, animated: true, completion: nil)
+                                        }
+                                        
+                                    })
+                                    
                                     print("journey ended toaster")
 //                                    let tstr = Toast(text: "Journey ended successfully. Have a good life.")
 //                                    tstr.show()
-                                    DispatchQueue.main.async(execute: {
-                                        self.goBack()
-                                    })                                    
+                                                                        
                                 })
                             }
                         })
@@ -510,27 +528,48 @@ class EndJourneyViewController: UIViewController {
             })
             
             
-        }else{
-            var tstr = Toast(text: "Wait a while.....")
+        }
+        else{
+            let tstr = Toast(text: "Wait a while.....")
             tstr.show()
             
             request.endJourney(journey["_id"].string!, uniqueId: journey["uniqueId"].string!, user: currentUser["_id"].string!, userName: currentUser["name"].string!, buddies: journey["buddies"].array!, photo: coverImage, journeyName: journey["name"].stringValue, notificationID: self.notificationID, completion: {(response) in
                 
                 print("End Journey response : \(response)")
                 
-                request.getUser(user.getExistingUser(), urlSlug: nil, completion: {(response) in
+                DispatchQueue.main.async(execute: {
                     
-                    DispatchQueue.main.async(execute: {
-                        self.goBack()
-                        currentUser = response["data"]
-                        if globalNewTLViewController != nil {
-                            globalNewTLViewController.removeFromParentViewController()
-                        }
-//                        tstr = Toast(text: "Journey ended successfully. Have a good life.")
-//                        tstr.show()
-                        //                        self.goBack()
-                    })
+                    if response.error != nil {
+                        print("error: \(response.error!.localizedDescription)")
+                    }
+                    else if response["value"].bool! {                            
+                        request.getUser(user.getExistingUser(), urlSlug: nil, completion: {(response) in
+                            
+                            DispatchQueue.main.async(execute: {
+                                self.goBack()
+                                currentUser = response["data"]
+                                if globalNewTLViewController != nil {
+                                    globalNewTLViewController.removeFromParentViewController()
+                                }
+                                //                        tstr = Toast(text: "Journey ended successfully. Have a good life.")
+                                //                        tstr.show()
+                                //                        self.goBack()
+                            })
+                        })
+                    }
+                    else {
+                        let errorAlert = UIAlertController(title: "Error", message: response["error"].stringValue, preferredStyle: UIAlertControllerStyle.alert)
+                        let DestructiveAction = UIAlertAction(title: "Ok", style: .destructive) {
+                            (result : UIAlertAction) -> Void in
+                            //Cancel Action
+                        }            
+                        errorAlert.addAction(DestructiveAction)
+                        self.navigationController?.present(errorAlert, animated: true, completion: nil)
+                    }
+                    
                 })
+                
+                
             })
         }
     }
