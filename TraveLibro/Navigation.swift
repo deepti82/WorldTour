@@ -2,6 +2,7 @@ import UIKit
 
 import SwiftHTTP
 import OneSignal
+import Haneke
 
 var adminUrl = "http://travelibro.wohlig.com/api/"
 var adminBackendUrl = "http://travelibrobackend.wohlig.com/api/"
@@ -118,25 +119,44 @@ class Navigation {
     
     func getUser(_ id: String, urlSlug: String?, completion: @escaping ((JSON) -> Void)) {
         
+        let cache = Shared.dataCache
+
         var json = JSON(1);
         var params = ["_id":id]
         if urlSlug != nil {
             params["urlSlug"] = urlSlug!
         }
         
+        var urlString = adminUrl + "user/getOne"
+        
+        cache.fetch(key: urlString+id).onSuccess { data in
+            var json = JSON(data: data)
+            completion(json)
+            
+        }
+        
         do {
             let opt = try HTTP.POST(adminUrl + "user/getOne", parameters: params)
             //            print("request: \(opt)")
             opt.start { response in
-//                print("started response: \(response)")
+                
+                
+                
+                
                 if let err = response.error {
-                                        print("error: \(err.localizedDescription)")
+                    print("error: \(err.localizedDescription)")
                 }
                 else
                 {
+                    
+                    
                     json  = JSON(data: response.data)
-                    print(json)
+                    
+                    cache.set(value: response.data, key: urlString+id)
+                    
                     completion(json)
+                    
+                    
                 }
             }
         } catch let error {
