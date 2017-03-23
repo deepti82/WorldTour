@@ -286,7 +286,7 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
             self.slideMenuController()?.changeMainViewController(self.exploreDestinationsController, close: true)
         case 2:
             self.slideMenuController()?.changeMainViewController(self.popBloggersController, close: true)        
-        case 3:
+        case 3:            
             self.shareButtonClicked(sender: cell)
         case 4:
             self.rateUsButtonClicked()
@@ -336,13 +336,14 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
     //MARK: - Invite
     
     func shareButtonClicked(sender: SideMenuTableViewCell) {
+        
         let textToShare = "Check out this application. This is awesome life :) "
         if let myWebsite = NSURL(string: "http://travelibro.com/") {
             let objectsToShare = [textToShare, myWebsite] as [Any]
             let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
             
             //Excluded Activities Code
-            activityVC.excludedActivityTypes = [UIActivityType.addToReadingList, UIActivityType.assignToContact, UIActivityType.copyToPasteboard, UIActivityType.saveToCameraRoll]
+            activityVC.excludedActivityTypes = [UIActivityType.addToReadingList, UIActivityType.assignToContact, UIActivityType.copyToPasteboard, UIActivityType.saveToCameraRoll, UIActivityType.airDrop]
             
             activityVC.popoverPresentationController?.sourceView = sender
             self.present(activityVC, animated: true, completion: nil)

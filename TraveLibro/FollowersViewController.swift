@@ -463,9 +463,9 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
             let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
             
             //Excluded Activities Code
-            activityVC.excludedActivityTypes = [UIActivityType.addToReadingList, UIActivityType.assignToContact, UIActivityType.copyToPasteboard, UIActivityType.saveToCameraRoll]
+            activityVC.excludedActivityTypes = [UIActivityType.addToReadingList, UIActivityType.assignToContact, UIActivityType.copyToPasteboard, UIActivityType.saveToCameraRoll, UIActivityType.airDrop]
             
-            activityVC.popoverPresentationController?.sourceView = sender
+            activityVC.popoverPresentationController?.sourceView = sender            
             self.present(activityVC, animated: true, completion: nil)
         }
     }
