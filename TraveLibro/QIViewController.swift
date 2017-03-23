@@ -43,13 +43,12 @@ class QIViewController: UIPageViewController, UIPageViewControllerDataSource, UI
         viewControllers1.append(quickFour)
         viewControllers1.append(quickFive)
         if selectedView {
-            setViewControllers([quickThree], direction: .forward, animated: false, completion: nil)
+            setViewControllers([quickThree], direction: .forward, animated: false, completion: nil)            
             inx = 2
         }else{
             setViewControllers([quickOne], direction: .forward, animated: false, completion: nil)
             inx = 0
-        }
-        createNavigation()
+        }        
         if(editID != nil) {
             request.getItinerary(editID, completion: { (json) in
                 DispatchQueue.main.async(execute: {
@@ -149,6 +148,7 @@ class QIViewController: UIPageViewController, UIPageViewControllerDataSource, UI
         
         
     }
+    
     func donePage(_ sender: UIButton) {
         print("done")
         quickItinery["user"] = currentUser["_id"]
@@ -158,30 +158,30 @@ class QIViewController: UIPageViewController, UIPageViewControllerDataSource, UI
         
         for (key, itm) in quickItinery {
             if(check){
-            switch key {
-            case "title", "month", "year", "duration":
-                if itm == "" {
-                    self.changeView(changedIndex: 0, key: key)
-                    check = false
-                } else if key == "duration" && itm == 0 {
-                    self.changeView(changedIndex: 0, key: "0duration")
-                    check = false
+                switch key {
+                case "title", "month", "year", "duration":
+                    if itm == "" {
+                        self.changeView(changedIndex: 0, key: key)
+                        check = false
+                    } else if key == "duration" && itm == 0 {
+                        self.changeView(changedIndex: 0, key: "0duration")
+                        check = false
+                    }
+                    break
+                case "countryVisited":
+                    if itm.count == 0 {
+                        self.changeView(changedIndex: 2, key: key)
+                        check = false
+                    }
+                    break
+                default: break
                 }
-                break
-            case "countryVisited":
-                if itm.count == 0 {
-                    self.changeView(changedIndex: 2, key: key)
-                    check = false
-                }
-                break
-            default: break
             }
-        }
         }
         if check {
             saveItinerary()
         }
-            }
+    }
     
     func saveItinerary() {
         
@@ -264,12 +264,11 @@ class QIViewController: UIPageViewController, UIPageViewControllerDataSource, UI
     
     
     func presentationCount(for pageViewController: UIPageViewController) -> Int {
-        
+        self.createNavigation()
         return viewControllers1.count
     }
     
-    func presentationIndex(for pageViewController: UIPageViewController) -> Int {
-        
+    func presentationIndex(for pageViewController: UIPageViewController) -> Int {       
         return inx
     }
     
