@@ -202,10 +202,12 @@ class AddRating: UIView, UITextViewDelegate {
     
     func updateSmiley(point:Int) {
         
-        ratingIndex = point
-        reviewConclusion.text = moodArr[point - 1]
-        smiley.setImage(UIImage(named: imageArr[point - 1]), for: UIControlState())
-        updateButtonSelectionStates()
+        if point != nil && point != 0 {
+            ratingIndex = point
+            reviewConclusion.text = moodArr[point - 1]
+            smiley.setImage(UIImage(named: imageArr[point - 1]), for: UIControlState())
+            updateButtonSelectionStates()
+        }
         
     }
     
@@ -218,11 +220,13 @@ class AddRating: UIView, UITextViewDelegate {
             reviewTextView.text = review["review"].string!
         }
         
+        
         for i in 0 ..< Int(review["rating"].stringValue)! {
             
             stars[i].setImage(UIImage(named: "star_check"), for: UIControlState())
             
         }
+        
         var cnt = 0
         if Int(review["rating"].string!) == 0 {
             cnt = 1
@@ -301,6 +305,20 @@ class AddRating: UIView, UITextViewDelegate {
     func updateButtonSelectionStates() {
         print("in update states")
 
+        for star in stars {
+            star.setImage(UIImage(named: "star_uncheck"), for: UIControlState())
+            star.setImage(UIImage(named: "star_check"), for: .selected)
+            star.setImage(UIImage(named: "star_check"), for: [.highlighted, .selected])
+            if whichView == "otg" {
+                star.imageView?.tintColor = mainOrangeColor
+            }else{
+                star.imageView?.tintColor = endJourneyColor
+                
+            }
+        }
+        stars[0].isSelected = true
+        
+        
         starCount = 0
         print(ratingIndex)
         for (index, button) in stars.enumerated() {
@@ -313,6 +331,13 @@ class AddRating: UIView, UITextViewDelegate {
                 button.isSelected = false
             }
         }
+        
+//        for i in 0 ..< ratingIndex {
+//            
+//            stars[i].setImage(UIImage(named: "star_check"), for: UIControlState())
+//            
+//        }
+        
     }
     
 }

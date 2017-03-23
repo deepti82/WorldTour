@@ -26,6 +26,7 @@ class ActivityFeedFooterBasic: UIView {
     @IBOutlet weak var commentCount: UILabel!
     var topLayout:VerticalLayout!
     var backgroundReview: UIView!
+    var rating: AddRating!
     var newRating:JSON!
     let like =  Bundle.main.path(forResource: "tiny1", ofType: "mp3")!
     var audioPlayer = AVAudioPlayer()
@@ -178,9 +179,11 @@ class ActivityFeedFooterBasic: UIView {
         backgroundReview.addGestureRecognizer(tapout)
         backgroundReview.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.4)
         globalNavigationController.topViewController?.view.addSubview(backgroundReview)
-        globalNavigationController.topViewController?.view.bringSubview(toFront: backgroundReview)
+//        globalNavigationController.topViewController?.view.bringSubview(toFront: backgroundReview)
         
-        let rating = AddRating(frame: CGRect(x: 0, y: 0, width: width - 40, height: 335))
+
+        
+        rating = AddRating(frame: CGRect(x: 0, y: 0, width: width - 40, height: 335))
         rating.activityJson = postTop
         
         if postTop["type"].stringValue == "travel-life" {
@@ -218,13 +221,15 @@ class ActivityFeedFooterBasic: UIView {
         rating.center = backgroundReview.center
         rating.layer.cornerRadius = 5
         rating.clipsToBounds = true
-        rating.navController = globalNavigationController
-        backgroundReview.addSubview(rating)
+//        rating.navController = globalNavigationController
+//        backgroundReview.addSubview(rating)
+        globalNavigationController.topViewController?.view.addSubview(rating)
     }
     
     func reviewTapOut(_ sender: UITapGestureRecognizer) {
         print("in footer tap out")
         backgroundReview.removeFromSuperview()
+        rating.removeFromSuperview()
         
     }
     
