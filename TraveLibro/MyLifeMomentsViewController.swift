@@ -441,15 +441,16 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
             default:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "reviewsCell", for: indexPath) as! reviewsCollectionViewCell
                 if reviewType == "local-life" {
+                    
                     cell.bgImage.image = UIImage(named: "Local_Life-2")
                     cell.placeName.text = getShortCountry(country: allData[indexPath.row]["name"].stringValue)
-                    cell.foregroundImage.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["cityCoverPhoto"].stringValue, width: 200))
+                    cell.foregroundImage.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["cityCoverPhoto"].stringValue, width: 124))
                     
                 }
                 else {
                     cell.bgImage.image = UIImage(named: "Travel_Life-2")
                     cell.placeName.text = getShortCountry(country: allData[indexPath.row]["name"].stringValue)
-                    cell.foregroundImage.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["countryCoverPhoto"].stringValue, width: 200))
+                    cell.foregroundImage.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["countryCoverPhoto"].stringValue, width: 124))
                     cell.foregroundImage.clipsToBounds = true
                     cell.foregroundImage.contentMode = .scaleAspectFill
                     
@@ -620,6 +621,7 @@ class reviewsCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var bgImage: UIImageView!
     @IBOutlet weak var foregroundImage: UIImageView!
     @IBOutlet weak var placeName: UILabel!
+    @IBOutlet weak var localLifeImage: UIImageView!
     
 }
 

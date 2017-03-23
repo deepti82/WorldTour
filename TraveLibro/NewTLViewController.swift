@@ -2185,6 +2185,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     }
     
     func journeyCategory(_ sender: UIButton) {
+        otgView.selectCategoryButton.isHidden = true
         let categoryVC = storyboard?.instantiateViewController(withIdentifier: "kindOfJourneyVC") as! KindOfJourneyOTGViewController
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationController?.pushViewController(categoryVC, animated: true)
@@ -2360,7 +2361,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     
     func addBuddies(_ sender: UIButton) {
         print("ADD BUDDIES");
-        
+    
         if journeyId != nil {
             buddiesStatus  = true;
         }
