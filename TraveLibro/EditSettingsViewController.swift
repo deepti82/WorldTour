@@ -20,6 +20,11 @@ class EditSettingsViewController: UIViewController, UIWebViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if (self.navigationController?.navigationBar.isTranslucent)! {
+            setNavigationBarItem()            
+        }
+        
        
         self.automaticallyAdjustsScrollViewInsets = false
         
