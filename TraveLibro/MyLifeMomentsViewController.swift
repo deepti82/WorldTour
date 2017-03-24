@@ -70,7 +70,10 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
     
     func loadInsideMedia(mediaType:String, pageno:Int, type:String, token:String, id:String) {
         
-        loader.showOverlay(self.view)
+        if pageno == 1 {
+            loader.showOverlay(self.view)
+
+        }
         savedMediaType = mediaType
         savedToken = token
         savedId = id
@@ -121,7 +124,9 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
     }
     
     func loadReview(pageno:Int, type:String, review:String) {
+        if pageno == 1 {
         loader.showOverlay(self.view)
+        }
         momentType = type
         reviewType = review
         
@@ -159,7 +164,9 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
     
     
     func loadMomentLife(pageno:Int, type:String, token:String) {
+        if pageno == 1 {
         loader.showOverlay(self.view)
+        }
         momentType = type
         self.loadStatus = false
         request.getMomentLife(currentUser["_id"].stringValue, pageNumber: pageno, type: type, token: token, completion: {(request) in

@@ -25,7 +25,7 @@ class MyLifeContainerViewController: UIViewController,UIScrollViewDelegate {
         timeTag.alpha = 0.8
         self.view.addSubview(timeTag)
         
-        self.loadData("all", pageNumber: pageNumber)
+//        self.loadData("all", pageNumber: pageNumber)
     }
     
     func showNoData(show:Bool, type:String) {
@@ -36,22 +36,18 @@ class MyLifeContainerViewController: UIViewController,UIScrollViewDelegate {
             empty = EmptyScreenView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 250))
             switch type {
             case "all":
-                print("in moments all")
-                empty.frame.size.height = 250.0
-                empty.viewHeading.text = "Unwind​ B​y Rewinding"
-                empty.viewBody.text = "Revisit and reminisce the days gone by through brilliant pictures and videos of your travel and local life."
+                empty.viewHeading.text = "Travel in a Time Machine"
+                empty.viewBody.text = "Capture your journeys and activities whether local or global, creating a beautiful timeline and relive these treasured experiences of your past."
                 break
             case "travel-life":
-                print("in moments tl")
                 empty.frame.size.height = 350.0
-                empty.viewHeading.text = "Travel Becomes A Reason To Take Pictures And Store Them"
-                empty.viewBody.text = "Some memories are worth sharing, travel surely tops the list. Your travels will not only inspire you to explore more of the world, you may just move another soul or two!"
+                empty.viewHeading.text = "On-the-Go Journeys"
+                empty.viewBody.text = "Capture each moment of your journey via check-ins, pictures, videos, and thoughts live On-the-Go to create a stunning timeline with friends and family."
                 break
             case "local-life":
-                print("in moments ll")
                 empty.frame.size.height = 275.0
-                empty.viewHeading.text = "Suspended In Time"
-                empty.viewBody.text = "Beautiful memories created through fabulous pictures and videos of those precious moments shared with family, friends and yourself."
+                empty.viewHeading.text = "Life In The City"
+                empty.viewBody.text = "Candid, fun moments with friends, happy family get-togethers, some precious ‘me-time’…share your love for your city and inspire others to do the same. Cherish your local life memories eternally."
                 break
             default:
                 break
@@ -62,19 +58,20 @@ class MyLifeContainerViewController: UIViewController,UIScrollViewDelegate {
     }
     
     func loadData(_ type:String,pageNumber:Int) {
-        loader.showOverlay(self.view)
+        if pageNumber == 1 {
+            loader.showOverlay(self.view)
+
+        }
         var shouldChangeVal = true
         if(pageNumber == 1 && self.layout != nil) {
             self.layout.removeAll()
         }
-        if isViewed {
         request.getMomentJourney(pageNumber: pageNumber, type: type,completion: {(request) in
             DispatchQueue.main.async(execute: {
                 loader.hideOverlayView()
                 self.isViewed = false
                 self.isLoading = false
                 if request["data"] != nil && request["value"].boolValue {
-                    print(request["data"])
                     for post in request["data"].array! {
                         if(shouldChangeVal) {
                             self.timeTag.changeTime(feed: post)
@@ -103,7 +100,6 @@ class MyLifeContainerViewController: UIViewController,UIScrollViewDelegate {
             })
         })
     }
-    }
     
     func addHeightToLayout() {
         self.layout.layoutSubviews()
@@ -123,7 +119,6 @@ class MyLifeContainerViewController: UIViewController,UIScrollViewDelegate {
             if hasNext && !isLoading {
                 isLoading = true
                 pageNumber += 1
-                print("load data for page : \(pageNumber)")
                 loadData("all", pageNumber: pageNumber)
             }
         }
