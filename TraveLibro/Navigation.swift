@@ -3890,7 +3890,6 @@ class Navigation {
         }
     }
     
-    
     //MARK: - Logout
     
     func logout(id: String, completion: @escaping ((JSON) -> Void)) {
