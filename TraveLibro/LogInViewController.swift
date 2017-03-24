@@ -136,11 +136,8 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         }        
     }
     
-    func forgotPasswordTabbed(_ sender: AnyObject) {
-        
-        forgotView = ForgotPassword(frame: self.view.frame)
-        forgotView.center = self.view.center
-        
+    func forgotPasswordTabbed(_ sender: AnyObject) {        
+        forgotView = ForgotPassword(frame: CGRect(x: 0, y: 0, width: screenWidth, height: self.view.frame.height))        
         
         forgotView.backgroundView.layer.cornerRadius = 5.0
         forgotView.emailIDTxtField.delegate = self
@@ -152,7 +149,8 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         self.view.addSubview(forgotView)
         
         UIView.animate(withDuration: 0.5) {
-            self.forgotView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight)            
+            self.forgotView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight)
+            self.forgotView.center = CGPoint(x: self.view.center.x, y: (screenHeight/2 - 64))
         }        
     }
     
