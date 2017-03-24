@@ -168,6 +168,10 @@ class MyLifeActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             print("in review")
             footerViewReview = ActivityFeedFooter(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 65))
             
+            if currentUser["_id"].stringValue != user.getExistingUser() {
+                footerViewReview.optionButton.isHidden = true
+            }
+            
             footerViewReview.postTop = feed
             footerViewReview.topLayout = self
             footerViewReview.type = "MyLifeFeeds"
@@ -185,6 +189,9 @@ class MyLifeActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             footerView = ActivityFeedFooterBasic(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 65))
             footerView.topLayout = self
             footerView.type = "MyLifeFeeds"
+            if currentUser["_id"].stringValue != user.getExistingUser() {
+                footerViewReview.optionButton.isHidden = true
+            }
             footerView.setCommentCount(feed["commentCount"].intValue)
             footerView.setLikeCount(feed["likeCount"].intValue)
             footerView.setView(feed:feed)
