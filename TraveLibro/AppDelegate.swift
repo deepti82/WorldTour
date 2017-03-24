@@ -153,7 +153,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
             UIViewController().customiseNavigation()
         } 
         else {
-            request.getUser(user.getExistingUser(), urlSlug: nil, completion: {(request) in
+            request.getUserNoCache(user.getExistingUser(), urlSlug: nil, completion: {(request) in
                 DispatchQueue.main.async {
                     currentUser = request["data"]
                     if request["data"]["alreadyLoggedIn"] == false {

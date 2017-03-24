@@ -104,6 +104,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
             
             request.getNotify(currentUser["_id"].string!, pageNumber: currentPageNumber,  completion: {(response) in
                 
+                
                 let refreshing = self.refreshControl.isRefreshing
                 DispatchQueue.main.sync(execute: {
                     

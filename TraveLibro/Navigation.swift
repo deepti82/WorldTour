@@ -2,12 +2,15 @@ import UIKit
 
 import SwiftHTTP
 import OneSignal
+import Haneke
 
 var adminUrl = "http://travelibro.wohlig.com/api/"
 var adminBackendUrl = "http://travelibrobackend.wohlig.com/api/"
 var mapKey = "AIzaSyDPH6EYKMW97XMTJzqYqA0CR4fk5l2gzE4"
 
 class Navigation {
+    
+    let cache = Shared.dataCache
     
 //    var json: JSON!
     
@@ -118,25 +121,83 @@ class Navigation {
     
     func getUser(_ id: String, urlSlug: String?, completion: @escaping ((JSON) -> Void)) {
         
+        
         var json = JSON(1);
         var params = ["_id":id]
         if urlSlug != nil {
             params["urlSlug"] = urlSlug!
         }
         
+        var urlString = adminUrl + "user/getOne"
+        
+//        self.cache.fetch(key: urlString+id).onSuccess { data in
+//            var json = JSON(data: data)
+//            completion(json)
+//        }
+        
         do {
             let opt = try HTTP.POST(adminUrl + "user/getOne", parameters: params)
             //            print("request: \(opt)")
             opt.start { response in
-//                print("started response: \(response)")
+                
+                
+                
+                
                 if let err = response.error {
-                                        print("error: \(err.localizedDescription)")
+                    print("error: \(err.localizedDescription)")
                 }
                 else
                 {
+                    
+                    
                     json  = JSON(data: response.data)
-                    print(json)
+                    
+                    self.cache.set(value: response.data, key: urlString+id)
+                    
                     completion(json)
+                    
+                    
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+        
+    }
+    
+    func getUserNoCache(_ id: String, urlSlug: String?, completion: @escaping ((JSON) -> Void)) {
+        
+        
+        var json = JSON(1);
+        var params = ["_id":id]
+        if urlSlug != nil {
+            params["urlSlug"] = urlSlug!
+        }
+        
+        var urlString = adminUrl + "user/getOne"
+        
+       
+        do {
+            let opt = try HTTP.POST(adminUrl + "user/getOne", parameters: params)
+            //            print("request: \(opt)")
+            opt.start { response in
+                
+                
+                
+                
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    
+                    
+                    json  = JSON(data: response.data)
+                    
+                    
+                    completion(json)
+                    
+                    
                 }
             }
         } catch let error {
@@ -605,6 +666,7 @@ class Navigation {
         
         
     }
+    
     func addCard(_ id: String, editFieldValue: [String:Any], completion: @escaping ((JSON) -> Void)) {
         
         do {
@@ -1359,10 +1421,18 @@ class Navigation {
     
     
     func getNotify(_ id: String, pageNumber: Int, completion: @escaping ((JSON) -> Void)) {
+        let urlString = adminUrl + "notification/getNotification"
+        
+//        if(pageNumber == 1) {
+//            self.cache.fetch(key: urlString+id).onSuccess { data in
+//                var json = JSON(data: data)
+//                completion(json)
+//            }
+//            
+//        }
         
         do {
-            
-            let opt = try HTTP.POST(adminUrl + "notification/getNotification", parameters: ["user": id,"pagenumber":pageNumber])
+            let opt = try HTTP.POST(urlString, parameters: ["user": id,"pagenumber":pageNumber])
             var json = JSON(1);
             opt.start {response in
                 if let err = response.error {
@@ -1370,6 +1440,11 @@ class Navigation {
                 }
                 else
                 {
+                    
+                    if(pageNumber == 1) {
+                        self.cache.set(value: response.data, key: urlString+id)
+                    }
+                    
                     json  = JSON(data: response.data)
                     completion(json)
                 }
@@ -1788,8 +1863,7 @@ class Navigation {
             var params: JSON!
             
             params = ["_id": user, "search": search, "pagenumber": pageNumber, "limit": 10]
-           
-            print(params)
+            
             let jsonData = try params.rawData()
             
             let url = URL(string: adminUrl + "user/getUser")!
@@ -3523,7 +3597,6 @@ class Navigation {
                 
                 do {
                     let result = try JSONSerialization.jsonObject(with: data!, options: []) as! [String:AnyObject]
-                    print("response: \(JSON(result))")
                     completion(JSON(result))
                     
                 } catch {
@@ -3820,7 +3893,7 @@ class Navigation {
     
     //MARK: - Logout
     
-    func logout(email: String, completion: @escaping ((JSON) -> Void)) {
+    func logout(id: String, completion: @escaping ((JSON) -> Void)) {
         OneSignal.idsAvailable({(_ userId, _ pushToken) in
             let deviceParams = userId! as String
             do {

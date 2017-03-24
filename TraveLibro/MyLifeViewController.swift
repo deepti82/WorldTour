@@ -82,10 +82,10 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         profileName.addGestureRecognizer(tap)
         
         
-        let statusBar = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 20))
-        statusBar.layer.zPosition = -1
-        statusBar.backgroundColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 1)
-        self.view.addSubview(statusBar)
+//        let statusBar = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 20))
+//        statusBar.layer.zPosition = -1
+//        statusBar.backgroundColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 1)
+//        self.view.addSubview(statusBar)
         
         
         let frameWidth = self.view.frame.width - 25

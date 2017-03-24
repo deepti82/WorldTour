@@ -40,6 +40,9 @@ class SignInPageViewController: UIViewController {
         pageView.facebookButton.addTarget(self, action: #selector(SignInPageViewController.facebookSignUp(_:)), for: .touchUpInside)
         pageView.googleButton.addTarget(self, action: #selector(SignInPageViewController.googleSignUp(_:)), for: .touchUpInside)
         
+        pageView.termsAndConditionsButton.addTarget(self, action: #selector(SignInPageViewController.linksClicked(_:)), for: .touchUpInside)
+        pageView.privacyPolicyButton.addTarget(self, action: #selector(SignInPageViewController.linksClicked(_:)), for: .touchUpInside)
+        
         let fbTap = UITapGestureRecognizer(target: self, action: #selector(SignInPageViewController.facebookSignUp(_:)))
         let googleTap = UITapGestureRecognizer(target: self, action: #selector(SignInPageViewController.googleSignUp(_:)))       
         
@@ -96,14 +99,14 @@ class SignInPageViewController: UIViewController {
             
             self.title = "Login"
             
-            pageView.frame = CGRect(x: 0, y: 80, width: self.view.frame.size.width, height: self.view.frame.size.height - 80)
+            pageView.frame = CGRect(x: 0, y: 15, width: self.view.frame.size.width, height: self.view.frame.size.height - 15)
             
             pageView.profileImage.isHidden = false
             pageView.messageLabel.isHidden = false
             pageView.requestLabel.isHidden = false
             pageView.loginStack.isHidden = true
             pageView.autoMigrateLabel.isHidden = false
-            pageView.tncFooter.isHidden = true
+            pageView.tncView.isHidden = true
             
             pageView.googleLabel.text = "       Connect with Google+"
             pageView.facebookLabel.text = "       Connect with Facebook"
@@ -117,14 +120,14 @@ class SignInPageViewController: UIViewController {
             
             self.title = "Sign Up"
             
-            pageView.frame = CGRect(x: 0, y: -20, width: self.view.frame.size.width, height: self.view.frame.size.height)
+            pageView.frame = CGRect(x: 0, y: -84, width: self.view.frame.size.width, height: self.view.frame.size.height)
             
             pageView.profileImage.isHidden = true
             pageView.messageLabel.isHidden = true
             pageView.requestLabel.isHidden = true
             pageView.loginStack.isHidden = false
             pageView.autoMigrateLabel.isHidden = true
-            pageView.tncFooter.isHidden = false
+            pageView.tncView.isHidden = false
             
             pageView.googleLabel.text = "       Sign up via Google+"
             pageView.facebookLabel.text = "       Sign up via Facebook"
@@ -305,6 +308,12 @@ class SignInPageViewController: UIViewController {
         let logInVC = storyboard?.instantiateViewController(withIdentifier: "logIn") as! LogInViewController
         self.navigationController?.pushViewController(logInVC, animated: true)
         
+    }
+    
+    func linksClicked(_ sender: UIButton) {
+        let linksShowVC = storyboard?.instantiateViewController(withIdentifier: "EditSettings") as! EditSettingsViewController
+        linksShowVC.whichView = (sender.tag == 34) ? "terms&conditions" : "privacyPolicy"
+        self.navigationController?.pushViewController(linksShowVC, animated: true)
     }
     
     

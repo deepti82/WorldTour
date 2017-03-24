@@ -615,7 +615,7 @@ func getRegularString(string: String, size: Int) -> NSMutableAttributedString {
 
 func getRegularRomanString(string: String, size: Int) -> NSMutableAttributedString {
     return NSMutableAttributedString(string: string, 
-                                     attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: CGFloat(size))!, NSForegroundColorAttributeName: UIColor.white])
+                                     attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: CGFloat(size))!, NSForegroundColorAttributeName: UIColor.black])
 }
 
 func getBoldString(string: String, size: Int) -> NSMutableAttributedString {
@@ -739,7 +739,7 @@ func getDigitWithCommaStandards(originalDigitStr : String) -> String {
 
 func inviteToAppClicked(sender: UIView, onView:UIViewController) {
     
-    let content = getRegularRomanString(string: "       Hi, \((user.getUser(user.getExistingUser())).Name) thinks you'd love TraveLibro. Its a Travel Social Network that lets you Capture, Inspire and Relive your Travel Life | Local Life. It's really quick and easy! Download app to capture your entire life and inspire a world of travellers.", size: 12) 
+    let content = getRegularRomanString(string: "Hi, \((user.getUser(user.getExistingUser())).Name) thinks you'd love TraveLibro. Its a Travel Social Network that lets you Capture, Inspire and Relive your Travel Life | Local Life. It's really quick and easy! Download app to capture your entire life and inspire a world of travellers.", size: 12) 
     content.append(getRegularRomanString(string: "\n iOS : ", size: 12))
     content.append(getHyperlinkedString(string: "http://apple.co/1TYeGs5", size: 12, hyperlink: NSURL(string: "http://apple.co/1TYeGs5") as! URL, color: UIColor.blue))
     
@@ -757,6 +757,22 @@ func inviteToAppClicked(sender: UIView, onView:UIViewController) {
     
     activityVC.popoverPresentationController?.sourceView = sender            
     onView.present(activityVC, animated: true, completion: nil)   
+}
+
+
+
+
+func sharingUrl(url: String, onView:UIViewController) {
+    let content = url
+    
+    let objectsToShare = [content]
+    let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+    
+    //Excluded Activities Code
+    activityVC.excludedActivityTypes = [UIActivityType.addToReadingList, UIActivityType.assignToContact, UIActivityType.copyToPasteboard, UIActivityType.saveToCameraRoll, UIActivityType.airDrop]
+    
+//    activityVC.popoverPresentationController?.sourceView = sender
+    onView.present(activityVC, animated: true, completion: nil)
 }
 
 

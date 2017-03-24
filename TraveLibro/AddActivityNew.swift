@@ -386,7 +386,7 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
                 builder.configureCameraViewController(){ cameraConf in
                     cameraConf.allowedRecordingModes = [.video]
                     cameraConf.showCameraRoll = false
-                    cameraConf.maximumVideoLength = 60
+                    cameraConf.maximumVideoLength = 30
                     
 //                    let timeLabel = UILabel(frame: CGRect(x: 50, y: 100, width: 200, height: 40))
 //                    timeLabel.text = "time :"
@@ -409,10 +409,6 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
                 builder.separatorColor = UIColor.white
             }
             
-//            let timeLabel = UILabel(frame: CGRect(x: 50, y: 100, width: 200, height: 40))
-//            timeLabel.text = "time :"
-//            timeLabel.textColor = UIColor.white
-//            self.addSubview(timeLabel)
             
             self.cameraViewController = CameraViewController(configuration:configuration)
 //            timeLabel.text = self.cameraViewController.recordingTimeLabel.text
@@ -436,7 +432,7 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
             
             imagePickerController.sourceType = .photoLibrary
             imagePickerController.allowsEditing = true
-            imagePickerController.videoMaximumDuration = 60.0
+            imagePickerController.videoMaximumDuration = 30.0
             imagePickerController.mediaTypes = ["public.movie"]
             imagePickerController.videoQuality = UIImagePickerControllerQualityType.type640x480
             

@@ -346,4 +346,7 @@ class PhotoOTGFooter: UIView {
         actionSheetControllerIOS8.addAction(share)
         globalNavigationController.topViewController?.present(actionSheetControllerIOS8, animated: true, completion: nil)
     }
+    @IBAction func sharingTap(_ sender: Any) {
+        sharingUrl(url:  postTop.jsonPost["sharingUrl"].stringValue, onView: globalNavigationController.topViewController!)
+    }
 }

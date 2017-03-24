@@ -62,10 +62,7 @@ class MainSearchViewController: UIViewController, UITextFieldDelegate {
         if search.searchField.text! == "" {
             self.changeView(switchView: "slider")
         }else{
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-
             self.changeView(switchView: "table")
-            }
         }
     }
     func closeLoader() {

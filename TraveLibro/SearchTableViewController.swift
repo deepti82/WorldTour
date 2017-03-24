@@ -10,7 +10,6 @@ import UIKit
 import DKChainableAnimationKit
 var globalSearchTableViewController: SearchTableViewController!
 class SearchTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    @IBOutlet weak var hashtagsTable: UITableView!
     @IBOutlet weak var searchTable: UITableView!
     @IBOutlet weak var hashTagSlide: UIView!
     @IBOutlet weak var hashtagsSearch: UIButton!
@@ -27,6 +26,9 @@ class SearchTableViewController: UIViewController, UITableViewDelegate, UITableV
     var newSearch:String = ""
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        searchTable.tableFooterView = UIView()
+        
         globalSearchTableViewController = self
         print(newSearch)
 //        transparentCardWhite(selectStrip)
@@ -68,6 +70,7 @@ class SearchTableViewController: UIViewController, UITableViewDelegate, UITableV
         if selectedStatus == "people" {
             transparentCardWhite(cell.contentView)
             cell.hashText.isHidden = true
+            cell.peopleHashtagsImage.image = UIImage(named: "logo-default")
             cell.peopleHashtagsImage.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["profilePicture"].stringValue, width: 200))
             noColor(cell.peopleHashtagsImage)
             cell.nameHashtagsLabel.text = allData[indexPath.row]["name"].stringValue
@@ -84,44 +87,38 @@ class SearchTableViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func refreshUI() {
-        DispatchQueue.main.async {
-    print("dispatchkjksjkhdf")
-            self.searchTable.reloadData()
-            
-        }
+        self.searchTable.reloadData()
     }
     
     func searchPeople(search: String) {
         self.searchTextGlob = search
         loadStatus = false
-        print(self.page)
         if search != "" {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-
+            
             request.getPeopleSearch(currentUser["_id"].stringValue, search: search, pageNumber: self.page, completion:{(request) in
                 DispatchQueue.main.async(execute: {
                     
-
-                if request["data"].count > 0 {
-                    
-                    if self.page == 1 {
-                        self.allData = []
-                        self.allData = request["data"].array!
+                    if request["data"].count > 0 {
+                        
+                        if self.page == 1 {
+                            self.allData = []
+                            self.allData = request["data"].array!
+                        }else{
+                            
+                            for city in request["data"].array! {
+                                if !(self.allData.contains(value: city)) {
+                                    self.allData.append(city)
+                                }
+                            }
+                        }
+                        self.page = self.page + 1
+                        self.loadStatus = true
+                        self.refreshUI()
+                        
                     }else{
                         
-                        for city in request["data"].array! {
-                            self.allData.append(city)
-                            
-                        }
+                        self.loadStatus = false
                     }
-                    self.page = self.page + 1
-                    self.loadStatus = true
-                    self.refreshUI()
-                    
-                }else{
-                    
-                    self.loadStatus = false
-                }
                     if self.allData.count == 0 {
                         self.searchTable.isHidden = true
                         self.noTravellersStrip.text = "No Traveller Found"
@@ -132,8 +129,7 @@ class SearchTableViewController: UIViewController, UITableViewDelegate, UITableV
                     }
                 })
             })
-        }
-        
+            
         }
     }
   
