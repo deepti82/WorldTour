@@ -18,9 +18,13 @@
                 <outlet property="activityOrange" destination="dSC-8u-rIB" id="vbc-42-hHS"/>
                 <outlet property="badgeButton" destination="tAf-V2-SrM" id="EKo-PR-6Y6"/>
                 <outlet property="feedView" destination="FAH-cp-FRl" id="82W-11-iMJ"/>
+                <outlet property="localLife" destination="LLk-5z-Wxu" id="dVX-qF-qVL"/>
                 <outlet property="localLifeIcon" destination="fKj-pB-sz8" id="rWq-sz-hf4"/>
                 <outlet property="lowerMainView" destination="wbj-3m-z2P" id="sIS-07-r10"/>
+                <outlet property="notificationIcon" destination="2OT-9G-de8" id="VHh-eL-ntg"/>
+                <outlet property="notifications" destination="Xh3-v4-A13" id="jWt-Vv-OMb"/>
                 <outlet property="notifyView" destination="gP7-LO-s7L" id="W7u-po-mTn"/>
+                <outlet property="travelLife" destination="lo0-MV-Tpb" id="UDQ-XC-lDb"/>
                 <outlet property="travelLifeIcon" destination="vO2-H0-LuF" id="LcV-Bp-NKE"/>
                 <outlet property="upperMainView" destination="8Sd-Tw-WNK" id="AnR-ET-B8G"/>
                 <outletCollection property="footerIconImages" destination="O3F-rC-Mgv" collectionClass="NSMutableArray" id="sEq-oe-rEt"/>

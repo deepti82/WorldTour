@@ -53,7 +53,8 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         refreshControl.addTarget(self, action: #selector(NotificationSubViewController.pullToRefreshCalled), for: UIControlEvents.valueChanged)
         refreshControl.tintColor = lightOrangeColor
         notifyTableView.addSubview(refreshControl)
-        
+        mainFooter.notificationIcon.tintColor = mainOrangeColor
+        mainFooter.notifications.textColor = mainOrangeColor
         getNotification()
         
     }

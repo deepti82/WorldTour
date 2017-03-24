@@ -45,7 +45,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="375" height="105"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="speech_icon" translatesAutoresizingMaskIntoConstraints="NO" id="ulR-lL-uAt">
-                                    <rect key="frame" x="67" y="69" width="15" height="15"/>
+                                    <rect key="frame" x="67" y="67" width="15" height="15"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="15" id="kGH-ja-yO5"/>
                                         <constraint firstAttribute="width" constant="15" id="x3F-q6-MEd"/>
@@ -116,7 +116,7 @@
                                                         <constraint firstAttribute="width" constant="23" id="TTe-Jq-t5q"/>
                                                         <constraint firstAttribute="height" constant="23" id="t1i-90-0GP"/>
                                                     </constraints>
-                                                    <state key="normal" title="Button" image="1673C5D0-1A9D-44A4-99F1-0338C8DD087B"/>
+                                                    <state key="normal" title="Button" image="A72536D9-1F07-4836-988E-47018E9880D3"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="velocity">
                                                             <real key="value" value="2"/>
@@ -246,7 +246,7 @@
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstItem="INU-4W-caQ" firstAttribute="top" secondItem="TvC-wa-Brz" secondAttribute="top" id="0ti-p8-Cnm"/>
-                                <constraint firstItem="YMC-Ut-tfl" firstAttribute="top" secondItem="ulR-lL-uAt" secondAttribute="top" constant="-2" id="15M-px-Tt8"/>
+                                <constraint firstItem="YMC-Ut-tfl" firstAttribute="top" secondItem="ulR-lL-uAt" secondAttribute="top" id="15M-px-Tt8"/>
                                 <constraint firstItem="uwB-8n-vIP" firstAttribute="top" secondItem="INU-4W-caQ" secondAttribute="bottom" constant="7" id="9f9-0X-2PE"/>
                                 <constraint firstItem="YMC-Ut-tfl" firstAttribute="top" secondItem="TvC-wa-Brz" secondAttribute="top" constant="67" id="E0m-YR-uvY"/>
                                 <constraint firstItem="N1L-2R-Nj3" firstAttribute="leading" secondItem="TvC-wa-Brz" secondAttribute="leading" constant="170" id="E25-Rg-LDD"/>
@@ -301,7 +301,7 @@
         </view>
     </objects>
     <resources>
-        <image name="1673C5D0-1A9D-44A4-99F1-0338C8DD087B" width="128" height="128">
+        <image name="A72536D9-1F07-4836-988E-47018E9880D3" width="128" height="128">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw

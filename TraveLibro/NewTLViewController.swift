@@ -1110,6 +1110,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         self.mainFooter.layer.zPosition = 5
         self.view.addSubview(self.mainFooter)
         self.mainFooter.travelLifeIcon.tintColor = mainOrangeColor
+        self.mainFooter.travelLife.textColor = mainOrangeColor
     
         infoButton.isHidden = true
         
