@@ -71,6 +71,8 @@ class DisplayPagesFourViewController: UIViewController {
         
     }
     
+    
+    
     func setImage(_ sender: forDpFour) {
         
         let isUrl = verifyUrl(profilePic)

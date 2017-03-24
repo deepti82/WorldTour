@@ -109,7 +109,9 @@ class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        if isFromSettings != nil && isFromSettings == true {
         self.saveCity(UIButton())
+        }
     }
     
     override func didReceiveMemoryWarning() {

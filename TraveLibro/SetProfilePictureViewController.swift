@@ -82,6 +82,11 @@ class SetProfilePictureViewController: UIViewController, UIImagePickerController
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: NAVIGATION_FONT!]
+    }
+    
     func changeLabelText(_ sender: UIGestureRecognizer) {
         
         uploadView.usernameTextField.text = uploadView.username.text
