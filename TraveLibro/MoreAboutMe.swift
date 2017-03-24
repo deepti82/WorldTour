@@ -29,7 +29,9 @@ class MoreAboutMe: UIView {
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view);
         
-        reloadTravelPrefeces()
+        if currentUser != nil {
+            reloadTravelPrefeces()            
+        }
     }
     
     func reloadTravelPrefeces() {

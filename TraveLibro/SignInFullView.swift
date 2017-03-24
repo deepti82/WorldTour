@@ -13,9 +13,10 @@ class SignInFullView: UIView {
     @IBOutlet weak var googleButton: UIButton!
     @IBOutlet weak var facebookButton: UIButton!
     @IBOutlet weak var facebookLabel: LeftPaddedLabel!
-    @IBOutlet weak var tncFooter: LeftPaddedLabel!
     @IBOutlet weak var loginButton: UIButton!    
-    
+    @IBOutlet weak var tncView: UIView!
+    @IBOutlet weak var privacyPolicyButton: UIButton!
+    @IBOutlet weak var termsAndConditionsButton: UIButton!
     @IBOutlet weak var facebookStack: UIStackView!
     @IBOutlet weak var googleStack: UIStackView!
     @IBOutlet weak var loginStack: UIStackView!
