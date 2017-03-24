@@ -10,14 +10,13 @@ import UIKit
 import Toaster
 
 class LogInViewController: UIViewController, UITextFieldDelegate {
-
+    
     @IBOutlet weak var videoScrollView: UIScrollView!
     var layout:HorizontalLayout!
     var logIn = LogInView()
     var forgotView = ForgotPassword()
     var emailTxtField = UITextField()
-    var loader = LoadingOverlay() 
-    
+    let loader = LoadingOverlay()
     
     //MARK: - Lifecycle
     
@@ -56,10 +55,15 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         super.viewWillAppear(animated)
         logIn.emailTxt.text = ""
         logIn.passwordTxt.text = ""
+        if shouldShowLoader {
+            loader.showOverlay(self.view)
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)        
+        super.viewWillDisappear(animated)
+        loader.hideOverlayView()
+        shouldShowLoader = false
     }
     
     override func didReceiveMemoryWarning() {
@@ -70,13 +74,14 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     //MARK: - Button Actions
     
     func facebookSignUp(_ sender: AnyObject) {
-        
+        //shouldShowLoader = true
+        //loader.showOverlay(self.view)
         social.facebookLogin()
-        
     }
     
     func googleSignUp(_ sender: AnyObject) {
-        
+        //shouldShowLoader = true
+        //loader.showOverlay(self.view)        
         social.googleLogin()
         
     }
