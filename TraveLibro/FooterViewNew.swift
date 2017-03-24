@@ -52,7 +52,7 @@ class FooterViewNew: UIView {
         upperMainView.layer.borderWidth = 2
         
         badgeButton.layer.cornerRadius = (badgeButton.frame.size.width/2)
-        badgeButton.layer.zPosition = 10
+        badgeButton.layer.zPosition = 15000
         
         upperMainView.layer.borderColor = UIColor(red: 57/255, green: 66/255, blue: 106/255, alpha: 1).cgColor
         

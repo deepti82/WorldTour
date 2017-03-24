@@ -27,7 +27,7 @@ class MainSearchViewController: UIViewController, UITextFieldDelegate {
         search.searchField.returnKeyType = .done
         search.searchField.delegate = self
         search.searchField.addTarget(self, action: #selector(self.onChange), for: .editingChanged)
-        
+        search.searchField.tintColor = mainOrangeColor
         SearchView.addSubview(search)
         
         transparentCardWhite(SearchView)
