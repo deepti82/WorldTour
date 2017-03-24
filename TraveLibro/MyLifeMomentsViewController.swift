@@ -485,6 +485,9 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
         let array = getMonthFormat(currDate)
         let headerLabel = NSMutableAttributedString(string: "")
         let month = NSAttributedString(string: array, attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: 14)!])
+//        let month = NSAttributedString(string: getDateFormat(currDate, format: "d MMM, yyyy"), attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: 14)!])
+        
+
         let count = NSAttributedString(string: " (\(count))", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: 11)!])
         headerLabel.append(month)
         headerLabel.append(count)
