@@ -107,34 +107,30 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = true
         playBtn.isHidden = true
+        
+        loadData()
+        
+        switch self.showPage {
+            
+        case 0:
+            self.videoScrollView.scrollRectToVisible(CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight), animated: true)
+            
+        case 1: 
+            self.videoScrollView.scrollRectToVisible(CGRect(x: screenWidth, y: 0, width: screenWidth, height: screenHeight), animated: true)
+            
+        case 2:
+            self.videoScrollView.scrollRectToVisible(CGRect(x: screenWidth*2, y: 0, width: screenWidth, height: screenHeight), animated: true)
+            
+        default:
+            break
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        loadData()
-        
-        UIView.animate(withDuration: 2) {
-            switch self.showPage {
-                
-            case 0:
-                self.videoScrollView.scrollRectToVisible(self.imageView1.frame, animated: true)
-                
-            case 1: 
-                self.videoScrollView.scrollRectToVisible(self.imageView2.frame, animated: true)
-                
-            case 2:
-                self.videoScrollView.scrollRectToVisible(self.imageView3.frame, animated: true)
-                
-            default:
-                break
-            }            
-        }
-        
         playBtn.frame = CGRect(x: 0, y: 0, width: 100, height: 65)
         playBtn.center = imageView1.center
-        
-        videoToPlay()
     }   
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -275,7 +271,6 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
     //MARK: - Button Actions
     
     func goToSignUp(_ sender: AnyObject) {
-        print("storyboard: \(self.navigationController)")
         loggedInUser = nil
         let signUpFullVC = storyboard?.instantiateViewController(withIdentifier: "signUpTwo") as! SignInPageViewController
         self.navigationController?.pushViewController(signUpFullVC, animated: true)
@@ -304,23 +299,21 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
             case 0:
                 if player1.playbackState == PlaybackState.stopped {
                     playBtn.titleLabel?.textColor = mainOrangeColor
-                    playBtn.isHidden = false
                 }
                 
             case 1:
                 if player2.playbackState == PlaybackState.stopped {
                     playBtn.titleLabel?.textColor = mainGreenColor
-                    playBtn.isHidden = false
                 }
                 
             case 2:
                 if player3.playbackState == PlaybackState.stopped {
                     playBtn.titleLabel?.textColor = UIColor.white
-                    playBtn.isHidden = false
                 }
                 
             default: break
             }
+            playBtn.isHidden = false
         }        
     }
 
@@ -330,9 +323,11 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
     func videoToPlay ()  {
         
         let pageNumber = round(videoScrollView.contentOffset.x / videoScrollView.frame.size.width)
-        
         let i = Int(pageNumber)
         pageControl.currentPage = i
+        player1.stop()
+        player2.stop()
+        player3.stop()
         
         switch(i) {
         case 0:   
@@ -345,10 +340,10 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
             
         case 2:   
             videoLabel.text = "My Life"
-            player3.playFromBeginning()
-            
+            player3.playFromBeginning()            
         default: break
         }
+        playBtn.isHidden = true
     }
     
     func playAgain(){
@@ -411,9 +406,9 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        self.player1.setUrl(NSURL(fileURLWithPath: (Bundle.main.path(forResource: "travellife", ofType:"mp4"))!) as URL)
-        self.player2.setUrl(NSURL(fileURLWithPath: (Bundle.main.path(forResource: "locallife", ofType:"mp4"))!) as URL)
-        self.player3.setUrl(NSURL(fileURLWithPath: (Bundle.main.path(forResource: "mylife", ofType:"mp4"))!) as URL)
+//        self.player1.setUrl(NSURL(fileURLWithPath: (Bundle.main.path(forResource: "travellife", ofType:"mp4"))!) as URL)
+//        self.player2.setUrl(NSURL(fileURLWithPath: (Bundle.main.path(forResource: "locallife", ofType:"mp4"))!) as URL)
+//        self.player3.setUrl(NSURL(fileURLWithPath: (Bundle.main.path(forResource: "mylife", ofType:"mp4"))!) as URL)
     }
 
 }
