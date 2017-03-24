@@ -1863,8 +1863,7 @@ class Navigation {
             var params: JSON!
             
             params = ["_id": user, "search": search, "pagenumber": pageNumber, "limit": 10]
-           
-            print(params)
+            
             let jsonData = try params.rawData()
             
             let url = URL(string: adminUrl + "user/getUser")!
@@ -3598,7 +3597,6 @@ class Navigation {
                 
                 do {
                     let result = try JSONSerialization.jsonObject(with: data!, options: []) as! [String:AnyObject]
-                    print("response: \(JSON(result))")
                     completion(JSON(result))
                     
                 } catch {
