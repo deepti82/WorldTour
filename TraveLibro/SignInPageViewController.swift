@@ -13,9 +13,8 @@ class SignInPageViewController: UIViewController {
     
     
     var keyboardUp = false
-//    var params = [String: String]()
     var pageView: SignInFullView!
-    
+    let loader = LoadingOverlay()
     
     //MARK: - Lifecycle
     
@@ -76,11 +75,16 @@ class SignInPageViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(self.userSocialLoginFailed(notification:)), name: NSNotification.Name(rawValue: "SOCIAL_LOGIN_FAILED"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.userChangeLoginFailed(notification:)), name: NSNotification.Name(rawValue: "USER_MIGRATE_FAILED"), object: nil)        
         setData()
+        if shouldShowLoader {
+            loader.showOverlay(self.view)
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
+        super.viewWillDisappear(animated)        
         NotificationCenter.default.removeObserver(self)
+        shouldShowLoader = false
+        //loader.hideOverlayView()
     }
     
     override func didReceiveMemoryWarning() {
@@ -136,16 +140,12 @@ class SignInPageViewController: UIViewController {
     
     //MARK: - Button actions
     
-    func facebookSignUp(_ sender: AnyObject) {
-        
+    func facebookSignUp(_ sender: AnyObject) {        
         social.facebookLogin()
-        
     }
     
     func googleSignUp(_ sender: AnyObject) {
-        
-        social.googleLogin()
-        
+        social.googleLogin()        
     }   
     
     
