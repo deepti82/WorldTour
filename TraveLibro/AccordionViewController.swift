@@ -260,7 +260,7 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
             if indexPath.row == 0 {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "headerCell") as! reviewsHeaderCell
                 cell.countryTitle.text = allData[indexPath.row]["name"].stringValue
-                cell.countryButton.tintColor = mainGreenColor
+                //cell.countryButton.tintColor = mainGreenColor
                 return cell
             }else{
                 let cell = tableView.dequeueReusableCell(withIdentifier: "allReviewsCell") as! allReviewsMLTableViewCell

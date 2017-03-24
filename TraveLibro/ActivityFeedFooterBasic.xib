@@ -225,10 +225,9 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 Comment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iPD-zs-z05">
-                            <rect key="frame" x="86" y="67" width="109" height="15"/>
+                            <rect key="frame" x="86" y="67" width="53.5" height="15"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="15" id="Ul9-ay-f4b"/>
-                                <constraint firstAttribute="width" constant="109" id="ok8-Kl-stI"/>
                             </constraints>
                             <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="10"/>
                             <color key="textColor" red="0.13725490870000001" green="0.1764705926" blue="0.29019609089999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

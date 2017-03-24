@@ -136,9 +136,8 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 Comment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tzT-PL-Dj5">
-                            <rect key="frame" x="86" y="60" width="109" height="15"/>
+                            <rect key="frame" x="86" y="60" width="53.5" height="15"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="109" id="Syn-Gm-YwP"/>
                                 <constraint firstAttribute="height" constant="15" id="zWH-dM-9Ae"/>
                             </constraints>
                             <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="10"/>
