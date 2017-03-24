@@ -299,9 +299,7 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
             }            
         case 6:
             if currentUser != nil {
-                user.dropTable()
-                UserDefaults.standard.set(0, forKey: "notificationCount")
-                self.slideMenuController()?.changeMainViewController(self.signOutViewController, close: true)
+                logoutUser()
             }
             else{
                 closeLeft()
@@ -334,13 +332,48 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
     }
     
     //MARK: - Rate Us
+    
     func rateUsButtonClicked() {
+        closeLeft()
         let loader = LoadingOverlay()
         loader.showOverlay(self.view)
         let appID = "1056641759"
         let urlStr = "itms-apps://itunes.apple.com/app/travelibro/id" + appID
         UIApplication.shared.open((NSURL(string: urlStr) as! URL), options: [:]) { (done) in
             loader.hideOverlayView()
+        }
+    }
+    
+    //MARK: - Logout
+    
+    func logoutUser() {
+        closeLeft()
+        let loader = LoadingOverlay()
+        loader.showOverlay(self.view)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            request.logout(id: user.getExistingUser()) { (response) in
+                DispatchQueue.main.async(execute: {
+                    loader.hideOverlayView()
+                    if response.error != nil {
+                        print("error: \(response.error!.localizedDescription)")
+                    }
+                    else if response["value"].bool! {
+                        user.dropTable()
+                        UserDefaults.standard.set(0, forKey: "notificationCount")
+                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
+                    }
+                    else {
+                        let errorAlert = UIAlertController(title: "Error", message: "Logout failed. Please try again later", preferredStyle: UIAlertControllerStyle.alert)
+                        let DestructiveAction = UIAlertAction(title: "Ok", style: .destructive) {
+                            (result : UIAlertAction) -> Void in
+                            //Cancel Action
+                        }            
+                        errorAlert.addAction(DestructiveAction)
+                        self.navigationController?.present(errorAlert, animated: true, completion: nil)
+                    }
+                })
+            }           
         }
     }
  

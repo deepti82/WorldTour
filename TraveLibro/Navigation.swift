@@ -666,6 +666,7 @@ class Navigation {
         
         
     }
+    
     func addCard(_ id: String, editFieldValue: [String:Any], completion: @escaping ((JSON) -> Void)) {
         
         do {
@@ -3894,7 +3895,7 @@ class Navigation {
     
     //MARK: - Logout
     
-    func logout(email: String, completion: @escaping ((JSON) -> Void)) {
+    func logout(id: String, completion: @escaping ((JSON) -> Void)) {
         OneSignal.idsAvailable({(_ userId, _ pushToken) in
             let deviceParams = userId! as String
             do {
