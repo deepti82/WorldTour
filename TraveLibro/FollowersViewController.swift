@@ -179,6 +179,7 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
         customSearch.searchButton.addTarget(self, action: #selector(FollowersViewController.searchButtonClicked(sender:)), for: .touchUpInside)
         customSearch.searchField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         customSearch.searchField.delegate = self
+        customSearch.tintColor = mainOrangeColor
         searchView.addSubview(customSearch)
         searchView.clipsToBounds = true
         
