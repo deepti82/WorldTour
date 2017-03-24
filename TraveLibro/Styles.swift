@@ -628,10 +628,9 @@ func getRedString(string: String) -> NSMutableAttributedString {
                                      attributes: [NSForegroundColorAttributeName: UIColor.red])
 }
 
-func getHyperlinkedString(string: String, size: Int, hyperlink: URL, color:UIColor ) -> NSMutableAttributedString {
+func getHyperlinkedString(string: String, size: Int, hyperlink: String, color:UIColor ) -> NSMutableAttributedString {
     return NSMutableAttributedString(string: string, 
-                                     attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: CGFloat(size))!,
-                                                  NSLinkAttributeName: hyperlink,
+                                     attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: CGFloat(size))!,                                                  
                                                   NSUnderlineStyleAttributeName: NSUnderlineStyle.styleSingle.rawValue,
                                                   NSForegroundColorAttributeName: color])
 }
@@ -739,17 +738,9 @@ func getDigitWithCommaStandards(originalDigitStr : String) -> String {
 
 func inviteToAppClicked(sender: UIView, onView:UIViewController) {
     
-    let content = getRegularRomanString(string: "Hi, \((user.getUser(user.getExistingUser())).Name) thinks you'd love TraveLibro. Its a Travel Social Network that lets you Capture, Inspire and Relive your Travel Life | Local Life. It's really quick and easy! Download app to capture your entire life and inspire a world of travellers.", size: 12) 
-    content.append(getRegularRomanString(string: "\n iOS : ", size: 12))
-    content.append(getHyperlinkedString(string: "http://apple.co/1TYeGs5", size: 12, hyperlink: NSURL(string: "http://apple.co/1TYeGs5") as! URL, color: UIColor.blue))
+    let newContent = "Hi, \((user.getUser(user.getExistingUser())).Name) thinks you'd love TraveLibro. Its a Travel Social Network that lets you Capture, Inspire and Relive your Travel Life | Local Life. It's really quick and easy! Download app to capture your entire life and inspire a world of travellers. \n\n  iOS : http://apple.co/1TYeGs5 \n Android : http://bit.ly/1WDUiCN  \n Web : http://travelibro.com "
     
-    content.append(getRegularRomanString(string: "\n Android : ", size: 12))
-    content.append(getHyperlinkedString(string: "http://bit.ly/1WDUiCN", size: 12, hyperlink: NSURL(string: "http://bit.ly/1WDUiCN") as! URL, color: UIColor.blue))
-    
-    content.append(getRegularRomanString(string: "\n Web : ", size: 12))
-    content.append(getHyperlinkedString(string: "http://travelibro.com", size: 12, hyperlink: NSURL(string: "http://travelibro.com") as! URL, color: UIColor.blue))
-    
-    let objectsToShare = [content]
+    let objectsToShare = [newContent]
     let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
 
     //Excluded Activities Code
