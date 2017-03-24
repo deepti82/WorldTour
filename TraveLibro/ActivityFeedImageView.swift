@@ -78,7 +78,7 @@ class ActivityFeedImageView: UIView {
         }
         if feed["countryVisited"][0] != nil {
             flagOne.isHidden = false
-            flagOne.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(feed["countryVisited"][2]["country"]["flag"])", width: 100))
+            flagOne.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(feed["countryVisited"][0]["country"]["flag"])", width: 100))
         }
         if feed["countryVisited"][1] != nil {
             flageTwo.isHidden = false
@@ -86,7 +86,7 @@ class ActivityFeedImageView: UIView {
         }
         if feed["countryVisited"][2] != nil {
             flagThree.isHidden = false
-            flagThree.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(feed["countryVisited"][0]["country"]["flag"])", width: 100))
+            flagThree.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(feed["countryVisited"][2]["country"]["flag"])", width: 100))
         }
         
 //        for category in stackView.subviews {

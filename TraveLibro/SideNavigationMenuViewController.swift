@@ -347,11 +347,10 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
     //MARK: - Logout
     
     func logoutUser() {
-        closeLeft()
-        let loader = LoadingOverlay()
-        loader.showOverlay(self.view)
-        
+        closeLeft()        
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            let loader = LoadingOverlay()
+            loader.showOverlay((globalNavigationController.topViewController?.view)!)
             request.logout(id: user.getExistingUser()) { (response) in
                 DispatchQueue.main.async(execute: {
                     loader.hideOverlayView()
