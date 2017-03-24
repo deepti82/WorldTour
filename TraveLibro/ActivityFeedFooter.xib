@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -117,9 +117,7 @@
                                                         <constraint firstAttribute="width" constant="23" id="TTe-Jq-t5q"/>
                                                         <constraint firstAttribute="height" constant="23" id="t1i-90-0GP"/>
                                                     </constraints>
-
-                                                    <state key="normal" title="Button" image="DC71407E-671A-429A-82D1-B20080B108D5"/>
-
+                                                    <state key="normal" title="Button" image="D9092984-AC12-48A6-9FF9-EE88DDA6CC07"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="velocity">
                                                             <real key="value" value="2"/>
@@ -304,9 +302,7 @@
         </view>
     </objects>
     <resources>
-
-        <image name="DC71407E-671A-429A-82D1-B20080B108D5" width="128" height="128">
-
+        <image name="D9092984-AC12-48A6-9FF9-EE88DDA6CC07" width="128" height="128">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
@@ -1458,6 +1454,6 @@ AAAAAAABClA
         <image name="shareButton" width="46" height="70"/>
         <image name="speech_icon" width="30" height="30"/>
         <image name="star_check" width="27" height="25"/>
-        <image name="travel_life" width="80" height="80"/>
+        <image name="travel_life" width="32" height="47"/>
     </resources>
 </document>
