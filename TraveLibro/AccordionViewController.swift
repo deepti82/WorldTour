@@ -49,7 +49,6 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        print(loadStatus)
         if loadStatus {
             loadReview(pageno: self.pagenumber, type: reviewType)
         }
@@ -102,22 +101,19 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
             empty = EmptyScreenView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 250))
             switch reviewType {
             case "all":
-                print("in moments all")
                 empty.frame.size.height = 250.0
-                empty.viewHeading.text = "Unwind​ B​y Rewinding"
-                empty.viewBody.text = "Revisit and reminisce the days gone by through brilliant pictures and videos of your travel and local life."
+                empty.viewHeading.text = "Relive Y​our Storyline"
+                empty.viewBody.text = "Rate the places, restaurants, cuisines, theatres, parks, museums, and more, when you check-in. Jot down your thoughts and feelings about them."
                 break
             case "travel-life":
-                print("in moments tl")
                 empty.frame.size.height = 350.0
-                empty.viewHeading.text = "Travel Becomes A Reason To Take Pictures And Store Them"
-                empty.viewBody.text = "Some memories are worth sharing, travel surely tops the list. Your travels will not only inspire you to explore more of the world, you may just move another soul or two!"
+                empty.viewHeading.text = "The World I​s Your Oyster"
+                empty.viewBody.text = "A five star or a four star? What does that historical monument qualify for? Rate it and write a review. Help others with your rating and review."
                 break
             case "local-life":
-                print("in moments ll")
                 empty.frame.size.height = 275.0
-                empty.viewHeading.text = "Suspended In Time"
-                empty.viewBody.text = "Beautiful memories created through fabulous pictures and videos of those precious moments shared with family, friends and yourself."
+                empty.viewHeading.text = "A Touch Of Your Daily Dose"
+                empty.viewBody.text = "Now how about rating and writing a super review for that newly-opened restaurant in your town? Wherever you go, click on a star and pen down your experiences."
                 break
             default:
                 break
@@ -132,9 +128,9 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func loadByLocation(location:String, id:String) {
+    
         loader.showOverlay(self.view)
         reviewType = location
-        print("GetReviewByLoc")
         request.getReviewByLoc(currentUser["_id"].stringValue, location: location, id: id, completion: {(request) in
             DispatchQueue.main.async {
                 loader.hideOverlayView()
@@ -159,7 +155,9 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func loadCountryCityReview(pageno:Int, type:String, json:JSON) {
+        if pageno == 1 {
         loader.showOverlay(self.view)
+        }
         selectedView = 2
         reviewType = "reviewby"
         self.country = ""
@@ -173,7 +171,6 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
             self.city = json["city"].stringValue
             self.category = json["_id"].stringValue
         }
-        print("getReview")
         request.getReview(currentUser["_id"].stringValue, country: country, city: city, category: category, pageNumber: pageno, completion: {(request) in
             DispatchQueue.main.async {
                 loader.hideOverlayView()
@@ -204,7 +201,9 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func loadReview(pageno:Int, type:String) {
+        if pageno == 1 {
         loader.showOverlay(self.view)
+        }
         selectedView = 1
         reviewType = type
         loadStatus = false
@@ -294,7 +293,6 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("reviewby \(reviewType) \(indexPath.row)")
         
         if reviewType == "city" {
             self.loadCountryCityReview(pageno:1, type: "city", json: allData[indexPath.row])
@@ -380,17 +378,11 @@ class allReviewsMLTableViewCell: UITableViewCell {
     
     @IBOutlet weak var categoryImage: UIImageView!
     
-    //    @IBAction func ratingButtonClicked(_ sender: UIButton) {
-    //        print("in clicked")
-    //        openRating()
-    //    }
     func checkMyRating(_ sender: UIButton) {
         
-        print("check i im the creator")
         openRating()
     }
     func checkMyRatingStar(_ sender: UITapGestureRecognizer) {
-        print("in footer tap out")
         openRating()
         
     }
@@ -406,7 +398,6 @@ class allReviewsMLTableViewCell: UITableViewCell {
     }
     
     func reviewTapOut(_ sender: UITapGestureRecognizer) {
-        print("in footer tap out")
         backgroundReview.removeFromSuperview()
         
     }
@@ -435,25 +426,21 @@ class allReviewsMLTableViewCell: UITableViewCell {
         
         
         if postTop["review"][0]["rating"] != nil  && postTop["review"].count != 0 {
-            print("step one")
             if newRating != nil {
                 print("in two if")
                 rating.starCount = newRating["rating"].intValue
                 rating.ratingDisplay(newRating)
             }else{
-                print("in two else")
                 rating.starCount = postTop["review"][0]["rating"].intValue
                 rating.ratingDisplay(postTop["review"][0])
             }
         }else{
             
             if newRating != nil && newRating["rating"] != nil {
-                print("in three if")
                 rating.starCount = newRating["rating"].intValue
                 rating.ratingDisplay(newRating)
                 
             }else{
-                print("in three else")
                 rating.starCount = 1
             }
         }
