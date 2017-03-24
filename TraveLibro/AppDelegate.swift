@@ -55,6 +55,8 @@ let shared = LoadingOverlay()
 var coverImageGrid = ""
 var popularView = "popular"
 
+var shouldShowLoader = false
+
 let user = User()
 
 let width = UIScreen.main.bounds.size.width
@@ -84,7 +86,6 @@ var selectedDetail:String = ""
 var whichJourney:String = ""
 var jouurneyToShow:JSON = []
 var ATL:String = ""
-
 
 var leftViewController: SideNavigationMenuViewController!
 
@@ -202,31 +203,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
                 UserDefaults.standard.set(notificationCount, forKey: "notificationCount")
             }
             
-            let payload: OSNotificationPayload? = notification?.payload           
+//            let payload: OSNotificationPayload? = notification?.payload           
+//            
+//            let fullMessage: String? = payload?.body
             
-            let fullMessage: String? = payload?.body
+//            let data = payload?.additionalData
             
-            let data = payload?.additionalData
-            
-            print("Data : \(data)")
-            
-            print("Recived notifn : " + fullMessage!)
-            
-            print("Received Notification - \(notification?.payload.notificationID) - \(notification?.payload.title)")
-            
-            print("attachments : \(payload?.attachments) ")
-            
-            print("actionButtons : \(payload?.actionButtons) ")
-            
-            print("rawPayload : \(payload?.rawPayload) ")
-            
-            print("Notification : \(notification)")
-            
-            print("test1 : \(notification?.payload.badge)")
-            
-            print("test2 : \(notification?.payload.contentAvailable)")
-            
-            print("test3 : \(notification?.payload.additionalData)")
+//            print("Data : \(data)")
+//            
+//            print("Recived notifn : " + fullMessage!)
+//            
+//            print("Received Notification - \(notification?.payload.notificationID) - \(notification?.payload.title)")
+//            
+//            print("attachments : \(payload?.attachments) ")
+//            
+//            print("actionButtons : \(payload?.actionButtons) ")
+//            
+//            print("rawPayload : \(payload?.rawPayload) ")
+//            
+//            print("Notification : \(notification)")
+//            
+//            print("test1 : \(notification?.payload.badge)")
+//            
+//            print("test2 : \(notification?.payload.contentAvailable)")
+//            
+//            print("test3 : \(notification?.payload.additionalData)")
             
 //            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "REMOTE_NOTIFICATION_RECEIVED"), object: [notification?.payload.additionalData])
             
@@ -295,9 +296,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
     }
     
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
-        
+        if (url.absoluteString.range(of:"access_denied") == nil) {
+            shouldShowLoader = true
+        }
         return Simplicity.application(application, open: url, sourceApplication: sourceApplication, annotation: annotation)
-        
     }
     
     func applicationWillResignActive(_ application: UIApplication) {

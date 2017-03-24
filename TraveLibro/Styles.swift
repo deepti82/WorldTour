@@ -202,7 +202,7 @@ open class LoadingOverlay{
         let darkBlur = UIBlurEffect(style: UIBlurEffectStyle.dark)
         let blurView = UIVisualEffectView(effect: darkBlur)
         blurView.frame.size.height = view.frame.height
-        blurView.frame.size.width = view.frame.width
+        blurView.frame.size.width = screenWidth
         blurView.layer.zPosition = 6000000
         blurView.isUserInteractionEnabled = false
 

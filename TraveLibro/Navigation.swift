@@ -130,7 +130,6 @@ class Navigation {
         
         var urlString = adminUrl + "user/getOne"
         self.cache.fetch(key: urlString+id).onSuccess { data in
-            
             var json = JSON(data: data)
             completion(json)
         }
@@ -1464,11 +1463,37 @@ class Navigation {
     }
     
     func getActivityFeeds(_ user: String, pageNumber: Int, completion: @escaping ((JSON,[JSON],[JSON]) -> Void)) {
+        var urlString = adminUrl + "activityfeed/getData"
         
-        if isConnectedToNetwork() {
-            do {
-                
-                let opt = try HTTP.POST(adminUrl + "activityfeed/getData", parameters: ["user": user, "pagenumber": pageNumber])
+        var json:JSON = [];
+        if(pageNumber == 1) {
+            self.cache.fetch(key: urlString+user).onSuccess { data in
+                json = JSON(data: data)
+                let ll = LocalLifePostModel()
+                let qi = QuickItinerary()
+                var newJson:[JSON] = [];
+                var newQi:[JSON] = [];
+                if(pageNumber <= 1) {
+                    newJson = ll.getAllJson()
+                    newQi = qi.getAll()
+                }
+                completion(json,newJson,newQi)
+            }.onFailure { (err) in
+                let ll = LocalLifePostModel()
+                let qi = QuickItinerary()
+                var newJson:[JSON] = [];
+                var newQi:[JSON] = [];
+                if(pageNumber <= 1) {
+                    newJson = ll.getAllJson()
+                    newQi = qi.getAll()
+                }
+                completion([],newJson,newQi)
+            }
+        }
+        
+        
+        do {
+            let opt = try HTTP.POST(adminUrl + "activityfeed/getData", parameters: ["user": user, "pagenumber": pageNumber])
                 var json = JSON(1);
                 opt.start {response in
                     if let err = response.error {
@@ -1476,6 +1501,10 @@ class Navigation {
                     }
                     else
                     {
+                        if(pageNumber == 1) {
+                            self.cache.set(value: response.data, key: urlString+user)
+                        }
+                        
                         json  = JSON(data: response.data)
                         
                         let ll = LocalLifePostModel()
@@ -1494,21 +1523,8 @@ class Navigation {
             } catch let error {
                 print("got an error creating the request: \(error)")
             }
-
-        }else{
-        let ll = LocalLifePostModel()
-        let qi = QuickItinerary()
         
-        var newJson:[JSON] = [];
-        var newQi:[JSON] = [];
-        if(pageNumber <= 1) {
-            newJson = ll.getAllJson()
-            newQi = qi.getAll()
-        }
-        completion([],newJson,newQi)
-        }
-        
-            }
+    }
     
     func getHashData(_ user: String, pageNumber: Int, search: String, completion: @escaping ((JSON) -> Void)) {
         
