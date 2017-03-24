@@ -100,26 +100,22 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
             
             print("\n Fetching data for pageNumber: \(currentPageNumber)")
             
-            showBottomLoader(onView: self.notifyTableView)
+//            showBottomLoader(onView: self.notifyTableView)
             
             request.getNotify(currentUser["_id"].string!, pageNumber: currentPageNumber,  completion: {(response) in
                 
-                
                 let refreshing = self.refreshControl.isRefreshing
-                DispatchQueue.main.sync(execute: {
+                
+                DispatchQueue.main.async(execute: {
                     
                     if self.refreshControl.isRefreshing {
                         self.refreshControl.endRefreshing()
                     }
-                    
-                })
-                
-//                DispatchQueue.main.async(execute: {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+               // DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
                     
                     self.isLoading = false
                     self.loader.hideOverlayView()
-                    hideBottomLoader()
+//                    hideBottomLoader()
                     
                     if response.error != nil {
                         print("error: \(response.error!.localizedDescription)")                        
@@ -149,7 +145,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
                         
                         if !(newResponse.isEmpty) {
                             var indexx = 0
-                            if refreshing || self.notifications.isEmpty {
+                            if self.currentPageNumber == 1 || refreshing || self.notifications.isEmpty {
                                 self.notifications = []                                
                                 self.notifications = newResponse
                                 indexx = 0
@@ -160,6 +156,9 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
                             print("\n Reload called \n")
                             self.notifyTableView.reloadData()
                             self.notifyTableView.scrollToRow(at: NSIndexPath.init(row: indexx, section: 0) as IndexPath as IndexPath, at: .none, animated: true)
+                            if self.refreshControl.isRefreshing {
+                                self.refreshControl.endRefreshing()
+                            }
 //                            DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: { 
 //                                self.notifyTableView.reloadData()
 //                            })                            

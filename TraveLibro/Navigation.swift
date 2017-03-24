@@ -1411,20 +1411,19 @@ class Navigation {
     func getNotify(_ id: String, pageNumber: Int, completion: @escaping ((JSON) -> Void)) {
         let urlString = adminUrl + "notification/getNotification"
         
-//        if(pageNumber == 1) {
-//            self.cache.fetch(key: urlString+id).onSuccess { data in
-//                var json = JSON(data: data)
-//                completion(json)
-//            }
-//            
-//        }
+        if(pageNumber == 1) {
+            self.cache.fetch(key: urlString+id).onSuccess { data in
+                let json = JSON(data: data)
+                completion(json)
+            }
+        }
         
         do {
             let opt = try HTTP.POST(urlString, parameters: ["user": id,"pagenumber":pageNumber])
             var json = JSON(1);
             opt.start {response in
                 if let err = response.error {
-                    print("error: \(err.localizedDescription)")
+                    print("error: \(err.code) && msg : \(err.localizedDescription)")                    
                 }
                 else
                 {
