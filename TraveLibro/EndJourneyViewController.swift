@@ -130,7 +130,7 @@ class EndJourneyViewController: UIViewController {
             rightButton.setTitle("Done", for: .normal)
             rightButton.titleLabel?.font = UIFont(name: "Avenir-Medium", size: 18)
             rightButton.addTarget(self, action: #selector(EndJourneyViewController.doneEndJourney(_:)), for: .touchUpInside)
-            rightButton.frame = CGRect(x: 10, y: 0, width: 40, height: 30)
+            rightButton.frame = CGRect(x: 10, y: 0, width: 50, height: 40)
             self.customNavigationBar(left: leftButton, right: rightButton)
         } else if(type == "MyLife") {
             rightButton.setTitle("Done", for: .normal)

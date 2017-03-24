@@ -13,6 +13,7 @@ var allData:[JSON] = []
 
 class AccordionViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    
     @IBOutlet weak var tableMainView: UITableView!
     @IBOutlet weak var accordionTableView: UITableView!
     var labels = ["header", "Mumbai", "Delhi", "Chennai", "Kolkata", "Bengaluru", "Hyderabad","header"]
@@ -37,6 +38,7 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         cellTable = self.tableMainView
         self.loader.showOverlay(self.view)
         //        getDarkBackGround(self)
@@ -256,6 +258,7 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
             if indexPath.row == 0 {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "headerCell") as! reviewsHeaderCell
                 cell.countryTitle.text = allData[indexPath.row]["name"].stringValue
+                cell.countryButton.tintColor = mainGreenColor
                 return cell
             }else{
                 let cell = tableView.dequeueReusableCell(withIdentifier: "allReviewsCell") as! allReviewsMLTableViewCell
@@ -272,6 +275,7 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
             if indexPath.row == 0 {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "headerCell") as! reviewsHeaderCell
                 cell.countryTitle.text = allData[indexPath.row]["name"].stringValue
+                cell.countryButton.tintColor = mainOrangeColor
                 return cell
             }else{
                 let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! cityLabelTableViewCell
@@ -279,9 +283,11 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
                 if reviewType == "city" {
                     cell.nameLabel.text = allData[indexPath.row]["_id"].stringValue
                     cell.seperatorView.backgroundColor = UIColor(red: 75/255, green: 203/255, blue: 187/255, alpha: 1)
+                    cell.buttonLabel.tintColor = mainGreenColor
                 }else{
                     cell.nameLabel.text = allData[indexPath.row]["name"].stringValue
                     cell.seperatorView.backgroundColor = mainOrangeColor
+                    cell.buttonLabel.tintColor = mainOrangeColor
                 }
                 return cell
             }
@@ -541,7 +547,13 @@ class allReviewsMLTableViewCell: UITableViewCell {
 }
 
 class reviewsHeaderCell: UITableViewCell {
-    
+
+    @IBOutlet weak var countryButton: UIButton!
     @IBOutlet weak var countryTitle: UILabel!
+    @IBAction func back(_ sender: Any) {
+        let Mylife = storyboard?.instantiateViewController(withIdentifier: "multipleCollectionVC") as! MyLifeMomentsViewController
+        globalNavigationController.pushViewController(Mylife, animated: true)
+
+    }
     
 }
