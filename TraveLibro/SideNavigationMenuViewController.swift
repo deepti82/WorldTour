@@ -261,8 +261,9 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
-        var a = (screenHeight - 207) / 7
+        // main header height 325
+        var a = (screenHeight - 280) / 7
+        print(a)
         if a > 76 {
             a = 76
         }
