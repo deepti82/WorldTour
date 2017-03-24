@@ -12,7 +12,6 @@ let social = SocialLoginClass()
 var profileVC: ProfileViewController!
 var nationalityPage: AddNationalityNewViewController!
 var navigation: UINavigationController!
-var signInVC: SignInViewController!
 
 class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegate, UIScrollViewDelegate {
     
@@ -202,9 +201,11 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         
         addToLayout()        
         
-        signInFooter = SignInToolbar(frame: CGRect(x: 0 , y: screenHeight - 80, width: screenWidth, height: 80))
-        signInFooter.center = CGPoint(x: self.view.center.x, y: signInFooter.center.y)
-        self.view.addSubview(signInFooter)
+        if(signInFooter != nil){}else{
+            signInFooter = SignInToolbar(frame: CGRect(x: 0 , y: screenHeight - 80, width: screenWidth, height: 80))
+            signInFooter.center = CGPoint(x: self.view.center.x, y: signInFooter.center.y)
+            self.view.addSubview(signInFooter)
+        }
         
         ipTextField.delegate = self
         ipTextField.returnKeyType = .done
@@ -348,7 +349,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
     
     func playAgain(){
         
-        loader.showOverlay(self.view)
+        //loader.showOverlay(self.view)
         
         playBtn.isHidden = true
         
@@ -368,6 +369,14 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
                 player3.playFromBeginning()
             default: break
             }
+            
+            if signInFooter.frame.origin.y == (screenHeight - 80) {
+                UIView.animate(withDuration: 1, animations: {
+                    self.signInFooter.frame = CGRect(x: 0 , y: screenHeight, width: screenWidth, height: 80)
+                    self.pageControl.frame = CGRect(x: self.view.center.x, y: self.signInFooter.frame.origin.y - 15, width: 60, height: 30)
+                })
+            }
+            
         }
         else{
             loader.hideOverlayView()
@@ -381,9 +390,6 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         }       
     }
 
-    //MARK: - Scroll Delegates
-    
-//    @IBAction func toggleSoundtap(_ sender: UIButton) {
     func touchButtonTap(_ sender: UIButton){
         
         if(defaultMute) {
@@ -399,13 +405,22 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         player2.muted = defaultMute
         player3.muted = defaultMute
     }
+    
+    
+    //MARK: - Scroll Delegates
 
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {        
         playBtn.isHidden = true
         videoToPlay()
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        if signInFooter.frame.origin.y == screenHeight {
+            UIView.animate(withDuration: 1, animations: {
+                self.signInFooter.frame = CGRect(x: 0 , y: screenHeight - 80, width: screenWidth, height: 80)
+                self.pageControl.frame = CGRect(x: self.view.center.x, y: self.signInFooter.frame.origin.y - 15, width: 60, height: 30)
+            })
+        }
 //        self.player1.setUrl(NSURL(fileURLWithPath: (Bundle.main.path(forResource: "travellife", ofType:"mp4"))!) as URL)
 //        self.player2.setUrl(NSURL(fileURLWithPath: (Bundle.main.path(forResource: "locallife", ofType:"mp4"))!) as URL)
 //        self.player3.setUrl(NSURL(fileURLWithPath: (Bundle.main.path(forResource: "mylife", ofType:"mp4"))!) as URL)
