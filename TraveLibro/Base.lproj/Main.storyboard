@@ -1059,7 +1059,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y2Y-Mc-iEO">
                                 <rect key="frame" x="0.0" y="20" width="375" height="40"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" distribution="fillEqually" spacing="-3" translatesAutoresizingMaskIntoConstraints="NO" id="9Mu-8v-4JA">
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="-3" translatesAutoresizingMaskIntoConstraints="NO" id="9Mu-8v-4JA">
                                         <rect key="frame" x="8" y="5" width="364" height="40"/>
                                         <subviews>
                                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bHc-x4-z9X">
@@ -6647,17 +6647,18 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CKN-ae-9oq">
-                                                    <rect key="frame" x="329" y="5" width="30" height="34"/>
-                                                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <state key="normal" title="&gt;">
-                                                        <color key="titleColor" red="0.18431372940540314" green="0.25490197539329529" blue="0.3333333432674408" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <rect key="frame" x="339" y="7" width="20" height="31"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                                                    <color key="tintColor" red="1" green="0.40380612020000001" blue="0.35064744949999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <state key="normal" image="arrowright">
+                                                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     </state>
                                                 </button>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fxE-6R-103">
-                                                    <rect key="frame" x="0.0" y="40" width="367" height="3"/>
+                                                    <rect key="frame" x="0.0" y="41" width="367" height="2"/>
                                                     <color key="backgroundColor" red="0.98823529481887817" green="0.31372550129890442" blue="0.27843138575553894" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="3" id="hZC-aW-YMT"/>
+                                                        <constraint firstAttribute="height" constant="2" id="hZC-aW-YMT"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
@@ -6949,7 +6950,7 @@
                                             <outletCollection property="starImageArray" destination="S71-Zd-sah" collectionClass="NSMutableArray" id="GT6-Hi-k01"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="headerCell" rowHeight="50" id="4ub-zU-lcM" customClass="reviewsHeaderCell" customModule="TraveLibro" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="headerCell" rowHeight="50" id="4ub-zU-lcM" customClass="reviewsHeaderCell" customModule="TraveLibro" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="363" width="375" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4ub-zU-lcM" id="25w-aS-aWL">
@@ -6962,20 +6963,23 @@
                                                     <color key="textColor" red="0.98823529480000005" green="0.31372550129999999" blue="0.27843138579999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow_prev" translatesAutoresizingMaskIntoConstraints="NO" id="6bL-D8-hjS">
-                                                    <rect key="frame" x="8" y="10" width="30" height="30"/>
-                                                    <color key="tintColor" red="0.13725490870000001" green="0.1764705926" blue="0.29019609089999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="30" id="7fg-xr-XWi"/>
-                                                        <constraint firstAttribute="height" constant="30" id="Yd4-0h-cE5"/>
-                                                    </constraints>
-                                                </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wgK-Pr-Yo8">
+                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="49"/>
+                                                    <state key="normal" image="arrow_prev"/>
+                                                    <connections>
+                                                        <action selector="reviewPrev:" destination="4ub-zU-lcM" eventType="touchUpInside" id="8jT-Z3-BaA"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="6bL-D8-hjS" firstAttribute="centerY" secondItem="25w-aS-aWL" secondAttribute="centerY" id="6C1-65-4i1"/>
-                                                <constraint firstItem="6bL-D8-hjS" firstAttribute="leading" secondItem="25w-aS-aWL" secondAttribute="leadingMargin" id="8yB-ru-vIQ"/>
                                                 <constraint firstItem="XW7-9R-xg9" firstAttribute="centerY" secondItem="25w-aS-aWL" secondAttribute="centerY" id="9pt-xG-lnw"/>
+                                                <constraint firstAttribute="bottom" secondItem="wgK-Pr-Yo8" secondAttribute="bottom" id="LhL-1P-mKI"/>
+                                                <constraint firstAttribute="bottom" secondItem="wgK-Pr-Yo8" secondAttribute="bottom" id="cSF-iu-REP"/>
+                                                <constraint firstItem="wgK-Pr-Yo8" firstAttribute="top" secondItem="25w-aS-aWL" secondAttribute="top" id="mdm-EO-R30"/>
+                                                <constraint firstItem="wgK-Pr-Yo8" firstAttribute="leading" secondItem="25w-aS-aWL" secondAttribute="leading" id="uVB-Kg-txg"/>
                                                 <constraint firstItem="XW7-9R-xg9" firstAttribute="centerX" secondItem="25w-aS-aWL" secondAttribute="centerX" id="yPP-68-dMe"/>
+                                                <constraint firstItem="wgK-Pr-Yo8" firstAttribute="centerY" secondItem="25w-aS-aWL" secondAttribute="centerY" id="yod-Ff-7Gc"/>
+                                                <constraint firstItem="wgK-Pr-Yo8" firstAttribute="top" secondItem="25w-aS-aWL" secondAttribute="top" id="zwX-tr-cYj"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.94509804249999996" green="0.94901961089999998" blue="0.94901961089999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -11932,6 +11936,7 @@
         <image name="arrow_down" width="100" height="100"/>
         <image name="arrow_prev" width="50" height="50"/>
         <image name="arrowdown" width="21" height="11"/>
+        <image name="arrowright" width="20" height="31"/>
         <image name="arrowup" width="22" height="11"/>
         <image name="backpacking" width="100" height="100"/>
         <image name="bandra_worli_sea_link" width="700" height="476"/>

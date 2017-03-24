@@ -83,6 +83,7 @@ var selectedQuickI:String = ""
 var selectedDetail:String = ""
 var whichJourney:String = ""
 var jouurneyToShow:JSON = []
+var ATL:String = ""
 
 
 var leftViewController: SideNavigationMenuViewController!
