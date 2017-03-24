@@ -335,55 +335,115 @@ func noColor(_ image: UIImageView) {
 }
 
 
-func getThought (_ post:JSON) -> String {
-    var retText = ""
+func getThought (_ post:JSON) ->  NSMutableAttributedString {
+  
+    var retText = NSMutableAttributedString(string: "")
     let location = post["checkIn"]["location"].string;
     let buddy = post["buddies"].arrayValue;
     if(post["thoughts"].stringValue != nil && post["thoughts"].stringValue != "") {
-        retText = post["thoughts"].stringValue
+//        retText = post["thoughts"].stringValue
+        retText.append(getRegularString(string: post["thoughts"].stringValue, size: 15))
         if(location != nil && location != "") {
-            retText = retText + " at " + location!
+//            retText = retText + " at " + location!
+            retText.append(getRegularString(string: " at ", size: 15))
+            retText.append(getBoldString(string: location!, size: 15))
+            
             if(buddy.count == 1) {
-                retText = retText + " with " + buddy[0]["name"].stringValue
+//                retText = retText + " with " + buddy[0]["name"].stringValue
+                retText.append(getRegularString(string: " with ", size: 15))
+                retText.append(getBoldString(string: buddy[0]["name"].stringValue, size: 15))
             } else if (buddy.count == 2) {
-                retText = retText + " with " + buddy[0]["name"].stringValue + " and " + buddy[1]["name"].stringValue
+//                retText = retText + " with " + buddy[0]["name"].stringValue + " and " + buddy[1]["name"].stringValue
+                retText.append(getRegularString(string: " with ", size: 15))
+                retText.append(getBoldString(string: buddy[0]["name"].stringValue, size: 15))
+                retText.append(getRegularString(string: " and ", size: 15))
+                 retText.append(getBoldString(string: buddy[1]["name"].stringValue, size: 15))
+
             } else if (buddy.count > 2) {
                 let n = buddy.count - 1
-                retText = retText + " with " + buddy[0]["name"].stringValue + " and " + String(n) + " others"
+//                retText = retText + " with " + buddy[0]["name"].stringValue + " and " + String(n) + " others"
+                retText.append(getRegularString(string: " with ", size: 15))
+                retText.append(getBoldString(string: buddy[0]["name"].stringValue, size: 15))
+                retText.append(getRegularString(string: " and ", size: 15))
+                retText.append(getRegularString(string: " String(n) ", size: 15))
+                retText.append(getRegularString(string: " others", size: 15))
             }
         } else {
             if(buddy.count == 1) {
-                retText = retText + " with " + buddy[0]["name"].stringValue
+//                retText = retText + " with " + buddy[0]["name"].stringValue
+                retText.append(getRegularString(string: " with ", size: 15))
+                retText.append(getBoldString(string: buddy[0]["name"].stringValue, size: 15))
+
             } else if (buddy.count == 2) {
-                retText = retText + " with " + buddy[0]["name"].stringValue + " and " + buddy[1]["name"].stringValue
+//                retText = retText + " with " + buddy[0]["name"].stringValue + " and " + buddy[1]["name"].stringValue
+                retText.append(getRegularString(string: " with ", size: 15))
+                retText.append(getBoldString(string: buddy[0]["name"].stringValue, size: 15))
+                retText.append(getRegularString(string: " and ", size: 15))
+                retText.append(getBoldString(string: buddy[1]["name"].stringValue, size: 15))
             } else if (buddy.count > 2) {
                 let n = buddy.count - 1
-                retText = retText + " with " + buddy[0]["name"].stringValue + " and " + String(n) + " others"
+//                retText = retText + " with " + buddy[0]["name"].stringValue + " and " + String(n) + " others"
+                retText.append(getRegularString(string: " with ", size: 15))
+                retText.append(getBoldString(string: buddy[0]["name"].stringValue, size: 15))
+                retText.append(getRegularString(string: " and ", size: 15))
+                retText.append(getRegularString(string: " String(n) ", size: 15))
+                retText.append(getRegularString(string: " others", size: 15))
             }
         }
     } else {
         if(location != nil && location != "") {
-            retText = "At " + location!
+//            retText = "At " + location!
+            retText.append(getRegularString(string: "At ", size: 15))
+            retText.append(getBoldString(string: location!, size: 15))
+
             if(buddy.count == 1) {
-                retText = retText + " with " + buddy[0]["name"].stringValue
+//                retText = retText + " with " + buddy[0]["name"].stringValue
+                retText.append(getRegularString(string: " with ", size: 15))
+                retText.append(getBoldString(string: buddy[0]["name"].stringValue, size: 15))
+
             } else if (buddy.count == 2) {
-                retText = retText + " with " + buddy[0]["name"].stringValue + " and " + buddy[1]["name"].stringValue
+//                retText = retText + " with " + buddy[0]["name"].stringValue + " and " + buddy[1]["name"].stringValue
+                retText.append(getRegularString(string: " with ", size: 15))
+                retText.append(getBoldString(string: buddy[0]["name"].stringValue, size: 15))
+                retText.append(getRegularString(string: " and ", size: 15))
+                retText.append(getBoldString(string: buddy[1]["name"].stringValue, size: 15))
             } else if (buddy.count > 2) {
                 let n = buddy.count - 1
-                retText = retText + " with " + buddy[0]["name"].stringValue + " and " + String(n) + " others"
+//                retText = retText + " with " + buddy[0]["name"].stringValue + " and " + String(n) + " others"
+                retText.append(getRegularString(string: " with ", size: 15))
+                retText.append(getBoldString(string: buddy[0]["name"].stringValue, size: 15))
+                retText.append(getRegularString(string: " and ", size: 15))
+                retText.append(getRegularString(string: " String(n) ", size: 15))
+                retText.append(getRegularString(string: " others", size: 15))
+
             }
         } else {
             if(buddy.count == 1) {
-                retText = "With " + buddy[0]["name"].stringValue
+//                retText = "With " + buddy[0]["name"].stringValue
+                retText.append(getRegularString(string: "With ", size: 15))
+                retText.append(getBoldString(string: buddy[0]["name"].stringValue, size: 15))
+
             } else if (buddy.count == 2) {
-                retText = "With " + buddy[0]["name"].stringValue + " and " + buddy[1]["name"].stringValue
+//                retText = "With " + buddy[0]["name"].stringValue + " and " + buddy[1]["name"].stringValue
+                retText.append(getRegularString(string: "With ", size: 15))
+                retText.append(getBoldString(string: buddy[0]["name"].stringValue, size: 15))
+                retText.append(getRegularString(string: " and ", size: 15))
+                retText.append(getBoldString(string: buddy[1]["name"].stringValue, size: 15))
+
             } else if (buddy.count > 2) {
                 let n = buddy.count - 1
-                retText = "With " + buddy[0]["name"].stringValue + " and " + String(n) + " others"
+//              retText = "With " + buddy[0]["name"].stringValue + " and " + String(n) + " others"
+                retText.append(getRegularString(string: "With ", size: 15))
+                retText.append(getBoldString(string: buddy[0]["name"].stringValue, size: 15))
+                retText.append(getRegularString(string: " and ", size: 15))
+                retText.append(getRegularString(string: " String(n) ", size: 15))
+                retText.append(getRegularString(string: " others", size: 15))
+
+                
             }
         }
     }
-    return retText
+  return retText
 }
 
 
@@ -469,8 +529,8 @@ func makeTLProfilePictureFollowers(_ image: UIImageView) {
 func makeTLProfilePictureBorderWhiteCorner(_ image: UIImageView) {
     
     image.layer.cornerRadius = (50/100) * image.frame.width
-    //image.layer.borderWidth = 2.0
-    //image.layer.borderColor = UIColor.white.cgColor
+    image.layer.borderWidth = 2.0
+    image.layer.borderColor = UIColor.white.cgColor
     image.clipsToBounds = true
     image.contentMode = UIViewContentMode.scaleAspectFill
     

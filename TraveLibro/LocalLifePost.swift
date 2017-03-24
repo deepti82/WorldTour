@@ -237,7 +237,7 @@ class LocalLifePost: VerticalLayout, PlayerDelegate {
         case "detail-itinerary":
             setText(text: "Has uploaded a new Itinerary.")
         default:
-            textHeader.headerText.text = getThought(feed)
+            textHeader.headerText.attributedText = getThought(feed)
         }
         textHeader.headerText.sizeToFit()
         textHeader.sizeToFit()

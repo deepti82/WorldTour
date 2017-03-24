@@ -304,7 +304,7 @@ class MyLifeActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             
             //  START ACTIVITY TEXT HEADER
             textHeader = ActivityTextHeader(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 0))
-            textHeader.headerText.text = getThought(feed)
+            textHeader.headerText.attributedText = getThought(feed)
             textHeader.headerText.sizeToFit()
             textHeader.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: textHeader.headerText.frame.height + 1.5)
             self.addSubview(textHeader)
@@ -327,7 +327,7 @@ class MyLifeActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             case "detail-itinerary":
                 setText(text: "Has uploaded a new Itinerary.")
             default:
-                textHeader.headerText.text = getThought(feed)
+                textHeader.headerText.attributedText = getThought(feed)
             }
             textHeader.headerText.sizeToFit()
             textHeader.sizeToFit()
