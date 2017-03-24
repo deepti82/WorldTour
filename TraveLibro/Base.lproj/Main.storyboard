@@ -3301,7 +3301,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Popular Journeys" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uFz-Pg-xJb">
-                                                    <rect key="frame" x="23" y="25.5" width="132" height="24"/>
+                                                    <rect key="frame" x="23" y="23" width="132" height="26"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
@@ -3316,10 +3316,11 @@
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
-                                                <constraint firstItem="uFz-Pg-xJb" firstAttribute="top" secondItem="y6o-5j-1d2" secondAttribute="bottom" constant="16.5" id="B7d-sH-sdy"/>
+                                                <constraint firstItem="uFz-Pg-xJb" firstAttribute="top" secondItem="y6o-5j-1d2" secondAttribute="bottom" constant="14.5" id="B7d-sH-sdy"/>
                                                 <constraint firstItem="y6o-5j-1d2" firstAttribute="trailing" secondItem="53B-XP-GCm" secondAttribute="trailingMargin" constant="8" id="JrF-Av-BVe"/>
+                                                <constraint firstAttribute="bottom" secondItem="uFz-Pg-xJb" secondAttribute="bottom" constant="2.5" id="caq-j6-xDu"/>
                                                 <constraint firstItem="uFz-Pg-xJb" firstAttribute="leading" secondItem="53B-XP-GCm" secondAttribute="leadingMargin" constant="15" id="hxm-lj-CT5"/>
-                                                <constraint firstItem="uFz-Pg-xJb" firstAttribute="centerY" secondItem="53B-XP-GCm" secondAttribute="centerY" constant="11" id="oLM-YH-iH3"/>
+                                                <constraint firstItem="uFz-Pg-xJb" firstAttribute="centerY" secondItem="53B-XP-GCm" secondAttribute="centerY" constant="10" id="oLM-YH-iH3"/>
                                                 <constraint firstItem="y6o-5j-1d2" firstAttribute="leading" secondItem="uFz-Pg-xJb" secondAttribute="leading" id="xf7-E7-88G"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -3569,7 +3570,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HEf-Pa-zSZ">
-                                        <rect key="frame" x="95" y="245" width="154" height="30"/>
+                                        <rect key="frame" x="94.5" y="245" width="154" height="30"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="more about me... " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m1F-gD-cCl">
                                                 <rect key="frame" x="0.0" y="0.0" width="124" height="30"/>

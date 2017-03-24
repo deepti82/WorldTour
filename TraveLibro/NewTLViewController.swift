@@ -1086,7 +1086,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         
         mainScroll.clipsToBounds = true
         
-        self.addPostsButton = UIButton(frame: CGRect(x: self.view.frame.width - 80, y: self.view.frame.height - 184, width: 65, height: 65))
+        self.addPostsButton = UIButton(frame: CGRect(x: self.view.frame.width - 80, y: self.view.frame.height - 200, width: 65, height: 65))
 //        self.addPostsButton.layer.cornerRadius = 30
         let origImage = UIImage(named: "darkgreycircle");
         let tintedImage = origImage?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
@@ -1972,7 +1972,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         otgView.startJourneyButton.alpha = 0
         otgView.lineTwo.alpha = 0
 //         otgView.bonVoyageLabel.
-        
+       addPostsButton.isHidden = true
         otgView.shoewImage.animation.delay(0.2).makeAlpha(1.0).moveY(-25).animateWithCompletion(0.5, {
             print("shoeImage")
         })
@@ -1996,6 +1996,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         otgView.startJourneyButton.addTarget(self, action: #selector(NewTLViewController.startOTGJourney(_:)), for: .touchUpInside)
         otgView.selectCategoryButton.addTarget(self, action: #selector(NewTLViewController.journeyCategory(_:)), for: .touchUpInside)
         otgView.addBuddiesButton.addTarget(self, action: #selector(NewTLViewController.addBuddies(_:)), for: .touchUpInside)
+       
         //                otgView.detectLocationView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.detectLocationViewTap(_:))))
         //                otgView.detectLocationButton.addTarget(self, action: #selector(NewTLViewController.detectLocation(_:)), for: .touchUpInside)
         otgView.nameJourneyTF.returnKeyType = .done
@@ -2364,7 +2365,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     
     func addBuddies(_ sender: UIButton) {
         print("ADD BUDDIES");
-    
+       addPostsButton.isHidden = false
         if journeyId != nil {
             buddiesStatus  = true;
         }
@@ -2427,7 +2428,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         otgView.addBuddiesButton.isHidden = true
         otgView.closeBuddies.isHidden = true
         infoButton.isHidden = true
-//        addPostsButton.isHidden = false
+        addPostsButton.isHidden = false
 //        otgView.lineThree.isHidden = false
         
         

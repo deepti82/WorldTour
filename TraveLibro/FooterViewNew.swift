@@ -23,6 +23,7 @@ func sharedInstance(newFrame: CGRect) -> FooterViewNew {
 
 class FooterViewNew: UIView {
     
+    @IBOutlet weak var activityOrange: UILabel!
     @IBOutlet var footerIconImages: [UIImageView]!
     @IBOutlet weak var localLifeIcon: UIImageView!
     @IBOutlet weak var travelLifeIcon: UIImageView!

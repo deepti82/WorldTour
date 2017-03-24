@@ -45,6 +45,7 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
         self.mainFooter.layer.zPosition = 5
         self.view.addSubview(self.mainFooter)
         mainFooter.activityImage.tintColor = mainOrangeColor
+        mainFooter.activityOrange.tintColor = mainOrangeColor
         
         let i = PostImage()
         i.uploadPhotos()
