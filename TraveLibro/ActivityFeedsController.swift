@@ -39,6 +39,8 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
         getActivity(pageNumber: pageno)
         loader.showOverlay(self.view)
         
+        print("Chintan");
+        
         self.mainFooter = FooterViewNew(frame: CGRect.zero)
         self.mainFooter.layer.zPosition = 5
         self.view.addSubview(self.mainFooter)
@@ -131,6 +133,7 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
 //            if pageNumber == 13 {
                 request.getActivityFeeds(currentUser["_id"].stringValue, pageNumber: pageNumber, completion: {(request, localLifeJsons,quickJsons) in
                     DispatchQueue.main.async(execute: {
+                        
                         NSLog(" check Response received \n")
                         if !(request["data"].isEmpty) {
                             if pageNumber == 1 {
@@ -185,26 +188,31 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
                                 
                             }
                             
+                            
+                            for post in request["data"].array! {
+                                NSLog(" check 1 \n")
+                                self.loader.hideOverlayView()
+                                self.feeds.arrayObject?.append(post)
+                                let checkIn = ActivityFeedsLayout(width: self.view.frame.width)
+                                checkIn.feeds = post
+                                checkIn.scrollView = self.activityScroll
+                                //                                print("\n\n\n POST ::: \n \(post) \n\n\n")
+                                checkIn.createProfileHeader(feed: post)
+                                checkIn.activityFeed = self
+                                self.layout.addSubview(checkIn)
+                                self.addHeightToLayout()
+                                NSLog(" check 2 \n")
+                            }
+
+                            
                             if isConnectedToNetwork() {
                                 NSLog(" check started building actual layout \n")
-                                for post in request["data"].array! {
-                                    NSLog(" check 1 \n")
-                                    self.loader.hideOverlayView()
-                                    self.feeds.arrayObject?.append(post)
-                                    let checkIn = ActivityFeedsLayout(width: self.view.frame.width)
-                                    checkIn.feeds = post
-                                    checkIn.scrollView = self.activityScroll
-                                    //                                print("\n\n\n POST ::: \n \(post) \n\n\n")
-                                    checkIn.createProfileHeader(feed: post)
-                                    checkIn.activityFeed = self
-                                    self.layout.addSubview(checkIn)
-                                    self.addHeightToLayout()
-                                    NSLog(" check 2 \n")
-                                }
                                 NSLog(" check done building actual layout \n")
                             }else{
                                 print("no in internet")
+                                self.loader.hideOverlayView()
                                 self.noInternet = UploadingToCloud(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 23))
+                                self.noInternet.uploadText.text = "No Internet Connection"
                                 self.view.addSubview(self.noInternet)
                             }
                             
