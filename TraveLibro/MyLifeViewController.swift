@@ -3,7 +3,7 @@ import UIKit
 
 var isEmptyProfile = false
 var globalMyLifeController: MyLifeViewController!
-var globalMyLifeViewController:MyLifeViewController!;
+var globalMyLifeViewController:MyLifeViewController!
 class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     
     @IBOutlet weak var profileName: UILabel!
@@ -26,6 +26,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var journeysContainerView: UIView!
     @IBOutlet weak var collectionContainer: UIView!
     @IBOutlet weak var tableContainer: UIView!
+    var whichTab: String = ""
     var type = "on-the-go-journey"
     var journey: [JSON]!
     var displayData:String = ""
@@ -54,8 +55,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loader.showOverlay(self.view)
-        globalMyLifeViewController = self;
+        globalMyLifeViewController = self
         getDarkBackGround(self)
         globalMyLifeController = self
         
@@ -137,6 +137,14 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         LLRadio.addTarget(self, action: #selector(MyLifeViewController.localLifeRadioChecked(_:)), for: .touchUpInside)
         
         setDefaults()
+    }
+    
+    func showLoader() {
+        loader.showOverlay(self.view)
+    }
+    
+    func hideLoader() {
+        loader.hideOverlayView()
     }
     
     override func didReceiveMemoryWarning() {
@@ -274,11 +282,9 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     //    var flag = false
     
     func allRadioChecked(_ sender: AnyObject?) {
-         loader.hideOverlayView()
         radio.image = UIImage(named: "radio_checked_all")
         radioTwo.image = UIImage(named: "radio_for_button")
         radioThree.image = UIImage(named: "radio_for_button")
-        
         switch whatEmptyTab {
         case "Journeys":
            
@@ -298,12 +304,10 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         }
     }
     
-    func travelLifeRadioChecked(_ sender: AnyObject?) {
-        
+    func travelLifeRadioCheckExtention() {
         radio.image = UIImage(named: "radio_for_button")
         radioTwo.image = UIImage(named: "radio_checked_travel_life")
         radioThree.image = UIImage(named: "radio_for_button")
-        
         switch whatEmptyTab {
         case "Journeys":
             globalMyLifeContainerViewController.loadData("travel-life", pageNumber: 1);
@@ -322,7 +326,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         }
     }
     
-    func localLifeRadioChecked(_ sender: AnyObject?) {
+    func localLifeRadioCheckExtention() {
         radio.image = UIImage(named: "radio_for_button")
         radioTwo.image = UIImage(named: "radio_for_button")
         radioThree.image = UIImage(named: "radio_checked_local_life")
@@ -344,6 +348,18 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         default: break
             
         }
+    }
+    
+    func travelLifeRadioChecked(_ sender: AnyObject?) {
+        ATL = "travel-life"
+        travelLifeRadioCheckExtention()
+        
+    }
+    
+    func localLifeRadioChecked(_ sender: AnyObject?) {
+        ATL = "local-life"
+        localLifeRadioCheckExtention()
+        
     }
     
     func viewBorder(_ sender: UIView) {
@@ -581,7 +597,6 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
 
 
     func doneButton(_ sender: UIButton){
-        loader.hideOverlayView()
         request.changeDateTimeLocal(currentPhotoFooter.postTop["_id"].stringValue, date: "\(dateSelected) \(timeSelected)", completion: {(response) in
 //            self.getJourney()
         })

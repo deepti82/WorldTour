@@ -83,6 +83,7 @@ var selectedQuickI:String = ""
 var selectedDetail:String = ""
 var whichJourney:String = ""
 var jouurneyToShow:JSON = []
+var ATL:String = ""
 
 
 var leftViewController: SideNavigationMenuViewController!
@@ -153,23 +154,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
             UIViewController().customiseNavigation()
         } 
         else {
-            request.getUserNoCache(user.getExistingUser(), urlSlug: nil, completion: {(request) in
+            request.getUserOnce(user.getExistingUser(), urlSlug: nil, completion: {(request) in
                 DispatchQueue.main.async {
                     currentUser = request["data"]
                     if request["data"]["alreadyLoggedIn"] == false {
                         nvc = UINavigationController(rootViewController: nationality)
-                        
                         let slideMenuController = SlideMenuController(mainViewController:nvc, leftMenuViewController: leftViewController)
-                        
                         self.window?.rootViewController = slideMenuController
                     } else{
-                        
                         nvc = UINavigationController(rootViewController: mainViewController)
-                        
                         let slideMenuController = SlideMenuController(mainViewController:nvc, leftMenuViewController: leftViewController)
-                        
                         getUnreadNotificationCount()
-                        
                         self.window?.rootViewController = slideMenuController
                     }
                     UIViewController().customiseNavigation()

@@ -41,7 +41,6 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
     
     override func viewDidLoad() {
         getDarkBackGround(self)
-        loader.showOverlay(self.view)
         super.viewDidLoad()
         globalMyLifeMomentsViewController = self
         setTopNavigation("Photos")
@@ -52,9 +51,8 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
         
     }
     
+        
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        print(loadStatus)
-        print(insideView)
         if loadStatus {
             
             if insideView == "Monthly" {
@@ -71,10 +69,8 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
     
     
     func loadInsideMedia(mediaType:String, pageno:Int, type:String, token:String, id:String) {
-        print("loadInsideMedia")
-        print(momentType)
-        print("insideView \(insideView)")
         
+        loader.showOverlay(self.view)
         savedMediaType = mediaType
         savedToken = token
         savedId = id
@@ -104,6 +100,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
             print("in else, pagenumber \(pageno)")
             request.getMedia(mediaType: mediaType, user: currentUser["_id"].stringValue, id: id, pageNumber: pageno, completion: {(request) in
                 DispatchQueue.main.async {
+                    loader.hideOverlayView()
                     if request["data"].count > 0 {
                         self.loadStatus = true
                         if pageno == 1 {
@@ -124,11 +121,10 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
     }
     
     func loadReview(pageno:Int, type:String, review:String) {
+        loader.showOverlay(self.view)
         momentType = type
         reviewType = review
-        print("loadReview")
-        print("insideView \(insideView)")
-
+        
         request.getMyLifeReview(currentUser["_id"].stringValue, pageNumber: pageno, type: review, completion: {(request) in
             DispatchQueue.main.async {
                 loader.hideOverlayView()
@@ -163,14 +159,14 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
     
     
     func loadMomentLife(pageno:Int, type:String, token:String) {
+        loader.showOverlay(self.view)
         momentType = type
-        print("loadMomentLife")
-        print("insideView \(insideView)")
         self.loadStatus = false
         request.getMomentLife(currentUser["_id"].stringValue, pageNumber: pageno, type: type, token: token, completion: {(request) in
             
             DispatchQueue.main.async {
                 loader.hideOverlayView()
+                
                 if type == "travel-life"{
                     
                     if request["data"].count > 0 {
@@ -323,10 +319,15 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
             case "Monthly", "SelectCover":
                 return CGSize(width: 110, height: 110)
             case "local-life", "travel-life":
+//                var a = (screenWidth - 30) / 2
+//                print("width \(a)")
                 return CGSize(width: 165, height: 204)
             default:
                 break
             }
+//            var a = (screenWidth - 30) / 2
+//            print("width \(a)")
+
             return CGSize(width: 165, height: 204)
         }
     }
@@ -366,7 +367,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MomentsLargeImageCell", for: indexPath) as! photosTwoCollectionViewCell
             cell.photoBig.image = UIImage(named: "logo-default")
             if allData[indexPath.row]["name"].stringValue != "" {
-                cell.photoBig.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["name"].stringValue, width: 200))
+                cell.photoBig.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["name"].stringValue, width: 300))
                 
             }else{
                 cell.photoBig.image = UIImage(named: "logo-default")
@@ -380,7 +381,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath) as! photosCollectionViewCell
                 cell.photo.image = UIImage(named: "logo-default")
                 if allData[indexPath.section]["data"][indexPath.row]["name"].stringValue != "" {
-                    cell.photo.hnk_setImageFromURL(getImageURL(allData[indexPath.section]["data"][indexPath.row]["name"].stringValue, width: 200))
+                    cell.photo.hnk_setImageFromURL(getImageURL(allData[indexPath.section]["data"][indexPath.row]["name"].stringValue, width: 300))
                     
                 }else{
                     cell.photo.image = UIImage(named: "logo-default")
@@ -391,7 +392,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
                 cell.photoBig.image = UIImage(named: "logo-default")
                 cell.photoBig.backgroundColor = UIColor.white
                 
-                cell.photoBig.hnk_setImageFromURL(URL(string: "\(adminUrl)upload/readFile?file=\(self.images[(indexPath as NSIndexPath).item])&width=200")!)
+                cell.photoBig.hnk_setImageFromURL(URL(string: "\(adminUrl)upload/readFile?file=\(self.images[(indexPath as NSIndexPath).item])&width=300")!)
                 return cell
             case "local-life":
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "localLifeMomentsCell", for: indexPath) as! LocalLifeMomentsCollectionViewCell
@@ -401,8 +402,8 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
                 cell.coverImage.layer.cornerRadius = cell.coverImage.frame.width/2
                 cell.coverImage.clipsToBounds = true
                 
-                cell.coverImage.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["data"][indexPath.row]["name"].stringValue, width: 200))
-                cell.bgImage.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["data"][indexPath.row]["name"].stringValue, width: 200))
+                cell.coverImage.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["data"][indexPath.row]["name"].stringValue, width: 300))
+                cell.bgImage.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["data"][indexPath.row]["name"].stringValue, width: 300))
                 cell.albumTitle.attributedText = createHeaderDate(currDate: allData[indexPath.row]["token"].stringValue, count: allData[indexPath.row]["count"].stringValue)
                 
                 return cell
@@ -425,11 +426,11 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
                 cell.bgImage.image = UIImage(named: "logo-default")
                 
                 if allData[indexPath.row]["coverPhoto"] != nil {
-                    cell.coverImage.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["coverPhoto"].stringValue, width: 200))
-                    cell.bgImage.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["coverPhoto"].stringValue, width: 200))
+                    cell.coverImage.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["coverPhoto"].stringValue, width: 300))
+                    cell.bgImage.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["coverPhoto"].stringValue, width: 300))
                 }else{
-                    cell.coverImage.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["startLocationPic"].stringValue, width: 200))
-                    cell.bgImage.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["startLocationPic"].stringValue, width: 200))
+                    cell.coverImage.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["startLocationPic"].stringValue, width: 300))
+                    cell.bgImage.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["startLocationPic"].stringValue, width: 300))
                 }
                 
                 cell.albumTitle.text = allData[indexPath.row]["name"].stringValue + " (\(allData[indexPath.row]["mediaCount"].stringValue))"
@@ -444,13 +445,13 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
                     
                     cell.bgImage.image = UIImage(named: "Local_Life-2")
                     cell.placeName.text = getShortCountry(country: allData[indexPath.row]["name"].stringValue)
-                    cell.foregroundImage.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["cityCoverPhoto"].stringValue, width: 124))
+                    cell.foregroundImage.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["cityCoverPhoto"].stringValue, width: 300))
                     
                 }
                 else {
                     cell.bgImage.image = UIImage(named: "Travel_Life-2")
                     cell.placeName.text = getShortCountry(country: allData[indexPath.row]["name"].stringValue)
-                    cell.foregroundImage.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["countryCoverPhoto"].stringValue, width: 124))
+                    cell.foregroundImage.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["countryCoverPhoto"].stringValue, width: 300))
                     cell.foregroundImage.clipsToBounds = true
                     cell.foregroundImage.contentMode = .scaleAspectFill
                     

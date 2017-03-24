@@ -289,12 +289,19 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         case 3:
             inviteToAppClicked(sender: cell, onView: self)
         case 4:
-            self.rateUsButtonClicked()
-        case 5:
             if currentUser != nil {
-                self.slideMenuController()?.changeMainViewController(self.feedbackController, close: true)
+                self.rateUsButtonClicked()
             }
             else {
+                closeLeft()
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
+            }            
+        case 5:
+            if currentUser != nil {
+                feedbackClicked()
+            }
+            else {
+                closeLeft()
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
             }            
         case 6:
@@ -344,6 +351,18 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         }
     }
     
+    
+    //MARK: - Feedback
+    
+    func feedbackClicked() {
+        
+        let reportVC = storyboard?.instantiateViewController(withIdentifier: "EditSettings") as! EditSettingsViewController
+        reportVC.whichView = "ReportView"
+        let reportNVC = UINavigationController(rootViewController: reportVC)
+        self.slideMenuController()?.changeMainViewController(reportNVC, close: true)
+    }
+    
+    
     //MARK: - Logout
     
     func logoutUser() {
@@ -377,6 +396,9 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
     }
  
 }
+
+
+//MARK: - Cell Class
 
 class SideMenuTableViewCell: UITableViewCell {
     

@@ -23,7 +23,6 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
 //    var allData:[JSON] = []
     var pagenumber:Int = 1
     var empty: EmptyScreenView!
-    var loader = LoadingOverlay()
     var whichView = "All"
     var reviewType = "all"
     var country = ""
@@ -33,6 +32,7 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
     var cityName = ""
     var selectedView = 1
     var loadStatus:Bool = true
+    var isViewed:Bool = true
    
     
     
@@ -40,7 +40,6 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
         super.viewDidLoad()
         
         cellTable = self.tableMainView
-        self.loader.showOverlay(self.view)
         //        getDarkBackGround(self)
         globalAccordionViewController = self
         setTopNavigation("Reviews")
@@ -135,11 +134,12 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func loadByLocation(location:String, id:String) {
+        loader.showOverlay(self.view)
         reviewType = location
         print("GetReviewByLoc")
         request.getReviewByLoc(currentUser["_id"].stringValue, location: location, id: id, completion: {(request) in
             DispatchQueue.main.async {
-                self.loader.hideOverlayView()
+                loader.hideOverlayView()
                 allData = []
                 allData.append(self.getHeaderJSON())
                 
@@ -157,9 +157,11 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
                 }
             }
         })
+        
     }
     
     func loadCountryCityReview(pageno:Int, type:String, json:JSON) {
+        loader.showOverlay(self.view)
         selectedView = 2
         reviewType = "reviewby"
         self.country = ""
@@ -176,7 +178,7 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
         print("getReview")
         request.getReview(currentUser["_id"].stringValue, country: country, city: city, category: category, pageNumber: pageno, completion: {(request) in
             DispatchQueue.main.async {
-                self.loader.hideOverlayView()
+                loader.hideOverlayView()
                 if request["data"].count > 0 {
                     if pageno == 1 {
                         allData = []
@@ -204,12 +206,13 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func loadReview(pageno:Int, type:String) {
+        loader.showOverlay(self.view)
         selectedView = 1
         reviewType = type
         loadStatus = false
         request.getMyLifeReview(currentUser["_id"].stringValue, pageNumber: pageno, type: type, completion: {(request) in
             DispatchQueue.main.async {
-                self.loader.hideOverlayView()
+                loader.hideOverlayView()
                 if request["data"].count > 0 {
                     if pageno == 1 {
                         allData = request["data"].array!
@@ -297,6 +300,8 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("reviewby \(reviewType) \(indexPath.row)")
+        
         if reviewType == "city" {
             self.loadCountryCityReview(pageno:1, type: "city", json: allData[indexPath.row])
         } else if reviewType == "country" {
@@ -550,9 +555,14 @@ class reviewsHeaderCell: UITableViewCell {
 
     @IBOutlet weak var countryButton: UIButton!
     @IBOutlet weak var countryTitle: UILabel!
-    @IBAction func back(_ sender: Any) {
-        let Mylife = storyboard?.instantiateViewController(withIdentifier: "multipleCollectionVC") as! MyLifeMomentsViewController
-        globalNavigationController.pushViewController(Mylife, animated: true)
+        @IBAction func reviewPrev(_ sender: UIButton) {
+            if ATL == "travel-life" {
+                globalMyLifeViewController.travelLifeRadioCheckExtention()
+
+            }else{
+                globalMyLifeViewController.localLifeRadioCheckExtention()
+
+            }
 
     }
     

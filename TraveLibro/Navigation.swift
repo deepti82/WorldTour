@@ -129,43 +129,38 @@ class Navigation {
         }
         
         var urlString = adminUrl + "user/getOne"
-        
-//        self.cache.fetch(key: urlString+id).onSuccess { data in
-//            var json = JSON(data: data)
-//            completion(json)
-//        }
+        self.cache.fetch(key: urlString+id).onSuccess { data in
+            
+            var json = JSON(data: data)
+            completion(json)
+        }
         
         do {
             let opt = try HTTP.POST(adminUrl + "user/getOne", parameters: params)
             //            print("request: \(opt)")
             opt.start { response in
-                
-                
-                
-                
                 if let err = response.error {
                     print("error: \(err.localizedDescription)")
                 }
                 else
                 {
-                    
-                    
                     json  = JSON(data: response.data)
-                    
                     self.cache.set(value: response.data, key: urlString+id)
-                    
                     completion(json)
-                    
-                    
                 }
             }
         } catch let error {
             print("got an error creating the request: \(error)")
         }
         
+        
+        
+        
+        
+        
     }
     
-    func getUserNoCache(_ id: String, urlSlug: String?, completion: @escaping ((JSON) -> Void)) {
+    func getUserOnce(_ id: String, urlSlug: String?, completion: @escaping ((JSON) -> Void)) {
         
         
         var json = JSON(1);
@@ -173,37 +168,30 @@ class Navigation {
         if urlSlug != nil {
             params["urlSlug"] = urlSlug!
         }
-        
         var urlString = adminUrl + "user/getOne"
-        
-       
-        do {
-            let opt = try HTTP.POST(adminUrl + "user/getOne", parameters: params)
-            //            print("request: \(opt)")
-            opt.start { response in
-                
-                
-                
-                
-                if let err = response.error {
-                    print("error: \(err.localizedDescription)")
+        self.cache.fetch(key: urlString+id).onSuccess { data in
+            print(data);
+            var json = JSON(data: data)
+            completion(json)
+        }.onFailure { (err) in
+                do {
+                    let opt = try HTTP.POST(adminUrl + "user/getOne", parameters: params)
+                    //            print("request: \(opt)")
+                    opt.start { response in
+                        if let err = response.error {
+                            print("error: \(err.localizedDescription)")
+                        }
+                        else
+                        {
+                            json  = JSON(data: response.data)
+                            self.cache.set(value: response.data, key: urlString+id)
+                            completion(json)
+                        }
+                    }
+                } catch let error {
+                    print("got an error creating the request: \(error)")
                 }
-                else
-                {
-                    
-                    
-                    json  = JSON(data: response.data)
-                    
-                    
-                    completion(json)
-                    
-                    
-                }
-            }
-        } catch let error {
-            print("got an error creating the request: \(error)")
         }
-        
     }
     
     func signUpSocial(_ id: String, completion:((JSON) -> Void)) {
@@ -3889,7 +3877,6 @@ class Navigation {
             print("got an error creating the request: \(error)")
         }
     }
-    
     
     //MARK: - Logout
     

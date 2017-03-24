@@ -631,11 +631,13 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     }
     
     func MyLifeDetailsShow(_ sender: AnyObject) {
-        UIView.animate(withDuration: 0.75, animations: { () -> Void in
-            UIView.setAnimationCurve(UIViewAnimationCurve.easeInOut)
-            self.navigationController!.pushViewController(self.myLifeVC, animated: false)
-            UIView.setAnimationTransition(UIViewAnimationTransition.curlUp, for: self.navigationController!.view!, cache: false)
-        })
+//        UIView.animate(withDuration: 0.75, animations: { () -> Void in
+//            UIView.setAnimationCurve(UIViewAnimationCurve.linear)
+            let reviewsVC = self.storyboard?.instantiateViewController(withIdentifier: "myLife") as! MyLifeViewController
+
+            self.navigationController!.pushViewController(reviewsVC, animated: false)
+//            UIView.setAnimationTransition(UIViewAnimationTransition.curlUp, for: self.navigationController!.view!, cache: false)
+//        })
     }
     
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {

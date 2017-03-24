@@ -498,78 +498,88 @@ class ActivityFeedFooterBasic: UIView {
     }
 
     @IBAction func optionClick(_ sender: UIButton) {
-        let actionSheetControllerIOS8: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
-        if(self.type == "MyLifeFeeds") {
-            let EditCheckIn: UIAlertAction = UIAlertAction(title: "Edit Activity", style: .default)
-            {action -> Void in
-                //            self.isEdit = true
-                //                globalNewTLViewController.showEditActivity(Post())
-                globalMyLifeViewController.showEditActivity(self.postTop)
-                //print("inside edit check in \(self.addView), \(self.newScroll.isHidden)")
-            }
-            actionSheetControllerIOS8.addAction(EditCheckIn)
-            
-            let EditDnt: UIAlertAction = UIAlertAction(title: "Change Date & Time", style: .default)
-            { action -> Void in
-                globalMyLifeViewController.changeDateAndTime(self)
-            }
-            actionSheetControllerIOS8.addAction(EditDnt)
-            let DeletePost: UIAlertAction = UIAlertAction(title: "Delete Activity", style: .default)
-            { action -> Void in
+        if currentUser != nil {
+            let actionSheetControllerIOS8: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+            if(self.type == "MyLifeFeeds") {
+                let EditCheckIn: UIAlertAction = UIAlertAction(title: "Edit Activity", style: .default)
+                {action -> Void in
+                    //            self.isEdit = true
+                    //                globalNewTLViewController.showEditActivity(Post())
+                    globalMyLifeViewController.showEditActivity(self.postTop)
+                    //print("inside edit check in \(self.addView), \(self.newScroll.isHidden)")
+                }
+                actionSheetControllerIOS8.addAction(EditCheckIn)
                 
-                let alert = UIAlertController(title: "", message: "Are you sure you want to delete this Activtiy", preferredStyle: UIAlertControllerStyle.alert)
-                alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil))
-                alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.destructive, handler: { action in
-                    request.deletePost(self.postTop["_id"].string!, uniqueId: self.postTop["uniqueId"].string!, user:currentUser["_id"].stringValue, completion: {(response) in
-                    })
-
+                let EditDnt: UIAlertAction = UIAlertAction(title: "Change Date & Time", style: .default)
+                { action -> Void in
+                    globalMyLifeViewController.changeDateAndTime(self)
+                }
+                actionSheetControllerIOS8.addAction(EditDnt)
+                let DeletePost: UIAlertAction = UIAlertAction(title: "Delete Activity", style: .default)
+                { action -> Void in
                     
-                }))
-                globalMyLifeViewController.present(alert, animated: true, completion: nil)
+                    let alert = UIAlertController(title: "", message: "Are you sure you want to delete this Activtiy", preferredStyle: UIAlertControllerStyle.alert)
+                    alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil))
+                    alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.destructive, handler: { action in
+                        request.deletePost(self.postTop["_id"].string!, uniqueId: self.postTop["uniqueId"].string!, user:currentUser["_id"].stringValue, completion: {(response) in
+                        })
+
+                        
+                    }))
+                    globalMyLifeViewController.present(alert, animated: true, completion: nil)
+                    
+                }
+                actionSheetControllerIOS8.addAction(DeletePost)
+                let share: UIAlertAction = UIAlertAction(title: "Add Photos/Videos", style: .default)
+                { action -> Void in
+                    globalMyLifeViewController.showEditAddActivity(self.postTop)
+                }
+                actionSheetControllerIOS8.addAction(share)
                 
-            }
-            actionSheetControllerIOS8.addAction(DeletePost)
-            let share: UIAlertAction = UIAlertAction(title: "Add Photos/Videos", style: .default)
-            { action -> Void in
-                globalMyLifeViewController.showEditAddActivity(self.postTop)
-            }
-            actionSheetControllerIOS8.addAction(share)
-            
-            let cancel: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel)
-            { action -> Void in
+                let cancel: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel)
+                { action -> Void in
+                    
+                }
+                actionSheetControllerIOS8.addAction(cancel)
                 
-            }
-            actionSheetControllerIOS8.addAction(cancel)
-            
-        } else {
-            
-            //let UnFollow: UIAlertAction = UIAlertAction(title: "UnFollow", style: .default)
-            //{action -> Void in
+            } else {
                 
-            //}
-            //if self.type != "popular" {
-            //    actionSheetControllerIOS8.addAction(UnFollow)
-            //}
-            
-            let reportActionButton: UIAlertAction = UIAlertAction(title: "Report", style: .default)
-            {action -> Void in
+                //let UnFollow: UIAlertAction = UIAlertAction(title: "UnFollow", style: .default)
+                //{action -> Void in
+                    
+                //}
+                //if self.type != "popular" {
+                //    actionSheetControllerIOS8.addAction(UnFollow)
+                //}
                 
-            }
-            actionSheetControllerIOS8.addAction(reportActionButton)
-            
-            let cancel: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel)
-            { action -> Void in
+                let reportActionButton: UIAlertAction = UIAlertAction(title: "Report", style: .default)
+                {action -> Void in
+                    
+                }
+                actionSheetControllerIOS8.addAction(reportActionButton)
                 
+                let cancel: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel)
+                { action -> Void in
+                    
+                }
+                actionSheetControllerIOS8.addAction(cancel)
             }
-            actionSheetControllerIOS8.addAction(cancel)
+            globalNavigationController.topViewController?.present(actionSheetControllerIOS8, animated: true, completion: nil)
         }
-        globalNavigationController.topViewController?.present(actionSheetControllerIOS8, animated: true, completion: nil)
+        else{
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
+        }
     }
     
     
     @IBAction func sharingTap(_ sender: Any) {
-        sharingUrl(url:  postTop["sharingUrl"].stringValue, onView: globalNavigationController.topViewController!)
+        if currentUser != nil {
+            sharingUrl(url:  postTop["sharingUrl"].stringValue, onView: globalNavigationController.topViewController!)            
+        }
+        else {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
+        }
     }
     
 }
