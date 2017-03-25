@@ -77,27 +77,32 @@ class ActivityDetailItinerary: UIView {
         }
         if feed["itineraryType"][0] != nil {
             categoryOne.isHidden = false
-            categoryOne.image = UIImage(named: feed["itineraryType"][0].stringValue)
+            categoryOne.image = UIImage(named: (feed["itineraryType"][0].stringValue).lowercased())
             categoryOne.tintColor = UIColor.white
 
         }
         if feed["itineraryType"][1] != nil {
             categoryTwo.isHidden = false
-            categoryThree.image = UIImage(named: feed["itineraryType"][1].stringValue)
+            categoryThree.image = UIImage(named: (feed["itineraryType"][1].stringValue).lowercased())
             categoryThree.tintColor = UIColor.white
 
         }
         if feed["itineraryType"][2] != nil {
             categoryThree.isHidden = false
-            categoryThree.image = UIImage(named: feed["itineraryType"][2].stringValue)
+            categoryThree.image = UIImage(named: (feed["itineraryType"][2].stringValue).lowercased())
             categoryThree.tintColor = UIColor.white
 
         }
         
 
         
-        detailItineraryName.text = feed["title"].stringValue
-        detailItineraryCost.text = feed["currency"].stringValue + " " + feed["cost"].stringValue
+        detailItineraryName.text = feed["name"].stringValue
+        if feed["cost"].intValue == 0 {
+            detailItineraryCost.text = ""
+        }
+        else {
+            detailItineraryCost.text = feed["currency"].stringValue + " " + feed["cost"].stringValue
+        }
         detailItineraryCost.sizeToFit()
         
 //        CameraCount.text = feed["photoCount"].stringValue
