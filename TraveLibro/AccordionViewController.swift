@@ -352,7 +352,12 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
-        return false
+        if reviewType == "reviewby" {
+            return false
+
+        }else{
+            return true
+        }
     }
     
 }
