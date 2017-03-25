@@ -64,8 +64,6 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         myLifeDropShadow.shadowOffset = CGSize(width: 2, height: 2)
         myLifeDropShadow.layer.masksToBounds = true
         
-
-
         NotificationCenter.default.addObserver(self, selector: #selector(updateProfilePicture), name: NSNotification.Name(rawValue: "currentUserUpdated"), object: nil)
         
         profile = profilePicNavigation(frame: CGRect(x: 0, y: 0, width: profileNew.frame.width, height: profileNew.frame.height))
@@ -288,7 +286,13 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         case 2:
             self.slideMenuController()?.changeMainViewController(self.popBloggersController, close: true)        
         case 3:
-            inviteToAppClicked(sender: cell, onView: self)
+            if currentUser != nil {
+                inviteToAppClicked(sender: cell, onView: self)
+            }
+            else {
+                closeLeft()
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
+            }
         case 4:
             if currentUser != nil {
                 self.rateUsButtonClicked()

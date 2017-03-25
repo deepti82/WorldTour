@@ -744,19 +744,23 @@ func getDigitWithCommaStandards(originalDigitStr : String) -> String {
 
 func inviteToAppClicked(sender: UIView, onView:UIViewController) {
     
-    let newContent = "Hi, \((user.getUser(user.getExistingUser())).Name) thinks you'd love TraveLibro. Its a Travel Social Network that lets you Capture, Inspire and Relive your Travel Life | Local Life. It's really quick and easy! Download app to capture your entire life and inspire a world of travellers. \n\n  iOS : http://apple.co/1TYeGs5 \n Android : http://bit.ly/1WDUiCN  \n Web : http://travelibro.com "
-    
-    let objectsToShare = [newContent]
-    let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
-
-    //Excluded Activities Code
-    activityVC.excludedActivityTypes = [UIActivityType.addToReadingList, UIActivityType.assignToContact, UIActivityType.copyToPasteboard, UIActivityType.saveToCameraRoll, UIActivityType.airDrop]
-    
-    activityVC.popoverPresentationController?.sourceView = sender            
-    onView.present(activityVC, animated: true, completion: nil)   
+    if user.getExistingUser()  != "" {
+        
+        let newContent = "Hi, \((user.getUser(user.getExistingUser())).Name) thinks you'd love TraveLibro. Its a Travel Social Network that lets you Capture, Inspire and Relive your Travel Life | Local Life. It's really quick and easy! Download app to capture your entire life and inspire a world of travellers. \n\n  iOS : http://apple.co/1TYeGs5 \n Android : http://bit.ly/1WDUiCN  \n Web : http://travelibro.com "
+        
+        let objectsToShare = [newContent]
+        let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+        
+        //Excluded Activities Code
+        activityVC.excludedActivityTypes = [UIActivityType.addToReadingList, UIActivityType.assignToContact, UIActivityType.copyToPasteboard, UIActivityType.saveToCameraRoll, UIActivityType.airDrop]
+        
+        activityVC.popoverPresentationController?.sourceView = sender            
+        onView.present(activityVC, animated: true, completion: nil)
+    }
+    else {
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
+    }
 }
-
-
 
 
 func sharingUrl(url: String, onView:UIViewController) {
