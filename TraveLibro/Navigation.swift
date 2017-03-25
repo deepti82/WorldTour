@@ -128,12 +128,12 @@ class Navigation {
         
         var json = JSON(1);
         var params = ["_id":id]
-        if urlSlug != nil {
+        if urlSlug != "" {
             params["urlSlug"] = urlSlug!
         }
         
         let urlString = adminUrl + "user/getOne"
-        if urlSlug == "" || urlSlug == nil {
+        if urlSlug == "" {
             self.cache.fetch(key: urlString+id).onSuccess { data in
                 let json = JSON(data: data)
                 completion(json)
@@ -150,7 +150,7 @@ class Navigation {
                 else
                 {
                     json  = JSON(data: response.data)
-                    if urlSlug == "" || urlSlug == nil {
+                    if urlSlug == "" {
                         self.cache.set(value: response.data, key: urlString+id)
                     }
                     completion(json)

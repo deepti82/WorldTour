@@ -250,7 +250,9 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         
         MAMatterView.layer.opacity = 0.0
         
-        
+        if (MAM != nil){
+            MAM.removeFromSuperview()
+        }
         
         MAM = MoreAboutMe(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width - 20, height: 150))
         MAM.backgroundColor = UIColor.clear
