@@ -255,6 +255,7 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! FollowersCell
         cell.followButton.isSelected = false
         cell.profileImage.image = UIImage(named: "logo-default")
+        HiBye(cell.profileImage)
         
         cell.setAll()
         
@@ -266,6 +267,7 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
             cell.profileName.text = filter[(indexPath as NSIndexPath).row]["name"].string!
             cell.urlSlurg.text =  filter[(indexPath as NSIndexPath).row]["urlSlug"].string!
             let image = filter[(indexPath as NSIndexPath).row]["profilePicture"].string!
+            HiBye(cell.profileImage)
             setImage(cell.profileImage, imageName: image)
             
             
