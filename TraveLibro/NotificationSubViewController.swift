@@ -251,31 +251,19 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         case "itineraryComment":
             fallthrough
         case "postMentionComment":
-            
-            return currentCellHeight
-            
-            
-       
+            fallthrough       
         case "journeyLeft":
             fallthrough            
         case "journeyRequest":
-            
-            return currentCellHeight
-            
-            
+            fallthrough
         case "journeyComment":
             fallthrough
         case "journeyLike":
-            
-            return currentCellHeight
-            
-            
+            fallthrough
         case "userFollowing":
             fallthrough
         case "userFollowingRequest":
-            
-            return currentCellHeight
-            
+            fallthrough
         case "userBadge":
             fallthrough
         case "itineraryRequest":
@@ -283,8 +271,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         case "userFollowingResponse":
             fallthrough
         case "journeyReject":
-
-            return currentCellHeight
+            return currentCellHeight + 8
             
             
         default:
