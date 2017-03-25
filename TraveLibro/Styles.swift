@@ -197,7 +197,7 @@ open class LoadingOverlay{
     
     func showOverlay(_ view: UIView) {
         hideOverlayView()
-        print("show loader")
+        print("show loader : viewYPos : \(view.frame.origin.y)")
         
         let darkBlur = UIBlurEffect(style: UIBlurEffectStyle.dark)
         let blurView = UIVisualEffectView(effect: darkBlur)
@@ -469,9 +469,15 @@ func getImageURL(_ str: String,width:Int) -> URL {
     if isUrl {
         returnURL = URL(string:str)
     } else {
-        let getImageUrl = adminUrl + "upload/readFile?file=" + str + "&width="+String(width)
-        returnURL = URL(string:getImageUrl)
+        if width == 0 {
+            let getImageUrl = adminUrl + "upload/readFile?file=" + str
+            returnURL = URL(string:getImageUrl)
+        }else{
+            let getImageUrl = adminUrl + "upload/readFile?file=" + str + "&width="+String(width)
+            returnURL = URL(string:getImageUrl)
+        }
     }
+    print(returnURL)
     return returnURL
 }
 
@@ -568,6 +574,20 @@ func getDateFormat(_ date: String, format: String) -> String {
     return goodDate
     
 }
+
+func getFormat(_ date: String, formate: String) -> String {
+    
+    let globalDateFormatter = DateFormatter()
+    globalDateFormatter.dateFormat = date
+    let date = globalDateFormatter.date(from: date)
+    
+    let dayTimePeriodFormatter = DateFormatter()
+    dayTimePeriodFormatter.dateFormat = formate
+    let goodDate = dayTimePeriodFormatter.string(from: date!)
+    return goodDate
+    
+}
+
 
 func getMonthFormat(_ date: String) -> String {
     
@@ -738,19 +758,23 @@ func getDigitWithCommaStandards(originalDigitStr : String) -> String {
 
 func inviteToAppClicked(sender: UIView, onView:UIViewController) {
     
-    let newContent = "Hi, \((user.getUser(user.getExistingUser())).Name) thinks you'd love TraveLibro. Its a Travel Social Network that lets you Capture, Inspire and Relive your Travel Life | Local Life. It's really quick and easy! Download app to capture your entire life and inspire a world of travellers. \n\n  iOS : http://apple.co/1TYeGs5 \n Android : http://bit.ly/1WDUiCN  \n Web : http://travelibro.com "
-    
-    let objectsToShare = [newContent]
-    let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
-
-    //Excluded Activities Code
-    activityVC.excludedActivityTypes = [UIActivityType.addToReadingList, UIActivityType.assignToContact, UIActivityType.copyToPasteboard, UIActivityType.saveToCameraRoll, UIActivityType.airDrop]
-    
-    activityVC.popoverPresentationController?.sourceView = sender            
-    onView.present(activityVC, animated: true, completion: nil)   
+    if user.getExistingUser()  != "" {
+        
+        let newContent = "Hi, \((user.getUser(user.getExistingUser())).Name) thinks you'd love TraveLibro. Its a Travel Social Network that lets you Capture, Inspire and Relive your Travel Life | Local Life. It's really quick and easy! Download app to capture your entire life and inspire a world of travellers. \n\n  iOS : http://apple.co/1TYeGs5 \n Android : http://bit.ly/1WDUiCN  \n Web : http://travelibro.com "
+        
+        let objectsToShare = [newContent]
+        let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+        
+        //Excluded Activities Code
+        activityVC.excludedActivityTypes = [UIActivityType.addToReadingList, UIActivityType.assignToContact, UIActivityType.copyToPasteboard, UIActivityType.saveToCameraRoll, UIActivityType.airDrop]
+        
+        activityVC.popoverPresentationController?.sourceView = sender            
+        onView.present(activityVC, animated: true, completion: nil)
+    }
+    else {
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
+    }
 }
-
-
 
 
 func sharingUrl(url: String, onView:UIViewController) {

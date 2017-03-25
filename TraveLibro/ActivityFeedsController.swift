@@ -92,7 +92,7 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
         }else if displayData == "popular"{
             self.title = "Popular Journeys"
         }else if displayData == "popitinerary" {
-            self.title = "Popular Itinerary"
+            self.title = "Popular Itineraries"
         }else{
             self.title = selectedHash
         }
@@ -127,8 +127,7 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
             checkpoint = false
         }
         if displayData == "activity" {
-            print("in activity")
-            NSLog(" check nnnnn \n")
+            print("in activity")            
             self.loadStatus = false
             
 //            if pageNumber == 13 {
@@ -149,9 +148,7 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
                                 post["user"] = ["name":currentUser["name"].stringValue, "profilePicture":currentUser["profilePicture"].stringValue]
                                 post["offline"] = true
                                 let checkIn = ActivityFeedsLayout(width: self.view.frame.width)
-                                checkIn.feeds = post
-                                print("post post : \(post)")
-                                
+                                checkIn.feeds = post                                
                                 checkIn.scrollView = self.activityScroll
                                 checkIn.createProfileHeader(feed: post)
                                 checkIn.activityFeed = self

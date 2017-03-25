@@ -53,16 +53,26 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
     
         
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.y >= (scrollView.contentSize.height - scrollView.frame.size.height) {
+
         if loadStatus {
             
             if insideView == "Monthly" {
                 loadInsideMedia(mediaType: savedMediaType, pageno: page, type: momentType, token: savedToken, id: savedId)
             }else{
-                if momentType == "travel-life" {
+                if momentType == "travel-life"{
                     self.loadMomentLife(pageno: page, type: momentType, token: "")
+                }
+                else if momentType == "all" || momentType == "local-life"{
+                    if lastToken != "-1" {
+                        self.loadMomentLife(pageno: 0, type: momentType, token: lastToken)
+                    }
+                    
+
                 }
             }
             
+        }
         }
         
     }
@@ -80,7 +90,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
         
         self.loadStatus = false
         if momentType == "all" || momentType == "local-life" {
-            request.getTokenMoment(currentUser["_id"].stringValue, pageNumber: pageno, type: type, token: token, completion: {(request) in
+            request.getTokenMoment(user.getExistingUser(), pageNumber: pageno, type: type, token: token, urlSlug: selectedUser["urlSlug"].stringValue, completion: {(request) in
                 DispatchQueue.main.async {
                     loader.hideOverlayView()
                     if request["data"].count > 0 {
@@ -101,7 +111,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
             })
         } else {
             print("in else, pagenumber \(pageno)")
-            request.getMedia(mediaType: mediaType, user: currentUser["_id"].stringValue, id: id, pageNumber: pageno, completion: {(request) in
+            request.getMedia(mediaType: mediaType, user: user.getExistingUser(), id: id, pageNumber: pageno, urlSlug: selectedUser["urlSlug"].stringValue, completion: {(request) in
                 DispatchQueue.main.async {
                     loader.hideOverlayView()
                     if request["data"].count > 0 {
@@ -406,12 +416,14 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
                 cell.bgImage.image = UIImage(named: "logo-default")
 //                cell.bgImage.transform = CGAffineTransform(rotationAngle: 0.0349066)
                 cell.bgImage.layer.cornerRadius = 5
+
 //                cell.coverImage.layer.cornerRadius = cell.coverImage.frame.width/2
 //                cell.coverImage.clipsToBounds = true
 //                
 //                cell.coverImage.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["data"][indexPath.row]["name"].stringValue, width: 300))
                 cell.bgImage.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["data"][indexPath.row]["name"].stringValue, width: 300))
                 cell.albumTitle.attributedText = createHeaderDate(currDate: allData[indexPath.row]["token"].stringValue, count: allData[indexPath.row]["count"].stringValue)
+
                 
                 return cell
             case "travel-life":
@@ -482,10 +494,10 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
     }
     
     func createHeaderDate(currDate:String, count:String) -> NSAttributedString {
-        let array = getMonthFormat(currDate)
+        //let array = getMonthFormat(currDate)
         let headerLabel = NSMutableAttributedString(string: "")
-        let month = NSAttributedString(string: array, attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: 14)!])
-//        let month = NSAttributedString(string: getDateFormat(currDate, format: "d MMM, yyyy"), attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: 14)!])
+        //let month = NSAttributedString(string: array, attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: 14)!])
+        let month = NSAttributedString(string: getFormat(currDate, formate: "MMM, yyyy"), attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: 14)!])
         
 
         let count = NSAttributedString(string: " (\(count))", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: 11)!])

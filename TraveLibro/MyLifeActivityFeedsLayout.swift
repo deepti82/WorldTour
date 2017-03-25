@@ -190,7 +190,9 @@ class MyLifeActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             footerView.topLayout = self
             footerView.type = "MyLifeFeeds"
             if currentUser["_id"].stringValue != user.getExistingUser() {
-                footerViewReview.optionButton.isHidden = true
+                if(footerViewReview != nil) {
+                    footerViewReview.optionButton.isHidden = true
+                }
             }
             footerView.setCommentCount(feed["commentCount"].intValue)
             footerView.setLikeCount(feed["likeCount"].intValue)
@@ -208,7 +210,7 @@ class MyLifeActivityFeedsLayout: VerticalLayout, PlayerDelegate {
     func middleLayoout(feed:JSON) {
         switch feed["type"].stringValue {
         case "on-the-go-journey","ended-journey":
-            activityFeedImage = ActivityFeedImageView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 572))
+            activityFeedImage = ActivityFeedImageView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.width))
             activityFeedImage.fillData(feed: feed)
             let tapRecognizer = UITapGestureRecognizer()
             tapRecognizer.numberOfTapsRequired = 1
@@ -219,7 +221,7 @@ class MyLifeActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             activityFeedImage.OnTheGOText.isHidden = true
             self.addSubview(activityFeedImage)
         case "quick-itinerary":
-            activityQuickItinerary = ActivityFeedQuickItinerary(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 590))
+            activityQuickItinerary = ActivityFeedQuickItinerary(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.width))
             
             let tapRecognizer = UITapGestureRecognizer()
             tapRecognizer.numberOfTapsRequired = 1
@@ -240,7 +242,7 @@ class MyLifeActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             self.addSubview(activityQuickItinerary)
             
         case "detail-itinerary":
-            activityDetailItinerary = ActivityDetailItinerary(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 528))
+            activityDetailItinerary = ActivityDetailItinerary(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.width))
             activityDetailItinerary.fillData(feed: feed)
 //            self.activityDetailItinerary.addSubview(textTag)
             self.addSubview(activityDetailItinerary)

@@ -12,6 +12,9 @@ import SystemConfiguration
 
 import Haneke
 
+import Fabric
+import Crashlytics
+
 import UserNotificationsUI
 
 let cache = Shared.dataCache
@@ -179,7 +182,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
     
         
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
         createMenuView()
+        
+        enableCrashReporting()
+        
         _ = AppDelegate.getDatabase()
         
         UNUserNotificationCenter.current().requestAuthorization(options: [.badge, .alert, .sound]) { (granted, error) in
@@ -361,6 +368,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
         globalNavigationController.pushViewController(signInVC, animated: true)
     }
     
+    func enableCrashReporting() {
+        Fabric.with([Crashlytics.self])
+    }
 }
 
 //MARK: - Other Functions

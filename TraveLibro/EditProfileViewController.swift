@@ -218,6 +218,9 @@ class EditProfileViewController: UIViewController, UITableViewDataSource, UITabl
             { action -> Void in
                 self.imagePicker.allowsEditing = true
                 self.imagePicker.sourceType = .photoLibrary
+                self.imagePicker.navigationBar.isTranslucent = true
+                self.imagePicker.navigationBar.barTintColor = mainBlueColor
+                self.imagePicker.navigationBar.tintColor = UIColor.white
                 self.present(self.imagePicker, animated: true, completion: nil)
             }
             actionSheetControllerIOS8.addAction(deleteActionButton)

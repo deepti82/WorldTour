@@ -2,6 +2,7 @@ import UIKit
 import DKChainableAnimationKit
 import Toaster
 import SwiftGifOrigin
+import Crashlytics
 
 
 var doRemove: Bool = true
@@ -169,9 +170,9 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         customView = UIView(frame:(CGRect(x: 0, y: self.view.frame.size.height - 75, width: self.view.frame.width, height: 75)))
         self.orangeTab = OrangeButton(frame: CGRect(x: 5, y: self.view.frame.size.height - 125, width: self.view.frame.size.width - 10, height: 50))
         orangeTab.orangeButtonTitle.titleLabel?.font = UIFont(name: "Avenir-Heavy", size: 16)
-        orangeTab.orangeButtonTitle.setTitle("My Life", for: UIControlState())
+        orangeTab.orangeButtonTitle.setTitle("Explore My Life", for: UIControlState())
         let fontAwesomeLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 40, height: orangeTab.frame.size.height))
-        fontAwesomeLabel.center = CGPoint(x: 90, y: orangeTab.orangeButtonTitle.titleLabel!.frame.size.height/2 + 10)
+        fontAwesomeLabel.center = CGPoint(x: 150, y: orangeTab.orangeButtonTitle.titleLabel!.frame.size.height/2 + 10)
         fontAwesomeLabel.font = FontAwesomeFont
         fontAwesomeLabel.text = String(format: "%C", faicon["angle_up"]!)
         fontAwesomeLabel.textColor = UIColor.white
@@ -249,7 +250,9 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         
         MAMatterView.layer.opacity = 0.0
         
-        
+        if (MAM != nil){
+            MAM.removeFromSuperview()
+        }
         
         MAM = MoreAboutMe(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width - 20, height: 150))
         MAM.backgroundColor = UIColor.clear

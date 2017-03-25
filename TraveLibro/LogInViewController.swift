@@ -22,7 +22,6 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("in loaded")
         
         layout = HorizontalLayout(height: videoScrollView.frame.height)
         
@@ -53,6 +52,8 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.userSocialLoginFailed(notification:)), name: NSNotification.Name(rawValue: "SOCIAL_LOGIN_FAILED"), object: nil)       
+        NotificationCenter.default.addObserver(self, selector: #selector(self.saveUserFailed(notification:)), name: NSNotification.Name(rawValue: "SAVE_USER_FAILED"), object: nil)
         logIn.emailTxt.text = ""
         logIn.passwordTxt.text = ""
         if shouldShowLoader {
@@ -62,6 +63,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self)
         loader.hideOverlayView()
         shouldShowLoader = false
     }
@@ -87,7 +89,6 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     }
     
     func loginTabbed(_ sender: AnyObject) {
-        print("\n loginTabbed ")      
         
         logIn.emailTxt.resignFirstResponder()
         logIn.passwordTxt.resignFirstResponder()
@@ -167,7 +168,6 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
             loader.showOverlay(self.view)
             
             request.forgotPassword(email: emailStr!) { (response) in
-                print("\n Response : \(response)")
                 
                 DispatchQueue.main.async(execute: {
                     
@@ -230,5 +230,28 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
-    }    
+    }
+    
+    //MARK: - Notification Handler
+    
+    func userSocialLoginFailed(notification : Notification) {
+        
+        let errorAlert = UIAlertController(title: "Error", message: "Unable to login. Please check your profile public.", preferredStyle: UIAlertControllerStyle.alert)
+        let DestructiveAction = UIAlertAction(title: "Ok", style: .destructive) {
+            (result : UIAlertAction) -> Void in
+        }            
+        errorAlert.addAction(DestructiveAction)
+        self.navigationController?.present(errorAlert, animated: true, completion: nil)
+    }
+    
+    func saveUserFailed(notification: Notification)  {
+        loader.hideOverlayView()
+        let errorAlert = UIAlertController(title: "Error", message: "Something went wrong. Please try after sometime", preferredStyle: UIAlertControllerStyle.alert)
+        let DestructiveAction = UIAlertAction(title: "Ok", style: .destructive) {
+            (result : UIAlertAction) -> Void in
+            //Cancel Action
+        }            
+        errorAlert.addAction(DestructiveAction)
+        self.navigationController?.present(errorAlert, animated: true, completion: nil)
+    }
 }

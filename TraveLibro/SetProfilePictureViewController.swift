@@ -155,6 +155,9 @@ class SetProfilePictureViewController: UIViewController, UIImagePickerController
         { action -> Void in
             
             self.imagePicker.allowsEditing = true
+            self.imagePicker.navigationBar.isTranslucent = true
+            self.imagePicker.navigationBar.barTintColor = mainBlueColor
+            self.imagePicker.navigationBar.tintColor = UIColor.white
             self.imagePicker.sourceType = .photoLibrary
             self.present(self.imagePicker, animated: true, completion: {
                 

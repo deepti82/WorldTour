@@ -26,7 +26,11 @@ class Navigation {
                 let opt = try HTTP.POST(adminUrl + "user/save", parameters: [params])
                 opt.start { response in
                     if let err = response.error {
-                        print("error: \(err.localizedDescription)")
+                        DispatchQueue.main.async(execute: {
+                            print("error: \(err.localizedDescription)")
+                            shouldShowLoader = false
+                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "SAVE_USER_FAILED"), object: nil)                            
+                        })
                     }
                     else
                     {
@@ -124,14 +128,16 @@ class Navigation {
         
         var json = JSON(1);
         var params = ["_id":id]
-        if urlSlug != nil {
+        if urlSlug != "" {
             params["urlSlug"] = urlSlug!
         }
         
-        var urlString = adminUrl + "user/getOne"
-        self.cache.fetch(key: urlString+id).onSuccess { data in
-            var json = JSON(data: data)
-            completion(json)
+        let urlString = adminUrl + "user/getOne"
+        if urlSlug == "" {
+            self.cache.fetch(key: urlString+id).onSuccess { data in
+                let json = JSON(data: data)
+                completion(json)
+            }
         }
         
         do {
@@ -144,7 +150,9 @@ class Navigation {
                 else
                 {
                     json  = JSON(data: response.data)
-                    self.cache.set(value: response.data, key: urlString+id)
+                    if urlSlug == "" {
+                        self.cache.set(value: response.data, key: urlString+id)
+                    }
                     completion(json)
                 }
             }
@@ -1553,6 +1561,7 @@ class Navigation {
     
     func getMomentJourney(pageNumber: Int,type:String, completion: @escaping ((JSON) -> Void)) {
         do {
+            print(["user": currentUser["_id"].stringValue, "type": type, "pagenumber": pageNumber])
             let opt = try HTTP.POST(adminUrl + "journey/myLifeJourney", parameters: ["user": currentUser["_id"].stringValue, "type": type, "pagenumber": pageNumber])
             var json = JSON(1);
             opt.start {response in
@@ -1598,9 +1607,9 @@ class Navigation {
             if type == "travel-life" {
                 params = ["user": user, "type": type, "pagenumber": pageNumber]
             } else if type == "local-life" {
-                params = ["user": user, "token": token, "type": type, "limit": 1, "times": 6]
+                params = ["user": user, "token": token, "type": type, "limit": 2, "times": 6]
             } else {
-                params = ["user": user, "token": token, "type": type, "limit": 20, "times": 6]
+                params = ["user": user, "token": token, "type": type, "limit": 20, "times": 10]
             }
             print(params)
             let jsonData = try params.rawData()
@@ -1638,12 +1647,24 @@ class Navigation {
         }
     }
     
-    func getMedia(mediaType:String, user:String, id: String, pageNumber: Int, completion: @escaping ((JSON) -> Void)) {
+    func getMedia(mediaType:String, user:String, id: String, pageNumber: Int, urlSlug:String?, completion: @escaping ((JSON) -> Void)) {
         
         
         do {
             var params: JSON!
             var api: String
+        
+            if urlSlug != "" {
+                if mediaType == "" {
+                    params = ["user":user, "_id": id, "pagenumber": pageNumber, "limit": 20, "urlSlug": urlSlug!]
+                    api = "journey/getMedia"
+                }else{
+                    params = ["_id": id, "pagenumber": pageNumber, "limit": 20, "urlSlug": urlSlug!]
+                    api = "itinerary/getMedia"
+                }
+
+            }else{
+            
             if mediaType == "" {
                 params = ["user":user, "_id": id, "pagenumber": pageNumber, "limit": 20]
                 api = "journey/getMedia"
@@ -1651,6 +1672,8 @@ class Navigation {
                 params = ["_id": id, "pagenumber": pageNumber, "limit": 20]
                 api = "itinerary/getMedia"
             }
+            }
+            
             print(params)
             print(api)
             let jsonData = try params.rawData()
@@ -1688,7 +1711,7 @@ class Navigation {
         }
     }
     
-    func getTokenMoment(_ user: String, pageNumber: Int, type: String, token: String, completion: @escaping ((JSON) -> Void)) {
+    func getTokenMoment(_ user: String, pageNumber: Int, type: String, token: String, urlSlug: String?, completion: @escaping ((JSON) -> Void)) {
         
         var type2 = type
         do {
@@ -1696,7 +1719,13 @@ class Navigation {
             if type2 == "all" {
                 type2 = ""
             }
-            params = ["user": user, "token": token, "type": type2, "limit": 18, "pagenumber": pageNumber]
+            
+            if urlSlug != "" {
+                params = ["user": user, "token": token, "type": type2, "limit": 18, "pagenumber": pageNumber, "urlSlug": urlSlug!]
+            }else{
+                params = ["user": user, "token": token, "type": type2, "limit": 18, "pagenumber": pageNumber]
+            }
+            
             print(params)
             let jsonData = try params.rawData()
             

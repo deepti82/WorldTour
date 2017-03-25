@@ -118,9 +118,9 @@ class ActivityFeedImageView: UIView {
         checkInCount.text = feed["checkInCount"].stringValue
         
         if feed["coverPhoto"] != nil && feed["coverPhoto"] != "" {
-            ImageChange.hnk_setImageFromURL(getImageURL(feed["coverPhoto"].stringValue, width: 300))
+            ImageChange.hnk_setImageFromURL(getImageURL(feed["coverPhoto"].stringValue, width: 0))
         }else if feed["startLocationPic"] != nil && feed["startLocationPic"] != "" {
-            ImageChange.hnk_setImageFromURL(getImageURL(feed["startLocationPic"].stringValue, width: 300))
+            ImageChange.hnk_setImageFromURL(getImageURL(feed["startLocationPic"].stringValue, width: 0))
         }else{
             ImageChange.image = UIImage(named: "logo-default")
         }

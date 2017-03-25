@@ -254,6 +254,7 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! FollowersCell
         cell.followButton.isSelected = false
+        cell.profileImage.image = UIImage(named: "logo-default")
         
         cell.setAll()
         
@@ -340,7 +341,7 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
         
         if imageName == "" {
             
-            imageView.image = UIImage(named: "profile_icon")
+            imageView.image = UIImage(named: "logo-default")
             makeTLProfilePictureFollowers(imageView)
             
         }

@@ -8,7 +8,6 @@
 
 import UIKit
 var globalAccordionViewController:AccordionViewController!
-var cellTable: UITableView!
 var allData:[JSON] = []
 
 class AccordionViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
@@ -20,7 +19,6 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
     var isExpanded = false
     var childCells = 0
     var selectedIndex: Int!
-//    var allData:[JSON] = []
     var pagenumber:Int = 1
     var empty: EmptyScreenView!
     var whichView = "All"
@@ -38,9 +36,6 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        cellTable = self.tableMainView
-        //        getDarkBackGround(self)
         globalAccordionViewController = self
         setTopNavigation("Reviews")
     }
@@ -245,6 +240,7 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
         switch reviewType {
         case "all":
             let cell = tableView.dequeueReusableCell(withIdentifier: "allReviewsCell") as! allReviewsMLTableViewCell
+            cell.helper = self
             cell.tag = indexPath.row
             cell.calendarLabel.text = String(format: "%C", faicon["calendar"]!)
             cell.clockLabel.text = String(format: "%C", faicon["clock"]!)
@@ -264,6 +260,8 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
                 return cell
             }else{
                 let cell = tableView.dequeueReusableCell(withIdentifier: "allReviewsCell") as! allReviewsMLTableViewCell
+                cell.helper = self
+                cell.tag = indexPath.row
                 cell.calendarLabel.text = String(format: "%C", faicon["calendar"]!)
                 cell.clockLabel.text = String(format: "%C", faicon["clock"]!)
                 cell.locationLabel.text = "\(allData[indexPath.row]["checkIn"]["city"].stringValue), \(allData[indexPath.row]["checkIn"]["country"].stringValue)"
@@ -352,6 +350,15 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
         
     }
     
+    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        
+        if reviewType == "all" || (reviewType == "reviewby" && indexPath.row != 0) {
+            return false            
+        }
+        
+        return true
+    }
+    
 }
 
 class cityLabelTableViewCell: UITableViewCell {
@@ -386,8 +393,7 @@ class allReviewsMLTableViewCell: UITableViewCell {
     @IBOutlet weak var ratingStack: UIStackView!
     @IBOutlet var starImageArray: [UIImageView]!
     var backgroundReview: UIView!
-    var postTop:JSON = []
-    var newRating:JSON = []
+    var helper : AccordionViewController!
     
     let categories: [JSON] = [["title": "Transportation", "image": "planetrans"], ["title": "Hotels & Accomodations", "image": "hotels-1"], ["title": "Restaurants & Bars", "image": "restaurantsandbars"], ["title": "Nature & Parks", "image": "leaftrans"], ["title": "Sights & Landmarks", "image": "sightstrans"], ["title": "Museums & Galleries", "image": "museumstrans"], ["title": "Religious", "image": "regli"], ["title": "Shopping", "image": "shopping"], ["title": "Zoo & Aquariums", "image": "zootrans"], ["title": "Cinema & Theatres", "image": "cinematrans"], ["title": "City", "image": "city_icon"], ["title": "Health & Beauty", "image": "health_beauty"], ["title": "Rentals", "image": "rentals"], ["title": "Entertainment", "image": "entertainment"], ["title": "Essentials", "image": "essential"], ["title": "Emergency", "image": "emergency"], ["title": "Others", "image": "othersdottrans"]]
     
@@ -418,6 +424,7 @@ class allReviewsMLTableViewCell: UITableViewCell {
     }
     
     func openRating() {
+        
         let tapout = UITapGestureRecognizer(target: self, action: #selector(self.reviewTapOut(_:)))
         backgroundReview = UIView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: (globalNavigationController.topViewController?.view.frame.size.height)!))
         backgroundReview.addGestureRecognizer(tapout)
@@ -426,38 +433,23 @@ class allReviewsMLTableViewCell: UITableViewCell {
         globalNavigationController.topViewController?.view.bringSubview(toFront: backgroundReview)
         
         let rating = AddRating(frame: CGRect(x: 0, y: 0, width: width - 40, height: 335))
-        rating.activityJson = postTop
+        rating.activityJson = allData[self.tag]
         
-        if postTop["type"].stringValue == "travel-life" {
+        if rating.activityJson["type"].stringValue == "travel-life" {
             rating.whichView = "otg"
-            rating.switchSmily()
         }else{
-            rating.whichView = ""
-            rating.switchSmily()
+            rating.whichView = ""            
         }
-        
+        rating.switchSmily()
         rating.accordianCell = self
         rating.checkView = "accordian"
         
         
-        if postTop["review"][0]["rating"] != nil  && postTop["review"].count != 0 {
-            if newRating != nil {
-                print("in two if")
-                rating.starCount = newRating["rating"].intValue
-                rating.ratingDisplay(newRating)
-            }else{
-                rating.starCount = postTop["review"][0]["rating"].intValue
-                rating.ratingDisplay(postTop["review"][0])
-            }
+        if rating.activityJson["review"][0]["rating"] != nil  && rating.activityJson["review"].count != 0 {
+            rating.starCount = rating.activityJson["review"][0]["rating"].intValue
+            rating.ratingDisplay(rating.activityJson["review"][0])
         }else{
-            
-            if newRating != nil && newRating["rating"] != nil {
-                rating.starCount = newRating["rating"].intValue
-                rating.ratingDisplay(newRating)
-                
-            }else{
-                rating.starCount = 1
-            }
+            rating.starCount = 1
         }
         
         rating.center = backgroundReview.center
@@ -471,8 +463,6 @@ class allReviewsMLTableViewCell: UITableViewCell {
     
     func setView(feed:JSON) {
         self.review.isHidden = true
-        postTop = feed
-        var cl = self
         ratingButton.addTarget(self, action: #selector(self.checkMyRating(_:)), for: .touchUpInside)
         let tapout = UITapGestureRecognizer(target: self, action: #selector(self.checkMyRatingStar(_:)))
         ratingStack.addGestureRecognizer(tapout)
@@ -483,7 +473,7 @@ class allReviewsMLTableViewCell: UITableViewCell {
         clockTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["UTCModified"].stringValue, isDate: false)
 
         
-        if postTop["type"].stringValue == "travel-life" {
+        if feed["type"].stringValue == "travel-life" {
             ratingButton.setTitleColor(mainOrangeColor, for: .normal)
         }else{
             ratingButton.setTitleColor(endJourneyColor, for: .normal)
@@ -497,7 +487,7 @@ class allReviewsMLTableViewCell: UITableViewCell {
                 self.review.text = feed["review"][0]["review"].stringValue
                 self.review.sizeToFit()
             }
-            afterRating(starCnt: feed["review"][0]["rating"].intValue, review: feed["review"][0]["review"].stringValue, type:feed["type"].stringValue)
+            afterRating(starCnt: feed["review"][0]["rating"].intValue, review: feed["review"][0]["review"].stringValue, type:feed["type"].stringValue, shouldReload: false)
         }else{
             if feed["checkIn"] != nil && feed["checkIn"]["category"].stringValue != "" {
                 ratingStack.isHidden = true
@@ -511,7 +501,7 @@ class allReviewsMLTableViewCell: UITableViewCell {
         
     }
     
-    func afterRating(starCnt:Int, review:String, type:String) {
+    func afterRating(starCnt:Int, review:String, type:String, shouldReload:Bool) {
         print(starCnt)
         if starCnt != 0 {
             print("start rating \(self.tag)")
@@ -531,17 +521,21 @@ class allReviewsMLTableViewCell: UITableViewCell {
             if review != "" {
                 self.review.isHidden = false
                 self.review.text = review
-                allData[self.tag]["review"][0] = ["rating":"\(starCnt)","review":review]
             }
-//            self.rel
-            newRating = ["rating":"\(starCnt)","review":review]
+            
             ratingStack.isHidden = false
             ratingButton.isHidden = true
-            
-//            cellTable.reloadRows(at: [NSIndexPath(row:self.tag, section:0) as IndexPath], with: .automatic)
-            
         }
         
+        if shouldReload {
+            var currentJson = allData[self.tag]            
+            currentJson["review"][0] = ["rating":"\(starCnt)","review":review]            
+            if (currentJson["review"].isEmpty){
+                currentJson["review"] = [["rating":"\(starCnt)","review":review]]
+            }
+            allData[self.tag] = currentJson
+            helper.tableMainView.reloadRows(at: [(NSIndexPath(row: self.tag, section: 0) as IndexPath)], with: .automatic)
+        }
     }
     
     

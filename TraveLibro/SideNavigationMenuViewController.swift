@@ -23,7 +23,7 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
     var signOutViewController: UIViewController!
     var signInViewController: SignInViewController!
     
-    let labels = ["Popular Journeys", "Popular Itinerary", "Popular Bloggers", "Invite Friends", "Rate Us", "Feedback", "Log Out"]
+    let labels = ["Popular Journeys", "Popular Itineraries", "Popular Bloggers", "Invite Friends", "Rate Us", "Feedback", "Log Out"]
     
     @IBOutlet weak var profileViewHeightConstraint: NSLayoutConstraint!
     
@@ -64,8 +64,6 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         myLifeDropShadow.shadowOffset = CGSize(width: 2, height: 2)
         myLifeDropShadow.layer.masksToBounds = true
         
-
-
         NotificationCenter.default.addObserver(self, selector: #selector(updateProfilePicture), name: NSNotification.Name(rawValue: "currentUserUpdated"), object: nil)
         
         profile = profilePicNavigation(frame: CGRect(x: 0, y: 0, width: profileNew.frame.width, height: profileNew.frame.height))
@@ -145,29 +143,34 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
     }   
     
     func updateProfilePicture() {
-        if currentUser != nil {
+        if currentUser != nil && (currentUser["_id"].stringValue == user.getExistingUser()) {
+            print("Current user name : \(currentUser["name"].stringValue)")
             starstack.isHidden = false
             profile.flag.isHidden = false
             profileName.text = currentUser["name"].stringValue
             imageName = currentUser["profilePicture"].stringValue
             loginLabel.isHidden = true
             profileName.isHidden = false
+            
             if currentUser["userBadgeName"].string == "newbie"{
-            star1.image = UIImage(named: "star_check")
-            star1.tintColor  = UIColor.white
-            }else if currentUser["userBadgeName"].string == "justGotWings"{
+                star1.image = UIImage(named: "star_check")
+                star1.tintColor  = UIColor.white
+            }
+            else if currentUser["userBadgeName"].string == "justGotWings"{
                 star1.image = UIImage(named: "star_check")
                 star1.tintColor  = UIColor.white
                 star2.image = UIImage(named: "star_check")
                 star2.tintColor  = UIColor.white
-            } else if currentUser["userBadgeName"].string == "globeTrotter"{
+            }
+            else if currentUser["userBadgeName"].string == "globeTrotter"{
                 star1.image = UIImage(named: "star_check")
                 star1.tintColor  = UIColor.white
                 star2.image = UIImage(named: "star_check")
                 star2.tintColor  = UIColor.white
                 star3.image = UIImage(named: "star_check")
                 star3.tintColor  = UIColor.white
-            } else if currentUser["userBadgeName"].string == "wayfarer"{
+            }
+            else if currentUser["userBadgeName"].string == "wayfarer"{
                 star1.image = UIImage(named: "star_check")
                 star1.tintColor  = UIColor.white
                 star2.image = UIImage(named: "star_check")
@@ -176,7 +179,8 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
                 star3.tintColor  = UIColor.white
                 star4.image = UIImage(named: "star_check")
                 star4.tintColor  = UIColor.white
-            } else if currentUser["userBadgeName"].string == "nomad"{
+            } 
+            else if currentUser["userBadgeName"].string == "nomad"{
                 star1.image = UIImage(named: "star_check")
                 star1.tintColor  = UIColor.white
                 star2.image = UIImage(named: "star_check")
@@ -187,18 +191,19 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
                 star4.tintColor  = UIColor.white
                 star5.image = UIImage(named: "star_check")
                 star5.tintColor  = UIColor.white
-            } else {
+            }
+            else {
                 starstack.isHidden = true
                 
             }
-
+            
             
             let isUrl = verifyUrl(imageName)
             if (isUrl) {
                 profilePicture.hnk_setImageFromURL(URL(string:imageName)!)
                 profile.image.hnk_setImageFromURL(URL(string:imageName)!)
                 backgroundImage.hnk_setImageFromURL(URL(string:imageName)!)
-
+                
             } else {
                 let getImageUrl = URL(string:adminUrl + "upload/readFile?file=" + imageName + "&width=500")
                 profilePicture.hnk_setImageFromURL(getImageUrl!)
@@ -288,7 +293,13 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         case 2:
             self.slideMenuController()?.changeMainViewController(self.popBloggersController, close: true)        
         case 3:
-            inviteToAppClicked(sender: cell, onView: self)
+            if currentUser != nil {
+                inviteToAppClicked(sender: cell, onView: self)
+            }
+            else {
+                closeLeft()
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
+            }
         case 4:
             if currentUser != nil {
                 self.rateUsButtonClicked()
