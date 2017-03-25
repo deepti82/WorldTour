@@ -375,6 +375,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
             
             if signInFooter.frame.origin.y == (screenHeight - 80) {
                 UIView.animate(withDuration: 1, animations: {
+                    self.videoLabel.isHidden = true
                     self.signInFooter.frame = CGRect(x: 0 , y: screenHeight, width: screenWidth, height: 80)
                     self.pageControl.frame = CGRect(x: self.view.center.x, y: self.signInFooter.frame.origin.y - 15, width: 60, height: 30)
                 })
@@ -420,6 +421,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         if signInFooter.frame.origin.y == screenHeight {
             UIView.animate(withDuration: 1, animations: {
+                self.videoLabel.isHidden = false
                 self.signInFooter.frame = CGRect(x: 0 , y: screenHeight - 80, width: screenWidth, height: 80)
                 self.pageControl.frame = CGRect(x: self.view.center.x, y: self.signInFooter.frame.origin.y - 15, width: 60, height: 30)
             })
