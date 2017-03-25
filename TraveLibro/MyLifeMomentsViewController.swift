@@ -335,7 +335,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
 //            var a = (screenWidth - 30) / 2
 //            print("width \(a)")
 
-            return CGSize(width: 165, height: 204)
+            return CGSize(width: 124, height: 204)
         }
     }
     
@@ -406,10 +406,10 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
                 cell.bgImage.image = UIImage(named: "logo-default")
 //                cell.bgImage.transform = CGAffineTransform(rotationAngle: 0.0349066)
                 cell.bgImage.layer.cornerRadius = 5
-                cell.coverImage.layer.cornerRadius = cell.coverImage.frame.width/2
-                cell.coverImage.clipsToBounds = true
-                
-                cell.coverImage.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["data"][indexPath.row]["name"].stringValue, width: 300))
+//                cell.coverImage.layer.cornerRadius = cell.coverImage.frame.width/2
+//                cell.coverImage.clipsToBounds = true
+//                
+//                cell.coverImage.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["data"][indexPath.row]["name"].stringValue, width: 300))
                 cell.bgImage.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["data"][indexPath.row]["name"].stringValue, width: 300))
                 cell.albumTitle.attributedText = createHeaderDate(currDate: allData[indexPath.row]["token"].stringValue, count: allData[indexPath.row]["count"].stringValue)
                 
@@ -417,8 +417,8 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
             case "travel-life":
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "travelLifeMomentsCell", for: indexPath) as! TravelLifeMomentsCollectionViewCell
                 
-                cell.coverImage.layer.cornerRadius = cell.coverImage.frame.width/2
-                cell.coverImage.clipsToBounds = true
+//                cell.coverImage.layer.cornerRadius = cell.coverImage.frame.width/2
+//                cell.coverImage.clipsToBounds = true
                 
                 //            cell.albumDated.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd-MM-yyyy", date: allData[indexPath.row]["startTime"].stringValue, isDate: false)
                 
@@ -433,10 +433,10 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
                 cell.bgImage.image = UIImage(named: "logo-default")
                 
                 if allData[indexPath.row]["coverPhoto"] != nil {
-                    cell.coverImage.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["coverPhoto"].stringValue, width: 300))
+//                    cell.coverImage.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["coverPhoto"].stringValue, width: 300))
                     cell.bgImage.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["coverPhoto"].stringValue, width: 300))
                 }else{
-                    cell.coverImage.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["startLocationPic"].stringValue, width: 300))
+//                    cell.coverImage.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["startLocationPic"].stringValue, width: 300))
                     cell.bgImage.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["startLocationPic"].stringValue, width: 300))
                 }
                 
