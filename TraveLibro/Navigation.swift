@@ -132,10 +132,12 @@ class Navigation {
             params["urlSlug"] = urlSlug!
         }
         
-        var urlString = adminUrl + "user/getOne"
-        self.cache.fetch(key: urlString+id).onSuccess { data in
-            var json = JSON(data: data)
-            completion(json)
+        let urlString = adminUrl + "user/getOne"
+        if urlSlug != "" || urlSlug == nil {
+            self.cache.fetch(key: urlString+id).onSuccess { data in
+                let json = JSON(data: data)
+                completion(json)
+            }
         }
         
         do {

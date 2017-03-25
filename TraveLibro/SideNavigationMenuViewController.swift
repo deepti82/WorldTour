@@ -143,29 +143,34 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
     }   
     
     func updateProfilePicture() {
-        if currentUser != nil {
+        if currentUser != nil && (currentUser["_id"].stringValue == user.getExistingUser()) {
+            print("Current user name : \(currentUser["name"].stringValue)")
             starstack.isHidden = false
             profile.flag.isHidden = false
             profileName.text = currentUser["name"].stringValue
             imageName = currentUser["profilePicture"].stringValue
             loginLabel.isHidden = true
             profileName.isHidden = false
+            
             if currentUser["userBadgeName"].string == "newbie"{
-            star1.image = UIImage(named: "star_check")
-            star1.tintColor  = UIColor.white
-            }else if currentUser["userBadgeName"].string == "justGotWings"{
+                star1.image = UIImage(named: "star_check")
+                star1.tintColor  = UIColor.white
+            }
+            else if currentUser["userBadgeName"].string == "justGotWings"{
                 star1.image = UIImage(named: "star_check")
                 star1.tintColor  = UIColor.white
                 star2.image = UIImage(named: "star_check")
                 star2.tintColor  = UIColor.white
-            } else if currentUser["userBadgeName"].string == "globeTrotter"{
+            }
+            else if currentUser["userBadgeName"].string == "globeTrotter"{
                 star1.image = UIImage(named: "star_check")
                 star1.tintColor  = UIColor.white
                 star2.image = UIImage(named: "star_check")
                 star2.tintColor  = UIColor.white
                 star3.image = UIImage(named: "star_check")
                 star3.tintColor  = UIColor.white
-            } else if currentUser["userBadgeName"].string == "wayfarer"{
+            }
+            else if currentUser["userBadgeName"].string == "wayfarer"{
                 star1.image = UIImage(named: "star_check")
                 star1.tintColor  = UIColor.white
                 star2.image = UIImage(named: "star_check")
@@ -174,7 +179,8 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
                 star3.tintColor  = UIColor.white
                 star4.image = UIImage(named: "star_check")
                 star4.tintColor  = UIColor.white
-            } else if currentUser["userBadgeName"].string == "nomad"{
+            } 
+            else if currentUser["userBadgeName"].string == "nomad"{
                 star1.image = UIImage(named: "star_check")
                 star1.tintColor  = UIColor.white
                 star2.image = UIImage(named: "star_check")
@@ -185,18 +191,19 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
                 star4.tintColor  = UIColor.white
                 star5.image = UIImage(named: "star_check")
                 star5.tintColor  = UIColor.white
-            } else {
+            }
+            else {
                 starstack.isHidden = true
                 
             }
-
+            
             
             let isUrl = verifyUrl(imageName)
             if (isUrl) {
                 profilePicture.hnk_setImageFromURL(URL(string:imageName)!)
                 profile.image.hnk_setImageFromURL(URL(string:imageName)!)
                 backgroundImage.hnk_setImageFromURL(URL(string:imageName)!)
-
+                
             } else {
                 let getImageUrl = URL(string:adminUrl + "upload/readFile?file=" + imageName + "&width=500")
                 profilePicture.hnk_setImageFromURL(getImageUrl!)

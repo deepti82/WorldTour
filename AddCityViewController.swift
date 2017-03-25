@@ -159,7 +159,6 @@ class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewD
                     })
                 }
                 else{
-                    
                     if self.isFromSettings != nil && self.isFromSettings == true {
                         DispatchQueue.main.sync() {
                             if (self.navigationController?.topViewController as? AddCityViewController) != nil {
@@ -180,10 +179,10 @@ class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func selectGender(_ sender: UIButton?) {
-//        DispatchQueue.main.sync() {
+        DispatchQueue.main.sync() {
             let selectGenderVC = self.storyboard!.instantiateViewController(withIdentifier: "selectGender") as! SelectGenderViewController
             self.navigationController?.pushViewController(selectGenderVC, animated: true)
-//        }
+        }
     }
     
     

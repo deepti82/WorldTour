@@ -190,7 +190,9 @@ class MyLifeActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             footerView.topLayout = self
             footerView.type = "MyLifeFeeds"
             if currentUser["_id"].stringValue != user.getExistingUser() {
-                footerViewReview.optionButton.isHidden = true
+                if(footerViewReview != nil) {
+                    footerViewReview.optionButton.isHidden = true
+                }
             }
             footerView.setCommentCount(feed["commentCount"].intValue)
             footerView.setLikeCount(feed["likeCount"].intValue)

@@ -1083,7 +1083,6 @@
 		1A944DFB1CCB4567007EB5BD = {
 			isa = PBXGroup;
 			children = (
-				44479DE21E864BAC0084669A /* Crashlytics.framework */,
 				1A944E061CCB4567007EB5BD /* TraveLibro */,
 				1A944E1B1CCB4567007EB5BD /* TraveLibroTests */,
 				1A944E261CCB4567007EB5BD /* TraveLibroUITests */,
@@ -1481,6 +1480,7 @@
 		70E6CB1E8C296A54FDB1A1A7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				44479DE21E864BAC0084669A /* Crashlytics.framework */,
 				FCB2D69A1DE474180008634B /* WebKit.framework */,
 				FCB2D6981DE4740B0008634B /* UIKit.framework */,
 				FCB2D6941DE4732A0008634B /* QuartzCore.framework */,
