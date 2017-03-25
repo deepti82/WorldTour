@@ -8,7 +8,6 @@
 
 import UIKit
 var globalAccordionViewController:AccordionViewController!
-var cellTable: UITableView!
 var allData:[JSON] = []
 
 class AccordionViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
@@ -38,9 +37,6 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        cellTable = self.tableMainView
-        //        getDarkBackGround(self)
         globalAccordionViewController = self
         setTopNavigation("Reviews")
     }
@@ -245,6 +241,7 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
         switch reviewType {
         case "all":
             let cell = tableView.dequeueReusableCell(withIdentifier: "allReviewsCell") as! allReviewsMLTableViewCell
+            cell.helper = self
             cell.tag = indexPath.row
             cell.calendarLabel.text = String(format: "%C", faicon["calendar"]!)
             cell.clockLabel.text = String(format: "%C", faicon["clock"]!)
@@ -264,6 +261,8 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
                 return cell
             }else{
                 let cell = tableView.dequeueReusableCell(withIdentifier: "allReviewsCell") as! allReviewsMLTableViewCell
+                cell.helper = self
+                cell.tag = indexPath.row
                 cell.calendarLabel.text = String(format: "%C", faicon["calendar"]!)
                 cell.clockLabel.text = String(format: "%C", faicon["clock"]!)
                 cell.locationLabel.text = "\(allData[indexPath.row]["checkIn"]["city"].stringValue), \(allData[indexPath.row]["checkIn"]["country"].stringValue)"
@@ -352,6 +351,10 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
         
     }
     
+    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        return false
+    }
+    
 }
 
 class cityLabelTableViewCell: UITableViewCell {
@@ -388,6 +391,7 @@ class allReviewsMLTableViewCell: UITableViewCell {
     var backgroundReview: UIView!
     var postTop:JSON = []
     var newRating:JSON = []
+    var helper : AccordionViewController!
     
     let categories: [JSON] = [["title": "Transportation", "image": "planetrans"], ["title": "Hotels & Accomodations", "image": "hotels-1"], ["title": "Restaurants & Bars", "image": "restaurantsandbars"], ["title": "Nature & Parks", "image": "leaftrans"], ["title": "Sights & Landmarks", "image": "sightstrans"], ["title": "Museums & Galleries", "image": "museumstrans"], ["title": "Religious", "image": "regli"], ["title": "Shopping", "image": "shopping"], ["title": "Zoo & Aquariums", "image": "zootrans"], ["title": "Cinema & Theatres", "image": "cinematrans"], ["title": "City", "image": "city_icon"], ["title": "Health & Beauty", "image": "health_beauty"], ["title": "Rentals", "image": "rentals"], ["title": "Entertainment", "image": "entertainment"], ["title": "Essentials", "image": "essential"], ["title": "Emergency", "image": "emergency"], ["title": "Others", "image": "othersdottrans"]]
     
@@ -497,7 +501,7 @@ class allReviewsMLTableViewCell: UITableViewCell {
                 self.review.text = feed["review"][0]["review"].stringValue
                 self.review.sizeToFit()
             }
-            afterRating(starCnt: feed["review"][0]["rating"].intValue, review: feed["review"][0]["review"].stringValue, type:feed["type"].stringValue)
+            afterRating(starCnt: feed["review"][0]["rating"].intValue, review: feed["review"][0]["review"].stringValue, type:feed["type"].stringValue, shouldReload: false)
         }else{
             if feed["checkIn"] != nil && feed["checkIn"]["category"].stringValue != "" {
                 ratingStack.isHidden = true
@@ -511,7 +515,7 @@ class allReviewsMLTableViewCell: UITableViewCell {
         
     }
     
-    func afterRating(starCnt:Int, review:String, type:String) {
+    func afterRating(starCnt:Int, review:String, type:String, shouldReload:Bool) {
         print(starCnt)
         if starCnt != 0 {
             print("start rating \(self.tag)")
@@ -542,6 +546,12 @@ class allReviewsMLTableViewCell: UITableViewCell {
             
         }
         
+        if shouldReload {
+            var currentJson = allData[self.tag]            
+            currentJson["review"][0] = ["rating":"\(starCnt)","review":review]
+            allData[self.tag] = currentJson
+            helper.tableMainView.reloadRows(at: [(NSIndexPath(row: self.tag, section: 0) as IndexPath)], with: .automatic)
+        }
     }
     
     

@@ -57,7 +57,7 @@ class AddRating: UIView, UITextViewDelegate {
             self.activity.reviewTapOut(UITapGestureRecognizer())
             
         }else if checkView == "accordian" {
-            self.accordianCell.afterRating(starCnt: starCount, review: reviewBody, type: activityJson["type"].stringValue)
+            self.accordianCell.afterRating(starCnt: starCount, review: reviewBody, type: activityJson["type"].stringValue, shouldReload: true)
             //            self.activityBasic.postTop["review"][0]["rating"] = JSON(starCount)
             
             self.accordianCell.reviewTapOut(UITapGestureRecognizer())
@@ -173,13 +173,11 @@ class AddRating: UIView, UITextViewDelegate {
         if whichView == "otg" {
             self.smiley.setBackgroundImage(UIImage(named:"orangebox"), for: UIControlState())
             self.addReviewText.textColor = mainOrangeColor
-
-            
+            reviewTextView.tintColor = mainOrangeColor
         }else{
             self.smiley.setBackgroundImage(UIImage(named:"box8"), for: UIControlState())
             self.addReviewText.textColor = endJourneyColor
-
-            
+            reviewTextView.tintColor = endJourneyColor
         }
     }
     
