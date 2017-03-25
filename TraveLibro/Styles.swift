@@ -469,9 +469,15 @@ func getImageURL(_ str: String,width:Int) -> URL {
     if isUrl {
         returnURL = URL(string:str)
     } else {
-        let getImageUrl = adminUrl + "upload/readFile?file=" + str + "&width="+String(width)
-        returnURL = URL(string:getImageUrl)
+        if width == 0 {
+            let getImageUrl = adminUrl + "upload/readFile?file=" + str
+            returnURL = URL(string:getImageUrl)
+        }else{
+            let getImageUrl = adminUrl + "upload/readFile?file=" + str + "&width="+String(width)
+            returnURL = URL(string:getImageUrl)
+        }
     }
+    print(returnURL)
     return returnURL
 }
 

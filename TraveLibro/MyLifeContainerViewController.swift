@@ -11,6 +11,7 @@ class MyLifeContainerViewController: UIViewController,UIScrollViewDelegate {
     var hasNext: Bool = true
     var isLoading: Bool = false
     var isViewed:Bool = true
+    var onTab:String = "all"
 
     
     override func viewDidLoad() {
@@ -58,6 +59,7 @@ class MyLifeContainerViewController: UIViewController,UIScrollViewDelegate {
     }
     
     func loadData(_ type:String,pageNumber:Int) {
+        onTab = type
         if pageNumber == 1 {
             loader.showOverlay(self.view)
 
@@ -119,7 +121,7 @@ class MyLifeContainerViewController: UIViewController,UIScrollViewDelegate {
             if hasNext && !isLoading {
                 isLoading = true
                 pageNumber += 1
-                loadData("all", pageNumber: pageNumber)
+                loadData(onTab, pageNumber: pageNumber)
             }
         }
         

@@ -1557,6 +1557,7 @@ class Navigation {
     
     func getMomentJourney(pageNumber: Int,type:String, completion: @escaping ((JSON) -> Void)) {
         do {
+            print(["user": currentUser["_id"].stringValue, "type": type, "pagenumber": pageNumber])
             let opt = try HTTP.POST(adminUrl + "journey/myLifeJourney", parameters: ["user": currentUser["_id"].stringValue, "type": type, "pagenumber": pageNumber])
             var json = JSON(1);
             opt.start {response in
@@ -1604,7 +1605,7 @@ class Navigation {
             } else if type == "local-life" {
                 params = ["user": user, "token": token, "type": type, "limit": 1, "times": 6]
             } else {
-                params = ["user": user, "token": token, "type": type, "limit": 20, "times": 6]
+                params = ["user": user, "token": token, "type": type, "limit": 20, "times": 10]
             }
             print(params)
             let jsonData = try params.rawData()
