@@ -274,6 +274,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
         faicon["upload"] = 0xf093
         faicon["bars"] = 0xf0c9
         faicon["travelibroVideo"] = 0xf144
+        faicon["lock"] = 0xf023
         
         emailIcon = String(format: "%C", faicon["email"]!)
         facebookIcon = String(format: "%C", faicon["facebook"]!)

@@ -51,21 +51,25 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     @IBOutlet weak var MAMButton: UIButton!
     @IBAction func MAMTapped(_ sender: AnyObject?) {
         
-        if !toggle {
-            
-            MAMButton.transform = MAMButton.transform.rotated(by: CGFloat(M_PI))
-            MAMatterView.animation.makeOpacity(1.0).animate(0.25)
-            mainProfileView.animation.moveY(-80.0).moveHeight(80.0).animate(0.25)
-            toggle = true
+        if(!selectedUser.isEmpty && currentUser["status"].stringValue == "private"){}
+        else {
+            if !toggle {
+                
+                MAMButton.transform = MAMButton.transform.rotated(by: CGFloat(M_PI))
+                MAMatterView.animation.makeOpacity(1.0).animate(0.25)
+                mainProfileView.animation.moveY(-80.0).moveHeight(80.0).animate(0.25)
+                toggle = true
+            }
+                
+            else {
+                
+                MAMButton.transform = MAMButton.transform.rotated(by: CGFloat(M_PI))
+                MAMatterView.animation.makeOpacity(0.0).animate(0.25)
+                mainProfileView.animation.moveY(80.0).makeHeight(350.0).animate(0.25)
+                toggle = false
+            }
         }
         
-        else {
-            
-            MAMButton.transform = MAMButton.transform.rotated(by: CGFloat(M_PI))
-            MAMatterView.animation.makeOpacity(0.0).animate(0.25)
-            mainProfileView.animation.moveY(80.0).makeHeight(350.0).animate(0.25)
-            toggle = false
-        }
         
         
     }  
@@ -212,7 +216,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+        super.viewWillAppear(animated)        
         self.orangeTab.frame = CGRect(x: 5, y: self.view.frame.size.height - 125, width: self.view.frame.size.width - 10, height: 50)
         customView.frame = CGRect(x: 0, y: self.view.frame.size.height - 75, width: self.view.frame.width, height: 75)
     }
@@ -240,6 +244,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         self.loader.hideOverlayView()
         self.allCount = currentUser
         
+        
         profile = ProfilePicFancy(frame: CGRect(x: 10, y: 0, width: profileView.frame.width, height: profileView.frame.height))
         profile.backgroundColor = UIColor.clear
         profileView.addSubview(profile)
@@ -253,10 +258,31 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         if (MAM != nil){
             MAM.removeFromSuperview()
         }
+        let myFont = moreAboutMe.font
+        print("\n Myfont :\(myFont) \n")
         
-        MAM = MoreAboutMe(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width - 20, height: 150))
-        MAM.backgroundColor = UIColor.clear
-        MAMatterView!.addSubview(MAM)
+        if(!selectedUser.isEmpty && currentUser["status"].stringValue == "private") {
+            //Dont show anything
+            moreAboutMe.text = "This Account Is Private"
+            moreAboutMe.textColor = mainOrangeColor
+            moreAboutMe.font = avenirFont
+            orangeTab.orangeButtonTitle.imageView?.image = nil
+            orangeTab.backgroundColor = UIColor.lightGray
+            orangeTab.isUserInteractionEnabled = false
+            MAMButton.isHidden = true
+        }
+        else {
+            moreAboutMe.font = myFont
+            moreAboutMe.text = "more about me..."
+            moreAboutMe.textColor = mainBlueColor
+            orangeTab.orangeButtonTitle.imageView?.image = UIImage(named: "orangeFooter")
+            orangeTab.isUserInteractionEnabled = true
+            
+            MAM = MoreAboutMe(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width - 20, height: 150))
+            MAM.backgroundColor = UIColor.clear
+            MAMatterView!.addSubview(MAM)
+            MAMButton.isHidden = false
+        }
         
         var imageName = ""        
         
@@ -636,9 +662,13 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     func MyLifeDetailsShow(_ sender: AnyObject) {
 //        UIView.animate(withDuration: 0.75, animations: { () -> Void in
 //            UIView.setAnimationCurve(UIViewAnimationCurve.linear)
+        if(!selectedUser.isEmpty && currentUser["status"].stringValue == "private") {
+            //Dont show anything
+        }
+        else {
             let reviewsVC = self.storyboard?.instantiateViewController(withIdentifier: "myLife") as! MyLifeViewController
-
             self.navigationController!.pushViewController(reviewsVC, animated: false)
+        }
 //            UIView.setAnimationTransition(UIViewAnimationTransition.curlUp, for: self.navigationController!.view!, cache: false)
 //        })
     }

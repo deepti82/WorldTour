@@ -128,7 +128,7 @@ class Navigation {
         
         var json = JSON(1);
         var params = ["_id":id]
-        if urlSlug != "" {
+        if urlSlug != "" && urlSlug != nil {
             params["urlSlug"] = urlSlug!
         }
         
