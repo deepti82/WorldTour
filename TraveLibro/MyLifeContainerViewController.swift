@@ -68,7 +68,7 @@ class MyLifeContainerViewController: UIViewController,UIScrollViewDelegate {
         if(pageNumber == 1 && self.layout != nil) {
             self.layout.removeAll()
         }
-        request.getMomentJourney(pageNumber: pageNumber, type: type,completion: {(request) in
+        request.getMomentJourney(pageNumber: pageNumber, type: type, urlSlug: selectedUser["urlSlug"].stringValue, completion: {(request) in
             DispatchQueue.main.async(execute: {
                 loader.hideOverlayView()
                 self.isViewed = false

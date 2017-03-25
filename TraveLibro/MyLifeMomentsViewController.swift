@@ -140,7 +140,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
         momentType = type
         reviewType = review
         
-        request.getMyLifeReview(currentUser["_id"].stringValue, pageNumber: pageno, type: review, completion: {(request) in
+        request.getMyLifeReview(user.getExistingUser(), pageNumber: pageno, type: review, urlSlug: selectedUser["urlSlug"].stringValue, completion: {(request) in
             DispatchQueue.main.async {
                 loader.hideOverlayView()
                 if request["data"].count > 0 {
@@ -179,7 +179,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
         }
         momentType = type
         self.loadStatus = false
-        request.getMomentLife(currentUser["_id"].stringValue, pageNumber: pageno, type: type, token: token, completion: {(request) in
+        request.getMomentLife(user.getExistingUser(), pageNumber: pageno, type: type, token: token, urlSlug: selectedUser["urlSlug"].stringValue, completion: {(request) in
             
             DispatchQueue.main.async {
                 loader.hideOverlayView()
@@ -336,9 +336,9 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
             case "Monthly", "SelectCover":
                 return CGSize(width: 110, height: 110)
             case "local-life", "travel-life":
-//                var a = (screenWidth - 30) / 2
-//                print("width \(a)")
-                return CGSize(width: 165, height: 204)
+                var a = (screenWidth - 30) / 2
+                print("width \(a)")
+                return CGSize(width: a, height: a)
             default:
                 break
             }

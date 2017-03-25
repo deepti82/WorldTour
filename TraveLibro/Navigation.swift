@@ -1559,24 +1559,59 @@ class Navigation {
     }
     
     
-    func getMomentJourney(pageNumber: Int,type:String, completion: @escaping ((JSON) -> Void)) {
+    func getMomentJourney(pageNumber: Int,type:String, urlSlug:String?, completion: @escaping ((JSON) -> Void)) {
+        
+                
         do {
-            print(["user": currentUser["_id"].stringValue, "type": type, "pagenumber": pageNumber])
-            let opt = try HTTP.POST(adminUrl + "journey/myLifeJourney", parameters: ["user": currentUser["_id"].stringValue, "type": type, "pagenumber": pageNumber])
-            var json = JSON(1);
-            opt.start {response in
-                if let err = response.error {
-                    print("error: \(err.localizedDescription)")
+            var params: JSON!
+            
+            if urlSlug != "" {
+                params = ["user": currentUser["_id"].stringValue, "type": type, "pagenumber": pageNumber, "urlSlug": urlSlug!]
+            }else{
+                params = ["user": currentUser["_id"].stringValue, "type": type, "pagenumber": pageNumber]
+            }
+            
+            print(params)
+            let jsonData = try params.rawData()
+            
+            // create post request
+            let url = URL(string: adminUrl + "journey/myLifeJourney")!
+            let request = NSMutableURLRequest(url: url)
+            request.httpMethod = "POST"
+            
+            // insert json data to the request
+            request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+            request.httpBody = jsonData
+            
+            
+            let task = URLSession.shared.dataTask(with: request as URLRequest) {data, response, error in
+                if error != nil{
+                    print("Error -> \(error)")
+                    return
                 }
-                else
-                {
-                    json  = JSON(data: response.data)
-                    completion(json)
+                
+                do {
+                    let result = try JSONSerialization.jsonObject(with: data!, options: []) as! [String:AnyObject]
+                    print("response: \(JSON(result))")
+                    completion(JSON(result))
+                    
+                } catch {
+                    print("Error: \(error)")
                 }
             }
+            
+            task.resume()
+            
         } catch let error {
             print("got an error creating the request: \(error)")
         }
+        
+        
+        
+        
+        
+        
+        
     }
 
     func getHomePage(completion: @escaping ((JSON) -> Void)) {
@@ -1599,19 +1634,33 @@ class Navigation {
     }
 
     
-    func getMomentLife(_ user: String, pageNumber: Int, type: String, token: String, completion: @escaping ((JSON) -> Void)) {
+    func getMomentLife(_ user: String, pageNumber: Int, type: String, token: String, urlSlug: String?, completion: @escaping ((JSON) -> Void)) {
         
         
         do {
             var params: JSON!
-            if type == "travel-life" {
-                params = ["user": user, "type": type, "pagenumber": pageNumber]
-            } else if type == "local-life" {
-                params = ["user": user, "token": token, "type": type, "limit": 2, "times": 6]
-            } else {
-                params = ["user": user, "token": token, "type": type, "limit": 20, "times": 10]
+            
+            if urlSlug != "" {
+                if type == "travel-life" {
+                    params = ["user": user, "type": type, "pagenumber": pageNumber, "urlSlug": urlSlug!]
+                } else if type == "local-life" {
+                    params = ["user": user, "token": token, "type": type, "limit": 2, "times": 6, "urlSlug": urlSlug!]
+                } else {
+                    params = ["user": user, "token": token, "type": type, "limit": 20, "times": 10, "urlSlug": urlSlug!]
+                }
+
+            }else{
+                if type == "travel-life" {
+                    params = ["user": user, "type": type, "pagenumber": pageNumber]
+                } else if type == "local-life" {
+                    params = ["user": user, "token": token, "type": type, "limit": 2, "times": 6]
+                } else {
+                    params = ["user": user, "token": token, "type": type, "limit": 20, "times": 10]
+                }
+
             }
-            print(params)
+            
+                        print(params)
             let jsonData = try params.rawData()
             
             // create post request
@@ -1760,11 +1809,16 @@ class Navigation {
         }
     }
 
-    func getMyLifeReview(_ user: String, pageNumber: Int, type: String, completion: @escaping ((JSON) -> Void)) {
+    func getMyLifeReview(_ user: String, pageNumber: Int, type: String, urlSlug: String?, completion: @escaping ((JSON) -> Void)) {
         
         do {
             var params: JSON!
-            params = ["user": user, "type": type, "pagenumber": pageNumber]
+            if urlSlug != "" {
+                params = ["user": user, "type": type, "pagenumber": pageNumber, "urlSlug": urlSlug]
+            }else{
+                params = ["user": user, "type": type, "pagenumber": pageNumber]
+            }
+            
             
             print(params)
             let jsonData = try params.rawData()
@@ -1800,15 +1854,25 @@ class Navigation {
         }
     }
 
-    func getReviewByLoc(_ user: String, location: String, id: String, completion: @escaping ((JSON) -> Void)) {
+    func getReviewByLoc(_ user: String, location: String, id: String, urlSlug: String, completion: @escaping ((JSON) -> Void)) {
         
         do {
             var params: JSON!
-            if location == "city" {
-                params = ["user": user, "city": id]
+            
+            if urlSlug != "" {
+                if location == "city" {
+                    params = ["user": user, "city": id, "urlSlug": urlSlug]
+                }else{
+                    params = ["user": user, "country": id, "urlSlug": urlSlug]
+                }
             }else{
-                params = ["user": user, "country": id]
+                if location == "city" {
+                    params = ["user": user, "city": id]
+                }else{
+                    params = ["user": user, "country": id]
+                }
             }
+            
             print(params)
             let jsonData = try params.rawData()
             
@@ -1844,15 +1908,26 @@ class Navigation {
         }
     }
     
-    func getReview(_ user: String, country: String, city: String, category: String, pageNumber: Int, completion: @escaping ((JSON) -> Void)) {
+    func getReview(_ user: String, country: String, city: String, category: String, pageNumber: Int, urlSlug: String, completion: @escaping ((JSON) -> Void)) {
         
         do {
             var params: JSON!
-            if category != "" {
-                params = ["user": user, "city": city, "category": category, "pagenumber": pageNumber]
+            
+            if urlSlug != "" {
+                if category != "" {
+                    params = ["user": user, "city": city, "category": category, "pagenumber": pageNumber, "urlSlug":urlSlug]
+                }else{
+                    params = ["user": user, "country": country, "city": city, "pagenumber":pageNumber, "urlSlug":urlSlug]
+                }
             }else{
-                params = ["user": user, "country": country, "city": city, "pagenumber":pageNumber]
+                if category != "" {
+                    params = ["user": user, "city": city, "category": category, "pagenumber": pageNumber]
+                }else{
+                    params = ["user": user, "country": country, "city": city, "pagenumber":pageNumber]
+                }
             }
+            
+            
             print(params)
             let jsonData = try params.rawData()
             

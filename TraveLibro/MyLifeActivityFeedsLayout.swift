@@ -96,7 +96,7 @@ class MyLifeActivityFeedsLayout: VerticalLayout, PlayerDelegate {
                 let widthInPixels =  image?.cgImage?.width
                 let heightInPixels =  image?.cgImage?.height
                 
-                if((heightInPixels) != nil) {
+               /* if((heightInPixels) != nil) {
                     let finalHeight =  CGFloat(heightInPixels!) / CGFloat(widthInPixels!) * self.frame.width;
                     
                     
@@ -106,7 +106,7 @@ class MyLifeActivityFeedsLayout: VerticalLayout, PlayerDelegate {
                     } else {
                         self.mainPhoto.frame.size.height = finalHeight
                     }
-                }
+                }*/
                 
                 self.mainPhoto.frame.size.width = self.frame.width
                 self.mainPhoto.hnk_setImageFromURL(imgStr)

@@ -128,7 +128,7 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
     
         loader.showOverlay(self.view)
         reviewType = location
-        request.getReviewByLoc(currentUser["_id"].stringValue, location: location, id: id, completion: {(request) in
+        request.getReviewByLoc(user.getExistingUser(), location: location, id: id, urlSlug:selectedUser["urlSlug"].stringValue, completion: {(request) in
             DispatchQueue.main.async {
                 loader.hideOverlayView()
                 allData = []
@@ -168,7 +168,7 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
             self.city = json["city"].stringValue
             self.category = json["_id"].stringValue
         }
-        request.getReview(currentUser["_id"].stringValue, country: country, city: city, category: category, pageNumber: pageno, completion: {(request) in
+        request.getReview(user.getExistingUser(), country: country, city: city, category: category, pageNumber: pageno, urlSlug: selectedUser["urlSlug"].stringValue, completion: {(request) in
             DispatchQueue.main.async {
                 loader.hideOverlayView()
                 if request["data"].count > 0 {
@@ -204,7 +204,7 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
         selectedView = 1
         reviewType = type
         loadStatus = false
-        request.getMyLifeReview(currentUser["_id"].stringValue, pageNumber: pageno, type: type, completion: {(request) in
+        request.getMyLifeReview(user.getExistingUser(), pageNumber: pageno, type: type, urlSlug: selectedUser["urlSlug"].stringValue, completion: {(request) in
             DispatchQueue.main.async {
                 loader.hideOverlayView()
                 if request["data"].count > 0 {
