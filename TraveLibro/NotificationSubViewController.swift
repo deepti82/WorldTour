@@ -32,7 +32,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setNavigationBarItemText("Notifications")
         
         let rightButton = UIButton()

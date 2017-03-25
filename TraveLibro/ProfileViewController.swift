@@ -2,6 +2,7 @@ import UIKit
 import DKChainableAnimationKit
 import Toaster
 import SwiftGifOrigin
+import Crashlytics
 
 
 var doRemove: Bool = true

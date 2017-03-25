@@ -197,7 +197,7 @@ open class LoadingOverlay{
     
     func showOverlay(_ view: UIView) {
         hideOverlayView()
-        print("show loader")
+        print("show loader : viewYPos : \(view.frame.origin.y)")
         
         let darkBlur = UIBlurEffect(style: UIBlurEffectStyle.dark)
         let blurView = UIVisualEffectView(effect: darkBlur)

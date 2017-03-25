@@ -102,6 +102,7 @@
 		443757CB1E6C0551007C0851 /* ForgotPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443757CA1E6C0551007C0851 /* ForgotPassword.swift */; };
 		4437CE671E782A7C00AFA0EA /* Terms&Conditions.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4437CE661E782A7C00AFA0EA /* Terms&Conditions.pdf */; };
 		44434C511E7AD55600344C7C /* PrivacyPolicy.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 44434C501E7AD55500344C7C /* PrivacyPolicy.pdf */; };
+		44479DE31E864BAC0084669A /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44479DE21E864BAC0084669A /* Crashlytics.framework */; };
 		446FDD231E6535EC00C09EFB /* EmptyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446FDD221E6535EC00C09EFB /* EmptyTableViewCell.swift */; };
 		44725D2D1E5ADBB70074D925 /* NotificationCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44725D2C1E5ADBB70074D925 /* NotificationCommentCell.swift */; };
 		44725D2F1E5B06580074D925 /* NotificationDefaultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44725D2E1E5B06580074D925 /* NotificationDefaultCell.swift */; };
@@ -627,6 +628,7 @@
 		443757CA1E6C0551007C0851 /* ForgotPassword.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPassword.swift; sourceTree = "<group>"; };
 		4437CE661E782A7C00AFA0EA /* Terms&Conditions.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Terms&Conditions.pdf"; sourceTree = "<group>"; };
 		44434C501E7AD55500344C7C /* PrivacyPolicy.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = PrivacyPolicy.pdf; sourceTree = "<group>"; };
+		44479DE21E864BAC0084669A /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		446FDD221E6535EC00C09EFB /* EmptyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EmptyTableViewCell.swift; path = PopularJourney/EmptyTableViewCell.swift; sourceTree = "<group>"; };
 		44725D2C1E5ADBB70074D925 /* NotificationCommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationCommentCell.swift; path = Notification/NotificationCommentCell.swift; sourceTree = "<group>"; };
 		44725D2E1E5B06580074D925 /* NotificationDefaultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationDefaultCell.swift; path = Notification/NotificationDefaultCell.swift; sourceTree = "<group>"; };
@@ -1047,6 +1049,7 @@
 				FCB2D68B1DE472D60008634B /* libsqlite3.0.tbd in Frameworks */,
 				FCB2D6891DE472AD0008634B /* CoreData.framework in Frameworks */,
 				FCB2D6871DE472A40008634B /* Accelerate.framework in Frameworks */,
+				44479DE31E864BAC0084669A /* Crashlytics.framework in Frameworks */,
 				C2AC013B1D8D44C800B99868 /* Pods_TraveLibro.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1080,6 +1083,7 @@
 		1A944DFB1CCB4567007EB5BD = {
 			isa = PBXGroup;
 			children = (
+				44479DE21E864BAC0084669A /* Crashlytics.framework */,
 				1A944E061CCB4567007EB5BD /* TraveLibro */,
 				1A944E1B1CCB4567007EB5BD /* TraveLibroTests */,
 				1A944E261CCB4567007EB5BD /* TraveLibroUITests */,
@@ -3222,7 +3226,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Fabric/run\" d1853efb9228168c98a6d8a3ddb72c47d4067e68 badc8eba1d25c75c57c69a92773dbb878b4e9aff67c4575acd9e3a2e73e5b698";
+			shellScript = "./Fabric.framework/run 9f7f7bc8c5b744c0431c57780686ee4f3bbac3e0 b735224206b43f376bc3992c037ab377e058e7f636b8b1a29c842fa6cd41a480";
 		};
 		F45202408F151F7C0A78E697 /* 📦 Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -3735,6 +3739,7 @@
 				CODE_SIGN_ENTITLEMENTS = TraveLibro/TraveLibro.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = YVWVDTRG4B;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
