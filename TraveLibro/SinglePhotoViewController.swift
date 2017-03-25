@@ -20,6 +20,7 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate, iCarouselDeleg
 
     
     
+    @IBOutlet weak var visualEffectHide: UIVisualEffectView!
     @IBOutlet weak var audioButton: UIButton!
     @IBOutlet weak var mainImage: UIImageView!
     
@@ -91,6 +92,7 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate, iCarouselDeleg
         
         bottomView.isHidden = true
         audioButton.isHidden = true
+        visualEffectHide.isHidden = true
         
         self.view.backgroundColor = UIColor.black
         bottomView.backgroundColor = UIColor.black.withAlphaComponent(0.2)
