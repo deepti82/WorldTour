@@ -160,8 +160,9 @@
                                     </constraints>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chatgy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ItY-yF-83P">
-                                    <rect key="frame" x="8" y="21" width="277" height="27.5"/>
+                                    <rect key="frame" x="8" y="21" width="277" height="28"/>
                                     <constraints>
+                                        <constraint firstAttribute="height" constant="27.5" id="61X-50-t2b"/>
                                         <constraint firstAttribute="width" constant="277" id="dEC-pI-XsK"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="20"/>
@@ -169,7 +170,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="9uV-0Q-Inc">
-                                    <rect key="frame" x="8" y="49.5" width="80" height="20"/>
+                                    <rect key="frame" x="8" y="50" width="80" height="20"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="adventure" translatesAutoresizingMaskIntoConstraints="NO" id="Gqz-ch-f7y">
                                             <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
@@ -199,7 +200,7 @@
                                     </constraints>
                                 </stackView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Feb 2016" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jlz-ag-Rzg">
-                                    <rect key="frame" x="8" y="2.5" width="59.5" height="20"/>
+                                    <rect key="frame" x="8" y="3" width="59.5" height="20"/>
                                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
