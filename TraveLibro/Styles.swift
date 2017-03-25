@@ -575,6 +575,20 @@ func getDateFormat(_ date: String, format: String) -> String {
     
 }
 
+func getFormat(_ date: String, formate: String) -> String {
+    
+    let globalDateFormatter = DateFormatter()
+    globalDateFormatter.dateFormat = date
+    let date = globalDateFormatter.date(from: date)
+    
+    let dayTimePeriodFormatter = DateFormatter()
+    dayTimePeriodFormatter.dateFormat = formate
+    let goodDate = dayTimePeriodFormatter.string(from: date!)
+    return goodDate
+    
+}
+
+
 func getMonthFormat(_ date: String) -> String {
     
     let globalDateFormatter = DateFormatter()
