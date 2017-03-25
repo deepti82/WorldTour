@@ -31,7 +31,7 @@ class PopularController: UIViewController, UIScrollViewDelegate {
         }else if displayData == "popular"{
             self.title = "Popular Journeys"
         }else if displayData == "popitinerary" {
-            self.title = "Popular Itinerary"
+            self.title = "Popular Itineraries"
         }else{
             self.title = selectedHash
         }
