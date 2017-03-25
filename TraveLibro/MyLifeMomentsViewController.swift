@@ -338,7 +338,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
             case "local-life", "travel-life":
                 var a = (screenWidth - 30) / 2
                 print("width \(a)")
-                return CGSize(width: a, height: a)
+                return CGSize(width: a, height: a + 56)
             default:
                 break
             }
