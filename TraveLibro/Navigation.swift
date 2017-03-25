@@ -26,7 +26,11 @@ class Navigation {
                 let opt = try HTTP.POST(adminUrl + "user/save", parameters: [params])
                 opt.start { response in
                     if let err = response.error {
-                        print("error: \(err.localizedDescription)")
+                        DispatchQueue.main.async(execute: {
+                            print("error: \(err.localizedDescription)")
+                            shouldShowLoader = false
+                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "SAVE_USER_FAILED"), object: nil)                            
+                        })
                     }
                     else
                     {
