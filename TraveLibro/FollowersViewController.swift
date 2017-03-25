@@ -342,7 +342,7 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
         if imageName == "" {
             
             imageView.image = UIImage(named: "logo-default")
-            makeTLProfilePictureFollowers(imageView)
+            makeBuddiesTLProfilePicture(imageView)
             
         }
             

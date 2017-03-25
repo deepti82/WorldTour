@@ -72,7 +72,7 @@ class SearchTableViewController: UIViewController, UITableViewDelegate, UITableV
             cell.hashText.isHidden = true
             cell.peopleHashtagsImage.image = UIImage(named: "logo-default")
             cell.peopleHashtagsImage.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["profilePicture"].stringValue, width: 200))
-            noColor(cell.peopleHashtagsImage)
+            makeBuddiesTLProfilePicture(cell.peopleHashtagsImage)
             cell.nameHashtagsLabel.text = allData[indexPath.row]["name"].stringValue
             cell.slurgHashtimesLabel.text = allData[indexPath.row]["urlSlug"].stringValue
         }else{
