@@ -161,6 +161,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         self.player1.view.frame = CGRect(x: 0, y: 0, width: videoWidth, height: videoHeight)
         self.player1.view.clipsToBounds = true
         self.player1.playbackLoops = false
+        self.player1.playbackFreezesAtEnd = true
         self.player1.muted = defaultMute
         self.player1.fillMode = "AVLayerVideoGravityResizeAspectFill"
         self.player1.setUrl(NSURL(fileURLWithPath: (Bundle.main.path(forResource: "travellife", ofType:"mp4"))!) as URL)
@@ -177,6 +178,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         self.player2.view.frame = CGRect(x: 0, y: 0, width: videoWidth, height: videoHeight)
         self.player2.view.clipsToBounds = true
         self.player2.playbackLoops = false
+        self.player2.playbackFreezesAtEnd = true
         self.player2.muted = defaultMute        
         self.player2.fillMode = "AVLayerVideoGravityResizeAspectFill"              
         self.player2.setUrl(NSURL(fileURLWithPath: (Bundle.main.path(forResource: "locallife", ofType:"mp4"))!) as URL)
@@ -193,6 +195,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         self.player3.view.frame = CGRect(x: 0, y: 0, width: videoWidth, height: videoHeight)
         self.player3.view.clipsToBounds = true
         self.player3.playbackLoops = false
+        self.player3.playbackFreezesAtEnd = true
         self.player3.muted = defaultMute
         self.player3.fillMode = "AVLayerVideoGravityResizeAspectFill"              
         self.player3.setUrl(NSURL(fileURLWithPath: (Bundle.main.path(forResource: "mylife", ofType:"mp4"))!) as URL)
