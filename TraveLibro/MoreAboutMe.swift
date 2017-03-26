@@ -104,6 +104,8 @@ class MoreAboutMe: UIView {
                 preferStatement  = "\(pronoun) prefers to travel on a group tour"
             case "Photographer":
                 preferStatement  = "\(pronoun) is a Photographer"
+            case "Adventure":
+                preferStatement  = "\(pronoun) prefers advebtures"
             default:
                 //            preferStatement  = "\(pronoun) prefers to travel with friends"
                 break
@@ -134,7 +136,7 @@ class MoreAboutMe: UIView {
             }
             
             if preferStatement != "" {
-                MessageString.append(getBoldString(string: (preferStatement + " . "), size: 14))
+                MessageString.append(getBoldString(string: (preferStatement + ". "), size: 14))
             }
             
             if holidayType != "" {
@@ -145,9 +147,12 @@ class MoreAboutMe: UIView {
                 MessageString.append(getBoldString(string: "\(holidayType).", size: 14))
             }
             
-            
-            
-            mainTextView.attributedText = MessageString
+            if MessageString.string != "" {
+                mainTextView.attributedText = MessageString
+            }
+            else{
+                mainTextView.attributedText = getRegularString(string: "-", size: 14)
+            }
         }
        
     }
