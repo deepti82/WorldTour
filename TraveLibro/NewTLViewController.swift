@@ -159,6 +159,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
                 doneButton.addTarget(self, action: #selector(NewTLViewController.doneButtonJourney(_:)), for: .touchUpInside) // set button click event
                 cancelButton.addTarget(self, action: #selector(NewTLViewController.cancelButton(_:)), for: .touchUpInside) // set button click event
                 
+                self.hideHeaderAndFooter(true)
                 //sender.inputView = inputView
                 self.datePickerView.addTarget(self, action: #selector(NewTLViewController.handleDatePicker(_:)), for: .valueChanged)
                 
@@ -1791,8 +1792,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         self.backView.removeFromSuperview()
     }
     
-    func doneButtonJourney(_ sender: UIButton){
-        
+    func doneButtonJourney(_ sender: UIButton){        
         request.changeDateTimeJourney(self.myJourney["_id"].stringValue, date: "\(dateSelected) \(timeSelected)", completion: {(response) in
             DispatchQueue.main.async(execute: {
                 if response.error != nil {
@@ -1808,11 +1808,13 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
                 
             })
         })
+        self.hideHeaderAndFooter(false)
         self.inputview.removeFromSuperview() // To resign the inputView on clicking done.
         self.backView.removeFromSuperview()
     }
     
     func cancelButton(_ sender: UIButton){
+        self.hideHeaderAndFooter(false)
         self.inputview.removeFromSuperview() // To resign the inputView on clicking done.
         self.backView.removeFromSuperview()
     }

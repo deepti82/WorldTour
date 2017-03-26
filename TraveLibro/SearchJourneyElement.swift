@@ -99,6 +99,7 @@ class SearchJourneyElement: UIView {
             selectedUser = feeds
             let profile = storyboard.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
             profile.displayData = "search"
+            profile.currentSelectedUser = selectedUser
             globalNavigationController.pushViewController(profile, animated: true)
         }else{
             if feeds["type"].stringValue == "quick-itinerary" {

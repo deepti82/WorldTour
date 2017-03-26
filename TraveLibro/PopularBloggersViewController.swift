@@ -229,6 +229,7 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
             selectedUser = allUsers[indexPath.row]
             let profile = self.storyboard!.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
             profile.displayData = "search"
+            profile.currentSelectedUser = selectedUser
             self.navigationController!.pushViewController(profile, animated: true)            
         }
         else {

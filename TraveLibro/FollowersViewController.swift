@@ -2,11 +2,13 @@
 import UIKit
 
 
-var followers: [JSON] = []
+
 
 class FollowersViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
     
     var whichView: String!
+    
+    var followers: [JSON] = []
     
     @IBOutlet weak var followerTable: UITableView!
     @IBOutlet weak var searchView: UIView!
@@ -20,6 +22,7 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
     var searchText = ""
     var followersMainCopy: [JSON] = []
     var back: Bool = true
+    var currentSelectedUser:JSON = []
     
     //MARK: - Lifecycle
     
@@ -88,7 +91,7 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
     func getFollowing() {
         
         print("inside following function")
-        request.getFollowing(user.getExistingUser(), searchText: searchText, urlSlug:selectedUser["urlSlug"].stringValue,  completion: {(response) in
+        request.getFollowing(user.getExistingUser(), searchText: searchText, urlSlug:currentSelectedUser["urlSlug"].stringValue,  completion: {(response) in
             
             DispatchQueue.main.async(execute: {
                 
@@ -100,11 +103,11 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
                     
                 }
                 else if response["value"].bool! {
-                    followers = response["data"]["following"].array!
-                    self.headerText.text = "Following (\(followers.count))"
+                    self.followers = response["data"]["following"].array!
+                    self.headerText.text = "Following (\(self.followers.count))"
                     self.followerTable.reloadData()
                     loader.hideOverlayView()
-                    if (self.searchText == "" && (followers.count > 0 && followers.first!["following"].intValue != 1)) {
+                    if (self.searchText == "" && (self.followers.count > 0 && self.followers.first!["following"].intValue != 1)) {
                         self.noFollowingFound()
                     }
                 }
@@ -118,7 +121,7 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
     
     func getFollowers() {       
         
-        request.getFollowers(user.getExistingUser(), searchText: searchText, urlSlug:selectedUser["urlSlug"].stringValue,  completion: {(response) in
+        request.getFollowers(user.getExistingUser(), searchText: searchText, urlSlug:currentSelectedUser["urlSlug"].stringValue,  completion: {(response) in
             
             DispatchQueue.main.async(execute: {
                 self.headerText.text = "Following (0)"
@@ -129,12 +132,12 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
                 }
                 else if response["value"].bool! {
                     
-                    followers = response["data"]["followers"].array!
+                    self.followers = response["data"]["followers"].array!
                     self.followersMainCopy = response["data"]["followers"].array!
-                    self.headerText.text = "Followers (\(followers.count))"
+                    self.headerText.text = "Followers (\(self.followers.count))"
                     self.followerTable.reloadData()
                     loader.hideOverlayView()
-                    if followers.isEmpty {
+                    if self.followers.isEmpty {
                         self.noFollowersFound()
                     }
                 }
@@ -334,9 +337,11 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
         }else{
             selectedPeople = followers[indexPath.row]["_id"].stringValue
             selectedUser = followers[indexPath.row]
-        }
+        }        
+        
         let profile = storyboard?.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
         profile.displayData = "search"
+        profile.currentSelectedUser = selectedUser
         globalNavigationController.pushViewController(profile, animated: true)
     }
     

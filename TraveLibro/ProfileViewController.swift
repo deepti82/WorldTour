@@ -28,6 +28,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     var imageView1: UIImageView!
     var loader = LoadingOverlay()
     var labels = [["count":"0","text":"Following"], ["count":"0","text":"Followers"], ["count":"0","text":"Countries Visited"], ["count":"0","text":"Bucket List"], ["count":"0","text":"Journeys"], ["count":"0","text":"Check Ins"], ["count":"0","text":"Photos"], ["count":"0","text":"Reviews"]]
+    var currentSelectedUser: JSON = []
     dynamic var profileViewYPosition: CGFloat = 0
     
     fileprivate var kvoContext: UInt8 = 0
@@ -222,6 +223,11 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         self.orangeTab.frame = CGRect(x: 5, y: self.view.frame.size.height - 125, width: self.view.frame.size.width - 10, height: 50)
         customView.frame = CGRect(x: 0, y: self.view.frame.size.height - 75, width: self.view.frame.width, height: 75)
         
+        print("\n currentSelectedUser: \(currentSelectedUser["name"]) ")
+        selectedUser = currentSelectedUser
+        
+        print("\n currentSelectedUser: \(currentSelectedUser["name"]) ")
+        
         if isSettingsEdited && selectedUser.isEmpty && currentUser != nil {            
             var imageName = ""
             imageName = currentUser["profilePicture"].string!
@@ -252,6 +258,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
             
             isSettingsEdited = false
         }
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -583,6 +590,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
                     followersVC.whichView = "Following"
                     if !(selectedUser.isEmpty){
                         followersVC.back = false
+                        followersVC.currentSelectedUser = currentUser
                     }
                     self.navigationController?.pushViewController(followersVC, animated: true)
                 }
@@ -592,6 +600,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
                 followersVC.whichView = "Following"
                 if !(selectedUser.isEmpty){
                     followersVC.back = false
+                    followersVC.currentSelectedUser = currentUser
                 }
                 self.navigationController?.pushViewController(followersVC, animated: true)
             }
@@ -606,6 +615,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
                     followersVC.whichView = "Followers"
                     if !(selectedUser.isEmpty){
                         followersVC.back = false
+                        followersVC.currentSelectedUser = currentUser
                     }
                     self.navigationController?.pushViewController(followersVC, animated: true)
                 }
@@ -614,6 +624,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
                 followersVC.whichView = "Followers"
                 if !(selectedUser.isEmpty){
                     followersVC.back = false
+                    followersVC.currentSelectedUser = currentUser
                 }
                 self.navigationController?.pushViewController(followersVC, animated: true)
             }
@@ -630,14 +641,10 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
                     let tstr = Toast(text: "\(currentUser["firstname"]) don't have any Journey.")
                     tstr.show()
                 }else{
-                    let journeys = storyboard?.instantiateViewController(withIdentifier: "myLife") as! MyLifeViewController
-                    journeys.whatEmptyTab = "Journeys"
-                    self.navigationController?.pushViewController(journeys, animated: true)
+                    self.MyLifeDetailsShow(nil)
                 }
             }else{
-            let journeys = storyboard?.instantiateViewController(withIdentifier: "myLife") as! MyLifeViewController
-                journeys.whatEmptyTab = "Journeys"
-            self.navigationController?.pushViewController(journeys, animated: true)
+                self.MyLifeDetailsShow(nil)
             }
             break
         case 5:
@@ -646,14 +653,18 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
                     let tstr = Toast(text: "\(currentUser["firstName"]) don't have any CheckIn's.")
                     tstr.show()
                 }else{
-                    let journeys = storyboard?.instantiateViewController(withIdentifier: "allJourneysCreated") as! AllJourneysViewController
-                    self.navigationController?.pushViewController(journeys, animated: true)
+                    if(!selectedUser.isEmpty && currentUser["status"].stringValue == "private") {
+                        //Dont show anything
+                    }
+                    else {
+                        let photosVC = storyboard?.instantiateViewController(withIdentifier: "myLife") as! MyLifeViewController
+                        photosVC.whatEmptyTab = "Moments"
+                        self.navigationController?.pushViewController(photosVC, animated: true)
+                    }
                 }
-            }else{
-                let myLifeVC = self.storyboard?.instantiateViewController(withIdentifier: "myLife") as! MyLifeViewController
-                self.navigationController!.pushViewController(myLifeVC, animated: true)
-//            let journeys = storyboard?.instantiateViewController(withIdentifier: "allJourneysCreated") as! AllJourneysViewController
-//            self.navigationController?.pushViewController(journeys, animated: true)
+            }
+            else{
+                self.MyLifeDetailsShow(nil)
             }
             break
         case 6 :
@@ -662,14 +673,24 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
                     let tstr = Toast(text: "\(currentUser["firstName"].stringValue) don't have any Photo's.")
                     tstr.show()
                 }else{
+                    if(!selectedUser.isEmpty && currentUser["status"].stringValue == "private") {
+                        //Dont show anything
+                    }
+                    else {
+                        let photosVC = storyboard?.instantiateViewController(withIdentifier: "myLife") as! MyLifeViewController
+                        photosVC.whatEmptyTab = "Moments"
+                        self.navigationController?.pushViewController(photosVC, animated: true)
+                    }
+                }
+            }else{
+                if(!selectedUser.isEmpty && currentUser["status"].stringValue == "private") {
+                    //Dont show anything
+                }
+                else {
                     let photosVC = storyboard?.instantiateViewController(withIdentifier: "myLife") as! MyLifeViewController
                     photosVC.whatEmptyTab = "Moments"
                     self.navigationController?.pushViewController(photosVC, animated: true)
                 }
-            }else{
-            let photosVC = storyboard?.instantiateViewController(withIdentifier: "myLife") as! MyLifeViewController
-            photosVC.whatEmptyTab = "Moments"
-            self.navigationController?.pushViewController(photosVC, animated: true)
             }
             break
         case 7 :
@@ -678,15 +699,10 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
                     let tstr = Toast(text: "\(currentUser["firstName"].stringValue) not reviewed any location.")
                     tstr.show()
                 }else{
-                    let reviewsVC = storyboard?.instantiateViewController(withIdentifier: "myLife") as! MyLifeViewController
-                    reviewsVC.whatEmptyTab = "Reviews"
-                    self.navigationController?.pushViewController(reviewsVC, animated: true)
+                    self.MyLifeDetailsShow(nil)
                 }
             }else{
-
-            let reviewsVC = storyboard?.instantiateViewController(withIdentifier: "myLife") as! MyLifeViewController
-            reviewsVC.whatEmptyTab = "Reviews"
-            self.navigationController?.pushViewController(reviewsVC, animated: true)
+                self.MyLifeDetailsShow(nil)
             }
             break
         default:
@@ -695,15 +711,22 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         
     }
     
-    func MyLifeDetailsShow(_ sender: AnyObject) {
+    func MyLifeDetailsShow(_ sender: AnyObject?) {
 //        UIView.animate(withDuration: 0.75, animations: { () -> Void in
 //            UIView.setAnimationCurve(UIViewAnimationCurve.linear)
         if(!selectedUser.isEmpty && currentUser["status"].stringValue == "private") {
             //Dont show anything
         }
         else {
-            let reviewsVC = self.storyboard?.instantiateViewController(withIdentifier: "myLife") as! MyLifeViewController
-            self.navigationController!.pushViewController(reviewsVC, animated: false)
+            let myLifeVC = self.storyboard?.instantiateViewController(withIdentifier: "myLife") as! MyLifeViewController
+            if (sender != nil) { 
+                myLifeVC.whatEmptyTab = "Journeys"
+                self.navigationController!.pushViewController(myLifeVC, animated: false)
+            }
+            else {
+                self.navigationController!.pushViewController(myLifeVC, animated: true)
+            }
+            
         }
 //            UIView.setAnimationTransition(UIViewAnimationTransition.curlUp, for: self.navigationController!.view!, cache: false)
 //        })
