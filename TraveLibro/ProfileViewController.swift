@@ -190,6 +190,8 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         locationIcon.text = String(format: "%C", faicon["location"]!)
         MAMButton.transform = MAMButton.transform.rotated(by: CGFloat(M_PI))
         loader.showOverlay(self.view)
+        
+        self.getUser()
     }
     
     func createNavigation() {
@@ -228,7 +230,6 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         customView.frame = CGRect(x: 0, y: self.view.frame.size.height - 75, width: self.view.frame.width, height: 75)
         
         globalNavigationController = self.navigationController
-        self.getUser()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
