@@ -15,7 +15,7 @@ var globalMyLifeMomentsViewController:MyLifeMomentsViewController!
 class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     let titleLabels = ["November 2015, (25)", "October 2015, (25)", "September 2015, (25)", "August 2015, (25)", "July 2015, (25)"]
-    let Month = "November 2015"
+    var Month = "November 2015"
     let reviewsLL = ["Mumbai", "London"]
     let reviewsTL = ["India", "France"]
     
@@ -338,13 +338,17 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
             case "Monthly", "SelectCover":
                 return CGSize(width: 110, height: 110)
             case "travel-life":
-                var a = (screenWidth - 20) / 2
+                let a = (screenWidth - 20) / 2
                 print("width \(a)")
                 return CGSize(width: a + 5, height: a + 56)
             case "local-life":
-                var a = (screenWidth - 20) / 2
+                let a = (screenWidth - 20) / 2
                 print("width \(a)")
                 return CGSize(width: a, height: a + 36)
+            case "review":
+                let a = (screenWidth - 15) / 3
+                print("width \(a)")
+                return CGSize(width: a, height: a + 100)
             default:
                 break
             }
@@ -390,7 +394,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MomentsLargeImageCell", for: indexPath) as! photosTwoCollectionViewCell
             cell.photoBig.image = UIImage(named: "logo-default")
             if allData[indexPath.row]["name"].stringValue != "" {
-                cell.photoBig.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["name"].stringValue, width: 300))
+                cell.photoBig.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["name"].stringValue, width: 0))
                 
             }else{
                 cell.photoBig.image = UIImage(named: "logo-default")
@@ -404,7 +408,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath) as! photosCollectionViewCell
                 cell.photo.image = UIImage(named: "logo-default")
                 if allData[indexPath.section]["data"][indexPath.row]["name"].stringValue != "" {
-                    cell.photo.hnk_setImageFromURL(getImageURL(allData[indexPath.section]["data"][indexPath.row]["name"].stringValue, width: 300))
+                    cell.photo.hnk_setImageFromURL(getImageURL(allData[indexPath.section]["data"][indexPath.row]["name"].stringValue, width: 0))
                     
                 }else{
                     cell.photo.image = UIImage(named: "logo-default")
@@ -424,8 +428,8 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
 
                 cell.bgImage.clipsToBounds = true
 //
-                cell.bgImage.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["data"][0]["name"].stringValue, width: 300))
-                cell.albumTitle.attributedText = createHeaderDate(currDate: allData[indexPath.row]["data"][0]["UTCModified"].stringValue, count: allData[indexPath.row]["count"].stringValue)
+                cell.bgImage.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["data"][0]["name"].stringValue, width: 0))
+                cell.albumTitle.attributedText = createHeaderDate(currDate: allData[indexPath.row]["data"][0]["UTCModified"].stringValue, count: allData[indexPath.row]["count"].stringValue, new:false)
 
                 
                 return cell
@@ -439,6 +443,8 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
                 
                 if allData[indexPath.row]["coverPhoto"] != nil {
                     cell.bgImage.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["coverPhoto"].stringValue, width: 300))
+                }else if !allData[indexPath.row]["photos"].isEmpty {
+                    cell.bgImage.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["photos"]["name"].stringValue, width: 300))
                 }else{
                     cell.bgImage.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["startLocationPic"].stringValue, width: 300))
                 }
@@ -484,17 +490,29 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
         
     }
     
-    func createHeaderDate(currDate:String, count:String) -> NSAttributedString {
-        //let array = getMonthFormat(currDate)
+    func createHeaderDate(currDate:String, count:String, new: Bool) -> NSAttributedString {
         let headerLabel = NSMutableAttributedString(string: "")
-        //let month = NSAttributedString(string: array, attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: 14)!])
-        let month = NSAttributedString(string: getDateFormat(currDate, format: "d MMM, yyyy")
-, attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: 14)!])
-        
+        if new {
+            let array = getMonthFormat(currDate)
+            let month = NSAttributedString(string: array, attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: 14)!])
+            
+            
+            let count = NSAttributedString(string: " (\(count))", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: 11)!])
+            headerLabel.append(month)
+            headerLabel.append(count)
 
-        let count = NSAttributedString(string: " (\(count))", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: 11)!])
-        headerLabel.append(month)
-        headerLabel.append(count)
+        }else{
+            let month = NSAttributedString(string: getDateFormat(currDate, format: "d MMM, yyyy")
+                , attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: 14)!])
+            
+            
+            
+            let count = NSAttributedString(string: " (\(count))", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: 11)!])
+            headerLabel.append(month)
+            headerLabel.append(count)
+
+        }
+    
         return headerLabel
     }
     
@@ -508,7 +526,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
         } else if momentType == "all" {
                 let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "headerCell", for: indexPath) as! TitleHeaderView
             
-                header.titleLabel.attributedText = createHeaderDate(currDate: allData[indexPath.section]["token"].stringValue, count: allData[indexPath.section]["count"].stringValue)
+            header.titleLabel.attributedText = createHeaderDate(currDate: allData[indexPath.section]["token"].stringValue, count: allData[indexPath.section]["count"].stringValue, new:true)
                 return header
         }
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "headerCell", for: indexPath) as! TitleHeaderView
@@ -535,8 +553,13 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
                     showToast(msg: "No Photos in \(allData[indexPath.section]["token"].stringValue)")
                 }else{
                     insideView = "Monthly"
-                    tokenToShow = createHeaderDate(currDate: allData[indexPath.section]["token"].stringValue, count: allData[indexPath.section]["count"].stringValue)
-                    self.loadInsideMedia(mediaType: "", pageno: 1, type: momentType, token: allData[indexPath.section]["token"].stringValue, id: "")
+                    tokenToShow = createHeaderDate(currDate: allData[indexPath.section]["token"].stringValue, count: allData[indexPath.section]["count"].stringValue, new:true)
+                    if momentType == "local-life" {
+                        self.loadInsideMedia(mediaType: "", pageno: 1, type: momentType, token: allData[indexPath.row]["token"].stringValue, id: "")
+                    }else{
+                        self.loadInsideMedia(mediaType: "", pageno: 1, type: momentType, token: allData[indexPath.section]["token"].stringValue, id: "")
+                    }
+                    
                 }
             }else if momentType == "travel-life" {
                 if allData[indexPath.row]["mediaCount"].stringValue == "0" {
