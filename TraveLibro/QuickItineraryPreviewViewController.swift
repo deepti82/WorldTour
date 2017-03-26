@@ -81,6 +81,10 @@ class QuickItineraryPreviewViewController: UIViewController {
             
         }
         
+        for i in 0 ... (prev.quickType.count - 1) {
+            prev.quickType[i].tintColor = UIColor.white
+        }
+        
         self.createNavigation()
         previewLayout = VerticalLayout(width:self.view.frame.width)
         previewScroll.addSubview(previewLayout)
@@ -93,17 +97,13 @@ class QuickItineraryPreviewViewController: UIViewController {
         
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         
-        print(quickItinery)
-        print(currentUser)
-        self.title = "Itinerary Preview"
-        
+        self.title = "Itinerary Preview"       
         
         footer = FooterViewNew(frame: CGRect.zero)
         footer.layer.zPosition = 1000
         
         footer.backgroundColor = UIColor.white
-        self.view.addSubview(footer)
-        
+        self.view.addSubview(footer)        
         
         footerAbove = previewBase(frame: CGRect.zero)
         footerAbove.layer.zPosition = 900

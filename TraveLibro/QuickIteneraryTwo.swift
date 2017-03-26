@@ -25,12 +25,12 @@ class QuickIteneraryTwo: UIViewController {
         transparentCardWhite(blurBG)
         if(self.itineraryTypes != nil) {
             print(self.itineraryTypes);
-            var arr = self.itineraryTypes.array
+            let arr = self.itineraryTypes.array
             
             for eachButton in typeButton {
                 for text in arr! {
                     if(text.stringValue == eachButton.titleLabel?.text) {
-                        self.typeButtonPressed(eachButton);
+                        self.typeButtonPressed(eachButton)                        
                     }
                 }
             }

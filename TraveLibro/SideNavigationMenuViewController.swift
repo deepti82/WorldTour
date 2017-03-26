@@ -235,7 +235,11 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
     @IBAction func profileTap(_ sender: AnyObject) {
         if currentUser != nil {
             selectedUser = nil
-            self.slideMenuController()?.changeMainViewController(self.myProfileViewController, close: true)            
+            request.getUserFromCache(user.getExistingUser(), completion: { (response) in
+                currentUser = response["data"]
+                print("\n currentUser : \(currentUser)")
+                self.slideMenuController()?.changeMainViewController(self.myProfileViewController, close: true)
+            })
         }
         else{
             closeLeft()

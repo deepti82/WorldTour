@@ -94,7 +94,7 @@ class QuickItineraryPreview: UIView {
         self.cityScroll.font = UIFont(name: "Avenir-Roman", size: 16)
         if self.json["countryVisited"].count != 0 {
             for n in json["countryVisited"].array! {
-                for (i,m) in n["cityVisited"] {
+                for (_,m) in n["cityVisited"] {
                     if m["name"] != nil {
                         self.cityScroll.text = self.cityScroll.text! + m["name"].stringValue + " | "
 

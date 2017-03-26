@@ -5474,7 +5474,7 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="odt-Bk-QGj">
                                                         <rect key="frame" x="0.0" y="0.0" width="75" height="96"/>
                                                         <subviews>
-                                                            <button opaque="NO" tag="1" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yYu-Nx-JwN" customClass="SpringButton" customModule="Spring">
+                                                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yYu-Nx-JwN" customClass="SpringButton" customModule="Spring">
                                                                 <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="75" id="Er1-bU-nDT"/>
@@ -5712,7 +5712,6 @@
                                                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bPQ-DT-TUV">
                                                                 <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="width" constant="50" id="czJ-DN-2kQ"/>
                                                                     <constraint firstAttribute="width" constant="75" id="gbj-bW-dg8"/>
                                                                     <constraint firstAttribute="height" constant="75" id="mWa-UZ-5r1"/>
                                                                 </constraints>
@@ -5722,11 +5721,6 @@
                                                                 <state key="normal" title="Shopping" image="shopping" backgroundImage="bluebox">
                                                                     <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                 </state>
-                                                                <variation key="default">
-                                                                    <mask key="constraints">
-                                                                        <exclude reference="czJ-DN-2kQ"/>
-                                                                    </mask>
-                                                                </variation>
                                                             </button>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shopping" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Ip-23-vKA">
                                                                 <rect key="frame" x="0.0" y="80" width="75" height="16"/>

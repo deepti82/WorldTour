@@ -6,6 +6,7 @@ import Spring
 import AVKit
 import AVFoundation
 import Player
+import Crashlytics
 
 var globalAddActivityNew:AddActivityNew!
 
@@ -599,6 +600,7 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
             for i in 0 ... locationCount {
                 let oneButton = UIButton(frame: CGRect(x: 10, y: 0, width: 200, height: self.locationHorizontalScroll.frame.height))
                 self.horizontal.addSubview(oneButton)
+                CLSNSLogv("AddActivityNew.swift -> locationArray count %d", getVaList([locationArray.count]))
                 self.styleHorizontalButton(oneButton, buttonTitle: "\(locationArray[i]["name"].string!)")
                 oneButton.layoutIfNeeded()
                 oneButton.resizeToFitSubviews(self.locationHorizontalScroll.frame.height, finalHeight: self.locationHorizontalScroll.frame.height)

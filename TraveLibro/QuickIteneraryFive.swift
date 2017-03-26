@@ -116,7 +116,6 @@ class QuickIteneraryFive: UIViewController, UICollectionViewDataSource, UICollec
                     
                     var img11 = [UIImage]()
                 DispatchQueue.main.async {
-                    let manage1 = PHImageManager.default()
                     let option1 = PHImageRequestOptions()
                     option1.isSynchronous = true
                     for n in 0...assets.count-1{
@@ -134,11 +133,12 @@ class QuickIteneraryFive: UIViewController, UICollectionViewDataSource, UICollec
     
     func photosAdded(assets: [UIImage]) {
         for asset in assets {
-            let postImg = PostImage();
-            postImg.image = asset.resizeWith(width:800);
-            imageArr.append(postImg);
+            let postImg = PostImage()
+            postImg.image = asset.resizeWith(width:800)            
+            imageArr.append(postImg)
             globalPostImage.append(postImg)
         }
+        
         self.addCaption(1);
         self.photoGallerySecondView.isHidden = false
         self.photosGalleryFirstView.isHidden = true
