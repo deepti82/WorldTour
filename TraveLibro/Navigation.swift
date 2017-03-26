@@ -1464,6 +1464,7 @@ class Navigation {
             
             let opt = try HTTP.POST(adminUrl + "post/getGooglePlaceDetail", parameters: ["placeId": placeId])
             var json = JSON(1);
+            print("\n getPlaceId params :\(placeId)")
             opt.start {response in
                 if let err = response.error {
                     print("error: \(err.localizedDescription)")
@@ -1974,7 +1975,7 @@ class Navigation {
     }
 
     
-    func getPeopleSearch(_ user: String, search: String, pageNumber: Int, completion: @escaping ((JSON) -> Void)) {
+    func getPeopleSearch(_ user: String, search: String, pageNumber: Int,callbackNum:Int, completion: @escaping ((JSON,Int) -> Void)) {
         
         do {
             var params: JSON!
@@ -2000,7 +2001,7 @@ class Navigation {
                 do {
                     
                     let result = try JSONSerialization.jsonObject(with: data!, options: []) as! [String:AnyObject]
-                    completion(JSON(result))
+                    completion(JSON(result),callbackNum)
                     
                 } catch {
                     print("Error: \(error)")

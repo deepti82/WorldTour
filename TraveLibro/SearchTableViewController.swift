@@ -22,6 +22,7 @@ class SearchTableViewController: UIViewController, UITableViewDelegate, UITableV
     var selectedStatus: String = "people"
     var allData:[JSON] = []
     var page = 1
+    var callbackNum:Int=0;
     
     var newSearch:String = ""
     override func viewDidLoad() {
@@ -61,6 +62,7 @@ class SearchTableViewController: UIViewController, UITableViewDelegate, UITableV
             selectedUser = allData[indexPath.row]
             let profile = self.storyboard!.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
             profile.displayData = "search"
+            profile.currentSelectedUser = selectedUser
             self.navigationController!.pushViewController(profile, animated: true)
         }
     }
@@ -92,41 +94,46 @@ class SearchTableViewController: UIViewController, UITableViewDelegate, UITableV
     
     func searchPeople(search: String) {
         self.searchTextGlob = search
+        callbackNum = callbackNum + 1
         loadStatus = false
         if search != "" {
             
-            request.getPeopleSearch(currentUser["_id"].stringValue, search: search, pageNumber: self.page, completion:{(request) in
+            request.getPeopleSearch(currentUser["_id"].stringValue, search: search, pageNumber: self.page,callbackNum:self.callbackNum, completion:{(request,i) in
                 DispatchQueue.main.async(execute: {
-                    
-                    if request["data"].count > 0 {
-                        
-                        if self.page == 1 {
-                            self.allData = []
-                            self.allData = request["data"].array!
-                        }else{
+                    if(i == self.callbackNum) {
+                        if request["data"].count > 0 {
                             
-                            for city in request["data"].array! {
-                                if !(self.allData.contains(value: city)) {
-                                    self.allData.append(city)
+                            if self.page == 1 {
+                                self.allData = []
+                                self.allData = request["data"].array!
+                            }else{
+                                
+                                for city in request["data"].array! {
+                                    if !(self.allData.contains(value: city)) {
+                                        self.allData.append(city)
+                                    }
                                 }
                             }
+                            self.page = self.page + 1
+                            self.loadStatus = true
+                            self.refreshUI()
+                            
+                        }else{
+                            if self.page == 1 {
+                                self.allData = []                                
+                            }
+                            self.loadStatus = false
                         }
-                        self.page = self.page + 1
-                        self.loadStatus = true
-                        self.refreshUI()
-                        
-                    }else{
-                        
-                        self.loadStatus = false
+                        if self.allData.count == 0 {
+                            self.searchTable.isHidden = true
+                            self.noTravellersStrip.text = "No Traveller Found"
+                            self.noTravellersStrip.isHidden = false
+                        }else{
+                            self.searchTable.isHidden = false
+                            self.noTravellersStrip.isHidden = true
+                        }
                     }
-                    if self.allData.count == 0 {
-                        self.searchTable.isHidden = true
-                        self.noTravellersStrip.text = "No Traveller Found"
-                        self.noTravellersStrip.isHidden = false
-                    }else{
-                        self.searchTable.isHidden = false
-                        self.noTravellersStrip.isHidden = true
-                    }
+                    
                 })
             })
             
