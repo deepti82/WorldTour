@@ -12,7 +12,7 @@ import Toaster
 class SettingsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     internal var dataSourceOption: String = ""
     internal var labels = ["Cellular and WiFi", "WiFi"]
-    let localLoggedInUser = user.getUser(currentUser["_id"].stringValue)
+    let localLoggedInUser = user.getUser(user.getExistingUser())
     
     var selectedOption = ""
     

@@ -218,9 +218,40 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)        
+        super.viewWillAppear(animated)
         self.orangeTab.frame = CGRect(x: 5, y: self.view.frame.size.height - 125, width: self.view.frame.size.width - 10, height: 50)
         customView.frame = CGRect(x: 0, y: self.view.frame.size.height - 75, width: self.view.frame.width, height: 75)
+        
+        if isSettingsEdited && selectedUser.isEmpty && currentUser != nil {            
+            var imageName = ""
+            imageName = currentUser["profilePicture"].string!
+            
+            if currentUser["homeCountry"] != nil {
+                countryName.text = currentUser["homeCountry"]["name"].string!
+                profile.flag.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(currentUser["homeCountry"]["flag"].stringValue)", width: 100))
+            }
+            
+            if currentUser["homeCity"] != nil {
+                let place = currentUser["homeCity"].string!.components(separatedBy: ",")
+                placeLabel.text = " \(place[0])"
+            }
+            
+            let isUrl = verifyUrl(imageName)
+            
+            if isUrl {
+                self.profilePicture.hnk_setImageFromURL(URL(string:imageName)!)
+                self.profilePicture.isHidden = true
+                profile.image.hnk_setImageFromURL(URL(string:imageName)!)
+            }
+            else {
+                let getImageUrl = URL(string:adminUrl + "upload/readFile?file=" + imageName + "&width=500")
+                profilePicture.hnk_setImageFromURL(getImageUrl!)
+                profile.image.hnk_setImageFromURL(getImageUrl!)
+            }
+            makeTLProfilePicture(self.profilePicture)
+            
+            isSettingsEdited = false
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -285,16 +316,14 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
             MAMButton.isHidden = false
         }
         
-        var imageName = ""        
-        
         if currentUser != nil {
-            if displayData == "search" {
-                self.title = "My Life"
-            }else{
-                self.title = "My Life"
-            }
-        print("==========\(currentUser)")
+            
+            self.title = "My Life"
+            
+            print("==========\(currentUser)")
             profileUsername.text = "\(currentUser["name"].string!)"
+            
+            var imageName = ""
             imageName = currentUser["profilePicture"].string!
             
             if currentUser["homeCountry"] != nil {

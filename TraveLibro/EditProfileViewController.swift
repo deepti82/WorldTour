@@ -323,25 +323,35 @@ class EditProfileViewController: UIViewController, UITableViewDataSource, UITabl
         }
         
         if pickerImage != nil {
-            Toast(text: "Please wait while uploading profile image...").show()            
+            let loader = LoadingOverlay()
+            loader.showOverlay(self.view)
             let newProfilePicImgURL = "file://" + NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] + "/profileimage.jpg"            
-            DispatchQueue.main.async(execute: {
+            DispatchQueue.main.async(execute: {                
                 do {
                     if let data = UIImageJPEGRepresentation(self.pickerImage!, 0.35) {
                         try data.write(to: URL(string: newProfilePicImgURL)!, options: .atomic)
                         
                         request.uploadPhotos(URL(string: newProfilePicImgURL)!, localDbId: 0, completion: {(response) in
                             if response["value"] == true {
-                                self.editedValues["profilePicture"] = response["data"][0].stringValue
-                                if let currentToast = ToastCenter.default.currentToast {
-                                    currentToast.cancel()
-                                }
-                                Toast(text: "Profile image uploaded").show()
+                                request.editUser(currentUser["_id"].stringValue, editField: "profilePicture", editFieldValue: response["data"][0].stringValue, completion: { (newResponse) in
+                                    DispatchQueue.main.async {
+                                        loader.hideOverlayView()
+                                        print("\n NewResponse : \(newResponse)")
+                                        if response["value"] == true {
+                                            currentUser = newResponse["data"]
+                                            isSettingsEdited = true
+                                        }
+                                    }
+                                })
+                            }
+                            else{
+                                print("Error in uploading profile photo ")
+                                loader.hideOverlayView()
                             }
                         })
                     }
                 } catch let error as NSError {
-                    
+                    loader.hideOverlayView()
                     print("error uploading profile picture: \(error.localizedDescription)")
                     
                 }
@@ -419,6 +429,8 @@ class EditProfileViewController: UIViewController, UITableViewDataSource, UITabl
         
         if !(editedValues.isEmpty) {
             
+            isSettingsEdited = true
+            
             editedValues["_id"] = currentUser["_id"].stringValue
             print("Edited Values dict : \(editedValues)")
             
@@ -435,7 +447,6 @@ class EditProfileViewController: UIViewController, UITableViewDataSource, UITabl
             }
         }
     }
-    
 }    
 
 

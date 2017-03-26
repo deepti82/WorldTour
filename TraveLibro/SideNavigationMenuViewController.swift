@@ -46,7 +46,11 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
    
     @IBAction func SettingsTap(_ sender: AnyObject) {
         if currentUser != nil {
-            self.slideMenuController()?.changeMainViewController(self.settingsViewController, close: true)
+            request.getUserFromCache(user.getExistingUser(), completion: { (response) in
+                currentUser = response["data"]
+                print("\n currentUser : \(currentUser)")
+                self.slideMenuController()?.changeMainViewController(self.settingsViewController, close: true)
+            })
         }            
     }
     
@@ -132,6 +136,7 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         super.viewWillAppear(animated)
         
         sideTableView.reloadData()
+        updateProfilePicture()
 //        
 //        if currentUser != nil {            
 //            userBadgeLabel.isHidden = false
@@ -216,6 +221,9 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
             
             makeMenuProfilePicture(profilePicture)
         }
+        else if (currentUser != nil) {
+            //Do nothing
+        }
         else {
             profile.flag.isHidden = true
             starstack.isHidden = true
@@ -267,8 +275,7 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         // main header height 325
-        var a = (screenHeight - 280) / 7
-        print(a)
+        var a = (screenHeight - 280) / 7        
         if a > 76 {
             a = 76
         }

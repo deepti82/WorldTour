@@ -59,6 +59,7 @@ var coverImageGrid = ""
 var popularView = "popular"
 
 var shouldShowLoader = false
+var isSettingsEdited = false
 
 let user = User()
 

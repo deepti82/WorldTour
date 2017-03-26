@@ -29,6 +29,7 @@ class UserProfileSettingsViewController: UIViewController, UITableViewDataSource
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        settingsTableView.reloadData()
         NotificationCenter.default.addObserver(self, selector: #selector(currentUserUpdated), name: NSNotification.Name(rawValue: "currentUserUpdated"), object: nil)
     }
     

@@ -74,6 +74,8 @@ class Navigation {
                 else
                 {
                     json  = JSON(data: response.data)
+                    let urlString = adminUrl + "user/getOne"
+                    self.cache.set(value: response.data, key: urlString+id)
                     completion(json)
                 }
             }
@@ -120,6 +122,14 @@ class Navigation {
             }
         } catch let error {
             print("got an error creating the request: \(error)")
+        }
+    }
+    
+    func getUserFromCache(_ id: String, completion: @escaping ((JSON) -> Void)) {
+        let urlString = adminUrl + "user/getOne"
+        self.cache.fetch(key: urlString+id).onSuccess { data in
+            let json = JSON(data: data)
+            completion(json)
         }
     }
     
