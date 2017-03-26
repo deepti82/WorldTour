@@ -196,7 +196,7 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
         leftButton.addTarget(self, action: #selector(self.openSideMenu(_:)), for: .touchUpInside)
         let rightButton = UIButton()
         rightButton.setImage(UIImage(named: "search_toolbar"), for: UIControlState())
-        rightButton.addTarget(self, action: #selector(self.searchTop(_:)), for: .touchUpInside)
+        rightButton.addTarget(self, action: #selector(self.searchTapped(_:)), for: .touchUpInside)
         rightButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         self.title = text
         self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Avenir-Medium", size: 18)!]
@@ -281,14 +281,7 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
         else {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)            
         }        
-    }
-    
-    func searchTop(_ sender: AnyObject) {
-        let searchVC = storyboard?.instantiateViewController(withIdentifier: "Search") as! MainSearchViewController
-        globalNavigationController.pushViewController(searchVC, animated: true)
-    }
-
-    
+    }    
     
     //MARK: - Scroll Delagtes
     

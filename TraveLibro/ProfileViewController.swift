@@ -166,7 +166,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         }else{
             let rightButton = UIButton()
             rightButton.setImage(UIImage(named: "search_toolbar"), for: UIControlState())
-            rightButton.addTarget(self, action: #selector(ProfileViewController.search(_:)), for: .touchUpInside)
+            rightButton.addTarget(self, action: #selector(self.searchTapped(_:)), for: .touchUpInside)
             rightButton.frame = CGRect(x: -10, y: 8, width: 30, height: 30)
             self.setOnlyRightNavigationButton(rightButton)
         }
@@ -459,11 +459,6 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     
     func MAMStacKTap(_ sender: UITapGestureRecognizer) {
         self.MAMTapped(sender)
-    }
-    
-    func search(_ sender: AnyObject) {
-        let searchVC = storyboard?.instantiateViewController(withIdentifier: "Search") as! MainSearchViewController
-        globalNavigationController.pushViewController(searchVC, animated: true)
     }
     
     //MARK: - Collection View Delagtes and Datasource

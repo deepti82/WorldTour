@@ -404,7 +404,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
         
         let rightButton = UIButton()
         rightButton.setImage(UIImage(named: "search_toolbar"), for: UIControlState())
-        rightButton.addTarget(self, action: #selector(self.searchTop(_:)), for: .touchUpInside)
+        rightButton.addTarget(self, action: #selector(self.searchTapped(_:)), for: .touchUpInside)
         rightButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         
         self.customNavigationBar(left: leftButton, right: rightButton)
@@ -420,16 +420,6 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
         self.slideMenuController()?.addLeftGestures()
         self.slideMenuController()?.toggleLeft()
     }
-    
-    
-    func searchTop(_ sender: UIButton){
-        
-        let searchVC = storyboard?.instantiateViewController(withIdentifier: "Search") as! MainSearchViewController
-        globalNavigationController.pushViewController(searchVC, animated: true)
-        
-    }
-    
-    
     
     func changeAddButton(_ bol:Bool) {
         self.isSameCity = bol

@@ -160,4 +160,17 @@ extension UIViewController {
         self.slideMenuController()?.addLeftGestures()
         self.slideMenuController()?.addRightGestures()
     }
+    
+    
+    //MARK: - BarButton Actions
+    
+    func searchTapped(_ sender: UIButton){
+        if currentUser != nil {
+            let searchVC = storyboard?.instantiateViewController(withIdentifier: "Search") as! MainSearchViewController
+            globalNavigationController.pushViewController(searchVC, animated: true)
+        }
+        else {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
+        }
+    }
 }

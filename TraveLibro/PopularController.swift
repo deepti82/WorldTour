@@ -46,7 +46,7 @@ class PopularController: UIViewController, UIScrollViewDelegate {
         getDarkBackGround(self)
         layout = VerticalLayout(width: screenWidth)
         popularScroll.addSubview(layout)
-                getActivity(pageNumber: pageno)
+        getActivity(pageNumber: pageno)
         loader.showOverlay(self.view)
         
         self.mainFooter = FooterViewNew(frame: CGRect.zero)
@@ -84,11 +84,7 @@ class PopularController: UIViewController, UIScrollViewDelegate {
     func openSideMenu(_ sender: AnyObject) {
         self.slideMenuController()?.addLeftGestures()
         self.slideMenuController()?.toggleLeft()
-    }
-    func searchTop(_ sender: AnyObject) {
-        let searchVC = storyboard?.instantiateViewController(withIdentifier: "Search") as! MainSearchViewController
-        globalNavigationController.pushViewController(searchVC, animated: true)
-    }
+    }    
         
     func createNavigationBack() {
         self.navigationController?.setNavigationBarHidden(false, animated: true)
@@ -117,7 +113,7 @@ class PopularController: UIViewController, UIScrollViewDelegate {
         
         let rightButton = UIButton()
         rightButton.setImage(UIImage(named: "search_toolbar"), for: UIControlState())
-        rightButton.addTarget(self, action: #selector(self.searchTop(_:)), for: .touchUpInside)
+        rightButton.addTarget(self, action: #selector(self.searchTapped(_:)), for: .touchUpInside)
         rightButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         if displayData != "popular" && displayData != "popitinerary" {
             self.customNavigationBar(left: leftButton, right: rightButton)

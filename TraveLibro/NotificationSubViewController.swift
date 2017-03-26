@@ -37,7 +37,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         
         let rightButton = UIButton()
         rightButton.setImage(UIImage(named: "search_toolbar"), for: UIControlState())
-        rightButton.addTarget(self, action: #selector(self.search(_:)), for: .touchUpInside)
+        rightButton.addTarget(self, action: #selector(self.searchTapped(_:)), for: .touchUpInside)
         rightButton.frame = CGRect(x: -10, y: 8, width: 30, height: 30)
         self.setOnlyRightNavigationButton(rightButton)
         
@@ -805,14 +805,6 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
             self.mainFooter.frame.origin.y = self.view.frame.height - 65
             
         }
-    }
-    
-    
-    //MARK: - Navigation action
-    
-    func search(_ sender: AnyObject) {
-        let searchVC = storyboard?.instantiateViewController(withIdentifier: "Search") as! MainSearchViewController
-        globalNavigationController.pushViewController(searchVC, animated: true)
     }
     
     

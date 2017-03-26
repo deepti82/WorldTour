@@ -81,10 +81,7 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
         self.slideMenuController()?.addLeftGestures()
         self.slideMenuController()?.toggleLeft()
     }
-    func searchTop(_ sender: AnyObject) {
-        let searchVC = storyboard?.instantiateViewController(withIdentifier: "Search") as! MainSearchViewController
-        globalNavigationController.pushViewController(searchVC, animated: true)
-    }
+    
     func createNavigation() {
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         if displayData == "activity" {
@@ -108,7 +105,7 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
         
         let rightButton = UIButton()
         rightButton.setImage(UIImage(named: "search_toolbar"), for: UIControlState())
-        rightButton.addTarget(self, action: #selector(self.searchTop(_:)), for: .touchUpInside)
+        rightButton.addTarget(self, action: #selector(self.searchTapped(_:)), for: .touchUpInside)
         rightButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         if displayData != "popular" && displayData != "popitinerary" {
             self.customNavigationBar(left: leftButton, right: rightButton)
