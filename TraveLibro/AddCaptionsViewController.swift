@@ -4,6 +4,7 @@ import imglyKit
 import Spring
 import Player
 import DKChainableAnimationKit
+import Crashlytics
 
 var editedImage = UIImage()
 var isEditedImage = false
@@ -208,7 +209,13 @@ class AddCaptionsViewController: UIViewController, UITextFieldDelegate, ToolStac
 
             
             print(currentImageIndex);
-            imageForCaption.image = imageArr[currentImageIndex].image
+            CLSNSLogv("AddCaptionsViewController.swift -> imageArr count %d :: currentIndex : %d", getVaList([imageArr.count, currentImageIndex]))
+            if(currentImageIndex < imageArr.count){
+                imageForCaption.image = imageArr[currentImageIndex].image
+            }
+            else{
+                print("\n It would have crash : Cause: IndexOutOfBounds")
+            }
             
             captionTextView.delegate = self
             captionTextView.returnKeyType = .done
