@@ -226,6 +226,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
                     //                    }
                     
                 }
+                print(self.allData.count)
                 // if no data
                 if self.allData.count == 0 {
                     self.showNoData(show: true)
@@ -286,7 +287,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
         print("insideView \(insideView)")
         print("momeentType \(momentType)")
         if insideView != "Monthly" {
-            if momentType != "travel-life" && momentType != "review" {
+            if momentType != "travel-life" && momentType != "review" && momentType != "local-life" {
                 return allData.count
             }
         }
@@ -295,6 +296,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        print(allData)
         switch momentType {
         case "all":
             if insideView == "Monthly" {
@@ -306,7 +308,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
             if insideView == "Monthly" {
                 return allData.count
             }else{
-                return allData[section]["data"].count
+                return allData.count
             }
         case "travel-life":
             return allData.count
@@ -335,10 +337,14 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
                 return CGSize(width: 30, height: 30)
             case "Monthly", "SelectCover":
                 return CGSize(width: 110, height: 110)
-            case "local-life", "travel-life":
-                var a = (screenWidth - 30) / 2
+            case "travel-life":
+                var a = (screenWidth - 20) / 2
                 print("width \(a)")
-                return CGSize(width: a, height: a + 56)
+                return CGSize(width: a + 5, height: a + 56)
+            case "local-life":
+                var a = (screenWidth - 20) / 2
+                print("width \(a)")
+                return CGSize(width: a, height: a + 36)
             default:
                 break
             }
@@ -414,41 +420,26 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
             case "local-life":
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "localLifeMomentsCell", for: indexPath) as! LocalLifeMomentsCollectionViewCell
                 cell.bgImage.image = UIImage(named: "logo-default")
-//                cell.bgImage.transform = CGAffineTransform(rotationAngle: 0.0349066)
-                cell.bgImage.layer.cornerRadius = 5
+                cell.bgImage.layer.cornerRadius = 8
 
-//                cell.coverImage.layer.cornerRadius = cell.coverImage.frame.width/2
-//                cell.coverImage.clipsToBounds = true
-//                
-//                cell.coverImage.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["data"][indexPath.row]["name"].stringValue, width: 300))
-                cell.bgImage.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["data"][indexPath.row]["name"].stringValue, width: 300))
-                cell.albumTitle.attributedText = createHeaderDate(currDate: allData[indexPath.row]["token"].stringValue, count: allData[indexPath.row]["count"].stringValue)
+                cell.bgImage.clipsToBounds = true
+//
+                cell.bgImage.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["data"][0]["name"].stringValue, width: 300))
+                cell.albumTitle.attributedText = createHeaderDate(currDate: allData[indexPath.row]["data"][0]["UTCModified"].stringValue, count: allData[indexPath.row]["count"].stringValue)
 
                 
                 return cell
             case "travel-life":
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "travelLifeMomentsCell", for: indexPath) as! TravelLifeMomentsCollectionViewCell
                 
-//                cell.coverImage.layer.cornerRadius = cell.coverImage.frame.width/2
-//                cell.coverImage.clipsToBounds = true
                 
-                //            cell.albumDated.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd-MM-yyyy", date: allData[indexPath.row]["startTime"].stringValue, isDate: false)
-                
-                cell.bgImage.layer.borderColor = UIColor.white.cgColor
-                cell.bgImage.layer.borderWidth = 5.0
-                cell.bgImage.layer.cornerRadius = 5
-                cell.bgImage.layer.shadowOffset = CGSize(width: 10, height: 10)
-                cell.bgImage.layer.shadowColor = UIColor.black.cgColor
-                cell.bgImage.layer.shadowRadius = 10
-//                cell.bgImage.transform = CGAffineTransform(rotationAngle: 0.0349066)
+                cell.bgImage.layer.cornerRadius = 8
                 cell.bgImage.clipsToBounds = true
                 cell.bgImage.image = UIImage(named: "logo-default")
                 
                 if allData[indexPath.row]["coverPhoto"] != nil {
-//                    cell.coverImage.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["coverPhoto"].stringValue, width: 300))
                     cell.bgImage.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["coverPhoto"].stringValue, width: 300))
                 }else{
-//                    cell.coverImage.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["startLocationPic"].stringValue, width: 300))
                     cell.bgImage.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["startLocationPic"].stringValue, width: 300))
                 }
                 
@@ -497,7 +488,8 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
         //let array = getMonthFormat(currDate)
         let headerLabel = NSMutableAttributedString(string: "")
         //let month = NSAttributedString(string: array, attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: 14)!])
-        let month = NSAttributedString(string: getFormat(currDate, formate: "MMM, yyyy"), attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: 14)!])
+        let month = NSAttributedString(string: getDateFormat(currDate, format: "d MMM, yyyy")
+, attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: 14)!])
         
 
         let count = NSAttributedString(string: " (\(count))", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: 11)!])

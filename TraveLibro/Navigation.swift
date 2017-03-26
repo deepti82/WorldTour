@@ -1654,7 +1654,7 @@ class Navigation {
                 if type == "travel-life" {
                     params = ["user": user, "type": type, "pagenumber": pageNumber, "urlSlug": urlSlug!]
                 } else if type == "local-life" {
-                    params = ["user": user, "token": token, "type": type, "limit": 2, "times": 6, "urlSlug": urlSlug!]
+                    params = ["user": user, "token": token, "type": type, "limit": 1, "times": 6, "urlSlug": urlSlug!]
                 } else {
                     params = ["user": user, "token": token, "type": type, "limit": 20, "times": 10, "urlSlug": urlSlug!]
                 }
@@ -1663,7 +1663,7 @@ class Navigation {
                 if type == "travel-life" {
                     params = ["user": user, "type": type, "pagenumber": pageNumber]
                 } else if type == "local-life" {
-                    params = ["user": user, "token": token, "type": type, "limit": 2, "times": 6]
+                    params = ["user": user, "token": token, "type": type, "limit": 1, "times": 6]
                 } else {
                     params = ["user": user, "token": token, "type": type, "limit": 20, "times": 10]
                 }
