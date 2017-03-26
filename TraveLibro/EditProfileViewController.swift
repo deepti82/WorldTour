@@ -44,7 +44,7 @@ class EditProfileViewController: UIViewController, UITableViewDataSource, UITabl
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        if shouldSave == true{
+        if shouldSave == true {
             saveAll()
         }
     }
@@ -102,7 +102,7 @@ class EditProfileViewController: UIViewController, UITableViewDataSource, UITabl
                 cell.profilePhoto.image = pickerImage
             }
             else{
-                cell.profilePhoto.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(currentUser["profilePicture"])", width: 100))
+                cell.profilePhoto.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(currentUser["profilePicture"])", width: 80))
             }
             cell.accessoryType = .none
             return cell

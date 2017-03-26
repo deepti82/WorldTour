@@ -19,7 +19,7 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
     var filter: [JSON]!
     var searchText = ""
     var followersMainCopy: [JSON] = []
-    
+    var back: Bool = true
     
     //MARK: - Lifecycle
     
@@ -32,18 +32,23 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
         
         loader.showOverlay(self.view)
         
-        let leftButton = UIButton()
-        leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
-        leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
-        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-        
         let rightButton = UIButton()
         rightButton.setTitle("Invite", for: .normal)
         rightButton.setTitleColor(mainGreenColor, for: .normal)
         rightButton.addTarget(self, action: #selector(FollowersViewController.inviteButtonClicked(sender:)), for: .touchUpInside)
         rightButton.frame = CGRect(x: 0, y: 0, width: 50, height: 30)
         
-        self.customNavigationBar(left: leftButton, right: rightButton)
+//        if back {
+            let leftButton = UIButton()
+            leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
+            leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
+            leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+            
+            self.customNavigationBar(left: leftButton, right: rightButton)
+//        }
+//        else{
+//            self.setOnlyRightNavigationButton(rightButton)
+//        }
         
         followerTable.delegate = self
         followerTable.dataSource = self
@@ -111,9 +116,8 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
         })
     }
     
-    func getFollowers() {
+    func getFollowers() {       
         
-        print("inside following function")
         request.getFollowers(user.getExistingUser(), searchText: searchText, urlSlug:selectedUser["urlSlug"].stringValue,  completion: {(response) in
             
             DispatchQueue.main.async(execute: {
@@ -294,8 +298,7 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
         else if followers.count != 0 {
             cell.profileName.text = followers[(indexPath as NSIndexPath).row]["name"].string!
             cell.urlSlurg.text = "@\(followers[(indexPath as NSIndexPath).row]["urlSlug"].string!)"
-            if followers[(indexPath as NSIndexPath).row]["profilePicture"] != nil {
-                print(followers[(indexPath as NSIndexPath).row]["profilePicture"].string!)
+            if followers[(indexPath as NSIndexPath).row]["profilePicture"] != nil {                
                 let image = followers[(indexPath as NSIndexPath).row]["profilePicture"].string!
                 setImage(cell.profileImage, imageName: image)
             }
@@ -367,8 +370,6 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
         
         var followId: String!
         
-        print("followers: \(followers)")
-        
         var Index = 0
         
         for i in 0 ..< followers.count {
@@ -412,8 +413,6 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
         
         var unfollowId: String!
         
-        print("followers: \(followers)")
-        
         var Index = 0
         
         for i in 0 ..< followers.count {
@@ -436,7 +435,7 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
                 }
                 else if response["value"].bool! {
                     
-                    print("response arrived!")
+                    print("response arrived! : \(response)")
 //                    var newJson = followers[Index]
 //                    newJson["following"] = JSON(response["data"]["responseValue"].stringValue)
 //                    followers[Index] = newJson
@@ -475,27 +474,22 @@ class FollowersCell: UITableViewCell {
     
     @IBAction func followTap(_ sender: UIButton) {
         
-        if sender.tag == 0 {
-            
-            print("profile name follow: \(profileName.text)")
+        if sender.tag == 0 {            
             parent.followUser(getURLSlug(slug: urlSlurg.text!), sender: sender)
             sender.tag = 1
             sender.setImage(UIImage(named:"following"), for: .normal)
             sender.contentMode = .scaleAspectFit
             sender.clipsToBounds = true
             sender.isSelected = true
-            
         }
             
         else if sender.tag == 1 {
-            print("profile name unfollow: \(profileName.text)")
             parent.unFollowUser(getURLSlug(slug: urlSlurg.text!), sender: sender)
             sender.tag = 0
             sender.setImage(UIImage(named:"follow"), for: .normal)
             sender.contentMode = .scaleAspectFit
             sender.clipsToBounds = true
             sender.isSelected = false
-            
         }
         
         else if sender.tag == 2 {            

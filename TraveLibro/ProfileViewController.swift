@@ -545,11 +545,8 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         
         if toggle {
             MAMTapped(nil)
-        }
+        }        
         
-        print("Selected item: \((indexPath as NSIndexPath).item)")
-        print(labels)
-        print(labels[0])
         switch (indexPath as NSIndexPath).item {
         case 0:
             if displayData == "search" {
@@ -559,13 +556,19 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
                 }else{
                     let followersVC = storyboard?.instantiateViewController(withIdentifier: "followers") as! FollowersViewController
                     followersVC.whichView = "Following"
+                    if !(selectedUser.isEmpty){
+                        followersVC.back = false
+                    }
                     self.navigationController?.pushViewController(followersVC, animated: true)
                 }
                 
             }else{
-            let followersVC = storyboard?.instantiateViewController(withIdentifier: "followers") as! FollowersViewController
-            followersVC.whichView = "Following"
-            self.navigationController?.pushViewController(followersVC, animated: true)
+                let followersVC = storyboard?.instantiateViewController(withIdentifier: "followers") as! FollowersViewController
+                followersVC.whichView = "Following"
+                if !(selectedUser.isEmpty){
+                    followersVC.back = false
+                }
+                self.navigationController?.pushViewController(followersVC, animated: true)
             }
             break
         case 1:
@@ -576,12 +579,18 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
                 }else{
                     let followersVC = storyboard?.instantiateViewController(withIdentifier: "followers") as! FollowersViewController
                     followersVC.whichView = "Followers"
+                    if !(selectedUser.isEmpty){
+                        followersVC.back = false
+                    }
                     self.navigationController?.pushViewController(followersVC, animated: true)
                 }
             }else{
-            let followersVC = storyboard?.instantiateViewController(withIdentifier: "followers") as! FollowersViewController
-            followersVC.whichView = "Followers"
-            self.navigationController?.pushViewController(followersVC, animated: true)
+                let followersVC = storyboard?.instantiateViewController(withIdentifier: "followers") as! FollowersViewController
+                followersVC.whichView = "Followers"
+                if !(selectedUser.isEmpty){
+                    followersVC.back = false
+                }
+                self.navigationController?.pushViewController(followersVC, animated: true)
             }
             break
         case 2:
@@ -616,8 +625,10 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
                     self.navigationController?.pushViewController(journeys, animated: true)
                 }
             }else{
-            let journeys = storyboard?.instantiateViewController(withIdentifier: "allJourneysCreated") as! AllJourneysViewController
-            self.navigationController?.pushViewController(journeys, animated: true)
+                let myLifeVC = self.storyboard?.instantiateViewController(withIdentifier: "myLife") as! MyLifeViewController
+                self.navigationController!.pushViewController(myLifeVC, animated: true)
+//            let journeys = storyboard?.instantiateViewController(withIdentifier: "allJourneysCreated") as! AllJourneysViewController
+//            self.navigationController?.pushViewController(journeys, animated: true)
             }
             break
         case 6 :
