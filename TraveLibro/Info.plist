@@ -84,6 +84,8 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>$(PRODUCT_NAME) will use Video Library</string>
 	<key>NSCameraUsageDescription</key>
 	<string>$(PRODUCT_NAME) will use Camera</string>
 	<key>NSLocationAlwaysUsageDescription</key>

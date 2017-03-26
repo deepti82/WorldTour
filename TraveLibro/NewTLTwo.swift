@@ -608,8 +608,10 @@ extension NewTLViewController {
         self.view.bringSubview(toFront: addPostsButton)
         self.view.bringSubview(toFront: mainFooter)
         self.view.bringSubview(toFront: infoButton)
-        
-        self.scrollToBottom();
+        if globalNewTLViewController.fromOutSide == "" {
+            self.scrollToBottom();
+
+        }
         
     }
     func scrollToBottom() {

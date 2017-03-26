@@ -1126,7 +1126,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         
         if fromOutSide != "" {
             addPostsButton.isHidden = true
-        }else{
+        } else {
             addPostsButton.isHidden = false
         }
         
@@ -1830,7 +1830,9 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         self.layout.layoutSubviews()
         self.mainScroll.contentSize = CGSize(width: self.layout.frame.width, height: self.layout.frame.height + 220)
         if(height != 500) {
-            self.scrollToBottom1()
+            if fromOutSide == "" {
+                self.scrollToBottom1()
+            }
         }
         
     }
@@ -2429,8 +2431,14 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         otgView.addBuddiesButton.isHidden = true
         otgView.closeBuddies.isHidden = true
         infoButton.isHidden = true
-        addPostsButton.isHidden = false
-//        otgView.lineThree.isHidden = false
+        
+        if fromOutSide != "" {
+            addPostsButton.isHidden = true
+        } else {
+            addPostsButton.isHidden = false
+        }
+        
+        //        otgView.lineThree.isHidden = false
         
         
         if fromOutSide == "" {
