@@ -30,8 +30,10 @@ class AddYearsCountriesVisitedTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //loader.showOverlay(self.view)
-        getDarkBackGround(self)
-        tableView.backgroundColor = UIColor(patternImage: UIImage(named: "darkBgNew")!)
+//        getDarkBackGround(self)
+        
+        self.tableView.backgroundView = UIImageView(image: UIImage(named: "darkBgNew"))
+        
         trialVariable = []
         let dateFormatter = DateFormatter()        
         dateFormatter.dateFormat = "yyyy"
@@ -136,12 +138,10 @@ class AddYearsCountriesVisitedTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         
         if shouldShowSearchResults && filteredArray != nil {
             
@@ -154,6 +154,7 @@ class AddYearsCountriesVisitedTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "yearCells", for: indexPath) as! AddYearsTableViewCell
+        
         if shouldShowSearchResults && filteredArray != nil {
             cell.yearLabel.text = filteredArray[(indexPath as NSIndexPath).row]
         }
