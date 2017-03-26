@@ -207,9 +207,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
     //MARK: - TableView Datasource and Delegates
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        
         return 1
-        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

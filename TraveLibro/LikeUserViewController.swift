@@ -20,6 +20,8 @@ class LikeUserViewController: UITableViewController {
         super.viewDidLoad()
         createNavigation()
         loadLikes(page: pagenumber)
+        getDarkBackGround(self)
+        self.tableView.tableFooterView = UIView()
     }
     
     func loadLikes(page:Int) {

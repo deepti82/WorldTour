@@ -107,12 +107,11 @@ class ActivityFeedFooter: UIView {
     func showLike(_ sender: UITapGestureRecognizer) {
         print("in footer tap out \(postTop)")
         if currentUser != nil {
-
-        let feedVC = storyboard!.instantiateViewController(withIdentifier: "likeTable") as! LikeUserViewController
-        feedVC.postId = postTop["_id"].stringValue
-        feedVC.type = postTop["type"].stringValue
-        feedVC.title = postTop["name"].stringValue
-        globalNavigationController.pushViewController(feedVC, animated: true)
+            let feedVC = storyboard!.instantiateViewController(withIdentifier: "likeTable") as! LikeUserViewController
+            feedVC.postId = postTop["_id"].stringValue
+            feedVC.type = postTop["type"].stringValue
+            feedVC.title = postTop["name"].stringValue
+            globalNavigationController.pushViewController(feedVC, animated: true)
         }
         else {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
