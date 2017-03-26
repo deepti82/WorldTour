@@ -22,7 +22,6 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
     var searchText = ""
     var followersMainCopy: [JSON] = []
     var back: Bool = true
-    var currentSelectedUser:JSON = []
     
     //MARK: - Lifecycle
     
@@ -90,8 +89,7 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
     
     func getFollowing() {
         
-        print("inside following function")
-        request.getFollowing(user.getExistingUser(), searchText: searchText, urlSlug:currentSelectedUser["urlSlug"].stringValue,  completion: {(response) in
+        request.getFollowing(user.getExistingUser(), searchText: searchText, urlSlug:selectedUser["urlSlug"].stringValue,  completion: {(response) in
             
             DispatchQueue.main.async(execute: {
                 
@@ -107,7 +105,9 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
                     self.headerText.text = "Following (\(self.followers.count))"
                     self.followerTable.reloadData()
                     loader.hideOverlayView()
-                    if (self.searchText == "" && (self.followers.count > 0 && self.followers.first!["following"].intValue != 1)) {
+                    if (selectedUser["urlSlug"].stringValue == "" &&
+                        self.searchText == "" &&
+                        (self.followers.count > 0 && self.followers.first!["following"].intValue != 1)) {
                         self.noFollowingFound()
                     }
                 }
@@ -119,9 +119,9 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
         })
     }
     
-    func getFollowers() {       
+    func getFollowers() {
         
-        request.getFollowers(user.getExistingUser(), searchText: searchText, urlSlug:currentSelectedUser["urlSlug"].stringValue,  completion: {(response) in
+        request.getFollowers(user.getExistingUser(), searchText: searchText, urlSlug:selectedUser["urlSlug"].stringValue,  completion: {(response) in
             
             DispatchQueue.main.async(execute: {
                 self.headerText.text = "Following (0)"
@@ -341,7 +341,7 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
         
         let profile = storyboard?.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
         profile.displayData = "search"
-        profile.currentSelectedUser = selectedUser
+        profile.currentSelectedUser = followers[indexPath.row]
         globalNavigationController.pushViewController(profile, animated: true)
     }
     

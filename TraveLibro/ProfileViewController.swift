@@ -126,10 +126,8 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     //MARK: - Lifecycle
     
     override func viewDidLoad() {
-        print("my user oooouuu.")
-        print(user.getExistingUser())
         super.viewDidLoad()
-        
+       
         getUnreadNotificationCount()
         
         loader.showOverlay(self.view)
@@ -139,7 +137,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
 //        scrollViewWillBeginDragging(collectionView)
         myLifeVC = storyboard?.instantiateViewController(withIdentifier: "myLife") as! MyLifeViewController
         myLifeVC.whatEmptyTab = "Journeys"
-                if traitCollection.forceTouchCapability == .available {
+        if traitCollection.forceTouchCapability == .available {
             registerForPreviewing(with: self, sourceView: view)
         }
         
@@ -223,10 +221,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         self.orangeTab.frame = CGRect(x: 5, y: self.view.frame.size.height - 125, width: self.view.frame.size.width - 10, height: 50)
         customView.frame = CGRect(x: 0, y: self.view.frame.size.height - 75, width: self.view.frame.width, height: 75)
         
-        print("\n currentSelectedUser: \(currentSelectedUser["name"]) ")
         selectedUser = currentSelectedUser
-        
-        print("\n currentSelectedUser: \(currentSelectedUser["name"]) ")
         
         if isSettingsEdited && selectedUser.isEmpty && currentUser != nil {            
             var imageName = ""
@@ -590,7 +585,6 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
                     followersVC.whichView = "Following"
                     if !(selectedUser.isEmpty){
                         followersVC.back = false
-                        followersVC.currentSelectedUser = currentUser
                     }
                     self.navigationController?.pushViewController(followersVC, animated: true)
                 }
@@ -600,7 +594,6 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
                 followersVC.whichView = "Following"
                 if !(selectedUser.isEmpty){
                     followersVC.back = false
-                    followersVC.currentSelectedUser = currentUser
                 }
                 self.navigationController?.pushViewController(followersVC, animated: true)
             }
@@ -615,7 +608,6 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
                     followersVC.whichView = "Followers"
                     if !(selectedUser.isEmpty){
                         followersVC.back = false
-                        followersVC.currentSelectedUser = currentUser
                     }
                     self.navigationController?.pushViewController(followersVC, animated: true)
                 }
@@ -624,7 +616,6 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
                 followersVC.whichView = "Followers"
                 if !(selectedUser.isEmpty){
                     followersVC.back = false
-                    followersVC.currentSelectedUser = currentUser
                 }
                 self.navigationController?.pushViewController(followersVC, animated: true)
             }
