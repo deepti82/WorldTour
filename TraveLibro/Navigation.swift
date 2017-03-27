@@ -4,7 +4,7 @@ import SwiftHTTP
 import OneSignal
 import Haneke
 
-var adminUrl = "https://travelibro.net/api/"
+var adminUrl = "https://travelibro.com/api/"
 var adminBackendUrl = "http://travelibrobackend.wohlig.com/api/"
 var mapKey = "AIzaSyDPH6EYKMW97XMTJzqYqA0CR4fk5l2gzE4"
 

@@ -77,7 +77,7 @@ class EditSettingsViewController: UIViewController, UIWebViewDelegate {
             }
             else {
                 self.title = "About Us"
-                pdfPath = NSURL(string: "http://travelibro.net/#/about-travelibro")! as URL
+                pdfPath = NSURL(string: "https://travelibro.com/about-travelibro")! as URL
             }
             
             self.view.backgroundColor = UIColor.clear
