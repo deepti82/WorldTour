@@ -217,7 +217,7 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate, iCarouselDeleg
         }
         
         
-        request.globalLike(val, userId: currentUser["_id"].string!, unlike: hasLiked!, type: self.type, completion: {(response) in
+        request.globalLike(val, userId: existingUserGlobal, unlike: hasLiked!, type: self.type, completion: {(response) in
             
             DispatchQueue.main.async(execute: {
                 self.loader.hideOverlayView()
@@ -555,7 +555,7 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate, iCarouselDeleg
         else{
             var val = ""
             if whichView == "detail_itinerary" {
-                val = currentUser["_id"].stringValue
+                val = existingUserGlobal
             }
             else {
                 val = singlePost["user"]["_id"].string!
