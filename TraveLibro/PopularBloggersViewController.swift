@@ -251,9 +251,8 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
                         if response.error != nil {
                             print("error: \(response.error!.localizedDescription)")
                         }
-                        else if response["value"].bool! {                            
-                            self.refreshControl.beginRefreshing()
-                            self.pullToRefreshCalled()
+                        else if response["value"].bool! {
+                            setFollowButtonTitle(button: sender, followType: response["data"]["responseValue"].intValue, otherUserID: "")
                         }
                         else {
                             print("error: \(response["error"])")
@@ -268,9 +267,7 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
                             print("error: \(response.error!.localizedDescription)")
                         }
                         else if response["value"].bool! {
-                            print("response arrived!")
-                            self.refreshControl.beginRefreshing()
-                            self.pullToRefreshCalled()
+                            setFollowButtonTitle(button: sender, followType: response["data"]["responseValue"].intValue, otherUserID: "")
                         }
                         else {                            
                             print("error: \(response["error"])")
