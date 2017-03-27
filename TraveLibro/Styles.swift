@@ -725,7 +725,7 @@ func shouldShowBigImage(position: Int) -> Bool {
 
 func setFollowButtonTitle(button:UIButton, followType: Int, otherUserID: String) {
     
-    if isSelfUser(otherUserID: otherUserID) {
+    if otherUserID == "admin" || isSelfUser(otherUserID: otherUserID) {
         button.isHidden = true
     }
     else{

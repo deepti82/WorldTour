@@ -221,7 +221,7 @@ class PopularLayout: VerticalLayout, PlayerDelegate {
         footerView.footerType = feed["type"].stringValue
         if (feed["type"].stringValue == "detail-itinerary") || feed["type"].stringValue == "quick-itinerary"{
             footerView.followBtn.isHidden = false
-            setFollowButtonTitle(button: footerView.followBtn, followType: feed["following"].intValue, otherUserID:  feed["_id"].stringValue)
+            setFollowButtonTitle(button: footerView.followBtn, followType: feed["following"].intValue, otherUserID: (feed["itineraryBy"].stringValue.lowercased() == "admin") ? "admin" : feed["_id"].stringValue)
             footerView.followBtn.addTarget(self, action: #selector(PopularLayout.followBtnClicked(_:)), for: .touchUpInside)
         }
         footerView.setCommentCount(feed["commentCount"].intValue)
@@ -390,7 +390,7 @@ class PopularLayout: VerticalLayout, PlayerDelegate {
         }
     }
     
-    func showDetailedItinerary(_ sender: UIButton) {
+    func showDetailedItinerary(_ sender: UIButton) {        
         if currentUser != nil {
             print("detail itinerary clicked \(feeds["_id"].stringValue)")
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -400,7 +400,9 @@ class PopularLayout: VerticalLayout, PlayerDelegate {
             globalNavigationController?.pushViewController(controller, animated: true)
         }
         else {
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
+            if (feeds["itineraryBy"].stringValue.lowercased() != "admin") {
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)                
+            }
         }
     }
     

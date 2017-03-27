@@ -434,7 +434,9 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             globalNavigationController?.pushViewController(controller, animated: true)
         }
         else {
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
+            if (feeds["itineraryBy"].stringValue.lowercased() != "admin") {
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)                
+            }
         }
     }
     
