@@ -636,10 +636,10 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
                     let tstr = Toast(text: "\(currentUser["firstname"]) don't have any Journey.")
                     tstr.show()
                 }else{
-                    self.MyLifeDetailsShow(nil)
+                    self.myLifeNavigateWithTab(whichView: "Journeys")
                 }
             }else{
-                self.MyLifeDetailsShow(nil)
+                self.myLifeNavigateWithTab(whichView: "Journeys")
             }
             break
         case 5:
@@ -652,14 +652,12 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
                         //Dont show anything
                     }
                     else {
-                        let photosVC = storyboard?.instantiateViewController(withIdentifier: "myLife") as! MyLifeViewController
-                        photosVC.whatEmptyTab = "Moments"
-                        self.navigationController?.pushViewController(photosVC, animated: true)
+                        self.myLifeNavigateWithTab(whichView: "Journeys")
                     }
                 }
             }
             else{
-                self.MyLifeDetailsShow(nil)
+                self.myLifeNavigateWithTab(whichView: "Journeys")
             }
             break
         case 6 :
@@ -672,9 +670,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
                         //Dont show anything
                     }
                     else {
-                        let photosVC = storyboard?.instantiateViewController(withIdentifier: "myLife") as! MyLifeViewController
-                        photosVC.whatEmptyTab = "Moments"
-                        self.navigationController?.pushViewController(photosVC, animated: true)
+                        self.myLifeNavigateWithTab(whichView: "Moments")
                     }
                 }
             }else{
@@ -682,9 +678,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
                     //Dont show anything
                 }
                 else {
-                    let photosVC = storyboard?.instantiateViewController(withIdentifier: "myLife") as! MyLifeViewController
-                    photosVC.whatEmptyTab = "Moments"
-                    self.navigationController?.pushViewController(photosVC, animated: true)
+                    self.myLifeNavigateWithTab(whichView: "Moments")
                 }
             }
             break
@@ -694,10 +688,10 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
                     let tstr = Toast(text: "\(currentUser["firstName"].stringValue) not reviewed any location.")
                     tstr.show()
                 }else{
-                    self.MyLifeDetailsShow(nil)
+                    self.myLifeNavigateWithTab(whichView: "Reviews")
                 }
             }else{
-                self.MyLifeDetailsShow(nil)
+                self.myLifeNavigateWithTab(whichView: "Reviews")
             }
             break
         default:
@@ -712,19 +706,19 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         if(!selectedUser.isEmpty && currentUser["status"].stringValue == "private") {
             //Dont show anything
         }
-        else {
+        else {            
             let myLifeVC = self.storyboard?.instantiateViewController(withIdentifier: "myLife") as! MyLifeViewController
-            if (sender != nil) { 
-                myLifeVC.whatEmptyTab = "Journeys"
-                self.navigationController!.pushViewController(myLifeVC, animated: false)
-            }
-            else {
-                self.navigationController!.pushViewController(myLifeVC, animated: true)
-            }
-            
+            self.navigationController!.pushViewController(myLifeVC, animated: false)
         }
 //            UIView.setAnimationTransition(UIViewAnimationTransition.curlUp, for: self.navigationController!.view!, cache: false)
 //        })
+    }
+    
+    func myLifeNavigateWithTab(whichView: String) {
+        
+        let photosVC = storyboard?.instantiateViewController(withIdentifier: "myLife") as! MyLifeViewController
+        photosVC.whatEmptyTab = whichView
+        self.navigationController?.pushViewController(photosVC, animated: true)
     }
     
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
