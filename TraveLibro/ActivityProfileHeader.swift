@@ -47,13 +47,17 @@ class ActivityProfileHeader: UIView {
     }
     
     func toProfile(_ sender: AnyObject) {
-        print("clicked \(currentFeed)")
-        //selectedPeople = currentFeed["user"]["_id"].stringValue
-        selectedUser = currentFeed["user"]
-        let profile = storyboard.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
-        profile.displayData = "search"
-        profile.currentSelectedUser = selectedUser
-        globalNavigationController.pushViewController(profile, animated: true)
+        
+        if currentUser != nil {
+            selectedUser = currentFeed["user"]
+            let profile = storyboard.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
+            profile.displayData = "search"
+            profile.currentSelectedUser = selectedUser
+            globalNavigationController.pushViewController(profile, animated: true)
+        }
+        else {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
+        }
     }
     
     func fillProfileHeader(feed:JSON) {

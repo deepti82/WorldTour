@@ -117,13 +117,6 @@ extension UIViewController {
         self.navigationController!.popViewController(animated: true)
     }
     
-//    func toProfile(id:String) {
-//        selectedPeople = id
-//        let profile = storyboard.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
-//        profile.displayData = "search"
-//        globalNavigationController.pushViewController(profile, animated: true)
-//    }
-    
     func callBackViewC() {
         self.navigationController!.popViewController(animated: true)
     }

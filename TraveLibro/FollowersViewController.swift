@@ -270,8 +270,6 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
         cell.profileImage.image = UIImage(named: "logo-default")
         HiBye(cell.profileImage)
         
-        cell.setAll()
-        
         if filter != nil {
             print("\n celldata : \(filter[indexPath.row])")
         }
@@ -515,22 +513,6 @@ class FollowersCell: UITableViewCell {
             //Nothing should happen
         }
     }
-    
-    func toProfile(_ sender: AnyObject) {
-        print("clicked \(currentUser)")
-//        selectedPeople = currentUser["user"]["_id"].stringValue
-//        selectedUser = currentFeed["user"]
-//        let profile = storyboard.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
-//        profile.displayData = "search"
-//        globalNavigationController.pushViewController(profile, animated: true)
-    }
-    
-    func setAll() {
-        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(self.toProfile(_:)))
-        self.profileImage.addGestureRecognizer(tapGestureRecognizer)
-    }
-    
-    
     
     func getURLSlug(slug: String) -> String {
         var myString = slug

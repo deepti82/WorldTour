@@ -318,8 +318,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
     }
     
     func applicationDidEnterBackground(_ application: UIApplication) {
-        let notificationCount = UserDefaults.standard.value(forKey: "notificationCount") as! Int
-        application.applicationIconBadgeNumber = notificationCount
+        if (UserDefaults.standard.object(forKey: "notificationCount") != nil) {
+            let notificationCount = UserDefaults.standard.value(forKey: "notificationCount") as! Int
+            application.applicationIconBadgeNumber = notificationCount
+        }
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     }
@@ -488,22 +490,24 @@ func hideBottomLoader() {
 
 func getUnreadNotificationCount() {
     
-    request.getUnreadNotificationCount(currentUser["_id"].stringValue) { (response) in
+    if user.getExistingUser() != "" {
         
-        DispatchQueue.main.async(execute: { 
-            
-            if response.error != nil {
-                print("\n Error : \(response.error?.localizedDescription)")
-            }
-            else if response["value"].bool! {
-                let notificationCount = response["data"].intValue
-                UserDefaults.standard.set(notificationCount, forKey: "notificationCount")
-                updateFooterBadge()
-            }
-            else{
-                UserDefaults.standard.set(0, forKey: "notificationCount")
-            }
-        })
+        request.getUnreadNotificationCount(currentUser["_id"].stringValue) { (response) in
+            DispatchQueue.main.async(execute: { 
+                
+                if response.error != nil {
+                    print("\n Error : \(response.error?.localizedDescription)")
+                }
+                else if response["value"].bool! {
+                    let notificationCount = response["data"].intValue
+                    UserDefaults.standard.set(notificationCount, forKey: "notificationCount")
+                    updateFooterBadge()
+                }
+                else{
+                    UserDefaults.standard.set(0, forKey: "notificationCount")
+                }
+            })
+        }
     }
     
 }
