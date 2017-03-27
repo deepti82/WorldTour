@@ -1674,12 +1674,15 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
             dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSZ"
             self.inputview = UIView(frame: CGRect(x: 0, y: UIScreen.main.bounds.size.height - 10, width: self.view.frame.size.width, height: 240))
             self.inputview.backgroundColor = UIColor.white
+            
             self.datePickerView = UIDatePicker(frame: CGRect(x: 0, y: 40, width: self.inputview.frame.size.width, height: 200))
             self.datePickerView.datePickerMode = UIDatePickerMode.dateAndTime
             self.datePickerView.maximumDate = Date()
+            
             self.backView = UIView(frame: CGRect(x: 0, y: UIScreen.main.bounds.size.height - 240, width: self.view.frame.size.width, height: 40))
             self.backView.backgroundColor = UIColor(hex: "#272b49")
             self.inputview.addSubview(self.datePickerView) // add date picker to UIView
+            
             let doneButton = UIButton(frame: CGRect(x: UIScreen.main.bounds.size.width - 100, y: 0, width: 100, height: 40))
             doneButton.setTitle("Save", for: .normal)
             doneButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14.0)
@@ -1748,7 +1751,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSZ"
         self.inputview = UIView(frame: CGRect(x: 0, y: UIScreen.main.bounds.size.height - 200, width: self.view.frame.size.width, height: 240))
         self.inputview.backgroundColor = UIColor.white
-        self.datePickerView = UIDatePicker(frame: CGRect(x: 0, y: 40, width: self.inputview.frame.size.width, height: 200))
+        self.datePickerView = UIDatePicker(frame: CGRect(x: 0, y: 10, width: self.inputview.frame.size.width, height: 200))
         self.datePickerView.datePickerMode = UIDatePickerMode.dateAndTime
         self.datePickerView.minimumDate = dateFormatter.date(from: myJourney["startTime"].string!)
         self.datePickerView.date = dateFormatter.date(from: footer.postTop.jsonPost["UTCModified"].stringValue)!

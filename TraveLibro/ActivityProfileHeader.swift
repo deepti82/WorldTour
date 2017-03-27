@@ -46,6 +46,18 @@ class ActivityProfileHeader: UIView {
         super.init(coder: aDecoder)
     }
     
+    func loadViewFromNib() {
+        
+        let bundle = Bundle(for: type(of: self))
+        let nib = UINib(nibName: "ActivityProfileHeader", bundle: bundle)
+        let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
+        view.frame = bounds
+        view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        self.addSubview(view)
+        
+    }
+
+    
     func toProfile(_ sender: AnyObject) {
         
         if currentUser != nil {
@@ -177,16 +189,6 @@ class ActivityProfileHeader: UIView {
         
     }
     
-    func loadViewFromNib() {
-        
-        let bundle = Bundle(for: type(of: self))
-        let nib = UINib(nibName: "ActivityProfileHeader", bundle: bundle)
-        let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
-        view.frame = bounds
-        view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        self.addSubview(view)
-        
-    }
     
 
 
