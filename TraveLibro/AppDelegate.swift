@@ -60,6 +60,7 @@ var popularView = "popular"
 
 var shouldShowLoader = false
 var isSettingsEdited = false
+var isCountryAdded = false
 
 let user = User()
 

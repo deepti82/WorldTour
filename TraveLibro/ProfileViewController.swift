@@ -223,7 +223,11 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         
         selectedUser = currentSelectedUser
         
-        if isSettingsEdited && selectedUser.isEmpty && currentUser != nil {            
+        if isCountryAdded {
+            isCountryAdded = false
+            getUser()
+        }
+        else if isSettingsEdited && selectedUser.isEmpty && currentUser != nil {            
             var imageName = ""
             imageName = currentUser["profilePicture"].string!
             

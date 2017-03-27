@@ -313,7 +313,7 @@ class AddYearsCountriesVisitedTableViewController: UITableViewController {
                 }
                     
                  else if response["value"].bool! {
-                    
+                    isCountryAdded = true
                     print("response arrived")
                     //                    let total = self.navigationController?.viewControllers
                     let prevVC = self.storyboard?.instantiateViewController(withIdentifier: "bucketList") as! BucketListTableViewController
