@@ -469,7 +469,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
                 }
                 
                 cell.albumTitle.text = allData[indexPath.row]["name"].stringValue + " (\(allData[indexPath.row]["mediaCount"].stringValue))"
-                cell.albumDated.text = getDateFormat(allData[indexPath.row]["startTime"].stringValue, format: "d MMM, yyyy")
+                cell.albumDated.text = getDateFormat(allData[indexPath.row]["startTime"].stringValue, format: "MMMM, yyyy")
                 
                 
                 
@@ -521,7 +521,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
             headerLabel.append(count)
 
         }else{
-            let month = NSAttributedString(string: getDateFormat(currDate, format: "d MMM, yyyy")
+            let month = NSAttributedString(string: getDateFormat(currDate, format: "MMMM, yyyy")
                 , attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: 14)!])
             
             
@@ -558,6 +558,8 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         
         if momentType == "all" {
+            return CGSize(width: 50, height: 50)
+        }else if insideView == "Monthly"{
             return CGSize(width: 50, height: 50)
         }else{
             return CGSize(width: 0, height: 5)

@@ -134,7 +134,7 @@ class ListPhotosViewController: UIViewController {
         attributedString.append(string)
         photoList.daysLabel.attributedText = attributedString
         photoList.mi = photo
-        photoList.timeLabel.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSZ", getFormat: "HH:mm", date: photo["createdAt"].string!)
+        photoList.timeLabel.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "HH:mm", date: photo["createdAt"].string!)
         if photo["isDoneLike"] != nil {
             if photo["isDoneLike"].bool! {
                 photoList.likeButton = SpringButton(type: .custom)

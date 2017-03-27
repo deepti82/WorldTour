@@ -26,7 +26,8 @@ class TripPhotoHeader: UIView {
     
     func fillProfileHeader(feed:JSON) {
 
-        timeNow.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd-MM-yyyy", date: feed["createdAt"].stringValue, isDate: true)
+        
+        timeNow.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "HH:mm", date: feed["createdAt"].string!, isDate: false)
 
     }
     
