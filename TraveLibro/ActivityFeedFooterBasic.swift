@@ -506,13 +506,14 @@ class ActivityFeedFooterBasic: UIView {
                     globalMyLifeViewController.showEditActivity(self.postTop)
                     //print("inside edit check in \(self.addView), \(self.newScroll.isHidden)")
                 }
-                actionSheetControllerIOS8.addAction(EditCheckIn)
+//                actionSheetControllerIOS8.addAction(EditCheckIn)
                 
                 let EditDnt: UIAlertAction = UIAlertAction(title: "Change Date & Time", style: .default)
                 { action -> Void in
                     globalMyLifeViewController.changeDateAndTime(self)
                 }
                 actionSheetControllerIOS8.addAction(EditDnt)
+                
                 let DeletePost: UIAlertAction = UIAlertAction(title: "Delete Activity", style: .default)
                 { action -> Void in
                     
@@ -532,7 +533,7 @@ class ActivityFeedFooterBasic: UIView {
                 { action -> Void in
                     globalMyLifeViewController.showEditAddActivity(self.postTop)
                 }
-                actionSheetControllerIOS8.addAction(share)
+//                actionSheetControllerIOS8.addAction(share)
                 
                 let cancel: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel)
                 { action -> Void in
