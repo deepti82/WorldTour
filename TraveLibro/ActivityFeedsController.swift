@@ -150,11 +150,16 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
                         hideBottomLoader()
                         NSLog(" check Response received \(request)")
                         
+
                         if self.isRefreshing {
                             self.refreshControl.endRefreshing()
                             self.isRefreshing = false
+
+                        if pageNumber == 1 {
+                            self.layout.removeAll()
+
                         }
-                        
+                        }
                         for var post in quickJsons {
                             
                             self.loader.hideOverlayView()
@@ -203,9 +208,7 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
                         
                         
                         if !(request["data"].isEmpty) {
-                            if pageNumber == 1 {
-                                self.layout.removeAll()
-                            }
+                           
                             self.loadStatus = true
                             print("responseActivity\(request["data"])")
                             

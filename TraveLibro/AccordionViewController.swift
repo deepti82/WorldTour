@@ -463,9 +463,21 @@ class allReviewsMLTableViewCell: UITableViewCell {
     
     func setView(feed:JSON) {
         self.review.isHidden = true
-        ratingButton.addTarget(self, action: #selector(self.checkMyRating(_:)), for: .touchUpInside)
-        let tapout = UITapGestureRecognizer(target: self, action: #selector(self.checkMyRatingStar(_:)))
-        ratingStack.addGestureRecognizer(tapout)
+        ratingButton.removeTarget(self, action: #selector(self.checkMyRating(_:)), for: .touchUpInside)       
+        ratingStack.isUserInteractionEnabled = false
+        
+        if isSelfUser(otherUserID: feed["user"].stringValue) {
+            ratingButton.addTarget(self, action: #selector(self.checkMyRating(_:)), for: .touchUpInside)
+            
+            let tapout = UITapGestureRecognizer(target: self, action: #selector(self.checkMyRatingStar(_:)))
+            ratingStack.addGestureRecognizer(tapout)
+            ratingStack.isUserInteractionEnabled = true
+        }
+        else {
+            self.review.text = ""
+            self.review.isHidden = true
+        }
+        
         categoryImage.image = UIImage(named: getCategory(type: feed["checkIn"]["category"].stringValue))
         categoryImage.tintColor = mainBlueColor
         
@@ -483,9 +495,15 @@ class allReviewsMLTableViewCell: UITableViewCell {
         if feed["review"][0] != nil && feed["review"].count > 0 {
             ratingStack.isHidden = false
             ratingButton.isHidden = true
-            if feed["review"][0]["review"].stringValue != "" {
-                self.review.text = feed["review"][0]["review"].stringValue
-                self.review.sizeToFit()
+            if feed["review"][0]["review"].stringValue != "" {                
+                if isSelfUser(otherUserID: feed["user"].stringValue) {
+                    self.review.text = feed["review"][0]["review"].stringValue
+                    self.review.sizeToFit()
+                }
+                else{
+                    self.review.text = ""
+                    self.review.isHidden = true
+                }
             }
             afterRating(starCnt: feed["review"][0]["rating"].intValue, review: feed["review"][0]["review"].stringValue, type:feed["type"].stringValue, shouldReload: false)
         }else{
