@@ -182,13 +182,18 @@ public class User {
     }
     
     func getExistingUser() -> String {
-        var result = ""
-        do {
-            for usr in try db.prepare(user.select(userId)) {
-                result = usr[userId]
-            }
-        } catch _ {}
-        return result
+        if existingUserGlobal != "" {
+            return existingUserGlobal
+        }
+        else {
+            var result = ""
+            do {
+                for usr in try db.prepare(user.select(userId)) {
+                    result = usr[userId]
+                }
+            } catch _ {}
+            return result
+        }
     }
 
     func delete(_ userid: String) {

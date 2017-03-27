@@ -39,6 +39,8 @@ let avenirBold = UIFont(name: "Avenir-Heavy", size: 14)
 let FontAwesomeFont = UIFont(name: "FontAwesome", size: 14)
 let NAVIGATION_FONT = UIFont(name: "Avenir-Roman", size: 18)
 
+var existingUserGlobal = ""
+
 var faicon = [String: UInt32]()
 var profileViewY:CGFloat = 45
 var whichView: String!

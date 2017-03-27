@@ -161,6 +161,7 @@ class Navigation {
                 {
                     json  = JSON(data: response.data)
                     if urlSlug == "" {
+                        existingUserGlobal = json["data"]["_id"].stringValue
                         self.cache.set(value: response.data, key: urlString+id)
                     }
                     completion(json)
