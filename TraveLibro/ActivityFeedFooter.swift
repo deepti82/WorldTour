@@ -74,6 +74,10 @@ class ActivityFeedFooter: UIView {
         tapout1.numberOfTapsRequired = 1
         likeViewLabel.addGestureRecognizer(tapout1)
         
+        let tapout2 = UITapGestureRecognizer(target: self, action: #selector(ActivityFeedFooterBasic.showComment(_:)))
+        tapout2.numberOfTapsRequired = 1
+        commentCount.addGestureRecognizer(tapout2)
+        
         do {
             audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: like))            
         }
@@ -115,8 +119,7 @@ class ActivityFeedFooter: UIView {
         }
     }
     
-    @IBAction func sendComments(_ sender: UIButton) {
-        print("??//////// \(postTop["type"].stringValue)")
+    func toCommentView() {
         if currentUser != nil {
             let comment = storyboard?.instantiateViewController(withIdentifier: "CommentsVC") as! CommentsViewController
             comment.postId = postTop["uniqueId"].stringValue
@@ -138,6 +141,16 @@ class ActivityFeedFooter: UIView {
         else {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
         }
+    }
+    
+    @IBAction func sendComments(_ sender: UIButton) {
+        print("??//////// \(postTop["type"].stringValue)")
+        toCommentView()
+        
+    }
+    
+    func showComment(_ sender: UITapGestureRecognizer) {
+            toCommentView()
     }
     
     
