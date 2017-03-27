@@ -37,6 +37,7 @@ class MyLifeContainerViewController: UIViewController,UIScrollViewDelegate {
             empty = EmptyScreenView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 250))
             switch type {
             case "all":
+                empty.frame.size.height = 350.0
                 empty.viewHeading.text = "Travel in a Time Machine"
                 empty.viewBody.text = "Capture your journeys and activities whether local or global, creating a beautiful timeline and relive these treasured experiences of your past."
                 break

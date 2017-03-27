@@ -151,7 +151,7 @@ class ActivityFeedFooter: UIView {
     
     func showComment(_ sender: UITapGestureRecognizer) {
             toCommentView()
-    }
+     }
     
     
     func setLikeCount(_ post_likeCount:Int!) {

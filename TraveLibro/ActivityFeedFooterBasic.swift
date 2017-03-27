@@ -308,9 +308,7 @@ class ActivityFeedFooterBasic: UIView {
     }
 
     func showComment(_ sender: UITapGestureRecognizer) {
-        if postTop["commentCount"].intValue != 0 {
             toCommentPage()
-        }
     }
 
 

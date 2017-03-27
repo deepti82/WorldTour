@@ -34,6 +34,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
     var savedMediaType = ""
     var savedToken = ""
     var savedId = ""
+    var reviewPage = ""
 
     
     
@@ -134,6 +135,8 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
     }
     
     func loadReview(pageno:Int, type:String, review:String) {
+        reviewPage = review
+        
         if pageno == 1 {
         loader.showOverlay(self.view)
         }
@@ -248,6 +251,17 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
         }
         if show {
             empty = EmptyScreenView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 250))
+            
+            if reviewPage == "travel-life" {
+                empty.frame.size.height = 350.0
+                empty.viewHeading.text = "The World I​s Your Oyster"
+                empty.viewBody.text = "A five star or a four star? What does that historical monument qualify for? Rate it and write a review. Help others with your rating and review."
+            }else if reviewPage == "local-life" {
+                empty.frame.size.height = 275.0
+                empty.viewHeading.text = "A Touch Of Your Daily Dose"
+                empty.viewBody.text = "Now how about rating and writing a super review for that newly-opened restaurant in your town? Wherever you go, click on a star and pen down your experiences."
+            }else{
+            
             switch momentType {
             case "all":
                 print("in moments all")
@@ -257,18 +271,23 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
                 break
             case "travel-life":
                 print("in moments tl")
-                empty.frame.size.height = 350.0
-                empty.viewHeading.text = "Travel Becomes A Reason To Take Pictures And Store Them"
-                empty.viewBody.text = "Some memories are worth sharing, travel surely tops the list. Your travels will not only inspire you to explore more of the world, you may just move another soul or two!"
+                
+                    empty.frame.size.height = 350.0
+                    empty.viewHeading.text = "Travel Becomes A Reason To Take Pictures And Store Them"
+                    empty.viewBody.text = "Some memories are worth sharing, travel surely tops the list. Your travels will not only inspire you to explore more of the world, you may just move another soul or two!"
+                
                 break
             case "local-life":
                 print("in moments ll")
-                empty.frame.size.height = 275.0
-                empty.viewHeading.text = "Suspended In Time"
-                empty.viewBody.text = "Beautiful memories created through fabulous pictures and videos of those precious moments shared with family, friends and yourself."
+                
+                    empty.frame.size.height = 275.0
+                    empty.viewHeading.text = "Suspended In Time"
+                    empty.viewBody.text = "Beautiful memories created through fabulous pictures and videos of those precious moments shared with family, friends and yourself."
+                
                 break
             default:
                 break
+            }
             }
             self.view.addSubview(empty)
             mainView.isHidden = true
@@ -340,7 +359,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
             case "travel-life":
                 let a = (screenWidth - 20) / 2
                 print("width \(a)")
-                return CGSize(width: a + 5, height: a + 56)
+                return CGSize(width: a + 5, height: a + 75)
             case "local-life":
                 let a = (screenWidth - 20) / 2
                 print("width \(a)")
@@ -535,6 +554,18 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
         return header
         
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        
+        if momentType == "all" {
+            return CGSize(width: 50, height: 50)
+        }else{
+            return CGSize(width: 0, height: 5)
+        }
+        
+        
+    }
+    
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         page = 1

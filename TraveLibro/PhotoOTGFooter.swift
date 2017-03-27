@@ -75,6 +75,11 @@ class PhotoOTGFooter: UIView {
         optionButton.tintColor = mainBlueColor
         commentIcon.tintColor = mainBlueColor
         likeButton.contentMode = .scaleAspectFit
+        
+        let tapout2 = UITapGestureRecognizer(target: self, action: #selector(self.showComment(_:)))
+        tapout2.numberOfTapsRequired = 1
+        commentCount.addGestureRecognizer(tapout2)
+        
         likeViewLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.showLike(_:))))
 //        footerColorView.layer.borderWidth = 1.0
 //        footerColorView.layer.borderColor = UIColor.black.cgColor
@@ -116,25 +121,32 @@ class PhotoOTGFooter: UIView {
 //        feedVC.title = postTop["name"].stringValue
 //        globalNavigationController.pushViewController(feedVC, animated: true)
 //    }
-
     
-    
-    @IBAction func sendComments(_ sender: UIButton) {
-        print("comment clicked")
+    func toCommentPage() {
         if currentUser != nil {
-
-        let comment = storyboard?.instantiateViewController(withIdentifier: "CommentsVC") as! CommentsViewController
-        comment.postId = postTop.post_uniqueId
-        comment.ids = postTop.post_ids
-        comment.type = "post"
-        
-        comment.footerViewOtg = self;
-        globalNavigationController?.setNavigationBarHidden(false, animated: true)
-        globalNavigationController?.pushViewController(comment, animated: true)
+            
+            let comment = storyboard?.instantiateViewController(withIdentifier: "CommentsVC") as! CommentsViewController
+            comment.postId = postTop.post_uniqueId
+            comment.ids = postTop.post_ids
+            comment.type = "post"
+            
+            comment.footerViewOtg = self;
+            globalNavigationController?.setNavigationBarHidden(false, animated: true)
+            globalNavigationController?.pushViewController(comment, animated: true)
         }
         else {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
         }
+
+    }
+
+    func showComment(_ sender: UITapGestureRecognizer) {
+        toCommentPage()
+    }
+    
+    @IBAction func sendComments(_ sender: UIButton) {
+        print("comment clicked")
+        toCommentPage()
     }
     
     

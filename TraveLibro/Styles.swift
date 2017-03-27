@@ -599,7 +599,7 @@ func getMonthFormat(_ date: String) -> String {
     let date = globalDateFormatter.date(from: date)
     
     let dayTimePeriodFormatter = DateFormatter()
-    dayTimePeriodFormatter.dateFormat = "dd MMM, yyyy"
+    dayTimePeriodFormatter.dateFormat = "MMMM, yyyy"
     let goodDate = dayTimePeriodFormatter.string(from: date!)
     return goodDate
     
