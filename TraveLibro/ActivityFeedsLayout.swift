@@ -163,7 +163,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
                 self.mainPhoto.clipsToBounds = true
                 
                 
-                if feed["thoughts"] == nil || feed["thoughts"].stringValue == "" {
+                if feed["thoughts"] == nil || feed["thoughts"].stringValue == "" || feed["imageUrl"] != nil{
                     let headerTag = ActivityHeaderTag(frame: CGRect(x: 0, y: 30, width: screenWidth, height: 28))
                     headerTag.tagParent.backgroundColor = UIColor.clear
                     headerTag.tagLine.isHidden = true
@@ -179,7 +179,6 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
                     
                     
                 }
-                
                 
                 mainPhoto.hnk_setImageFromURL(URL(string: feed["imageUrl"].stringValue)!)
                 
@@ -371,7 +370,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             self.addSubview(textHeader)
             textHeader.kindOfJourneyMyLife.isHidden = true
             //  START ACTIVITY TEXT TAG
-            if feed["videos"].count == 0 && feed["photos"].count == 0 && feed["type"].stringValue != "on-the-go-journey" {
+            if feed["videos"].count == 0 && feed["photos"].count == 0 && feed["type"].stringValue != "on-the-go-journey" && feed["imageUrl"] == nil{
                 textTag = ActivityHeaderTag(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 30))
                 textTag.transparentBack()
                 textTag.colorTag(feed: feed)

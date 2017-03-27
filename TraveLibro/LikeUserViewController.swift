@@ -26,10 +26,13 @@ class LikeUserViewController: UITableViewController {
     
     func loadLikes(page:Int) {
         print(type)
+        loader.showOverlay(self.view)
+
         if type == "on-the-go-journey" || type == "ended-journey" {
             request.getJourneyLikes(userId: currentUser["_id"].stringValue, id: postId, pagenumber: pagenumber, completion: {(request) in
                 DispatchQueue.main.async(execute: {
-                    
+                    loader.hideOverlayView()
+
                     self.data = request["data"]["like"]
                     self.tableView.reloadData()
                 })
@@ -37,7 +40,8 @@ class LikeUserViewController: UITableViewController {
         } else if type == "quick-itinerary" || type == "detail-itinerary" {
             request.getItineraryLikes(userId: currentUser["_id"].stringValue, id: postId, pagenumber: pagenumber, completion: {(request) in
                 DispatchQueue.main.async(execute: {
-                    
+                    loader.hideOverlayView()
+
                     self.data = request["data"]["like"]
                     self.tableView.reloadData()
                 })
@@ -45,7 +49,8 @@ class LikeUserViewController: UITableViewController {
         } else {
             request.getLikes(userId: currentUser["_id"].stringValue, post: postId, pagenumber: pagenumber, completion: {(request) in
                 DispatchQueue.main.async(execute: {
-                    
+                    loader.hideOverlayView()
+
                     self.data = request["data"]["like"]
                     self.tableView.reloadData()
                 })

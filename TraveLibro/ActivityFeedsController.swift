@@ -132,7 +132,7 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
                 request.getActivityFeeds(currentUser["_id"].stringValue, pageNumber: pageNumber, completion: {(request, localLifeJsons,quickJsons) in
                     DispatchQueue.main.async(execute: {
                         hideBottomLoader()
-                        NSLog(" check Response received \n")
+                        NSLog(" check Response received \(request)")
                         if !(request["data"].isEmpty) {
                             if pageNumber == 1 {
                                 self.layout.removeAll()

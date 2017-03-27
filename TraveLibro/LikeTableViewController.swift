@@ -23,10 +23,12 @@ class LikeTableViewController: UITableViewController {
     }
 
     func loadLikes(page:Int) {
+        loader.showOverlay(self.view)
         print(type)
         if type == "on-the-go-journey" || type == "ended-journey" {
             request.getJourneyLikes(userId: currentUser["_id"].stringValue, id: postId, pagenumber: pagenumber, completion: {(request) in
                 DispatchQueue.main.async(execute: {
+                    loader.hideOverlayView()
                     
                     self.data = request["data"]["like"]
                     self.tableView.reloadData()
@@ -35,6 +37,7 @@ class LikeTableViewController: UITableViewController {
         } else if type == "quick-itinerary" || type == "detail-itinerary" {
             request.getItineraryLikes(userId: currentUser["_id"].stringValue, id: postId, pagenumber: pagenumber, completion: {(request) in
                 DispatchQueue.main.async(execute: {
+                    loader.hideOverlayView()
                     
                     self.data = request["data"]["like"]
                     self.tableView.reloadData()
@@ -43,13 +46,13 @@ class LikeTableViewController: UITableViewController {
         } else {
             request.getLikes(userId: currentUser["_id"].stringValue, post: postId, pagenumber: pagenumber, completion: {(request) in
                 DispatchQueue.main.async(execute: {
+                    loader.hideOverlayView()
                     
                     self.data = request["data"]["like"]
                     self.tableView.reloadData()
                 })
             })
         }
-        
     }
     
     func createNavigation() {

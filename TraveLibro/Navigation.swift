@@ -1512,6 +1512,7 @@ class Navigation {
         
         
         do {
+            print("params  \(["user": user, "pagenumber": pageNumber])")
             let opt = try HTTP.POST(adminUrl + "activityfeed/getData", parameters: ["user": user, "pagenumber": pageNumber])
                 var json = JSON(1);
                 opt.start {response in
