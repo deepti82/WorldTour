@@ -1,14 +1,12 @@
 
 import UIKit
 
-
+var followers: [JSON] = []
 
 
 class FollowersViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
     
     var whichView: String!
-    
-    var followers: [JSON] = []
     
     @IBOutlet weak var followerTable: UITableView!
     @IBOutlet weak var searchView: UIView!
@@ -22,6 +20,7 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
     var searchText = ""
     var followersMainCopy: [JSON] = []
     var back: Bool = true
+    var callbackNum:Int=0;
     
     //MARK: - Lifecycle
     
@@ -89,31 +88,34 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
     
     func getFollowing() {
         
-        request.getFollowing(user.getExistingUser(), searchText: searchText, urlSlug:selectedUser["urlSlug"].stringValue,  completion: {(response) in
+        callbackNum = callbackNum + 1
+        
+        request.getFollowing(user.getExistingUser(), searchText: searchText, urlSlug:selectedUser["urlSlug"].stringValue, callbackNum:self.callbackNum,  completion: {(response, i) in
             
             DispatchQueue.main.async(execute: {
                 
                 self.headerText.text = "Following (0))"
-                
-                if response.error != nil {
-                    
-                    print("response: \(response.error!.localizedDescription)")
-                    
-                }
-                else if response["value"].bool! {
-                    self.followers = response["data"]["following"].array!
-                    self.headerText.text = "Following (\(self.followers.count))"
-                    self.followerTable.reloadData()
-                    loader.hideOverlayView()
-                    if (selectedUser["urlSlug"].stringValue == "" &&
-                        self.searchText == "" &&
-                        (self.followers.count > 0 && self.followers.first!["following"].intValue != 1)) {
-                        self.noFollowingFound()
+                if(i == self.callbackNum) {
+                    if response.error != nil {
+                        
+                        print("response: \(response.error!.localizedDescription)")
+                        
                     }
-                }
-                else {
-                    
-                    print("response error: \(response["error"])")
+                    else if response["value"].bool! {
+                        followers = response["data"]["following"].array!
+                        self.headerText.text = "Following (\(followers.count))"
+                        self.followerTable.reloadData()
+                        loader.hideOverlayView()
+                        if (selectedUser["urlSlug"].stringValue == "" &&
+                            self.searchText == "" &&
+                            (followers.count > 0 && followers.first!["following"].intValue != 1)) {
+                            self.noFollowingFound()
+                        }
+                    }
+                    else {
+                        
+                        print("response error: \(response["error"])")
+                    }
                 }
             })
         })
@@ -121,30 +123,34 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
     
     func getFollowers() {
         
-        request.getFollowers(user.getExistingUser(), searchText: searchText, urlSlug:selectedUser["urlSlug"].stringValue,  completion: {(response) in
+        callbackNum = callbackNum + 1
+        
+        request.getFollowers(user.getExistingUser(), searchText: searchText, urlSlug:selectedUser["urlSlug"].stringValue, callbackNum:self.callbackNum,  completion: {(response, i) in
             
             DispatchQueue.main.async(execute: {
                 self.headerText.text = "Following (0)"
-                if response.error != nil {
-                    
-                    print("error: \(response.error!.localizedDescription)")
-                    
-                }
-                else if response["value"].bool! {
-                    
-                    self.followers = response["data"]["followers"].array!
-                    self.followersMainCopy = response["data"]["followers"].array!
-                    self.headerText.text = "Followers (\(self.followers.count))"
-                    self.followerTable.reloadData()
-                    loader.hideOverlayView()
-                    if self.followers.isEmpty {
-                        self.noFollowersFound()
+                if(i == self.callbackNum) {
+                    if response.error != nil {
+                        
+                        print("error: \(response.error!.localizedDescription)")
+                        
                     }
-                }
-                else {
-                    
-                    print("response error: \(response["error"])")
-                    
+                    else if response["value"].bool! {
+                        
+                        followers = response["data"]["followers"].array!
+                        self.followersMainCopy = response["data"]["followers"].array!
+                        self.headerText.text = "Followers (\(followers.count))"
+                        self.followerTable.reloadData()
+                        loader.hideOverlayView()
+                        if followers.isEmpty {
+                            self.noFollowersFound()
+                        }
+                    }
+                    else {
+                        
+                        print("response error: \(response["error"])")
+                        
+                    }
                 }
             })
             
@@ -277,19 +283,7 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
             HiBye(cell.profileImage)
             setImage(cell.profileImage, imageName: image)
             
-            
-            if filter[indexPath.row]["following"].intValue == 1 {
-                cell.followButton.tag = 1
-                cell.followButton.setImage(UIImage(named:"following"), for: .normal)
-            }
-            else if filter[indexPath.row]["following"].intValue == 0 {
-                cell.followButton.tag = 0
-                cell.followButton.setImage(UIImage(named:"follow"), for: .normal)
-            }
-            else if filter[indexPath.row]["following"].intValue == 2 {
-                cell.followButton.tag = 2
-                cell.followButton.setImage(UIImage(named:"requested"), for: .normal)
-            }
+            setFollowButtonImage(button: cell.followButton, followType: filter[indexPath.row]["following"].intValue, otherUserID: filter[indexPath.row]["_id"].stringValue)
             
             cell.followButton.contentMode = .scaleAspectFit
             cell.followButton.clipsToBounds = true
@@ -306,38 +300,35 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
                 setImage(cell.profileImage, imageName: image)
             }
             
-            if followers[indexPath.row]["following"].intValue == 1 {
-                cell.followButton.tag = 1
-                cell.followButton.setImage(UIImage(named:"following"), for: .normal)
-            }
-            else if followers[indexPath.row]["following"].intValue == 0 {
-                cell.followButton.tag = 0
-                cell.followButton.setImage(UIImage(named:"follow"), for: .normal)
-            }
-            else if followers[indexPath.row]["following"].intValue == 2 {
-                cell.followButton.tag = 2
-                cell.followButton.setImage(UIImage(named:"requested"), for: .normal)
-            }
+            setFollowButtonImage(button: cell.followButton, followType: followers[indexPath.row]["following"].intValue, otherUserID: followers[indexPath.row]["_id"].stringValue)
             
             cell.followButton.contentMode = .scaleAspectFit
             cell.followButton.clipsToBounds = true
             cell.followButton.isSelected = true
         }
         
+        
         return cell
         
     }
     
+    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        if filter != nil && shouldShowSearchResults {
+            return !(isSelfUser(otherUserID: filter[indexPath.row]["_id"].stringValue))
+        }else{
+            return !(isSelfUser(otherUserID: followers[indexPath.row]["_id"].stringValue))
+        }
+    }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {        
+        
         if filter != nil && shouldShowSearchResults {
             selectedPeople = filter[indexPath.row]["_id"].stringValue
             selectedUser = filter[indexPath.row]
-        
         }else{
             selectedPeople = followers[indexPath.row]["_id"].stringValue
             selectedUser = followers[indexPath.row]
-        }        
+        }
         
         let profile = storyboard?.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
         profile.displayData = "search"
@@ -367,7 +358,30 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
             imageView.hnk_setImageFromURL(URL(string: getImageUrl)!)
             makeTLProfilePictureFollowers(imageView)
         }
-    }    
+    }
+    
+    func setFollowButtonImage(button:UIButton, followType: Int, otherUserID: String) {
+        
+        if isSelfUser(otherUserID: otherUserID) {
+            button.isHidden = true
+        }
+        else{
+            button.isHidden = false
+            
+            if followType == 1 {
+                button.tag = 1
+                button.setImage(UIImage(named:"following"), for: .normal)
+            }
+            else if followType == 0 {
+                button.tag = 0
+                button.setImage(UIImage(named:"follow"), for: .normal)
+            }
+            else if followType == 2 {
+                button.tag = 2
+                button.setImage(UIImage(named:"requested"), for: .normal)
+            }
+        }
+    }
     
     //MARK: - Follow Actions
     
@@ -403,7 +417,7 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
 //                    self.followerTable.reloadData()
 //                    self.followerTable.reloadRows(at: [NSIndexPath(row: Index, section: 0) as IndexPath], with: .automatic)
                     
-                    setFollowButtonTitle(button: sender, followType: response["data"]["responseValue"].intValue)
+                    setFollowButtonTitle(button: sender, followType: response["data"]["responseValue"].intValue, otherUserID: "")
                 }
                 else {
                     
@@ -446,7 +460,7 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
 //                    followers[Index] = newJson
 //                    self.followerTable.reloadData()
 //                    self.followerTable.reloadRows(at: [NSIndexPath(row: Index, section: 0) as IndexPath], with: .automatic)
-                    setFollowButtonTitle(button: sender, followType: response["data"]["responseValue"].intValue)
+                    setFollowButtonTitle(button: sender, followType: response["data"]["responseValue"].intValue, otherUserID: "")
                 }
                 else {
                     

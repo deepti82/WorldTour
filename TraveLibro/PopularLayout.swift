@@ -221,7 +221,7 @@ class PopularLayout: VerticalLayout, PlayerDelegate {
         footerView.footerType = feed["type"].stringValue
         if (feed["type"].stringValue == "detail-itinerary") || feed["type"].stringValue == "quick-itinerary"{
             footerView.followBtn.isHidden = false
-            setFollowButtonTitle(button: footerView.followBtn, followType: feed["following"].intValue)
+            setFollowButtonTitle(button: footerView.followBtn, followType: feed["following"].intValue, otherUserID:  feed["_id"].stringValue)
             footerView.followBtn.addTarget(self, action: #selector(PopularLayout.followBtnClicked(_:)), for: .touchUpInside)
         }
         footerView.setCommentCount(feed["commentCount"].intValue)
@@ -562,7 +562,7 @@ class PopularLayout: VerticalLayout, PlayerDelegate {
                             print("error: \(response.error!.localizedDescription)")
                         }
                         else if response["value"].bool! {
-                            setFollowButtonTitle(button: self.footerView.followBtn, followType: response["data"]["responseValue"].intValue)
+                            setFollowButtonTitle(button: self.footerView.followBtn, followType: response["data"]["responseValue"].intValue, otherUserID: "")
                         }
                         else {
                             print("error: \(response["error"])")
@@ -577,7 +577,7 @@ class PopularLayout: VerticalLayout, PlayerDelegate {
                             print("error: \(response.error!.localizedDescription)")
                         }
                         else if response["value"].bool! {
-                            setFollowButtonTitle(button: self.footerView.followBtn, followType: response["data"]["responseValue"].intValue)
+                            setFollowButtonTitle(button: self.footerView.followBtn, followType: response["data"]["responseValue"].intValue, otherUserID: "")
                         }
                         else {
                             print("error: \(response["error"])")

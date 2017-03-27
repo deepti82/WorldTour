@@ -1011,7 +1011,7 @@ class Navigation {
         }
     }
     
-    func getFollowers(_ userId: String, searchText: String, urlSlug:String?, completion: @escaping ((JSON) -> Void)) {
+    func getFollowers(_ userId: String, searchText: String, urlSlug:String?, callbackNum:Int,  completion: @escaping ((JSON, Int) -> Void)) {
         
         do {
             
@@ -1032,7 +1032,7 @@ class Navigation {
                 {
                     json  = JSON(data: response.data)
                     print(json)
-                    completion(json)
+                    completion(json, callbackNum)
                 }
             }
         } catch let error {
@@ -1063,7 +1063,7 @@ class Navigation {
         }
     }
     
-    func getFollowing(_ userId: String, searchText: String, urlSlug: String?, completion: @escaping ((JSON) -> Void)) {
+    func getFollowing(_ userId: String, searchText: String, urlSlug: String?, callbackNum:Int, completion: @escaping ((JSON, Int) -> Void)) {
         
         do {
             
@@ -1083,7 +1083,7 @@ class Navigation {
                 else
                 {
                     json  = JSON(data: response.data)
-                    completion(json)
+                    completion(json,callbackNum)
                 }
             }
         } catch let error {
@@ -1976,7 +1976,7 @@ class Navigation {
     }
 
     
-    func getPeopleSearch(_ user: String, search: String, pageNumber: Int,callbackNum:Int, completion: @escaping ((JSON,Int) -> Void)) {
+    func getPeopleSearch(_ user: String, search: String, pageNumber: Int, callbackNum:Int, completion: @escaping ((JSON,Int) -> Void)) {
         
         do {
             var params: JSON!

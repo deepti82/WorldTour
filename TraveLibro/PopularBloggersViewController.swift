@@ -177,7 +177,7 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
                 
         if(currentUser != nil) {
             cell.followButton.tag = indexPath.row
-            setFollowButtonTitle(button: cell.followButton, followType: cellData["following"].intValue)
+            setFollowButtonTitle(button: cell.followButton, followType: cellData["following"].intValue, otherUserID: cellData["_id"].stringValue)
         }
         else {
             cell.followButton.setTitle("Follow", for: .normal)

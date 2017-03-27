@@ -208,7 +208,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         let rightButton = UIButton()
         rightButton.titleLabel?.font = avenirFont
 //        rightButton.contentHorizontalAlignment = .right
-        setFollowButtonTitle(button: rightButton, followType: currentUser["following"].intValue)
+        setFollowButtonTitle(button: rightButton, followType: currentUser["following"].intValue, otherUserID: currentUser["_id"].stringValue)
         rightButton.addTarget(self, action: #selector(self.rightFollowTapped(sender:)), for: .touchUpInside)
         rightButton.frame = CGRect(x: 1000000, y: 5, width: 100, height: 40)
         self.customNavigationBar(left: leftButton, right: rightButton)
@@ -752,7 +752,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
                         print("error: \(response.error!.localizedDescription)")
                     }
                     else if response["value"].bool! {
-                        setFollowButtonTitle(button: sender, followType: response["data"]["responseValue"].intValue)
+                        setFollowButtonTitle(button: sender, followType: response["data"]["responseValue"].intValue, otherUserID: "")
                     }
                     else {
                         print("error: \(response["error"])")
@@ -767,7 +767,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
                         print("error: \(response.error!.localizedDescription)")
                     }
                     else if response["value"].bool! {
-                        setFollowButtonTitle(button: sender, followType: response["data"]["responseValue"].intValue)
+                        setFollowButtonTitle(button: sender, followType: response["data"]["responseValue"].intValue, otherUserID: "")
                     }
                     else {
                         print("error: \(response["error"])")

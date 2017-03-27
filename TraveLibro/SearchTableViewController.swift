@@ -67,6 +67,13 @@ class SearchTableViewController: UIViewController, UITableViewDelegate, UITableV
         }
     }
     
+    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        if selectedStatus == "people" {
+            return !(isSelfUser(otherUserID: allData[indexPath.row]["_id"].stringValue))
+        }
+        return true
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "search", for: indexPath) as! searchPeople
         if selectedStatus == "people" {
@@ -98,7 +105,7 @@ class SearchTableViewController: UIViewController, UITableViewDelegate, UITableV
         loadStatus = false
         if search != "" {
             
-            request.getPeopleSearch(currentUser["_id"].stringValue, search: search, pageNumber: self.page,callbackNum:self.callbackNum, completion:{(request,i) in
+            request.getPeopleSearch(currentUser["_id"].stringValue, search: search, pageNumber: self.page, callbackNum:self.callbackNum, completion:{(request,i) in
                 DispatchQueue.main.async(execute: {
                     if(i == self.callbackNum) {
                         if request["data"].count > 0 {

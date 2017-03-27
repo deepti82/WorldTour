@@ -91,7 +91,7 @@ class ActivityProfileHeader: UIView {
             category.isHidden = true
         }
         
-        setFollowButtonTitle(button: followButton, followType: feed["following"].intValue)
+        setFollowButtonTitle(button: followButton, followType: feed["following"].intValue, otherUserID: feed["_id"].stringValue)
         
         if((currentUser != nil) && feed["user"]["_id"].stringValue == currentUser["_id"].stringValue) {
             followButton.isHidden = true
@@ -122,7 +122,7 @@ class ActivityProfileHeader: UIView {
                         else if response["value"].bool! {
                             
                             print("response arrived!")
-                            setFollowButtonTitle(button: self.followButton, followType: response["data"]["responseValue"].intValue)
+                            setFollowButtonTitle(button: self.followButton, followType: response["data"]["responseValue"].intValue, otherUserID: "")
                         }
                         else {
                             
@@ -143,7 +143,7 @@ class ActivityProfileHeader: UIView {
                         else if response["value"].bool! {
                             
                             print("response arrived!")
-                            setFollowButtonTitle(button: self.followButton, followType: response["data"]["responseValue"].intValue)
+                            setFollowButtonTitle(button: self.followButton, followType: response["data"]["responseValue"].intValue, otherUserID: "")
                             
                         }
                         else {
