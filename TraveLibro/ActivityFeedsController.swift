@@ -128,9 +128,10 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
             self.loadStatus = false
             
 //            if pageNumber == 13 {
+            showBottomLoader(onView: self.view)
                 request.getActivityFeeds(currentUser["_id"].stringValue, pageNumber: pageNumber, completion: {(request, localLifeJsons,quickJsons) in
                     DispatchQueue.main.async(execute: {
-                        
+                        hideBottomLoader()
                         NSLog(" check Response received \n")
                         if !(request["data"].isEmpty) {
                             if pageNumber == 1 {

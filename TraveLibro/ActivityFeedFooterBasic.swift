@@ -88,13 +88,10 @@ class ActivityFeedFooterBasic: UIView {
         
         do {
             audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: like))
-            //            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryAmbient)
-            //            try AVAudioSession.sharedInstance().setActive(true)
         }
         catch{
             print(error)
         }
-        //         audioPlayer = AVAudioPlayer(contentsOfURL: like, error: nil)
         audioPlayer.prepareToPlay()
     
     }    

@@ -337,7 +337,7 @@ func noColor(_ image: UIImageView) {
 
 func getThought (_ post:JSON) ->  NSMutableAttributedString {
   
-    var retText = NSMutableAttributedString(string: "")
+    let retText = NSMutableAttributedString(string: "")
     let location = post["checkIn"]["location"].string;
     let buddy = post["buddies"].arrayValue;
     if(post["thoughts"].stringValue != nil && post["thoughts"].stringValue != "") {
@@ -365,7 +365,7 @@ func getThought (_ post:JSON) ->  NSMutableAttributedString {
                 retText.append(getRegularString(string: " with ", size: 15))
                 retText.append(getBoldString(string: buddy[0]["name"].stringValue, size: 15))
                 retText.append(getRegularString(string: " and ", size: 15))
-                retText.append(getRegularString(string: " String(n) ", size: 15))
+                retText.append(getRegularString(string: String(n), size: 15))
                 retText.append(getRegularString(string: " others", size: 15))
             }
         } else {
@@ -386,11 +386,12 @@ func getThought (_ post:JSON) ->  NSMutableAttributedString {
                 retText.append(getRegularString(string: " with ", size: 15))
                 retText.append(getBoldString(string: buddy[0]["name"].stringValue, size: 15))
                 retText.append(getRegularString(string: " and ", size: 15))
-                retText.append(getRegularString(string: " String(n) ", size: 15))
+                retText.append(getRegularString(string: String(n), size: 15))
                 retText.append(getRegularString(string: " others", size: 15))
             }
         }
-    } else {
+    } 
+    else {
         if(location != nil && location != "") {
 //            retText = "At " + location!
             retText.append(getRegularString(string: "At ", size: 15))
@@ -413,11 +414,12 @@ func getThought (_ post:JSON) ->  NSMutableAttributedString {
                 retText.append(getRegularString(string: " with ", size: 15))
                 retText.append(getBoldString(string: buddy[0]["name"].stringValue, size: 15))
                 retText.append(getRegularString(string: " and ", size: 15))
-                retText.append(getRegularString(string: " String(n) ", size: 15))
+                retText.append(getRegularString(string: String(n), size: 15))
                 retText.append(getRegularString(string: " others", size: 15))
 
             }
-        } else {
+        }
+        else {
             if(buddy.count == 1) {
 //                retText = "With " + buddy[0]["name"].stringValue
                 retText.append(getRegularString(string: "With ", size: 15))
@@ -436,13 +438,14 @@ func getThought (_ post:JSON) ->  NSMutableAttributedString {
                 retText.append(getRegularString(string: "With ", size: 15))
                 retText.append(getBoldString(string: buddy[0]["name"].stringValue, size: 15))
                 retText.append(getRegularString(string: " and ", size: 15))
-                retText.append(getRegularString(string: " String(n) ", size: 15))
+                retText.append(getRegularString(string: String(n), size: 15))
                 retText.append(getRegularString(string: " others", size: 15))
 
                 
             }
         }
     }
+    
   return retText
 }
 

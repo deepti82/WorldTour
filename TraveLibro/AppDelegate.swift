@@ -466,7 +466,7 @@ func showBottomLoader(onView: UIView) {
         HUD = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
         HUD?.color = mainOrangeColor
         HUD?.hidesWhenStopped = true
-        HUD?.center = CGPoint(x: onView.center.x, y: onView.frame.size.height - 115)
+        HUD?.center = CGPoint(x: (screenWidth/2), y: (screenHeight - 50))
         HUD?.startAnimating()
         onView.addSubview(HUD!)
     }

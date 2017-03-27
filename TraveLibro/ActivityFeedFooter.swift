@@ -75,14 +75,11 @@ class ActivityFeedFooter: UIView {
         likeViewLabel.addGestureRecognizer(tapout1)
         
         do {
-            audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: like))
-            //            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryAmbient)
-            //            try AVAudioSession.sharedInstance().setActive(true)
+            audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: like))            
         }
         catch{
             print(error)
         }
-        //         audioPlayer = AVAudioPlayer(contentsOfURL: like, error: nil)
         audioPlayer.prepareToPlay()
 
         
