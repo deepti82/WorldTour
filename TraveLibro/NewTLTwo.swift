@@ -265,6 +265,12 @@ extension NewTLViewController {
         self.addView.prevBuddies = post.jsonPost["buddies"].array!
         self.addView.buddyAdded(post.jsonPost["buddies"].array!)
         
+        self.addView.photosIntialView.alpha = 0.1
+        self.addView.photosIntialView.isUserInteractionEnabled = false
+        
+        self.addView.videosInitialView.alpha = 0.1
+        self.addView.videosInitialView.isUserInteractionEnabled = false
+        
         self.newScroll.addSubview(self.addView)
     }
     

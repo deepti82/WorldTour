@@ -176,7 +176,7 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
             self.friendsCount.setTitle("1 Friend", for: UIControlState())
             self.friendsCount.isHidden = false;
             self.friendsTag.tintColor = mainGreenColor
-            }else {
+            } else {
                 self.friendsCount.setTitle("1 Friend", for: UIControlState())
                 self.friendsCount.isHidden = false;
                 self.friendsTag.tintColor = mainOrangeColor
@@ -186,7 +186,7 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
                 self.friendsCount.setTitle("\(count) Friends", for: UIControlState())
                 self.friendsCount.isHidden = false;
                 self.friendsTag.tintColor = mainGreenColor
-            }else {
+            } else {
             self.friendsCount.setTitle("\(count) Friends", for: UIControlState())
             self.friendsCount.isHidden = false;
             self.friendsTag.tintColor = mainOrangeColor
@@ -242,35 +242,6 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
         let edit = String(format: "%C", faicon[faValue]!)
         button.setTitle(edit, for: .normal)
     }
-    
-//    func textViewDidBeginEditing(_ textView: UITextView) {
-//        if thoughtsTextView.text == "Fill Me In..." {
-//            thoughtsTextView.text = ""
-//        }
-//    }
-//    
-//    
-//    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-//        
-//        if text == "\n" {
-//            
-//            thoughtsTextView.resignFirstResponder()
-//            
-//            if thoughtsTextView.text == "" {
-//                
-//                thoughtsTextView.text = "Fill Me In..."
-//                
-//            }
-//            return true
-//            
-//        }
-//        
-//        let newText = (textView.text as NSString).replacingCharacters(in: range, with: text)
-//        let number = newText.characters.count
-//        self.countCharacters(number)
-//        return number <= 180
-//        
-//    }
     
     func countCharacters(_ number:Int) {
         thoughtsCharacterCount.text = String(180 - number)
