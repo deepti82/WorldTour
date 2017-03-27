@@ -180,7 +180,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
                         
                         self.dismissForgotPassword()
                         
-                        let mailAlert = UIAlertController(title: "", message: response["data"]["comment"].stringValue, preferredStyle: UIAlertControllerStyle.alert)
+                        let mailAlert = UIAlertController(title: "", message: "OTP sent on this email", preferredStyle: UIAlertControllerStyle.alert)
                         let DestructiveAction = UIAlertAction(title: "Ok", style: .destructive) {
                             (result : UIAlertAction) -> Void in
                             //Cancel Action
