@@ -133,56 +133,60 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
                     DispatchQueue.main.async(execute: {
                         hideBottomLoader()
                         NSLog(" check Response received \(request)")
+                        
+                        for var post in quickJsons {
+                            
+                            self.loader.hideOverlayView()
+                            self.feeds.arrayObject?.append(post)
+                            post["user"] = ["name":currentUser["name"].stringValue, "profilePicture":currentUser["profilePicture"].stringValue]
+                            post["offline"] = true
+                            let checkIn = ActivityFeedsLayout(width: self.view.frame.width)
+                            checkIn.feeds = post
+                            checkIn.scrollView = self.activityScroll
+                            checkIn.createProfileHeader(feed: post)
+                            checkIn.activityFeed = self
+                            self.uploadingView = UploadingToCloud(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 23))
+                            self.uploadingView.uploadText.text = "Uploading to My Life."
+                            self.uploadingView.backgroundColor = endJourneyColor
+                            
+                            self.layout.addSubview(checkIn)
+                            self.layout.addSubview(self.uploadingView)
+                            self.addHeightToLayout()
+                            
+                        }
+                        
+                        for var post in localLifeJsons {
+                            self.loader.hideOverlayView()
+                            self.feeds.arrayObject?.append(post)
+                            
+                            print("ininininin  \(currentUser)")
+                            post["user"] = ["name":currentUser["name"].stringValue, "profilePicture":currentUser["profilePicture"].stringValue]
+                            post["offline"] = true
+                            let checkIn = ActivityFeedsLayout(width: self.view.frame.width)
+                            checkIn.feeds = post
+                            print("post post : \(post)")
+                            checkIn.scrollView = self.activityScroll
+                            checkIn.createProfileHeader(feed: post)
+                            checkIn.activityFeed = self
+                            
+                            self.uploadingView = UploadingToCloud(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 23))
+                            self.uploadingView.backView.backgroundColor = endJourneyColor
+                            self.uploadingView.uploadText.textColor = mainBlueColor
+                            self.layout.addSubview(checkIn)
+                            self.layout.addSubview(self.uploadingView)
+                            
+                            self.addHeightToLayout()
+                            
+                        }
+
+                        
+                        
                         if !(request["data"].isEmpty) {
                             if pageNumber == 1 {
                                 self.layout.removeAll()
                             }
                             self.loadStatus = true
                             print("responseActivity\(request["data"])")
-                            for var post in quickJsons {
-                                
-                                self.loader.hideOverlayView()
-                                self.feeds.arrayObject?.append(post)
-                                post["user"] = ["name":currentUser["name"].stringValue, "profilePicture":currentUser["profilePicture"].stringValue]
-                                post["offline"] = true
-                                let checkIn = ActivityFeedsLayout(width: self.view.frame.width)
-                                checkIn.feeds = post                                
-                                checkIn.scrollView = self.activityScroll
-                                checkIn.createProfileHeader(feed: post)
-                                checkIn.activityFeed = self
-                                self.uploadingView = UploadingToCloud(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 23))
-                                self.uploadingView.uploadText.text = "Uploading to My Life."
-                                self.uploadingView.backgroundColor = endJourneyColor
-                                
-                                self.layout.addSubview(checkIn)
-                                self.layout.addSubview(self.uploadingView)
-                                self.addHeightToLayout()
-                                
-                            }
-                            
-                            for var post in localLifeJsons {
-                                self.loader.hideOverlayView()
-                                self.feeds.arrayObject?.append(post)
-                                
-                                print("ininininin  \(currentUser)")
-                                post["user"] = ["name":currentUser["name"].stringValue, "profilePicture":currentUser["profilePicture"].stringValue]
-                                post["offline"] = true
-                                let checkIn = ActivityFeedsLayout(width: self.view.frame.width)
-                                checkIn.feeds = post
-                                print("post post : \(post)")
-                                checkIn.scrollView = self.activityScroll
-                                checkIn.createProfileHeader(feed: post)
-                                checkIn.activityFeed = self
-                                
-                                self.uploadingView = UploadingToCloud(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 23))
-                                self.uploadingView.backView.backgroundColor = endJourneyColor
-                                self.uploadingView.uploadText.textColor = mainBlueColor
-                                self.layout.addSubview(checkIn)
-                                self.layout.addSubview(self.uploadingView)
-                                
-                                self.addHeightToLayout()
-                                
-                            }
                             
                             
                             for post in request["data"].array! {

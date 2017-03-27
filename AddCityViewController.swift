@@ -143,7 +143,7 @@ class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewD
                             } else if response["value"] == true {
                                 currentUser = response["data"]
                                 if self.isFromSettings != true {
-                                    self.selectGender(sender)
+                                    self.selectGender(UIButton())
                                 }
                                 else {
                                     Toast(text: "User's city updated").show()
