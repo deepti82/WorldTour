@@ -531,8 +531,6 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         let num = Int(allCount["bucketList_count"].stringValue)
         if(num == 0) {
             if displayData == "search" {
-                let tstr = Toast(text: "\(currentUser["firstName"])'s bucket is empty.")
-                tstr.show()
             }else{
             let bucketVC = self.storyboard?.instantiateViewController(withIdentifier: "emptyPages") as! EmptyPagesViewController
             bucketVC.whichView = "BucketList"
@@ -554,8 +552,6 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         let num = Int(allCount["countriesVisited_count"].stringValue)
         if(num == 0) {
             if displayData == "search" {
-                let tstr = Toast(text: "\(currentUser["firstName"].stringValue) is not visited any country.")
-                tstr.show()
             }else{
             let bucketVC = self.storyboard?.instantiateViewController(withIdentifier: "emptyPages") as! EmptyPagesViewController
             bucketVC.whichView = "CountriesVisited"
@@ -582,8 +578,6 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         case 0:
             if displayData == "search" {
                 if allCount["following_count"].stringValue == "0" {
-                    let tstr = Toast(text: "\(currentUser["firstName"].stringValue) is not following anybudy.")
-                    tstr.show()
                 }else{
                     let followersVC = storyboard?.instantiateViewController(withIdentifier: "followers") as! FollowersViewController
                     followersVC.whichView = "Following"
@@ -605,8 +599,6 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         case 1:
             if displayData == "search" {
                 if allCount["followers_count"].stringValue == "0" {
-                    let tstr = Toast(text: "\(currentUser["firstName"].stringValue) don't have any followers.")
-                    tstr.show()
                 }else{
                     let followersVC = storyboard?.instantiateViewController(withIdentifier: "followers") as! FollowersViewController
                     followersVC.whichView = "Followers"
@@ -633,8 +625,6 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         case 4 :
             if displayData == "search" {
                 if allCount["journeysCreated_count"].stringValue == "0" {
-                    let tstr = Toast(text: "\(currentUser["firstname"]) don't have any Journey.")
-                    tstr.show()
                 }else{
                     self.myLifeNavigateWithTab(whichView: "Journeys")
                 }
@@ -645,8 +635,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         case 5:
             if displayData == "search" {
                 if allCount["journeysCreated_count"].stringValue == "0" {
-                    let tstr = Toast(text: "\(currentUser["firstName"]) don't have any CheckIn's.")
-                    tstr.show()
+                    
                 }else{
                     if(!selectedUser.isEmpty && currentUser["status"].stringValue == "private") {
                         //Dont show anything
@@ -663,8 +652,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         case 6 :
             if displayData == "search" {
                 if allCount["checkins_count"].stringValue == "0" {
-                    let tstr = Toast(text: "\(currentUser["firstName"].stringValue) don't have any Photo's.")
-                    tstr.show()
+                    
                 }else{
                     if(!selectedUser.isEmpty && currentUser["status"].stringValue == "private") {
                         //Dont show anything
@@ -685,8 +673,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         case 7 :
             if displayData == "search" {
                 if allCount["reviews_count"].stringValue == "0" {
-                    let tstr = Toast(text: "\(currentUser["firstName"].stringValue) not reviewed any location.")
-                    tstr.show()
+                    
                 }else{
                     self.myLifeNavigateWithTab(whichView: "Reviews")
                 }

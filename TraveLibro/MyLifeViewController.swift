@@ -47,7 +47,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     var radio:UIImageView!
     var radioTwo:UIImageView!
     var radioThree:UIImageView!
-    
+    var loader = LoadingOverlay()
     @IBOutlet weak var followButton: UIButton!
     @IBOutlet weak var arrowDownButton: UIButton!
     

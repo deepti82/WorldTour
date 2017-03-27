@@ -7028,7 +7028,8 @@
                             <constraint firstItem="gk4-fH-qYt" firstAttribute="top" secondItem="i2l-oQ-QiI" secondAttribute="bottom" id="1Bu-8M-kNs"/>
                             <constraint firstItem="i2l-oQ-QiI" firstAttribute="leading" secondItem="hmJ-Je-mta" secondAttribute="leading" id="4Ef-Nx-lqI"/>
                             <constraint firstItem="i2l-oQ-QiI" firstAttribute="top" secondItem="7tG-Ql-AHY" secondAttribute="bottom" id="AGh-cf-5r1"/>
-                            <constraint firstAttribute="trailing" secondItem="i2l-oQ-QiI" secondAttribute="trailing" priority="1" id="i3c-zP-NWa"/>
+                            <constraint firstAttribute="trailing" secondItem="i2l-oQ-QiI" secondAttribute="trailing" priority="1" constant="-17" id="i3c-zP-NWa"/>
+                            <constraint firstAttribute="trailing" secondItem="i2l-oQ-QiI" secondAttribute="trailing" id="o83-ep-ycb"/>
                         </constraints>
                     </view>
                     <connections>
@@ -10398,8 +10399,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="uwG-LY-3Hd" firstAttribute="top" secondItem="cZr-FT-KDz" secondAttribute="bottom" constant="-9" id="XSy-GM-8Pp"/>
-                            <constraint firstAttribute="trailing" secondItem="cZr-FT-KDz" secondAttribute="trailing" id="cIu-jn-aUV"/>
                             <constraint firstItem="cZr-FT-KDz" firstAttribute="top" secondItem="WAc-dF-q4x" secondAttribute="top" id="dCw-8d-o98"/>
+                            <constraint firstAttribute="trailing" secondItem="cZr-FT-KDz" secondAttribute="trailing" id="dx4-lA-22f"/>
                             <constraint firstItem="cZr-FT-KDz" firstAttribute="leading" secondItem="WAc-dF-q4x" secondAttribute="leading" id="iCX-NK-1Z6"/>
                         </constraints>
                     </view>

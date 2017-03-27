@@ -12,7 +12,7 @@ class MyLifeContainerViewController: UIViewController,UIScrollViewDelegate {
     var isLoading: Bool = false
     var isViewed:Bool = true
     var onTab:String = "all"
-
+    var loader = LoadingOverlay()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,7 +71,7 @@ class MyLifeContainerViewController: UIViewController,UIScrollViewDelegate {
         }
         request.getMomentJourney(pageNumber: pageNumber, type: type, urlSlug: selectedUser["urlSlug"].stringValue, completion: {(request) in
             DispatchQueue.main.async(execute: {
-                loader.hideOverlayView()
+                self.loader.hideOverlayView()
                 self.isViewed = false
                 self.isLoading = false
                 if request["data"] != nil && request["value"].boolValue {

@@ -35,6 +35,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
     var savedToken = ""
     var savedId = ""
     var reviewPage = ""
+    var loader = LoadingOverlay()
 
     
     
@@ -82,7 +83,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
     func loadInsideMedia(mediaType:String, pageno:Int, type:String, token:String, id:String) {
         
         if pageno == 1 {
-            loader.showOverlay(self.view)
+            loader.showOverlay(mainView)
 
         }
         savedMediaType = mediaType
@@ -93,7 +94,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
         if momentType == "all" || momentType == "local-life" {
             request.getTokenMoment(user.getExistingUser(), pageNumber: pageno, type: type, token: token, urlSlug: selectedUser["urlSlug"].stringValue, completion: {(request) in
                 DispatchQueue.main.async {
-                    loader.hideOverlayView()
+                    self.loader.hideOverlayView()
                     if request["data"].count > 0 {
                         self.loadStatus = true
                         if pageno == 1 {
@@ -114,7 +115,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
             print("in else, pagenumber \(pageno)")
             request.getMedia(mediaType: mediaType, user: user.getExistingUser(), id: id, pageNumber: pageno, urlSlug: selectedUser["urlSlug"].stringValue, completion: {(request) in
                 DispatchQueue.main.async {
-                    loader.hideOverlayView()
+                    self.loader.hideOverlayView()
                     if request["data"].count > 0 {
                         self.loadStatus = true
                         if pageno == 1 {
@@ -138,14 +139,14 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
         reviewPage = review
         
         if pageno == 1 {
-        loader.showOverlay(self.view)
+        loader.showOverlay(mainView)
         }
         momentType = type
         reviewType = review
         
         request.getMyLifeReview(user.getExistingUser(), pageNumber: pageno, type: review, urlSlug: selectedUser["urlSlug"].stringValue, completion: {(request) in
             DispatchQueue.main.async {
-                loader.hideOverlayView()
+                self.loader.hideOverlayView()
                 if request["data"].count > 0 {
                     self.loadStatus = true
                     
@@ -178,14 +179,14 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
     
     func loadMomentLife(pageno:Int, type:String, token:String) {
         if pageno == 1 {
-        loader.showOverlay(self.view)
+        loader.showOverlay(mainView)
         }
         momentType = type
         self.loadStatus = false
         request.getMomentLife(user.getExistingUser(), pageNumber: pageno, type: type, token: token, urlSlug: selectedUser["urlSlug"].stringValue, completion: {(request) in
             
             DispatchQueue.main.async {
-                loader.hideOverlayView()
+                self.loader.hideOverlayView()
                 
                 if type == "travel-life"{
                     

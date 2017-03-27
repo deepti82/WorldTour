@@ -26,10 +26,20 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
     var uploadingView:UploadingToCloud!
     var noInternet: UploadingToCloud!
     var checkpoint = true
-    
+    var refreshControl = UIRefreshControl()
+    var isRefreshing = false
     override func viewDidLoad() {
         super.viewDidLoad()
         print("in did load")
+        
+        refreshControl.addTarget(self, action: #selector(ActivityFeedsController.refresh(_:)), for: .valueChanged)
+        let attributes = [NSForegroundColorAttributeName: UIColor.white]
+        let attributedTitle = NSAttributedString(string: "Pull To Refresh", attributes: attributes)
+        refreshControl.attributedTitle = attributedTitle
+        refreshControl.tintColor = lightOrangeColor
+        activityScroll.addSubview(refreshControl)
+
+        
         createNavigation()
         globalActivityFeedsController = self
         activityScroll.delegate = self
@@ -68,6 +78,12 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
         displayData = "activity"
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
+    
+    func refresh(_ sender: AnyObject) {
+        isRefreshing = true
+        getActivity(pageNumber: pageno)
+    }
+
     
     func NCnote(_ notification: Notification) {
         print("notification called")
@@ -133,6 +149,11 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
                     DispatchQueue.main.async(execute: {
                         hideBottomLoader()
                         NSLog(" check Response received \(request)")
+                        
+                        if self.isRefreshing {
+                            self.refreshControl.endRefreshing()
+                            self.isRefreshing = false
+                        }
                         
                         for var post in quickJsons {
                             
