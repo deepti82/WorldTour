@@ -2127,8 +2127,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
 //        otgView.bonVoyageLabel.isHidden = true
         if textField == otgView.nameJourneyTF {
             print("\n mainscroll y : \(mainScroll.frame.origin.y) origin : \(mainScroll.bounds.origin.y )")
-            setTopNavigation(text: "Select Kind of Journey");
-            otgView.closeBuddies.isHidden = true
+                        otgView.closeBuddies.isHidden = true
             otgView.cityView.isHidden = false
             otgView.cityImage.isHidden = false
             
@@ -2152,6 +2151,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
             //            self.otgView.cityImage.hnk_setImageFromURL(URL(string: self.locationPic)!)
             
 //            otgView.bonVoyageLabel.isHidden = true
+            setTopNavigation(text: "Select Kind of Journey");
+
             
         }
         return false

@@ -138,7 +138,7 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
                                 self.layout.removeAll()
                             }
                             self.loadStatus = true
-                            
+                            print("responseActivity\(request["data"])")
                             for var post in quickJsons {
                                 
                                 self.loader.hideOverlayView()
