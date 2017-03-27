@@ -136,7 +136,7 @@ class EditSettingsViewController: UIViewController, UIWebViewDelegate {
                         if response["value"] == true {
                             ToastCenter.default.cancelAll()
                             
-                            let alert = UIAlertController(title: nil, message: "Successfully Reported!", preferredStyle: .alert)
+                            let alert = UIAlertController(title: nil, message: "Reported Successfully!", preferredStyle: .alert)
                             self.present(alert, animated: false, completion: nil)
                             alert.addAction(UIAlertAction(title: "OK", style: .default, handler:{action in
                                 self.report.theTextView.text = nil

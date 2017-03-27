@@ -114,7 +114,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
         
         let myView3 = LocalLifeRecommends(frame: CGRect(x: 0, y: -10, width: self.view.frame.width, height: 400))
         myView3.photoTop.image = UIImage(named: "bgeventsandfestival")
-        myView3.topLabel.text = "Events and Festival"
+        myView3.topLabel.text = "Events and Festivals"
         myView3.photoBottom1.image = UIImage(named: "bgshopping")
         myView3.bottomLabel1.text = "Shopping"
         myView3.photoBottom2.image = UIImage(named: "image1")
@@ -524,8 +524,11 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
             
             let nearMeListController = storyboard?.instantiateViewController(withIdentifier: "nearMeListVC") as! NearMeListViewController
             nearMeListController.fromLocal = true
+            if category == "Events & Festival"{
+                nearMeListController.nearMeType = category + "s"
+            }else {
             nearMeListController.nearMeType = category
-            
+            }
             let localLifeListController = storyboard?.instantiateViewController(withIdentifier: "localLifePosts") as! LocalLifePostsViewController
             localLifeListController.nearMeType = category
             let numCat = self.json[category].intValue
@@ -535,8 +538,14 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
             case 2:
                 self.navigationController?.pushViewController(nearMeListController, animated: true)
             case 3:
+                if category == "Events & Festival"{
+                    let tstr = Toast(text: "No \(category + "s") Available Near You")
+                    tstr.show()
+                }else{
                 let tstr = Toast(text: "No \(category) Available Near You")
-                tstr.show()
+                    tstr.show()
+                }
+                
                 
                 self.navigationController?.pushViewController(nearMeListController, animated: true)
             default:
