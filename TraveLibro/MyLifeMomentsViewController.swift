@@ -345,10 +345,10 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
         
         if insideView == "Monthly" {
             if shouldShowBigImage(position: indexPath.row) {
-                return CGSize(width: collectionView.frame.size.width - 32, height: (collectionView.frame.size.width - 32) * 0.5)
+                return CGSize(width: screenWidth - 10, height: (screenWidth - 32) * 0.5)
             }
             
-            return CGSize(width: (collectionView.frame.size.width - 32)/3 - 2, height: (collectionView.frame.size.width - 32)/3 - 2)
+            return CGSize(width: (screenWidth - 16)/3, height: (screenWidth - 16)/3)
         }
         else{
             switch momentType {
@@ -363,7 +363,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
             case "local-life":
                 let a = (screenWidth - 20) / 2
                 print("width \(a)")
-                return CGSize(width: a, height: a + 36)
+                return CGSize(width: a, height: a + 45)
             case "review":
                 let a = (screenWidth - 15) / 3
                 print("width \(a)")
@@ -558,9 +558,14 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         
         if momentType == "all" {
-            return CGSize(width: 50, height: 50)
+            if section == 0 {
+                return CGSize(width: 50, height: 20)
+            }else{
+                return CGSize(width: 50, height: 30)
+            }
+            
         }else if insideView == "Monthly"{
-            return CGSize(width: 50, height: 50)
+            return CGSize(width: 50, height: 20)
         }else{
             return CGSize(width: 0, height: 5)
         }
