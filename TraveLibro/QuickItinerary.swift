@@ -167,7 +167,10 @@ public class QuickItinerary {
             }
             if(!check) {
                 if globalNewTLViewController != nil {
-                    globalNewTLViewController.getJourney()
+                    if(globalNewTLViewController.isActivityHidden) {
+                         globalNewTLViewController.getJourney()
+                    }
+                    
                 }
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "UPLOAD_ITINERARY"), object: nil)
             }

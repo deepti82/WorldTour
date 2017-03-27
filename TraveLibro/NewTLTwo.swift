@@ -62,12 +62,14 @@ extension NewTLViewController {
     
     
     func hideAddActivity() {
+        isActivityHidden = true;
         addView.removeFromSuperview()
         backView.removeFromSuperview()
         self.setTopNavigation(text: "On The Go");
     }
     
     func showAddActivity() {
+        isActivityHidden = false;
         hideHeaderAndFooter(false)
         //Add Dard Blur Background
         var darkBlur: UIBlurEffect!
@@ -120,6 +122,7 @@ extension NewTLViewController {
     
     
     func showEditAddActivity(_ post:Post) {
+        isActivityHidden = false;
         hideHeaderAndFooter(false)
         var darkBlur: UIBlurEffect!
         var blurView: UIVisualEffectView!
@@ -189,6 +192,7 @@ extension NewTLViewController {
     }
     
     func showEditActivity(_ post:Post) {
+        isActivityHidden = false;
         hideHeaderAndFooter(false)
         var darkBlur: UIBlurEffect!
         var blurView: UIVisualEffectView!

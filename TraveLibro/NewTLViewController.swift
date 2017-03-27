@@ -24,7 +24,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     var myJourney: JSON!
     var isJourney = false
     var imageView1: UIImageView!
-    
+    var isActivityHidden = true;
     var height: CGFloat!
     var otgView:startOTGView!
     var showDetails = false
