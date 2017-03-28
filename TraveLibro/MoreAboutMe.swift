@@ -38,6 +38,7 @@ class MoreAboutMe: UIView {
         
         if currentUser["travelConfig"].isEmpty {
             mainTextView.attributedText = getRegularString(string: "-", size: 14)
+            mainTextView.textAlignment = .center
         }
         else{
             let name = currentUser["firstName"].stringValue
@@ -153,8 +154,12 @@ class MoreAboutMe: UIView {
             else{
                 mainTextView.attributedText = getRegularString(string: "-", size: 14)
             }
+            
+            mainTextView.textAlignment = .left
+        
         }
        
+        
     }
 
 }
