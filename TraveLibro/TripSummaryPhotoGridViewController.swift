@@ -226,7 +226,7 @@ class TripSummaryPhotoGridViewController: UICollectionViewController, ToolStackC
         singlePhotoController.index = sender.view.tag
         singlePhotoController.type = "Video"
         singlePhotoController.postId = videos[sender.view.tag]["post"].stringValue
-        globalNavigationController.present(singlePhotoController, animated: true, completion: nil)
+        globalNavigationController.pushViewController(singlePhotoController, animated: true)
     }
     
     func toolStackControllerDidCancel(_ toolStackController: ToolStackController){

@@ -219,7 +219,7 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate, iCarouselDeleg
         
         var val = ""
         if self.type == "Video" {
-            val = videos[index]["_id"].string!
+            val = videos[0]["_id"].string!
         }
         else {
             if whichView == "detail_itinerary" {
@@ -241,7 +241,7 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate, iCarouselDeleg
                     
                 }
                 else if response["value"].bool! {
-                    
+                    if self.type != "Video" {
                     var currentDict  = self.carouselDict.value(forKey: self.photos[self.carouselView.currentItemIndex]["_id"].string!) as! JSON
                     var prevArray = currentDict["like"].arrayValue
                     
@@ -266,6 +266,24 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate, iCarouselDeleg
                     currentDict["like"] =  JSON(prevArray)
                     self.carouselDict.setObject(currentDict, forKey: (self.photos[self.carouselView.currentItemIndex]["_id"].stringValue) as NSCopying)
                     self.updateLike(data: currentDict)
+                    }
+                    else {
+                        if !self.hasLiked! {
+                            
+                            sender.setImage(UIImage(named: "favorite-heart-button")?.withRenderingMode(.alwaysTemplate), for: UIControlState())
+                            self.likeCount = Int(self.likeCount) + 1
+                            self.likeText.text = "\(self.likeCount) Likes"
+                            self.hasLiked = !self.hasLiked
+                        }
+                        else {
+                            
+                            sender.setImage(UIImage(named: "likeButton"), for: UIControlState())
+                            self.likeCount = Int(self.likeCount) - 1
+                            self.likeText.text = "\(self.likeCount) Likes"
+                            self.hasLiked = !self.hasLiked
+                        }
+                        
+                    }
                 }
                 else {
                     
@@ -491,6 +509,18 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate, iCarouselDeleg
             self.bottomView.isHidden = false            
         }
         self.mainImage.isHidden = false
+        
+        if data["like"].array!.contains(JSON(user.getExistingUser())) {
+            
+            self.likeButton.setImage(UIImage(named: "favorite-heart-button")?.withRenderingMode(.alwaysTemplate), for: .normal)
+            self.likeButton.tintColor = UIColor.white
+            self.hasLiked = true
+        }
+        else {
+            
+            self.likeButton.setImage(UIImage(named: "likeButton"), for: .normal)
+            self.hasLiked = false
+        }
         
 //        self.mainImage.addGestureRecognizer(imageLeftSwipe)
 //        self.mainImage.addGestureRecognizer(imageRightSwipe)
