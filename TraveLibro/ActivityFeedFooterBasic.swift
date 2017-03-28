@@ -128,7 +128,7 @@ class ActivityFeedFooterBasic: UIView {
             lineView.isHidden = true
         }
         
-        if user.getExistingUser() == currentUser["_id"].stringValue {
+        if currentUser != nil && user.getExistingUser() == currentUser["_id"].stringValue {
             optionButton.isHidden = false
         }else{
             optionButton.isHidden = true
