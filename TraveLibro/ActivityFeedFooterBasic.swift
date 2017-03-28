@@ -520,6 +520,9 @@ class ActivityFeedFooterBasic: UIView {
                     alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.destructive, handler: { action in
                         request.deletePost(self.postTop["_id"].string!, uniqueId: self.postTop["uniqueId"].string!, user:currentUser["_id"].stringValue, completion: {(response) in
                             
+                            let a = globalMyLifeContainerViewController.onTab
+                            globalMyLifeContainerViewController.loadData(a, pageNumber: 1)
+                               
                         })
 
                         

@@ -61,7 +61,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
     }
         
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if scrollView.contentOffset.y >= (scrollView.contentSize.height - scrollView.frame.size.height) {
+//        if scrollView.contentOffset.y >= (scrollView.contentSize.height - scrollView.frame.size.height) {
 
         if loadStatus {
             
@@ -79,7 +79,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
             }
             
         }
-        }
+//        }
         
     }
     
