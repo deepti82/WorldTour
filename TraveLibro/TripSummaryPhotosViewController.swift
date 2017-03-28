@@ -24,10 +24,10 @@ class TripSummaryPhotosViewController: UIViewController {
         
         print("on photo view controller")
         if whichView == "videos" {
-            showNavigationIn(img:"list",text: "Videos (\(noPhoto))")
+            showNavigationIn(img:"list",text: "Videos")
 
         }else{
-            showNavigationIn(img:"list",text: "Photos (\(noPhoto))")
+            showNavigationIn(img:"list",text: "Photos")
 
         }
         

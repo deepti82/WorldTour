@@ -1585,9 +1585,9 @@ class Navigation {
             var params: JSON!
             
             if urlSlug != "" {
-                params = ["user": currentUser["_id"].stringValue, "type": type, "pagenumber": pageNumber, "urlSlug": urlSlug!]
+                params = ["user": user.getExistingUser(), "type": type, "pagenumber": pageNumber, "urlSlug": urlSlug!]
             }else{
-                params = ["user": currentUser["_id"].stringValue, "type": type, "pagenumber": pageNumber]
+                params = ["user": user.getExistingUser(), "type": type, "pagenumber": pageNumber]
             }
             
             print(params)

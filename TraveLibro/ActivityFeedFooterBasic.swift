@@ -130,8 +130,10 @@ class ActivityFeedFooterBasic: UIView {
         
         if currentUser != nil && user.getExistingUser() == currentUser["_id"].stringValue {
             optionButton.isHidden = false
+            rateThisButton.isHidden = false
         }else{
             optionButton.isHidden = true
+            rateThisButton.isHidden = true
         }
         
         
@@ -141,7 +143,7 @@ class ActivityFeedFooterBasic: UIView {
             afterRating(starCnt: feed["review"][0]["rating"].intValue, review: feed["review"][0]["review"].stringValue)
         }else{
             if feed["checkIn"] != nil && feed["checkIn"]["category"].stringValue != "" {
-                if currentUser["_id"].stringValue == postTop["postCreator"]["_id"].stringValue {
+                if user.getExistingUser() == postTop["postCreator"]["_id"].stringValue {
                     ratingStack.isHidden = true
                     rateThisButton.isHidden = false
                 }else{

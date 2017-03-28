@@ -1967,7 +1967,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         otgView.dpFriendOne.addGestureRecognizer(tapGestureRecognizer)
         
         if myJourney != nil {
-            if myJourney["journeyCreator"]["_id"].stringValue != user.getExistingUser() {
+            if myJourney["user"]["_id"].stringValue != user.getExistingUser() {
                 otgView.optionsButton.isHidden = true
             }
         }
@@ -2009,7 +2009,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         otgView.locationLabel.returnKeyType = .done
         otgView.locationLabel.delegate = self
         otgView.optionsButton.addTarget(self, action: #selector(NewTLViewController.optionsAction(_:)), for: .touchUpInside)
-        otgView.optionsButton.isHidden = true
+//        otgView.optionsButton.isHidden = true
         otgView.nameJourneyTF.delegate = self
         otgView.clipsToBounds = true
         layout.addSubview(otgView)
