@@ -27,30 +27,50 @@ class LikeUserViewController: UITableViewController {
     func loadLikes(page:Int) {
         print(type)
         loader.showOverlay(self.view)
-
-        if type == "on-the-go-journey" || type == "ended-journey" {
+        
+        
+        switch type {
+        case "on-the-go-journey", "ended-journey":
             request.getJourneyLikes(userId: currentUser["_id"].stringValue, id: postId, pagenumber: pagenumber, completion: {(request) in
                 DispatchQueue.main.async(execute: {
                     loader.hideOverlayView()
-
+                    
                     self.data = request["data"]["like"]
                     self.tableView.reloadData()
                 })
             })
-        } else if type == "quick-itinerary" || type == "detail-itinerary" {
+        case "quick-itinerary", "detail-itinerary":
             request.getItineraryLikes(userId: currentUser["_id"].stringValue, id: postId, pagenumber: pagenumber, completion: {(request) in
                 DispatchQueue.main.async(execute: {
                     loader.hideOverlayView()
-
+                    
                     self.data = request["data"]["like"]
                     self.tableView.reloadData()
                 })
             })
-        } else {
+        case "photo":
+            request.getPhotoLikes(userId: currentUser["_id"].stringValue, id: postId, pagenumber: pagenumber, completion: {(request) in
+                DispatchQueue.main.async(execute: {
+                    loader.hideOverlayView()
+                    
+                    self.data = request["data"]["like"]
+                    self.tableView.reloadData()
+                })
+            })
+        case "video":
+            request.getVideoLikes(userId: currentUser["_id"].stringValue, id: postId, pagenumber: pagenumber, completion: {(request) in
+                DispatchQueue.main.async(execute: {
+                    loader.hideOverlayView()
+                    
+                    self.data = request["data"]["like"]
+                    self.tableView.reloadData()
+                })
+            })
+        default:
             request.getLikes(userId: currentUser["_id"].stringValue, post: postId, pagenumber: pagenumber, completion: {(request) in
                 DispatchQueue.main.async(execute: {
                     loader.hideOverlayView()
-
+                    
                     self.data = request["data"]["like"]
                     self.tableView.reloadData()
                 })

@@ -3821,6 +3821,94 @@ class Navigation {
         
     }
 
+    func getPhotoLikes(userId: String, id: String, pagenumber: Int, completion: @escaping ((JSON) -> Void)) {
+        
+        do {
+            var params: JSON
+            
+            
+            params = ["user": userId, "_id": id, "pagenumber": pagenumber]
+            print(params)
+            let jsonData = try params.rawData()
+            
+            // create post request
+            let url = URL(string: adminUrl + "postphotos/getPostLikes")!
+            let request = NSMutableURLRequest(url: url)
+            request.httpMethod = "POST"
+            
+            // insert json data to the request
+            request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+            request.httpBody = jsonData
+            
+            
+            let task = URLSession.shared.dataTask(with: request as URLRequest) {data, response, error in
+                if error != nil{
+                    print("Error -> \(error)")
+                    return
+                }
+                
+                do {
+                    let result = try JSONSerialization.jsonObject(with: data!, options: []) as! [String:AnyObject]
+                    print("response: \(JSON(result))")
+                    completion(JSON(result))
+                    
+                } catch {
+                    print("Error: \(error)")
+                }
+            }
+            
+            task.resume()
+            
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+        
+    }
+
+    func getVideoLikes(userId: String, id: String, pagenumber: Int, completion: @escaping ((JSON) -> Void)) {
+        
+        do {
+            var params: JSON
+            
+            
+            params = ["user": userId, "_id": id, "pagenumber": pagenumber]
+            print(params)
+            let jsonData = try params.rawData()
+            
+            // create post request
+            let url = URL(string: adminUrl + "posvideos/getPostLikes")!
+            let request = NSMutableURLRequest(url: url)
+            request.httpMethod = "POST"
+            
+            // insert json data to the request
+            request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+            request.httpBody = jsonData
+            
+            
+            let task = URLSession.shared.dataTask(with: request as URLRequest) {data, response, error in
+                if error != nil{
+                    print("Error -> \(error)")
+                    return
+                }
+                
+                do {
+                    let result = try JSONSerialization.jsonObject(with: data!, options: []) as! [String:AnyObject]
+                    print("response: \(JSON(result))")
+                    completion(JSON(result))
+                    
+                } catch {
+                    print("Error: \(error)")
+                }
+            }
+            
+            task.resume()
+            
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+        
+    }
+
     
     func getLikes(userId: String, post: String, pagenumber: Int, completion: @escaping ((JSON) -> Void)) {
         

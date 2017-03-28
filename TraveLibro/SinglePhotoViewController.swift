@@ -131,6 +131,15 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate, iCarouselDeleg
         self.view.bringSubview(toFront: bottomView)
         self.view.bringSubview(toFront: audioButton)
         
+        let tapout1 = UITapGestureRecognizer(target: self, action: #selector(self.showLike(_:)))
+        tapout1.numberOfTapsRequired = 1
+        likeText.addGestureRecognizer(tapout1)
+        
+        let tapout2 = UITapGestureRecognizer(target: self, action: #selector(self.showComment(_:)))
+        tapout2.numberOfTapsRequired = 1
+        commentText.addGestureRecognizer(tapout2)
+
+        
         imageLeftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(self.imageSwiped(_:)))
         imageRightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(self.imageSwiped(_:)))
         
@@ -268,7 +277,28 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate, iCarouselDeleg
         
     }
     
-    @IBAction func sendComment(_ sender: UIButton) {
+    func showLike(_ sender: UITapGestureRecognizer) {
+        if currentUser != nil {
+            let feedVC = storyboard!.instantiateViewController(withIdentifier: "likeTable") as! LikeUserViewController
+            
+            if self.type == "Video" {
+                feedVC.postId = videos[index]["_id"].string!
+                feedVC.type = "video"
+            }
+            else {
+                feedVC.postId = photos[carouselView.currentItemIndex]["_id"].string!
+                feedVC.type = "photo"
+            }
+
+            feedVC.title = ""
+            globalNavigationController.pushViewController(feedVC, animated: true)
+        }
+        else {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
+        }
+    }
+    
+    func toCommentView() {
         let comment = storyboard?.instantiateViewController(withIdentifier: "photoComment") as! PhotoCommentViewController
         comment.postId = (whichView == "detail_itinerary" ? photos[carouselView.currentItemIndex]["itinerary"].stringValue : postId!)
         comment.commentText = self.commentText
@@ -281,6 +311,15 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate, iCarouselDeleg
             comment.type = "Video"
         }
         self.navigationController?.pushViewController(comment, animated: true)
+
+    }
+    
+    func showComment(_ sender: UITapGestureRecognizer) {
+        toCommentView()
+    }
+    
+    @IBAction func sendComment(_ sender: UIButton) {
+            toCommentView()
     }
     
     func updateLike(data: JSON) {

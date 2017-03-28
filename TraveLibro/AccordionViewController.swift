@@ -512,7 +512,7 @@ class allReviewsMLTableViewCell: UITableViewCell {
         }else{
             if feed["checkIn"] != nil && feed["checkIn"]["category"].stringValue != "" {
                 ratingStack.isHidden = true
-                self.ratingButton.setTitle( (isSelfUser(otherUserID: currentUser["_id"].stringValue)) ? "Rate this now" : "Not Reviewed Yet", for: .normal)
+                self.ratingButton.setTitle( (isSelfUser(otherUserID: currentUser["_id"].stringValue)) ? "Rate this now" : "Not reviewed yet", for: .normal)
                 
             }else{
                 ratingStack.isHidden = true
