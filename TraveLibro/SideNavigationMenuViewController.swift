@@ -403,7 +403,6 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
                     else if response["value"].bool! {                                              
                         UserDefaults.standard.set(0, forKey: "notificationCount")
                         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
-                        request.forceCrash()
                     }
                     else {
                         let errorAlert = UIAlertController(title: "Error", message: "Logout failed. Please try again later", preferredStyle: UIAlertControllerStyle.alert)

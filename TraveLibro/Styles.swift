@@ -711,11 +711,14 @@ func convertDateFormate(dateStr : String) -> String{
 
 func getPlainTextFromHTMLContentText(str : String?) -> String {
     
+    
     if str != nil && str != "" {
         do {
-            let regex =  "<[^>]+>"
+            print("\n Plain text : \n\n \(str)")
+            let regex =  "<.*?>"
             let expr = try NSRegularExpression(pattern: regex, options: NSRegularExpression.Options.caseInsensitive)
             let replacement = expr.stringByReplacingMatches(in: str!, options: [], range: NSMakeRange(0, (str!.characters.count)), withTemplate: "")
+            print("\n\n\n replacement text : \n\n \(replacement)")
             return replacement
             //replacement is the result
         } catch {

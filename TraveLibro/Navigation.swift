@@ -4135,8 +4135,4 @@ class Navigation {
             })
     }
     
-    func forceCrash(){
-        //Crashlytics.sharedInstance().crash()
-    }
-    
 }
