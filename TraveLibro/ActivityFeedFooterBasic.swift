@@ -128,10 +128,10 @@ class ActivityFeedFooterBasic: UIView {
             lineView.isHidden = true
         }
         
-        if user.getExistingUser() == postTop["postCreator"]["_id"].stringValue {
-            optionButton.isHidden = true
-        }else{
+        if user.getExistingUser() == currentUser["_id"].stringValue {
             optionButton.isHidden = false
+        }else{
+            optionButton.isHidden = true
         }
         
         
