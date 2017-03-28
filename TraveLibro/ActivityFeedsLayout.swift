@@ -226,6 +226,8 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
                 footerView.setCommentCount(feed["commentCount"].intValue)
                 footerView.setLikeCount(feed["likeCount"].intValue)
                 footerView.setView(feed:feed)
+                footerView.setLikeSelected(feed["likeDone"].boolValue)
+
                 self.addSubview(footerView)
 
             }else{
@@ -237,6 +239,8 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             footerViewReview.setCommentCount(footerViewReview.postTop["commentCount"].intValue)
             footerViewReview.setLikeCount(footerViewReview.postTop["likeCount"].intValue)
             footerViewReview.setReviewCount(count: footerViewReview.postTop["userReviewCount"].intValue)
+            footerViewReview.setLikeSelected(feed["likeDone"].boolValue)
+
             //footerViewReview.reviewButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ActivityFeedsLayout.rateButtonTapped(_:))))
             
             self.addSubview(footerViewReview)
@@ -256,6 +260,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             footerView.setCommentCount(feed["commentCount"].intValue)
             footerView.setLikeCount(feed["likeCount"].intValue)
             footerView.setView(feed:feed)
+            footerView.setLikeSelected(feed["likeDone"].boolValue)
             self.addSubview(footerView)
             //            dropView = DropShadow2(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 2))
             //            self.addSubview(dropView)

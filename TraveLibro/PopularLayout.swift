@@ -227,6 +227,8 @@ class PopularLayout: VerticalLayout, PlayerDelegate {
         footerView.setCommentCount(feed["commentCount"].intValue)
         footerView.setLikeCount(feed["likeCount"].intValue)
         footerView.setView(feed:feed)
+        footerView.setLikeSelected(feed["likeDone"].boolValue)
+
         self.addSubview(footerView)
         
     }

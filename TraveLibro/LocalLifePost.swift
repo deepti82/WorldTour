@@ -181,6 +181,8 @@ class LocalLifePost: VerticalLayout, PlayerDelegate {
         footerView.setCommentCount(footerView.postTop["commentCount"].intValue)
         footerView.setLikeCount(footerView.postTop["likeCount"].intValue)
         footerView.setView(feed:feed)
+        footerView.setLikeSelected(feed["likeDone"].boolValue)
+
         self.addSubview(footerView)
 //        dropView = DropShadow2(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 2))
 //        self.addSubview(dropView)

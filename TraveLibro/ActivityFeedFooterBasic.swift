@@ -578,7 +578,11 @@ class ActivityFeedFooterBasic: UIView {
             globalNavigationController.topViewController?.present(actionSheetControllerIOS8, animated: true, completion: nil)
         }
         else{
+            if currentUser != nil {
+                
+            }else{
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
+            }
         }
     }
     

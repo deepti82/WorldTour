@@ -474,7 +474,13 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
                 }
                 
                 cell.albumTitle.text = allData[indexPath.row]["name"].stringValue + " (\(allData[indexPath.row]["mediaCount"].stringValue))"
+                
+                if allData[indexPath.row]["endTime"] != nil {
+                    cell.albumDated.text = getDateFormat(allData[indexPath.row]["endTime"].stringValue, format: "MMMM, yyyy")
+
+                }else{
                 cell.albumDated.text = getDateFormat(allData[indexPath.row]["startTime"].stringValue, format: "MMMM, yyyy")
+                }
                 
                 
                 

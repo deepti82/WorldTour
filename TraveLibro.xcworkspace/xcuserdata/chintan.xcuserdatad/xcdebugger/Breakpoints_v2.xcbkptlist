@@ -57,61 +57,14 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "TraveLibro/Navigation.swift"
-            timestampString = "512388351.926166"
+            filePath = "TraveLibro/MyLifeMomentsViewController.swift"
+            timestampString = "512401381.60794"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "176"
-            endingLineNumber = "176"
-            landmarkName = "getUser(_:urlSlug:completion:)"
+            startingLineNumber = "478"
+            endingLineNumber = "478"
+            landmarkName = "collectionView(_:cellForItemAt:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "TraveLibro.Navigation.getUser (Swift.String, urlSlug : Swift.Optional&lt;Swift.String&gt;, completion : (TraveLibro.JSON) -&gt; ()) -&gt; ()"
-                  moduleName = "TraveLibro"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/chintan/Documents/iOSApp/WorldTour/TraveLibro/Navigation.swift"
-                  timestampString = "512398491.607034"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "176"
-                  endingLineNumber = "176"
-                  offsetFromSymbolStart = "4007">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "TraveLibro.Navigation.getUser (Swift.String, urlSlug : Swift.Optional&lt;Swift.String&gt;, completion : (TraveLibro.JSON) -&gt; ()) -&gt; ()"
-                  moduleName = "TraveLibro"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/chintan/Documents/iOSApp/WorldTour/TraveLibro/Navigation.swift"
-                  timestampString = "512398491.609913"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "176"
-                  endingLineNumber = "176"
-                  offsetFromSymbolStart = "4626">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "TraveLibro.Navigation.getUser (Swift.String, urlSlug : Swift.Optional&lt;Swift.String&gt;, completion : (TraveLibro.JSON) -&gt; ()) -&gt; ()"
-                  moduleName = "TraveLibro"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/chintan/Documents/iOSApp/WorldTour/TraveLibro/Navigation.swift"
-                  timestampString = "512398491.613963"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "176"
-                  endingLineNumber = "176"
-                  offsetFromSymbolStart = "4650">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
