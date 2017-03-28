@@ -118,7 +118,7 @@ class SignInPageViewController: UIViewController {
             
             let url = loggedInUser["profilePicture"].stringValue
             pageView.profileImage.hnk_setImageFromURL(NSURL(string: url) as! URL)
-            pageView.messageLabel.text = "Hi \(loggedInUser["name"]), We have updated the app for quicker and faster log-in process."            
+            pageView.messageLabel.text = "Hi \(loggedInUser["name"]), we have updated the app for quicker and faster log-in process."            
         }
         else {
             //New User

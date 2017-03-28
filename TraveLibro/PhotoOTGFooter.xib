@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -81,7 +81,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ASX-oG-GBT">
-                                    <rect key="frame" x="335" y="4" width="25" height="25"/>
+                                    <rect key="frame" x="335" y="2" width="25" height="25"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="25" id="FHd-YZ-QNt"/>
                                         <constraint firstAttribute="width" constant="25" id="OJW-IZ-vya"/>
@@ -100,7 +100,7 @@
                                 <constraint firstItem="nOV-nv-7zs" firstAttribute="top" secondItem="OGS-bv-8jn" secondAttribute="top" constant="4" id="m2E-h0-ZL7"/>
                                 <constraint firstAttribute="bottom" secondItem="nOV-nv-7zs" secondAttribute="bottom" constant="4" id="orP-UO-g8q"/>
                                 <constraint firstItem="nOV-nv-7zs" firstAttribute="leading" secondItem="OGS-bv-8jn" secondAttribute="leading" constant="19" id="pK4-RP-ahG"/>
-                                <constraint firstItem="ASX-oG-GBT" firstAttribute="top" secondItem="OGS-bv-8jn" secondAttribute="top" constant="4" id="uKf-bh-EBC"/>
+                                <constraint firstItem="ASX-oG-GBT" firstAttribute="top" secondItem="OGS-bv-8jn" secondAttribute="top" constant="2" id="uKf-bh-EBC"/>
                                 <constraint firstAttribute="height" constant="31" id="uVn-Nc-W1w"/>
                             </constraints>
                         </view>

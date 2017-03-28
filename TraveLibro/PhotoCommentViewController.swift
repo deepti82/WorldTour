@@ -219,7 +219,7 @@ class PhotoCommentViewController: UIViewController, UITableViewDataSource, UITab
         
         if self.comments[indexPath.row]["user"]["_id"].string! == usr {
             
-            let more = UITableViewRowAction(style: .normal, title: "            ") { action, index in
+            let more = UITableViewRowAction(style: .normal, title: "  Edit  ") { action, index in
                 print("edit button tapped")
                 
                 self.editComment.text = self.comments[indexPath.row]["text"].string!
@@ -229,11 +229,11 @@ class PhotoCommentViewController: UIViewController, UITableViewDataSource, UITab
                 
             }
             //more.backgroundColor = UIColor.lightGray
-            let moreImage = UIImageView(image: UIImage(named: "edit.png"))
-            moreImage.contentMode = .scaleAspectFit
-            more.backgroundColor = UIColor(patternImage: moreImage.image!)
+//            let moreImage = UIImageView(image: UIImage(named: "edit.png"))
+//            moreImage.contentMode = .scaleAspectFit
+            more.backgroundColor = mainOrangeColor
             
-            let favorite = UITableViewRowAction(style: .normal, title: "            ") { action, index in
+            let favorite = UITableViewRowAction(style: .normal, title: "  Delete  ") { action, index in
                 print("delete button tapped")
                 request.deleteComment(commentId: self.comments[indexPath.row]["_id"].string!, completion: {(response) in
                     
@@ -259,26 +259,26 @@ class PhotoCommentViewController: UIViewController, UITableViewDataSource, UITab
                 
                 
             }
-            let favoriteImage = UIImageView(frame: CGRect(x: 0, y: 0, width: 60, height: 80))
-            favoriteImage.image = UIImage(named: "delete.png")
-            favoriteImage.contentMode = .scaleAspectFit
-            favorite.backgroundColor = UIColor(patternImage: favoriteImage.image!)
+//            let favoriteImage = UIImageView(frame: CGRect(x: 0, y: 0, width: 60, height: 80))
+//            favoriteImage.image = UIImage(named: "delete.png")
+//            favoriteImage.contentMode = .scaleAspectFit
+            favorite.backgroundColor = mainOrangeColor
             
             return [more, favorite]
         }
             
         else {
             
-            let share = UITableViewRowAction(style: .normal, title: "           ") { action, index in
+            let share = UITableViewRowAction(style: .normal, title: "  Reply  ") { action, index in
                 print("reply button tapped")
                 
                 let userTag = "@\(self.comments[indexPath.row]["user"]["urlSlug"].string!)"
                 self.editComment.text = userTag
                 
             }
-            share.backgroundColor = UIColor(patternImage: UIImage(named: "reply")!)
+            share.backgroundColor = mainOrangeColor
             
-            let report = UITableViewRowAction(style: .normal, title: "          ") { action, index in
+            let report = UITableViewRowAction(style: .normal, title: " Report ") { action, index in
                 print("report button tapped")
                 let actionSheet: UIAlertController = UIAlertController(title: "Why are you reporting this comment?", message: nil, preferredStyle: .actionSheet)
                 //actionSheet.view.tintColor = UIColor.red
@@ -300,7 +300,7 @@ class PhotoCommentViewController: UIViewController, UITableViewDataSource, UITab
                 actionSheet.addAction(abusiveActionButton)
                 self.present(actionSheet, animated: true, completion: nil)
             }
-            report.backgroundColor = UIColor(patternImage: UIImage(named: "report")!)
+            report.backgroundColor = mainOrangeColor
             
             return [share, report]
         }
