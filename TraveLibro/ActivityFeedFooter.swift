@@ -282,7 +282,7 @@ class ActivityFeedFooter: UIView {
             }
             
             
-                request.globalLike(postTop["_id"].stringValue, userId: currentUser["_id"].string!, unlike: hasLiked, type: postTop["type"].stringValue, completion: {(response) in
+                request.globalLike(postTop["_id"].stringValue, userId: user.getExistingUser(), unlike: hasLiked, type: postTop["type"].stringValue, completion: {(response) in
                     DispatchQueue.main.async(execute: {
                         if response.error != nil {
                             print("error: \(response.error!.localizedDescription)")

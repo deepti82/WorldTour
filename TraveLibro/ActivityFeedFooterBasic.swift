@@ -433,7 +433,7 @@ class ActivityFeedFooterBasic: UIView {
                 sender.tag = 1
             }
             if type == "TripPhotos" {
-                    request.globalLike(photoId, userId: currentUser["_id"].stringValue, unlike: hasLiked, type: footerType, completion: {(response) in
+                    request.globalLike(photoId, userId: user.getExistingUser(), unlike: hasLiked, type: footerType, completion: {(response) in
                         
                         DispatchQueue.main.async(execute: {
                             
@@ -466,7 +466,7 @@ class ActivityFeedFooterBasic: UIView {
                 
             }else{
                 print("oooooooooo")
-                request.globalLike(postTop["_id"].stringValue, userId: currentUser["_id"].stringValue, unlike: hasLiked, type: postTop["type"].stringValue, completion: {(response) in
+                request.globalLike(postTop["_id"].stringValue, userId: user.getExistingUser(), unlike: hasLiked, type: postTop["type"].stringValue, completion: {(response) in
                     DispatchQueue.main.async(execute: {
                         if response.error != nil {
                             print("error: \(response.error!.localizedDescription)")

@@ -792,7 +792,7 @@ class Navigation {
         
         do {
             
-            let params = ["_id": currentUser["_id"].stringValue, "bucketList": country, "delete": true] as [String : Any]
+            let params = ["_id": user.getExistingUser(), "bucketList": country, "delete": true] as [String : Any]
             print("params: \(params)")
             
             let opt = try HTTP.POST(adminUrl + "user/updateBucketList", parameters: [params])
@@ -945,7 +945,7 @@ class Navigation {
         
         do {
             
-            let params = ["_id": currentUser["_id"].stringValue, "countryId": countryId, "year": year] as [String : Any]
+            let params = ["_id": user.getExistingUser(), "countryId": countryId, "year": year] as [String : Any]
             print("params remove countries visited: \(params)")
             
             let opt = try HTTP.POST(adminUrl + "user/removeCountriesVisited", parameters: [params])
@@ -1220,7 +1220,7 @@ class Navigation {
         do {
             var params = ["_id":id]
             if currentUser != nil {
-                params = ["user": currentUser["_id"].stringValue, "_id":id]
+                params = ["user": user.getExistingUser(), "_id":id]
             }else{
                 params = ["_id":id]
             }
@@ -3476,7 +3476,7 @@ class Navigation {
 //    itinerary/getOneApp
     func getItinerary (_ id: String, completion: @escaping ((JSON) -> Void)) {
         var json = JSON(1);
-        let params = ["user":currentUser["_id"].stringValue, "_id":id]
+        let params = ["user":user.getExistingUser(), "_id":id]
         print(params)
         do {
             let opt = try HTTP.POST(adminUrl + "itinerary/getOneApp", parameters: params)
@@ -3603,7 +3603,7 @@ class Navigation {
         
         do {
             
-            let opt = try HTTP.POST(adminUrl + "itinerary/itineraryStatus", parameters: ["user":currentUser["_id"].stringValue, "_id": itineraryID, "notifyId":notificationId, "answeredStatus":answeredStatus])
+            let opt = try HTTP.POST(adminUrl + "itinerary/itineraryStatus", parameters: ["user":user.getExistingUser(), "_id": itineraryID, "notifyId":notificationId, "answeredStatus":answeredStatus])
             var json = JSON(1);
             opt.start {response in
                 if let err = response.error {
@@ -3624,7 +3624,7 @@ class Navigation {
     func respondToFollowRequest(token: String, answeredStatus: String, completion: @escaping ((JSON) -> Void)) {
         
         do {
-            let opt = try HTTP.POST(adminUrl + "user/acceptFollower", parameters: ["user":currentUser["_id"].stringValue, "token": token, "answeredStatus":answeredStatus])
+            let opt = try HTTP.POST(adminUrl + "user/acceptFollower", parameters: ["user":user.getExistingUser(), "token": token, "answeredStatus":answeredStatus])
             var json = JSON(1);
             opt.start {response in
                 if let err = response.error {
@@ -3965,7 +3965,7 @@ class Navigation {
             var params: JSON
             
             if currentUser != nil {
-                params = ["user":currentUser["_id"].stringValue, "pagenumber": pagenumber]
+                params = ["user":user.getExistingUser(), "pagenumber": pagenumber]
             }
             else {
                 params = ["pagenumber": pagenumber]
