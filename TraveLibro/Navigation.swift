@@ -3,6 +3,7 @@ import UIKit
 import SwiftHTTP
 import OneSignal
 import Haneke
+import Crashlytics
 
 var adminUrl = "https://travelibro.com/api/"
 var adminBackendUrl = "http://travelibrobackend.wohlig.com/api/"
@@ -129,6 +130,7 @@ class Navigation {
         let urlString = adminUrl + "user/getOne"
         self.cache.fetch(key: urlString+id).onSuccess { data in
             let json = JSON(data: data)
+            print("\n getUserFromCache : \(json["data"]["name"].stringValue)")
             completion(json)
         }
     }
@@ -142,10 +144,13 @@ class Navigation {
             params["urlSlug"] = urlSlug!
         }
         
+        print("\n get user params : \(params)")
+        
         let urlString = adminUrl + "user/getOne"
         if urlSlug == "" {
             self.cache.fetch(key: urlString+id).onSuccess { data in
                 let json = JSON(data: data)
+                print("\n getUser upper : \(json["data"]["name"].stringValue)")
                 completion(json)
             }
         }
@@ -164,7 +169,7 @@ class Navigation {
                         existingUserGlobal = json["data"]["_id"].stringValue
                         self.cache.set(value: response.data, key: urlString+id)
                     }
-                    print(")))))))) \(json)")
+                    print("\n getUser lower : \(json["data"]["name"].stringValue)")
                     completion(json)
                 }
             }
@@ -4115,6 +4120,8 @@ class Navigation {
                     else
                     {
                         user.dropTable()
+                        currentUser = nil
+                        existingUserGlobal = ""
                         self.cache.removeAll()
                         json  = JSON(data: response.data)
                         print(json)
@@ -4126,6 +4133,10 @@ class Navigation {
             }
             
             })
+    }
+    
+    func forceCrash(){
+        Crashlytics.sharedInstance().crash()
     }
     
 }

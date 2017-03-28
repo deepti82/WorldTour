@@ -148,6 +148,7 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
     }   
     
     func updateProfilePicture() {
+        print("\n updateProfilePicture currentUser : \(currentUser)")
         if currentUser != nil && (currentUser["_id"].stringValue == user.getExistingUser()) {
             print("Current user name : \(currentUser["name"].stringValue)")
             starstack.isHidden = false
@@ -399,10 +400,10 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
                     if response.error != nil {
                         print("error: \(response.error!.localizedDescription)")
                     }
-                    else if response["value"].bool! {
-                      
+                    else if response["value"].bool! {                                              
                         UserDefaults.standard.set(0, forKey: "notificationCount")
                         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
+                        request.forceCrash()
                     }
                     else {
                         let errorAlert = UIAlertController(title: "Error", message: "Logout failed. Please try again later", preferredStyle: UIAlertControllerStyle.alert)
