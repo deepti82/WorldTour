@@ -18,8 +18,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
     var notifications: [JSON] = []
     let refreshControl = UIRefreshControl()
     var currentPageNumber = 0
-    var hasNext = true
-    var isLoading = false
+    var loadStatus = true    
     var currentCellHeight = CGFloat(10)
     var loader = LoadingOverlay()
     var lastContentOffset: CGFloat!
@@ -34,6 +33,8 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         super.viewDidLoad()
         
         setNavigationBarItemText("Notifications")
+        
+        self.automaticallyAdjustsScrollViewInsets = false
         
         let rightButton = UIButton()
         rightButton.setImage(UIImage(named: "search_toolbar"), for: UIControlState())
@@ -50,9 +51,10 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         notifyTableView.backgroundColor = UIColor.clear
         notifyTableView.tableFooterView = UIView()
 
-        refreshControl.addTarget(self, action: #selector(NotificationSubViewController.pullToRefreshCalled), for: UIControlEvents.valueChanged)
+//        refreshControl.addTarget(self, action: #selector(NotificationSubViewController.pullToRefreshCalled), for: UIControlEvents.valueChanged)
         refreshControl.tintColor = lightOrangeColor
         notifyTableView.addSubview(refreshControl)
+        
         mainFooter.notificationIcon.tintColor = mainOrangeColor
         mainFooter.notifications.textColor = mainOrangeColor
         getNotification()
@@ -85,99 +87,77 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
     
     //MARK: - Helper
     
-    func pullToRefreshCalled() {        
-        currentPageNumber = 0
-        hasNext = true
-        getNotification()
+    func pullToRefreshCalled() {
+        
+        print("\n Pull to refresh : loadStatus : \(loadStatus)")
+        print("\n Pull to refresh : isRefreshing : \(refreshControl.isRefreshing)")
+        print("\n Pull to refresh : dragging : \(notifyTableView.isDragging)")
+//        if !pullToRefreshing {            
+            currentPageNumber = 0
+            loadStatus = true
+            getNotification()            
+//        }
+//        else if !loadStatus{
+//            if self.refreshControl.isRefreshing {
+//                self.refreshControl.endRefreshing()
+//            }
+//        }
     }
     
     func getNotification() {
         
-        if hasNext && !isLoading {
+        print("\n getNotification :: loadStatus: \(loadStatus)")
+        
+        if loadStatus { //Fetch if loadStatus is true
             
-            isLoading = true
+            loadStatus = false
             
             currentPageNumber += 1
             
             print("\n Fetching data for pageNumber: \(currentPageNumber)")
             
-//            showBottomLoader(onView: self.notifyTableView)
-            
             request.getNotify(currentUser["_id"].string!, pageNumber: currentPageNumber,  completion: {(response) in
-                
-                let refreshing = self.refreshControl.isRefreshing
                 
                 DispatchQueue.main.async(execute: {
                     
-                    if self.refreshControl.isRefreshing {
-                        self.refreshControl.endRefreshing()
-                    }
-               // DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
-                    
-                    self.isLoading = false
                     self.loader.hideOverlayView()
-//                    hideBottomLoader()
                     
                     if response.error != nil {
-                        print("error: \(response.error!.localizedDescription)")                        
+                        print("error: \(response.error!.localizedDescription)")
+                        if self.refreshControl.isRefreshing {
+                            self.refreshControl.endRefreshing()
+                        }
                     }
                     else if response["value"].bool! {
                         
-                        let newResponse = response["data"].array!
-                        
-                        if newResponse.isEmpty {
-                            self.hasNext = false
-                        }
-                        
-                        if self.notifications.isEmpty {
-                            if newResponse.isEmpty {                                
-                                let errorAlert = UIAlertController(title: "", message: "No notifications for you ", preferredStyle: UIAlertControllerStyle.alert)
-                                let DestructiveAction = UIAlertAction(title: "Ok", style: .destructive) {
-                                    (result : UIAlertAction) -> Void in
-                                    self.popVC(UIButton())
-                                }
-                                errorAlert.addAction(DestructiveAction)
-                                self.navigationController?.present(errorAlert, animated: true, completion: nil)
-                            }
-                        }
-                        else {                        
-                            self.notifications.append(contentsOf: newResponse)
-                        }
-                        
-                        if !(newResponse.isEmpty) {
+                        if !(response["data"].arrayValue.isEmpty){
                             var indexx = 0
-                            if self.currentPageNumber == 1 || refreshing || self.notifications.isEmpty {
-                                self.notifications = []                                
-                                self.notifications = newResponse
-                                indexx = 0
-                            }
-                            else{
+                            if self.currentPageNumber != 1 {
                                 indexx = (self.notifications.count - 1)
+                            }                        
+                            if self.currentPageNumber == 1 {
+                                self.notifications = []
                             }
-                            print("\n Reload called \n")
-                            self.notifyTableView.reloadData()
-                            self.notifyTableView.scrollToRow(at: NSIndexPath.init(row: indexx, section: 0) as IndexPath as IndexPath, at: .none, animated: true)
+                            self.notifications.append(contentsOf: response["data"].array!)
+                            
                             if self.refreshControl.isRefreshing {
                                 self.refreshControl.endRefreshing()
                             }
-//                            DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: { 
-//                                self.notifyTableView.reloadData()
-//                            })                            
-                        }                        
+                            self.notifyTableView.reloadData()
+                            self.notifyTableView.scrollToRow(at: NSIndexPath.init(row: indexx, section: 0) as IndexPath as IndexPath, at: .none, animated: true)
+                        }                                                
                     }
                     else {
                         print("response error!")
+                        if self.refreshControl.isRefreshing {
+                            self.refreshControl.endRefreshing()
+                        }
                     }
                     
                     UserDefaults.standard.set(0, forKey: "notificationCount")
                     updateFooterBadge()
                 })
             })
-        }
-        else{
-            if self.refreshControl.isRefreshing {
-                self.refreshControl.endRefreshing()
-            }
         }
     }
     
@@ -531,8 +511,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
                                                 print("error: \(response.error!.localizedDescription)")
                                                 
                                             }
-                                            else if response["value"].bool! {
-                                                self.refreshControl.beginRefreshing()
+                                            else if response["value"].bool! {                                                
                                                 self.pullToRefreshCalled()
                                                 
                                             }
@@ -574,9 +553,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
                     
                 }
                 else if response["value"].bool! {
-                    self.refreshControl.beginRefreshing()
                     self.pullToRefreshCalled()
-                    
                 }
                 else {
                     let errorAlert = UIAlertController(title: "Error", message: response["error"].stringValue, preferredStyle: UIAlertControllerStyle.alert)
@@ -605,7 +582,6 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
                     
                 }
                 else if response["value"].bool! {
-                    self.refreshControl.beginRefreshing()
                     self.pullToRefreshCalled()
                 }
                 else {
@@ -636,7 +612,6 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
                     
                 }
                 else if response["value"].bool! {
-                    self.refreshControl.beginRefreshing()
                     self.pullToRefreshCalled()
                 }
                 else {
@@ -672,7 +647,6 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
                     print("error: \(response.error!.localizedDescription)")
                 }
                 else if response["value"].bool! {
-                    self.refreshControl.beginRefreshing()
                     self.pullToRefreshCalled()
                 }
                 else {
@@ -699,7 +673,6 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
                     print("error: \(response.error!.localizedDescription)")
                 }
                 else if response["value"].bool! {
-                    self.refreshControl.beginRefreshing()
                     self.pullToRefreshCalled()
                 }
                 else {
@@ -780,12 +753,19 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         
         if(notifyTableView.contentOffset.y >= (notifyTableView.contentSize.height - notifyTableView.frame.size.height)) {
             if notifications.count > 0 {            
-                if hasNext {
+                if loadStatus {
                     self.getNotification()
                 }
             }
         }
     }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        if(refreshControl.isRefreshing){
+            self.pullToRefreshCalled()
+        }
+    }
+    
     
     func hideHeaderAndFooter(_ isShow:Bool) {
         if(isShow) {
@@ -813,7 +793,6 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         let remoteNotifications = notification.object as? Array<JSON>
         
         if notifications.isEmpty {
-            self.refreshControl.beginRefreshing()
             self.pullToRefreshCalled()
         }
         else {
