@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -131,7 +131,7 @@
                         <constraint firstAttribute="width" constant="239" id="mub-bB-iyk"/>
                     </constraints>
                 </stackView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hi Yash, We have updated the app for a quicker and faster log-in process." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dvg-8r-M4F">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hi Yash, we have updated the app for a quicker and faster log-in process." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dvg-8r-M4F">
                     <rect key="frame" x="60" y="120" width="280" height="49"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="49" id="6Tp-Ik-p8e"/>
@@ -140,9 +140,9 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="Please link youe existing account to either of the options." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9cv-S5-Y4W">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="Please link your existing account to either of the options." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9cv-S5-Y4W">
                     <rect key="frame" x="60" y="179" width="280" height="44"/>
-                    <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="16"/>
+                    <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -173,7 +173,7 @@
                             <rect key="frame" x="70" y="17.5" width="260" height="27.5"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="and" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="edd-bM-JIg">
-                                    <rect key="frame" x="150" y="4" width="24" height="19.5"/>
+                                    <rect key="frame" x="150" y="4.5" width="24" height="19.5"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="24" id="NM3-0j-xdz"/>
                                     </constraints>
@@ -182,7 +182,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" clipsSubviews="YES" tag="35" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LHm-0g-bh1">
-                                    <rect key="frame" x="179" y="-4.5" width="90" height="31"/>
+                                    <rect key="frame" x="179" y="-4" width="90" height="31"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="90" id="UGa-z7-X6N"/>
                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="90" id="jfr-DH-0P2"/>
@@ -201,7 +201,7 @@
                                     </state>
                                 </button>
                                 <button opaque="NO" tag="34" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5tC-NI-Wr9">
-                                    <rect key="frame" x="0.0" y="-4.5" width="145" height="31"/>
+                                    <rect key="frame" x="0.0" y="-4" width="145" height="31"/>
                                     <constraints>
                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="145" id="HQz-hm-R15"/>
                                         <constraint firstAttribute="width" constant="145" id="nPp-i3-jSG"/>

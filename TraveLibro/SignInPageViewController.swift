@@ -104,7 +104,7 @@ class SignInPageViewController: UIViewController {
             
             self.title = "Login"
             
-            pageView.frame = CGRect(x: 0, y: 15, width: self.view.frame.size.width, height: self.view.frame.size.height - 15)
+            pageView.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height - 0)
             
             pageView.profileImage.isHidden = false
             pageView.messageLabel.isHidden = false
@@ -118,7 +118,10 @@ class SignInPageViewController: UIViewController {
             
             let url = loggedInUser["profilePicture"].stringValue
             pageView.profileImage.hnk_setImageFromURL(NSURL(string: url) as! URL)
-            pageView.messageLabel.text = "Hi \(loggedInUser["name"]), we have updated the app for quicker and faster log-in process."            
+            let msg = getRegularStringWithColor(string: "Hi ", size: 14, color: UIColor.white)
+            msg.append(getBoldStringWithColor(string: loggedInUser["name"].stringValue, size: 14, color: UIColor.white))
+            msg.append(getRegularStringWithColor(string: ", we have updated the app for a quicker and faster log-in process.", size: 14, color: UIColor.white))
+            pageView.messageLabel.attributedText = msg
         }
         else {
             //New User
