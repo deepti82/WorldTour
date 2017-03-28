@@ -33,12 +33,8 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
         print("in did load")
         
         refreshControl.addTarget(self, action: #selector(ActivityFeedsController.refresh(_:)), for: .valueChanged)
-        let attributes = [NSForegroundColorAttributeName: UIColor.white]
-        let attributedTitle = NSAttributedString(string: "Pull To Refresh", attributes: attributes)
-        refreshControl.attributedTitle = attributedTitle
-        refreshControl.tintColor = lightOrangeColor
+        refreshControl.tintColor = mainOrangeColor
         activityScroll.addSubview(refreshControl)
-
         
         createNavigation()
         globalActivityFeedsController = self
@@ -81,7 +77,8 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
     
     func refresh(_ sender: AnyObject) {
         isRefreshing = true
-        getActivity(pageNumber: 1)
+        pageno = 1
+        getActivity(pageNumber: pageno)
     }
 
     
@@ -143,120 +140,120 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
             print("in activity")            
             self.loadStatus = false
             
-//            if pageNumber == 13 {
+            //            if pageNumber == 13 {
             showBottomLoader(onView: self.view)
-                request.getActivityFeeds(currentUser["_id"].stringValue, pageNumber: pageNumber, completion: {(request, localLifeJsons,quickJsons) in
-                    DispatchQueue.main.async(execute: {
-                        hideBottomLoader()
-                        NSLog(" check Response received \(request)")
+            request.getActivityFeeds(currentUser["_id"].stringValue, pageNumber: pageNumber, completion: {(request, localLifeJsons,quickJsons) in
+                DispatchQueue.main.async(execute: {
+                    hideBottomLoader()
+                    NSLog(" check Response received \(request)")
+                    
+                    
+                    if self.isRefreshing {
+                        self.refreshControl.endRefreshing()
+                        self.isRefreshing = false
                         
-
-                        if self.isRefreshing {
-                            self.refreshControl.endRefreshing()
-                            self.isRefreshing = false
-
                         if pageNumber == 1 {
                             self.layout.removeAll()
-
+                            
                         }
+                    }
+                    for var post in quickJsons {
+                        print("Google");
+                        print(post);
+                        self.loader.hideOverlayView()
+                        self.feeds.arrayObject?.append(post)
+                        post["user"] = ["name":currentUser["name"].stringValue, "profilePicture":currentUser["profilePicture"].stringValue]
+                        post["offline"] = true
+                        let checkIn = ActivityFeedsLayout(width: self.view.frame.width)
+                        checkIn.feeds = post
+                        checkIn.scrollView = self.activityScroll
+                        checkIn.createProfileHeader(feed: post)
+                        checkIn.activityFeed = self
+                        self.uploadingView = UploadingToCloud(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 23))
+                        
+                        if(post["status"].boolValue) {
+                            self.uploadingView.uploadText.text = "Uploading to Cloud."
+                        } else {
+                            self.uploadingView.uploadText.text = "Uploading to My Life."
                         }
-                        for var post in quickJsons {
-                            print("Google");
-                            print(post);
+                        
+                        self.uploadingView.backgroundColor = endJourneyColor
+                        
+                        self.layout.addSubview(checkIn)
+                        self.layout.addSubview(self.uploadingView)
+                        self.addHeightToLayout()
+                        
+                    }
+                    
+                    for var post in localLifeJsons {
+                        self.loader.hideOverlayView()
+                        self.feeds.arrayObject?.append(post)
+                        
+                        print("ininininin  \(currentUser)")
+                        post["user"] = ["name":currentUser["name"].stringValue, "profilePicture":currentUser["profilePicture"].stringValue]
+                        post["offline"] = true
+                        let checkIn = ActivityFeedsLayout(width: self.view.frame.width)
+                        checkIn.feeds = post
+                        print("post post : \(post)")
+                        checkIn.scrollView = self.activityScroll
+                        checkIn.createProfileHeader(feed: post)
+                        checkIn.activityFeed = self
+                        
+                        self.uploadingView = UploadingToCloud(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 23))
+                        self.uploadingView.backView.backgroundColor = endJourneyColor
+                        self.uploadingView.uploadText.textColor = mainBlueColor
+                        self.layout.addSubview(checkIn)
+                        self.layout.addSubview(self.uploadingView)
+                        
+                        self.addHeightToLayout()
+                        
+                    }
+                    
+                    
+                    
+                    if !(request["data"].isEmpty) {
+                        
+                        self.loadStatus = true
+                        print("responseActivity\(request["data"])")
+                        
+                        
+                        for post in request["data"].array! {
+                            NSLog(" check 1 \n")
                             self.loader.hideOverlayView()
                             self.feeds.arrayObject?.append(post)
-                            post["user"] = ["name":currentUser["name"].stringValue, "profilePicture":currentUser["profilePicture"].stringValue]
-                            post["offline"] = true
                             let checkIn = ActivityFeedsLayout(width: self.view.frame.width)
                             checkIn.feeds = post
                             checkIn.scrollView = self.activityScroll
+                            //                                print("\n\n\n POST ::: \n \(post) \n\n\n")
                             checkIn.createProfileHeader(feed: post)
                             checkIn.activityFeed = self
-                            self.uploadingView = UploadingToCloud(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 23))
-                            
-                            if(post["status"].boolValue) {
-                                self.uploadingView.uploadText.text = "Uploading to Cloud."
-                            } else {
-                                self.uploadingView.uploadText.text = "Uploading to My Life."
-                            }
-                            
-                            self.uploadingView.backgroundColor = endJourneyColor
-                            
                             self.layout.addSubview(checkIn)
-                            self.layout.addSubview(self.uploadingView)
                             self.addHeightToLayout()
-                            
+                            NSLog(" check 2 \n")
                         }
                         
-                        for var post in localLifeJsons {
+                        
+                        if isConnectedToNetwork() {
+                            NSLog(" check started building actual layout \n")
+                            NSLog(" check done building actual layout \n")
+                        }else{
+                            print("no in internet")
                             self.loader.hideOverlayView()
-                            self.feeds.arrayObject?.append(post)
-                            
-                            print("ininininin  \(currentUser)")
-                            post["user"] = ["name":currentUser["name"].stringValue, "profilePicture":currentUser["profilePicture"].stringValue]
-                            post["offline"] = true
-                            let checkIn = ActivityFeedsLayout(width: self.view.frame.width)
-                            checkIn.feeds = post
-                            print("post post : \(post)")
-                            checkIn.scrollView = self.activityScroll
-                            checkIn.createProfileHeader(feed: post)
-                            checkIn.activityFeed = self
-                            
-                            self.uploadingView = UploadingToCloud(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 23))
-                            self.uploadingView.backView.backgroundColor = endJourneyColor
-                            self.uploadingView.uploadText.textColor = mainBlueColor
-                            self.layout.addSubview(checkIn)
-                            self.layout.addSubview(self.uploadingView)
-                            
-                            self.addHeightToLayout()
-                            
+                            self.noInternet = UploadingToCloud(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 23))
+                            self.noInternet.uploadText.text = "No Internet Connection"
+                            self.view.addSubview(self.noInternet)
                         }
-
                         
-                        
-                        if !(request["data"].isEmpty) {
-                           
-                            self.loadStatus = true
-                            print("responseActivity\(request["data"])")
-                            
-                            
-                            for post in request["data"].array! {
-                                NSLog(" check 1 \n")
-                                self.loader.hideOverlayView()
-                                self.feeds.arrayObject?.append(post)
-                                let checkIn = ActivityFeedsLayout(width: self.view.frame.width)
-                                checkIn.feeds = post
-                                checkIn.scrollView = self.activityScroll
-                                //                                print("\n\n\n POST ::: \n \(post) \n\n\n")
-                                checkIn.createProfileHeader(feed: post)
-                                checkIn.activityFeed = self
-                                self.layout.addSubview(checkIn)
-                                self.addHeightToLayout()
-                                NSLog(" check 2 \n")
-                            }
-
-                            
-                            if isConnectedToNetwork() {
-                                NSLog(" check started building actual layout \n")
-                                NSLog(" check done building actual layout \n")
-                            }else{
-                                print("no in internet")
-                                self.loader.hideOverlayView()
-                                self.noInternet = UploadingToCloud(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 23))
-                                self.noInternet.uploadText.text = "No Internet Connection"
-                                self.view.addSubview(self.noInternet)
-                            }
-                            
-                            self.addHeightToLayout()
-                        }
-                        else{
-                            //                        self.loadStatus = false
-                            self.loader.hideOverlayView()
-                        }                       
-                        
-                    })
+                        self.addHeightToLayout()
+                    }
+                    else{
+                        //                        self.loadStatus = false
+                        self.loader.hideOverlayView()
+                    }                       
+                    
                 })
-//            }
+            })
+            //            }
             
         }
         else if displayData == "popular" {
@@ -280,7 +277,7 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
                         }
                         self.addHeightToLayout()
                     }else{
-//                        self.loadStatus = false
+                        //                        self.loadStatus = false
                     }
                 })
             })
@@ -309,7 +306,7 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
                         
                         self.addHeightToLayout()
                     }else{
-//                        self.loadStatus = false
+                        //                        self.loadStatus = false
                     }
                 })
             })
@@ -336,7 +333,7 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
                         
                         self.addHeightToLayout()
                     }else{
-//                        self.loadStatus = false
+                        //                        self.loadStatus = false
                     }
                 })
             })
