@@ -36,8 +36,6 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
     var savedId = ""
     var reviewPage = ""
     var loader = LoadingOverlay()
-
-    
     
     @IBOutlet weak var mainView: UICollectionView!
     
@@ -53,9 +51,17 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if insideView == "Monthly" {
+            page = 1
+            loadInsideMedia(mediaType: savedMediaType, pageno: page, type: momentType, token: savedToken, id: savedId)
+        }
+    }
         
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if scrollView.contentOffset.y >= (scrollView.contentSize.height - scrollView.frame.size.height) {
+//        if scrollView.contentOffset.y >= (scrollView.contentSize.height - scrollView.frame.size.height) {
 
         if loadStatus {
             
@@ -69,13 +75,11 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
                     if lastToken != "-1" {
                         self.loadMomentLife(pageno: 0, type: momentType, token: lastToken)
                     }
-                    
-
                 }
             }
             
         }
-        }
+//        }
         
     }
     

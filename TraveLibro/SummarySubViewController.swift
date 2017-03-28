@@ -116,13 +116,17 @@ class SummarySubViewController: UIViewController, UIScrollViewDelegate {
         
     }
     
-    func getDays(_ startDate: String, postDate: String) -> Int {
+    func getDays(_ startDate: String, startFormate: String, postDate: String, endFormate: String) -> Int {
         
         let DFOne = DateFormatter()
-        DFOne.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSZ"
+        DFOne.dateFormat = startFormate
+
+//        DFOne.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSZ"
         let DFTwo = DateFormatter()
         
-        DFTwo.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
+        DFTwo.dateFormat = endFormate
+
+//        DFTwo.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
         
         let start = DFOne.date(from: startDate)
         let post = DFTwo.date(from: postDate)
@@ -281,6 +285,9 @@ class SummarySubViewController: UIViewController, UIScrollViewDelegate {
             timeFormatter.dateFormat = "hh:mm a"
             cell.calendarText.text = "\(dateFormatter.string(from: date!))"
             cell.clockText.text = "\(timeFormatter.string(from: date!))"
+            print("ppppppp \(val)")
+            let dt = self.getDays(tripCountData["startTime"].stringValue, startFormate: "yyyy-MM-dd'T'HH:mm:ss.SSZ", postDate: val["UTCModified"].stringValue, endFormate: "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
+            cell.dayCount.text = String(dt + 1)
             
             
             
@@ -301,6 +308,10 @@ class SummarySubViewController: UIViewController, UIScrollViewDelegate {
         dateFormatter.dateFormat = "dd MMM yyyy"
         timeFormatter.dateFormat = "hh:mm a"
         tripView.tripDate.text = "\(dateFormatter.string(from: date!))"
+        
+        
+        let dt = self.getDays(tripCountData["startTime"].stringValue, startFormate: "yyyy-MM-dd'T'HH:mm:ss.SSZ", postDate: String(describing: Date()), endFormate: "yyyy-MM-dd HH:mm:ss Z")
+        tripView.tripDays.text = String(dt + 1)
         
         tripView.profilePic.hnk_setImageFromURL(URL(string:"\(adminUrl)upload/readFile?file=\(tripCountData["user"]["profilePicture"].stringValue)")!)
         tripView.profileName.text! = tripCountData["user"]["name"].stringValue

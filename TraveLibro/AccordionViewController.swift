@@ -463,10 +463,13 @@ class allReviewsMLTableViewCell: UITableViewCell {
     
     func setView(feed:JSON) {
         self.review.isHidden = true
+        self.ratingButton.isHidden = false
+        self.ratingButton.setTitle("Rate this now", for: .normal)
+        
         ratingButton.removeTarget(self, action: #selector(self.checkMyRating(_:)), for: .touchUpInside)       
         ratingStack.isUserInteractionEnabled = false
         
-        if isSelfUser(otherUserID: feed["user"].stringValue) {
+        if isSelfUser(otherUserID: currentUser["_id"].stringValue) {
             ratingButton.addTarget(self, action: #selector(self.checkMyRating(_:)), for: .touchUpInside)
             
             let tapout = UITapGestureRecognizer(target: self, action: #selector(self.checkMyRatingStar(_:)))
@@ -496,7 +499,7 @@ class allReviewsMLTableViewCell: UITableViewCell {
             ratingStack.isHidden = false
             ratingButton.isHidden = true
             if feed["review"][0]["review"].stringValue != "" {                
-                if isSelfUser(otherUserID: feed["user"].stringValue) {
+                if isSelfUser(otherUserID: currentUser["_id"].stringValue) {
                     self.review.text = feed["review"][0]["review"].stringValue
                     self.review.sizeToFit()
                 }
@@ -509,7 +512,7 @@ class allReviewsMLTableViewCell: UITableViewCell {
         }else{
             if feed["checkIn"] != nil && feed["checkIn"]["category"].stringValue != "" {
                 ratingStack.isHidden = true
-                ratingButton.isHidden = false
+                self.ratingButton.setTitle( (isSelfUser(otherUserID: currentUser["_id"].stringValue)) ? "Rate this now" : "Not Reviewed Yet", for: .normal)
                 
             }else{
                 ratingStack.isHidden = true

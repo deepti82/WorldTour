@@ -111,7 +111,7 @@ class EachItineraryPhotosViewController: UIViewController, UICollectionViewDataS
         if selectedItinerary != "" {
             singlePhotoController.photos = self.photoJSON
             singlePhotoController.whichView = "detail_itinerary"
-            singlePhotoController.shouldShowBottomView = selectedItinerary["status"].boolValue
+            singlePhotoController.shouldShowBottomView = (selectedItinerary["type"].stringValue == "quick-itinerary") ? true : selectedItinerary["status"].boolValue
         }
         else {            
             singlePhotoController.whichView = "quick_local_itinerary"

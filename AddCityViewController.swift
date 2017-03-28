@@ -50,7 +50,7 @@ class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewD
                                     //TODO:Check this if autoSave should be supported
                                 }
                                 else {
-                                    self.saveCity(UIButton())                                    
+                                    self.saveCity()                                    
                                 }
                             }
                         }
@@ -84,7 +84,7 @@ class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewD
         leftButton.frame = CGRect(x: -8, y: 0, width: 30, height: 30)
         
         if isFromSettings != nil && isFromSettings == true {
-            leftButton.addTarget(self, action: #selector(self.saveCity(_:)), for: .touchUpInside)
+            leftButton.addTarget(self, action: #selector(self.saveCity), for: .touchUpInside)
             self.customNavigationBar(left: leftButton, right: nil)           
         }
         else {
@@ -92,7 +92,7 @@ class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewD
             
             let rightButton = UIButton()
             rightButton.setImage(UIImage(named: "arrow_next_fa"), for: UIControlState())
-            rightButton.addTarget(self, action: #selector(AddCityViewController.saveCity(_:)), for: .touchUpInside)
+            rightButton.addTarget(self, action: #selector(AddCityViewController.saveCity), for: .touchUpInside)
             rightButton.frame = CGRect(x: 8, y: 8, width: 30, height: 30)
             self.customNavigationBar(left: leftButton, right: rightButton)
         }
@@ -109,8 +109,9 @@ class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        print("\n\n viewWillDisappear called ")
         if isFromSettings != nil && isFromSettings == true {
-        self.saveCity(UIButton())
+            self.saveCity()
         }
     }
     
@@ -119,70 +120,78 @@ class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewD
         // Dispose of any resources that can be recreated.
     }
     
-    func saveCity(_ sender: UIButton?) {
-        
+    func saveCity() {
+        print("\n\n Save city called")
         var cityName = ""
         
-        print("city name: \(cityTextField.text), \(currentUser["_id"]), \(currentUser["homeCity"].string)")
-        
-        DispatchQueue.global().async {
-            if self.cityTextField.text != "" {
-                
-                cityName = self.cityTextField.text!
-                
-                if currentUser["homeCity"].string == nil || self.cityTextField.text != currentUser["homeCity"].string!{
-                    request.editUser(currentUser["_id"].string!, editField: "homeCity", editFieldValue: cityName, completion: {(response) in
+        print("city name: \(cityTextField.text), \(currentUser["_id"]), \(currentUser["homeCity"].string)")        
+        if self.cityTextField.text != "" {
+            
+            cityName = self.cityTextField.text!
+            
+            if currentUser["homeCity"].string == nil || self.cityTextField.text != currentUser["homeCity"].string!{
+                request.editUser(currentUser["_id"].string!, editField: "homeCity", editFieldValue: cityName, completion: {(response) in
+                    
+                    DispatchQueue.main.sync(execute: {
+                        print(response["value"])
                         
-                        DispatchQueue.main.sync(execute: {
-                            print(response["value"])
+                        if response.error != nil {
                             
-                            if response.error != nil {
-                                
-                                print("error: \(response.error?.localizedDescription)")
-                                
-                            } else if response["value"] == true {
-                                currentUser = response["data"]
-                                if self.isFromSettings != true {
-                                    self.selectGender(UIButton())
+                            print("error: \(response.error?.localizedDescription)")
+                            
+                        } else if response["value"] == true {
+                            currentUser = response["data"]
+                            if self.isFromSettings != true {
+                                if (Thread.isMainThread) {
+                                    self.selectGender()
                                 }
                                 else {
-                                    Toast(text: "User's city updated").show()
-                                    if (self.navigationController?.topViewController as? AddCityViewController) != nil {
-                                        self.popVC(UIButton())
-                                    }
+                                    DispatchQueue.main.sync(execute: {
+                                        self.selectGender()                                            
+                                    })
                                 }
-                            } else {
-                                print("response error: \(response["data"])")
                             }
-                        })
-                        
+                            else {
+                                Toast(text: "User's city updated").show()
+                                if (self.navigationController?.topViewController as? AddCityViewController) != nil {
+                                    self.popVC(UIButton())
+                                }
+                            }
+                        } else {
+                            print("response error: \(response["data"])")
+                        }
                     })
-                }
-                else{
-                    if self.isFromSettings != nil && self.isFromSettings == true {
-                        DispatchQueue.main.sync() {
-                            if (self.navigationController?.topViewController as? AddCityViewController) != nil {
-                                self.popVC(UIButton())
-                            }
+                    
+                })
+            }
+            else{
+                if self.isFromSettings != nil && self.isFromSettings == true {
+                    DispatchQueue.main.sync() {
+                        if (self.navigationController?.topViewController as? AddCityViewController) != nil {
+                            self.popVC(UIButton())
                         }
                     }
-                    else {
-                        self.selectGender(sender)
-                        
-                    }
                 }
+                else {
+                    self.selectGender()                        
+                }
+            }
+            
+        } else {
+            self.alert(message: "Please Select City.", title: "Select City")
+        }            
                 
-            } else {
-                self.alert(message: "Please Select City.", title: "Select City")
-            }            
-        }        
     }
     
-    func selectGender(_ sender: UIButton?) {
+    func selectGender() {
+        print("\n\n selectGender called ")
+        print("\n\n IsMainThread : \(Thread.isMainThread) \n\n")
+        print("\n\n Top VC : \(self.navigationController?.topViewController)")
         
+        if (self.navigationController?.topViewController?.isKind(of: AddCityViewController.self))! {
             let selectGenderVC = self.storyboard!.instantiateViewController(withIdentifier: "selectGender") as! SelectGenderViewController
-            self.navigationController?.pushViewController(selectGenderVC, animated: true)
-        
+            self.navigationController?.pushViewController(selectGenderVC, animated: true)            
+        }
     }
     
     
@@ -285,7 +294,7 @@ class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewD
         cityTextField.text = places[(indexPath as NSIndexPath).row]["description"].string!
         cityTextField.resignFirstResponder()
         mainTableView.isHidden = true
-        saveCity(nil)
+        saveCity()
         
     }
     

@@ -223,6 +223,12 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         
         selectedUser = currentSelectedUser
         
+        if (currentSelectedUser.isEmpty) {
+            request.getUserFromCache(user.getExistingUser(), completion: { (response) in
+                currentUser = response["data"]
+            })
+        }
+        
         if isCountryAdded {
             isCountryAdded = false
             getUser()
