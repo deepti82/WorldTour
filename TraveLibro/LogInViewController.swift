@@ -132,7 +132,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
             }            
         }
         else {
-            let errorAlert = UIAlertController(title: "Error", message: "Please fill email and password properly", preferredStyle: UIAlertControllerStyle.alert)
+            let errorAlert = UIAlertController(title: "Error", message: "Please enter correct email and password.", preferredStyle: UIAlertControllerStyle.alert)
             let DestructiveAction = UIAlertAction(title: "Ok", style: .destructive) {
                 (result : UIAlertAction) -> Void in
                 //Cancel Action
@@ -189,7 +189,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
                         self.navigationController?.present(mailAlert, animated: true, completion: nil)
                     }
                     else {                    
-                        let mailErrorAlert = UIAlertController(title: "Error", message: "Something went wrong. Please try after sometime", preferredStyle: UIAlertControllerStyle.alert)
+                        let mailErrorAlert = UIAlertController(title: "Error", message: "Seems like your account is linked to either Facebook or Google. Please login using your origanally linked Facebook or Google Account.", preferredStyle: UIAlertControllerStyle.alert)
                         let DestructiveAction = UIAlertAction(title: "Ok", style: .destructive) {
                             (result : UIAlertAction) -> Void in
                             //Cancel Action
@@ -202,7 +202,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         }
         else {
             
-            let errorAlert = UIAlertController(title: "", message: "Please input Email Id ", preferredStyle: UIAlertControllerStyle.alert)
+            let errorAlert = UIAlertController(title: "", message: "Please enter email id ", preferredStyle: UIAlertControllerStyle.alert)
             let DestructiveAction = UIAlertAction(title: "Ok", style: .destructive) {
                 (result : UIAlertAction) -> Void in
             }
@@ -236,7 +236,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     
     func userSocialLoginFailed(notification : Notification) {
         
-        let errorAlert = UIAlertController(title: "Error", message: "Unable to login. Please check your profile public.", preferredStyle: UIAlertControllerStyle.alert)
+        let errorAlert = UIAlertController(title: "Error", message: "Unable to login. Please try after some time.", preferredStyle: UIAlertControllerStyle.alert)
         let DestructiveAction = UIAlertAction(title: "Ok", style: .destructive) {
             (result : UIAlertAction) -> Void in
         }            
@@ -246,7 +246,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     
     func saveUserFailed(notification: Notification)  {
         loader.hideOverlayView()
-        let errorAlert = UIAlertController(title: "Error", message: "Something went wrong. Please try after sometime", preferredStyle: UIAlertControllerStyle.alert)
+        let errorAlert = UIAlertController(title: "Error", message: "Something went wrong. Please try after some time.", preferredStyle: UIAlertControllerStyle.alert)
         let DestructiveAction = UIAlertAction(title: "Ok", style: .destructive) {
             (result : UIAlertAction) -> Void in
             //Cancel Action
