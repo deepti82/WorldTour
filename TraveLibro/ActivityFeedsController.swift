@@ -152,14 +152,13 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
                         self.refreshControl.endRefreshing()
                         self.isRefreshing = false
                         
-                        if pageNumber == 1 {
-                            self.layout.removeAll()
-                            
-                        }
+                        
+                    }
+                    if pageNumber == 1 {
+                        self.layout.removeAll()
+                        
                     }
                     for var post in quickJsons {
-                        print("Google");
-                        print(post);
                         self.loader.hideOverlayView()
                         self.feeds.arrayObject?.append(post)
                         post["user"] = ["name":currentUser["name"].stringValue, "profilePicture":currentUser["profilePicture"].stringValue]
