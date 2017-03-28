@@ -17,8 +17,6 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate, iCarouselDeleg
     var bgImage: UIImageView!
     let like =  Bundle.main.path(forResource: "tiny1", ofType: "mp3")!
     var audioPlayer = AVAudioPlayer()
-
-    
     
     @IBOutlet weak var visualEffectHide: UIVisualEffectView!
     @IBOutlet weak var audioButton: UIButton!
@@ -158,6 +156,12 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate, iCarouselDeleg
         super.viewWillAppear(animated)
         carouselView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: self.view.frame.size.height)
         mainImage.isHidden = true
+                
+        let newCount = Int(((self.commentText.text)!).components(separatedBy: " ").first()!) 
+            //split(self.commentText.text) {$0 == " "}
+        if newCount != self.commentCount {
+            updateCommentJSON(withValue: newCount!)
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -165,10 +169,11 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate, iCarouselDeleg
         
         carouselView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: self.view.frame.size.height - 5)
         print("carouselView.frame : \(carouselView.frame)")
-        
+        carouselView.currentItemIndex = index
         carouselView.type = iCarouselType.linear      //iCarouselTypeCylinder
         carouselView.delegate = self
         carouselView.dataSource = self
+        carouselView.scrollToItem(at: index, animated: true)
         
         if whichView == "quick_local_itinerary" && isSpecialHandling {            
             loader.hideOverlayView()
@@ -199,7 +204,7 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate, iCarouselDeleg
     }
     
     @IBAction func sendLike(_ sender: UIButton) {
-        audioPlayer.play()
+//        audioPlayer.play()
         likeButton.animation = "pop"
         likeButton.animateTo()
         
@@ -228,12 +233,16 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate, iCarouselDeleg
                 }
                 else if response["value"].bool! {
                     
+                    var currentDict  = self.carouselDict.value(forKey: self.photos[self.carouselView.currentItemIndex]["_id"].string!) as! JSON
+                    var prevArray = currentDict["like"].arrayValue
+                    
                     if !self.hasLiked! {
                         
                         sender.setImage(UIImage(named: "favorite-heart-button")?.withRenderingMode(.alwaysTemplate), for: UIControlState())
                         self.likeCount = Int(self.likeCount) + 1
                         self.likeText.text = "\(self.likeCount) Likes"
                         self.hasLiked = !self.hasLiked
+                        prevArray.append(JSON(user.getExistingUser()))
                     }
                     else {
                         
@@ -241,11 +250,13 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate, iCarouselDeleg
                         self.likeCount = Int(self.likeCount) - 1
                         self.likeText.text = "\(self.likeCount) Likes"
                         self.hasLiked = !self.hasLiked
+                        _ = prevArray.remove(at: (prevArray.indexOf(value: JSON(user.getExistingUser())))!)
                     }
-                    
-                    //                        var currentDict  = self.carouselDict.value(forKey: self.photos[self.carouselView.currentItemIndex]["_id"].string!) as! JSON                        
-                    //                        currentDict["likeCount"] = JSON(self.likeCount)
-                    //                        self.carouselDict.setObject(currentDict, forKey: (self.photos[self.carouselView.currentItemIndex]["_id"].stringValue) as NSCopying)
+                                                                
+                    currentDict["likeCount"] = JSON(self.likeCount)
+                    currentDict["like"] =  JSON(prevArray)
+                    self.carouselDict.setObject(currentDict, forKey: (self.photos[self.carouselView.currentItemIndex]["_id"].stringValue) as NSCopying)
+                    self.updateLike(data: currentDict)
                 }
                 else {
                     
@@ -272,6 +283,39 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate, iCarouselDeleg
         self.navigationController?.pushViewController(comment, animated: true)
     }
     
+    func updateLike(data: JSON) {
+        if data["like"].array!.contains(JSON(user.getExistingUser())) {
+            
+            self.likeButton.setImage(UIImage(named: "favorite-heart-button")?.withRenderingMode(.alwaysTemplate), for: .normal)
+            self.likeButton.tintColor = UIColor.white
+            self.hasLiked = true
+        } 
+        else {
+            
+            self.likeButton.setImage(UIImage(named: "likeButton"), for: .normal)
+            self.hasLiked = false
+        }
+    }
+    
+    func updateCommentJSON(withValue :Int){
+        var currentDict  = self.carouselDict.value(forKey: self.photos[self.carouselView.currentItemIndex]["_id"].string!) as! JSON
+        print("\n currentDict : \(currentDict)")
+        currentDict["commentCount"] = JSON(withValue)
+        self.carouselDict.setObject(currentDict, forKey: (self.photos[self.carouselView.currentItemIndex]["_id"].stringValue) as NSCopying)
+        print("\n currentDict : \(currentDict)")
+        self.updateComment(data: currentDict)
+    }
+    
+    func updateComment(data: JSON){
+        if(data["commentCount"].int != nil) {
+            self.commentCount = data["commentCount"].int!
+            self.commentText.text = "\(self.commentCount) Comment"
+        }
+        else{
+            self.commentCount = 0
+            self.commentText.text = "0 Comment"
+        }
+    }
     
     //MARK: - Gesture methods
     func imageSwiped(_ sender: AnyObject?) {
@@ -353,17 +397,7 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate, iCarouselDeleg
                 self.imageCaption.text = data["caption"].string!
             }
             
-            if data["like"].array!.contains(JSON(user.getExistingUser())) {
-                
-                self.likeButton.setImage(UIImage(named: "favorite-heart-button")?.withRenderingMode(.alwaysTemplate), for: .normal)
-                self.likeButton.tintColor = UIColor.white
-                self.hasLiked = true
-            } 
-            else {
-                
-                self.likeButton.setImage(UIImage(named: "likeButton"), for: .normal)
-                self.hasLiked = false
-            }
+            updateLike(data: data)
         }
             
         if(data["likeCount"].int != nil) {
@@ -375,14 +409,7 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate, iCarouselDeleg
             self.likeText.text = "0 Like"
         }
         
-        if(data["commentCount"].int != nil) {
-            self.commentCount = data["commentCount"].int!
-            self.commentText.text = "\(self.commentCount) Comment"
-        }
-        else{
-            self.commentCount = 0
-            self.commentText.text = "0 Comment"
-        }
+        updateComment(data: data)
         
         if shouldShowBottomView {
             self.bottomView.isHidden = false            
