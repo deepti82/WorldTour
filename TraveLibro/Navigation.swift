@@ -4019,12 +4019,15 @@ class Navigation {
             do {
                 let opt = try HTTP.POST(adminUrl + "user/logoutApp", parameters: ["_id": user.getExistingUser(), "deviceId": deviceParams])
                 var json = JSON(1);
+                
                 opt.start {response in
                     if let err = response.error {
                         print("error: \(err.localizedDescription)")
                     }
                     else
                     {
+                        user.dropTable()
+                        self.cache.removeAll()
                         json  = JSON(data: response.data)
                         print(json)
                         completion(json)

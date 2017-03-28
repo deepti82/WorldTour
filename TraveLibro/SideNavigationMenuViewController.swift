@@ -400,7 +400,7 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
                         print("error: \(response.error!.localizedDescription)")
                     }
                     else if response["value"].bool! {
-                        user.dropTable()
+                      
                         UserDefaults.standard.set(0, forKey: "notificationCount")
                         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
                     }
