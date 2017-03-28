@@ -185,7 +185,7 @@ class LeftPaddedText:  UITextField {
 
 open class LoadingOverlay{
     
-    var loader = UIView()
+    var loader: UIView?
     var imageView1 = UIImageView()
     
     class var shared: LoadingOverlay {
@@ -215,15 +215,16 @@ open class LoadingOverlay{
         imageView1.center = CGPoint(x: view.center.x, y: ((view.frame.size.height/2) - ( globalNavigationController != nil ? (globalNavigationController?.navigationBar.frame.size.height)! : 0) ))
         
         blurView.addSubview(imageView1)
-         loader.addSubview(blurView)
+         loader!.addSubview(blurView)
 //        loader.backgroundColor = UIColor(colorLiteralRed: 0/255, green: 0/255, blue: 0/255, alpha: 0.4)
-        view.addSubview(loader)
+        view.addSubview(loader!)
         
     }
     
     func hideOverlayView() {
         if loader != nil {
-            loader.removeFromSuperview()
+            loader!.removeFromSuperview()
+            loader = nil
         }else {
             //
         }
