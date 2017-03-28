@@ -128,6 +128,12 @@ class ActivityFeedFooterBasic: UIView {
             lineView.isHidden = true
         }
         
+        if user.getExistingUser() == postTop["postCreator"]["_id"].stringValue {
+            optionButton.isHidden = true
+        }else{
+            optionButton.isHidden = false
+        }
+        
         
         if feed["review"][0] != nil && feed["review"].count > 0 {
             ratingStack.isHidden = false
@@ -234,7 +240,7 @@ class ActivityFeedFooterBasic: UIView {
     func checkMyRating(_ sender: UITapGestureRecognizer) {
         print("check i im the creator")
         
-        if currentUser["_id"].stringValue == postTop["postCreator"]["_id"].stringValue {
+        if user.getExistingUser() == postTop["postCreator"]["_id"].stringValue {
             openRating()
         }
     }
@@ -494,7 +500,7 @@ class ActivityFeedFooterBasic: UIView {
 
     @IBAction func optionClick(_ sender: UIButton) {
         
-        if currentUser != nil {
+        if currentUser != nil && user.getExistingUser() == postTop["postCreator"]["_id"].stringValue{
             let actionSheetControllerIOS8: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
             if(self.type == "MyLifeFeeds") {
                 let EditCheckIn: UIAlertAction = UIAlertAction(title: "Edit Activity", style: .default)

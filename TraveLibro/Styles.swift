@@ -213,6 +213,7 @@ open class LoadingOverlay{
         imageView1.image = UIImage.gif(name: "200_200")
         imageView1.contentMode = .scaleAspectFit
         imageView1.center = CGPoint(x: view.center.x, y: ((view.frame.size.height/2) - ( globalNavigationController != nil ? (globalNavigationController?.navigationBar.frame.size.height)! : 0) ))
+        
         blurView.addSubview(imageView1)
          loader.addSubview(blurView)
 //        loader.backgroundColor = UIColor(colorLiteralRed: 0/255, green: 0/255, blue: 0/255, alpha: 0.4)
