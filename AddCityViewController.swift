@@ -166,11 +166,9 @@ class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewD
             }
             else{
                 if self.isFromSettings != nil && self.isFromSettings == true {
-                    DispatchQueue.main.sync() {
                         if (self.navigationController?.topViewController as? AddCityViewController) != nil {
                             self.popVC(UIButton())
                         }
-                    }
                 }
                 else {
                     self.selectGender()                        
