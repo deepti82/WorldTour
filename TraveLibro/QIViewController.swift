@@ -96,7 +96,7 @@ class QIViewController: UIPageViewController, UIPageViewControllerDataSource, UI
         if key == "0duration" {
             mss = "Day's can not be 0."
         }else{
-            mss = "Please enter \(key)"
+            mss = "Please enter \(key.capitalized)"
         }
         let tsrt = Toast(text: mss)
         tsrt.show()
@@ -176,7 +176,7 @@ class QIViewController: UIPageViewController, UIPageViewControllerDataSource, UI
                     break
                 case "countryVisited":
                     if itm.count == 0 {
-                        self.changeView(changedIndex: 2, key: key)
+                        self.changeView(changedIndex: 2, key: "country visited")
                         check = false
                     }
                     break

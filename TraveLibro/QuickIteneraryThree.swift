@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Toaster
 
 class QuickIteneraryThree: UIViewController, UITextFieldDelegate {
     
@@ -203,6 +204,10 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate {
         print("in country function")
         if !viewAdded {
             viewAdded = true
+            if selectedCity.isEmpty {
+                let alt = Toast(text: "Please select atleast one City.")
+                alt.show()
+            }else{
             var a: JSON = ["country":selectedCountry["_id"], "_id":selectedCountry["_id"], "name":selectedCountry["name"], "cityVisited":selectedCity]
             if quickItinery["countryVisited"].contains(where: {$0.1["_id"] == selectedCountry["_id"]}) {
                 let b = quickItinery["countryVisited"].index(where: {$0.1["_id"] == selectedCountry["_id"]})
@@ -217,7 +222,9 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate {
             selectedCountry = []
             selectedCity = []
             fillText()
+            }
         }
+            
         
     }
     

@@ -504,7 +504,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSZ"
         self.inputview = UIView(frame: CGRect(x: 0, y: UIScreen.main.bounds.size.height - 200, width: self.view.frame.size.width, height: 240))
         self.inputview.backgroundColor = UIColor.white
-        self.datePickerView = UIDatePicker(frame: CGRect(x: 0, y: 40, width: self.inputview.frame.size.width, height: 200))
+        self.datePickerView = UIDatePicker(frame: CGRect(x: 0, y: 0, width: self.inputview.frame.size.width, height: 200))
         self.datePickerView.datePickerMode = UIDatePickerMode.dateAndTime
         self.datePickerView.date = dateFormatter.date(from: footer.postTop["UTCModified"].stringValue)!
         self.datePickerView.maximumDate = Date()

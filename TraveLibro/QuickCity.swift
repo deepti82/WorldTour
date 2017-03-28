@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Toaster
 
 class QuickCity: UIView {
     
@@ -30,9 +31,14 @@ class QuickCity: UIView {
     }
     func deleteCity(_ sender:AnyObject) {
     print("delette city")
+        if quickItinery["countryVisited"][self.countryTag]["cityVisited"].count <= 1 {
+            let alt = Toast(text: "Atlest one city is compulsory.")
+            alt.show()
+        }else{
         quickItinery["countryVisited"][self.countryTag]["cityVisited"].arrayObject?.remove(at: self.cityTag)
 //        selectedCity.arrayObject?.remove(at: self.cityTag)
         parentView.createLayout()
+        }
         
     }
     func loadViewFromNib() {

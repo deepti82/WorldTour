@@ -456,7 +456,7 @@ class ActivityFeedFooter: UIView {
                 actionSheetControllerIOS8.addAction(cancelActionButton)
                 let reportActionButton: UIAlertAction = UIAlertAction(title: "Report", style: .default)
                 {action -> Void in
-                    let alert = UIAlertController(title: "Repost", message: "Reported successfuly.", preferredStyle: UIAlertControllerStyle.alert)
+                    let alert = UIAlertController(title: "Report", message: "Reported successfuly.", preferredStyle: UIAlertControllerStyle.alert)
                     alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
                     globalNavigationController.present(alert, animated: true, completion: nil)
                 }
