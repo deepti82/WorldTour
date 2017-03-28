@@ -172,6 +172,12 @@ public class QuickItinerary {
                     }
                     
                 }
+                if globalActivityFeedsController != nil {
+                    
+                        globalActivityFeedsController.getActivity(pageNumber: 1)
+                    
+                    
+                }
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "UPLOAD_ITINERARY"), object: nil)
             }
         }
