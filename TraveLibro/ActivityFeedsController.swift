@@ -81,7 +81,7 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
     
     func refresh(_ sender: AnyObject) {
         isRefreshing = true
-        getActivity(pageNumber: pageno)
+        getActivity(pageNumber: 1)
     }
 
     
