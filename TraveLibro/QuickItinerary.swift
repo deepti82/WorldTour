@@ -178,7 +178,7 @@ public class QuickItinerary {
                     
                     
                 }
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "UPLOAD_ITINERARY"), object: nil)
+//                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "UPLOAD_ITINERARY"), object: nil)
             }
         }
         catch {

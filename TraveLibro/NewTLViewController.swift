@@ -883,8 +883,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
             //        infoView.animation.makeOpacity(0.0).animate(0.5)
             infoView.isHidden = true
         }else{
-            let tstr = Toast(text: "No Videos")
-            tstr.show()
         }
         
         
