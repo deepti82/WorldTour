@@ -139,7 +139,7 @@ class QuickIteneraryFive: UIViewController, UICollectionViewDataSource, UICollec
             globalPostImage.append(postImg)
         }
         
-        self.addCaption(1);
+        self.addCaption(0);
         self.photoGallerySecondView.isHidden = false
         self.photosGalleryFirstView.isHidden = true
         self.photosCollection.reloadData()

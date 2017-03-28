@@ -161,7 +161,8 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
                         }
                         }
                         for var post in quickJsons {
-                            
+                            print("Google");
+                            print(post);
                             self.loader.hideOverlayView()
                             self.feeds.arrayObject?.append(post)
                             post["user"] = ["name":currentUser["name"].stringValue, "profilePicture":currentUser["profilePicture"].stringValue]
@@ -172,7 +173,13 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
                             checkIn.createProfileHeader(feed: post)
                             checkIn.activityFeed = self
                             self.uploadingView = UploadingToCloud(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 23))
-                            self.uploadingView.uploadText.text = "Uploading to My Life."
+                            
+                            if(post["status"].boolValue) {
+                                self.uploadingView.uploadText.text = "Uploading to Cloud."
+                            } else {
+                                self.uploadingView.uploadText.text = "Uploading to My Life."
+                            }
+                            
                             self.uploadingView.backgroundColor = endJourneyColor
                             
                             self.layout.addSubview(checkIn)
