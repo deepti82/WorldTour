@@ -89,7 +89,7 @@ class SocialLoginClass: UIViewController {
                                                                      homecountry: response["homeCountry"]["name"].stringValue,
                                                                      homecity: response["homeCity"].stringValue,
                                                                      isloggedin: response["alreadyLoggedIn"].bool!, 
-                                                                     dataUpload:"", privacy:"" )
+                                                                     dataUpload:"", privacy:response["status"].stringValue)
                                                         
                                                         if response1["value"].bool! {
                                                             
@@ -240,7 +240,7 @@ class SocialLoginClass: UIViewController {
                                                                      homecountry: response["homeCountry"]["name"].stringValue,
                                                                      homecity: response["homeCity"].stringValue,
                                                                      isloggedin: response["alreadyLoggedIn"].bool!, 
-                                                                     dataUpload:"", privacy:"" )
+                                                                     dataUpload:"", privacy:response["status"].stringValue)
                                                         
                                                         if response1["value"].bool! {
                                                             

@@ -51,19 +51,12 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        var index:Int? = (currentUser["status"].stringValue == "private") ? 1 : 0
-        
         if dataSourceOption == "dataUploadOptions" {
-            index = labels.indexOf(value: localLoggedInUser.dataupload)
-            if index == nil {
-                index = 1   //Default: WiFi
-            }
-            self.tableView(settingsTableView, didSelectRowAt: IndexPath(row: index!, section: 0))
         }
         else {
-            index = labels.indexOf(value: localLoggedInUser.Privacy)
+            var index:Int? = (currentUser["status"].stringValue == "private") ? 1 : 0
             if index == nil {
-                index = 1   //Default: Private - My Followers
+                index = 0   //Default: Private - My Followers
             }
             self.tableView(settingsTableView, didSelectRowAt: IndexPath(row: index!, section: 0))
         }
@@ -108,13 +101,9 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         else {
             if selectedOption != "" {
                 if dataSourceOption == "dataUploadOptions" {
-                    let index = labels.indexOf(value: localLoggedInUser.dataupload)
-                    if index != nil {
-                        self.tableView(settingsTableView, didDeselectRowAt: IndexPath(row: index!, section: 0))
-                    }
                 }
                 else {
-                    let index = labels.indexOf(value: localLoggedInUser.Privacy)
+                    let index:Int? = (currentUser["status"].stringValue == "private") ? 1 : 0
                     if index != nil {
                         self.tableView(settingsTableView, didDeselectRowAt: IndexPath(row: index!, section: 0))
                     }
@@ -123,7 +112,6 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
             selectedCell?.accessoryType = .checkmark
             selectedOption = labels[indexPath.row]
         }
-        
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
@@ -190,7 +178,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
                         DispatchQueue.main.async(execute: {
                             if response["value"].bool!{
                                 currentUser = response["data"]
-                                user.updateUserPrivacy(currentUser["_id"].stringValue, privacy: self.selectedOption)
+                                user.updateUserPrivacy(currentUser["_id"].stringValue, privacy: (self.selectedOption == "Private - My Followers") ? "private" : "public")
                                 Toast(text:"Profile updated").show()
                             }
                         })

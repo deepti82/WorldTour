@@ -479,8 +479,7 @@ func getImageURL(_ str: String,width:Int) -> URL {
             let getImageUrl = adminUrl + "upload/readFile?file=" + str + "&width="+String(width)
             returnURL = URL(string:getImageUrl)
         }
-    }
-    print(returnURL)
+    }    
     return returnURL
 }
 
