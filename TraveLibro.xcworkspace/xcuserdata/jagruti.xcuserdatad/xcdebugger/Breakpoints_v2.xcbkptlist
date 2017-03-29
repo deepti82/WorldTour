@@ -36,11 +36,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TraveLibro/Styles.swift"
-            timestampString = "512396734.327082"
+            timestampString = "512470681.597703"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "719"
-            endingLineNumber = "719"
+            startingLineNumber = "721"
+            endingLineNumber = "721"
             landmarkName = "getPlainTextFromHTMLContentText(str:)"
             landmarkType = "9">
          </BreakpointContent>
