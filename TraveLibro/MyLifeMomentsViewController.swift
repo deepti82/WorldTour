@@ -46,6 +46,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
         setTopNavigation("Photos")
         mainView.delegate = self
         mainView.dataSource = self
+        allData = []
         //        loadTravelLife(pageno: page, type: momentType)
         navigationItem.leftBarButtonItem?.title = ""
         

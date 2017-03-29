@@ -1726,7 +1726,7 @@ class Navigation {
                     params = ["user":user, "_id": id, "pagenumber": pageNumber, "limit": 20, "urlSlug": urlSlug!]
                     api = "journey/getMedia"
                 }else{
-                    params = ["_id": id, "pagenumber": pageNumber, "limit": 20, "urlSlug": urlSlug!]
+                    params = ["user":user, "_id": id, "pagenumber": pageNumber, "limit": 20, "urlSlug": urlSlug!]
                     api = "itinerary/getMedia"
                 }
 
@@ -1736,7 +1736,7 @@ class Navigation {
                 params = ["user":user, "_id": id, "pagenumber": pageNumber, "limit": 20]
                 api = "journey/getMedia"
             }else{
-                params = ["_id": id, "pagenumber": pageNumber, "limit": 20]
+                params = ["user":user, "_id": id, "pagenumber": pageNumber, "limit": 20]
                 api = "itinerary/getMedia"
             }
             }

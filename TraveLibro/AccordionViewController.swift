@@ -36,6 +36,7 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        allData = []
         globalAccordionViewController = self
         setTopNavigation("Reviews")
     }
