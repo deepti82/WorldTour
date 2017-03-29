@@ -792,7 +792,7 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate, iCarouselDeleg
     }
     
     
-    //MARK: - Blur effect
+    //MARK: - Blur effect 58d9f78f0b77702d741bdb39
     
     func setBackgroundBlur() {
         

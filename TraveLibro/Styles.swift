@@ -580,7 +580,8 @@ func getDateFormat(_ date: String, format: String) -> String {
 }
 
 func getFormat(_ date: String, formate: String) -> String {
-    
+    if date != nil && date != "" {
+
     let globalDateFormatter = DateFormatter()
     globalDateFormatter.dateFormat = date
     let date = globalDateFormatter.date(from: date)
@@ -588,8 +589,9 @@ func getFormat(_ date: String, formate: String) -> String {
     let dayTimePeriodFormatter = DateFormatter()
     dayTimePeriodFormatter.dateFormat = formate
     let goodDate = dayTimePeriodFormatter.string(from: date!)
-    return goodDate
-    
+        return goodDate
+    }
+    return ""
 }
 
 
