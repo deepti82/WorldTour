@@ -567,7 +567,8 @@ func makeSideNavigation(_ image: UIImageView) {
 }
 
 func getDateFormat(_ date: String, format: String) -> String {
-    
+    if date != nil && date != "" {
+
     let globalDateFormatter = DateFormatter()
     globalDateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSZ"
     let date = globalDateFormatter.date(from: date)
@@ -575,8 +576,9 @@ func getDateFormat(_ date: String, format: String) -> String {
     let dayTimePeriodFormatter = DateFormatter()
     dayTimePeriodFormatter.dateFormat = format
     let goodDate = dayTimePeriodFormatter.string(from: date!)
-    return goodDate
-    
+        return goodDate
+    }
+    return ""
 }
 
 func getFormat(_ date: String, formate: String) -> String {

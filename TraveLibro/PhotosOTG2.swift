@@ -213,10 +213,12 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
                 print("current user \(user.getExistingUser())")
                 if post.postCreator["_id"].stringValue != user.getExistingUser() {
                     rateButton.showRating = false
+                    rateButton.rateCheckInLabel.text = post.post_location
                 }else{
                     rateButton.showRating = true
+                    rateButton.rateCheckInLabel.text = "Rate " + post.post_location
                 }
-                rateButton.rateCheckInLabel.text = "Rate " + post.post_location
+                
                 if((post.jsonPost["review"].count) > 0) {
 //                    self.rateButton.rateCheckInButton.setBackgroundImage(UIImage(named:"box8"), for: UIControlState())
 
