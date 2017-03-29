@@ -163,7 +163,7 @@ class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDele
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        carouselView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: self.view.frame.size.height)
+        carouselView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: self.view.frame.size.height - (bottomView.frame.size.height))
         mainImage.isHidden = true
                 
         let newCount = Int(((self.commentText.text)!).components(separatedBy: " ").first()!) 
@@ -176,7 +176,7 @@ class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDele
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        carouselView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: self.view.frame.size.height - 5)
+        carouselView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: self.view.frame.size.height - (bottomView.frame.size.height))
         print("carouselView.frame : \(carouselView.frame)")
         carouselView.currentItemIndex = index
         carouselView.type = iCarouselType.linear      //iCarouselTypeCylinder
@@ -251,7 +251,9 @@ class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDele
                         self.likeCount = Int(self.likeCount) + 1
                         self.likeText.text = "\(self.likeCount) Likes"
                         self.hasLiked = !self.hasLiked
-                        prevArray.append(JSON(user.getExistingUser()))
+                        if(currentDict["type"].stringValue == "photo") {
+                            prevArray.append(JSON(user.getExistingUser()))                                
+                        }
                     }
                     else {
                         
@@ -259,7 +261,9 @@ class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDele
                         self.likeCount = Int(self.likeCount) - 1
                         self.likeText.text = "\(self.likeCount) Likes"
                         self.hasLiked = !self.hasLiked
-                        _ = prevArray.remove(at: (prevArray.indexOf(value: JSON(user.getExistingUser())))!)
+                        if(currentDict["type"].stringValue == "photo") {
+                            _ = prevArray.remove(at: (prevArray.indexOf(value: JSON(user.getExistingUser())))!)                                
+                        }
                     }
                                                                 
                     currentDict["likeCount"] = JSON(self.likeCount)
@@ -356,11 +360,11 @@ class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDele
     
     func updateCommentJSON(withValue :Int){
         var currentDict  = self.carouselDict.value(forKey: self.photos[self.carouselView.currentItemIndex]["_id"].string!) as! JSON
-        print("\n currentDict : \(currentDict)")
-        currentDict["commentCount"] = JSON(withValue)
-        self.carouselDict.setObject(currentDict, forKey: (self.photos[self.carouselView.currentItemIndex]["_id"].stringValue) as NSCopying)
-        print("\n currentDict : \(currentDict)")
-        self.updateComment(data: currentDict)
+        if(currentDict["type"].stringValue == "photo") {
+            currentDict["commentCount"] = JSON(withValue)
+            self.carouselDict.setObject(currentDict, forKey: (self.photos[self.carouselView.currentItemIndex]["_id"].stringValue) as NSCopying)
+            self.updateComment(data: currentDict)                                
+        }
     }
     
     func updateComment(data: JSON){
@@ -596,6 +600,8 @@ class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDele
         
         print("in print print....... \(postId) index \(self.currentIndex)")
         if postId == "" {
+            loader.hideOverlayView()
+            
             if(self.type == "Video") {
                 fromVideoFunction(data: allDataCollection[index])
             }
@@ -739,7 +745,7 @@ class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDele
         }
         
         if shouldCreateView {
-            currentImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: carousel.frame.size.width*0.80, height: carousel.frame.size.height*0.70))
+            currentImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: carousel.frame.size.width*0.90, height: carousel.frame.size.height*0.90))
             currentImageView.contentMode = .scaleAspectFill
             currentImageView.clipsToBounds = true
             currentImageView.backgroundColor = UIColor.clear
