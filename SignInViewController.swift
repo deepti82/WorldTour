@@ -229,10 +229,6 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
     
     func destroyViews() {
         
-//        player1.stop()
-//        player2.stop()
-//        player3.stop()
-        
         player1.view.removeFromSuperview()
         player2.view.removeFromSuperview()
         player3.view.removeFromSuperview()
@@ -329,9 +325,8 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         let pageNumber = round(videoScrollView.contentOffset.x / videoScrollView.frame.size.width)
         let i = Int(pageNumber)
         pageControl.currentPage = i
-        player1.stop()
-        player2.stop()
-        player3.stop()
+        
+        self.stopAllPlayers()
         
         switch(i) {
         case 0:   
@@ -410,15 +405,35 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         player3.muted = defaultMute
     }
     
+    //MARK: - Stop Players
+    
+    func stopAllPlayers() {
+        
+        if player1 != nil && player1.playbackState == PlaybackState.playing {
+            player1.stop()
+        }
+        
+        if player2 != nil && player2.playbackState == PlaybackState.playing {
+            player2.stop()            
+        }
+        
+        if player3 != nil && player3.playbackState == PlaybackState.playing {
+            player3.stop()            
+        }
+        
+    }
     
     //MARK: - Scroll Delegates
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {        
-        playBtn.isHidden = true
-        videoToPlay()
+        //playBtn.isHidden = true
+        //videoToPlay()
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        playBtn.isHidden = true
+        videoToPlay()
+        
         if signInFooter.frame.origin.y == screenHeight {
             UIView.animate(withDuration: 1, animations: {
                 self.videoLabel.isHidden = false
