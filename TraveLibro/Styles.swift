@@ -582,15 +582,16 @@ func getDateFormat(_ date: String, format: String) -> String {
 }
 
 func getFormat(_ date: String, formate: String) -> String {
+    
     if date != nil && date != "" {
 
-    let globalDateFormatter = DateFormatter()
-    globalDateFormatter.dateFormat = date
-    let date = globalDateFormatter.date(from: date)
-    
-    let dayTimePeriodFormatter = DateFormatter()
-    dayTimePeriodFormatter.dateFormat = formate
-    let goodDate = dayTimePeriodFormatter.string(from: date!)
+        let globalDateFormatter = DateFormatter()
+        globalDateFormatter.dateFormat = date
+        let date = globalDateFormatter.date(from: date)
+        
+        let dayTimePeriodFormatter = DateFormatter()
+        dayTimePeriodFormatter.dateFormat = formate
+        let goodDate = dayTimePeriodFormatter.string(from: date!)
         return goodDate
     }
     return ""
@@ -598,14 +599,15 @@ func getFormat(_ date: String, formate: String) -> String {
 
 
 func getMonthFormat(_ date: String) -> String {
-    if date != nil && date != "" {
-    let globalDateFormatter = DateFormatter()
-    globalDateFormatter.dateFormat = "MM-yyyy"
-    let date = globalDateFormatter.date(from: date)
     
-    let dayTimePeriodFormatter = DateFormatter()
-    dayTimePeriodFormatter.dateFormat = "MMMM, yyyy"
-    let goodDate = dayTimePeriodFormatter.string(from: date!)
+    if date != nil && date != "" {
+        let globalDateFormatter = DateFormatter()
+        globalDateFormatter.dateFormat = "MM-yyyy"
+        let date = globalDateFormatter.date(from: date)
+        
+        let dayTimePeriodFormatter = DateFormatter()
+        dayTimePeriodFormatter.dateFormat = "MMMM, yyyy"
+        let goodDate = dayTimePeriodFormatter.string(from: date!)
         return goodDate
     }
     return ""

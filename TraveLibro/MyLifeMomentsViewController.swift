@@ -593,8 +593,12 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
         if insideView == "Monthly" {
             let singlePhotoController = storyboard?.instantiateViewController(withIdentifier: "singlePhoto") as! SinglePhotoViewController
             singlePhotoController.index = indexPath.row
-            singlePhotoController.type = allData[indexPath.row]["type"].stringValue
-            singlePhotoController.postId = ""
+            singlePhotoController.type = (allData[indexPath.row]["type"].stringValue == "video") ? "Video" : "photo"
+            if singlePhotoController.type == "Video" {
+                singlePhotoController.postId = allData[indexPath.row]["post"].stringValue
+            }else {
+                 singlePhotoController.postId = ""
+            }
             singlePhotoController.allDataCollection = allData
             globalNavigationController.pushViewController(singlePhotoController, animated: true)
             

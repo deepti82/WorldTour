@@ -5,7 +5,7 @@ import QuartzCore
 import iCarousel
 import AVFoundation
 
-class SinglePhotoViewController: UIViewController,PlayerDelegate, iCarouselDelegate, iCarouselDataSource {
+class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDelegate, iCarouselDataSource {
 
     var player:Player!
     
@@ -213,7 +213,7 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate, iCarouselDeleg
     }
     
     @IBAction func sendLike(_ sender: UIButton) {
-//        audioPlayer.play()
+        audioPlayer.play()
         likeButton.animation = "pop"
         likeButton.animateTo()
         
@@ -341,7 +341,7 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate, iCarouselDeleg
     }
     
     func updateLike(data: JSON) {
-        if data["like"].array!.contains(JSON(user.getExistingUser())) {
+        if data["likeDone"].boolValue {
             
             self.likeButton.setImage(UIImage(named: "favorite-heart-button")?.withRenderingMode(.alwaysTemplate), for: .normal)
             self.likeButton.tintColor = UIColor.white
@@ -434,28 +434,17 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate, iCarouselDeleg
     
     func fromPhotoFunction(data:JSON) {
         
-        if postId == "" {
-            
-            print("\n data : \(data)")
-            
-            if data["likeCount"].intValue > 0 {
-                self.likeButton.setImage(UIImage(named: "favorite-heart-button")?.withRenderingMode(.alwaysTemplate), for: .normal)
-                self.likeButton.tintColor = UIColor.white
-                self.hasLiked = true
-            } 
-            else {
-                self.likeButton.setImage(UIImage(named: "likeButton"), for: .normal)
-                self.hasLiked = false
-            }            
-        }
+        print("\n data : \(data)")
         
+        if postId == "" {
+        }
         else {
             if data["caption"].string != nil && data["caption"].string != "" {            
                 self.imageCaption.text = data["caption"].string!
             }
-            
-            updateLike(data: data)
         }
+        
+        updateLike(data: data)
             
         if(data["likeCount"].int != nil) {
             self.likeCount = data["likeCount"].int!
@@ -475,6 +464,8 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate, iCarouselDeleg
     }
     
     func fromVideoFunction(data:JSON) {
+        loader.hideOverlayView()
+        
         let mainImageString = "\(adminUrl)upload/readFile?file=\(data["name"].string!)"
         self.mainImage.hnk_setImageFromURL(NSURL(string:mainImageString) as! URL)
         self.carouselView.isHidden = true
@@ -510,7 +501,7 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate, iCarouselDeleg
         }
         self.mainImage.isHidden = false
         
-        if data["like"].array!.contains(JSON(user.getExistingUser())) {
+        if data["likeDone"].boolValue {
             
             self.likeButton.setImage(UIImage(named: "favorite-heart-button")?.withRenderingMode(.alwaysTemplate), for: .normal)
             self.likeButton.tintColor = UIColor.white
@@ -528,17 +519,21 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate, iCarouselDeleg
 //        if !(mainImage.isUserInteractionEnabled) {
 //            mainImage.isUserInteractionEnabled = true
 //        }
-        
         self.player = Player()
         self.player.delegate = self
         self.player.view.frame = self.mainImage.bounds
         self.player.view.clipsToBounds = true
         self.player.playbackLoops = true
         self.player.muted = true
+        self.player.fillMode = "AVLayerVideoGravityResizeAspectFill"
         var videoUrl:URL!
         videoUrl = URL(string:data["name"].stringValue)
         self.player.setUrl(videoUrl!)
+        
+        print("\n URL : \(videoUrl)")
+        self.player.playFromBeginning()
         self.mainImage.addSubview(self.player.view)
+        print("self.mainImage \(self.mainImage) Hidden :\(self.mainImage.isHidden)")
     }
     
     //MARK: - Play
@@ -601,12 +596,17 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate, iCarouselDeleg
         
         print("in print print....... \(postId) index \(self.currentIndex)")
         if postId == "" {
-            if carouselView.isHidden {
-                carouselView.isHidden = false
+            if(self.type == "Video") {
+                fromVideoFunction(data: allDataCollection[index])
             }
-            carouselView.currentItemIndex = index
-            carouselView.reloadData()
-            carouselView.scrollToItem(at: index, animated: true)
+            else {
+                if carouselView.isHidden {
+                    carouselView.isHidden = false
+                }
+                carouselView.currentItemIndex = index
+                carouselView.reloadData()
+                carouselView.scrollToItem(at: index, animated: true)
+            }
         }
             
         else {
