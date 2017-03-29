@@ -131,9 +131,6 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         
         self.mainViewController = UINavigationController(rootViewController: homeController)
         
-        profilePicture.image = UIImage(named: "logo-default")
-        profile.image.image = UIImage(named: "logo-default")
-        backgroundImage.image = UIImage(named: "logo-default")
    }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -404,8 +401,16 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
                         print("error: \(response.error!.localizedDescription)")
                     }
                     else if response["value"].bool! {                                              
-                        clearNotificationCount()
-                        self.slideMenuController()?.changeMainViewController(self.signOutViewController, close: true)
+                        clearNotificationCount()                        
+                        let newViewController = self.storyboard?.instantiateViewController(withIdentifier: "SignUpOne") as! SignInViewController
+                        newViewController.shouldShowNavBar = false
+                        
+                        let nvc = UINavigationController(rootViewController: newViewController)
+                        leftViewController = self.storyboard?.instantiateViewController(withIdentifier: "sideMenu") as! SideNavigationMenuViewController                        
+                        let slideMenuController = SlideMenuController(mainViewController:nvc, leftMenuViewController: leftViewController)
+                        
+                        ((UIApplication.shared.delegate as! AppDelegate).window)?.rootViewController = slideMenuController
+                        UIViewController().customiseNavigation()
                     }
                     else {
                         let errorAlert = UIAlertController(title: "Error", message: "Logout failed. Please try again later", preferredStyle: UIAlertControllerStyle.alert)
