@@ -311,12 +311,22 @@ class ActivityFeedFooterBasic: UIView {
     }
     
     @IBAction func sendComments(_ sender: UIButton) {
-        print("in activity feed layout \(postTop)")
-        toCommentPage()
+        if currentUser != nil {
+            print("in activity feed layout \(postTop)")
+            toCommentPage()
+        }
+        else {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
+        }
     }
 
     func showComment(_ sender: UITapGestureRecognizer) {
+        if currentUser != nil {
             toCommentPage()
+        }
+        else {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
+        }
     }
 
 

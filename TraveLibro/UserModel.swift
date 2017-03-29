@@ -192,6 +192,7 @@ public class User {
                     result = usr[userId]
                 }
             } catch _ {}
+            existingUserGlobal = result
             return result
         }
     }

@@ -154,8 +154,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
                         }
                     }
                     
-                    UserDefaults.standard.set(0, forKey: "notificationCount")
-                    updateFooterBadge()
+                    clearNotificationCount()
                 })
             })
         }

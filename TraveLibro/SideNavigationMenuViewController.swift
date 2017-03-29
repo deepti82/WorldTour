@@ -130,6 +130,10 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
 //        self.signInViewController =  UINavigationController(rootViewController: signInView)
         
         self.mainViewController = UINavigationController(rootViewController: homeController)
+        
+        profilePicture.image = UIImage(named: "logo-default")
+        profile.image.image = UIImage(named: "logo-default")
+        backgroundImage.image = UIImage(named: "logo-default")
    }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -202,7 +206,6 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
                 starstack.isHidden = true
                 
             }
-            
             
             let isUrl = verifyUrl(imageName)
             if (isUrl) {
@@ -401,8 +404,8 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
                         print("error: \(response.error!.localizedDescription)")
                     }
                     else if response["value"].bool! {                                              
-                        UserDefaults.standard.set(0, forKey: "notificationCount")
-                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
+                        clearNotificationCount()
+                        self.slideMenuController()?.changeMainViewController(self.signOutViewController, close: true)
                     }
                     else {
                         let errorAlert = UIAlertController(title: "Error", message: "Logout failed. Please try again later", preferredStyle: UIAlertControllerStyle.alert)

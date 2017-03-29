@@ -202,8 +202,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
         UINavigationBar.appearance().backgroundColor = mainBlueColor
         UIBarButtonItem.appearance().tintColor = UIColor.white
         
-//        UIButton.appearance().
-        
 //        OneSignal.initWithLaunchOptions(launchOptions, appId: "bf8baf0a-dcfb-4a30-a0c1-ee67cae2feb1")
         
         OneSignal.initWithLaunchOptions(launchOptions, appId: "bf8baf0a-dcfb-4a30-a0c1-ee67cae2feb1", handleNotificationReceived: { (notification) in
@@ -337,7 +335,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
     }
     
     func applicationWillTerminate(_ application: UIApplication) {
-        UserDefaults.standard.set(0, forKey: "notificationCount")
+        clearNotificationCount()
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
@@ -506,12 +504,18 @@ func getUnreadNotificationCount() {
                     updateFooterBadge()
                 }
                 else{
-                    UserDefaults.standard.set(0, forKey: "notificationCount")
+                    clearNotificationCount()
                 }
             })
         }
     }
     
+}
+
+func clearNotificationCount() {
+    UIApplication.shared.applicationIconBadgeNumber = 0
+    UserDefaults.standard.set(0, forKey: "notificationCount")
+    updateFooterBadge()
 }
 
 func updateFooterBadge(){
