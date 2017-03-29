@@ -63,7 +63,7 @@ class MyLifeContainerViewController: UIViewController,UIScrollViewDelegate {
         onTab = type
         if pageNumber == 1 {
             loader.showOverlay(self.view)
-
+            allData = []
         }
         var shouldChangeVal = true
         if(pageNumber == 1 && self.layout != nil) {

@@ -88,7 +88,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
         
         if pageno == 1 {
             loader.showOverlay(mainView)
-
+            allData = []
         }
         savedMediaType = mediaType
         savedToken = token
@@ -144,6 +144,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
         
         if pageno == 1 {
         loader.showOverlay(mainView)
+            allData = []
         }
         momentType = type
         reviewType = review
@@ -184,6 +185,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
     func loadMomentLife(pageno:Int, type:String, token:String) {
         if pageno == 1 {
         loader.showOverlay(mainView)
+            allData = []
         }
         momentType = type
         self.loadStatus = false

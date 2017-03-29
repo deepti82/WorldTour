@@ -35,7 +35,7 @@ class QuickCity: UIView {
             let alt = Toast(text: "Atlest one city is compulsory.")
             alt.show()
         }else{
-        quickItinery["countryVisited"][self.countryTag]["cityVisited"].arrayObject?.remove(at: self.cityTag)
+        quickItinery["countryVisited"][self.countryTag]["cityVisited"].arrayObject?.remove(at: self.tag)
 //        selectedCity.arrayObject?.remove(at: self.cityTag)
         parentView.createLayout()
         }

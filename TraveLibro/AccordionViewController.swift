@@ -154,6 +154,7 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
     func loadCountryCityReview(pageno:Int, type:String, json:JSON) {
         if pageno == 1 {
         loader.showOverlay(self.view)
+            allData = []
         }
         selectedView = 2
         reviewType = "reviewby"
@@ -200,6 +201,7 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
     func loadReview(pageno:Int, type:String) {
         if pageno == 1 {
         loader.showOverlay(self.view)
+            allData = []
         }
         selectedView = 1
         reviewType = type
