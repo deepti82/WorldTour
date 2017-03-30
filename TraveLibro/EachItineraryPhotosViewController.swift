@@ -92,9 +92,10 @@ class EachItineraryPhotosViewController: UIViewController, UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! EachItineraryMomentCollectionViewCell        
+        cell.photo.image = UIImage(named: "logo-default")
         
         if selectedItinerary != "" {
-            cell.photo.hnk_setImageFromURL(getImageURL(photoJSON[indexPath.row]["name"].stringValue, width: 200))
+            cell.photo.hnk_setImageFromURL(getImageURL(photoJSON[indexPath.row]["name"].stringValue, width: 0))
         }else{
             cell.photo.image = globalPostImage[indexPath.row].image
         }
@@ -110,11 +111,11 @@ class EachItineraryPhotosViewController: UIViewController, UICollectionViewDataS
        
         if selectedItinerary != "" {
             singlePhotoController.photos = self.photoJSON
-            singlePhotoController.whichView = "detail_itinerary"
+            singlePhotoController.fetchType = photoVCType.FROM_DETAIL_ITINERARY
             singlePhotoController.shouldShowBottomView = (selectedItinerary["type"].stringValue == "quick-itinerary") ? true : selectedItinerary["status"].boolValue
         }
         else {            
-            singlePhotoController.whichView = "quick_local_itinerary"
+            singlePhotoController.fetchType = photoVCType.FROM_QUICK_ITINERARY_LOCAL
             singlePhotoController.shouldShowBottomView = false
         }
         

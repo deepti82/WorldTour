@@ -597,9 +597,10 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
             if singlePhotoController.type == "Video" {
                 singlePhotoController.postId = allData[indexPath.row]["post"].stringValue
             }else {
-                 singlePhotoController.postId = ""
+                 singlePhotoController.postId = "unknown"
             }
             singlePhotoController.allDataCollection = allData
+            singlePhotoController.fetchType = photoVCType.FROM_MY_LIFE
             globalNavigationController.pushViewController(singlePhotoController, animated: true)
             
         }else{

@@ -1517,8 +1517,9 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         let singlePhotoController = storyboard?.instantiateViewController(withIdentifier: "singlePhoto") as! SinglePhotoViewController
 //        singlePhotoController.mainImage?.image = sender.image
         singlePhotoController.index = sender.view.tag
-        singlePhotoController.postId = sender.view.accessibilityLabel
-        self.present(singlePhotoController, animated: true, completion: nil)
+        singlePhotoController.postId = sender.view.accessibilityLabel!
+        singlePhotoController.fetchType = photoVCType.FROM_ACTIVITY
+        self.navigationController?.pushViewController(singlePhotoController, animated: true)
     }
     
     func showReviewButton(post: JSON, isIndex: Bool, index: Int?) {

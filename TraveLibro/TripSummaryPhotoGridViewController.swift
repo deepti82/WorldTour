@@ -193,8 +193,8 @@ class TripSummaryPhotoGridViewController: UICollectionViewController, ToolStackC
         else if type == "photos" {            
             let singlePhotoController = self.storyboard?.instantiateViewController(withIdentifier: "singlePhoto") as! SinglePhotoViewController
             singlePhotoController.index = indexPath.row
-            singlePhotoController.whichView = "detail_itinerary"
-            singlePhotoController.postId = ""
+            singlePhotoController.fetchType = photoVCType.FROM_DETAIL_ITINERARY
+            singlePhotoController.postId = "unknown"
             singlePhotoController.allDataCollection = myPhotos
             globalNavigationController.pushViewController(singlePhotoController, animated: true)
         }            
@@ -222,7 +222,6 @@ class TripSummaryPhotoGridViewController: UICollectionViewController, ToolStackC
     }
     func openSingleVideo(_ sender: AnyObject) {
         let singlePhotoController = storyboard?.instantiateViewController(withIdentifier: "singlePhoto") as! SinglePhotoViewController
-//        singlePhotoController.mainImage?.image = sender.image
         singlePhotoController.index = sender.view.tag
         singlePhotoController.type = "Video"
         singlePhotoController.postId = videos[sender.view.tag]["post"].stringValue

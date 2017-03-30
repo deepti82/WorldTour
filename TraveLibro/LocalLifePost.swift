@@ -157,15 +157,15 @@ class LocalLifePost: VerticalLayout, PlayerDelegate {
     
     func openSinglePhoto(_ sender: AnyObject) {
         let singlePhotoController = storyboard?.instantiateViewController(withIdentifier: "singlePhoto") as! SinglePhotoViewController
-//        singlePhotoController.mainImage?.image = sender.image
         singlePhotoController.index = sender.view.tag
+        singlePhotoController.fetchType = photoVCType.FROM_ACTIVITY
         singlePhotoController.postId = feed["_id"].stringValue
         globalNavigationController.pushViewController(singlePhotoController, animated: true)
     }
     
     func openSingleVideo(_ sender: AnyObject) {
         let singlePhotoController = storyboard?.instantiateViewController(withIdentifier: "singlePhoto") as! SinglePhotoViewController
-//        singlePhotoController.mainImage?.image = sender.image
+        singlePhotoController.fetchType = photoVCType.FROM_ACTIVITY
         singlePhotoController.index = sender.view.tag
         singlePhotoController.type = "Video"
         singlePhotoController.postId = feed["_id"].stringValue

@@ -5,10 +5,18 @@ import QuartzCore
 import iCarousel
 import AVFoundation
 
+enum photoVCType {
+    case FROM_ACTIVITY
+    case FROM_DETAIL_ITINERARY
+    case FROM_QUICK_ITINERARY_LOCAL
+    case FROM_MY_LIFE
+}
+
+
 class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDelegate, iCarouselDataSource {
 
     var player:Player!
-    
+    var fetchType: photoVCType = photoVCType.FROM_ACTIVITY
     var carouselView: iCarousel!
     var defaultMute = true
     var photoFooterReview: ActivityFeedFooter!
@@ -39,7 +47,7 @@ class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDele
     var index: Int!
     var currentIndex: Int!
     var previousIndex: Int!
-    var postId: String!
+    var postId: String = ""
     var photos: [JSON]!
     var videos:[JSON]!
     var singlePost: JSON!
@@ -60,6 +68,9 @@ class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print("\n photoVCType : \(fetchType)")
+        
         audioButton.setTitle(String(format: "%C",0xf026) + "⨯", for: UIControlState())
         loader.showOverlay(self.view)
         
@@ -114,10 +125,10 @@ class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDele
         
         currentIndex = index
         
-        if postId == "" {
+        if allDataCollection.count > 0{
             photos = allDataCollection
-            isSpecialHandling = true
-            setCarouselDataDictForSpecialHandling()
+//            isSpecialHandling = true
+//            setCarouselDataDictForSpecialHandling()
         }
         
         
@@ -147,15 +158,23 @@ class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDele
         imageRightSwipe.direction = .right
         
         
-        if whichView == "detail_itinerary" {
+        if fetchType == photoVCType.FROM_DETAIL_ITINERARY {
             getSinglePhoto(photos[index]["_id"].stringValue)
         }
-        else if whichView == "quick_local_itinerary" {            
+        else if fetchType == photoVCType.FROM_MY_LIFE {
+            if self.type == "Video" {
+                getSingleVideo(photos[index]["_id"].stringValue)
+            }
+            else {
+                getSinglePhoto(photos[index]["_id"].stringValue)
+            }
+        }
+        else if fetchType == photoVCType.FROM_QUICK_ITINERARY_LOCAL {            
             isSpecialHandling = true
             setCarouselDataDictForQuickLocalSpecialHandling()
         }
         else {
-            getPost(postId!)
+            getPost(postId)
         }
         
         
@@ -184,7 +203,7 @@ class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDele
         carouselView.dataSource = self
         carouselView.scrollToItem(at: index, animated: true)
         
-        if whichView == "quick_local_itinerary" && isSpecialHandling {            
+        if fetchType == photoVCType.FROM_QUICK_ITINERARY_LOCAL {            
             loader.hideOverlayView()
             self.title = "Photos (\(self.photos.count))"
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
@@ -222,54 +241,47 @@ class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDele
             val = videos[0]["_id"].string!
         }
         else {
-            if whichView == "detail_itinerary" {
-                val = photos[carouselView.currentItemIndex]["_id"].string!
-            }
-            else {
-                val = photos[carouselView.currentItemIndex]["_id"].string!
-            }
+            val = photos[carouselView.currentItemIndex]["_id"].string!
         }
-        
         
         request.globalLike(val, userId: user.getExistingUser(), unlike: hasLiked!, type: self.type, completion: {(response) in
             
             DispatchQueue.main.async(execute: {
                 self.loader.hideOverlayView()
                 if response.error != nil {
-                    
                     print("error: \(response.error!.localizedDescription)")
-                    
                 }
                 else if response["value"].bool! {
                     if self.type != "Video" {
-                    var currentDict  = self.carouselDict.value(forKey: self.photos[self.carouselView.currentItemIndex]["_id"].string!) as! JSON
-                    var prevArray = currentDict["like"].arrayValue
-                    
-                    if !self.hasLiked! {
+                        var currentDict  = self.carouselDict.value(forKey: self.photos[self.carouselView.currentItemIndex]["_id"].string!) as! JSON
+                        var prevArray = currentDict["like"].arrayValue
                         
-                        sender.setImage(UIImage(named: "favorite-heart-button")?.withRenderingMode(.alwaysTemplate), for: UIControlState())
-                        self.likeCount = Int(self.likeCount) + 1
-                        self.likeText.text = "\(self.likeCount) Likes"
-                        self.hasLiked = !self.hasLiked
-                        if(currentDict["type"].stringValue == "photo") {
-                            prevArray.append(JSON(user.getExistingUser()))                                
+                        if !self.hasLiked! {
+                            
+                            sender.setImage(UIImage(named: "favorite-heart-button")?.withRenderingMode(.alwaysTemplate), for: UIControlState())
+                            self.likeCount = Int(self.likeCount) + 1
+                            self.likeText.text = "\(self.likeCount) Likes"
+                            self.hasLiked = !self.hasLiked
+                            if(currentDict["type"].stringValue == "photo") {
+                                prevArray.append(JSON(user.getExistingUser()))                                
+                            }
                         }
-                    }
-                    else {
+                        else {
+                            
+                            sender.setImage(UIImage(named: "likeButton"), for: UIControlState())
+                            self.likeCount = Int(self.likeCount) - 1
+                            self.likeText.text = "\(self.likeCount) Likes"
+                            self.hasLiked = !self.hasLiked
+                            if(currentDict["type"].stringValue == "photo") {
+                                _ = prevArray.remove(at: (prevArray.indexOf(value: JSON(user.getExistingUser())))!)                                
+                            }
+                        }
                         
-                        sender.setImage(UIImage(named: "likeButton"), for: UIControlState())
-                        self.likeCount = Int(self.likeCount) - 1
-                        self.likeText.text = "\(self.likeCount) Likes"
-                        self.hasLiked = !self.hasLiked
-                        if(currentDict["type"].stringValue == "photo") {
-                            _ = prevArray.remove(at: (prevArray.indexOf(value: JSON(user.getExistingUser())))!)                                
-                        }
-                    }
-                                                                
-                    currentDict["likeCount"] = JSON(self.likeCount)
-                    currentDict["like"] =  JSON(prevArray)
-                    self.carouselDict.setObject(currentDict, forKey: (self.photos[self.carouselView.currentItemIndex]["_id"].stringValue) as NSCopying)
-                    self.updateLike(data: currentDict)
+                        currentDict["likeCount"] = JSON(self.likeCount)
+                        currentDict["like"] =  JSON(prevArray)
+                        currentDict["likeDone"] = JSON(self.hasLiked)
+                        self.carouselDict.setObject(currentDict, forKey: (self.photos[self.carouselView.currentItemIndex]["_id"].stringValue) as NSCopying)
+                        self.updateLike(data: currentDict)
                     }
                     else {
                         if !self.hasLiked! {
@@ -322,7 +334,7 @@ class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDele
     
     func toCommentView() {
         let comment = storyboard?.instantiateViewController(withIdentifier: "photoComment") as! PhotoCommentViewController
-        comment.postId = (whichView == "detail_itinerary" ? photos[carouselView.currentItemIndex]["itinerary"].stringValue : postId!)
+        comment.postId = (fetchType == photoVCType.FROM_DETAIL_ITINERARY ? photos[carouselView.currentItemIndex]["itinerary"].stringValue : postId)
         comment.commentText = self.commentText
         print("[[[[]]]] \(singlePhotoJSON)")
         if singlePhotoJSON != nil {
@@ -333,7 +345,6 @@ class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDele
             comment.type = "Video"
         }
         self.navigationController?.pushViewController(comment, animated: true)
-
     }
     
     func showComment(_ sender: UITapGestureRecognizer) {
@@ -346,24 +357,24 @@ class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDele
     
     func updateLike(data: JSON) {
         if data["likeDone"].boolValue {
-            
             self.likeButton.setImage(UIImage(named: "favorite-heart-button")?.withRenderingMode(.alwaysTemplate), for: .normal)
             self.likeButton.tintColor = UIColor.white
             self.hasLiked = true
         } 
         else {
-            
             self.likeButton.setImage(UIImage(named: "likeButton"), for: .normal)
             self.hasLiked = false
         }
     }
     
     func updateCommentJSON(withValue :Int){
-        var currentDict  = self.carouselDict.value(forKey: self.photos[self.carouselView.currentItemIndex]["_id"].string!) as! JSON
-        if(currentDict["type"].stringValue == "photo") {
-            currentDict["commentCount"] = JSON(withValue)
-            self.carouselDict.setObject(currentDict, forKey: (self.photos[self.carouselView.currentItemIndex]["_id"].stringValue) as NSCopying)
-            self.updateComment(data: currentDict)                                
+        if (self.type != "Video") {
+            var currentDict  = self.carouselDict.value(forKey: self.photos[self.carouselView.currentItemIndex]["_id"].string!) as! JSON
+            if(currentDict["type"].stringValue == "photo") {
+                currentDict["commentCount"] = JSON(withValue)
+                self.carouselDict.setObject(currentDict, forKey: (self.photos[self.carouselView.currentItemIndex]["_id"].stringValue) as NSCopying)
+                self.updateComment(data: currentDict)                                
+            }
         }
     }
     
@@ -551,12 +562,12 @@ class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDele
     
     var singlePhotoJSON: JSON!
     
-    func setCarouselDataDictForSpecialHandling() {
-        
-        for data in allDataCollection {
-            carouselDict.setObject(data, forKey: data["_id"].stringValue as NSCopying)
-        }
-    }
+//    func setCarouselDataDictForSpecialHandling() {
+//        
+//        for data in allDataCollection {
+//            carouselDict.setObject(data, forKey: data["_id"].stringValue as NSCopying)
+//        }
+//    }
     
     func setCarouselDataDictForQuickLocalSpecialHandling() {
         photos = []
@@ -569,30 +580,28 @@ class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDele
     func getSingleVideo(_ photoId: String) {
         if photoId == "" {
             self.fromVideoFunction(data: allDataCollection[self.currentIndex])
-        }else{
-
-        request.getOnePostVideos(photoId, singlePost["user"]["_id"].string!, completion: {(response) in
-            
-            DispatchQueue.main.async(execute: {
-                self.loader.hideOverlayView()
-                if response.error != nil {
-                    print("response: \(response.error?.localizedDescription)")
-                }
-                    
-                else if response["value"].bool! {
-                    let data: JSON = response["data"]
-                    self.singlePhotoJSON = response["data"]
-                    print(data);
-                    self.fromVideoFunction(data: data)
-                }
-                    
-                    
-                else {
-                    print("response error!")
-                }
+        }
+        else{
+            request.getOnePostVideos(photoId, user.getExistingUser(), completion: {(response) in
+                DispatchQueue.main.async(execute: {
+                    self.loader.hideOverlayView()
+                    if response.error != nil {
+                        print("response: \(response.error?.localizedDescription)")
+                    }
+                        
+                    else if response["value"].bool! {
+                        let data: JSON = response["data"]
+                        self.singlePhotoJSON = response["data"]
+                        print(data);
+                        self.fromVideoFunction(data: data)
+                    }
+                        
+                        
+                    else {
+                        print("response error!")
+                    }
+                })            
             })
-            
-        })
         }
     }
     
@@ -655,14 +664,7 @@ class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDele
         if photoId == "" {
         }
         else{
-            var val = ""
-            if whichView == "detail_itinerary" {
-                val = existingUserGlobal
-            }
-            else {
-                val = singlePost["user"]["_id"].string!
-            }
-            request.getOnePostPhotos(photoId, val, completion: {(response) in
+            request.getOnePostPhotos(photoId, user.getExistingUser(), completion: {(response) in
                 
                 DispatchQueue.main.async(execute: {
                     self.loader.hideOverlayView()
@@ -682,7 +684,6 @@ class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDele
                         else{
                             self.carouselView.reloadData()
                         }
-                        
                     }
                     else {
                         print("response error!")
@@ -757,13 +758,13 @@ class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDele
         
         currentImageView.image = UIImage(named: "logo-default")
         
-        if whichView == "quick_local_itinerary" && isSpecialHandling {
+        if fetchType == photoVCType.FROM_QUICK_ITINERARY_LOCAL {
             currentImageView.image = globalPostImage[index].image
         }
         else {
             var currentJson = photos[index]        
             if currentJson != nil {
-                currentImageView.hnk_setImageFromURL(getImageURL((currentJson["name"].stringValue), width: Int(carousel.frame.size.width*0.8)))            
+                currentImageView.hnk_setImageFromURL(getImageURL((currentJson["name"].stringValue), width: 0))            
             }
         }
         return currentImageView
@@ -773,7 +774,7 @@ class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDele
         
         if carousel.currentItemIndex != -1 {
             
-            if whichView == "quick_local_itinerary" && isSpecialHandling {
+            if fetchType == photoVCType.FROM_QUICK_ITINERARY_LOCAL {
                 bgImage.image = globalPostImage[carousel.currentItemIndex].image
             }
             else {
@@ -792,7 +793,6 @@ class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDele
                     print("\n Carousal : \(carouselDict)")
                 }
             }
-//            currentIndex = carousel.currentItemIndex
             self.loadMore()
         }
     }

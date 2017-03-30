@@ -203,7 +203,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
     
     func openSingleVideo(_ sender: AnyObject) {
         let singlePhotoController = storyboard?.instantiateViewController(withIdentifier: "singlePhoto") as! SinglePhotoViewController
-        //        singlePhotoController.mainImage?.image = sender.image
+        singlePhotoController.fetchType = photoVCType.FROM_ACTIVITY
         singlePhotoController.index = sender.view.tag
         singlePhotoController.type = "Video"
         singlePhotoController.postId = feeds["_id"].stringValue
@@ -501,7 +501,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
     
     func openSinglePhoto(_ sender: AnyObject) {
         let singlePhotoController = storyboard?.instantiateViewController(withIdentifier: "singlePhoto") as! SinglePhotoViewController
-        //        singlePhotoController.mainImage?.image = sender.image
+        singlePhotoController.fetchType = photoVCType.FROM_ACTIVITY
         singlePhotoController.index = sender.view.tag
         singlePhotoController.postId = feeds["_id"].stringValue
         globalNavigationController.pushViewController(singlePhotoController, animated: true)

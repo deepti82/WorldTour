@@ -139,7 +139,7 @@ class TripPhotoLayout: VerticalLayout, PlayerDelegate {
         singlePhotoController.index = sender.view.tag
         singlePhotoController.type = "Video"
         singlePhotoController.postId = feeds["post"].stringValue
-        globalNavigationController.present(singlePhotoController, animated: true, completion: nil)
+        globalNavigationController.pushViewController(singlePhotoController, animated: true)
     }
     
     
@@ -210,8 +210,8 @@ class TripPhotoLayout: VerticalLayout, PlayerDelegate {
         let singlePhotoController = storyboard?.instantiateViewController(withIdentifier: "singlePhoto") as! SinglePhotoViewController
 //        singlePhotoController.mainImage?.image = sender.image
         singlePhotoController.index = sender.view.tag
-        singlePhotoController.postId = feeds["_id"].stringValue
-        globalNavigationController.present(singlePhotoController, animated: true, completion: nil)
+        singlePhotoController.postId = feeds["post"].stringValue        
+        globalNavigationController.pushViewController(singlePhotoController, animated: true)
     }
     
     func videoToPlay ()  {
