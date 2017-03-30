@@ -318,6 +318,9 @@ class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDele
         if (carouselView != nil) {
             self.index = carouselView.currentItemIndex
         }
+        if (self.index == -1 ) {
+            self.index = 0
+        }
         if currentUser != nil {
             let feedVC = storyboard!.instantiateViewController(withIdentifier: "likeTable") as! LikeUserViewController
             if self.type == "Video" {
