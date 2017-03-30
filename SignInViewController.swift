@@ -45,6 +45,8 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        createImagesBack()
        
         getDarkBackGroundBlur(self)        
         
@@ -108,30 +110,56 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         playBtn.isHidden = true
         
         loadData()
-        
-        switch self.showPage {
-            
-        case 0:
-            self.videoScrollView.scrollRectToVisible(CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight), animated: true)
-            
-        case 1: 
-            self.videoScrollView.scrollRectToVisible(CGRect(x: screenWidth, y: 0, width: screenWidth, height: screenHeight), animated: true)
-            
-        case 2:
-            self.videoScrollView.scrollRectToVisible(CGRect(x: screenWidth*2, y: 0, width: screenWidth, height: screenHeight), animated: true)
-            
-        default:
-            break
-        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        print("\n showpage : \(showPage)")
+        stopAllPlayers()
+        
+        switch self.showPage {            
+            
+        case 0:
+            self.videoScrollView.scrollRectToVisible(imageView1.frame, animated: true)
+            player1.playFromBeginning()
+            //            self.videoScrollView.scrollRectToVisible(CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight), animated: true)
+            
+        case 1:
+            self.videoScrollView.scrollRectToVisible(imageView2.frame, animated: true)
+            player2.playFromBeginning()
+            //            self.videoScrollView.scrollRectToVisible(CGRect(x: screenWidth, y: 0, width: screenWidth, height: screenHeight), animated: true)
+            
+        case 2:
+            self.videoScrollView.scrollRectToVisible(imageView3.frame, animated: true)
+            player3.playFromBeginning()
+            //            self.videoScrollView.scrollRectToVisible(CGRect(x: screenWidth*2, y: 0, width: screenWidth, height: screenHeight), animated: true)
+            
+        default:
+            break
+        }
+        
         playBtn.frame = CGRect(x: 0, y: 0, width: 100, height: 65)
         playBtn.center = imageView1.center
     }   
     
+    func createImagesBack() {
+        videoScrollView.delegate = self
+        self.horizontal = HorizontalLayout(height: screenHeight)
+        self.videoScrollView.addSubview(horizontal)
+        
+        imageView1 = UIImageView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight))
+        self.horizontal.addSubview(imageView1)
+        
+        imageView2 = UIImageView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight))
+        self.horizontal.addSubview(imageView2)
+        
+        imageView3 = UIImageView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight))
+        self.horizontal.addSubview(imageView3)
+        
+        addToLayout() 
+        
+    }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.navigationController?.isNavigationBarHidden = false
@@ -146,12 +174,9 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
     func loadData() {
         
         let videoWidth = screenWidth
-        videoHeight = screenHeight
-        videoScrollView.delegate = self
-        self.horizontal = HorizontalLayout(height: videoHeight)
-        self.videoScrollView.addSubview(horizontal)
+        videoHeight = screenHeight        
         
-        imageView1 = UIImageView(frame: CGRect(x: 0, y: 0, width: videoWidth, height: videoHeight))
+        imageView1.frame = CGRect(x: 0, y: 0, width: videoWidth, height: videoHeight)
         imageView1.backgroundColor = UIColor.clear
         imageView1.contentMode = UIViewContentMode.center
         imageView1.center = self.view.center
@@ -166,10 +191,10 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         self.player1.fillMode = "AVLayerVideoGravityResizeAspectFill"
         self.player1.setUrl(NSURL(fileURLWithPath: (Bundle.main.path(forResource: "travellife", ofType:"mp4"))!) as URL)
         imageView1.addSubview(self.player1.view)
-        self.horizontal.addSubview(imageView1)
+//        self.horizontal.addSubview(imageView1)
         
-        
-        imageView2 = UIImageView(frame: CGRect(x: 0, y: 0, width: videoWidth, height: videoHeight))
+        imageView2.frame = CGRect(x: 0, y: 0, width: videoWidth, height: videoHeight)
+//        imageView2 = UIImageView(frame: CGRect(x: 0, y: 0, width: videoWidth, height: videoHeight))
         imageView2.backgroundColor = UIColor.clear
         imageView2.contentMode = UIViewContentMode.center
         imageView2.center = self.view.center
@@ -183,10 +208,11 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         self.player2.fillMode = "AVLayerVideoGravityResizeAspectFill"              
         self.player2.setUrl(NSURL(fileURLWithPath: (Bundle.main.path(forResource: "locallife", ofType:"mp4"))!) as URL)
         imageView2.addSubview(self.player2.view)
-        self.horizontal.addSubview(imageView2)
+//        self.horizontal.addSubview(imageView2)
         
         
-        imageView3 = UIImageView(frame: CGRect(x: 0, y: 0, width: videoWidth, height: videoHeight))
+        imageView3.frame = CGRect(x: 0, y: 0, width: videoWidth, height: videoHeight)
+//        imageView3 = UIImageView(frame: CGRect(x: 0, y: 0, width: videoWidth, height: videoHeight))
         imageView3.backgroundColor = UIColor.clear
         imageView3.contentMode = UIViewContentMode.center
         imageView3.center = self.view.center
@@ -200,7 +226,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         self.player3.fillMode = "AVLayerVideoGravityResizeAspectFill"              
         self.player3.setUrl(NSURL(fileURLWithPath: (Bundle.main.path(forResource: "mylife", ofType:"mp4"))!) as URL)
         imageView3.addSubview(self.player3.view)
-        self.horizontal.addSubview(imageView3)
+//        self.horizontal.addSubview(imageView3)
         
         addToLayout()        
         
@@ -237,13 +263,13 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         player2 = nil
         player3 = nil
         
-        imageView1.removeFromSuperview()
-        imageView2.removeFromSuperview()
-        imageView3.removeFromSuperview()
-        
-        imageView1 = nil
-        imageView2 = nil
-        imageView3 = nil
+//        imageView1.removeFromSuperview()
+//        imageView2.removeFromSuperview()
+//        imageView3.removeFromSuperview()
+//        
+//        imageView1 = nil
+//        imageView2 = nil
+//        imageView3 = nil
     }
     
     func addToLayout() {
@@ -285,8 +311,8 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
     //MARK: - Player Delegates
     
     func playerReady(_ player: Player) {
-        loader.hideOverlayView()
-        videoToPlay()
+//        loader.hideOverlayView()
+//        videoToPlay()
     }
    
     func playerPlaybackDidEnd(_ player: Player) {
