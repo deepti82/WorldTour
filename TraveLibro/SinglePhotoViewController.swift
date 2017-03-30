@@ -189,9 +189,6 @@ class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDele
         if newCount != self.commentCount {
             updateCommentJSON(withValue: newCount!)
         }
-        if (self.player != nil){
-            carouselView.scrollToItem(at: carouselView.currentItemIndex, animated: true)
-        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -211,6 +208,10 @@ class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDele
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
                 self.getPost("")
             })
+        }
+        
+        if (self.player != nil){            
+            carouselView.scrollToItem(at: carouselView.currentItemIndex, animated: true)
         }
     }
     
@@ -314,6 +315,9 @@ class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDele
     }
     
     func showLike(_ sender: UITapGestureRecognizer) {
+        if (carouselView != nil) {
+            self.index = carouselView.currentItemIndex
+        }
         if currentUser != nil {
             let feedVC = storyboard!.instantiateViewController(withIdentifier: "likeTable") as! LikeUserViewController
             if self.type == "Video" {
@@ -349,11 +353,17 @@ class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDele
     }
     
     func showComment(_ sender: UITapGestureRecognizer) {
+        if (carouselView != nil) {
+            self.index = carouselView.currentItemIndex
+        }
         toCommentView()
     }
     
     @IBAction func sendComment(_ sender: UIButton) {
-            toCommentView()
+        if (carouselView != nil) {
+            self.index = carouselView.currentItemIndex
+        }
+        toCommentView()
     }
     
     func updateLike(data: JSON) {
