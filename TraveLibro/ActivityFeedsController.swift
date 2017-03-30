@@ -164,6 +164,15 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
                         post["user"] = ["name":currentUser["name"].stringValue, "profilePicture":currentUser["profilePicture"].stringValue]
                         post["offline"] = true
                         let checkIn = ActivityFeedsLayout(width: self.view.frame.width)
+                        
+                        let date = Date()
+                        let formatter = DateFormatter()
+                        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+                        let result = formatter.string(from: date)
+                        
+                        post["startDate"].stringValue = result
+                        post["startTime"].stringValue = result
+
                         checkIn.feeds = post
                         checkIn.scrollView = self.activityScroll
                         checkIn.createProfileHeader(feed: post)
@@ -186,6 +195,15 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
                     
                     for var post in localLifeJsons {
                         self.loader.hideOverlayView()
+                        
+                        let date = Date()
+                        let formatter = DateFormatter()
+                        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+                        let result = formatter.string(from: date)
+                        
+                        post["startDate"].stringValue = result
+                        post["startTime"].stringValue = result
+
                         self.feeds.arrayObject?.append(post)
                         
                         print("ininininin  \(currentUser)")
