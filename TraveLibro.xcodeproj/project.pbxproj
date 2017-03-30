@@ -2901,7 +2901,7 @@
 				TargetAttributes = {
 					1A944E031CCB4567007EB5BD = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = QB5DGM7NT7;
+						DevelopmentTeam = YVWVDTRG4B;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -3740,7 +3740,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = QB5DGM7NT7;
+				DEVELOPMENT_TEAM = YVWVDTRG4B;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3808,7 +3808,7 @@
 					"-framework",
 					"\"UIKit\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.travelibro.travelibro;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wohlig.travelibro2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -3831,7 +3831,7 @@
 				CODE_SIGN_ENTITLEMENTS = TraveLibro/TraveLibro.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = QB5DGM7NT7;
+				DEVELOPMENT_TEAM = YVWVDTRG4B;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3852,7 +3852,7 @@
 				INFOPLIST_FILE = TraveLibro/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.travelibro.travelibro;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wohlig.travelibro2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
