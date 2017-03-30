@@ -170,7 +170,7 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
                         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
                         let result = formatter.string(from: date)
                         
-                        post["startDate"].stringValue = result
+                        post["createdAt"].stringValue = result
                         post["startTime"].stringValue = result
 
                         checkIn.feeds = post
@@ -201,8 +201,7 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
                         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
                         let result = formatter.string(from: date)
                         
-                        post["startDate"].stringValue = result
-                        post["startTime"].stringValue = result
+                        post["UTCModified"].stringValue = result
 
                         self.feeds.arrayObject?.append(post)
                         

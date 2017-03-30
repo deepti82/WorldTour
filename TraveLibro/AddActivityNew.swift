@@ -311,10 +311,10 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
         
     }
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        if textField == addLocationText{
-        newScroll.setContentOffset(CGPoint(x: 0, y: 250), animated: true)
-        self.frame.origin.y = self.frame.origin.y
-        }
+//        if textField == addLocationText{
+//        newScroll.setContentOffset(CGPoint(x: 0, y: 250), animated: true)
+//        self.frame.origin.y = self.frame.origin.y
+//        }
     }
     func tagMoreBuddies(_ sender: UIButton) {
         self.resignThoughtsTexViewKeyboard()
@@ -568,7 +568,7 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
             locationCount = locationArray.count - 1
         }
         if locationCount >= 0 {
-            for i in 0 ... locationCount {
+            for i in 0 ..< locationCount {
                 let oneButton = UIButton(frame: CGRect(x: 10, y: 0, width: 200, height: self.locationHorizontalScroll.frame.height))
                 self.horizontal.addSubview(oneButton)
                 CLSNSLogv("AddActivityNew.swift -> locationArray count %d", getVaList([locationArray.count]))
