@@ -81,7 +81,6 @@ class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDele
             print(error)
         }
         audioPlayer.prepareToPlay()
-
         
         let leftButton = UIButton(frame: CGRect(x: 20, y: 30, width: 30, height: 30))
         leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
@@ -189,6 +188,9 @@ class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDele
             //split(self.commentText.text) {$0 == " "}
         if newCount != self.commentCount {
             updateCommentJSON(withValue: newCount!)
+        }
+        if (self.player != nil){
+            carouselView.scrollToItem(at: carouselView.currentItemIndex, animated: true)
         }
     }
     
@@ -314,7 +316,6 @@ class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDele
     func showLike(_ sender: UITapGestureRecognizer) {
         if currentUser != nil {
             let feedVC = storyboard!.instantiateViewController(withIdentifier: "likeTable") as! LikeUserViewController
-            
             if self.type == "Video" {
                 feedVC.postId = videos[index]["_id"].string!
                 feedVC.type = "video"
@@ -390,11 +391,19 @@ class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDele
     }
     
     //MARK: - Gesture methods
-    func imageSwiped(_ sender: AnyObject?) {
+    func imageSwiped(_ sender: UISwipeGestureRecognizer?) {
         
         mainImage.isUserInteractionEnabled = false
         mainImage.isHidden = true
+        self.audioButton.isHidden = true
         carouselView.isHidden = false
+        if (sender?.direction == UISwipeGestureRecognizerDirection.left) {
+            carouselView.scrollToItem(at: (carouselView.currentItemIndex + 1), animated: true)            
+        }
+        else {
+            carouselView.scrollToItem(at: (carouselView.currentItemIndex - 1), animated: true)
+        }
+        
     }
     
     func leftSwipe(_ sender: AnyObject?) {
@@ -416,8 +425,13 @@ class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDele
                 currentIndexCopy = Int(currentIndexCopy) - 1
             } else {	
                 if !(carouselDict.allKeys.contains(value: photos[currentIndexCopy]["_id"].string!)) {
-                    print("in swipe left : \(carouselView.currentItemIndex) fetching : \(photos[currentIndexCopy]["_id"].string!)")
-                    self.getSinglePhoto(photos[currentIndexCopy]["_id"].string!)
+                    print("In swipe left : \(carouselView.currentItemIndex) fetching : \(photos[currentIndexCopy]["_id"].string!)")
+                    if photos[currentIndexCopy]["type"] == "photo" {
+                        self.getSinglePhoto(photos[currentIndexCopy]["_id"].string!)                        
+                    }
+                    else {
+                        self.getSingleVideo(photos[currentIndexCopy]["_id"].string!)
+                    }
                 }
             }
         }
@@ -438,7 +452,12 @@ class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDele
             } else {
                 if !(carouselDict.allKeys.contains(value: photos[currentIndexCopy]["_id"].string!)) {
                     print("in swipe right : \(carouselView.currentItemIndex) fetching : \(photos[currentIndexCopy]["_id"].string!)")
-                    self.getSinglePhoto(photos[currentIndexCopy]["_id"].string!)
+                    if photos[currentIndexCopy]["type"] == "photo" {
+                        self.getSinglePhoto(photos[currentIndexCopy]["_id"].string!)                        
+                    }
+                    else {
+                        self.getSingleVideo(photos[currentIndexCopy]["_id"].string!)
+                    }
                 }
             }
         }
@@ -448,6 +467,14 @@ class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDele
     //MARK:- Bottom View Updation
     
     func fromPhotoFunction(data:JSON) {
+        if (carouselView.isHidden) {
+            carouselView.isHidden = false
+            if (player != nil && player.playbackState == PlaybackState.playing){
+                player.stop()
+            }
+            mainImage.isHidden = true
+            audioButton.isHidden = true
+        }
         
         print("\n data : \(data)")
         
@@ -505,9 +532,17 @@ class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDele
             self.likeCount = data["likeCount"].int!
             self.likeText.text = "\(self.likeCount) Like"
         }
+        else {
+            self.likeCount = 0
+            self.likeText.text = "0 Like"            
+        }
         if(data["commentCount"].int != nil) {
             self.commentCount = data["commentCount"].int!
             self.commentText.text = "\(self.commentCount) Comment"
+        }
+        else{
+            self.commentCount = 0
+            self.commentText.text = "0 Comment"
         }
         self.audioButton.isHidden = false
         
@@ -528,12 +563,15 @@ class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDele
             self.hasLiked = false
         }
         
-//        self.mainImage.addGestureRecognizer(imageLeftSwipe)
-//        self.mainImage.addGestureRecognizer(imageRightSwipe)
-//        
-//        if !(mainImage.isUserInteractionEnabled) {
-//            mainImage.isUserInteractionEnabled = true
-//        }
+        if (self.type == "photo") {
+            self.mainImage.addGestureRecognizer(imageLeftSwipe)
+            self.mainImage.addGestureRecognizer(imageRightSwipe)
+            
+            if !(mainImage.isUserInteractionEnabled) {
+                mainImage.isUserInteractionEnabled = true
+            }
+        }
+        
         self.player = Player()
         self.player.delegate = self
         self.player.view.frame = self.mainImage.bounds
@@ -591,9 +629,24 @@ class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDele
                         
                     else if response["value"].bool! {
                         let data: JSON = response["data"]
-                        self.singlePhotoJSON = response["data"]
-                        print(data);
-                        self.fromVideoFunction(data: data)
+                        
+                        if (self.type != "Video") {
+                            self.carouselDict.setObject(data, forKey: photoId as NSCopying)
+//                            if !self.carouselView.isHidden {
+//                                self.carouselView.isHidden = false
+//                                self.carouselView.currentItemIndex = self.index
+//                                self.carouselView.reloadData()
+//                                self.carouselView.scrollToItem(at: self.index, animated: true)
+//                            }
+//                            else{
+//                                self.carouselView.reloadData()
+//                            }
+                        }
+                        else {                            
+                            self.singlePhotoJSON = response["data"]
+                            print(data);
+                            self.fromVideoFunction(data: data)
+                        }
                     }
                         
                         
@@ -772,8 +825,12 @@ class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDele
     
     func carouselCurrentItemIndexDidChange(_ carousel: iCarousel) {
         
+        if (player != nil && player.playbackState == PlaybackState.playing){
+            player.stop()
+        }
+        
         if carousel.currentItemIndex != -1 {
-            
+            print("\n ")
             if fetchType == photoVCType.FROM_QUICK_ITINERARY_LOCAL {
                 bgImage.image = globalPostImage[carousel.currentItemIndex].image
             }
@@ -785,8 +842,15 @@ class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDele
                 print("\n CurrentJSON : \(currentJson) key :\(key)  current index: \(carousel.currentItemIndex)")
                 
                 if currentJson != nil {
-                    self.fromPhotoFunction(data: currentJson! )
-                    bgImage.hnk_setImageFromURL(getImageURL((currentJson?["name"].stringValue)!, width: Int(carousel.frame.size.width*0.8)))
+                    if (currentJson?["type"].stringValue == "photo") {
+                        self.fromPhotoFunction(data: currentJson! )
+                        bgImage.hnk_setImageFromURL(getImageURL((currentJson?["name"].stringValue)!, width: Int(carousel.frame.size.width*0.8)))
+                    }
+                    else {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+                            self.fromVideoFunction(data: currentJson!)                            
+                        })                        
+                    }
                 }
                 else{
                     print("\n current JSON is nil")

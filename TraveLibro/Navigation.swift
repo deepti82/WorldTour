@@ -3880,7 +3880,7 @@ class Navigation {
             let jsonData = try params.rawData()
             
             // create post request
-            let url = URL(string: adminUrl + "posvideos/getPostLikes")!
+            let url = URL(string: adminUrl + "postvideos/getPostLikes")!
             let request = NSMutableURLRequest(url: url)
             request.httpMethod = "POST"
             
