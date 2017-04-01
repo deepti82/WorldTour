@@ -23,12 +23,6 @@
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>3559530614</string>
-			</array>
-		</dict>
-		<dict>
-			<key>CFBundleURLSchemes</key>
-			<array>
 				<string>com.googleusercontent.apps.346449575691-6h321aam0vao28tvcnp4q5e6egm4dlic</string>
 			</array>
 		</dict>
