@@ -237,6 +237,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
             
             if currentUser["homeCountry"] != nil {
                 countryName.text = currentUser["homeCountry"]["name"].string!
+                CLSNSLogv("ProfileViewController.swift -> ViewWillAppear -> currentUser : %@ & flag : %@ ", getVaList([currentUser as! CVarArg, currentUser["homeCountry"]["flag"].stringValue]))
                 profile.flag.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(currentUser["homeCountry"]["flag"].stringValue)", width: 100))
             }
             

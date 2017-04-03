@@ -163,15 +163,15 @@ class ActivityFeedFooterBasic: UIView {
     func showLike(_ sender: UITapGestureRecognizer) {
         print("in footer tap out \(postTop)")
         if currentUser != nil {
-        let feedVC = storyboard!.instantiateViewController(withIdentifier: "likeTable") as! LikeUserViewController
-        feedVC.postId = postTop["_id"].stringValue
-        feedVC.type = postTop["type"].stringValue
-        feedVC.title = postTop["name"].stringValue
-        globalNavigationController.pushViewController(feedVC, animated: true)
-    }
-    else {
-    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
-    }
+            let feedVC = storyboard!.instantiateViewController(withIdentifier: "likeTable") as! LikeUserViewController
+            feedVC.postId = postTop["_id"].stringValue
+            feedVC.type = postTop["type"].stringValue
+            feedVC.title = postTop["name"].stringValue
+            globalNavigationController.pushViewController(feedVC, animated: true)
+        }
+        else {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
+        }
     }
 
     @IBAction func rateThisClicked(_ sender: UIButton) {
@@ -418,7 +418,7 @@ class ActivityFeedFooterBasic: UIView {
             
         } else {
             self.likeButton.tag = 0
-           self.likeButton.setImage(UIImage(named: "likeButton"), for: .normal)
+            self.likeButton.setImage(UIImage(named: "likeButton"), for: .normal)
         }
     }
     
@@ -443,36 +443,36 @@ class ActivityFeedFooterBasic: UIView {
                 sender.tag = 1
             }
             if type == "TripPhotos" {
-                    request.globalLike(photoId, userId: user.getExistingUser(), unlike: hasLiked, type: footerType, completion: {(response) in
+                request.globalLike(photoId, userId: user.getExistingUser(), unlike: hasLiked, type: footerType, completion: {(response) in
+                    
+                    DispatchQueue.main.async(execute: {
                         
-                        DispatchQueue.main.async(execute: {
-                            
-                            if response.error != nil {
-                                print("error: \(response.error!.localizedDescription)")
-                            }
-                            else if response["value"].bool! {
-                                if sender.tag == 1 {
-                                    self.setLikeSelected(true)
-                                    self.likeCount = self.likeCount + 1
-                                    self.setLikeCount(self.likeCount)
-                                }
-                                else {
-                                    self.setLikeSelected(false)
-                                    if self.likeCount <= 0 {
-                                        self.likeCount = 0
-                                    } else {
-                                        self.likeCount = self.likeCount - 1
-                                    }
-                                    self.setLikeCount(self.likeCount)
-                                }
+                        if response.error != nil {
+                            print("error: \(response.error!.localizedDescription)")
+                        }
+                        else if response["value"].bool! {
+                            if sender.tag == 1 {
+                                self.setLikeSelected(true)
+                                self.likeCount = self.likeCount + 1
+                                self.setLikeCount(self.likeCount)
                             }
                             else {
-                                
+                                self.setLikeSelected(false)
+                                if self.likeCount <= 0 {
+                                    self.likeCount = 0
+                                } else {
+                                    self.likeCount = self.likeCount - 1
+                                }
+                                self.setLikeCount(self.likeCount)
                             }
+                        }
+                        else {
                             
-                        })
+                        }
                         
                     })
+                    
+                })
                 
             }else{
                 print("oooooooooo")
