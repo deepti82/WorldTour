@@ -73,6 +73,7 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
         super.viewWillDisappear(animated)
         displayData = "activity"
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        globalActivityFeedsController = nil
     }
     
     func refresh(_ sender: AnyObject) {
@@ -129,6 +130,7 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
         }
         self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
+    
     
     func getActivity(pageNumber: Int) {
         print("notification called \(displayData)")
