@@ -28,9 +28,9 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
     var checkpoint = true
     var refreshControl = UIRefreshControl()
     var isRefreshing = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("in did load")
         
         refreshControl.addTarget(self, action: #selector(ActivityFeedsController.refresh(_:)), for: .valueChanged)
         refreshControl.tintColor = mainOrangeColor
@@ -44,8 +44,6 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
         activityScroll.addSubview(layout)
         getActivity(pageNumber: pageno)
         loader.showOverlay(self.view)
-        
-        print("Chintan");
         
         self.mainFooter = FooterViewNew(frame: CGRect.zero)
         self.mainFooter.layer.zPosition = 5
@@ -382,7 +380,18 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
                 self.view.addSubview(self.noInternet)
 
             }
+        }        
+        
+        if scrollView.panGestureRecognizer.translation(in: scrollView).y < 0 {
+            hideHeaderAndFooter(true);
         }
+        else{
+            hideHeaderAndFooter(false);
+        }
+    }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        print("\n scrollViewDidEndDragging ")
         
         for postView in layout.subviews {
             if(postView is ActivityFeedsLayout) {
@@ -391,14 +400,6 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
                     feeds.videoToPlay()
                 }
             }
-        }
-        
-        
-        if scrollView.panGestureRecognizer.translation(in: scrollView).y < 0 {
-            hideHeaderAndFooter(true);
-        }
-        else{
-            hideHeaderAndFooter(false);
         }
     }
     

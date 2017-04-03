@@ -32,6 +32,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
     var popularItinerary: PopularItinerary!
     var feeds: JSON = []
     var displayData: String = ""
+    var willPlay = false
     
     var scrollView:UIScrollView!
     
@@ -43,14 +44,11 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             headerLayout(feed: feed)
         }
         
-        
-        
         middleLayoout(feed:feed)
         
         if !feed["offline"].boolValue {
             footerLayout(feed:feed)
         }
-        
         
         self.layoutSubviews()
     }
@@ -70,29 +68,37 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             self.player.delegate = self
             self.player.view.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.width)
             self.player.view.clipsToBounds = true
-            self.player.playbackLoops = true
+            self.player.playbackLoops = false
             self.player.muted = true
             self.player.fillMode = "AVLayerVideoGravityResizeAspectFill"
+            self.player.playbackFreezesAtEnd = true
             self.videoContainer.player = self.player
-            var videoUrl:URL!
+            self.videoContainer.bringSubview(toFront: videoContainer.playBtn)
+            
+            
+            var videoUrl = URL(string:self.feeds["videos"][0]["name"].stringValue)
+            if(videoUrl == nil) {
+                videoUrl = URL(string:self.feeds["videos"][0]["localUrl"].stringValue)
+            }
+            
+            self.videoContainer.videoHolder.image = getThumbnailFromVideoURL(url: videoUrl!)
+            
             if feed["type"].stringValue == "travel-life" {
                 videoContainer.tagText.text = "Travel Life"
                 videoContainer.tagView.backgroundColor = mainOrangeColor
-            }else{
+                videoContainer.playBtn.tintColor = mainOrangeColor
+            }
+            else{
                 videoContainer.tagText.text = "  Local Life"
                 videoContainer.tagText.textColor = UIColor(hex: "#303557")
                 videoContainer.tagView.backgroundColor = endJourneyColor
-                //                profileHeader.category.imageView?.tintColor = UIColor(hex: "#303557")
+                videoContainer.playBtn.tintColor = endJourneyColor
             }
-            videoUrl = URL(string:feed["videos"][0]["name"].stringValue)
-            if(videoUrl == nil) {
-                videoUrl = URL(string:feed["videos"][0]["localUrl"].stringValue)
-            }
-            self.player.setUrl(videoUrl!)
             self.videoContainer.videoHolder.addSubview(self.player.view)
             self.addSubview(self.videoContainer)
             
-        } else if(feed["photos"].count > 0) {
+        } 
+        else if(feed["photos"].count > 0) {
             self.mainPhoto = UIImageView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.width))
             self.addSubview(self.mainPhoto)
             self.mainPhoto.contentMode = UIViewContentMode.scaleAspectFill
@@ -154,7 +160,9 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
                 }
                 
             })
-        }else{
+        }
+            
+        else{
             if feed["imageUrl"] != nil {
                 self.mainPhoto = UIImageView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.width))
                 self.addSubview(self.mainPhoto)
@@ -508,20 +516,35 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
     }
     
     func videoToPlay ()  {
-        let min = self.frame.origin.y + self.videoContainer.frame.origin.y
-        let max = min + self.videoContainer.frame.size.height
-        let scrollMin = self.scrollView.contentOffset.y
-        let scrollMax = scrollMin + self.scrollView.frame.height
-        if(scrollMin < min && scrollMax > max ) {
-            self.player.playFromCurrentTime()
-        }
-        else {
-            self.player.pause()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            
+            let min = self.frame.origin.y + self.videoContainer.frame.origin.y
+            let max = min + self.videoContainer.frame.size.height
+            let scrollMin = self.scrollView.contentOffset.y
+            let scrollMax = scrollMin + self.scrollView.frame.height
+            if (scrollMin < min && scrollMax > max ) {
+                if !self.willPlay {
+                    self.videoContainer.playBtn.isHidden = true
+                    self.willPlay = true
+                    var videoUrl = URL(string:self.feeds["videos"][0]["name"].stringValue)
+                    if(videoUrl == nil) {
+                        videoUrl = URL(string:self.feeds["videos"][0]["localUrl"].stringValue)
+                    }
+                    self.player.setUrl(videoUrl!)
+                    self.player.playFromBeginning()
+                }
+            }
+            else {
+                self.player.stop()
+                self.willPlay = false
+                self.videoContainer.playBtn.isHidden = false
+            }
         }
     }
     
     func playerReady(_ player: Player) {
-        videoToPlay()
+        //videoToPlay()
     }
     
     func rateButtonTapped(_ sender: AnyObject) {
@@ -547,6 +570,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
         blackBg.addSubview(ratingDialog)
         
     }
+    
     func closeDialog(_ sender: AnyObject) {
         
         blackBg.isHidden = true
@@ -563,8 +587,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
         //        checkInPost.ratingLabel.isHidden = false
         //        checkInPost.ratingStack.isHidden = false
         
-    }
-    
+    }    
     
     func changeDateFormat(_ givenFormat: String, getFormat: String, date: String, isDate: Bool) -> String {
         

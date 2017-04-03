@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 
 func addShadow(_ myView: UIView, offset: CGSize, opacity: CGFloat, shadowRadius: CGFloat, cornerRadius: CGFloat) {
@@ -834,6 +835,23 @@ func isSelfUser(otherUserID: String) -> Bool {
         return false
     }
 }
+
+
+//MARK: - Video thumbnail
+
+func getThumbnailFromVideoURL(url : URL) -> UIImage? {
+    
+    let asset = AVURLAsset(url: url, options: nil)
+    let imgGenerator = AVAssetImageGenerator(asset: asset)
+    do {
+        let imageRef = try imgGenerator.copyCGImage(at: CMTimeMake(0, 3), actualTime: nil)
+        return UIImage(cgImage: imageRef)
+    } catch {
+        print(error)
+        return nil
+    }
+}
+
 
 
 //LoadingOverlay.shared.showOverlay(self.view)

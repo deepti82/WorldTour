@@ -84,10 +84,9 @@ class ActivityFeedFooter: UIView {
         catch{
             print(error)
         }
-        audioPlayer.prepareToPlay()
-
-        
+        audioPlayer.prepareToPlay()        
     }
+    
     func setView(feed:JSON) {
         postTop = feed
         //  RATING
