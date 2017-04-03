@@ -128,7 +128,8 @@ class ActivityFeedFooterBasic: UIView {
             lineView.isHidden = true
         }
         
-        if currentUser != nil && user.getExistingUser() == currentUser["_id"].stringValue {
+        
+        if currentUser != nil {
             optionButton.isHidden = false
             rateThisButton.isHidden = false
         }else{
@@ -511,9 +512,11 @@ class ActivityFeedFooterBasic: UIView {
     }
 
     @IBAction func optionClick(_ sender: UIButton) {
-        
-        if currentUser != nil && user.getExistingUser() == postTop["postCreator"]["_id"].stringValue{
-            let actionSheetControllerIOS8: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        print(user.getExistingUser())
+        print(postTop["postCreator"]["_id"].stringValue)
+        let actionSheetControllerIOS8: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        if user.getExistingUser() == postTop["postCreator"]["_id"].stringValue{
+            
             if(self.type == "MyLifeFeeds") {
                 let EditCheckIn: UIAlertAction = UIAlertAction(title: "Edit Activity", style: .default)
                 {action -> Void in
@@ -571,9 +574,9 @@ class ActivityFeedFooterBasic: UIView {
                 //    actionSheetControllerIOS8.addAction(UnFollow)
                 //}
                 
-                let reportActionButton: UIAlertAction = UIAlertAction(title: "Report", style: .default)
+                let reportActionButton: UIAlertAction = UIAlertAction(title: "Hide", style: .default)
                 {action -> Void in
-                    let alert = UIAlertController(title: "Report", message: "Reported successfuly", preferredStyle: UIAlertControllerStyle.alert)
+                    let alert = UIAlertController(title: "Hide", message: "Hided successfuly", preferredStyle: UIAlertControllerStyle.alert)
                     alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
                     globalNavigationController.present(alert, animated: true, completion: nil)
                 }
@@ -585,15 +588,23 @@ class ActivityFeedFooterBasic: UIView {
                 }
                 actionSheetControllerIOS8.addAction(cancel)
             }
-            globalNavigationController.topViewController?.present(actionSheetControllerIOS8, animated: true, completion: nil)
-        }
-        else{
-            if currentUser != nil {
-                
-            }else{
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
+            
+        }else{
+            let reportActionButton: UIAlertAction = UIAlertAction(title: "Report", style: .default)
+            {action -> Void in
+                let alert = UIAlertController(title: "Report", message: "Reported successfuly", preferredStyle: UIAlertControllerStyle.alert)
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                globalNavigationController.present(alert, animated: true, completion: nil)
             }
+            actionSheetControllerIOS8.addAction(reportActionButton)
+            
+            let cancel: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel)
+            { action -> Void in
+                
+            }
+            actionSheetControllerIOS8.addAction(cancel)
         }
+        globalNavigationController.topViewController?.present(actionSheetControllerIOS8, animated: true, completion: nil)
     }
     
     
