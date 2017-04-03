@@ -36,6 +36,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        globalActivityFeedsController = nil
         loader.hideOverlayView()
         let i = PostImage()
         i.uploadPhotos()

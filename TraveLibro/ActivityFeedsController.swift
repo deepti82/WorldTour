@@ -71,7 +71,9 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
         super.viewWillDisappear(animated)
         displayData = "activity"
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        globalActivityFeedsController = nil
+        print()
+        
+//        globalActivityFeedsController = nil
     }
     
     func refresh(_ sender: AnyObject) {

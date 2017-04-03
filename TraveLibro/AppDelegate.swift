@@ -133,6 +133,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
         
     }
     
+//    func visibleViewController() -> UIViewController? {
+//        if let rootViewController: UIViewController  = rootViewController {
+//            return wind.getVisibleViewControllerFrom(rootViewController)
+//        }
+//        return nil
+//    }
+    
     internal func createMenuView() {
         
         storyboard = UIStoryboard(name: "Main", bundle: nil)

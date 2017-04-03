@@ -1041,7 +1041,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
-      
+      globalActivityFeedsController = nil
                 ToastView.appearance().backgroundColor = endJourneyColor
 
         self.layout = VerticalLayout(width: view.frame.size.width)
