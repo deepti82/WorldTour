@@ -50,7 +50,7 @@ class NotificationTitle: UIView {
             
         case "postTag":
             
-            str2 = " has checked-in with you in an "
+            str2 = " has checked-in with you in "
             if (data["data"]["type"].string == "photo") {
                 str2 = " has uploaded a photo to "
             }
@@ -155,13 +155,13 @@ class NotificationTitle: UIView {
             let travelType = data["data"]["type"].string
             if travelType != nil {
                 if travelType == "local-life" {
-                    str3 = "Local Life Activity "
+                    str3 = "a Local Life Activity "
                 }
                 else if travelType == "on_the_go" {
-                    str3 = "On The Go Activity "
+                    str3 = "an On The Go Activity "
                 }
                 else if travelType == "travel-life" {
-                    str3 = "Travel Life Activity "
+                    str3 = "a Travel Life Activity "
                 }
             }
             
@@ -190,7 +190,7 @@ class NotificationTitle: UIView {
         message.append(getBoldString(string: str4, size: 12))
         
         if notificationType == "postFirstTime" {
-            str4 = " for first time "
+            str4 = " for the first time "
             message.append(getRegularString(string: str4, size: 12))
         }
         
