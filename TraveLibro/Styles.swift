@@ -839,16 +839,23 @@ func isSelfUser(otherUserID: String) -> Bool {
 
 //MARK: - Video thumbnail
 
-func getThumbnailFromVideoURL(url : URL) -> UIImage? {
-    
-    let asset = AVURLAsset(url: url, options: nil)
-    let imgGenerator = AVAssetImageGenerator(asset: asset)
-    do {
-        let imageRef = try imgGenerator.copyCGImage(at: CMTimeMake(0, 3), actualTime: nil)
-        return UIImage(cgImage: imageRef)
-    } catch {
-        print(error)
-        return nil
+func getThumbnailFromVideoURL(url : URL, onView: UIImageView) {
+    DispatchQueue.global().async {
+        var image = UIImage(named: "logo-default")
+        let asset = AVURLAsset(url: url, options: nil)
+        let imgGenerator = AVAssetImageGenerator(asset: asset)
+        do {
+            let imageRef = try imgGenerator.copyCGImage(at: CMTimeMake(0, 3), actualTime: nil)
+            image = UIImage(cgImage: imageRef)
+            DispatchQueue.main.async(execute: {
+                onView.image = image
+            })
+        } catch {
+            print(error)
+            DispatchQueue.main.async(execute: {
+                onView.image = image
+            })
+        }
     }
 }
 

@@ -2188,10 +2188,11 @@ class Navigation {
             print("like post: \(params) \(type)")
             
             let opt = try HTTP.POST(adminUrl + url, parameters: [params])
-            var json = JSON(1);
+            var json = JSON(["value" : false])
             opt.start {response in
                 if let err = response.error {
                     print("error: \(err.localizedDescription)")
+                    completion(json)
                 }
                 else
                 {

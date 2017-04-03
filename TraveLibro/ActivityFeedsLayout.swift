@@ -81,7 +81,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
                 videoUrl = URL(string:self.feeds["videos"][0]["localUrl"].stringValue)
             }
             
-            self.videoContainer.videoHolder.image = getThumbnailFromVideoURL(url: videoUrl!)
+            getThumbnailFromVideoURL(url: videoUrl!, onView: self.videoContainer.videoHolder)
             
             if feed["type"].stringValue == "travel-life" {
                 videoContainer.tagText.text = "Travel Life"

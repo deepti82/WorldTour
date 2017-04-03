@@ -152,23 +152,6 @@ class ActivityFeedFooter: UIView {
             toCommentView()
      }
     
-    
-    func setLikeCount(_ post_likeCount:Int!) {
-        if(post_likeCount != nil) {
-            self.likeCount = post_likeCount
-            if(post_likeCount == 0) {
-                self.likeViewLabel.text = "0 Like"
-            } else if(post_likeCount == 1) {
-                self.likeViewLabel.text = "1 Like"
-            } else if(post_likeCount > 1) {
-                let counts = String(post_likeCount)
-                self.likeViewLabel.text = "\(counts) Likes"
-            }
-        }
-        self.checkHideView()
-        
-    }
-    
     func setReviewCount(count:Int!) {
         if count != nil {
             self.reviewCount = count
@@ -243,73 +226,6 @@ class ActivityFeedFooter: UIView {
         } else if(self.type == "ActivityFeeds") {
             globalActivityFeedsController.addHeightToLayout()
         }
-    }
-    
-    func setLikeSelected (_ isSelected:Bool) {
-         
-        if(isSelected) {
-            self.likeButton.tag = 1
-            self.likeButton.setImage(UIImage(named: "liked"), for: .normal)
-            
-        } else {
-            self.likeButton.setImage(UIImage(named: "likeButton"), for: .normal)
-            self.likeButton.tag = 0
-            
-        }
-    }
-    
-    @IBAction func sendLikes(_ sender: UIButton) {
-        
-        if currentUser != nil {
-            audioPlayer.play()
-            likeButton.animation = "pop"
-            likeButton.velocity = 2
-            likeButton.force = 2
-            likeButton.damping = 10
-            likeButton.curve = "spring"
-            likeButton.animateTo()
-            
-            print("like button tapped \(sender.titleLabel!.text)")
-            
-            var hasLiked = false
-            if sender.tag == 1 {
-                hasLiked = true
-                sender.tag = 0
-            }
-            else {
-                sender.tag = 1
-            }
-            
-            
-                request.globalLike(postTop["_id"].stringValue, userId: user.getExistingUser(), unlike: hasLiked, type: postTop["type"].stringValue, completion: {(response) in
-                    DispatchQueue.main.async(execute: {
-                        if response.error != nil {
-                            print("error: \(response.error!.localizedDescription)")
-                        }
-                        else if response["value"].bool! {
-                            if sender.tag == 1 {
-                                self.setLikeSelected(true)
-                                self.likeCount = self.likeCount + 1
-                                self.setLikeCount(self.likeCount)
-                            } else {
-                                self.setLikeSelected(false)
-                                if self.likeCount <= 0 {
-                                    self.likeCount = 0
-                                } else {
-                                    self.likeCount = self.likeCount - 1
-                                }
-                                self.setLikeCount(self.likeCount)
-                            }
-                        } else {
-                            
-                        }
-                    })
-                })
-        }
-        else {
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
-        }
-        
     }
     
     @IBAction func optionClick(_ sender: UIButton) {
@@ -508,5 +424,109 @@ class ActivityFeedFooter: UIView {
         print("in footer tap out")
         backgroundReview.removeFromSuperview()
         
+    }
+    
+    
+    //MARK: - Like
+    
+    @IBAction func sendLikes(_ sender: UIButton) {
+        
+        if currentUser != nil {
+            audioPlayer.play()
+            likeButton.animation = "pop"
+            likeButton.velocity = 2
+            likeButton.force = 2
+            likeButton.damping = 10
+            likeButton.curve = "spring"
+            likeButton.animateTo()
+            
+            print("like button tapped \(sender.titleLabel!.text)")
+            
+            var hasLiked = false
+            if sender.tag == 1 {
+                hasLiked = true
+                sender.tag = 0
+            }
+            else {
+                sender.tag = 1
+            }
+            
+            self.updateLikeSuccess(sender: sender)
+            
+            request.globalLike(postTop["_id"].stringValue, userId: user.getExistingUser(), unlike: hasLiked, type: postTop["type"].stringValue, completion: {(response) in
+                DispatchQueue.main.async(execute: {
+                    if response.error != nil {
+                        print("error: \(response.error!.localizedDescription)")
+                    }
+                    else if response["value"].bool! {
+                    } else {
+                        self.updateLikeFailure(sender: sender)
+                    }
+                })
+            })
+        }
+        else {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
+        }
+        
+    }
+    
+    func updateLikeSuccess(sender : UIButton) {
+        if sender.tag == 1 {
+            self.setLikeSelected(true)
+            self.likeCount = self.likeCount + 1
+            self.setLikeCount(self.likeCount)
+        }
+        else {
+            self.setLikeSelected(false)
+            if self.likeCount <= 0 {
+                self.likeCount = 0
+            } else {
+                self.likeCount = self.likeCount - 1
+            }
+            self.setLikeCount(self.likeCount)
+        }
+    }
+    
+    func updateLikeFailure(sender : UIButton) {
+        if sender.tag == 1 {
+            self.setLikeSelected(false)
+            if self.likeCount <= 0 {
+                self.likeCount = 0
+            } else {
+                self.likeCount = self.likeCount - 1
+            }
+            self.setLikeCount(self.likeCount)
+        }
+        else {
+            self.setLikeSelected(true)
+            self.likeCount = self.likeCount + 1
+            self.setLikeCount(self.likeCount)            
+        }
+    }
+    
+    func setLikeCount(_ post_likeCount:Int!) {
+        if(post_likeCount != nil) {
+            self.likeCount = post_likeCount
+            if(post_likeCount == 0) {
+                self.likeViewLabel.text = "0 Like"
+            } else if(post_likeCount == 1) {
+                self.likeViewLabel.text = "1 Like"
+            } else if(post_likeCount > 1) {
+                let counts = String(post_likeCount)
+                self.likeViewLabel.text = "\(counts) Likes"
+            }
+        }
+        self.checkHideView()        
+    }
+    
+    func setLikeSelected (_ isSelected:Bool) {         
+        if(isSelected) {
+            self.likeButton.tag = 1
+            self.likeButton.setImage(UIImage(named: "liked"), for: .normal)            
+        } else {
+            self.likeButton.setImage(UIImage(named: "likeButton"), for: .normal)
+            self.likeButton.tag = 0            
+        }
     }
 }
