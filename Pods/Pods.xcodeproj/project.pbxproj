@@ -441,7 +441,7 @@
 		0AB5B6CE7058B7D0B2F38C6DB1B87B0B /* Toaster.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Toaster.xcconfig; sourceTree = "<group>"; };
 		0ABB321679E1AF3F3D85D2B6602295F2 /* TabCollectionCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TabCollectionCell.swift; path = Pod/Classes/TabCollectionCell.swift; sourceTree = "<group>"; };
 		0B145BE38E7F85CA318AE5C739577961 /* TAPageControl-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "TAPageControl-dummy.m"; sourceTree = "<group>"; };
-		0B60D8DBE93515496FEFCD4C7C79A544 /* Cent.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Cent.framework; path = Cent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0B60D8DBE93515496FEFCD4C7C79A544 /* Cent.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Cent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C3D7813EDEFF282C515F0CF0438BFF4 /* Helpers.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Helpers.swift; path = Simplicity/Helpers.swift; sourceTree = "<group>"; };
 		0C8B05558F4760EEC57A5503E9166E12 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0C8B0DD2F23E160F7CB385AD210F2D29 /* Format.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Format.swift; path = Haneke/Format.swift; sourceTree = "<group>"; };
@@ -452,13 +452,13 @@
 		0FFB56C3596D90CFF00D9E6B108EC09C /* Pods-TraveLibro-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TraveLibro-frameworks.sh"; sourceTree = "<group>"; };
 		1039510FBF50040F178C28EE3CD2F205 /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/Photos.framework; sourceTree = DEVELOPER_DIR; };
 		125DF1148B9178BCE8BC3D4784589575 /* TwitterKitResources.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = TwitterKitResources.bundle; path = iOS/TwitterKit.framework/Versions/A/Resources/TwitterKitResources.bundle; sourceTree = "<group>"; };
-		1317280E30EE9D487919326AB47B5D0C /* Simplicity.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Simplicity.framework; path = Simplicity.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1317280E30EE9D487919326AB47B5D0C /* Simplicity.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Simplicity.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1327EA480E1BC8957CBF7D97F671F3A2 /* Spring-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Spring-dummy.m"; sourceTree = "<group>"; };
 		1333B2D185B7BEB6BE36CC19A2070D43 /* GoogleToolboxForMac.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = GoogleToolboxForMac.xcconfig; sourceTree = "<group>"; };
 		1414BAB13AD30B092FB8A9C5FD051370 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		146F6A24ECC6CC81096216B5024F723C /* Connection.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Connection.swift; path = Sources/SQLite/Core/Connection.swift; sourceTree = "<group>"; };
 		17F5D1017AC64D3B0C51F56FC07640BC /* ToastCenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ToastCenter.swift; path = Sources/ToastCenter.swift; sourceTree = "<group>"; };
-		190805AA6299B328F4D491B65F74D73B /* HanekeSwift.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = HanekeSwift.modulemap; sourceTree = "<group>"; };
+		190805AA6299B328F4D491B65F74D73B /* HanekeSwift.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = HanekeSwift.modulemap; sourceTree = "<group>"; };
 		19283937EFAABBA1998DDFFD103B0496 /* SpringLabel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SpringLabel.swift; path = Spring/SpringLabel.swift; sourceTree = "<group>"; };
 		1AAE6BA500C0CF5F8C7F148A65891179 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1D10500A0D7E28B9CB1EA7AA12AE7141 /* KeyboardLayoutConstraint.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = KeyboardLayoutConstraint.swift; path = Spring/KeyboardLayoutConstraint.swift; sourceTree = "<group>"; };
@@ -466,13 +466,13 @@
 		1D879CFA37F86AE1F75EA18BA2A6F54E /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1E905BF1EBCEB228B37F43D385F22B23 /* TwitterCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TwitterCore.framework; path = iOS/TwitterCore.framework; sourceTree = "<group>"; };
 		1EEE2B971AA5A5F4AF611BB42337C332 /* TAAnimatedDotView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TAAnimatedDotView.h; path = TAPageControl/TAAnimatedDotView.h; sourceTree = "<group>"; };
-		21D3A44934E4F2E82CB32C5793D2F56D /* Dollar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Dollar.framework; path = Dollar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		21D3A44934E4F2E82CB32C5793D2F56D /* Dollar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Dollar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2402D70E7F839B7C8CCFF1B9C68E2CED /* Toaster.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Toaster.h; path = Sources/Toaster.h; sourceTree = "<group>"; };
 		2442F98A20BCF7D1CC1CF0B43322C3C1 /* GTMNSData+zlib.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "GTMNSData+zlib.h"; path = "Foundation/GTMNSData+zlib.h"; sourceTree = "<group>"; };
 		259CDC3574CF11164E106AB7BC3A257E /* Player.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Player.swift; path = Sources/Player.swift; sourceTree = "<group>"; };
 		25A9E71042E9A9F2E69853AD04ACDEE8 /* GAITrackedViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GAITrackedViewController.h; path = Sources/GAITrackedViewController.h; sourceTree = "<group>"; };
 		274486FDB5BDDB2147529F88D0DBC878 /* imglyKit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = imglyKit.h; path = imglyKit.framework/Headers/imglyKit.h; sourceTree = "<group>"; };
-		2968FCBAAA632589C264F8490AE94CE4 /* BSImagePicker.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = BSImagePicker.bundle; path = BSImagePicker.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		2968FCBAAA632589C264F8490AE94CE4 /* BSImagePicker.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BSImagePicker.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B29A6771B56E28302EE6AD811D5DD7F /* DKChainableAnimationKit.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = DKChainableAnimationKit.xcconfig; sourceTree = "<group>"; };
 		2B89EE48F827FCDB2DC6BAC150B3C5AB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		2CD9F2B8F2DD0587B7D925CC75223979 /* TransitionManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TransitionManager.swift; path = Spring/TransitionManager.swift; sourceTree = "<group>"; };
@@ -483,7 +483,7 @@
 		2E3CB7A473498F0922477D7AB3445307 /* BSImagePickerSettings.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BSImagePickerSettings.swift; path = Pod/Classes/Protocol/BSImagePickerSettings.swift; sourceTree = "<group>"; };
 		2E8A0CD0EE280412F8355AD5FAE80EE2 /* BSImagePicker-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "BSImagePicker-umbrella.h"; sourceTree = "<group>"; };
 		2F09F414146EE182F0E22D15700C9598 /* GoogleToolboxForMac-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "GoogleToolboxForMac-umbrella.h"; sourceTree = "<group>"; };
-		2F79E1BBF6D073320CD7669C5AC8C98B /* add_photo@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; name = "add_photo@2x.png"; path = "Pod/Assets/add_photo@2x.png"; sourceTree = "<group>"; };
+		2F79E1BBF6D073320CD7669C5AC8C98B /* add_photo@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "add_photo@2x.png"; path = "Pod/Assets/add_photo@2x.png"; sourceTree = "<group>"; };
 		2FF477AE547C9817A1FD638961B935ED /* CGSize+Swift.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "CGSize+Swift.swift"; path = "Haneke/CGSize+Swift.swift"; sourceTree = "<group>"; };
 		3123371E5F4DD33EFE141D1AF9F7CF70 /* TabPageViewController.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = TabPageViewController.xcconfig; sourceTree = "<group>"; };
 		31BED42839FD3DADA3455A2D37FA4AE4 /* Schema.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Schema.swift; path = Sources/SQLite/Typed/Schema.swift; sourceTree = "<group>"; };
@@ -494,7 +494,7 @@
 		3418600372D8D3AC63AAE1BA00CED4C1 /* iCarousel-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "iCarousel-prefix.pch"; sourceTree = "<group>"; };
 		345F059298BA7E716F399B745110D770 /* GoogleToolboxForMac-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "GoogleToolboxForMac-dummy.m"; sourceTree = "<group>"; };
 		34D011B5D562FB7592CBBF2FCBB548E4 /* GoogleInterchangeUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleInterchangeUtilities.framework; path = Frameworks/frameworks/GoogleInterchangeUtilities.framework; sourceTree = "<group>"; };
-		34E79361A122691367D4C2289160C074 /* SQLite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SQLite.framework; path = SQLite.swift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		34E79361A122691367D4C2289160C074 /* SQLite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SQLite.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		35B20CB6C8CC885C640EC721F89237ED /* Cent.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Cent.xcconfig; sourceTree = "<group>"; };
 		3627C5E75604B4B98327AE336422F944 /* FirebaseCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseCore.framework; path = Frameworks/frameworks/FirebaseCore.framework; sourceTree = "<group>"; };
 		366A2AE7A789B40A7A92139A91051F72 /* ComposedCollectionViewDataSource.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ComposedCollectionViewDataSource.swift; path = Pod/Classes/Model/ComposedCollectionViewDataSource.swift; sourceTree = "<group>"; };
@@ -516,7 +516,7 @@
 		3F5F030CC4DFF7D39B6D7458156B4A70 /* Cent.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Cent.h; path = Sources/Cent.h; sourceTree = "<group>"; };
 		3FE960574AD37AB5F9D260348B7B81A1 /* AsyncButton.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AsyncButton.swift; path = Spring/AsyncButton.swift; sourceTree = "<group>"; };
 		3FFE1CCBA032DC032B5D43008A05E391 /* AsyncSwift-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "AsyncSwift-dummy.m"; sourceTree = "<group>"; };
-		4152BEA5707C8E124C6E63E230BD4239 /* SABlurImageView.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = SABlurImageView.modulemap; sourceTree = "<group>"; };
+		4152BEA5707C8E124C6E63E230BD4239 /* SABlurImageView.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = SABlurImageView.modulemap; sourceTree = "<group>"; };
 		42FF66371A7020D53206F63F8BBA4F1C /* DKChainableAnimationKit+Transform.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "DKChainableAnimationKit+Transform.swift"; path = "DKChainableAnimationKit/Classes/DKChainableAnimationKit+Transform.swift"; sourceTree = "<group>"; };
 		4395403CBABEC862796548707C7B2BBE /* Spring.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Spring.swift; path = Spring/Spring.swift; sourceTree = "<group>"; };
 		43ECC8EDA2E6DF719C0268EDCD771B77 /* SwiftGifOrigin-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftGifOrigin-umbrella.h"; sourceTree = "<group>"; };
@@ -525,7 +525,7 @@
 		453A43FBF6731A30966E997A77492FF3 /* FABAttributes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FABAttributes.h; path = iOS/Fabric.framework/Headers/FABAttributes.h; sourceTree = "<group>"; };
 		45EEFCD0570F0FD9712C928F276FE985 /* TabCollectionCell.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = TabCollectionCell.xib; path = Pod/Classes/TabCollectionCell.xib; sourceTree = "<group>"; };
 		461A55062BA419D771B307FEF785B925 /* Dictionary.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Dictionary.swift; path = Sources/Dictionary.swift; sourceTree = "<group>"; };
-		47D38165A852E9802AB99C132AE686E2 /* TAPageControl.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = TAPageControl.framework; path = TAPageControl.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		47D38165A852E9802AB99C132AE686E2 /* TAPageControl.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TAPageControl.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		480FAFE358811525DD51EC9F5954ADA0 /* FIRInstanceID.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FIRInstanceID.h; path = Sources/FIRInstanceID.h; sourceTree = "<group>"; };
 		4877E5A21D5D371D29559AF0E65E18EB /* UIImageViewModeScaleAspect-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UIImageViewModeScaleAspect-umbrella.h"; sourceTree = "<group>"; };
 		4882F88403C04BF0D46D525CA50D9709 /* fts3_tokenizer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = fts3_tokenizer.h; path = Sources/SQLiteObjc/fts3_tokenizer.h; sourceTree = "<group>"; };
@@ -533,7 +533,7 @@
 		4C8E74C0C255712F9908F4E5A414DF92 /* VKontakte.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = VKontakte.swift; path = Simplicity/LoginProviders/VKontakte.swift; sourceTree = "<group>"; };
 		4F50B9A378FD7669B11E5B7BA4C67222 /* DKChainableAnimationKit-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "DKChainableAnimationKit-prefix.pch"; sourceTree = "<group>"; };
 		4F9CA4D9173D08C24C9D57BC5B103B5D /* SpringTextView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SpringTextView.swift; path = Spring/SpringTextView.swift; sourceTree = "<group>"; };
-		5112ED8B1FD7D0EFCF1F5E5D73FDD907 /* BSGridCollectionViewLayout.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = BSGridCollectionViewLayout.framework; path = BSGridCollectionViewLayout.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5112ED8B1FD7D0EFCF1F5E5D73FDD907 /* BSGridCollectionViewLayout.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BSGridCollectionViewLayout.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		52035552692269E42EECC727168848F8 /* HanekeSwift-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "HanekeSwift-umbrella.h"; sourceTree = "<group>"; };
 		5317E7AE9B5483B22EA0C17DA6E414CA /* Dollar.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Dollar.swift; path = Sources/Dollar.swift; sourceTree = "<group>"; };
 		53AE027F04D1A3B33732DA0A29CF387E /* UIButton+Haneke.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIButton+Haneke.swift"; path = "Haneke/UIButton+Haneke.swift"; sourceTree = "<group>"; };
@@ -541,24 +541,24 @@
 		54C838D437FF76B74026D94B51C7C909 /* AsyncSwift-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AsyncSwift-umbrella.h"; sourceTree = "<group>"; };
 		54E1A93C13ADD387F747924260CB110C /* TAPageControl.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = TAPageControl.xcconfig; sourceTree = "<group>"; };
 		55C37452580544137BA50E2EC2FE048C /* TAAnimatedDotView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TAAnimatedDotView.m; path = TAPageControl/TAAnimatedDotView.m; sourceTree = "<group>"; };
-		5708AF2DE6478E7BBAEE09D05B475850 /* TabPageViewController.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = TabPageViewController.modulemap; sourceTree = "<group>"; };
+		5708AF2DE6478E7BBAEE09D05B475850 /* TabPageViewController.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = TabPageViewController.modulemap; sourceTree = "<group>"; };
 		57AA86C735C7AE11C69DCEBD55633970 /* imglyKit.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = imglyKit.bundle; path = imglyKit.framework/imglyKit.bundle; sourceTree = "<group>"; };
 		57E14B5A039CE366BCD6CBC505D2FCEE /* SignIn-Module.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "SignIn-Module.h"; path = "Headers/ModuleHeaders/SignIn-Module.h"; sourceTree = "<group>"; };
 		58E00A82E75E807545605D2EF4DDE60B /* Enums.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Enums.h; path = imglyKit.framework/Headers/Enums.h; sourceTree = "<group>"; };
-		59440B7264F4F65AF602F7A7531E29A1 /* arrow_down@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; name = "arrow_down@3x.png"; path = "Pod/Assets/arrow_down@3x.png"; sourceTree = "<group>"; };
+		59440B7264F4F65AF602F7A7531E29A1 /* arrow_down@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "arrow_down@3x.png"; path = "Pod/Assets/arrow_down@3x.png"; sourceTree = "<group>"; };
 		596595F51A52DC370F4DE8B9D2510F6C /* UIImageViewModeScaleAspect.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = UIImageViewModeScaleAspect.m; path = UIImageViewModeScaleAspect/UIImageViewModeScaleAspect.m; sourceTree = "<group>"; };
 		5967EB8642E97B67AE4AC2BFC9978972 /* SQLite-Bridging.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "SQLite-Bridging.h"; path = "Sources/SQLiteObjc/include/SQLite-Bridging.h"; sourceTree = "<group>"; };
-		597A2F812B41BD0E623DF76B702FC74B /* SwiftGifOrigin.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = SwiftGifOrigin.modulemap; sourceTree = "<group>"; };
-		59B48FAF320528F51148B4B1DC6731BA /* Spring.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Spring.framework; path = Spring.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		597A2F812B41BD0E623DF76B702FC74B /* SwiftGifOrigin.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = SwiftGifOrigin.modulemap; sourceTree = "<group>"; };
+		59B48FAF320528F51148B4B1DC6731BA /* Spring.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Spring.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		59E740D6A071C29EC6D27F100B0486A5 /* SQLite-Bridging.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "SQLite-Bridging.m"; path = "Sources/SQLiteObjc/SQLite-Bridging.m"; sourceTree = "<group>"; };
 		59EDEBEABC117058DE596A6F071B44C4 /* PhotoCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PhotoCell.swift; path = Pod/Classes/View/PhotoCell.swift; sourceTree = "<group>"; };
 		5CE423669B4C7648DBE39E9303EDF69D /* LoginProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LoginProvider.swift; path = Simplicity/LoginProvider.swift; sourceTree = "<group>"; };
-		5D52BE19894E520FC5C91FEDC2A68413 /* Player.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Player.framework; path = Player.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5D52BE19894E520FC5C91FEDC2A68413 /* Player.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Player.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FD1D5D83609B5DBF58BE9EAFAED5A2F /* Cent-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Cent-umbrella.h"; sourceTree = "<group>"; };
 		60EEDE5FC018841FF958BA3731E576FC /* SQLite.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SQLite.h; path = Sources/SQLite/SQLite.h; sourceTree = "<group>"; };
-		624CC034A402128EF354A1CCF7EFCD90 /* Haneke.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Haneke.framework; path = HanekeSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		624CC034A402128EF354A1CCF7EFCD90 /* Haneke.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Haneke.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		630D98AC560FFC904DACF1C64F250644 /* NSFileManager+Haneke.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NSFileManager+Haneke.swift"; path = "Haneke/NSFileManager+Haneke.swift"; sourceTree = "<group>"; };
-		6324FD6566B95D5BA4B208AFE070A792 /* add_photo.png */ = {isa = PBXFileReference; includeInIndex = 1; name = add_photo.png; path = Pod/Assets/add_photo.png; sourceTree = "<group>"; };
+		6324FD6566B95D5BA4B208AFE070A792 /* add_photo.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = add_photo.png; path = Pod/Assets/add_photo.png; sourceTree = "<group>"; };
 		63C902D3E427C8E8D93709E4EB51154A /* FTS4.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FTS4.swift; path = Sources/SQLite/Extensions/FTS4.swift; sourceTree = "<group>"; };
 		640513B55E3D2737327A8C8B4C8C7A7B /* SQLite.swift-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SQLite.swift-umbrella.h"; sourceTree = "<group>"; };
 		64A72AB189843E9F0ED667FF5445C0DB /* Spring.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Spring.xcconfig; sourceTree = "<group>"; };
@@ -572,8 +572,8 @@
 		6A7417E9A6B8ABD48EA698DF80A06675 /* FirebaseInstanceID.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseInstanceID.framework; path = Frameworks/frameworks/FirebaseInstanceID.framework; sourceTree = "<group>"; };
 		6ABD826A3888F16818A07D4B41726285 /* DesignableImageView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DesignableImageView.swift; path = Spring/DesignableImageView.swift; sourceTree = "<group>"; };
 		6AFBC9333299F59152158B2991DC65AE /* Pods-TraveLibro.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TraveLibro.release.xcconfig"; sourceTree = "<group>"; };
-		6B0A09B078338BCB10C08ACD09E9F7DB /* TabPageViewController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = TabPageViewController.framework; path = TabPageViewController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6B57800DD70552D9E3AFE37CD13600FE /* Toaster.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = Toaster.modulemap; sourceTree = "<group>"; };
+		6B0A09B078338BCB10C08ACD09E9F7DB /* TabPageViewController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TabPageViewController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6B57800DD70552D9E3AFE37CD13600FE /* Toaster.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = Toaster.modulemap; sourceTree = "<group>"; };
 		6B6740C980A7A96223B7AB6A75A374F6 /* HTTPSecurity.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HTTPSecurity.swift; path = Source/HTTPSecurity.swift; sourceTree = "<group>"; };
 		6B6C76D2C535EB1B6294F97A1D851E13 /* TAPageControl-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TAPageControl-prefix.pch"; sourceTree = "<group>"; };
 		6CA1CF6604BDF65C42AADC792C745075 /* GTMDefines.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = GTMDefines.h; sourceTree = "<group>"; };
@@ -584,10 +584,10 @@
 		71A1B731CE32087A8108C48D428844E4 /* RTree.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RTree.swift; path = Sources/SQLite/Extensions/RTree.swift; sourceTree = "<group>"; };
 		72202420CD9D847708500DA27392F915 /* Images.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = SpringApp/Images.xcassets; sourceTree = "<group>"; };
 		722C6AD8D82DCB0ADDC380E59DC70418 /* Player-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Player-umbrella.h"; sourceTree = "<group>"; };
-		7260B812414E879CE4913A0CF50AF6DE /* Player.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = Player.modulemap; sourceTree = "<group>"; };
+		7260B812414E879CE4913A0CF50AF6DE /* Player.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = Player.modulemap; sourceTree = "<group>"; };
 		727F1C910E9D4BC5CC2FF4FC85E2D0FA /* HanekeSwift-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "HanekeSwift-prefix.pch"; sourceTree = "<group>"; };
 		74B50CA45A8E2E0EB46FC75704F55C92 /* Pods-TraveLibro-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-TraveLibro-umbrella.h"; sourceTree = "<group>"; };
-		755DB433C6B0AE300109387987E1210D /* GoogleToolboxForMac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = GoogleToolboxForMac.framework; path = GoogleToolboxForMac.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		755DB433C6B0AE300109387987E1210D /* GoogleToolboxForMac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GoogleToolboxForMac.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7623320438FAB5437ACAD4C50C8D9756 /* Collation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Collation.swift; path = Sources/SQLite/Typed/Collation.swift; sourceTree = "<group>"; };
 		764088ED2777962B7ADD5BCB59C1CC68 /* DKChainableAnimationKit-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "DKChainableAnimationKit-umbrella.h"; sourceTree = "<group>"; };
 		769AFB059885104536C9A781B597550C /* Misc.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Misc.swift; path = Spring/Misc.swift; sourceTree = "<group>"; };
@@ -597,13 +597,13 @@
 		783CA820086BD5965A6B931643469E3F /* GGLAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GGLAnalytics.framework; path = Frameworks/GGLAnalytics.framework; sourceTree = "<group>"; };
 		7885714EF22BA5F79D4B913981D9B280 /* ResourceBundle-BSImagePicker-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-BSImagePicker-Info.plist"; sourceTree = "<group>"; };
 		79F1A09C9AED352EDD53AB89FF35C73C /* SwiftHTTP.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftHTTP.xcconfig; sourceTree = "<group>"; };
-		7A4C618872EAC8CF9821E96539602FE9 /* Cent.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = Cent.modulemap; sourceTree = "<group>"; };
+		7A4C618872EAC8CF9821E96539602FE9 /* Cent.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = Cent.modulemap; sourceTree = "<group>"; };
 		7A584D22C7F989605EC71DC78CA18C59 /* Foundation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Foundation.swift; path = Sources/SQLite/Foundation.swift; sourceTree = "<group>"; };
 		7A6676EED90844972B314955D4629646 /* SABlurImageView-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SABlurImageView-umbrella.h"; sourceTree = "<group>"; };
-		7A8FC1A3E59C210465DA18D87BAF4E21 /* SwiftHTTP.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = SwiftHTTP.modulemap; sourceTree = "<group>"; };
+		7A8FC1A3E59C210465DA18D87BAF4E21 /* SwiftHTTP.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = SwiftHTTP.modulemap; sourceTree = "<group>"; };
 		7B4D1B31EF1A878C3E9FE8AB8DC43308 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		7B70A413FCAF01870F05D1495A900AC2 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7C5E1CCCCDF39058F1F5344C789724EB /* BSGridCollectionViewLayout.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = BSGridCollectionViewLayout.modulemap; sourceTree = "<group>"; };
+		7C5E1CCCCDF39058F1F5344C789724EB /* BSGridCollectionViewLayout.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = BSGridCollectionViewLayout.modulemap; sourceTree = "<group>"; };
 		7D9C6AF6CADDBAF773200FDD57C5F0C5 /* libGoogleAnalytics.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libGoogleAnalytics.a; path = Libraries/libGoogleAnalytics.a; sourceTree = "<group>"; };
 		7DCB04D37845A35252C689245BAFB9BA /* Core-Module.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "Core-Module.h"; path = "Headers/ModuleHeaders/Core-Module.h"; sourceTree = "<group>"; };
 		7DD6333CCFAD6F5E3453B494450351F9 /* GAILogger.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GAILogger.h; path = Sources/GAILogger.h; sourceTree = "<group>"; };
@@ -611,14 +611,14 @@
 		7E462674E17B546AF7FF5E7188106123 /* SwiftHTTP-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftHTTP-umbrella.h"; sourceTree = "<group>"; };
 		7F423F57C124FAADC260B91CC4F08716 /* NSIndexSet+NSIndexPath.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NSIndexSet+NSIndexPath.swift"; path = "Pod/Classes/Extension/NSIndexSet+NSIndexPath.swift"; sourceTree = "<group>"; };
 		7F7E48EBB44FD5A467D2FDF66BDEB033 /* Dollar.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Dollar.xcconfig; sourceTree = "<group>"; };
-		801E03A188F6A20868959366F4255920 /* Async.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Async.framework; path = AsyncSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		80578521E98F675BAD0327B726733BB6 /* GoogleToolboxForMac.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = GoogleToolboxForMac.modulemap; sourceTree = "<group>"; };
+		801E03A188F6A20868959366F4255920 /* Async.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Async.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		80578521E98F675BAD0327B726733BB6 /* GoogleToolboxForMac.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = GoogleToolboxForMac.modulemap; sourceTree = "<group>"; };
 		80E1E57D33B160EEA6FA59378D30C056 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
 		8262535D382E1D0EF8F965D4A78D67C5 /* DiskFetcher.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DiskFetcher.swift; path = Haneke/DiskFetcher.swift; sourceTree = "<group>"; };
-		82B497422F516A82C1D35EF407E81614 /* arrow_down@1x.png */ = {isa = PBXFileReference; includeInIndex = 1; name = "arrow_down@1x.png"; path = "Pod/Assets/arrow_down@1x.png"; sourceTree = "<group>"; };
+		82B497422F516A82C1D35EF407E81614 /* arrow_down@1x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "arrow_down@1x.png"; path = "Pod/Assets/arrow_down@1x.png"; sourceTree = "<group>"; };
 		82C96F65C13576CEC96A882C84C5F846 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/Accelerate.framework; sourceTree = DEVELOPER_DIR; };
-		82CFD37A02695681AB36C0942897EBDB /* UIImageViewModeScaleAspect.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = UIImageViewModeScaleAspect.framework; path = UIImageViewModeScaleAspect.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		842E9717246117C8703175AAC4DE5719 /* UIImageViewModeScaleAspect.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = UIImageViewModeScaleAspect.modulemap; sourceTree = "<group>"; };
+		82CFD37A02695681AB36C0942897EBDB /* UIImageViewModeScaleAspect.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UIImageViewModeScaleAspect.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		842E9717246117C8703175AAC4DE5719 /* UIImageViewModeScaleAspect.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = UIImageViewModeScaleAspect.modulemap; sourceTree = "<group>"; };
 		84557D8DC0B9060B405165A10B924F8E /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8558C26932B1D479BB4EE1AE60CE4B8C /* TADotView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TADotView.h; path = TAPageControl/TADotView.h; sourceTree = "<group>"; };
 		85D78F6A800D45F25BA734E26CDB091B /* TransitionZoom.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TransitionZoom.swift; path = Spring/TransitionZoom.swift; sourceTree = "<group>"; };
@@ -646,29 +646,29 @@
 		900574A32DFCD069EF7826C37306B2A5 /* GTMNSData+zlib.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "GTMNSData+zlib.m"; path = "Foundation/GTMNSData+zlib.m"; sourceTree = "<group>"; };
 		914953BEEFE6378EDC893ECA5A61AC7F /* Operators.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Operators.swift; path = Sources/SQLite/Typed/Operators.swift; sourceTree = "<group>"; };
 		92C820A861315EBCBB227C13951F39FB /* UIButton+NoAnimation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIButton+NoAnimation.swift"; path = "Pod/Classes/Extension/UIButton+NoAnimation.swift"; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		948C96011EE4227ACF075D880DA45869 /* Log.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Log.swift; path = Haneke/Log.swift; sourceTree = "<group>"; };
 		9538DC8F01F35C68034D82C0C2782403 /* Toaster-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Toaster-dummy.m"; sourceTree = "<group>"; };
 		956515AE26E0C597656CB52D8587910F /* Simplicity-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Simplicity-umbrella.h"; sourceTree = "<group>"; };
 		968782F25DC597BD2E135908BD4E0382 /* UIImageViewModeScaleAspect.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = UIImageViewModeScaleAspect.h; path = UIImageViewModeScaleAspect/UIImageViewModeScaleAspect.h; sourceTree = "<group>"; };
 		96E759BADDE0791B3E20E4A303571931 /* SQLite.swift-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SQLite.swift-dummy.m"; sourceTree = "<group>"; };
-		96FE146AE6E0A11BE2FA6D78A8C12B87 /* Simplicity.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = Simplicity.modulemap; sourceTree = "<group>"; };
+		96FE146AE6E0A11BE2FA6D78A8C12B87 /* Simplicity.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = Simplicity.modulemap; sourceTree = "<group>"; };
 		978A60E6C865AE703DD3872713C9263F /* Value.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Value.swift; path = Sources/SQLite/Core/Value.swift; sourceTree = "<group>"; };
 		9831FBDD7E3E6CE74B7BD7D9A286049B /* DKChainableAnimationKit+Extra.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "DKChainableAnimationKit+Extra.swift"; path = "DKChainableAnimationKit/Classes/DKChainableAnimationKit+Extra.swift"; sourceTree = "<group>"; };
 		9B8C92ACD81BC0C782F87F0486DC6905 /* GoogleSymbolUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleSymbolUtilities.framework; path = Frameworks/frameworks/GoogleSymbolUtilities.framework; sourceTree = "<group>"; };
 		9BD0BD1CD40879C2680CC44775EB28AA /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9CECC0CB1CD694BF054516BFA404FBB9 /* TabView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TabView.swift; path = Pod/Classes/TabView.swift; sourceTree = "<group>"; };
 		9D2529DCDB104620A5468BF21B2B7B63 /* NSURLResponse+Haneke.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NSURLResponse+Haneke.swift"; path = "Haneke/NSURLResponse+Haneke.swift"; sourceTree = "<group>"; };
-		9D463ECD6D5BCE39A8425EAE5C17EC7C /* Dollar.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = Dollar.modulemap; sourceTree = "<group>"; };
+		9D463ECD6D5BCE39A8425EAE5C17EC7C /* Dollar.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = Dollar.modulemap; sourceTree = "<group>"; };
 		9DBDFE4403FB47BFFD72A96422FFC9EE /* AlbumTitleView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AlbumTitleView.swift; path = Pod/Classes/View/AlbumTitleView.swift; sourceTree = "<group>"; };
 		9DE1FF1E01E933EB879459505ED2AC1D /* UIImageViewModeScaleAspect.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UIImageViewModeScaleAspect.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E6DF062B35C6CA9DFDB52F4CCD9E6A2 /* Toaster-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Toaster-umbrella.h"; sourceTree = "<group>"; };
 		9EAAAE75546AD5C587829209BE30FC22 /* DesignableTextField.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DesignableTextField.swift; path = Spring/DesignableTextField.swift; sourceTree = "<group>"; };
-		A0CD914A51654D09A15C259E877C45CB /* Toaster.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Toaster.framework; path = Toaster.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A0CD914A51654D09A15C259E877C45CB /* Toaster.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Toaster.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0E24CDF3DE534A225330675E9F9E117 /* GAIFields.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GAIFields.h; path = Sources/GAIFields.h; sourceTree = "<group>"; };
 		A13503FCE0DD4D37D172FDA5E8F1EEEB /* Pods-TraveLibro-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TraveLibro-resources.sh"; sourceTree = "<group>"; };
 		A1A4053962DA816C4EDC2C7467654DE3 /* TabPageViewController-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TabPageViewController-umbrella.h"; sourceTree = "<group>"; };
-		A59B7FBEC20844582FF227A32C438D9F /* AsyncSwift.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = AsyncSwift.modulemap; sourceTree = "<group>"; };
+		A59B7FBEC20844582FF227A32C438D9F /* AsyncSwift.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = AsyncSwift.modulemap; sourceTree = "<group>"; };
 		A67739910EDDB4B34B5FE97884AE3BC3 /* Simplicity.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Simplicity.xcconfig; sourceTree = "<group>"; };
 		A6C01C0C41A13CD990C3BFA7512BD2B6 /* Toast.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Toast.swift; path = Sources/Toast.swift; sourceTree = "<group>"; };
 		A78752F7AE78A1C74BD9A6853BF9D7A0 /* SelectionView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SelectionView.swift; path = Pod/Classes/View/SelectionView.swift; sourceTree = "<group>"; };
@@ -689,8 +689,8 @@
 		B66ABE46CD8277778184903EDA0182BD /* DKKeyFrameAnimation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DKKeyFrameAnimation.swift; path = DKChainableAnimationKit/Classes/DKKeyFrameAnimation.swift; sourceTree = "<group>"; };
 		B66C2FDC31FDE2BCAED2796FEAC92479 /* NetworkFetcher.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NetworkFetcher.swift; path = Haneke/NetworkFetcher.swift; sourceTree = "<group>"; };
 		B72F1C7F27E5415FE8255A5C51068058 /* CameraCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CameraCell.swift; path = Pod/Classes/View/CameraCell.swift; sourceTree = "<group>"; };
-		B7540A09B2C2183B692500ED904AF882 /* arrow_down@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; name = "arrow_down@2x.png"; path = "Pod/Assets/arrow_down@2x.png"; sourceTree = "<group>"; };
-		B7B9593C13E2174E3F62576ECE9388C2 /* SABlurImageView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SABlurImageView.framework; path = SABlurImageView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B7540A09B2C2183B692500ED904AF882 /* arrow_down@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "arrow_down@2x.png"; path = "Pod/Assets/arrow_down@2x.png"; sourceTree = "<group>"; };
+		B7B9593C13E2174E3F62576ECE9388C2 /* SABlurImageView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SABlurImageView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B83CA424CB3050D4E41D126C598A85E8 /* Cache.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Cache.swift; path = Haneke/Cache.swift; sourceTree = "<group>"; };
 		B929755CE51B68F0E005FEAF48A13DB6 /* Simplicity.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Simplicity.swift; path = Simplicity/Simplicity.swift; sourceTree = "<group>"; };
 		BA954D587EC497159E61ACCDAFEAA3C7 /* TAPageControl-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TAPageControl-umbrella.h"; sourceTree = "<group>"; };
@@ -700,18 +700,18 @@
 		BD0AEFB2ADC4B6F1EA21C33FB2426F22 /* PhotosViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PhotosViewController.swift; path = Pod/Classes/Controller/PhotosViewController.swift; sourceTree = "<group>"; };
 		BD0F786258FF9FC8DCD5777935F50861 /* Blob.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Blob.swift; path = Sources/SQLite/Core/Blob.swift; sourceTree = "<group>"; };
 		BD1FACB710D7DA9A6BF0144C0F58C28C /* Player-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Player-dummy.m"; sourceTree = "<group>"; };
-		BD6501C53D5D096939391A0C06BCFE26 /* iCarousel.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = iCarousel.modulemap; sourceTree = "<group>"; };
+		BD6501C53D5D096939391A0C06BCFE26 /* iCarousel.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = iCarousel.modulemap; sourceTree = "<group>"; };
 		BDE248D1799E0B7B7FB695C656DEDE68 /* Date.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Date.swift; path = Sources/Date.swift; sourceTree = "<group>"; };
 		BEBAD021A23083E28C394C0D8F58EAA1 /* IMGLYPhotoEditModel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IMGLYPhotoEditModel.h; path = imglyKit.framework/Headers/IMGLYPhotoEditModel.h; sourceTree = "<group>"; };
 		BEBD4643B1F2FECD08E368B1372CA799 /* CameraCollectionViewDataSource.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CameraCollectionViewDataSource.swift; path = Pod/Classes/Model/CameraCollectionViewDataSource.swift; sourceTree = "<group>"; };
 		BEEB445B99922E34A9FBE4DE0B049498 /* Dollar-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Dollar-dummy.m"; sourceTree = "<group>"; };
-		BF2C02FEFA8516328BE93A4FE99B0058 /* TabPageViewController.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; name = TabPageViewController.storyboard; path = Pod/Classes/TabPageViewController.storyboard; sourceTree = "<group>"; };
+		BF2C02FEFA8516328BE93A4FE99B0058 /* TabPageViewController.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; name = TabPageViewController.storyboard; path = Pod/Classes/TabPageViewController.storyboard; sourceTree = "<group>"; };
 		BFD5AB115A063083033DB3A70A30794E /* FTS5.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FTS5.swift; path = Sources/SQLite/Extensions/FTS5.swift; sourceTree = "<group>"; };
 		C1D53675594F80201E1D0F4FD0459103 /* iCarousel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = iCarousel.m; path = iCarousel/iCarousel.m; sourceTree = "<group>"; };
 		C314336257DAA8105EF446E509691C3E /* OneSignal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OneSignal.framework; path = iOS_SDK/Framework/OneSignal.framework; sourceTree = "<group>"; };
 		C3AA7D1D6230AC082B7973E72002A424 /* Haneke.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Haneke.swift; path = Haneke/Haneke.swift; sourceTree = "<group>"; };
 		C402A5FA8DB9A54D34A54B7833D5044B /* ToastWindow.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ToastWindow.swift; path = Sources/ToastWindow.swift; sourceTree = "<group>"; };
-		C43B639BD8CA3C48BE8E634AAAB19606 /* SwiftGifOrigin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SwiftGifOrigin.framework; path = SwiftGifOrigin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C43B639BD8CA3C48BE8E634AAAB19606 /* SwiftGifOrigin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftGifOrigin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4701219398C5742FCFD1B70DABF49C6 /* Operation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Operation.swift; path = Source/Operation.swift; sourceTree = "<group>"; };
 		C5AF772D6E8A1D47D4485A31B6DE4DBE /* UIImageViewModeScaleAspect-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "UIImageViewModeScaleAspect-dummy.m"; sourceTree = "<group>"; };
 		C6FC4B23FCFED44202EDA0D8745E6FB6 /* TAPageControl.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TAPageControl.m; path = TAPageControl/TAPageControl.m; sourceTree = "<group>"; };
@@ -722,21 +722,21 @@
 		CD61305FDB23069BDF9196465A19F2DB /* Core.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Core.h; path = Headers/Core.h; sourceTree = "<group>"; };
 		CD971E637943F0C74D14EEA2C205725F /* ToastView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ToastView.swift; path = Sources/ToastView.swift; sourceTree = "<group>"; };
 		CE19FB167C98473B49790728A22EDBD6 /* Analytics-Module.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "Analytics-Module.h"; path = "Headers/ModuleHeaders/Analytics-Module.h"; sourceTree = "<group>"; };
-		D20255680B4C87D42ED966FDCEE998F6 /* BSImagePicker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = BSImagePicker.framework; path = BSImagePicker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D20255680B4C87D42ED966FDCEE998F6 /* BSImagePicker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BSImagePicker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D258AC8687BD7798C0254811BE3A6F3D /* OAuth2Error.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OAuth2Error.swift; path = Simplicity/OAuth2Error.swift; sourceTree = "<group>"; };
-		D3E73C6D02550D6C6CD9B33A2137C18B /* iCarousel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = iCarousel.framework; path = iCarousel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D3E73C6D02550D6C6CD9B33A2137C18B /* iCarousel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = iCarousel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D40493C8030CAF1A7536CB8D1E9C2B0A /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D40F13BCD3883AA4D9CC31C2DC2E1BD7 /* SwiftGifOrigin.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftGifOrigin.xcconfig; sourceTree = "<group>"; };
 		D42D4FE9F5E9D6CD3C3D04C02386E790 /* BSGridCollectionViewLayout-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "BSGridCollectionViewLayout-dummy.m"; sourceTree = "<group>"; };
 		D54B7C367F0D82B5F51A3A734A46B4C7 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D5AEEA60DE72535E130A8CB7A05C1F23 /* SQLite.swift.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = SQLite.swift.modulemap; sourceTree = "<group>"; };
+		D5AEEA60DE72535E130A8CB7A05C1F23 /* SQLite.swift.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = SQLite.swift.modulemap; sourceTree = "<group>"; };
 		D5D3A2F139F27111981C509322EC2ADD /* DKChainableAnimationKit+Frame.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "DKChainableAnimationKit+Frame.swift"; path = "DKChainableAnimationKit/Classes/DKChainableAnimationKit+Frame.swift"; sourceTree = "<group>"; };
 		D5FF02D42963B840E428E57BC30BBF66 /* CoreFunctions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CoreFunctions.swift; path = Sources/SQLite/Typed/CoreFunctions.swift; sourceTree = "<group>"; };
 		D72A18A6AE818ED0DAA10A9627A9558E /* HanekeSwift-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "HanekeSwift-dummy.m"; sourceTree = "<group>"; };
 		D7599D63352D13656993BB43F24F7BC5 /* UIImage+BlurEffect.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIImage+BlurEffect.swift"; path = "SABlurImageView/UIImage+BlurEffect.swift"; sourceTree = "<group>"; };
-		D8882A8892D79C5CC0285F175397231A /* BSImagePicker.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = BSImagePicker.modulemap; sourceTree = "<group>"; };
+		D8882A8892D79C5CC0285F175397231A /* BSImagePicker.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = BSImagePicker.modulemap; sourceTree = "<group>"; };
 		D96704ED7BBAFFC0D78497175263B392 /* Simplicity-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Simplicity-dummy.m"; sourceTree = "<group>"; };
-		D975C9ABBF3D92EB917B13FF3E7A80D6 /* Spring.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = Spring.modulemap; sourceTree = "<group>"; };
+		D975C9ABBF3D92EB917B13FF3E7A80D6 /* Spring.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = Spring.modulemap; sourceTree = "<group>"; };
 		D99F4C076005A6D71C8CEA492974523C /* AlbumTitleView.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = AlbumTitleView.xib; path = Pod/Assets/AlbumTitleView.xib; sourceTree = "<group>"; };
 		DB4F953B87987F857B1AB6A5AEAC103A /* SABlurImageView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SABlurImageView.swift; path = SABlurImageView/SABlurImageView.swift; sourceTree = "<group>"; };
 		DBC4185B79E762BA6F9B60A0A1149D5C /* UIImageViewModeScaleAspect-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UIImageViewModeScaleAspect-prefix.pch"; sourceTree = "<group>"; };
@@ -745,29 +745,29 @@
 		DD92A6B8B3CB08FBE0010F28B23B918D /* TAPageControl.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TAPageControl.h; path = TAPageControl/TAPageControl.h; sourceTree = "<group>"; };
 		DDDA72448300BB0196CED5695EFBF0D8 /* Expression.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Expression.swift; path = Sources/SQLite/Typed/Expression.swift; sourceTree = "<group>"; };
 		DE8BEDDE3625F02503A48836D989C8FE /* ZoomAnimator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ZoomAnimator.swift; path = Pod/Classes/Controller/ZoomAnimator.swift; sourceTree = "<group>"; };
-		DECA796483FB79969E9D6A50F0107618 /* SwiftHTTP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SwiftHTTP.framework; path = SwiftHTTP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DECA796483FB79969E9D6A50F0107618 /* SwiftHTTP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftHTTP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEF3070D5999937E5D018F0C2CB17F18 /* UIImage+Haneke.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIImage+Haneke.swift"; path = "Haneke/UIImage+Haneke.swift"; sourceTree = "<group>"; };
-		DF0B4055A7BEE1A486110666A08658B6 /* Albums.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; name = Albums.storyboard; path = Pod/Assets/Albums.storyboard; sourceTree = "<group>"; };
-		DF9E68BAC37CCC5732175B782BEB169B /* DKChainableAnimationKit.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = DKChainableAnimationKit.modulemap; sourceTree = "<group>"; };
+		DF0B4055A7BEE1A486110666A08658B6 /* Albums.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; name = Albums.storyboard; path = Pod/Assets/Albums.storyboard; sourceTree = "<group>"; };
+		DF9E68BAC37CCC5732175B782BEB169B /* DKChainableAnimationKit.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = DKChainableAnimationKit.modulemap; sourceTree = "<group>"; };
 		E01663F5438A875008DE089244246DB7 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E0588B13136291E3A0B39709B139320C /* Pods-TraveLibro.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-TraveLibro.modulemap"; sourceTree = "<group>"; };
+		E0588B13136291E3A0B39709B139320C /* Pods-TraveLibro.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-TraveLibro.modulemap"; sourceTree = "<group>"; };
 		E4176CF9E74655549F35DCDBFB7C82C7 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E4821B555C4E7941EC13B7F58D14BC15 /* AggregateFunctions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AggregateFunctions.swift; path = Sources/SQLite/Typed/AggregateFunctions.swift; sourceTree = "<group>"; };
 		E4932AE1C4A077180AE445B0D3AFE6C5 /* DKChainableAnimationKit-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "DKChainableAnimationKit-dummy.m"; sourceTree = "<group>"; };
 		E58682DAF852ABB6B41373BC625D7B17 /* TwitterKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TwitterKit.framework; path = iOS/TwitterKit.framework; sourceTree = "<group>"; };
-		E6626375DB22AE5F2368766D0D914E06 /* DKChainableAnimationKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = DKChainableAnimationKit.framework; path = DKChainableAnimationKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E6626375DB22AE5F2368766D0D914E06 /* DKChainableAnimationKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DKChainableAnimationKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7BA2B29309EF56E927464D6E732AE76 /* iCarousel.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = iCarousel.xcconfig; sourceTree = "<group>"; };
-		E8850BAED7CE2B41A8298C56F5226465 /* add_photo@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; name = "add_photo@3x.png"; path = "Pod/Assets/add_photo@3x.png"; sourceTree = "<group>"; };
+		E8850BAED7CE2B41A8298C56F5226465 /* add_photo@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "add_photo@3x.png"; path = "Pod/Assets/add_photo@3x.png"; sourceTree = "<group>"; };
 		E88E45530DAA22141A3A03989112D703 /* BSGridCollectionViewLayout-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "BSGridCollectionViewLayout-prefix.pch"; sourceTree = "<group>"; };
 		E9EE55D735FBCD00F567D5EDB0AA2E4E /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EA2B58755339D1F900E92B72C35D6444 /* TAPageControl.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = TAPageControl.modulemap; sourceTree = "<group>"; };
+		EA2B58755339D1F900E92B72C35D6444 /* TAPageControl.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = TAPageControl.modulemap; sourceTree = "<group>"; };
 		EA98DEB78C743020025B223757967FDE /* LoginError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LoginError.swift; path = Simplicity/LoginError.swift; sourceTree = "<group>"; };
 		EBFF27AE66A5253DDE87BB13053D60F2 /* Player.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Player.xcconfig; sourceTree = "<group>"; };
 		EC27C8E9484635465ECC651BF9B86A91 /* GAIDictionaryBuilder.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GAIDictionaryBuilder.h; path = Sources/GAIDictionaryBuilder.h; sourceTree = "<group>"; };
 		EC5403F7D8A9B7632AB4B0B6207C10BB /* TADotView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TADotView.m; path = TAPageControl/TADotView.m; sourceTree = "<group>"; };
 		EC58B9B26CC93ADF368A7AC7461E64B6 /* BSImagePicker-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "BSImagePicker-dummy.m"; sourceTree = "<group>"; };
 		ECF97741C3C5EDFF6C8E2814E96B15B0 /* Facebook.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Facebook.swift; path = Simplicity/LoginProviders/Facebook.swift; sourceTree = "<group>"; };
-		ED22F32B8AD1124CCD8DD0D9B3602835 /* Pods_TraveLibro.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_TraveLibro.framework; path = "Pods-TraveLibro.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED22F32B8AD1124CCD8DD0D9B3602835 /* Pods_TraveLibro.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TraveLibro.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED76584D18762EF4E3F76811A54EBECA /* AlbumTableViewDataSource.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AlbumTableViewDataSource.swift; path = Pod/Classes/Model/AlbumTableViewDataSource.swift; sourceTree = "<group>"; };
 		EE208A4446FBF2CFDEEAA37A2279D7E9 /* DKChainableAnimationKit+Effects.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "DKChainableAnimationKit+Effects.swift"; path = "DKChainableAnimationKit/Classes/DKChainableAnimationKit+Effects.swift"; sourceTree = "<group>"; };
 		EF437FCC94D5581D8314E09054B184B6 /* BSImagePicker-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "BSImagePicker-prefix.pch"; sourceTree = "<group>"; };
@@ -1012,7 +1012,6 @@
 				480FAFE358811525DD51EC9F5954ADA0 /* FIRInstanceID.h */,
 				DC8062C010614E3E3C59C83D135CD57D /* Frameworks */,
 			);
-			name = FirebaseInstanceID;
 			path = FirebaseInstanceID;
 			sourceTree = "<group>";
 		};
@@ -1046,7 +1045,6 @@
 				0F718EB6FFF75CD7645C2473040B104E /* NSData+zlib */,
 				FC68B3A45089DAEBB8EFA371132769B6 /* Support Files */,
 			);
-			name = GoogleToolboxForMac;
 			path = GoogleToolboxForMac;
 			sourceTree = "<group>";
 		};
@@ -1056,7 +1054,6 @@
 				77020C3C2C6B4474815541D70BD52439 /* UIImage+Gif.swift */,
 				6B6A1A8145F767252F6D7A4EDFE4D8B7 /* Support Files */,
 			);
-			name = SwiftGifOrigin;
 			path = SwiftGifOrigin;
 			sourceTree = "<group>";
 		};
@@ -1147,7 +1144,6 @@
 				5317E7AE9B5483B22EA0C17DA6E414CA /* Dollar.swift */,
 				23451B0B4BB7B72E1A9EDC51C0B05EAB /* Support Files */,
 			);
-			name = Dollar;
 			path = Dollar;
 			sourceTree = "<group>";
 		};
@@ -1178,7 +1174,6 @@
 				40BC44EBD03610ACA63E9FB26FB7F76A /* Frameworks */,
 				92F19B8092A909D1E433ABD8DC7EF519 /* Resources */,
 			);
-			name = imglyKit;
 			path = imglyKit;
 			sourceTree = "<group>";
 		};
@@ -1187,7 +1182,6 @@
 			children = (
 				750834A8EDA61F9B1BE5C8B191065B00 /* Frameworks */,
 			);
-			name = OneSignal;
 			path = OneSignal;
 			sourceTree = "<group>";
 		};
@@ -1255,7 +1249,6 @@
 			children = (
 				8CE0009AE39FAD127AC6E8540764B4A0 /* Frameworks */,
 			);
-			name = TwitterCore;
 			path = TwitterCore;
 			sourceTree = "<group>";
 		};
@@ -1264,7 +1257,6 @@
 			children = (
 				7540E031A17791F4A3AF343A8A9D389D /* Frameworks */,
 			);
-			name = FirebaseCore;
 			path = FirebaseCore;
 			sourceTree = "<group>";
 		};
@@ -1303,7 +1295,6 @@
 				F69D2F6CED657DCA7C485032C2640B01 /* String.swift */,
 				79D8D9964A649449E22E199C63B5BC5B /* Support Files */,
 			);
-			name = Cent;
 			path = Cent;
 			sourceTree = "<group>";
 		};
@@ -1313,7 +1304,6 @@
 				D364992E2F3D42401EDCD096F57D143A /* standard */,
 				2FD53D7C44071A62E6215F4C59C4175D /* Support Files */,
 			);
-			name = SQLite.swift;
 			path = SQLite.swift;
 			sourceTree = "<group>";
 		};
@@ -1324,7 +1314,6 @@
 				596595F51A52DC370F4DE8B9D2510F6C /* UIImageViewModeScaleAspect.m */,
 				6EC1F2DDF11086527CB0761854462B13 /* Support Files */,
 			);
-			name = UIImageViewModeScaleAspect;
 			path = UIImageViewModeScaleAspect;
 			sourceTree = "<group>";
 		};
@@ -1500,7 +1489,6 @@
 				C1D53675594F80201E1D0F4FD0459103 /* iCarousel.m */,
 				853711CF41C498456C51BA4458D3AC37 /* Support Files */,
 			);
-			name = iCarousel;
 			path = iCarousel;
 			sourceTree = "<group>";
 		};
@@ -1525,7 +1513,6 @@
 			children = (
 				818B2BB65F1637BAED509C90DAC3856D /* Frameworks */,
 			);
-			name = FirebaseAnalytics;
 			path = FirebaseAnalytics;
 			sourceTree = "<group>";
 		};
@@ -1551,7 +1538,6 @@
 				E98368023EE8AF290ED1D22FE3752A64 /* Analytics */,
 				C222D8081E00AE7A032528C182F68F41 /* Core */,
 			);
-			name = Google;
 			path = Google;
 			sourceTree = "<group>";
 		};
@@ -1582,7 +1568,6 @@
 			children = (
 				F7482F7EBDEC3319EBADA9803D6D61C5 /* Frameworks */,
 			);
-			name = GoogleInterchangeUtilities;
 			path = GoogleInterchangeUtilities;
 			sourceTree = "<group>";
 		};
@@ -1608,7 +1593,6 @@
 				D7599D63352D13656993BB43F24F7BC5 /* UIImage+BlurEffect.swift */,
 				3C5B03719B1F796D658D6FDD24DC0D92 /* Support Files */,
 			);
-			name = SABlurImageView;
 			path = SABlurImageView;
 			sourceTree = "<group>";
 		};
@@ -1618,7 +1602,6 @@
 				259CDC3574CF11164E106AB7BC3A257E /* Player.swift */,
 				0AD353AF663E41FAA38088C25D6D53E7 /* Support Files */,
 			);
-			name = Player;
 			path = Player;
 			sourceTree = "<group>";
 		};
@@ -1637,7 +1620,6 @@
 				099FF6C7A0563163C29C18B12EFB3E69 /* UIView+AnimationKit.swift */,
 				6AC9F2C343297B8577C2CE098CF7F8B8 /* Support Files */,
 			);
-			name = DKChainableAnimationKit;
 			path = DKChainableAnimationKit;
 			sourceTree = "<group>";
 		};
@@ -1655,7 +1637,6 @@
 				4C8E74C0C255712F9908F4E5A414DF92 /* VKontakte.swift */,
 				CE39E7A9B3397605E296523FF70673BB /* Support Files */,
 			);
-			name = Simplicity;
 			path = Simplicity;
 			sourceTree = "<group>";
 		};
@@ -1677,7 +1658,6 @@
 				BF2BB44FF710B42FFA7E532B0F2CB315 /* Resources */,
 				932B1C488B19D932B6EF5699CBC09912 /* Support Files */,
 			);
-			name = TabPageViewController;
 			path = TabPageViewController;
 			sourceTree = "<group>";
 		};
@@ -1714,7 +1694,6 @@
 				38F24476EA3E62DC2BF26C20CFAFAEB6 /* Resources */,
 				016C0C1224778D615F749F2EC0DCA7D7 /* Support Files */,
 			);
-			name = Spring;
 			path = Spring;
 			sourceTree = "<group>";
 		};
@@ -1769,7 +1748,6 @@
 				CB4B565EA80355622ADCD0DCAAA51257 /* GAITracker.h */,
 				90D7AC0E5D805207F26F8EB70F4A2FB9 /* Frameworks */,
 			);
-			name = GoogleAnalytics;
 			path = GoogleAnalytics;
 			sourceTree = "<group>";
 		};
@@ -1779,7 +1757,6 @@
 				A9C957261365E8F49A7F81F2C1120005 /* GridCollectionViewLayout.swift */,
 				2F084497CD219CFD9C4D9B0534F29B61 /* Support Files */,
 			);
-			name = BSGridCollectionViewLayout;
 			path = BSGridCollectionViewLayout;
 			sourceTree = "<group>";
 		};
@@ -1808,7 +1785,6 @@
 				18303EBEC5FD068D072B105219795B40 /* Resources */,
 				838015117B6E2688C40C8B13F0966437 /* Support Files */,
 			);
-			name = BSImagePicker;
 			path = BSImagePicker;
 			sourceTree = "<group>";
 		};
@@ -1899,7 +1875,6 @@
 				F3FD1B6FE2572A15A3685A5AE5F69FB6 /* Fabric.h */,
 				CFECAFDEE145D6CC0F64E87176D323B3 /* Frameworks */,
 			);
-			name = Fabric;
 			path = Fabric;
 			sourceTree = "<group>";
 		};
@@ -1917,7 +1892,6 @@
 				8BEEB21EEDB0EB8FF04B1238826B4B61 /* Frameworks */,
 				72073C89C7371EF24000F4DF2DD70537 /* Resources */,
 			);
-			name = TwitterKit;
 			path = TwitterKit;
 			sourceTree = "<group>";
 		};
@@ -1931,7 +1905,6 @@
 				1D51ED3F552B5FBDE16196DC4A561FF0 /* Upload.swift */,
 				52CE337C4A4AFB26901E935DC275D05C /* Support Files */,
 			);
-			name = SwiftHTTP;
 			path = SwiftHTTP;
 			sourceTree = "<group>";
 		};
@@ -1948,7 +1921,6 @@
 				C6FC4B23FCFED44202EDA0D8745E6FB6 /* TAPageControl.m */,
 				2B7DB3B11549DDB06A272370A013DADA /* Support Files */,
 			);
-			name = TAPageControl;
 			path = TAPageControl;
 			sourceTree = "<group>";
 		};
@@ -1977,7 +1949,6 @@
 				44DA795FD12AFD67C057C761F1DB2EEA /* UIView+Haneke.swift */,
 				A2B6FB79CB81870952E62BCD1CCEF125 /* Support Files */,
 			);
-			name = HanekeSwift;
 			path = HanekeSwift;
 			sourceTree = "<group>";
 		};
@@ -2000,7 +1971,6 @@
 				C402A5FA8DB9A54D34A54B7833D5044B /* ToastWindow.swift */,
 				B5AE840E87B934EE4723E5EDA7141B47 /* Support Files */,
 			);
-			name = Toaster;
 			path = Toaster;
 			sourceTree = "<group>";
 		};
@@ -2036,7 +2006,6 @@
 				085B78BD0B0E88E5DDE9EE4E0DACB705 /* Async.swift */,
 				ED337313CC139B96F9387E8A41AF3B93 /* Support Files */,
 			);
-			name = AsyncSwift;
 			path = AsyncSwift;
 			sourceTree = "<group>";
 		};
@@ -2053,7 +2022,6 @@
 			children = (
 				B122E3137E165479A263FB359A736B31 /* Frameworks */,
 			);
-			name = GoogleSymbolUtilities;
 			path = GoogleSymbolUtilities;
 			sourceTree = "<group>";
 		};
@@ -3486,7 +3454,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
 				STRIP_INSTALLED_PRODUCT = NO;
 				SYMROOT = "${SRCROOT}/../build";
@@ -4411,6 +4379,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				ONLY_ACTIVE_ARCH = NO;
 				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
 				STRIP_INSTALLED_PRODUCT = NO;
 				SYMROOT = "${SRCROOT}/../build";

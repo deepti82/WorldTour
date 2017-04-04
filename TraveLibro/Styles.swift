@@ -845,7 +845,7 @@ func getThumbnailFromVideoURL(url : URL, onView: UIImageView) {
         let asset = AVURLAsset(url: url, options: nil)
         let imgGenerator = AVAssetImageGenerator(asset: asset)
         do {
-            let imageRef = try imgGenerator.copyCGImage(at: CMTimeMake(0, 3), actualTime: nil)
+            let imageRef = try imgGenerator.copyCGImage(at: CMTimeMake(0, 1), actualTime: nil)
             image = UIImage(cgImage: imageRef)
             DispatchQueue.main.async(execute: {
                 onView.image = image
