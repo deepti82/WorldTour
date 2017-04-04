@@ -32,9 +32,9 @@ class EachItineraryPhotosViewController: UIViewController, UICollectionViewDataS
         photoJSON = (selectedItinerary["photos"].arrayValue)
         
         if selectedItinerary != "" {
-            itineraryNameLabel.text = "Photo(\(self.photoJSON.count))"            
+            itineraryNameLabel.text = "Photo (\(self.photoJSON.count))"            
         }else{
-            itineraryNameLabel.text = "Photo(\(globalPostImage.count))"
+            itineraryNameLabel.text = "Photo (\(globalPostImage.count))"
         }      
         
 //        if (photoJSON.count == 0) {

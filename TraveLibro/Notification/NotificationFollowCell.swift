@@ -107,7 +107,7 @@ class NotificationFollowCell: UITableViewCell {
         NFTime.frame = CGRect(x: xPos, y: totalHeight, width: screenWidth - xPos, height: TIME_HEIGHT)
         NFTime.setTimeData(date: notificationData["updatedAt"].stringValue)
         
-        NFFooter.updateReadStatus(read: notificationData["status"].stringValue)
+        NFFooter.updateReadStatus(read: notificationData["answeredStatus"].stringValue)
         NFFooter.frame = CGRect(x: 0, y: totalHeight, width: screenWidth, height: FOOTER_HEIGHT)
         totalHeight += CGFloat(FOOTER_HEIGHT)
         

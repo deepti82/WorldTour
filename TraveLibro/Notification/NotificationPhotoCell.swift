@@ -108,7 +108,7 @@ class NotificationPhotoCell: UITableViewCell {
                 imageURL = notificationData["data"]["startLocationPic"].stringValue
             }
             NFPhoto.NFPlayImage.isHidden = true
-            NFPhoto.NFPhotoImage.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(imageURL!)", width: Int(IMAGE_HEIGHT)))
+            NFPhoto.NFPhotoImage.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(imageURL!)", width: 100))
         }
         else{
             NFPhoto.setPhoto(data: notificationData["data"])
@@ -118,7 +118,7 @@ class NotificationPhotoCell: UITableViewCell {
         NFTime.frame = CGRect(x: xPos, y: IMAGE_HEIGHT - TIME_HEIGHT + 10, width: screenWidth - xPos, height: TIME_HEIGHT)
         NFTime.setTimeData(date: notificationData["updatedAt"].stringValue)
         
-        NFFooter.updateReadStatus(read: notificationData["status"].stringValue)
+        NFFooter.updateReadStatus(read: notificationData["answeredStatus"].stringValue)
         NFFooter.frame = CGRect(x: 0, y: NFTime.frame.origin.y, width: screenWidth, height: FOOTER_HEIGHT)
         
         totalHeight += CGFloat(8)

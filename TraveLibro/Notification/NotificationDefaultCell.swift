@@ -73,7 +73,7 @@ class NotificationDefaultCell: UITableViewCell {
         
         NFTitle.NFMessageLabel.text = "Need to change this later TYPE: \(notificationData["type"])"
         
-        NFFooter.updateReadStatus(read: notificationData["status"].stringValue)
+        NFFooter.updateReadStatus(read: notificationData["answeredStatus"].stringValue)
     }
 
 }
