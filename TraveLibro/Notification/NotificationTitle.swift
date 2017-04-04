@@ -89,7 +89,7 @@ class NotificationTitle: UIView {
         case "journeyComment": 
             fallthrough
         case "itineraryComment":
-            str2 = " has commented on the "
+            str2 = " has commented on your "
             
         case "journeyLike":
             str2 = " has liked the On The Go Journey - "
@@ -124,6 +124,7 @@ class NotificationTitle: UIView {
             notificationType != "journeyReject" &&
             notificationType != "journeyAccept" &&
             notificationType != "photoLike" &&
+            notificationType != "postComment" &&
             notificationType != "journeyRequest" &&
             notificationType != "itineraryMentionComment" &&
             notificationType != "itineraryLike" &&
@@ -139,6 +140,22 @@ class NotificationTitle: UIView {
                 }
                 else if travelType == "travel-life" {
                     str3 = "a Travel Life Activity "
+                }
+            }
+            
+            message.append(getBoldString(string: str3, size: 12))
+        }
+        if notificationType == "postComment" {
+            let travelType = data["data"]["type"].string
+            if travelType != nil {
+                if travelType == "local-life" {
+                    str3 = "Local Life Activity "
+                }
+                else if travelType == "on_the_go" {
+                    str3 = "On The Go Activity "
+                }
+                else if travelType == "travel-life" {
+                    str3 = "Travel Life Activity "
                 }
             }
             

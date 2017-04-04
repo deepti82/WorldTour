@@ -121,7 +121,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             
             self.addSubview(mainPhoto)
             
-            let imgStr = getImageURL(feed["photos"][0]["name"].stringValue, width: 300)
+            let imgStr = getImageURL(feed["photos"][0]["name"].stringValue, width: 0)
             
             cache.fetch(URL: imgStr).onSuccess({ (data) in
                 self.mainPhoto.image = UIImage(data: data as Data)
