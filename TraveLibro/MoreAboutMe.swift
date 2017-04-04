@@ -41,7 +41,7 @@ class MoreAboutMe: UIView {
             mainTextView.textAlignment = .center
         }
         else{
-            let name = currentUser["firstName"].stringValue
+            let name = currentUser["name"].stringValue
             let kindOfHoliday = currentUser["travelConfig"]["kindOfHoliday"][0].stringValue
             
             var kindOfHolidayFinal = ""

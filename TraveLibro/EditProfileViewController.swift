@@ -45,7 +45,9 @@ class EditProfileViewController: UIViewController, UITableViewDataSource, UITabl
         super.viewWillDisappear(animated)
         
         if shouldSave == true {
-            saveAll()
+            DispatchQueue.main.async(execute: {
+                self.saveAll()                
+            })            
         }
     }
 
@@ -257,6 +259,7 @@ class EditProfileViewController: UIViewController, UITableViewDataSource, UITabl
     
     
     //MARK: - Text Field Delegate
+    
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         if textField.tag == 35 {
             return false
@@ -288,8 +291,6 @@ class EditProfileViewController: UIViewController, UITableViewDataSource, UITabl
                 if userName != currentUser["name"].stringValue {
                     editedValues["name"] = userName                    
                 }                
-            } else {
-                alert(message: "Please Select City.", title: "Select City")
             }
         }
         else if textField.tag == 28 {

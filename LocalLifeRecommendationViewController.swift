@@ -219,8 +219,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
     @IBAction func addAction(_ sender: Any) {
         if(!self.isSameCity) {
             let alertController = UIAlertController(title: "", message:
-                "You can create your Local Life activity only in the city you live in. If you wish to change the city you live in, go to Settings.", preferredStyle: UIAlertControllerStyle.alert)
-            alertController.addAction(UIAlertAction(title: "Settings", style: UIAlertActionStyle.cancel,handler: nil))
+                "You can create your Local Life activity only in the city you live in. If you wish to change the city you live in, go to Settings.", preferredStyle: UIAlertControllerStyle.alert)            
             alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default,handler: nil))
             
             self.present(alertController, animated: true, completion: nil)
@@ -528,7 +527,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
             if category == "Events & Festival"{
                 nearMeListController.nearMeType = category + "s"
             }else {
-            nearMeListController.nearMeType = category
+                nearMeListController.nearMeType = category
             }
             let localLifeListController = storyboard?.instantiateViewController(withIdentifier: "localLifePosts") as! LocalLifePostsViewController
             localLifeListController.nearMeType = category
@@ -543,7 +542,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
                     let tstr = Toast(text: "No \(category + "s") Available Near You")
                     tstr.show()
                 }else{
-                let tstr = Toast(text: "No \(category) Available Near You")
+                    let tstr = Toast(text: "No \(category) Available Near You")
                     tstr.show()
                 }
                 
