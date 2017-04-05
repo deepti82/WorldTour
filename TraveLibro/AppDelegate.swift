@@ -14,7 +14,6 @@ import Haneke
 
 import Fabric
 import Crashlytics
-import Google
 
 import UserNotificationsUI
 
@@ -197,22 +196,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         createMenuView()
-        
-        // Configure tracker from GoogleService-Info.plist.
-        
-        var configureError:NSError?
-        GGLContext.sharedInstance().configureWithError(&configureError)
-        assert(configureError == nil, "Error configuring Google services: \(configureError)")
-        
-        // Optional: configure GAI options.
-        
-        let gai = GAI.sharedInstance()
-        
-        gai?.trackUncaughtExceptions = true  // report uncaught exceptions
-        
-        gai?.logger.logLevel = GAILogLevel.verbose  // remove before app release
-
-        
                 
         enableCrashReporting()
         

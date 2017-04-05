@@ -504,9 +504,6 @@
 		FCE877FC1E3093A4005EE913 /* ActivityHeaderTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCE877FB1E3093A4005EE913 /* ActivityHeaderTag.swift */; };
 		FCE877FF1E30CA6A005EE913 /* ActivityFeedsLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCE877FE1E30CA6A005EE913 /* ActivityFeedsLayout.swift */; };
 		FCEB1BFA1E69447C00418812 /* LikeUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEB1BF91E69447C00418812 /* LikeUserViewController.swift */; };
-		FCF7CF0E1E94BF4200DD99C5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FCF7CF0D1E94BF4200DD99C5 /* GoogleService-Info.plist */; };
-		FCF7CF0F1E94BF4200DD99C5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FCF7CF0D1E94BF4200DD99C5 /* GoogleService-Info.plist */; };
-		FCF7CF101E94BF4200DD99C5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FCF7CF0D1E94BF4200DD99C5 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1035,10 +1032,6 @@
 		FCE877FB1E3093A4005EE913 /* ActivityHeaderTag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityHeaderTag.swift; sourceTree = "<group>"; };
 		FCE877FE1E30CA6A005EE913 /* ActivityFeedsLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityFeedsLayout.swift; sourceTree = "<group>"; };
 		FCEB1BF91E69447C00418812 /* LikeUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikeUserViewController.swift; sourceTree = "<group>"; };
-		FCF7CF0D1E94BF4200DD99C5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		FCF7CF111E94C49500DD99C5 /* TraveLibro-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TraveLibro-Bridging-Header.h"; sourceTree = "<group>"; };
-		FCF7CF121E94C49500DD99C5 /* TraveLibroTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TraveLibroTests-Bridging-Header.h"; sourceTree = "<group>"; };
-		FCF7CF131E94C49500DD99C5 /* TraveLibroUITests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TraveLibroUITests-Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1096,9 +1089,6 @@
 				1A944E051CCB4567007EB5BD /* Products */,
 				2F49EC70A6B3483E008B511A /* Pods */,
 				70E6CB1E8C296A54FDB1A1A7 /* Frameworks */,
-				FCF7CF111E94C49500DD99C5 /* TraveLibro-Bridging-Header.h */,
-				FCF7CF121E94C49500DD99C5 /* TraveLibroTests-Bridging-Header.h */,
-				FCF7CF131E94C49500DD99C5 /* TraveLibroUITests-Bridging-Header.h */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1115,7 +1105,6 @@
 		1A944E061CCB4567007EB5BD /* TraveLibro */ = {
 			isa = PBXGroup;
 			children = (
-				FCF7CF0D1E94BF4200DD99C5 /* GoogleService-Info.plist */,
 				36CAA7F31E2E41F00019B380 /* TraveLibro.entitlements */,
 				C2DCAE3F1D17FC9600B35331 /* Helpers */,
 				1A944E3E1CCB6297007EB5BD /* Fonts */,
@@ -2929,12 +2918,12 @@
 					};
 					1A944E171CCB4567007EB5BD = {
 						CreatedOnToolsVersion = 7.3;
-						LastSwiftMigration = 0820;
+						LastSwiftMigration = 0810;
 						TestTargetID = 1A944E031CCB4567007EB5BD;
 					};
 					1A944E221CCB4567007EB5BD = {
 						CreatedOnToolsVersion = 7.3;
-						LastSwiftMigration = 0820;
+						LastSwiftMigration = 0810;
 						TestTargetID = 1A944E031CCB4567007EB5BD;
 					};
 				};
@@ -3005,7 +2994,6 @@
 				C2A6E2671CE9D48A00D3F845 /* PhotosOTG.xib in Resources */,
 				C2823B031D464AAD0065A76C /* startOTGView.xib in Resources */,
 				C269078F1CF86DDF00F827E6 /* ImageCheckbox.xib in Resources */,
-				FCF7CF0E1E94BF4200DD99C5 /* GoogleService-Info.plist in Resources */,
 				3638F9E31E2C224800B2EA04 /* VideoView.xib in Resources */,
 				C2A27A581CEDE40200F74DD1 /* AddDisplayPic.xib in Resources */,
 				1A65E7A91CD72F1F009374DA /* Avenir-Heavy.ttf in Resources */,
@@ -3139,7 +3127,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FCF7CF0F1E94BF4200DD99C5 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3147,7 +3134,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FCF7CF101E94BF4200DD99C5 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3829,7 +3815,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SWIFT_INSTALL_OBJC_HEADER = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "TraveLibro-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -3874,7 +3860,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SWIFT_INSTALL_OBJC_HEADER = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "TraveLibro-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -3885,13 +3871,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = TraveLibroTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wohlig.TraveLibroTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "TraveLibroTests-Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TraveLibro.app/TraveLibro";
 			};
@@ -3901,12 +3884,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = TraveLibroTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wohlig.TraveLibroTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "TraveLibroTests-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TraveLibro.app/TraveLibro";
 			};
@@ -3915,13 +3896,10 @@
 		1A944E331CCB4567007EB5BD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = TraveLibroUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wohlig.TraveLibroUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "TraveLibroUITests-Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = TraveLibro;
 			};
@@ -3930,12 +3908,10 @@
 		1A944E341CCB4567007EB5BD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = TraveLibroUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wohlig.TraveLibroUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "TraveLibroUITests-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = TraveLibro;
 			};
