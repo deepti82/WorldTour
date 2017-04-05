@@ -274,6 +274,7 @@ class ActivityFeedFooterBasic: UIView {
                         request.deletePost(self.postTop["_id"].string!, uniqueId: self.postTop["uniqueId"].string!, user:currentUser["_id"].stringValue, completion: {(response) in
                             
                             let a = globalMyLifeContainerViewController.onTab
+                            globalMyLifeContainerViewController.journeyLoader()
                             globalMyLifeContainerViewController.loadData(a, pageNumber: 1)
                             
                         })

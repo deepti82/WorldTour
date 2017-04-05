@@ -60,6 +60,10 @@ class MyLifeContainerViewController: UIViewController,UIScrollViewDelegate {
         }
     }
     
+    func journeyLoader() {
+        loader.showOverlay(self.view)
+    }
+    
     func loadData(_ type:String,pageNumber:Int) {
         onTab = type
         if pageNumber == 1 {
@@ -70,6 +74,8 @@ class MyLifeContainerViewController: UIViewController,UIScrollViewDelegate {
         var shouldChangeVal = true
         if(pageNumber == 1 && self.layout != nil) {
             self.layout.removeAll()
+//            loader.showOverlay(self.view)
+
         }
         request.getMomentJourney(pageNumber: pageNumber, type: type, urlSlug: selectedUser["urlSlug"].stringValue, completion: {(request) in
             DispatchQueue.main.async(execute: {
