@@ -195,7 +195,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         createMenuView()
-        
+                
         enableCrashReporting()
         
         _ = AppDelegate.getDatabase()

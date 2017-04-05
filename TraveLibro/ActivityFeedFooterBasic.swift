@@ -101,8 +101,18 @@ class ActivityFeedFooterBasic: UIView {
     
     }
     
+    func isBuddy() -> Bool {
+        
+        if postTop["buddies"].contains(where: {$0.1["_id"].stringValue == user.getExistingUser()}) {
+            return true
+        }else{
+            return false
+        }
+    }
+    
     func setView(feed:JSON) {
         postTop = feed
+        print("hhhhhhh \(feed)")
         //  RATING
         if feed["type"].stringValue == "travel-life" {
             localLifeTravelImage.image = UIImage(named: "travel_life")
@@ -164,7 +174,7 @@ class ActivityFeedFooterBasic: UIView {
 
     @IBAction func optionClick(_ sender: UIButton) {
         print(user.getExistingUser())
-        print(postTop["postCreator"]["_id"].stringValue)
+        print(postTop)
         let actionSheetControllerIOS8: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         if user.getExistingUser() == postTop["postCreator"]["_id"].stringValue{
             
@@ -216,16 +226,29 @@ class ActivityFeedFooterBasic: UIView {
                 actionSheetControllerIOS8.addAction(cancel)
                 
             } else {
-                
-                //let UnFollow: UIAlertAction = UIAlertAction(title: "UnFollow", style: .default)
-                //{action -> Void in
-                    
-                //}
-                //if self.type != "popular" {
-                //    actionSheetControllerIOS8.addAction(UnFollow)
-                //}
-                
-                let reportActionButton: UIAlertAction = UIAlertAction(title: "Hide", style: .default)
+                if isBuddy() {
+                    let DeletePost: UIAlertAction = UIAlertAction(title: "Delete Activity", style: .default)
+                    { action -> Void in
+                        
+                        let alert = UIAlertController(title: "", message: "Are you sure you want to delete this Activtiy", preferredStyle: UIAlertControllerStyle.alert)
+                        alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil))
+                        alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.destructive, handler: { action in
+                            request.deletePost(self.postTop["_id"].string!, uniqueId: self.postTop["uniqueId"].string!, user:currentUser["_id"].stringValue, completion: {(response) in
+                                
+                                let a = globalMyLifeContainerViewController.onTab
+                                globalMyLifeContainerViewController.loadData(a, pageNumber: 1)
+                                
+                            })
+                            
+                            
+                        }))
+                        globalMyLifeViewController.present(alert, animated: true, completion: nil)
+                        
+                    }
+                    actionSheetControllerIOS8.addAction(DeletePost)
+
+                }
+                let reportActionButton: UIAlertAction = UIAlertAction(title: "", style: .default)
                 {action -> Void in
                     let alert = UIAlertController(title: "Hide", message: "Hided successfuly", preferredStyle: UIAlertControllerStyle.alert)
                     alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
@@ -241,6 +264,28 @@ class ActivityFeedFooterBasic: UIView {
             }
             
         }else{
+            if isBuddy() {
+                let DeletePost: UIAlertAction = UIAlertAction(title: "Delete Activity", style: .default)
+                { action -> Void in
+                    
+                    let alert = UIAlertController(title: "", message: "Are you sure you want to delete this Activtiy", preferredStyle: UIAlertControllerStyle.alert)
+                    alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil))
+                    alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.destructive, handler: { action in
+                        request.deletePost(self.postTop["_id"].string!, uniqueId: self.postTop["uniqueId"].string!, user:currentUser["_id"].stringValue, completion: {(response) in
+                            
+                            let a = globalMyLifeContainerViewController.onTab
+                            globalMyLifeContainerViewController.loadData(a, pageNumber: 1)
+                            
+                        })
+                        
+                        
+                    }))
+                    globalMyLifeViewController.present(alert, animated: true, completion: nil)
+                    
+                }
+                actionSheetControllerIOS8.addAction(DeletePost)
+                
+            }
             let reportActionButton: UIAlertAction = UIAlertAction(title: "Report", style: .default)
             {action -> Void in
                 let alert = UIAlertController(title: "Report", message: "Reported successfuly", preferredStyle: UIAlertControllerStyle.alert)

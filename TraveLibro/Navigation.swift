@@ -1362,6 +1362,29 @@ class Navigation {
     }
     
     //  quick itinerery
+    
+    func deleteItinerary(id:String, completion: @escaping ((JSON) -> Void)) {
+        
+        do {
+            let opt = try HTTP.POST(adminUrl + "itinerary/deleteItinerary", parameters: ["_id":id, "user":user.getExistingUser()])
+            var json = JSON(1);
+            opt.start {response in
+                if let err = response.error {
+                    print("error: \(err.code) && msg : \(err.localizedDescription)")
+                }
+                else
+                {
+                                        
+                    json  = JSON(data: response.data)
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+        
+    }
+    
     func postQuickitenary(title:String, year:Int, month:String, duration:Int, description:String, itineraryType:JSON, countryVisited:JSON,photos:[JSON],status:Bool,editId:String,completion: @escaping ((JSON) -> Void)) {
         
         var params: JSON = ["name":title, "year":year, "month":month, "description":description, "duration":duration, "user":currentUser["_id"], "status":status]

@@ -90,6 +90,13 @@ class ActivityFeedFooter: UIView {
     func setView(feed:JSON) {
         postTop = feed
         //  RATING
+        
+        if currentUser != nil {
+            optionButton.isHidden = false
+        }else{
+            optionButton.isHidden = true
+        }
+        
         if feed["type"].stringValue == "travel-life" {
             localLifeTravelImage.image = UIImage(named: "travel_life")
             localLifeTravelImage.tintColor = mainOrangeColor
@@ -228,10 +235,18 @@ class ActivityFeedFooter: UIView {
         }
     }
     
+    
+    func isBuddy() -> Bool {
+        
+        if postTop["buddies"].contains(where: {$0.1["_id"].stringValue == user.getExistingUser()}) {
+            return true
+        }else{
+            return false
+        }
+    }
+    
     @IBAction func optionClick(_ sender: UIButton) {
         
-        if currentUser != nil {
-            
             let actionSheetControllerIOS8: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
             
             if(self.type == "MyLifeFeeds") {
@@ -278,6 +293,22 @@ class ActivityFeedFooter: UIView {
                     
                     let deleteActionButton: UIAlertAction = UIAlertAction(title: "Delete", style: .destructive)
                     {action -> Void in
+                        
+                        let alert = UIAlertController(title: "", message: "Are you sure you want to delete this Itinerary.", preferredStyle: UIAlertControllerStyle.alert)
+                        alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil))
+                        alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.destructive, handler: { action in
+                            request.deleteItinerary(id: self.postTop["_id"].stringValue, completion: {(response) in
+                                
+                                let a = globalMyLifeContainerViewController.onTab
+                                globalMyLifeContainerViewController.loadData(a, pageNumber: 1)
+                                
+                            })
+                            
+                            
+                        }))
+                        globalMyLifeViewController.present(alert, animated: true, completion: nil)
+
+                        
                     }
                     actionSheetControllerIOS8.addAction(deleteActionButton)
                     
@@ -286,6 +317,30 @@ class ActivityFeedFooter: UIView {
                         
                     }
                     actionSheetControllerIOS8.addAction(cancel)
+                }
+                if postTop["type"].stringValue == "travel-life" || postTop["type"].stringValue == "local-life" {
+                    if isBuddy() {
+                        let DeletePost: UIAlertAction = UIAlertAction(title: "Delete Activity", style: .default)
+                        { action -> Void in
+                            
+                            let alert = UIAlertController(title: "", message: "Are you sure you want to delete this Activtiy", preferredStyle: UIAlertControllerStyle.alert)
+                            alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil))
+                            alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.destructive, handler: { action in
+                                request.deletePost(self.postTop["_id"].string!, uniqueId: self.postTop["uniqueId"].string!, user:currentUser["_id"].stringValue, completion: {(response) in
+                                    
+                                    let a = globalMyLifeContainerViewController.onTab
+                                    globalMyLifeContainerViewController.loadData(a, pageNumber: 1)
+                                    
+                                })
+                                
+                                
+                            }))
+                            globalMyLifeViewController.present(alert, animated: true, completion: nil)
+                            
+                        }
+                        actionSheetControllerIOS8.addAction(DeletePost)
+                        
+                    }
                 }
                 if(postTop["type"].stringValue == "ended-journey" || postTop["type"].stringValue == "on-the-go-journey") {
                     
@@ -378,10 +433,7 @@ class ActivityFeedFooter: UIView {
                 actionSheetControllerIOS8.addAction(reportActionButton)
             }
             globalNavigationController.topViewController?.present(actionSheetControllerIOS8, animated: true, completion: nil)            
-        }
-        else {
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
-        }
+        
     }
     
     

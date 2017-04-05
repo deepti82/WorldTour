@@ -63,6 +63,7 @@ class MyLifeContainerViewController: UIViewController,UIScrollViewDelegate {
     func loadData(_ type:String,pageNumber:Int) {
         onTab = type
         if pageNumber == 1 {
+            hasNext = true
             loader.showOverlay(self.view)
             allData = []
         }
