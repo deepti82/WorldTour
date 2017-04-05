@@ -121,7 +121,7 @@ class QIViewController: UIPageViewController, UIPageViewControllerDataSource, UI
         let rightButton = UIButton()
         if inx == 4 {
             rightButton.setTitle("Preview", for: .normal)
-             rightButton.titleLabel?.font = UIFont(name: "avenirBold", size: 20)
+            rightButton.titleLabel?.font = UIFont(name: "avenirBold", size: 20)
             rightButton.addTarget(self, action: #selector(self.donePage(_:)), for: .touchUpInside)
             rightButton.frame = CGRect(x: -5, y: 8, width: 80, height: 30)
             

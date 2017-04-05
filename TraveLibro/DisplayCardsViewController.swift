@@ -11,15 +11,18 @@ class DisplayCardsViewController: UIPageViewController, UIPageViewControllerData
     internal var isFromSettings:Bool? = false
     
     let titles = ["Your kind of a holiday", "You usually go", "Prefer to travel", "Your ideal holiday type"]
+    let cardTitles = ["kindOfHoliday", "usuallyGo", "preferToTravel", "holidayType"]
     let checkBoxNumber = [6, 3, 8, 11]
     
     var pageControl = TAPageControl()    
     var dataIndex = 0
+    var pageviewControllers = [UIViewController]()
     
     //MARK:- Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         getDarkBackGroundBlur(self)
         
@@ -33,8 +36,8 @@ class DisplayCardsViewController: UIPageViewController, UIPageViewControllerData
         originalPageControl.pageIndicatorTintColor = UIColor.clear
         originalPageControl.currentPageIndicatorTintColor = UIColor.clear
         
-        let myVC = viewControllerAtIndex(0) as! SignupCardsViewController
-        let viewControllers = [myVC]
+//        let myVC = viewControllerAtIndex(0) as! SignupCardsViewController
+//        let viewControllers = [myVC]
         
         let leftButton = UIButton()
         leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
@@ -47,9 +50,23 @@ class DisplayCardsViewController: UIPageViewController, UIPageViewControllerData
         
         self.customNavigationBar(left: leftButton, right: rightButton)
         
-        dataSource = self
+        for i in 0...3 {
+            
+            let myVC = storyboard?.instantiateViewController(withIdentifier: "SignupCardsViewController") as! SignupCardsViewController
+            myVC.cardTitle = titles[i]
+            myVC.pageIndex = i
+            myVC.checkBoxes = CGFloat(checkBoxNumber[i])            
+            pageviewControllers.append(myVC)
+        }
+        dataIndex = 0
         
-        setViewControllers(viewControllers, direction: .forward, animated: true, completion: nil)
+        dataSource = self
+        delegate = self
+        cardTitle = cardTitles[dataIndex]
+        travelConfig[cardTitle] = selectedOptions
+        selectedOptions = []
+        setViewControllers([pageviewControllers[dataIndex]], direction: .forward, animated: true, completion: nil)
+//        setViewControllers(viewControllers, direction: .forward, animated: true, completion: nil)
         
         //        self.pvc = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
         
@@ -57,8 +74,13 @@ class DisplayCardsViewController: UIPageViewController, UIPageViewControllerData
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        self.navigationController?.navigationBar.isTranslucent = true
         pageControl.frame = CGRect(x: self.view.center.x, y: screenHeight - 15, width: 60, height: 30)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.navigationBar.isTranslucent = false
     }
     
     override func didReceiveMemoryWarning() {
@@ -71,35 +93,58 @@ class DisplayCardsViewController: UIPageViewController, UIPageViewControllerData
     
     func nextPage(_ sender: AnyObject) {
         
-        dataIndex = dataIndex + 1
-        
-        //        pageControl.currentPage = dataIndex
-        
-        //        viewControllerAtIndex(dataIndex)
+//        dataIndex = dataIndex + 1
+//        
+//        //        pageControl.currentPage = dataIndex
+//        
+//        //        viewControllerAtIndex(dataIndex)
+//        
+//        travelConfig[cardTitle] = selectedOptions
+//        
+//        selectedOptions = []
+//        
+//        if dataIndex < 4 || (isFromSettings == nil || isFromSettings == false){
+//            let myVC = viewControllerAtIndex(dataIndex) as! SignupCardsViewController
+//            setViewControllers([myVC], direction: .forward, animated: true, completion: nil)
+//        }
+//        
+//        if dataIndex == 3 {
+//            
+//            rightButton.frame.size.width = 70.0
+//            rightButton.setImage(nil, for: UIControlState())
+//            rightButton.setTitle("Done", for: UIControlState())
+//            rightButton.titleLabel?.font = UIFont(name: "Avenir-Roman", size: 16)
+//            
+//        }
+//            
+//        else if dataIndex > 3 {
+//            
+//            finishQuestions(sender)
+//        }
         
         travelConfig[cardTitle] = selectedOptions
         
         selectedOptions = []
         
         if dataIndex < 4 || (isFromSettings == nil || isFromSettings == false){
-            let myVC = viewControllerAtIndex(dataIndex) as! SignupCardsViewController
-            setViewControllers([myVC], direction: .forward, animated: true, completion: nil)
+            dataIndex = dataIndex + 1
+            if dataIndex < 4 {
+                pageControl.currentPage = dataIndex
+                cardTitle = cardTitles[dataIndex]
+                self.setViewControllers([pageviewControllers[dataIndex]], direction: UIPageViewControllerNavigationDirection.forward, animated: true, completion: nil)
+            }
         }
         
         if dataIndex == 3 {
-            
             rightButton.frame.size.width = 70.0
             rightButton.setImage(nil, for: UIControlState())
             rightButton.setTitle("Done", for: UIControlState())
             rightButton.titleLabel?.font = UIFont(name: "Avenir-Roman", size: 16)
-            
         }
-            
         else if dataIndex > 3 {
             
             finishQuestions(sender)
         }
-        
     }
     
     func finishQuestions(_ sender: AnyObject) {
@@ -173,10 +218,10 @@ class DisplayCardsViewController: UIPageViewController, UIPageViewControllerData
     
     
     //MARK:- PageController Delgates
-    
+    /*
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         
-        dataIndex = dataIndex - 1
+//        dataIndex = dataIndex - 1
         //        selectedOptions = []
         //        print("no problem in json")
         
@@ -187,7 +232,9 @@ class DisplayCardsViewController: UIPageViewController, UIPageViewControllerData
             return nil
         }
         
-        index = index - 1
+//        index = index - 1
+        
+        dataIndex = index
         
         //        pageControl.currentPage = index
         
@@ -195,6 +242,8 @@ class DisplayCardsViewController: UIPageViewController, UIPageViewControllerData
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+        
+//        dataIndex = dataIndex + 1
         
         travelConfig[cardTitle] = selectedOptions
         print("\(cardTitle): \(selectedOptions)")
@@ -213,12 +262,60 @@ class DisplayCardsViewController: UIPageViewController, UIPageViewControllerData
             return nil
         }
         
+        dataIndex = index
+        
         return viewControllerAtIndex(index)
         
     }
+    */
     
-    func viewControllerAtIndex(_ index: Int) -> UIViewController {
-        
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
+        print("before ......")
+        let currentIndex = self.pageviewControllers.index(of: viewController)!
+        self.dataIndex = currentIndex
+        print(self.dataIndex)
+        if currentIndex > 0{
+            let previousIndex = abs((currentIndex - 1) % (self.pageviewControllers.count))
+            travelConfig[cardTitle] = selectedOptions
+            selectedOptions = []
+            self.dataIndex = previousIndex            
+            cardTitle = cardTitles[dataIndex]
+            pageControl.currentPage = dataIndex
+            return pageviewControllers[previousIndex]
+        }else{
+            return nil
+        }
+    }
+    
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+        print("After.....")
+        let currentIndex = self.pageviewControllers.index(of: viewController)!
+        self.dataIndex = currentIndex
+        print(self.dataIndex)        
+        if currentIndex < 3{            
+            let nextIndex = abs((currentIndex + 1) % (self.pageviewControllers.count))            
+            travelConfig[cardTitle] = selectedOptions
+            selectedOptions = []
+            self.dataIndex = nextIndex
+            cardTitle = cardTitles[dataIndex]
+            if dataIndex == 3 {
+                rightButton.frame.size.width = 70.0
+                rightButton.setImage(nil, for: UIControlState())
+                rightButton.setTitle("Done", for: UIControlState())
+                rightButton.titleLabel?.font = UIFont(name: "Avenir-Roman", size: 16)
+            }
+            else if dataIndex > 3 {
+                finishQuestions(UIButton())
+            }
+            pageControl.currentPage = dataIndex
+            return pageviewControllers[nextIndex]
+            
+        }else{
+            return nil
+        }
+    }
+    
+    func viewControllerAtIndex(_ index: Int) -> UIViewController {        
         switch dataIndex {
         case 0:
             selectedOptions = []
@@ -243,7 +340,7 @@ class DisplayCardsViewController: UIPageViewController, UIPageViewControllerData
         let myVC = storyboard?.instantiateViewController(withIdentifier: "SignupCardsViewController") as! SignupCardsViewController
         myVC.cardTitle = titles[index]
         myVC.pageIndex = index
-        myVC.checkBoxes = CGFloat(checkBoxNumber[index])
+        myVC.checkBoxes = CGFloat(checkBoxNumber[index]) 
         
         pageControl.currentPage = index
         return myVC

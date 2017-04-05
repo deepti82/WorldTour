@@ -231,7 +231,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
             isCountryAdded = false
             getUser()
         }
-        else if isSettingsEdited && selectedUser.isEmpty && currentUser != nil {            
+       /* else if isSettingsEdited && selectedUser.isEmpty && currentUser != nil {            
             var imageName = ""
             imageName = currentUser["profilePicture"].string!
             
@@ -261,7 +261,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
             makeTLProfilePicture(self.profilePicture)
             
             isSettingsEdited = false
-        }
+        }*/
         
     }
     
