@@ -461,6 +461,9 @@
 		FC807AD11E3C9B3300609E9B /* TripPhotoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC807AD01E3C9B3300609E9B /* TripPhotoLayout.swift */; };
 		FC807AD41E3CA62600609E9B /* TripPhotoHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC807AD31E3CA62600609E9B /* TripPhotoHeader.xib */; };
 		FC807AD61E3CAB1700609E9B /* TripPhotoHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC807AD51E3CAB1700609E9B /* TripPhotoHeader.swift */; };
+		FC9484991E94E1E2000AB89F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FC9484981E94E1E1000AB89F /* GoogleService-Info.plist */; };
+		FC94849A1E94E1E2000AB89F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FC9484981E94E1E1000AB89F /* GoogleService-Info.plist */; };
+		FC94849B1E94E1E2000AB89F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FC9484981E94E1E1000AB89F /* GoogleService-Info.plist */; };
 		FC9A0C181E03CE5D00BC3F7A /* TagsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC9A0C171E03CE5D00BC3F7A /* TagsView.xib */; };
 		FC9A0C1A1E0924CD00BC3F7A /* CountrySummary.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC9A0C191E0924CD00BC3F7A /* CountrySummary.xib */; };
 		FC9A0C1C1E0932E300BC3F7A /* CountrySummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9A0C1B1E0932E300BC3F7A /* CountrySummary.swift */; };
@@ -989,6 +992,7 @@
 		FC807AD01E3C9B3300609E9B /* TripPhotoLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripPhotoLayout.swift; sourceTree = "<group>"; };
 		FC807AD31E3CA62600609E9B /* TripPhotoHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TripPhotoHeader.xib; sourceTree = "<group>"; };
 		FC807AD51E3CAB1700609E9B /* TripPhotoHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripPhotoHeader.swift; sourceTree = "<group>"; };
+		FC9484981E94E1E1000AB89F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FC9A0C171E03CE5D00BC3F7A /* TagsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TagsView.xib; sourceTree = "<group>"; };
 		FC9A0C191E0924CD00BC3F7A /* CountrySummary.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CountrySummary.xib; sourceTree = "<group>"; };
 		FC9A0C1B1E0932E300BC3F7A /* CountrySummary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountrySummary.swift; sourceTree = "<group>"; };
@@ -1083,6 +1087,7 @@
 		1A944DFB1CCB4567007EB5BD = {
 			isa = PBXGroup;
 			children = (
+				FC9484981E94E1E1000AB89F /* GoogleService-Info.plist */,
 				1A944E061CCB4567007EB5BD /* TraveLibro */,
 				1A944E1B1CCB4567007EB5BD /* TraveLibroTests */,
 				1A944E261CCB4567007EB5BD /* TraveLibroUITests */,
@@ -2994,6 +2999,7 @@
 				C2A6E2671CE9D48A00D3F845 /* PhotosOTG.xib in Resources */,
 				C2823B031D464AAD0065A76C /* startOTGView.xib in Resources */,
 				C269078F1CF86DDF00F827E6 /* ImageCheckbox.xib in Resources */,
+				FC9484991E94E1E2000AB89F /* GoogleService-Info.plist in Resources */,
 				3638F9E31E2C224800B2EA04 /* VideoView.xib in Resources */,
 				C2A27A581CEDE40200F74DD1 /* AddDisplayPic.xib in Resources */,
 				1A65E7A91CD72F1F009374DA /* Avenir-Heavy.ttf in Resources */,
@@ -3127,6 +3133,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC94849A1E94E1E2000AB89F /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3134,6 +3141,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC94849B1E94E1E2000AB89F /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -14,6 +14,7 @@ import Haneke
 
 import Fabric
 import Crashlytics
+import Google
 
 import UserNotificationsUI
 
@@ -191,11 +192,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
     
     //MARK:- Application Delegates
     
+    
         
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         createMenuView()
-                
+        
+        
+        googleAnalytics()
+        
+        
+        
         enableCrashReporting()
         
         _ = AppDelegate.getDatabase()
@@ -382,6 +389,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
     
     func enableCrashReporting() {
         Fabric.with([Crashlytics.self])
+    }
+    func googleAnalytics() {
+        // Configure tracker from GoogleService-Info.plist.
+        var configureError: NSError?
+        GGLContext.sharedInstance().configureWithError(&configureError)
+        assert(configureError == nil, "Error configuring Google services: \(configureError)")
+        
+        // Optional: configure GAI options.
+        guard let gai = GAI.sharedInstance() else {
+            assert(false, "Google Analytics not configured correctly")
+        }
+        gai.trackUncaughtExceptions = true  // report uncaught exceptions
+        gai.logger.logLevel = GAILogLevel.verbose  // remove before app release
     }
 }
 
