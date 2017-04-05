@@ -14,6 +14,7 @@ class AddRating: UIView, UITextViewDelegate {
     
     var ratingIndex = 0
     var starCount = 0
+    var yPos = CGFloat(0)
     
     @IBOutlet weak var starsStack: UIStackView!
     @IBOutlet weak var postReview: UIButton!
@@ -190,12 +191,18 @@ class AddRating: UIView, UITextViewDelegate {
         reviewTextView.delegate = self
         reviewTextView.returnKeyType = .done
         
+        NotificationCenter.default.addObserver(self, selector: #selector(AddRating.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(AddRating.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
         //        self.clipsToBounds = true
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     func updateSmiley(point:Int) {
@@ -336,6 +343,27 @@ class AddRating: UIView, UITextViewDelegate {
 //            
 //        }
         
+    }
+    
+    //MARK: - Keyboard Handling
+    
+    func keyboardWillShow(_ notification: Notification) {
+        
+        yPos = CGFloat((screenHeight/2) - (self.frame.height/2))
+        print("compare ypos : \(yPos)")
+        
+        
+        if (((notification as NSNotification).userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil {
+            if self.frame.origin.y == yPos {
+                self.frame.origin.y -= reviewTextView.frame.size.height
+            }
+        }
+    }
+    
+    func keyboardWillHide(_ notification: Notification) {
+        if self.frame.origin.y != yPos {
+            self.frame.origin.y = CGFloat(yPos)
+        }
     }
     
 }
