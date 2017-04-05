@@ -33,6 +33,7 @@ class LocalLifePostsViewController: UIViewController, UIScrollViewDelegate, CLLo
         super.viewDidLoad()
         getDarkBackGround(self)
         layout = VerticalLayout(width:screenWidth)
+        scrollView.delegate = self
         scrollView.addSubview(layout)
         loader.showOverlay(self.view)
         setTopNavigation(text: nearMeType);
