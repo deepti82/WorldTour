@@ -282,6 +282,7 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
                     self.loader.hideOverlayView()
                     if !(request["data"].isEmpty) {
                         self.loadStatus = true
+                        print("print print: \(request["data"])")
                         for post in request["data"].array! {
                             self.feeds.arrayObject?.append(post)
                             let checkIn = ActivityFeedsLayout(width: self.view.frame.width)

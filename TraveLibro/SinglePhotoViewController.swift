@@ -214,6 +214,10 @@ class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDele
             carouselView.scrollToItem(at: carouselView.currentItemIndex, animated: true)
         }
     }
+
+    func playerPlaybackStateDidChange(_ player: Player) {
+        print(player.playbackState)
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -613,6 +617,7 @@ class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDele
     func playerReady(_ player: Player) {
         self.player.playFromBeginning()
     }
+    
     
     
     //MARK: - Helper

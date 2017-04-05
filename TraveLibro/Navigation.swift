@@ -5,6 +5,7 @@ import OneSignal
 import Haneke
 import Crashlytics
 
+//var adminUrl = "https://travelibro.wohlig.com/api/"
 var adminUrl = "https://travelibro.com/api/"
 var adminBackendUrl = "http://travelibrobackend.wohlig.com/api/"
 var mapKey = "AIzaSyDPH6EYKMW97XMTJzqYqA0CR4fk5l2gzE4"
@@ -14,6 +15,7 @@ class Navigation {
     let cache = Shared.dataCache
     
 //    var json: JSON!
+
     
     func saveUser(_ firstName: String, lastName: String, email: String, mobile: String, fbId: String, googleId: String, twitterId: String, instaId: String, nationality: String, profilePicture: String, gender: String, dob: String, completion: @escaping ((JSON) -> Void)) {
         
@@ -480,10 +482,14 @@ class Navigation {
                 
                 id = "\(localDbId!)"
             }
+            HTTP.globalRequest { req in
+                req.timeoutInterval = 6000
+            }
             
             print("inside upload files: \(id) \(file)")
             
             let opt = try HTTP.POST(adminUrl + "upload", parameters: ["localId": id, "file": Upload(fileUrl: file)])
+            
             var json = JSON(1);
             opt.start { response in
                 //                print("started response: \(response)")
@@ -710,6 +716,10 @@ class Navigation {
             
 //            let params = ["file": file]
             print("file to be read: \(file)")
+            
+//            HTTP.globalRequest { req in
+//                req.timeoutInterval = 6000
+//            }
             let opt = try HTTP.GET(adminUrl + "upload/readFile?file=" + file)
             print("opt: \(opt)")
             var json = JSON(1);

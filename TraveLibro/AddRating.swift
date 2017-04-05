@@ -140,7 +140,7 @@ class AddRating: UIView, UITextViewDelegate {
                     else if response["value"].bool! {
                         print("Review Sent Successfully")
                         
-                        self.popToaster(text: "You rated \(self.reviewConclusion.text!).")
+//                        self.popToaster(text: "You rated \(self.reviewConclusion.text!).")
 
                     }
                     else {
