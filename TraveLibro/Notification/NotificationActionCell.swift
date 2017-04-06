@@ -20,6 +20,8 @@ class NotificationActionCell: UITableViewCell {
     var NFBackground = NotificationBackground()
     var NFTime = NotificationTime()    
     var totalHeight = CGFloat(0)
+    var blr: UIView!
+    var blurView: UIVisualEffectView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -78,9 +80,22 @@ class NotificationActionCell: UITableViewCell {
         self.contentView.addSubview(NFBackground)
         self.contentView.sendSubview(toBack: NFBackground)
         
+        blr = UIView()
+        
+        let darkBlur = UIBlurEffect(style: UIBlurEffectStyle.light)
+        blurView = UIVisualEffectView(effect: darkBlur)
+        
+        blurView.isUserInteractionEnabled = false               
+        blr.addSubview(blurView)
+        blr.addSubview(NFBackground)
+        self.addSubview(blr)
+        self.sendSubview(toBack: blr)
+        
         if notificationData != nil {
             setData(notificationData: notificationData!, helper: helper!)            
-        }        
+        }
+        
+        self.backgroundColor = UIColor(white: 1, alpha: 0.8)
     }    
     
     func setData(notificationData: JSON, helper: NotificationSubViewController) {
@@ -131,17 +146,7 @@ class NotificationActionCell: UITableViewCell {
             }
             else if notificationData["type"] == "journeyRequest" {
                 
-//                let message = getRegularString(string: "Accept ", size: 12)        
-//                let firstName = notificationData["userFrom"]["name"].stringValue        
-//                message.append(getBoldString(string: firstName, size: 12))
-//                
-//                message.append(getRegularString(string: "'s request to create your travel memories together. ", size: 12))
-                
-//                let messageHeight = (heightForView(text: "Accept "+firstName+"'s request to create your travel memories together.        ", font: NFMessage.NFMessageLabel.font, width: screenWidth) + CGFloat(10))
-//                NFMessage.NFMessageLabel.attributedText = message
-//                NFMessage.NFMessageLabel.frame = CGRect(x: 0, y: 0, width: screenWidth - xPos - 10, height: messageHeight) 
-//                NFMessage.frame = CGRect(x: xPos, y: totalHeight, width: screenWidth - xPos, height: messageHeight + 10)                
-//                totalHeight += messageHeight
+                NFMessage.frame = CGRect.zero
                 
                 NFPermission.NFLeftButton.setTitle("Accept", for: .normal)
                 NFPermission.NFLeftButton.addTarget(helper, action: #selector(helper.journeyAcceptTabbed(_:)), for: .touchUpInside)
@@ -206,6 +211,9 @@ class NotificationActionCell: UITableViewCell {
         
         totalHeight += CGFloat(8)
         
-        NFBackground.frame = CGRect(x: 0, y: 0, width: screenWidth, height: totalHeight)        
+        NFBackground.frame = CGRect(x: 0, y: 0, width: screenWidth, height: totalHeight)
+        blurView.frame.size.height = totalHeight
+        blurView.frame.size.width = screenWidth
+        blr.frame = CGRect(x: 0, y: 0, width: screenWidth, height: totalHeight)
     }
 }

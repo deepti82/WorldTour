@@ -18,6 +18,8 @@ class NotificationFollowRequestCell: UITableViewCell {
     var NFTime = NotificationTime()
     var NFBackground = NotificationBackground()
     var totalHeight = CGFloat(0)
+    var blr: UIView!
+    var blurView: UIVisualEffectView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -77,9 +79,22 @@ class NotificationFollowRequestCell: UITableViewCell {
         self.contentView.addSubview(NFBackground)
         self.contentView.sendSubview(toBack: NFBackground)
         
+        blr = UIView()
+        
+        let darkBlur = UIBlurEffect(style: UIBlurEffectStyle.light)
+        blurView = UIVisualEffectView(effect: darkBlur)
+        
+        blurView.isUserInteractionEnabled = false               
+        blr.addSubview(blurView)
+        blr.addSubview(NFBackground)
+        self.addSubview(blr)
+        self.sendSubview(toBack: blr)
+        
         if notificationData != nil {
             setData(notificationData: notificationData!, helper: helper!)            
-        }        
+        }
+        
+        self.backgroundColor = UIColor(white: 1, alpha: 0.8)
     }    
     
     func setData(notificationData: JSON, helper: NotificationSubViewController) {
@@ -137,6 +152,11 @@ class NotificationFollowRequestCell: UITableViewCell {
         totalHeight += CGFloat(8)
         
         NFBackground.frame = CGRect(x: 0, y: 0, width: screenWidth, height: totalHeight)
+        
+        NFBackground.frame = CGRect(x: 0, y: 0, width: screenWidth, height: totalHeight)
+        blurView.frame.size.height = totalHeight
+        blurView.frame.size.width = screenWidth
+        blr.frame = CGRect(x: 0, y: 0, width: screenWidth, height: totalHeight)
     }
 
 }

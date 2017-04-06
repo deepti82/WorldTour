@@ -12,7 +12,7 @@ class NotificationDefaultCell: UITableViewCell {
     
     var NFHeader = notificationHeader()
     var NFTitle = NotificationTitle()
-    var NFFooter = NotificationFooter()
+    var NFFooter = NotificationFooter()    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -74,6 +74,7 @@ class NotificationDefaultCell: UITableViewCell {
         NFTitle.NFMessageLabel.text = "Need to change this later TYPE: \(notificationData["type"])"
         
         NFFooter.updateReadStatus(read: notificationData["answeredStatus"].stringValue)
+        
     }
 
 }
