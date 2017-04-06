@@ -353,7 +353,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
         
         if insideView == "Monthly" {
             if shouldShowBigImage(position: indexPath.row) {
-                return CGSize(width: screenWidth - 10, height: (screenWidth - 32) * 0.5)
+                return CGSize(width: screenWidth - 10, height: (screenWidth - 10) * 0.7)
             }
             
             return CGSize(width: (screenWidth - 16)/3, height: (screenWidth - 16)/3)

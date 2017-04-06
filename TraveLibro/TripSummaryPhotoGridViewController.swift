@@ -108,7 +108,7 @@ class TripSummaryPhotoGridViewController: UICollectionViewController, ToolStackC
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         if shouldShowBigImage(position: indexPath.row) {
-            return CGSize(width: (collectionView.frame.size.width - 2), height: collectionView.frame.size.width * 0.5)
+            return CGSize(width: (collectionView.frame.size.width - 3), height: (collectionView.frame.size.width - 3) * 0.7)
         }
         
         return CGSize(width: (collectionView.frame.size.width/3 - 3), height: (collectionView.frame.size.width/3 - 3))       
