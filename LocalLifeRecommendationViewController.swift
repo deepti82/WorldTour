@@ -219,8 +219,20 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
     @IBAction func addAction(_ sender: Any) {
         if(!self.isSameCity) {
             let alertController = UIAlertController(title: "", message:
-                "You can create your Local Life activity only in the city you live in. If you wish to change the city you live in, go to Settings.", preferredStyle: UIAlertControllerStyle.alert)            
-            alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default,handler: nil))
+                "You can create your Local Life activity only in the city you live in. If you wish to change the city you live in, go to Settings.", preferredStyle: UIAlertControllerStyle.alert)
+            
+            let settingsAction = UIAlertAction(title: "Settings", style: .default) { (_) -> Void in
+                guard let settingsUrl = URL(string: UIApplicationOpenSettingsURLString) else {
+                    return
+                }
+                if UIApplication.shared.canOpenURL(settingsUrl) {
+                    UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
+                        print("Settings opened: \(success)") // Prints true
+                    })
+                }
+            }
+            alertController.addAction(settingsAction)
+            alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
             
             self.present(alertController, animated: true, completion: nil)
         } else {
