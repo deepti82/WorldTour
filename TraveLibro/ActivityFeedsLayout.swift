@@ -350,10 +350,27 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
     
     func headerLayout(feed:JSON) {
         
-        profileHeader = ActivityProfileHeader(frame: CGRect(x: 0, y: 20, width: self.frame.width, height: 69))
+        var blr: UIView?
+        profileHeader = ActivityProfileHeader(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 69))
+        
+        let darkBlur = UIBlurEffect(style: UIBlurEffectStyle.light)
+        let blurView = UIVisualEffectView(effect: darkBlur)
+        blurView.frame.size.height = 69
+        blurView.frame.size.width = self.frame.width
+//        blurView.layer.zPosition = 6000000
+        
+        blurView.isUserInteractionEnabled = false
+        
+        blr = UIView(frame:CGRect(x: 0, y: 20, width: self.frame.width, height: 69))
+        
+        
+        blr!.addSubview(blurView)
+        blr?.addSubview(profileHeader)
+        self.addSubview(blr!)
+        
         
         profileHeader.fillProfileHeader(feed:feed)
-        self.addSubview(profileHeader)
+        
         
         if feed["type"].stringValue == "on-the-go-journey"{
             profileHeader.localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["startTime"].stringValue, isDate: true)

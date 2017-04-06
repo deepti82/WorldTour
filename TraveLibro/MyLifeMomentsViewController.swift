@@ -361,7 +361,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
         else{
             switch momentType {
             case "all":
-                return CGSize(width: 30, height: 30)
+                return CGSize(width: 70, height: 70)
             case "Monthly", "SelectCover":
                 return CGSize(width: 110, height: 110)
             case "travel-life":
@@ -435,7 +435,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath) as! photosCollectionViewCell
                 cell.photo.image = UIImage(named: "logo-default")
                 if allData[indexPath.section]["data"][indexPath.row]["name"].stringValue != "" {
-                    cell.photo.hnk_setImageFromURL(getImageURL(allData[indexPath.section]["data"][indexPath.row]["name"].stringValue, width: 0))
+                    cell.photo.hnk_setImageFromURL(getImageURL(allData[indexPath.section]["data"][indexPath.row]["name"].stringValue, width: 200))
                     
                 }else{
                     cell.photo.image = UIImage(named: "logo-default")
@@ -572,11 +572,8 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         
         if momentType == "all" {
-            if section == 0 {
-                return CGSize(width: 50, height: 20)
-            }else{
+            
                 return CGSize(width: 50, height: 30)
-            }
             
         }else if insideView == "Monthly"{
             return CGSize(width: 50, height: 20)

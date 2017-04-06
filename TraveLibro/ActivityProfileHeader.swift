@@ -19,13 +19,26 @@ class ActivityProfileHeader: UIView {
     @IBOutlet weak var calendarLabel: UILabel!
     @IBOutlet weak var followButton: UIButton!
     @IBOutlet weak var localTime: UILabel!
+    @IBOutlet weak var blurImageView: UIImageView!
     var currentFeed:JSON = []
     let imageArr: [String] = ["restaurantsandbars", "leaftrans", "sightstrans", "museumstrans", "zootrans", "shopping", "religious", "cinematrans", "hotels", "planetrans", "health_beauty", "rentals", "entertainment", "essential", "emergency", "othersdottrans"]
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
-        transparentCardWhite(activityProView)
+//        transparentCardWhite(activityProView)
+        
+//        let darkBlur = UIBlurEffect(style: UIBlurEffectStyle.light)
+//        let blurView = UIVisualEffectView(effect: darkBlur)
+//        blurView.frame.size.height = self.frame.height + 50
+//        blurView.frame.size.width = self.frame.width + 50
+//        blurView.isUserInteractionEnabled = false
+//        blurImageView.addSubview(blurView)
+//        self.addSubview(blurView)
+//        self.sendSubview(toBack: blurImageView)
+
+        
+        
         makeBuddiesTLProfilePicture(profilePic)
         category.imageView?.tintColor = mainGreenColor
         clockLabel.text = String(format: "%C", faicon["calendar"]!)

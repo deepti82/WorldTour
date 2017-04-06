@@ -5,8 +5,8 @@ import OneSignal
 import Haneke
 import Crashlytics
 
-var adminUrl = "https://travelibro.wohlig.com/api/"
-//var adminUrl = "https://travelibro.com/api/"
+//var adminUrl = "https://travelibro.wohlig.com/api/"
+var adminUrl = "https://travelibro.com/api/"
 var adminBackendUrl = "http://travelibrobackend.wohlig.com/api/"
 var mapKey = "AIzaSyDPH6EYKMW97XMTJzqYqA0CR4fk5l2gzE4"
 
@@ -1697,7 +1697,7 @@ class Navigation {
                 } else if type == "local-life" {
                     params = ["user": user, "token": token, "type": type, "limit": 1, "times": 6, "urlSlug": urlSlug!]
                 } else {
-                    params = ["user": user, "token": token, "type": type, "limit": 20, "times": 10, "urlSlug": urlSlug!]
+                    params = ["user": user, "token": token, "type": type, "limit": 10, "times": 10, "urlSlug": urlSlug!]
                 }
 
             }else{
@@ -1706,7 +1706,7 @@ class Navigation {
                 } else if type == "local-life" {
                     params = ["user": user, "token": token, "type": type, "limit": 1, "times": 6]
                 } else {
-                    params = ["user": user, "token": token, "type": type, "limit": 20, "times": 10]
+                    params = ["user": user, "token": token, "type": type, "limit": 10, "times": 10]
                 }
 
             }

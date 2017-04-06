@@ -1049,6 +1049,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         let i  = PostImage();
         i.uploadPhotos()
         self.setTopNavigation(text: "On The Go")
+        
+        
         globalNewTLViewController = self;
         getDarkBackGroundNew(self)
         mainScroll.delegate = self

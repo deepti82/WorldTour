@@ -56,7 +56,8 @@ func segueFromPagerStrip(_ vc: UINavigationController, nextVC: UIViewController)
 func getDarkBackGround(_ myVC: UIViewController) -> Void {
     
     let bgImage = UIImageView(frame: myVC.view.frame)
-    bgImage.image = UIImage(named: "darkBgNew")
+//    bgImage.image = UIImage(named: "darkBgNew")
+    bgImage.image = UIImage(named: "bg-1")
 //    bgImage.backgroundColor = UIColor.white
     bgImage.layer.zPosition = -1
     bgImage.isUserInteractionEnabled = false
@@ -183,7 +184,37 @@ class LeftPaddedText:  UITextField {
     }
     
 }
-
+open class BlurOnView{
+    
+    var loader: UIView?
+    var imageView1 = UIImageView()
+    
+//    class var shared: BlurOnView {
+//        struct Static {
+//            static let instance: BlurOnView = BlurOnView()
+//        }
+//        return Static.instance
+//    }
+    
+    func showBlur(_ view: UIView) {
+        print("show loader : viewYPos : \(view.frame.origin.y)")
+        
+        let darkBlur = UIBlurEffect(style: UIBlurEffectStyle.dark)
+        let blurView = UIVisualEffectView(effect: darkBlur)
+        blurView.frame.size.height = view.frame.height + 50
+        blurView.frame.size.width = view.frame.width + 50
+        blurView.layer.zPosition = 6000000
+        blurView.isUserInteractionEnabled = false
+        
+        loader = UIView(frame:CGRect(x: 0, y: 0, width: view.frame.size.width + 50, height: view.frame.size.height + 50))
+        
+        
+        loader!.addSubview(blurView)
+        view.addSubview(loader!)
+        
+    }
+    
+}
 
 open class LoadingOverlay{
     
