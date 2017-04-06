@@ -248,7 +248,7 @@ class ActivityFeedFooterBasic: UIView {
                     actionSheetControllerIOS8.addAction(DeletePost)
 
                 }
-                let reportActionButton: UIAlertAction = UIAlertAction(title: "", style: .default)
+                let reportActionButton: UIAlertAction = UIAlertAction(title: "Hide", style: .default)
                 {action -> Void in
                     let alert = UIAlertController(title: "Hide", message: "Hided successfuly", preferredStyle: UIAlertControllerStyle.alert)
                     alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))

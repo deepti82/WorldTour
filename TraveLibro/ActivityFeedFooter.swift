@@ -319,7 +319,7 @@ class ActivityFeedFooter: UIView {
                     actionSheetControllerIOS8.addAction(cancel)
                 }
                 if postTop["type"].stringValue == "travel-life" || postTop["type"].stringValue == "local-life" {
-                    if isBuddy() {
+                    if isBuddy() && self.type == "MyLifeFeeds"{
                         let DeletePost: UIAlertAction = UIAlertAction(title: "Delete Activity", style: .default)
                         { action -> Void in
                             

@@ -70,7 +70,7 @@ class AddRatingCountries: UIView, UITextViewDelegate {
                     
                 }
                 else if response["value"].bool! {
-                    let tstr = Toast(text: "You rated \(self.countryName.text!) as \(self.reviewConclusion.text!)")
+//                    let tstr = Toast(text: "You rated \(self.countryName.text!) as \(self.reviewConclusion.text!)")
 //                    tstr.show()
                     
                 }
