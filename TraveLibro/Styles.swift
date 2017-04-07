@@ -218,48 +218,49 @@ open class BlurOnView{
 
 open class LoadingOverlay{
     
-    var loader: UIView?
-    var imageView1 = UIImageView()
+    var overlayView = UIView()
+    var activityIndicator = UIActivityIndicatorView()
+    var blurView: UIVisualEffectView!
     
     class var shared: LoadingOverlay {
         struct Static {
             static let instance: LoadingOverlay = LoadingOverlay()
+            
         }
         return Static.instance
     }
     
-    func showOverlay(_ view: UIView) {
+    public func showOverlay(_ view: UIView) {
         hideOverlayView()
-        print("show loader : viewYPos : \(view.frame.origin.y)")
+        overlayView.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+        overlayView.center = view.center
+        overlayView.backgroundColor = UIColor.clear
+        overlayView.clipsToBounds = true
+        overlayView.layer.cornerRadius = 10
         
         let darkBlur = UIBlurEffect(style: UIBlurEffectStyle.dark)
-        let blurView = UIVisualEffectView(effect: darkBlur)
-        blurView.frame.size.height = view.frame.height + 50
-        blurView.frame.size.width = view.frame.width + 50
-        blurView.layer.zPosition = 6000000
+        blurView = UIVisualEffectView(effect: darkBlur)
+        blurView.frame.size.height = view.frame.height
+        blurView.frame.size.width = view.frame.width
         blurView.isUserInteractionEnabled = false
+        blurView.addSubview(overlayView)
+        
+        activityIndicator.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+        activityIndicator.activityIndicatorViewStyle = .whiteLarge
+        activityIndicator.center = CGPoint(x: overlayView.bounds.width / 2, y: overlayView.bounds.height / 2)
 
-        loader = UIView(frame:CGRect(x: 0, y: 0, width: view.frame.size.width + 50, height: view.frame.size.height + 50))
         
-        let imageView1 = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
-        imageView1.backgroundColor = UIColor.clear
-        imageView1.image = UIImage.gif(name: "200_200")
-        imageView1.contentMode = .scaleAspectFit
-        imageView1.center = CGPoint(x: view.center.x, y: ((view.frame.size.height/2) - ( globalNavigationController != nil ? (globalNavigationController?.navigationBar.frame.size.height)! : 0) ))
+        overlayView.addSubview(activityIndicator)
+        view.addSubview(blurView)
         
-        blurView.addSubview(imageView1)
-         loader!.addSubview(blurView)
-//        loader.backgroundColor = UIColor(colorLiteralRed: 0/255, green: 0/255, blue: 0/255, alpha: 0.4)
-        view.addSubview(loader!)
-        
+        activityIndicator.startAnimating()
     }
     
-    func hideOverlayView() {
-        if loader != nil {
-            loader!.removeFromSuperview()
-            loader = nil
-        }else {
-            //
+    public func hideOverlayView() {
+        if blurView != nil {
+            activityIndicator.stopAnimating()
+            blurView.removeFromSuperview()
+            blurView = nil
         }
     }
 }

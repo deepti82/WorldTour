@@ -507,6 +507,7 @@
 		FCE877FC1E3093A4005EE913 /* ActivityHeaderTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCE877FB1E3093A4005EE913 /* ActivityHeaderTag.swift */; };
 		FCE877FF1E30CA6A005EE913 /* ActivityFeedsLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCE877FE1E30CA6A005EE913 /* ActivityFeedsLayout.swift */; };
 		FCEB1BFA1E69447C00418812 /* LikeUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEB1BF91E69447C00418812 /* LikeUserViewController.swift */; };
+		FCF610B11E979EB600761607 /* new-gif-14.3.2017.gif in Resources */ = {isa = PBXBuildFile; fileRef = FCF610B01E979EB600761607 /* new-gif-14.3.2017.gif */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1036,6 +1037,7 @@
 		FCE877FB1E3093A4005EE913 /* ActivityHeaderTag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityHeaderTag.swift; sourceTree = "<group>"; };
 		FCE877FE1E30CA6A005EE913 /* ActivityFeedsLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityFeedsLayout.swift; sourceTree = "<group>"; };
 		FCEB1BF91E69447C00418812 /* LikeUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikeUserViewController.swift; sourceTree = "<group>"; };
+		FCF610B01E979EB600761607 /* new-gif-14.3.2017.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "new-gif-14.3.2017.gif"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1124,6 +1126,7 @@
 				368A568F1E3CD6E600DC8A19 /* loader.gif */,
 				368A56911E3CDB5C00DC8A19 /* loader2.gif */,
 				84CC75E21E8291EF0082F8CA /* 200_200.gif */,
+				FCF610B01E979EB600761607 /* new-gif-14.3.2017.gif */,
 				443225A71E668332008AB156 /* locallife.mp4 */,
 				443225A81E668332008AB156 /* mylife.mp4 */,
 				443225A91E668332008AB156 /* travellife.mp4 */,
@@ -3082,6 +3085,7 @@
 				C263E3A71D1E5D2300D274FE /* NewThoughtsView.xib in Resources */,
 				C24F84F01D004E59002EA203 /* NoFollowers.xib in Resources */,
 				4435D2FB1E548D02003BD1D9 /* notificationBackgroundView.xib in Resources */,
+				FCF610B11E979EB600761607 /* new-gif-14.3.2017.gif in Resources */,
 				84F25EB61E5D821000ED7A1E /* detailedItineraryStrip.xib in Resources */,
 				C24870551D0C4458003CB0DD /* HotelTypeSelect.xib in Resources */,
 				842484F61E13A4C000083115 /* PhotoOTGFooter.xib in Resources */,
