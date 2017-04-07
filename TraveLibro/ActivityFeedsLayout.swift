@@ -525,30 +525,45 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
     
     func videoToPlay ()  {
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            
-            let min = self.frame.origin.y + self.videoContainer.frame.origin.y
-            let max = min + self.videoContainer.frame.size.height
-            let scrollMin = self.scrollView.contentOffset.y
-            let scrollMax = scrollMin + self.scrollView.frame.height
-            if (scrollMin < min && scrollMax > max ) {
-                if !self.willPlay {
-                    self.videoContainer.playBtn.isHidden = true
-                    self.willPlay = true
-                    var videoUrl = URL(string:self.feeds["videos"][0]["name"].stringValue)
-                    if(videoUrl == nil) {
-                        videoUrl = URL(string:self.feeds["videos"][0]["localUrl"].stringValue)
+        if isVideoViewInRangeToPlay() {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: { 
+                if self.isVideoViewInRangeToPlay() {
+                    if !self.willPlay {
+                        self.videoContainer.playBtn.isHidden = true
+                        self.willPlay = true
+                        var videoUrl = URL(string:self.feeds["videos"][0]["name"].stringValue)
+                        if(videoUrl == nil) {
+                            videoUrl = URL(string:self.feeds["videos"][0]["localUrl"].stringValue)
+                        }
+                        self.player.setUrl(videoUrl!)
+                        self.player.playFromBeginning()
                     }
-                    self.player.setUrl(videoUrl!)
-                    self.player.playFromBeginning()
                 }
-            }
-            else {
-                self.player.stop()
-                self.willPlay = false
-                self.videoContainer.playBtn.isHidden = false
-            }
+                else {
+                    self.player.stop()
+                    self.willPlay = false
+                    self.videoContainer.playBtn.isHidden = false
+                }
+            })
         }
+        else {
+            self.player.stop()
+            self.willPlay = false
+            self.videoContainer.playBtn.isHidden = false
+        }
+    }
+    
+    func isVideoViewInRangeToPlay() -> Bool {
+        let min = self.frame.origin.y + self.videoContainer.frame.origin.y
+        let max = min + self.videoContainer.frame.size.height
+        let scrollMin = self.scrollView.contentOffset.y
+        let scrollMax = scrollMin + self.scrollView.frame.height
+       
+        if (scrollMin < min && scrollMax > max ) {
+            return true
+        }
+        
+        return false
     }
     
     func playerReady(_ player: Player) {
