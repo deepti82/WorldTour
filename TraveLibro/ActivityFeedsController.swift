@@ -43,15 +43,23 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
         getDarkBackGround(self)
         layout = VerticalLayout(width: screenWidth)
         activityScroll.addSubview(layout)
-        getActivity(pageNumber: pageno)
-        loader.showOverlay(self.view)
+        
+        request.checkActivityCache(user.getExistingUser(), completion: {(res) in
+            DispatchQueue.main.async(execute: {
+        print(res)
+            if res.count == 0 {
+                self.loader.showOverlay(self.view)
+            }
+            })
+        })
+        
         
         self.mainFooter = FooterViewNew(frame: CGRect.zero)
         self.mainFooter.layer.zPosition = 5
         self.view.addSubview(self.mainFooter)
         mainFooter.activityImage.tintColor = mainOrangeColor
         mainFooter.activityOrange.textColor = mainOrangeColor
-        
+        getActivity(pageNumber: pageno)
         let i = PostImage()
         i.uploadPhotos()
     }

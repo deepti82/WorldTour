@@ -1520,8 +1520,18 @@ class Navigation {
         }
     }
     
-    func checkActivityCache() {
-        
+    func checkActivityCache(_ user: String, completion: @escaping ((JSON) -> Void)) {
+        let urlString = adminUrl + "activityfeed/getData"
+        var json:JSON = [];
+        self.cache.fetch(key: urlString+user).onSuccess { data in
+            json = JSON(data: data)
+            
+            completion(json)
+            }.onFailure { (err) in
+                
+            completion(json)
+        }
+
     }
     
     func getActivityFeeds(_ user: String, pageNumber: Int, completion: @escaping ((JSON,[JSON],[JSON]) -> Void)) {
