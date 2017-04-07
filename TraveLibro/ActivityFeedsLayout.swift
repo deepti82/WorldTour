@@ -355,21 +355,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
     func headerLayout(feed:JSON) {
         
         var blr: UIView?
-        profileHeader = ActivityProfileHeader(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 69))
-        
-//        let darkBlur = UIBlurEffect(style: UIBlurEffectStyle.light)
-//        let blurView = UIVisualEffectView(effect: darkBlur)
-//        blurView.frame.size.height = 69
-//        blurView.frame.size.width = self.frame.width
-//        
-//        blurView.isUserInteractionEnabled = false
-//        
-//        blr = UIView(frame:CGRect(x: 0, y: 20, width: self.frame.width, height: 69))
-//        
-//        
-//        blr!.addSubview(blurView)
-//        blr?.addSubview(profileHeader)
-//        self.addSubview(blr!)
+        profileHeader = ActivityProfileHeader(frame: CGRect(x: 0, y: 20, width: self.frame.width, height: 69))
         
         self.addSubview(profileHeader)
         
@@ -435,23 +421,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             textHeader.sizeToFit()
             textHeader.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: textHeader.headerText.frame.height + 1.5)
             if(textHeader.headerText.text != "") {
-                
-//                let darkBlur = UIBlurEffect(style: UIBlurEffectStyle.light)
-//                let blurView = UIVisualEffectView(effect: darkBlur)
-//                blurView.frame.size.height = textHeader.headerText.frame.height + 1.5
-//                blurView.frame.size.width = self.frame.width
-//                
-//                blurView.isUserInteractionEnabled = false
-//                
-//                blr = UIView(frame:CGRect(x: 0, y: 0, width: self.frame.width, height: textHeader.headerText.frame.height + 1.5))
-//                
-//                
-//                blr!.addSubview(blurView)
-//                blr?.addSubview(textHeader)
-//                self.addSubview(blr!)
-                
-                
-                
+                                
                 self.addSubview(textHeader)
             }
             

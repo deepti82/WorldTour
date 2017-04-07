@@ -42,6 +42,7 @@
                     </constraints>
                 </scrollView>
             </subviews>
+            <color key="backgroundColor" red="0.98697105929999995" green="0.99956106259999999" blue="1" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="eqh-AU-2QQ" firstAttribute="leading" secondItem="aYL-sn-6xk" secondAttribute="leading" id="CZY-ex-h3W"/>
                 <constraint firstItem="eqh-AU-2QQ" firstAttribute="top" secondItem="aYL-sn-6xk" secondAttribute="top" id="Ixx-yP-r8L"/>

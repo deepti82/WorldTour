@@ -263,6 +263,7 @@
                     </variation>
                 </view>
             </subviews>
+            <color key="backgroundColor" red="0.98697105929999995" green="0.99956106259999999" blue="1" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="HWH-5K-hPB" firstAttribute="leading" secondItem="2D3-iK-DVr" secondAttribute="leading" id="8r9-0u-afx"/>
                 <constraint firstAttribute="bottom" secondItem="HWH-5K-hPB" secondAttribute="bottom" id="GYF-Qv-qU8"/>

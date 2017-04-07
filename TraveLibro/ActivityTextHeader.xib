@@ -23,7 +23,7 @@
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qpj-n0-sgO">
                     <rect key="frame" x="8" y="0.0" width="359" height="1"/>
-                    <color key="backgroundColor" red="0.98697105929999995" green="0.99956106259999999" blue="1" alpha="0.5" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.98697105929999995" green="0.99956106259999999" blue="1" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="sll-U6-eYX"/>
                     </constraints>
@@ -45,6 +45,7 @@
                     </constraints>
                 </imageView>
             </subviews>
+            <color key="backgroundColor" red="0.98697105929999995" green="0.99956106259999999" blue="1" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="pHq-mg-oUi" secondAttribute="trailing" constant="5" id="6sq-Zz-zG5"/>
                 <constraint firstItem="Je4-JU-ajm" firstAttribute="leading" secondItem="pHq-mg-oUi" secondAttribute="trailing" id="9Ox-Dy-k6O"/>
