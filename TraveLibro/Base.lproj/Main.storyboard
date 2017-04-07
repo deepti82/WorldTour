@@ -3572,7 +3572,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HEf-Pa-zSZ">
-                                        <rect key="frame" x="95" y="245" width="154" height="30"/>
+                                        <rect key="frame" x="94.5" y="245" width="154" height="30"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="more about me... " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m1F-gD-cCl">
                                                 <rect key="frame" x="0.0" y="0.0" width="124" height="30"/>
@@ -3717,18 +3717,12 @@
                                         <rect key="frame" x="0.0" y="283" width="343" height="67"/>
                                     </view>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MYd-vb-oWn">
-                                        <rect key="frame" x="-20" y="-86" width="175" height="120"/>
+                                        <rect key="frame" x="-20" y="-86" width="230" height="120"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="175" id="Rj9-3J-VK2"/>
+                                            <constraint firstAttribute="width" constant="230" id="Rj9-3J-VK2"/>
                                             <constraint firstAttribute="height" constant="120" id="gYK-Rx-bdc"/>
                                         </constraints>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hmd-EU-94Z">
-                                        <rect key="frame" x="163" y="5" width="82" height="0.0"/>
-                                        <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
-                                        <color key="textColor" red="0.1647058824" green="0.1647058824" blue="0.1647058824" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -3741,8 +3735,6 @@
                                     <constraint firstItem="dwA-HX-W2Y" firstAttribute="top" secondItem="CCU-j2-b3f" secondAttribute="bottom" constant="6" id="FWS-0h-Cu8"/>
                                     <constraint firstAttribute="trailing" secondItem="Hhm-4w-xeC" secondAttribute="trailing" id="Flc-75-HEw"/>
                                     <constraint firstItem="FzV-dF-2z1" firstAttribute="leading" secondItem="JVb-V2-2Zg" secondAttribute="leading" constant="26" id="Hib-eN-sM3"/>
-                                    <constraint firstItem="Hmd-EU-94Z" firstAttribute="leading" secondItem="MYd-vb-oWn" secondAttribute="trailing" constant="8" id="L5y-h8-OxB"/>
-                                    <constraint firstItem="ogf-zC-WaX" firstAttribute="leading" secondItem="Hmd-EU-94Z" secondAttribute="trailing" constant="8" id="Lld-ej-ACV"/>
                                     <constraint firstItem="JrE-nA-UMs" firstAttribute="leading" secondItem="hKw-kR-G0H" secondAttribute="leading" constant="20" id="Mmr-2y-J2D"/>
                                     <constraint firstItem="CCU-j2-b3f" firstAttribute="top" secondItem="ogf-zC-WaX" secondAttribute="bottom" constant="10" id="Udv-RT-lhG"/>
                                     <constraint firstItem="Hhm-4w-xeC" firstAttribute="top" secondItem="HEf-Pa-zSZ" secondAttribute="bottom" constant="8" symbolic="YES" id="bGf-pR-MqA"/>
@@ -3755,7 +3747,6 @@
                                     <constraint firstItem="HEf-Pa-zSZ" firstAttribute="centerX" secondItem="Hhm-4w-xeC" secondAttribute="centerX" id="mfQ-U5-nF1"/>
                                     <constraint firstItem="JVb-V2-2Zg" firstAttribute="leading" secondItem="hKw-kR-G0H" secondAttribute="leading" constant="-18" id="nRO-uo-UHE"/>
                                     <constraint firstAttribute="bottom" secondItem="Hhm-4w-xeC" secondAttribute="bottom" id="qCF-ZS-y2w"/>
-                                    <constraint firstItem="Hmd-EU-94Z" firstAttribute="top" secondItem="hKw-kR-G0H" secondAttribute="top" constant="5" id="qNo-Sc-oXn"/>
                                     <constraint firstItem="Hhm-4w-xeC" firstAttribute="leading" secondItem="hKw-kR-G0H" secondAttribute="leading" id="vUD-B0-OVU"/>
                                     <constraint firstItem="HEf-Pa-zSZ" firstAttribute="top" secondItem="JVb-V2-2Zg" secondAttribute="bottom" constant="25" id="wyW-1C-kPv"/>
                                 </constraints>
@@ -3773,7 +3764,6 @@
                         <outlet property="MAMStack" destination="HEf-Pa-zSZ" id="7kg-I7-pJh"/>
                         <outlet property="MAMatterView" destination="Hhm-4w-xeC" id="rBn-IV-zoC"/>
                         <outlet property="collectionView" destination="JVb-V2-2Zg" id="wHh-ci-QFv"/>
-                        <outlet property="countryName" destination="Hmd-EU-94Z" id="O9T-7M-8U4"/>
                         <outlet property="isPhotographer" destination="JrE-nA-UMs" id="QDr-0b-U9Y"/>
                         <outlet property="livesInStack" destination="dwA-HX-W2Y" id="ast-9j-y5Z"/>
                         <outlet property="livesLabel" destination="fIX-Vs-ZKH" id="S22-Nq-Yf6"/>

@@ -9,8 +9,7 @@ var doRemove: Bool = true
 var globalProfileController:ProfileViewController!
 class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIViewControllerPreviewingDelegate {
    
-    @IBOutlet weak var scrollImage: UIScrollView!
-    @IBOutlet weak var countryName: UILabel!
+    @IBOutlet weak var scrollImage: UIScrollView!    
     @IBOutlet weak var livesInStack: UIStackView!
     @IBOutlet weak var profileView: UIView!
     @IBOutlet weak var profile_badge: UIImageView!
@@ -236,7 +235,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
             imageName = currentUser["profilePicture"].string!
             
             if currentUser["homeCountry"] != nil {
-                countryName.text = currentUser["homeCountry"]["name"].string!
+                profile.country.text = currentUser["homeCountry"]["name"].string!
                 CLSNSLogv("ProfileViewController.swift -> ViewWillAppear -> currentUser : %@ & flag : %@ ", getVaList([currentUser as! CVarArg, currentUser["homeCountry"]["flag"].stringValue]))
                 profile.flag.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(currentUser["homeCountry"]["flag"].stringValue)", width: 100))
             }
@@ -258,7 +257,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
                 profilePicture.hnk_setImageFromURL(getImageUrl!)
                 profile.image.hnk_setImageFromURL(getImageUrl!)
             }
-            makeTLProfilePicture(self.profilePicture)
+            makeBuddiesTLProfilePicture(self.profilePicture)
             
             isSettingsEdited = false
         }*/
@@ -293,7 +292,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         profileView.addSubview(profile)
         footer = FooterViewNew(frame: CGRect(x: 0, y: self.view.frame.height - 65, width: self.view.frame.width, height: 65))
         self.view.addSubview(footer)
-        makeTLProfilePicture(profile.image)
+        makeBuddiesTLProfilePicture(profile.image)
         profilePicture.isHidden = true
         
         MAMatterView.layer.opacity = 0.0
@@ -337,8 +336,8 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
             var imageName = ""
             imageName = currentUser["profilePicture"].string!
             
-            if currentUser["homeCountry"] != nil {
-                countryName.text = currentUser["homeCountry"]["name"].string!
+            if currentUser["homeCountry"] != nil {                
+                profile.country.text = currentUser["homeCountry"]["name"].string! 
                 profile.flag.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(currentUser["homeCountry"]["flag"].stringValue)", width: 100))
             }
             
@@ -359,7 +358,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
                 profilePicture.hnk_setImageFromURL(getImageUrl!)
                 profile.image.hnk_setImageFromURL(getImageUrl!)
             }
-            makeTLProfilePicture(self.profilePicture)
+            makeBuddiesTLProfilePicture(self.profilePicture)
         }
         var isNotDone = true
         if(currentUser["travelConfig"]["preferToTravel"].array != nil) {
