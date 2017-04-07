@@ -245,7 +245,26 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
                             //                                print("\n\n\n POST ::: \n \(post) \n\n\n")
                             checkIn.createProfileHeader(feed: post)
                             checkIn.activityFeed = self
-                            self.layout.addSubview(checkIn)
+                            
+                            var blr: UIView?
+                            let darkBlur = UIBlurEffect(style: UIBlurEffectStyle.light)
+                            let blurView = UIVisualEffectView(effect: darkBlur)
+                            blurView.frame.size.height = checkIn.frame.height
+                            blurView.frame.size.width = checkIn.frame.width
+                            //        blurView.layer.zPosition = 6000000
+                            
+                            blurView.isUserInteractionEnabled = false
+                            
+                            blr = UIView(frame:CGRect(x: 0, y: 20, width: checkIn.frame.width, height: checkIn.frame.height))
+                            
+                            
+                            blr!.addSubview(blurView)
+                            blr?.addSubview(checkIn)
+                            self.layout.addSubview(blr!)
+
+                            
+                            
+//                            self.layout.addSubview(checkIn)
                             self.addHeightToLayout()
                             NSLog(" check 2 \n")
                         }

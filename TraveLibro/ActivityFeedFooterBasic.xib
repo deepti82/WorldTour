@@ -241,7 +241,6 @@
                             </constraints>
                         </imageView>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="4kG-Xj-KQE" secondAttribute="trailing" constant="15" id="1et-s1-Yuh"/>
                         <constraint firstItem="qQ1-vh-dXj" firstAttribute="top" secondItem="HWH-5K-hPB" secondAttribute="top" constant="63" id="AH1-ui-pdr"/>
@@ -259,7 +258,6 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="0.80000000000000004" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="HWH-5K-hPB" firstAttribute="leading" secondItem="2D3-iK-DVr" secondAttribute="leading" id="8r9-0u-afx"/>
                 <constraint firstAttribute="bottom" secondItem="HWH-5K-hPB" secondAttribute="bottom" id="GYF-Qv-qU8"/>

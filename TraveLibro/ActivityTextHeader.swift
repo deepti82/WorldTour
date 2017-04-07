@@ -16,7 +16,7 @@ class ActivityTextHeader: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
-        transparentCardWhite(textView)
+//        transparentCardWhite(textView)
         
     }
     required init?(coder aDecoder: NSCoder) {
