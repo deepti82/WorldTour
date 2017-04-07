@@ -37,7 +37,7 @@ func getBackGround(_ myVC: UIViewController) -> Void {
     
 //    myVC.view.backgroundColor = UIColor(patternImage: UIImage(named: "bg")!)
     let bgImage = UIImageView(frame: myVC.view.frame)
-    bgImage.image = UIImage(named: "northern")
+    bgImage.image = UIImage(named: "back_7_4")
     bgImage.layer.zPosition = -1
     bgImage.isUserInteractionEnabled = false
     myVC.view.addSubview(bgImage)
@@ -57,7 +57,7 @@ func getDarkBackGround(_ myVC: UIViewController) -> Void {
     
     let bgImage = UIImageView(frame: myVC.view.frame)
 //    bgImage.image = UIImage(named: "darkBgNew")
-    bgImage.image = UIImage(named: "northern")
+    bgImage.image = UIImage(named: "back_7_4")
 //    bgImage.backgroundColor = UIColor.white
     bgImage.layer.zPosition = -1
     bgImage.isUserInteractionEnabled = false
@@ -107,7 +107,7 @@ func getDarkBackGroundBlue(_ myVC: UIViewController) {
 func getDarkBackGroundNew(_ myVC: UIViewController) {
     
     let bgImage = UIImageView(frame: myVC.view.frame)
-    bgImage.image = UIImage(named: "darkBgNew")
+    bgImage.image = UIImage(named: "back_7_4")
     bgImage.layer.zPosition = -1
     bgImage.isUserInteractionEnabled = false
     
@@ -248,7 +248,7 @@ open class LoadingOverlay{
         activityIndicator.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
         activityIndicator.activityIndicatorViewStyle = .whiteLarge
         activityIndicator.center = CGPoint(x: overlayView.bounds.width / 2, y: overlayView.bounds.height / 2)
-
+        activityIndicator.color = mainOrangeColor
         
         overlayView.addSubview(activityIndicator)
         view.addSubview(blurView)

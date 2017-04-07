@@ -1137,7 +1137,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         self.view.addSubview(TLLoader)
         self.navigationController?.setNavigationBarHidden(true, animated: true)
         mainScroll.delegate = self
-        loader.showOverlay(self.mainScroll)
+        loader.showOverlay(self.view)
         
     }
     
