@@ -44,24 +44,23 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
         layout = VerticalLayout(width: screenWidth)
         activityScroll.addSubview(layout)
         
-        request.checkActivityCache(user.getExistingUser(), completion: {(res) in
-            DispatchQueue.main.async(execute: {
-        print(res)
-            if res.count == 0 {
-                self.loader.showOverlay(self.view)
-            }
-            })
-        })
-        
-        
         self.mainFooter = FooterViewNew(frame: CGRect.zero)
         self.mainFooter.layer.zPosition = 5
         self.view.addSubview(self.mainFooter)
         mainFooter.activityImage.tintColor = mainOrangeColor
         mainFooter.activityOrange.textColor = mainOrangeColor
-        getActivity(pageNumber: pageno)
-        let i = PostImage()
-        i.uploadPhotos()
+        
+        request.checkActivityCache(user.getExistingUser()) { (response) in
+            if response.count == 0 {
+                self.loader.showOverlay(self.view)
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+                self.getActivity(pageNumber: self.pageno)
+                
+                let i = PostImage()
+                i.uploadPhotos()
+            })
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -155,9 +154,9 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
             showBottomLoader(onView: self.view)
             request.getActivityFeeds(currentUser["_id"].stringValue, pageNumber: pageNumber, completion: {(request, localLifeJsons,quickJsons) in
                 DispatchQueue.main.async(execute: {
-                    hideBottomLoader()
-                    NSLog(" check Response received \(request)")
                     
+                    hideBottomLoader()
+                    self.loader.hideOverlayView()
                     
                     if self.isRefreshing {
                         self.refreshControl.endRefreshing()
@@ -236,8 +235,6 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
                         
                     }
                     
-                    
-                    
                     if !(request["data"].isEmpty) {
                         
                         self.loadStatus = true
@@ -294,7 +291,6 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
                     }
                     else{
                         //                        self.loadStatus = false
-                        self.loader.hideOverlayView()
                     }                       
                     
                 })

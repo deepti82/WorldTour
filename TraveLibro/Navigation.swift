@@ -1489,19 +1489,16 @@ class Navigation {
     func checkActivityCache(_ user: String, completion: @escaping ((JSON) -> Void)) {
         let urlString = adminUrl + "activityfeed/getData"
         var json:JSON = [];
-        self.cache.fetch(key: urlString+user).onSuccess { data in
+        self.cache.fetch(key: urlString+user).onSuccess { (data) in            
             json = JSON(data: data)
-            
             completion(json)
-            }.onFailure { (err) in
-                
-            completion(json)
+            }.onFailure { (error) in
+                completion(json)
         }
-
     }
     
     func getActivityFeeds(_ user: String, pageNumber: Int, completion: @escaping ((JSON,[JSON],[JSON]) -> Void)) {
-        var urlString = adminUrl + "activityfeed/getData"
+        let urlString = adminUrl + "activityfeed/getData"
         
         var json:JSON = [];
         if(pageNumber == 1) {
