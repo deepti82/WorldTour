@@ -257,7 +257,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
                 profilePicture.hnk_setImageFromURL(getImageUrl!)
                 profile.image.hnk_setImageFromURL(getImageUrl!)
             }
-            makeBuddiesTLProfilePicture(self.profilePicture)
+            makeMenuProfilePicture(self.profilePicture)
             
             isSettingsEdited = false
         }*/
@@ -292,7 +292,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         profileView.addSubview(profile)
         footer = FooterViewNew(frame: CGRect(x: 0, y: self.view.frame.height - 65, width: self.view.frame.width, height: 65))
         self.view.addSubview(footer)
-        makeBuddiesTLProfilePicture(profile.image)
+        makeMenuProfilePicture(profile.image)
         profilePicture.isHidden = true
         
         MAMatterView.layer.opacity = 0.0
@@ -358,7 +358,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
                 profilePicture.hnk_setImageFromURL(getImageUrl!)
                 profile.image.hnk_setImageFromURL(getImageUrl!)
             }
-            makeBuddiesTLProfilePicture(self.profilePicture)
+            makeMenuProfilePicture(self.profilePicture)
         }
         var isNotDone = true
         if(currentUser["travelConfig"]["preferToTravel"].array != nil) {

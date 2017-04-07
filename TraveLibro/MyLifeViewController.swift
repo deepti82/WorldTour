@@ -70,9 +70,10 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         
         if currentUser != nil {
             
-            profileName.text = currentUser["name"].string!
+            profileName.text = selectedUser.isEmpty ? currentUser["name"].string! : selectedUser["name"].string!
         }
-        self.title = currentUser["name"].string!
+        self.title = selectedUser.isEmpty ? currentUser["name"].string! : selectedUser["name"].string!
+        
         isEmptyProfile = true
         
         arrowDownButton.setTitle(arrow, for: UIControlState())
