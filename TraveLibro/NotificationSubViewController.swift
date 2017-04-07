@@ -42,7 +42,6 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         rightButton.frame = CGRect(x: -10, y: 8, width: 30, height: 30)
         self.setOnlyRightNavigationButton(rightButton)
         
-        loader.showOverlay(self.view)
         self.mainFooter = FooterViewNew(frame: CGRect.zero)
         self.mainFooter.layer.zPosition = 5
         self.view.addSubview(self.mainFooter)
@@ -57,7 +56,13 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         
         mainFooter.notificationIcon.tintColor = mainOrangeColor
         mainFooter.notifications.textColor = mainOrangeColor
-        getNotification()
+        
+        request.checkNotificationCache(user.getExistingUser()) { (response) in
+            if response.count == 0 {
+                self.loader.showOverlay(self.view)
+            }
+            self.getNotification()
+        }        
         
     }
     
@@ -88,10 +93,6 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
     //MARK: - Helper
     
     func pullToRefreshCalled() {
-        
-        print("\n Pull to refresh : loadStatus : \(loadStatus)")
-        print("\n Pull to refresh : isRefreshing : \(refreshControl.isRefreshing)")
-        print("\n Pull to refresh : dragging : \(notifyTableView.isDragging)")
 //        if !pullToRefreshing {            
             currentPageNumber = 0
             loadStatus = true
@@ -116,7 +117,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
             
             print("\n Fetching data for pageNumber: \(currentPageNumber)")
             
-            request.getNotify(currentUser["_id"].string!, pageNumber: currentPageNumber,  completion: {(response) in
+            request.getNotify(user.getExistingUser(), pageNumber: currentPageNumber,  completion: {(response) in
                 
                 DispatchQueue.main.async(execute: {
                     

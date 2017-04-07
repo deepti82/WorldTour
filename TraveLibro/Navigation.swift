@@ -1463,40 +1463,6 @@ class Navigation {
         }
     }
     
-    
-    func getNotify(_ id: String, pageNumber: Int, completion: @escaping ((JSON) -> Void)) {
-        let urlString = adminUrl + "notification/getNotification"
-        
-        if(pageNumber == 1) {
-            self.cache.fetch(key: urlString+id).onSuccess { data in
-                let json = JSON(data: data)
-                completion(json)
-            }
-        }
-        
-        do {
-            let opt = try HTTP.POST(urlString, parameters: ["user": id,"pagenumber":pageNumber])
-            var json = JSON(1);
-            opt.start {response in
-                if let err = response.error {
-                    print("error: \(err.code) && msg : \(err.localizedDescription)")                    
-                }
-                else
-                {
-                    
-                    if(pageNumber == 1) {
-                        self.cache.set(value: response.data, key: urlString+id)
-                    }
-                    
-                    json  = JSON(data: response.data)
-                    completion(json)
-                }
-            }
-        } catch let error {
-            print("got an error creating the request: \(error)")
-        }
-    }    
-    
     func getPlaceId(_ placeId: String, completion: @escaping ((JSON) -> Void)) {
         
         do {
@@ -3550,6 +3516,53 @@ class Navigation {
 //            let opt = try HTTP.POST(adminUrl + )
 //        }
 //    }
+    
+    
+    //MARK: - Notifications
+    
+    func checkNotificationCache(_ user: String, completion: @escaping ((JSON) -> Void)) {
+        let urlString = adminUrl + "notification/getNotification"
+        var json:JSON = [];
+        self.cache.fetch(key: urlString+user).onSuccess { (data) in            
+            json = JSON(data: data)
+            completion(json)
+        }.onFailure { (error) in
+            completion(json)
+        }
+    }    
+    
+    func getNotify(_ id: String, pageNumber: Int, completion: @escaping ((JSON) -> Void)) {
+        let urlString = adminUrl + "notification/getNotification"
+        
+        if(pageNumber == 1) {
+            self.cache.fetch(key: urlString+id).onSuccess { data in
+                let json = JSON(data: data)
+                completion(json)
+            }
+        }
+        
+        do {
+            let opt = try HTTP.POST(urlString, parameters: ["user": id,"pagenumber":pageNumber])
+            var json = JSON(1);
+            opt.start {response in
+                if let err = response.error {
+                    print("error: \(err.code) && msg : \(err.localizedDescription)")                    
+                }
+                else
+                {
+                    
+                    if(pageNumber == 1) {
+                        self.cache.set(value: response.data, key: urlString+id)
+                    }
+                    
+                    json  = JSON(data: response.data)
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+    }
     
     
     //MARK: - Unread Notification's Count
