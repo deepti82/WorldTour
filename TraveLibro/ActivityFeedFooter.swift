@@ -182,29 +182,18 @@ class ActivityFeedFooter: UIView {
         if(self.commentCounts == 0  && self.likeCount == 0 && self.reviewCount == 0) {
             self.frame.size.height = 51;
             
-//            border1.removeFromSuperlayer()
-//            border.isHidden = false
-//            let width = CGFloat(2)
-//            border.frame = CGRect(x: 0, y: self.frame.size.height - width, width:  self.frame.size.width, height: self.frame.size.height)
-//            border.borderColor = UIColor(colorLiteralRed: 0/255, green: 0/255, blue: 0/255, alpha: 0.5).cgColor
-//            border.borderWidth = width
-//            self.layer.addSublayer(border)
-//            self.layer.masksToBounds = true
+//            if(self.type == "LocalLife") {
+//                globalLocalLifeInside.addHeightToLayout()
+//            } else if(self.type == "ActivityFeeds") {
+//                globalActivityFeedsController.blr?.frame.size.height = globalActivityFeedsController.blr?.frame.size.height
+//            }
+            
 //
             
         } else {
             self.frame.size.height = 90;
             
-//            border.removeFromSuperlayer()
-//            border1.isHidden = false
-//            let width = CGFloat(2)
-//            border1.frame = CGRect(x: 0, y: self.frame.size.height - width, width:  self.frame.size.width, height: self.frame.size.height)
-//            border1.borderColor = UIColor(colorLiteralRed: 0/255, green: 0/255, blue: 0/255, alpha: 0.5).cgColor
-//            border1.borderWidth = width
-//            self.layer.addSublayer(border1)
-//            
-//            self.layer.masksToBounds = true
-            
+//                        
         }
         let path = UIBezierPath(roundedRect:self.bounds,
                                 byRoundingCorners:[.bottomRight, .bottomLeft],

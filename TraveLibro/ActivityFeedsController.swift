@@ -28,6 +28,7 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
     var checkpoint = true
     var refreshControl = UIRefreshControl()
     var isRefreshing = false
+    var blr: UIView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -246,7 +247,7 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
                             checkIn.createProfileHeader(feed: post)
                             checkIn.activityFeed = self
                             
-                            var blr: UIView?
+                            
                             let darkBlur = UIBlurEffect(style: UIBlurEffectStyle.light)
                             let blurView = UIVisualEffectView(effect: darkBlur)
                             blurView.frame.size.height = checkIn.frame.height
@@ -255,12 +256,12 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
                             
                             blurView.isUserInteractionEnabled = false
                             
-                            blr = UIView(frame:CGRect(x: 0, y: 20, width: checkIn.frame.width, height: checkIn.frame.height))
+                            self.blr = UIView(frame:CGRect(x: 0, y: 20, width: checkIn.frame.width, height: checkIn.frame.height))
                             
                             
-                            blr!.addSubview(blurView)
-                            blr?.addSubview(checkIn)
-                            self.layout.addSubview(blr!)
+                            self.blr!.addSubview(blurView)
+                            self.blr?.addSubview(checkIn)
+                            self.layout.addSubview(self.blr!)
 
                             
                             

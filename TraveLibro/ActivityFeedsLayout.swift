@@ -53,6 +53,10 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
         self.layoutSubviews()
     }
     
+    func setBlurBounds() {
+        globalActivityFeedsController.blr?.bounds = self.bounds
+    }
+    
     func videosAndPhotosLayout(feed:JSON) {
         self.feeds = feed
         //Image generation only

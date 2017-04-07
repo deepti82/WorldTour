@@ -640,7 +640,7 @@ class ActivityFeedFooterBasic: UIView {
                     if postTop["type"].stringValue == "travel-life" {
                         rat.tintColor = mainOrangeColor
                     }else{
-                        rat.tintColor = endJourneyColor
+                        rat.tintColor = mainGreenColor
                     }                    
                 }
             }
