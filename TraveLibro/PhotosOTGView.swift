@@ -18,7 +18,7 @@ class PhotosOTGView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
-        transparentCardWhite(centerWhiteView)
+//        transparentCardWhite(centerWhiteView)
     }
     
     required init?(coder aDecoder: NSCoder) {
