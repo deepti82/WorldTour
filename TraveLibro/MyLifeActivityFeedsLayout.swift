@@ -352,25 +352,6 @@ class MyLifeActivityFeedsLayout: VerticalLayout, PlayerDelegate {
 //
         }
         
-        //header icon
-        let typeOfPost = getTypeOfPost(feed)
-        if(typeOfPost != nil) {
-            switch(typeOfPost) {
-            case "Location":
-                self.textHeader.kindOfJourneyMyLife.image = UIImage(named: "location_icon")
-            case "Image":
-                self.textHeader.kindOfJourneyMyLife.image = UIImage(named: "camera_icon")
-                
-            case "Videos":
-                self.textHeader.kindOfJourneyMyLife.image = UIImage(named: "video")
-            case "Thoughts":
-                self.textHeader.kindOfJourneyMyLife.image = UIImage(named: "pen_icon")
-                
-            default:
-                break
-            }
-        }
-        
         switch feed["type"].stringValue {
         case "local-life":
             self.textHeader.kindOfJourneyMyLife.tintColor = mainGreenColor

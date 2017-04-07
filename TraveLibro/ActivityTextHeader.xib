@@ -29,7 +29,7 @@
                     </constraints>
                 </view>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="..." selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pHq-mg-oUi">
-                    <rect key="frame" x="0.0" y="0.0" width="343" height="38"/>
+                    <rect key="frame" x="0.0" y="0.0" width="370" height="38"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="38" id="CJn-hv-8sV"/>
                     </constraints>
@@ -46,7 +46,7 @@
                 </imageView>
             </subviews>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="pHq-mg-oUi" secondAttribute="trailing" constant="32" id="6sq-Zz-zG5"/>
+                <constraint firstAttribute="trailing" secondItem="pHq-mg-oUi" secondAttribute="trailing" constant="5" id="6sq-Zz-zG5"/>
                 <constraint firstItem="Je4-JU-ajm" firstAttribute="leading" secondItem="pHq-mg-oUi" secondAttribute="trailing" id="9Ox-Dy-k6O"/>
                 <constraint firstAttribute="bottom" secondItem="pHq-mg-oUi" secondAttribute="bottom" id="HXR-rV-E6G"/>
                 <constraint firstItem="pHq-mg-oUi" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Tzu-lH-yNb"/>
@@ -58,6 +58,11 @@
                 <constraint firstItem="Qpj-n0-sgO" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="t8i-89-waQ"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="subviews">
+                    <exclude reference="Je4-JU-ajm"/>
+                </mask>
+            </variation>
             <point key="canvasLocation" x="38.5" y="-173"/>
         </view>
     </objects>

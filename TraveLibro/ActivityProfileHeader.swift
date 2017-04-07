@@ -92,24 +92,6 @@ class ActivityProfileHeader: UIView {
         self.profilePic.addGestureRecognizer(tapGestureRecognizer)
         self.userName.addGestureRecognizer(tapGestureRecognizer)
         self.followButton.isHidden = true
-        //header icon
-        let typeOfPost = getTypeOfPost(feed)
-        if(typeOfPost != nil) {
-            switch(typeOfPost) {
-            case "Location":
-                self.category.setImage(UIImage(named: "location_icon"), for: .normal)
-            case "Image":
-                self.category.setImage(UIImage(named: "camera_icon"), for: .normal)
-
-            case "Videos":
-                self.category.setImage(UIImage(named: "video"), for: .normal)
-            case "Thoughts":
-                self.category.setImage(UIImage(named: "pen_icon"), for: .normal)
-               
-            default:
-                break
-            }
-        }
         
         switch feed["type"].stringValue {
         case "local-life":

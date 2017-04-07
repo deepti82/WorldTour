@@ -111,20 +111,8 @@ class ActivityFeedFooterBasic: UIView {
     }
     
     func setView(feed:JSON) {
+        
         postTop = feed
-        print("hhhhhhh \(feed)")
-        //  RATING
-        if feed["type"].stringValue == "travel-life" {
-            localLifeTravelImage.image = UIImage(named: "travel_life")
-            localLifeTravelImage.tintColor = mainOrangeColor
-            
-        }else if feed["type"].stringValue == "local-life" {
-            localLifeTravelImage.image = UIImage(named: "local_life")
-            localLifeTravelImage.tintColor = endJourneyColor
-        }else{
-            localLifeTravelImage.image = UIImage(named: "travel_life")
-            localLifeTravelImage.tintColor = mainOrangeColor
-        }
         
         if feed["photos"] != nil {
             photoCount = feed["photos"].count
