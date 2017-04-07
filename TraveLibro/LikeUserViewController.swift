@@ -121,16 +121,8 @@ class LikeUserViewController: UITableViewController {
         cell.profileName.text = self.data[indexPath.row]["name"].stringValue
         cell.profileImage.hnk_setImageFromURL(getImageURL(self.data[indexPath.row]["profilePicture"].stringValue, width: 300))
         cell.urlSlurg.text = self.data[indexPath.row]["urlSlug"].stringValue
-        self.makeProfilePicture(cell.profileImage)
+        makeBuddiesTLProfilePicture(cell.profileImage)
         return cell
-    }
-    
-    func makeProfilePicture(_ image: UIImageView) {        
-        image.layer.cornerRadius = 8
-        image.layer.borderWidth = 2.0
-        image.layer.borderColor = UIColor.gray.cgColor
-        image.clipsToBounds = true
-        image.contentMode = UIViewContentMode.scaleAspectFill        
     }
     
 }

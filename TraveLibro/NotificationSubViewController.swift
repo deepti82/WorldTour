@@ -42,7 +42,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         rightButton.frame = CGRect(x: -10, y: 8, width: 30, height: 30)
         self.setOnlyRightNavigationButton(rightButton)
         
-        loader.showOverlay(self.view)        
+        loader.showOverlay(self.view)
         self.mainFooter = FooterViewNew(frame: CGRect.zero)
         self.mainFooter.layer.zPosition = 5
         self.view.addSubview(self.mainFooter)
