@@ -69,6 +69,7 @@ class NotificationDefaultCell: UITableViewCell {
     
     func setData(notificationData: JSON, helper: NotificationSubViewController) {        
         
+        NFHeader.frame = CGRect(x: 0, y: 0, width: Int(HEADER_HEIGHT), height: Int(HEADER_HEIGHT))
         NFHeader.setHeaderData(data: notificationData)
         
         NFTitle.NFMessageLabel.text = "Need to change this later TYPE: \(notificationData["type"])"
