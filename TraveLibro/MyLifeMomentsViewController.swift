@@ -361,20 +361,19 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
         else{
             switch momentType {
             case "all":
-                return CGSize(width: 70, height: 70)
+                let a = (screenWidth - 15) / 5
+                return CGSize(width: a, height: a)
+//                return CGSize(width: 70, height: 70)
             case "Monthly", "SelectCover":
                 return CGSize(width: 110, height: 110)
             case "travel-life":
                 let a = (screenWidth - 20) / 2
-                print("width \(a)")
                 return CGSize(width: a + 5, height: a + 75)
             case "local-life":
                 let a = (screenWidth - 20) / 2
-                print("width \(a)")
                 return CGSize(width: a, height: a + 45)
             case "review":
                 let a = (screenWidth - 15) / 3
-                print("width \(a)")
                 return CGSize(width: a, height: a + 100)
             default:
                 break
