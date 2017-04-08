@@ -219,7 +219,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
     @IBAction func addAction(_ sender: Any) {
         if(!self.isSameCity) {
             let alertController = UIAlertController(title: "", message:
-                "You can create your Local Life activity only in the city you live in. If you wish to change the city you live in, go to Settings.", preferredStyle: UIAlertControllerStyle.alert)
+                "Oops! You seem to facing one of the following issues: 1. You can create your Local Life activity only in the city that you live in. If you wish to change the city you live in, go to Settings. 2. Kindly enable your location services. 3. You seem to have poor internet connection.", preferredStyle: UIAlertControllerStyle.alert)
             
             let settingsAction = UIAlertAction(title: "Settings", style: .default) { (_) -> Void in
                 guard let settingsUrl = URL(string: UIApplicationOpenSettingsURLString) else {
