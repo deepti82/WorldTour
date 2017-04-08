@@ -233,7 +233,7 @@ open class LoadingOverlay{
     public func showOverlay(_ view: UIView) {
         hideOverlayView()
         overlayView.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
-        overlayView.center = view.center
+        overlayView.center = CGPoint(x: (screenWidth/2), y: (view.frame.size.height/2))
         overlayView.backgroundColor = UIColor.clear
         overlayView.clipsToBounds = true
         overlayView.layer.cornerRadius = 10
@@ -241,7 +241,7 @@ open class LoadingOverlay{
         let darkBlur = UIBlurEffect(style: UIBlurEffectStyle.dark)
         blurView = UIVisualEffectView(effect: darkBlur)
         blurView.frame.size.height = view.frame.height
-        blurView.frame.size.width = view.frame.width
+        blurView.frame.size.width = screenWidth
         blurView.isUserInteractionEnabled = false
         blurView.addSubview(overlayView)
         

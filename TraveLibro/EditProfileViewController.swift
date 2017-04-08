@@ -180,11 +180,11 @@ class EditProfileViewController: UIViewController, UITableViewDataSource, UITabl
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "textFieldCell") as! TextFieldTableViewCell
         cell.textField.text = labels[(indexPath as NSIndexPath).row]
-        if indexPath.section == 2 { //Name
+        if indexPath.row == 2 { //Name
             cell.textField.text = currentUser["name"].stringValue
             cell.textField.tag = 33
         }
-        else if indexPath.section == 3 {
+        else if indexPath.row == 3 {
             cell.textField.tag = 35
         }
         cell.textField.delegate = self

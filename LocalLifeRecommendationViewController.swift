@@ -19,7 +19,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
     var newScroll:UIScrollView!
     var titleLabel:UILabel!
     var locationData = ""
-    let locationManager = CLLocationManager()
+    var locationManager : CLLocationManager!
     var isSameCity = false
     var whichView = "noView"
     var locValue:CLLocationCoordinate2D!
@@ -178,7 +178,6 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
         mainFooter.localLife.textColor = mainGreenColor
         self.view.addSubview(mainFooter)
         
-        self.detectLocation(UIButton())
         self.changeAddButton(false)
         self.addHeightToLayout();
         
@@ -186,11 +185,12 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.detectLocation(UIButton())
         self.mainFooter.frame = CGRect(x: 0, y: self.view.frame.height - 65, width: self.view.frame.width, height: 65)
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+        super.viewDidAppear(animated)                
         globalNavigationController = self.navigationController
     }
     
@@ -224,17 +224,23 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
     @IBAction func addAction(_ sender: Any) {
         if(!self.isSameCity) {
             let alertController = UIAlertController(title: "", message:
-                "Oops! You seem to facing one of the following issues: 1. You can create your Local Life activity only in the city that you live in. If you wish to change the city you live in, go to Settings. 2. Kindly enable your location services. 3. You seem to have poor internet connection.", preferredStyle: UIAlertControllerStyle.alert)
+                "Oops! You seem to facing one of the following issues: \n1. You can create your Local Life activity only in the city that you live in. If you wish to change the city you live in, go to Settings. \n2. Kindly enable your location services. \n3. You seem to have poor internet connection.", preferredStyle: UIAlertControllerStyle.alert)
             
             let settingsAction = UIAlertAction(title: "Settings", style: .default) { (_) -> Void in
-                guard let settingsUrl = URL(string: UIApplicationOpenSettingsURLString) else {
-                    return
-                }
-                if UIApplication.shared.canOpenURL(settingsUrl) {
-                    UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
-                        print("Settings opened: \(success)") // Prints true
-                    })
-                }
+                
+                let cityVC = self.storyboard!.instantiateViewController(withIdentifier: "addCity") as! AddCityViewController
+                cityVC.isFromSettings = true
+                cityVC.isFromLocalLife = true
+                self.navigationController?.pushViewController(cityVC, animated: true)
+                
+//                guard let settingsUrl = URL(string: UIApplicationOpenSettingsURLString) else {
+//                    return
+//                }
+//                if UIApplication.shared.canOpenURL(settingsUrl) {
+//                    UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
+//                        print("Settings opened: \(success)") // Prints true
+//                    })
+//                }
             }
             alertController.addAction(settingsAction)
             alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
@@ -449,6 +455,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
     }
     
     func detectLocation(_ sender: AnyObject?) {
+        locationManager = CLLocationManager()
         locationManager.requestAlwaysAuthorization()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
