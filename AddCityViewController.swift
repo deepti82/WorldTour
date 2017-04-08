@@ -11,6 +11,7 @@ class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewD
     var locValue:CLLocationCoordinate2D!
     var locationData: String!
     internal var isFromSettings: Bool!
+    internal var isFromLocalLife = false
     
     @IBOutlet weak var cityTextField: UITextField!
     @IBOutlet weak var mainTableView: UITableView!
@@ -46,7 +47,7 @@ class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewD
                             
                             if self.locationData != nil {                                
                                 self.cityTextField.text = self.locationData!
-                                if (self.isFromSettings != nil && self.isFromSettings == true) {
+                                if (self.isFromSettings != nil && self.isFromSettings == true && self.isFromLocalLife == false) {
                                     //TODO:Check this if autoSave should be supported
                                 }
                                 else {
