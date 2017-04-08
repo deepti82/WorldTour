@@ -156,7 +156,7 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
         cell.selectionStyle = .none
         
         let cellData = allUsers[indexPath.row]        
-        
+        cell.userIcon.image = UIImage(named:"logo-default")
         cell.userIcon.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(cellData["profilePicture"].stringValue)", width: 100))
         
         cell.userIcon.layer.masksToBounds = false
