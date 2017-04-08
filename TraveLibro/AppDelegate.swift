@@ -519,7 +519,7 @@ func getUnreadNotificationCount() {
     
     if user.getExistingUser() != "" {
         
-        request.getUnreadNotificationCount(currentUser["_id"].stringValue) { (response) in
+        request.getUnreadNotificationCount(user.getExistingUser()) { (response) in
             DispatchQueue.main.async(execute: { 
                 
                 if response.error != nil {
@@ -535,6 +535,9 @@ func getUnreadNotificationCount() {
                 }
             })
         }
+    }
+    else {
+        clearNotificationCount()
     }
     
 }
