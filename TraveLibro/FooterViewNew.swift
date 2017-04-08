@@ -107,8 +107,7 @@ class FooterViewNew: UIView {
             setFooterDeafultState()
             self.travelLifeIcon.tintColor = mainOrangeColor
             self.travelLife.textColor = mainOrangeColor
-            
-            request.getUserFromCache(user.getExistingUser(), completion: { (response) in
+            request.getUser(user.getExistingUser(), urlSlug: nil, completion: { (response) in
                 DispatchQueue.main.async {
                     currentUser = response["data"]
                     let vc = storyboard!.instantiateViewController(withIdentifier: "newTL") as! NewTLViewController
@@ -119,7 +118,7 @@ class FooterViewNew: UIView {
                     }
                     self.setVC(newViewController: vc)
                 }
-            })
+            })            
         }
         else {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: ["type":0])
