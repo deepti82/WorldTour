@@ -51,7 +51,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     @IBOutlet weak var MAMButton: UIButton!
     @IBAction func MAMTapped(_ sender: AnyObject?) {
         
-        if(!selectedUser.isEmpty && currentUser["status"].stringValue == "private"){}
+        if(!selectedUser.isEmpty && (currentUser["status"].stringValue == "private" && (currentUser["following"].intValue != 1))){}
         else {
             if !toggle {
                 
@@ -303,7 +303,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         let myFont = moreAboutMe.font
         print("\n Myfont :\(myFont) \n")
         
-        if(!selectedUser.isEmpty && currentUser["status"].stringValue == "private") {
+        if(!selectedUser.isEmpty && (currentUser["status"].stringValue == "private" && (currentUser["following"].intValue != 1))) {
             //Dont show anything
             moreAboutMe.text = "This Account Is Private"
             moreAboutMe.textColor = mainOrangeColor
@@ -641,7 +641,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
                 if allCount["journeysCreated_count"].stringValue == "0" {
                     
                 }else{
-                    if(!selectedUser.isEmpty && currentUser["status"].stringValue == "private") {
+                    if(!selectedUser.isEmpty && (currentUser["status"].stringValue == "private" && (currentUser["following"].intValue != 1))) {
                         //Dont show anything
                     }
                     else {
@@ -658,7 +658,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
                 if allCount["checkins_count"].stringValue == "0" {
                     
                 }else{
-                    if(!selectedUser.isEmpty && currentUser["status"].stringValue == "private") {
+                    if(!selectedUser.isEmpty && (currentUser["status"].stringValue == "private" && (currentUser["following"].intValue != 1))) {
                         //Dont show anything
                     }
                     else {
@@ -666,7 +666,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
                     }
                 }
             }else{
-                if(!selectedUser.isEmpty && currentUser["status"].stringValue == "private") {
+                if(!selectedUser.isEmpty && (currentUser["status"].stringValue == "private" && (currentUser["following"].intValue != 1))) {
                     //Dont show anything
                 }
                 else {
@@ -694,7 +694,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     func MyLifeDetailsShow(_ sender: AnyObject?) {
 //        UIView.animate(withDuration: 0.75, animations: { () -> Void in
 //            UIView.setAnimationCurve(UIViewAnimationCurve.linear)
-        if(!selectedUser.isEmpty && currentUser["status"].stringValue == "private") {
+        if(!selectedUser.isEmpty && (currentUser["status"].stringValue == "private" && (currentUser["following"].intValue != 1))) {
             //Dont show anything
         }
         else {            
