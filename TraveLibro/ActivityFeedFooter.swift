@@ -241,6 +241,8 @@ class ActivityFeedFooter: UIView {
             if(self.type == "MyLifeFeeds") {
                 
                 if(postTop["type"].stringValue == "detail-itinerary") {
+                    if isSelfUser(otherUserID: currentUser["_id"].stringValue) {
+                        
                     let editActionButton: UIAlertAction = UIAlertAction(title: "Edit", style: .default)
                     {action -> Void in
                         let alert = UIAlertController(title: "Edit Itinerary", message: "You can only edit your Itinerary on Web.", preferredStyle: UIAlertControllerStyle.alert)
@@ -258,12 +260,22 @@ class ActivityFeedFooter: UIView {
                     //                {action -> Void in
                     //                }
                     //                actionSheetControllerIOS8.addAction(deleteActionButton)
+                    }else{
+                        let reportActionButton: UIAlertAction = UIAlertAction(title: "Report", style: .default)
+                        {action -> Void in
+                            let alert = UIAlertController(title: "Report", message: "Reported Successfully.", preferredStyle: UIAlertControllerStyle.alert)
+                            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                            globalNavigationController.present(alert, animated: true, completion: nil)
+                        }
+                        actionSheetControllerIOS8.addAction(reportActionButton)
+                    }
                     
                     let cancel: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel)
                     { action -> Void in
                         
                     }
                     actionSheetControllerIOS8.addAction(cancel)
+                        
                 }
                 
                 if(postTop["type"].stringValue == "quick-itinerary") {
@@ -274,11 +286,6 @@ class ActivityFeedFooter: UIView {
                         globalMyLifeContainerViewController.navigationController?.pushViewController(itineraryVC, animated: true)
                     }
                     actionSheetControllerIOS8.addAction(editActionButton)
-                    
-                    //                let changeCoverActionButton: UIAlertAction = UIAlertAction(title: "Change Cover Photo", style: .default)
-                    //                {action -> Void in
-                    //                }
-                    //                actionSheetControllerIOS8.addAction(changeCoverActionButton)
                     
                     let deleteActionButton: UIAlertAction = UIAlertAction(title: "Delete", style: .destructive)
                     {action -> Void in
@@ -308,7 +315,8 @@ class ActivityFeedFooter: UIView {
                     actionSheetControllerIOS8.addAction(cancel)
                 }
                 if postTop["type"].stringValue == "travel-life" || postTop["type"].stringValue == "local-life" {
-                    if isBuddy() && self.type == "MyLifeFeeds"{
+                    if isBuddy() && self.type == "MyLifeFeeds" && isSelfUser(otherUserID: currentUser["_id"].stringValue){
+                        
                         let DeletePost: UIAlertAction = UIAlertAction(title: "Delete Activity", style: .default)
                         { action -> Void in
                             
@@ -332,7 +340,8 @@ class ActivityFeedFooter: UIView {
                     }
                 }
                 if(postTop["type"].stringValue == "ended-journey" || postTop["type"].stringValue == "on-the-go-journey") {
-                    
+                    if isSelfUser(otherUserID: currentUser["_id"].stringValue) {
+                        
                     let changeNameActionButton: UIAlertAction = UIAlertAction(title: "Change Journey Name", style: .default)
                     {action -> Void in
                         
@@ -390,7 +399,17 @@ class ActivityFeedFooter: UIView {
                         end.type = "MyLife"
                         globalMyLifeContainerViewController.navigationController?.pushViewController(end, animated: true)
                     }
-                    actionSheetControllerIOS8.addAction(changeCoverCountriesActionButton)
+                        actionSheetControllerIOS8.addAction(changeCoverCountriesActionButton)
+                    }else{
+                        let reportActionButton: UIAlertAction = UIAlertAction(title: "Report", style: .default)
+                        {action -> Void in
+                            let alert = UIAlertController(title: "Report", message: "Reported Successfully.", preferredStyle: UIAlertControllerStyle.alert)
+                            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                            globalNavigationController.present(alert, animated: true, completion: nil)
+                        }
+                        actionSheetControllerIOS8.addAction(reportActionButton)
+                    }
+                    
                     
                     let cancel: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel)
                     { action -> Void in
