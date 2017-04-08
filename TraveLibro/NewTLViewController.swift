@@ -1144,6 +1144,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         hideHeaderAndFooter(false)
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
     
     func willSee(_ sender: UIButton){
