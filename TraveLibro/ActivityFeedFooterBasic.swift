@@ -103,7 +103,7 @@ class ActivityFeedFooterBasic: UIView {
     
     func isBuddy() -> Bool {
         
-        if postTop["buddies"].contains(where: {$0.1["_id"].stringValue == user.getExistingUser()}) {
+        if postTop["buddies"].contains(where: {$0.1["_id"].stringValue == user.getExistingUser()}) && user.getExistingUser() == currentUser["_id"].stringValue {
             return true
         }else{
             return false
@@ -166,7 +166,7 @@ class ActivityFeedFooterBasic: UIView {
         let actionSheetControllerIOS8: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         if user.getExistingUser() == postTop["postCreator"]["_id"].stringValue{
             
-            if(self.type == "MyLifeFeeds") {
+            if(self.type == "MyLifeFeeds" && isSelfUser(otherUserID: currentUser["_id"].stringValue)) {
                 let EditCheckIn: UIAlertAction = UIAlertAction(title: "Edit Activity", style: .default)
                 {action -> Void in
                     //            self.isEdit = true
@@ -236,13 +236,28 @@ class ActivityFeedFooterBasic: UIView {
                     actionSheetControllerIOS8.addAction(DeletePost)
 
                 }
+                
                 let reportActionButton: UIAlertAction = UIAlertAction(title: "Hide", style: .default)
                 {action -> Void in
                     let alert = UIAlertController(title: "Hide", message: "Hided successfuly", preferredStyle: UIAlertControllerStyle.alert)
                     alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
                     globalNavigationController.present(alert, animated: true, completion: nil)
                 }
-                actionSheetControllerIOS8.addAction(reportActionButton)
+                
+                let reportActionButton1: UIAlertAction = UIAlertAction(title: "Report", style: .default)
+                {action -> Void in
+                    let alert = UIAlertController(title: "Report", message: "Reported Successfully", preferredStyle: UIAlertControllerStyle.alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                    globalNavigationController.present(alert, animated: true, completion: nil)
+                }
+                
+                if isSelfUser(otherUserID: currentUser["_id"].stringValue) {
+                    actionSheetControllerIOS8.addAction(reportActionButton)
+
+                }else{
+                    actionSheetControllerIOS8.addAction(reportActionButton1)
+
+                }
                 
                 let cancel: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel)
                 { action -> Void in
@@ -253,6 +268,7 @@ class ActivityFeedFooterBasic: UIView {
             
         }else{
             if isBuddy() {
+                if self.type != "popular"{
                 let DeletePost: UIAlertAction = UIAlertAction(title: "Delete Activity", style: .default)
                 { action -> Void in
                     
@@ -273,15 +289,31 @@ class ActivityFeedFooterBasic: UIView {
                     
                 }
                 actionSheetControllerIOS8.addAction(DeletePost)
+                }
                 
             }
-            let reportActionButton: UIAlertAction = UIAlertAction(title: "Report", style: .default)
+            let reportActionButton1: UIAlertAction = UIAlertAction(title: "Report", style: .default)
             {action -> Void in
                 let alert = UIAlertController(title: "Report", message: "Reported Successfully", preferredStyle: UIAlertControllerStyle.alert)
                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
                 globalNavigationController.present(alert, animated: true, completion: nil)
             }
-            actionSheetControllerIOS8.addAction(reportActionButton)
+            
+            let reportActionButton: UIAlertAction = UIAlertAction(title: "Hide", style: .default)
+            {action -> Void in
+                let alert = UIAlertController(title: "Hide", message: "Hided successfuly", preferredStyle: UIAlertControllerStyle.alert)
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                globalNavigationController.present(alert, animated: true, completion: nil)
+            }
+            
+            if isSelfUser(otherUserID: currentUser["_id"].stringValue) {
+                actionSheetControllerIOS8.addAction(reportActionButton)
+                
+            }else{
+                actionSheetControllerIOS8.addAction(reportActionButton1)
+                
+            }
+            
             
             let cancel: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel)
             { action -> Void in
@@ -618,8 +650,9 @@ class ActivityFeedFooterBasic: UIView {
     
     func checkMyRating(_ sender: UITapGestureRecognizer) {
         print("check i im the creator")        
-        if user.getExistingUser() == postTop["postCreator"]["_id"].stringValue {
-            openRating()
+        if user.getExistingUser() == currentUser["_id"].stringValue {
+                openRating()
+            
         }
     }
     
