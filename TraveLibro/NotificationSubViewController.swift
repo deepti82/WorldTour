@@ -80,6 +80,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        hideHeaderAndFooter(false)
         NotificationCenter.default.removeObserver(self)
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
@@ -712,7 +713,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         let end = storyboard!.instantiateViewController(withIdentifier: "endJourney") as! EndJourneyViewController
         end.journeyId = journeyID
         end.notificationID = notificationId
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
         self.navigationController!.pushViewController(end, animated: true)
     }
     
@@ -726,7 +727,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "EachItineraryViewController") as! EachItineraryViewController
         controller.fromOutSide = itineraryID        
-        globalNavigationController?.setNavigationBarHidden(false, animated: true)
+        globalNavigationController?.setNavigationBarHidden(false, animated: false)
         globalNavigationController?.pushViewController(controller, animated: true)
     }
     
@@ -769,19 +770,12 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
     
     func hideHeaderAndFooter(_ isShow:Bool) {
         if(isShow) {
-//            tableTopConstraint.constant = 0
-            
             self.navigationController?.setNavigationBarHidden(true, animated: true)
-            
             self.mainFooter.frame.origin.y = self.view.frame.height + 95
         }
         else {
-//            tableTopConstraint.constant = (self.navigationController?.navigationBar.frame.size.height)! + 21
-            
             self.navigationController?.setNavigationBarHidden(false, animated: true)
-            
-            self.mainFooter.frame.origin.y = self.view.frame.height - 65
-            
+            self.mainFooter.frame.origin.y = self.view.frame.height - 65            
         }
     }
     

@@ -40,10 +40,12 @@ class LocalLifePostsViewController: UIViewController, UIScrollViewDelegate, CLLo
         self.detectLocation(UIButton())
         globalLocalLifeInside = self
         self.navigationController?.isNavigationBarHidden = false
+    }    
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        hideHeaderAndFooter(false)
     }
-    
-    
-    
     
     func addPostLayout(_ post:JSON) {
         let checkIn = LocalLifePost(width: layout.frame.width)

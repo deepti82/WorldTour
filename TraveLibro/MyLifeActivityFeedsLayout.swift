@@ -304,7 +304,7 @@ class MyLifeActivityFeedsLayout: VerticalLayout, PlayerDelegate {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "EachItineraryViewController") as! EachItineraryViewController
         controller.fromOutSide = feeds["_id"].stringValue
-        globalNavigationController?.setNavigationBarHidden(false, animated: true)
+        globalNavigationController?.setNavigationBarHidden(false, animated: false)
         globalNavigationController?.pushViewController(controller, animated: true)
 
     }

@@ -128,7 +128,7 @@ class ActivityFeedFooter: UIView {
             default:
                 comment.type = "post"
             }
-            globalNavigationController?.setNavigationBarHidden(false, animated: true)
+            globalNavigationController?.setNavigationBarHidden(false, animated: false)
             globalNavigationController?.pushViewController(comment, animated: true)
         }
         else {

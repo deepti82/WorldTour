@@ -460,7 +460,7 @@ class ActivityFeedFooterBasic: UIView {
                 }else{
                     comment.type = "Photo"
                 }
-                globalNavigationController?.setNavigationBarHidden(false, animated: true)
+                globalNavigationController?.setNavigationBarHidden(false, animated: false)
                 globalNavigationController?.pushViewController(comment, animated: true)
             }
             else{
@@ -478,7 +478,7 @@ class ActivityFeedFooterBasic: UIView {
                 default:
                     comment.type = "photo"
                 }
-                globalNavigationController?.setNavigationBarHidden(false, animated: true)
+                globalNavigationController?.setNavigationBarHidden(false, animated: false)
                 globalNavigationController?.pushViewController(comment, animated: true)
             }
             

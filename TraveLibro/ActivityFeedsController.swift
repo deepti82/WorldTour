@@ -77,6 +77,7 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        hideHeaderAndFooter(false)
         displayData = "activity"
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         print()

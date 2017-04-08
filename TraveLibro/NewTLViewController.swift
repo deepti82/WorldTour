@@ -1141,6 +1141,10 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        hideHeaderAndFooter(false)
+    }
     
     func willSee(_ sender: UIButton){
         print("GoForIt")

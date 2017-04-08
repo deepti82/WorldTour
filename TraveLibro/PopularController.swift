@@ -69,9 +69,10 @@ class PopularController: UIViewController, UIScrollViewDelegate {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        hideHeaderAndFooter(false)
         displayData = "activity"
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-    }
+    }    
     
     func demonote(_ notification: Notification) {
         print("notification called")
@@ -229,18 +230,11 @@ class PopularController: UIViewController, UIScrollViewDelegate {
     
     func hideHeaderAndFooter(_ isShow:Bool) {
         if(isShow) {
-            //            scrollTopConstraint.constant = 0
-            
-            self.navigationController?.setNavigationBarHidden(true, animated: true)
-            
+            self.navigationController?.setNavigationBarHidden(true, animated: true)            
             self.mainFooter.frame.origin.y = self.view.frame.height + 95
         } else {
-            //            scrollTopConstraint.constant = (self.navigationController?.navigationBar.frame.size.height)!
-            
-            self.navigationController?.setNavigationBarHidden(false, animated: true)
-            
-            self.mainFooter.frame.origin.y = self.view.frame.height - 65
-            
+            self.navigationController?.setNavigationBarHidden(false, animated: true)           
+            self.mainFooter.frame.origin.y = self.view.frame.height - 65            
         }
     }
 

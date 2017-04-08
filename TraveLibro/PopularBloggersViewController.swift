@@ -58,6 +58,10 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
         globalNavigationController = self.navigationController
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        hideHeaderAndFooter(false)
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -296,18 +300,11 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
     
     func hideHeaderAndFooter(_ isShow:Bool) {
         if(isShow) {
-//            tableTopConstraint.constant = 0
-            
             self.navigationController?.setNavigationBarHidden(true, animated: true)
-            
             self.mainFooter.frame.origin.y = self.view.frame.height + 95
         } else {
-//            tableTopConstraint.constant = (self.navigationController?.navigationBar.frame.size.height)! + 21
-            
-            self.navigationController?.setNavigationBarHidden(false, animated: true)
-            
-            self.mainFooter.frame.origin.y = self.view.frame.height - 65
-            
+            self.navigationController?.setNavigationBarHidden(false, animated: true)           
+            self.mainFooter.frame.origin.y = self.view.frame.height - 65            
         }
     }
     

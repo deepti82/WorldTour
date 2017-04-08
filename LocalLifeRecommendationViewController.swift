@@ -194,6 +194,11 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
         globalNavigationController = self.navigationController
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        hideHeaderAndFooter(false)
+    }
+    
     func addHeightToLayout() {
         self.layout.layoutSubviews()
         self.thisScroll.contentSize = CGSize(width: self.layout.frame.width, height: self.layout.frame.height - 10)
