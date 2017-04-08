@@ -61,7 +61,7 @@ class EditProfileViewController: UIViewController, UITableViewDataSource, UITabl
     
     func numberOfSections(in tableView: UITableView) -> Int {
         
-        return labels.count
+        return 1
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -80,13 +80,13 @@ class EditProfileViewController: UIViewController, UITableViewDataSource, UITabl
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 1
+        return labels.count
         
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        if (indexPath as NSIndexPath).section == 0 {
+        if (indexPath as NSIndexPath).row == 0 {
             
             return 75
         }
@@ -97,7 +97,7 @@ class EditProfileViewController: UIViewController, UITableViewDataSource, UITabl
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if (indexPath as NSIndexPath).section == 0 {    //Profile photo
+        if (indexPath as NSIndexPath).row == 0 {    //Profile photo
             let cell = tableView.dequeueReusableCell(withIdentifier: "profilePhotoCell") as! ProfilePhotoTableViewCell
             makeTLProfilePicture(cell.profilePhoto)
             if pickerImage != nil {
@@ -111,7 +111,7 @@ class EditProfileViewController: UIViewController, UITableViewDataSource, UITabl
             
         }
             
-        else if (indexPath as NSIndexPath).section == 1 {   //DOB
+        else if (indexPath as NSIndexPath).row == 1 {   //DOB
             let cell = tableView.dequeueReusableCell(withIdentifier: "dateTypeTextFieldCell") as! DateTypeTextFieldTableViewCell
             cell.datetypeTextField.delegate = self
             cell.datetypeTextField.text = ""
@@ -130,10 +130,10 @@ class EditProfileViewController: UIViewController, UITableViewDataSource, UITabl
             return cell
         }
         
-        else if (indexPath as NSIndexPath).section == 6 {    //Gender
+        else if (indexPath as NSIndexPath).row == 6 {    //Gender
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "EditLabelCell") as! EditProfileTableViewCell
-            cell.editLabel.text = labels[(indexPath as NSIndexPath).section]
+            cell.editLabel.text = labels[(indexPath as NSIndexPath).row]
             if genderValue == "" {
                 genderValue = currentUser["gender"].stringValue                
             }
@@ -144,28 +144,28 @@ class EditProfileViewController: UIViewController, UITableViewDataSource, UITabl
             return cell
         }
         
-        else if (indexPath as NSIndexPath).section == 4 {    //City
+        else if (indexPath as NSIndexPath).row == 4 {    //City
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "EditNationalityCell") as! EditProfileTableViewCell
-            cell.editLabel.text = "\(labels[(indexPath as NSIndexPath).section]) - \(currentUser["homeCity"].stringValue)"
+            cell.editLabel.text = "\(labels[(indexPath as NSIndexPath).row]) - \(currentUser["homeCity"].stringValue)"
             cell.accessoryType = .disclosureIndicator
             return cell
         }
             
-        else if (indexPath as NSIndexPath).section == 5 {    //Nationality
+        else if (indexPath as NSIndexPath).row == 5 {    //Nationality
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "EditNationalityCell") as! EditProfileTableViewCell
-            cell.editLabel.text = "\(labels[(indexPath as NSIndexPath).section]) - \(currentUser["homeCountry"]["name"].stringValue)"
+            cell.editLabel.text = "\(labels[(indexPath as NSIndexPath).row]) - \(currentUser["homeCountry"]["name"].stringValue)"
             cell.accessoryType = .disclosureIndicator
             return cell            
         }
         
-        else if (indexPath as NSIndexPath).section == 3 {    //Favourite Destination
+        else if (indexPath as NSIndexPath).row == 3 {    //Favourite Destination
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "destinationCell") as! DestinationTextFieldCell
             
             let paddingView = UILabel(frame: CGRect(x: 5, y: 0, width: 150, height: cell.destinationTextField.frame.size.height))
-            paddingView.text = labels[(indexPath as NSIndexPath).section]
+            paddingView.text = labels[(indexPath as NSIndexPath).row]
             paddingView.textColor = mainBlueColor
             paddingView.font = avenirBold
             paddingView.textAlignment = .left
@@ -179,7 +179,7 @@ class EditProfileViewController: UIViewController, UITableViewDataSource, UITabl
         
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "textFieldCell") as! TextFieldTableViewCell
-        cell.textField.text = labels[(indexPath as NSIndexPath).section]
+        cell.textField.text = labels[(indexPath as NSIndexPath).row]
         if indexPath.section == 2 { //Name
             cell.textField.text = currentUser["name"].stringValue
             cell.textField.tag = 33
@@ -197,7 +197,7 @@ class EditProfileViewController: UIViewController, UITableViewDataSource, UITabl
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
-        switch (indexPath as NSIndexPath).section {
+        switch (indexPath as NSIndexPath).row {
         case 0:
             
             shouldSave = false
@@ -245,7 +245,7 @@ class EditProfileViewController: UIViewController, UITableViewDataSource, UITabl
         case 6: //Gender
             shouldSave = false
             let otherSettingsVC = storyboard?.instantiateViewController(withIdentifier: "EditEdit") as! EditEditProfileViewController
-            otherSettingsVC.whichView = (indexPath as NSIndexPath).section
+            otherSettingsVC.whichView = (indexPath as NSIndexPath).row
             self.navigationController?.pushViewController(otherSettingsVC, animated: true)
             break
             
