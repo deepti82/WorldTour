@@ -143,7 +143,7 @@ class ActivityFeedFooterBasic: UIView {
             afterRating(starCnt: feed["review"][0]["rating"].intValue, review: feed["review"][0]["review"].stringValue)
         }else{
             if feed["checkIn"] != nil && feed["checkIn"]["category"].stringValue != "" {
-                if user.getExistingUser() == postTop["postCreator"]["_id"].stringValue {
+                if user.getExistingUser() == currentUser["_id"].stringValue {
                     ratingStack.isHidden = true
                     rateThisButton.isHidden = false
                 }else{
@@ -306,12 +306,17 @@ class ActivityFeedFooterBasic: UIView {
                 globalNavigationController.present(alert, animated: true, completion: nil)
             }
             
+            if self.type == "popular"{
+                actionSheetControllerIOS8.addAction(reportActionButton1)
+            }else{
+            
             if isSelfUser(otherUserID: currentUser["_id"].stringValue) {
                 actionSheetControllerIOS8.addAction(reportActionButton)
                 
             }else{
                 actionSheetControllerIOS8.addAction(reportActionButton1)
                 
+            }
             }
             
             
