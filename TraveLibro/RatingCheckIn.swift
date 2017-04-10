@@ -72,8 +72,10 @@ class RatingCheckIn: UIView {
             rating.checkIn = self
             rating.whichView = "otg"
 
-            rating.switchSmily()
             rating.json = self.review
+            rating.activityJson = JSON("")
+            rating.switchSmily()
+            
             print("get Review \(rating.json)")
             if review != nil  {
                 rating.starCount = Int(review["rating"].stringValue)!

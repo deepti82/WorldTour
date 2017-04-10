@@ -174,7 +174,8 @@ class AddRating: UIView, UITextViewDelegate {
 
             }
             star.adjustsImageWhenHighlighted = false
-            if isSelfUser(otherUserID: activityJson["user"]["_id"].stringValue) {
+            let ids = (!activityJson.isEmpty) ? (activityJson["user"]["_id"].stringValue) : user.getExistingUser()
+            if isSelfUser(otherUserID: ids) {
                 star.addTarget(self, action: #selector(AddRating.ratingButtonTapped), for: .touchDown)
             }
         }
@@ -315,13 +316,11 @@ class AddRating: UIView, UITextViewDelegate {
         }
     }
     
-    func ratingButtonTapped(_ button: UIButton) {
-        if !isSelfUser(otherUserID: activityJson["user"]["_id"].stringValue) {
-            ratingIndex = stars.index(of: button)! + 1            
-            reviewConclusion.text = moodArr[ratingIndex - 1]
-            smiley.setImage(UIImage(named: imageArr[ratingIndex - 1]), for: UIControlState())
-            updateButtonSelectionStates()
-        }
+    func ratingButtonTapped(_ button: UIButton) {        
+        ratingIndex = stars.index(of: button)! + 1            
+        reviewConclusion.text = moodArr[ratingIndex - 1]
+        smiley.setImage(UIImage(named: imageArr[ratingIndex - 1]), for: UIControlState())
+        updateButtonSelectionStates()        
     }
     
     func updateButtonSelectionStates() {
