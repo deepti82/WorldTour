@@ -279,7 +279,7 @@ class ActivityFeedFooterBasic: UIView {
             
         }else{
             if isBuddy() {
-                if self.type != "popular"{
+                if self.type == "MyLifeFeeds"{
                 let DeletePost: UIAlertAction = UIAlertAction(title: "Delete Activity", style: .default)
                 { action -> Void in
                     
