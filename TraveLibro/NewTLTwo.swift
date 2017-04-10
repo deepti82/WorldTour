@@ -362,7 +362,7 @@ extension NewTLViewController {
     
     func addRatingPost(_ sender: UIButton) {
         print("two")
-        if myJourney["journeyCreator"]["_id"].stringValue == user.getExistingUser() {
+        if myJourney["user"]["_id"].stringValue == user.getExistingUser() {
             let tapout = UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.reviewTapOut(_:)))
             
             backgroundReview = UIView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: self.view.frame.size.height))

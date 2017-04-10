@@ -218,11 +218,20 @@ class AddRating: UIView, UITextViewDelegate {
     
     func ratingDisplay(_ review: JSON) {
         print("display rating")
-        print(review)
+        addReviewText.text = "Add your Review"
+        
         if review["review"].string == "" || review["review"] == nil {
-            reviewTextView.text = "Fill Me In..."
+            reviewTextView.text = "Fill Me In..."            
+            if !isSelfUser(otherUserID: activityJson["user"]["_id"].stringValue) {
+                reviewTextView.text = ""
+                addReviewText.text = ""
+            }
+            
         }else{
             reviewTextView.text = review["review"].string!
+            if !isSelfUser(otherUserID: activityJson["user"]["_id"].stringValue) {
+                addReviewText.text = ""
+            }
         }
         
         

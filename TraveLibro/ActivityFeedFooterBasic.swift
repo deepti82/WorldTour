@@ -136,20 +136,30 @@ class ActivityFeedFooterBasic: UIView {
             rateThisButton.isHidden = true
         }
         
+        rateThisButton.isUserInteractionEnabled = true
+        ratingStack.isUserInteractionEnabled = true
         
         if feed["review"][0] != nil && feed["review"].count > 0 {
             ratingStack.isHidden = false
-            rateThisButton.isHidden = true
+            rateThisButton.isHidden = true            
             afterRating(starCnt: feed["review"][0]["rating"].intValue, review: feed["review"][0]["review"].stringValue)
-        }else{
+            if !isSelfUser(otherUserID: postTop["user"]["_id"].stringValue) {
+                rateThisButton.isUserInteractionEnabled = false
+            }
+        }
+        else{
+            
             if feed["checkIn"] != nil && feed["checkIn"]["category"].stringValue != "" {
-                if user.getExistingUser() == currentUser["_id"].stringValue {
-                    ratingStack.isHidden = true
-                    rateThisButton.isHidden = false
-                }else{
-                    ratingStack.isHidden = true
-                    rateThisButton.isHidden = true
+                ratingStack.isHidden = true
+                if isSelfUser(otherUserID: postTop["user"]["_id"].stringValue) {
+                    rateThisButton.setTitle("Rate this now", for: .normal)
                 }
+                else {
+                    rateThisButton.setTitle("", for: .normal)
+                    rateThisButton.isUserInteractionEnabled = false
+                }
+                
+                
             }else{
                 ratingStack.isHidden = true
                 rateThisButton.isHidden = true
@@ -164,7 +174,8 @@ class ActivityFeedFooterBasic: UIView {
         print(user.getExistingUser())
         print(postTop)
         let actionSheetControllerIOS8: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        if user.getExistingUser() == postTop["postCreator"]["_id"].stringValue{
+       
+        if isSelfUser(otherUserID: postTop["user"]["_id"].stringValue) {
             
             if(self.type == "MyLifeFeeds" && isSelfUser(otherUserID: currentUser["_id"].stringValue)) {
                 let EditCheckIn: UIAlertAction = UIAlertAction(title: "Edit Activity", style: .default)
@@ -310,13 +321,13 @@ class ActivityFeedFooterBasic: UIView {
                 actionSheetControllerIOS8.addAction(reportActionButton1)
             }else{
             
-            if isSelfUser(otherUserID: currentUser["_id"].stringValue) {
-                actionSheetControllerIOS8.addAction(reportActionButton)
-                
-            }else{
-                actionSheetControllerIOS8.addAction(reportActionButton1)
-                
-            }
+                if isSelfUser(otherUserID: postTop["user"]["_id"].stringValue) {
+                    actionSheetControllerIOS8.addAction(reportActionButton)
+                    
+                }else{
+                    actionSheetControllerIOS8.addAction(reportActionButton1)
+                    
+                }
             }
             
             
@@ -648,8 +659,16 @@ class ActivityFeedFooterBasic: UIView {
         rating.center = backgroundReview.center
         rating.layer.cornerRadius = 5
         rating.clipsToBounds = true
-        //        rating.navController = globalNavigationController
-        //        backgroundReview.addSubview(rating)
+        
+        rating.addReviewText.isUserInteractionEnabled = true
+        rating.reviewTextView.isEditable = true
+        rating.postReview.setTitle("Post", for: .normal)
+        if !isSelfUser(otherUserID: postTop["user"]["_id"].stringValue) {
+            rating.addReviewText.isUserInteractionEnabled = false
+            rating.reviewTextView.isEditable = false
+            rating.postReview.setTitle("Close", for: .normal)
+        }
+        
         globalNavigationController.topViewController?.view.addSubview(rating)
     }
     

@@ -445,37 +445,6 @@ class ActivityFeedFooter: UIView {
     }
     
     
-    @IBAction func reviewClicked(_ sender: UIButton) {
-        let tapout = UITapGestureRecognizer(target: self, action: #selector(ActivityFeedFooter.reviewTapOut(_:)))
-        
-        backgroundReview = UIView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: (globalNavigationController.topViewController?.view.frame.size.height)!))
-        backgroundReview.addGestureRecognizer(tapout)
-        backgroundReview.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.4)
-        globalNavigationController.topViewController?.view.addSubview(backgroundReview)
-        globalNavigationController.topViewController?.view.bringSubview(toFront: backgroundReview)
-        
-        let rating = AddRating(frame: CGRect(x: 0, y: 0, width: width - 40, height: 335))
-        rating.activityJson = postTop
-        rating.activity = self
-        rating.checkView = "activity"
-        
-        if postTop["userReview"][0]["rating"] != nil  && postTop["userReview"].count != 0 {
-            rating.starCount = postTop["userReview"][0]["rating"].intValue
-            rating.ratingDisplay(postTop["userReview"][0])
-        }else{
-            rating.starCount = 1
-        }
-        
-        rating.center = backgroundReview.center
-        rating.layer.cornerRadius = 5
-        rating.clipsToBounds = true
-        rating.addGestureRecognizer(UITapGestureRecognizer(target: self, action: nil))
-
-        rating.navController = globalNavigationController
-        backgroundReview.addSubview(rating)
-
-    }
-    
     @IBAction func sharingTap(_ sender: Any) {
         sharingUrl(url:  postTop["sharingUrl"].stringValue, onView: globalNavigationController.topViewController!)
     }

@@ -1492,7 +1492,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
                     rateButton.rateCheckInButton.addTarget(self, action: #selector(NewTLViewController.addRatingPost(_:)), for: .touchUpInside)
                     print(">>>>>>>>>>>> \(myJourney)")
                     if myJourney != nil {
-                            rateButton.journeyUser = myJourney["journeyCreator"]["_id"].stringValue
+                            rateButton.journeyUser = myJourney["user"]["_id"].stringValue
                     }
                     
                     rateButton.review = post["checkIn"]
