@@ -45,6 +45,7 @@ class KindOfJourneyOTGViewController: UIViewController {
         getDarkBackGroundBlue(self)
         
         let allControllers = self.navigationController?.viewControllers
+        print("All controllers \(allControllers)")
         backVC = allControllers![allControllers!.count - 2] as! NewTLViewController
         backVC.journeyCategories = []
         
