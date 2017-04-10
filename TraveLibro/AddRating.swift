@@ -38,6 +38,7 @@ class AddRating: UIView, UITextViewDelegate {
     let imageArr = ["disapointed", "sad", "good", "superface (1)", "love"]
     var navController = UINavigationController()
     var whichView:String = ""
+    var canRate = true
     
     func popToaster(text:String) {
         let msg = Toast(text: text)
@@ -173,11 +174,11 @@ class AddRating: UIView, UITextViewDelegate {
                 star.imageView?.tintColor = endJourneyColor
 
             }
-            star.adjustsImageWhenHighlighted = false
-            let ids = (!activityJson.isEmpty) ? (activityJson["user"]["_id"].stringValue) : user.getExistingUser()
-            if isSelfUser(otherUserID: ids) {
-                star.addTarget(self, action: #selector(AddRating.ratingButtonTapped), for: .touchDown)
-            }
+            star.adjustsImageWhenHighlighted = false           
+                        
+            star.addTarget(self, action: #selector(AddRating.ratingButtonTapped), for: .touchDown)           
+            star.isUserInteractionEnabled = self.canRate           
+            
         }
         stars[0].isSelected = true
 

@@ -151,7 +151,7 @@ class ActivityFeedFooterBasic: UIView {
             
             if feed["checkIn"] != nil && feed["checkIn"]["category"].stringValue != "" {
                 ratingStack.isHidden = true
-                if isSelfUser(otherUserID: postTop["user"]["_id"].stringValue) {
+                if canRate() {
                     rateThisButton.setTitle("Rate this now", for: .normal)
                 }
                 else {
@@ -167,6 +167,16 @@ class ActivityFeedFooterBasic: UIView {
         }
     }
     
+    //MARK: - CanRate
+    
+    func canRate() -> Bool {
+        if ((isSelfUser(otherUserID: postTop["user"]["_id"].stringValue)) || isBuddy()){
+            return true
+        }
+        else {
+            return false
+        }
+    }
     
     //MARK: - Options
 
@@ -623,6 +633,7 @@ class ActivityFeedFooterBasic: UIView {
         
         rating = AddRating(frame: CGRect(x: 0, y: 0, width: width - 40, height: 335))
         rating.activityJson = postTop
+        rating.canRate = canRate()
         
         if postTop["type"].stringValue == "travel-life" {
             rating.whichView = "otg"
@@ -663,11 +674,12 @@ class ActivityFeedFooterBasic: UIView {
         rating.addReviewText.isUserInteractionEnabled = true
         rating.reviewTextView.isEditable = true
         rating.postReview.setTitle("Post", for: .normal)
-        if !isSelfUser(otherUserID: postTop["user"]["_id"].stringValue) {
+        
+        if !(canRate()) {
             rating.addReviewText.isUserInteractionEnabled = false
             rating.reviewTextView.isEditable = false
             rating.postReview.setTitle("Close", for: .normal)
-        }
+        }       
         
         globalNavigationController.topViewController?.view.addSubview(rating)
     }
