@@ -69,7 +69,7 @@ func getDarkBackGround(_ myVC: UIViewController) -> Void {
 func getDarkBackGroundBlur(_ myVC: UIViewController) -> Void {
     
     let bgImage = UIImageView(frame: myVC.view.frame)
-    bgImage.image = UIImage(named: "darkBg")
+    bgImage.image = UIImage(named: "back_7_4")
     bgImage.layer.zPosition = -1
     bgImage.isUserInteractionEnabled = false
     
@@ -83,7 +83,7 @@ func getDarkBackGroundBlur(_ myVC: UIViewController) -> Void {
 func getDarkBackGroundBlue(_ myVC: UIViewController) {
     
     let bgImage = UIImageView(frame: myVC.view.frame)
-    bgImage.image = UIImage(named: "darkBgNew")
+    bgImage.image = UIImage(named: "back_7_4")
     bgImage.layer.zPosition = -1
     bgImage.isUserInteractionEnabled = false
     

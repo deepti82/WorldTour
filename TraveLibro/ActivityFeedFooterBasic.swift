@@ -183,6 +183,7 @@ class ActivityFeedFooterBasic: UIView {
     @IBAction func optionClick(_ sender: UIButton) {
         print(user.getExistingUser())
         print(postTop)
+        var shouldPresent = true
         let actionSheetControllerIOS8: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
        
         if isSelfUser(otherUserID: postTop["user"]["_id"].stringValue) {
@@ -273,18 +274,25 @@ class ActivityFeedFooterBasic: UIView {
                 }
                 
                 if isSelfUser(otherUserID: currentUser["_id"].stringValue) {
-                    actionSheetControllerIOS8.addAction(reportActionButton)
+                    shouldPresent = false
+//                    actionSheetControllerIOS8.addAction(reportActionButton)
+//                    let cancel: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel)
+//                    { action -> Void in
+//                        
+//                    }
+//                    actionSheetControllerIOS8.addAction(cancel)
 
                 }else{
                     actionSheetControllerIOS8.addAction(reportActionButton1)
+                    let cancel: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel)
+                    { action -> Void in
+                        
+                    }
+                    actionSheetControllerIOS8.addAction(cancel)
 
                 }
                 
-                let cancel: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel)
-                { action -> Void in
-                    
-                }
-                actionSheetControllerIOS8.addAction(cancel)
+                
             }
             
         }else{
@@ -347,7 +355,10 @@ class ActivityFeedFooterBasic: UIView {
             }
             actionSheetControllerIOS8.addAction(cancel)
         }
-        globalNavigationController.topViewController?.present(actionSheetControllerIOS8, animated: true, completion: nil)
+        
+        if shouldPresent {
+            globalNavigationController.topViewController?.present(actionSheetControllerIOS8, animated: true, completion: nil)
+        }
     }
     
     
