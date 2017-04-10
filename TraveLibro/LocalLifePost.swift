@@ -28,6 +28,7 @@ class LocalLifePost: VerticalLayout, PlayerDelegate {
     var activityQuickItinerary: ActivityFeedQuickItinerary!
     var dropView: DropShadow2!
     var scrollView:UIScrollView!
+    var willPlay = false
     
     let imageArr: [String] = ["restaurantsandbars", "leaftrans", "sightstrans", "museumstrans", "zootrans", "shopping", "religious", "cinematrans", "hotels", "planetrans", "health_beauty", "rentals", "entertainment", "essential", "emergency", "othersdottrans"]
     
@@ -64,18 +65,24 @@ class LocalLifePost: VerticalLayout, PlayerDelegate {
             self.videoContainer.player = self.player
             var videoUrl:URL!
             self.videoContainer.tagText.isHidden = true
-            if feed["type"].stringValue == "travel-life" {
-                videoContainer.tagText.text = "Travel Life"
-//                videoContainer.tagView.backgroundColor = mainOrangeColor
-            }else{
-                videoContainer.tagText.text = "  Local Life"
-                videoContainer.tagText.textAlignment = .center
-                videoContainer.tagText.textColor = UIColor(hex: "303557")
-                videoContainer.tagView.backgroundColor = endJourneyColor
-            }
             
             videoUrl = URL(string:feed["videos"][0]["name"].stringValue)
-            self.player.setUrl(videoUrl!)
+            
+            getThumbnailFromVideoURL(url: videoUrl!, onView: self.videoContainer.videoHolder)
+            
+            if feed["type"].stringValue == "travel-life" {
+                videoContainer.tagText.text = "Travel Life"
+                videoContainer.tagView.backgroundColor = mainOrangeColor
+                videoContainer.playBtn.tintColor = mainOrangeColor
+            }
+            else{
+                videoContainer.tagText.text = "  Local Life"
+                videoContainer.tagText.textAlignment = .center
+                videoContainer.tagText.textColor = UIColor(hex: "#303557")
+                videoContainer.tagView.backgroundColor = endJourneyColor
+                videoContainer.playBtn.tintColor = endJourneyColor
+            }
+            
             self.videoContainer.videoHolder.addSubview(self.player.view)
             self.addSubview(self.videoContainer)
             
@@ -274,20 +281,47 @@ class LocalLifePost: VerticalLayout, PlayerDelegate {
     }
     
     func videoToPlay ()  {
+        
+        if isVideoViewInRangeToPlay() {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: { 
+                if self.isVideoViewInRangeToPlay() {
+                    if !self.willPlay {
+                        self.videoContainer.playBtn.isHidden = true
+                        self.willPlay = true
+                        let videoUrl = URL(string:self.feed["videos"][0]["name"].stringValue)
+                        self.player.setUrl(videoUrl!)
+                        self.player.playFromBeginning()
+                    }
+                }
+                else {
+                    self.player.stop()
+                    self.willPlay = false
+                    self.videoContainer.playBtn.isHidden = false
+                }
+            })
+        }
+        else {
+            self.player.stop()
+            self.willPlay = false
+            self.videoContainer.playBtn.isHidden = false
+        }
+    }
+    
+    func isVideoViewInRangeToPlay() -> Bool {
         let min = self.frame.origin.y + self.videoContainer.frame.origin.y
         let max = min + self.videoContainer.frame.size.height
         let scrollMin = self.scrollView.contentOffset.y
         let scrollMax = scrollMin + self.scrollView.frame.height
-        if(scrollMin < min && scrollMax > max ) {
-            self.player.playFromCurrentTime()
+        
+        if (scrollMin < min && scrollMax > max ) {
+            return true
         }
-        else {
-            self.player.pause()
-        }
+        
+        return false
     }
     
     func playerReady(_ player: Player) {
-        videoToPlay()
+//        videoToPlay()
     }
     
     func changeDateFormat(_ givenFormat: String, getFormat: String, date: String, isDate: Bool) -> String {

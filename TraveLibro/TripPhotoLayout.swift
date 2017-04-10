@@ -33,6 +33,7 @@ class TripPhotoLayout: VerticalLayout, PlayerDelegate {
     var activityQuickItinerary: ActivityFeedQuickItinerary!
     var feeds: JSON = []
     var type: String = "videos"
+    var willPlay = false
     
     var scrollView:UIScrollView!
     
@@ -76,7 +77,12 @@ class TripPhotoLayout: VerticalLayout, PlayerDelegate {
             self.videoContainer.tagView.isHidden = true
             
             videoUrl = URL(string:feed["name"].stringValue)
-            self.player.setUrl(videoUrl!)
+            
+            getThumbnailFromVideoURL(url: videoUrl!, onView: self.videoContainer.videoHolder)
+            
+            videoContainer.tagView.backgroundColor = mainOrangeColor
+            videoContainer.playBtn.tintColor = mainOrangeColor
+            
             self.videoContainer.videoHolder.addSubview(self.player.view)
             self.addSubview(self.videoContainer)
 
@@ -215,20 +221,47 @@ class TripPhotoLayout: VerticalLayout, PlayerDelegate {
     }
     
     func videoToPlay ()  {
+        
+        if isVideoViewInRangeToPlay() {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: { 
+                if self.isVideoViewInRangeToPlay() {
+                    if !self.willPlay {
+                        self.videoContainer.playBtn.isHidden = true
+                        self.willPlay = true
+                        let videoUrl = URL(string:self.feeds["name"].stringValue)
+                        self.player.setUrl(videoUrl!)
+                        self.player.playFromBeginning()
+                    }
+                }
+                else {
+                    self.player.stop()
+                    self.willPlay = false
+                    self.videoContainer.playBtn.isHidden = false
+                }
+            })
+        }
+        else {
+            self.player.stop()
+            self.willPlay = false
+            self.videoContainer.playBtn.isHidden = false
+        }
+    }
+    
+    func isVideoViewInRangeToPlay() -> Bool {
         let min = self.frame.origin.y + self.videoContainer.frame.origin.y
         let max = min + self.videoContainer.frame.size.height
         let scrollMin = self.scrollView.contentOffset.y
         let scrollMax = scrollMin + self.scrollView.frame.height
-        if(scrollMin < min && scrollMax > max ) {
-            self.player.playFromCurrentTime()
+        
+        if (scrollMin < min && scrollMax > max ) {
+            return true
         }
-        else {
-            self.player.pause()
-        }
-    }
+        
+        return false
+    }    
     
     func playerReady(_ player: Player) {
-        videoToPlay()
+//        videoToPlay()
     }
     
     func getDays(_ startDate: String, postDate: String) -> Int {

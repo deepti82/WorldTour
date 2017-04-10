@@ -72,7 +72,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             self.player.delegate = self
             self.player.view.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.width)
             self.player.view.clipsToBounds = true
-            self.player.playbackLoops = false
+            self.player.playbackLoops = true
             self.player.muted = true
             self.player.fillMode = "AVLayerVideoGravityResizeAspectFill"
             self.player.playbackFreezesAtEnd = true
