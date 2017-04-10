@@ -47,6 +47,7 @@ class AddRating: UIView, UITextViewDelegate {
     @IBAction func postReviewTapped(_ sender: UIButton) {
         
         print("post id in review: \(sender.title(for: .application)!)")
+        
         reviewTextView.resignFirstResponder()
         var reviewBody = ""
         
@@ -64,8 +65,8 @@ class AddRating: UIView, UITextViewDelegate {
             self.accordianCell.reviewTapOut(UITapGestureRecognizer())
         }else if checkView == "activityFeed" {
             self.activityBasic.afterRating(starCnt: starCount, review: reviewBody)
-//            self.activityBasic.postTop["review"][0]["rating"] = JSON(starCount)
-
+            //            self.activityBasic.postTop["review"][0]["rating"] = JSON(starCount)
+            
             self.activityBasic.reviewTapOut(UITapGestureRecognizer())
         }else{
             print("after rating \(starCount)")
@@ -74,83 +75,90 @@ class AddRating: UIView, UITextViewDelegate {
         }
         self.removeFromSuperview()
         
-        if checkView == "activity" {
-            if activityJson["type"].stringValue == "on-the-go-journey" || activityJson["type"].stringValue == "ended-journey"{
-                request.rateActivity(currentUser["_id"].string!, itinerary: "", journey: activityJson["_id"].stringValue,  rating: "\(starCount)", review: reviewBody, completion: {(response) in
-                    DispatchQueue.main.async(execute: {
-                        if response.error != nil {
-                            print("error: \(response.error!.localizedDescription)")
-                            self.popToaster(text: "Something went wroung.")
-
-                        }
-                        else if response["value"].bool! {
-                            print("Review Sent Successfully");
-                            self.popToaster(text: "Your review is  \(self.reviewConclusion.text!).")
-//                            activity.setReviewCount(count: acti)
-
-                        }
-                        else {
-                            print("response error!")
-                            self.popToaster(text: "Something went wroung.")
-
-                        }
-                    })
-                })
-            }else if activityJson["type"].stringValue == "quick-itinerary" || activityJson["type"].stringValue == "detail-itinerary"{
-                request.rateActivity(currentUser["_id"].string!, itinerary: activityJson["_id"].stringValue, journey: "",  rating: "\(starCount)", review: reviewBody, completion: {(response) in
-                    DispatchQueue.main.async(execute: {
-                        if response.error != nil {
-                            print("error: \(response.error!.localizedDescription)")
-                            self.popToaster(text: "Something went wroung.")
-
-                        }
-                        else if response["value"].bool! {
-                            print("Review Sent Successfully");
-                            self.popToaster(text: "Your review is  \(self.reviewConclusion.text!).")
-
-                        }
-                        else {
-                            print("response error!")
-                            self.popToaster(text: "Something went wroung.")
-
-                        }
-                    })
-                })
-            }
-        }else{
-            if self.checkView == "activityFeed" {
-                postId = activityJson["_id"].stringValue
-            }else if self.checkView == "accordian" {
-                postId = activityJson["_id"].stringValue
-            }else{
-                postId = post.post_ids
-            }
-            
-            if self.checkView == "activityFeed" {
-                self.activityBasic.afterRating(starCnt: self.starCount, review: reviewBody)
-            }
-            
-            request.rateCheckIn(currentUser["_id"].string!, postId: postId, rating: "\(starCount)", review: reviewBody, completion: {(response) in
-                DispatchQueue.main.async(execute: {
-                    if response.error != nil {
-                        print("error: \(response.error!.localizedDescription)")
-                        
-                        self.popToaster(text: "Something went wroung.")
-                    }
-                    else if response["value"].bool! {
-                        print("Review Sent Successfully")
-                        
-//                        self.popToaster(text: "You rated \(self.reviewConclusion.text!).")
-
-                    }
-                    else {
-                        self.popToaster(text: "Something went wroung.")
-
-                        print("response error!")
-                    }
-                })
-            })
+        if sender.titleLabel?.text == "Close" {
+            self.removeFromSuperview()
         }
+        else {                
+            if checkView == "activity" {
+                if activityJson["type"].stringValue == "on-the-go-journey" || activityJson["type"].stringValue == "ended-journey"{
+                    request.rateActivity(currentUser["_id"].string!, itinerary: "", journey: activityJson["_id"].stringValue,  rating: "\(starCount)", review: reviewBody, completion: {(response) in
+                        DispatchQueue.main.async(execute: {
+                            if response.error != nil {
+                                print("error: \(response.error!.localizedDescription)")
+                                self.popToaster(text: "Something went wroung.")
+                                
+                            }
+                            else if response["value"].bool! {
+                                print("Review Sent Successfully");
+                                self.popToaster(text: "Your review is  \(self.reviewConclusion.text!).")
+                                //                            activity.setReviewCount(count: acti)
+                                
+                            }
+                            else {
+                                print("response error!")
+                                self.popToaster(text: "Something went wroung.")
+                                
+                            }
+                        })
+                    })
+                }else if activityJson["type"].stringValue == "quick-itinerary" || activityJson["type"].stringValue == "detail-itinerary"{
+                    request.rateActivity(currentUser["_id"].string!, itinerary: activityJson["_id"].stringValue, journey: "",  rating: "\(starCount)", review: reviewBody, completion: {(response) in
+                        DispatchQueue.main.async(execute: {
+                            if response.error != nil {
+                                print("error: \(response.error!.localizedDescription)")
+                                self.popToaster(text: "Something went wroung.")
+                                
+                            }
+                            else if response["value"].bool! {
+                                print("Review Sent Successfully");
+                                self.popToaster(text: "Your review is  \(self.reviewConclusion.text!).")
+                                
+                            }
+                            else {
+                                print("response error!")
+                                self.popToaster(text: "Something went wroung.")
+                                
+                            }
+                        })
+                    })
+                }
+            }
+            else{
+                if self.checkView == "activityFeed" {
+                    postId = activityJson["_id"].stringValue
+                }else if self.checkView == "accordian" {
+                    postId = activityJson["_id"].stringValue
+                }else{
+                    postId = post.post_ids
+                }
+                
+                if self.checkView == "activityFeed" {
+                    self.activityBasic.afterRating(starCnt: self.starCount, review: reviewBody)
+                }
+                
+                request.rateCheckIn(currentUser["_id"].string!, postId: postId, rating: "\(starCount)", review: reviewBody, completion: {(response) in
+                    DispatchQueue.main.async(execute: {
+                        if response.error != nil {
+                            print("error: \(response.error!.localizedDescription)")
+                            
+                            self.popToaster(text: "Something went wroung.")
+                        }
+                        else if response["value"].bool! {
+                            print("Review Sent Successfully")
+                            
+                            //                        self.popToaster(text: "You rated \(self.reviewConclusion.text!).")
+                            
+                        }
+                        else {
+                            self.popToaster(text: "Something went wroung.")
+                            
+                            print("response error!")
+                        }
+                    })
+                })
+            }
+        }
+        
     }
     
     func switchSmily() {
@@ -166,7 +174,9 @@ class AddRating: UIView, UITextViewDelegate {
 
             }
             star.adjustsImageWhenHighlighted = false
-            star.addTarget(self, action: #selector(AddRating.ratingButtonTapped), for: .touchDown)
+            if isSelfUser(otherUserID: activityJson["user"]["_id"].stringValue) {
+                star.addTarget(self, action: #selector(AddRating.ratingButtonTapped), for: .touchDown)
+            }
         }
         stars[0].isSelected = true
 
@@ -306,14 +316,12 @@ class AddRating: UIView, UITextViewDelegate {
     }
     
     func ratingButtonTapped(_ button: UIButton) {
-        print("button taped")
-        
-        ratingIndex = stars.index(of: button)! + 1
-        print(ratingIndex)
-        reviewConclusion.text = moodArr[ratingIndex - 1]
-        smiley.setImage(UIImage(named: imageArr[ratingIndex - 1]), for: UIControlState())
-        updateButtonSelectionStates()
-
+        if !isSelfUser(otherUserID: activityJson["user"]["_id"].stringValue) {
+            ratingIndex = stars.index(of: button)! + 1            
+            reviewConclusion.text = moodArr[ratingIndex - 1]
+            smiley.setImage(UIImage(named: imageArr[ratingIndex - 1]), for: UIControlState())
+            updateButtonSelectionStates()
+        }
     }
     
     func updateButtonSelectionStates() {

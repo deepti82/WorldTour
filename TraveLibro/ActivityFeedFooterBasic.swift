@@ -674,10 +674,9 @@ class ActivityFeedFooterBasic: UIView {
     
     func checkMyRating(_ sender: UITapGestureRecognizer) {
         print("check i im the creator")        
-        if user.getExistingUser() == currentUser["_id"].stringValue {
-                openRating()
-            
-        }
+        //if user.getExistingUser() == currentUser["_id"].stringValue {
+           openRating()
+        //}
     }
     
     func reviewTapOut(_ sender: UITapGestureRecognizer) {
