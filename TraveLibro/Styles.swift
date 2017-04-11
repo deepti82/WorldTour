@@ -751,25 +751,6 @@ func convertDateFormate(dateStr : String) -> String{
     return day + " " + newDate
 }
 
-func getPlainTextFromHTMLContentText(str : String?) -> String {
-    
-    
-    if str != nil && str != "" {
-        do {
-            print("\n Plain text : \n\n \(str)")
-            let regex =  "<.*?>"
-            let expr = try NSRegularExpression(pattern: regex, options: NSRegularExpression.Options.caseInsensitive)
-            let replacement = expr.stringByReplacingMatches(in: str!, options: [], range: NSMakeRange(0, (str!.characters.count)), withTemplate: "")
-            print("\n\n\n replacement text : \n\n \(replacement)")
-            return replacement
-            //replacement is the result
-        } catch {
-            // regex was bad!
-        }
-    }
-    return ""
-}
-
 func shouldShowBigImage(position: Int) -> Bool {
     if position == 0 || position % 4 == 0 {
         return true
@@ -781,7 +762,7 @@ func shouldShowBigImage(position: Int) -> Bool {
 
 func setFollowButtonTitle(button:UIButton, followType: Int, otherUserID: String) {
     
-    if otherUserID == "admin" || otherUserID == "" || isSelfUser(otherUserID: otherUserID) {
+    if otherUserID == "admin" || isSelfUser(otherUserID: otherUserID) {
         button.isHidden = true
     }
     else{
