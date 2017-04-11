@@ -231,7 +231,7 @@ class EachItineraryViewController: UIViewController, UITableViewDataSource, UITa
             let selectedCity = (currentShowingCountry?["cityVisited"].arrayValue)?[isSelectedIndex! - 1]
             
             let childCellTwo = tableView.dequeueReusableCell(withIdentifier: "childCellTwo") as! ItineraryAccordionChildCellDescriptionTableViewCell
-            let sub = MoreAboutTrip(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height:(heightForView(text: getPlainTextFromHTMLContentText(str: selectedCity?["description"].stringValue), font: UIFont(name: "Avenir-Medium", size: 14)!, width: screenWidth) + 70)))
+            let sub = MoreAboutTrip(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height:heightForView(text: (selectedCity?["description"].stringValue.html2String)!, font: UIFont(name: "Avenir-Medium", size: 14)!, width: screenWidth)))
             sub.dayNumberLabel.removeFromSuperview()
             sub.dayDescription.text = selectedCity?["description"].stringValue.html2String
             
@@ -274,7 +274,7 @@ class EachItineraryViewController: UIViewController, UITableViewDataSource, UITa
         else if cityLabels[(indexPath as NSIndexPath).row] == "little more" {
             let selectedCity = (currentShowingCountry?["cityVisited"].arrayValue)?[isSelectedIndex! - 1]
             let height = heightForView(text: (selectedCity?["description"].stringValue.html2String)!, font: UIFont(name: "Avenir-Medium", size: 14)!, width: screenWidth)
-            return height + 70
+            return height
         }
         
         return 45
