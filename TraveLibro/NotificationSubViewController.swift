@@ -42,7 +42,6 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         rightButton.frame = CGRect(x: -10, y: 8, width: 30, height: 30)
         self.setOnlyRightNavigationButton(rightButton)
         
-        loader.showOverlay(self.view)        
         self.mainFooter = FooterViewNew(frame: CGRect.zero)
         self.mainFooter.layer.zPosition = 5
         self.view.addSubview(self.mainFooter)
@@ -57,7 +56,13 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         
         mainFooter.notificationIcon.tintColor = mainOrangeColor
         mainFooter.notifications.textColor = mainOrangeColor
-        getNotification()
+        
+        request.checkNotificationCache(user.getExistingUser()) { (response) in
+            if response.count == 0 {
+                self.loader.showOverlay(self.view)
+            }
+            self.getNotification()
+        }        
         
     }
     
@@ -75,6 +80,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        hideHeaderAndFooter(false)
         NotificationCenter.default.removeObserver(self)
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
@@ -88,10 +94,6 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
     //MARK: - Helper
     
     func pullToRefreshCalled() {
-        
-        print("\n Pull to refresh : loadStatus : \(loadStatus)")
-        print("\n Pull to refresh : isRefreshing : \(refreshControl.isRefreshing)")
-        print("\n Pull to refresh : dragging : \(notifyTableView.isDragging)")
 //        if !pullToRefreshing {            
             currentPageNumber = 0
             loadStatus = true
@@ -116,7 +118,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
             
             print("\n Fetching data for pageNumber: \(currentPageNumber)")
             
-            request.getNotify(currentUser["_id"].string!, pageNumber: currentPageNumber,  completion: {(response) in
+            request.getNotify(user.getExistingUser(), pageNumber: currentPageNumber,  completion: {(response) in
                 
                 DispatchQueue.main.async(execute: {
                     
@@ -711,7 +713,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         let end = storyboard!.instantiateViewController(withIdentifier: "endJourney") as! EndJourneyViewController
         end.journeyId = journeyID
         end.notificationID = notificationId
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
         self.navigationController!.pushViewController(end, animated: true)
     }
     
@@ -725,7 +727,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "EachItineraryViewController") as! EachItineraryViewController
         controller.fromOutSide = itineraryID        
-        globalNavigationController?.setNavigationBarHidden(false, animated: true)
+        globalNavigationController?.setNavigationBarHidden(false, animated: false)
         globalNavigationController?.pushViewController(controller, animated: true)
     }
     
@@ -768,19 +770,12 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
     
     func hideHeaderAndFooter(_ isShow:Bool) {
         if(isShow) {
-//            tableTopConstraint.constant = 0
-            
             self.navigationController?.setNavigationBarHidden(true, animated: true)
-            
             self.mainFooter.frame.origin.y = self.view.frame.height + 95
         }
         else {
-//            tableTopConstraint.constant = (self.navigationController?.navigationBar.frame.size.height)! + 21
-            
             self.navigationController?.setNavigationBarHidden(false, animated: true)
-            
-            self.mainFooter.frame.origin.y = self.view.frame.height - 65
-            
+            self.mainFooter.frame.origin.y = self.view.frame.height - 65            
         }
     }
     

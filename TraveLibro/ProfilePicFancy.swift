@@ -9,8 +9,7 @@
 import UIKit
 
 class ProfilePicFancy: UIView {
-
-    @IBOutlet weak var waves: UIImageView!
+    
     @IBOutlet weak var image: UIImageView!
     @IBOutlet weak var flag: UIImageView!
     @IBOutlet weak var country: UILabel!

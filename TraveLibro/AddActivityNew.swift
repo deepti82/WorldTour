@@ -337,7 +337,7 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
             next.allFriendsJson = self.addedBuddies
         }
         
-        globalNavigationController?.setNavigationBarHidden(false, animated: true)
+        globalNavigationController?.setNavigationBarHidden(false, animated: false)
         globalNavigationController?.pushViewController(next, animated: true)
     }
     
@@ -476,7 +476,7 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
         captionVC.type = "videoCaption"
         captionVC.addActivity  = self
         captionVC.videoURL = videoURL
-        globalNavigationController?.setNavigationBarHidden(false, animated: true)
+        globalNavigationController?.setNavigationBarHidden(false, animated: false)
         globalNavigationController!.pushViewController(captionVC, animated: true)
     }
     
@@ -556,7 +556,7 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
     func selectAnotherCategory(_ sender: UIButton) {
         let chooseCategory = storyboard?.instantiateViewController(withIdentifier: "editCategory") as! EditCategoryViewController
         chooseCategory.categoryTextView = self.categoryLabel;
-        globalNavigationController?.setNavigationBarHidden(false, animated: true)
+        globalNavigationController?.setNavigationBarHidden(false, animated: false)
         globalNavigationController?.pushViewController(chooseCategory, animated: true)
     }
     
@@ -631,7 +631,7 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
         let searchVC = storyboard!.instantiateViewController(withIdentifier: "searchLocationsVC") as! SearchLocationTableViewController
         searchVC.places = self.locationArray
         searchVC.location = userLocation
-        globalNavigationController?.setNavigationBarHidden(false, animated: true)
+        globalNavigationController?.setNavigationBarHidden(false, animated: false)
         globalNavigationController?.pushViewController(searchVC, animated: true)
     }
     
@@ -768,7 +768,7 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
         captionVC.addActivity = self
         
         captionVC.currentImageIndex = sender.tag
-        globalNavigationController?.setNavigationBarHidden(false, animated: true)
+        globalNavigationController?.setNavigationBarHidden(false, animated: false)
         globalNavigationController!.pushViewController(captionVC, animated: true)
     }
 

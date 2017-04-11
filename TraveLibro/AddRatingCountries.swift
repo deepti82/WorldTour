@@ -13,6 +13,7 @@ class AddRatingCountries: UIView, UITextViewDelegate {
     
     var ratingIndex = 0
     var starCount = 1
+    var yPos = CGFloat(0)
     
     @IBOutlet weak var starsStack: UIStackView!
     @IBOutlet weak var postReview: UIButton!
@@ -69,8 +70,8 @@ class AddRatingCountries: UIView, UITextViewDelegate {
                     
                 }
                 else if response["value"].bool! {
-                    let tstr = Toast(text: "You rated \(self.countryName.text!) as \(self.reviewConclusion.text!)")
-                    tstr.show()
+//                    let tstr = Toast(text: "You rated \(self.countryName.text!) as \(self.reviewConclusion.text!)")
+//                    tstr.show()
                     
                 }
                 else {
@@ -139,6 +140,7 @@ print(point)
         postReview.clipsToBounds = true
         reviewTextView.delegate = self
         reviewTextView.returnKeyType = .done
+        reviewTextView.tintColor = mainOrangeColor
         
         for star in stars {
             star.setImage(UIImage(named: "star_uncheck"), for: UIControlState())
@@ -149,11 +151,18 @@ print(point)
         }
         stars[0].isSelected = true
         
+        NotificationCenter.default.addObserver(self, selector: #selector(AddRatingCountries.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(AddRatingCountries.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
         //        self.clipsToBounds = true
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     func ratingDisplay(_ review: JSON) {
@@ -236,6 +245,27 @@ print(point)
                 starCount += 1
                 
             }
+        }
+    }
+    
+    //MARK: - Keyboard Handling
+    
+    func keyboardWillShow(_ notification: Notification) {
+        
+        yPos = CGFloat((screenHeight/2) - (self.frame.height/2))
+        print("compare ypos : \(yPos)")
+        
+        
+        if (((notification as NSNotification).userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil {
+            if self.frame.origin.y == yPos {
+                self.frame.origin.y -= (self.frame.height/2)
+            }
+        }
+    }
+    
+    func keyboardWillHide(_ notification: Notification) {
+        if self.frame.origin.y != yPos {
+            self.frame.origin.y = CGFloat(yPos)
         }
     }
     

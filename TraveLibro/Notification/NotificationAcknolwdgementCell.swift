@@ -19,6 +19,8 @@ class NotificationAcknolwdgementCell: UITableViewCell {
     var NFTime = NotificationTime()    
     var NFBackground = NotificationBackground()
     var totalHeight = CGFloat(0)
+//    var blr: UIView!
+//    var blurView: UIVisualEffectView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -70,9 +72,22 @@ class NotificationAcknolwdgementCell: UITableViewCell {
         self.contentView.addSubview(NFBackground)
         self.contentView.sendSubview(toBack: NFBackground)
         
+//        blr = UIView()
+//        
+//        let darkBlur = UIBlurEffect(style: UIBlurEffectStyle.light)
+//        blurView = UIVisualEffectView(effect: darkBlur)
+//        
+//        blurView.isUserInteractionEnabled = false               
+//        blr.addSubview(blurView)
+//        blr.addSubview(NFBackground)
+//        self.addSubview(blr)
+//        self.sendSubview(toBack: blr)
+        
         if notificationData != nil {
             setData(notificationData: notificationData!, helper: helper!)            
         }
+        
+        self.backgroundColor = UIColor(white: 1, alpha: 0.8)
     }
     
     
@@ -80,6 +95,7 @@ class NotificationAcknolwdgementCell: UITableViewCell {
         
         totalHeight = CGFloat(0)
         
+        NFHeader.frame = CGRect(x: 0, y: 0, width: Int(HEADER_HEIGHT), height: Int(HEADER_HEIGHT))
         NFHeader.setHeaderData(data: notificationData)
         let xPos = NFHeader.frame.origin.x + NFHeader.frame.size.width
         
@@ -115,7 +131,7 @@ class NotificationAcknolwdgementCell: UITableViewCell {
         NFTime.frame = CGRect(x: xPos, y: totalHeight, width: screenWidth - xPos, height: TIME_HEIGHT)
         NFTime.setTimeData(date: notificationData["updatedAt"].stringValue)
         
-        NFFooter.updateReadStatus(read: notificationData["status"].stringValue)
+        NFFooter.updateReadStatus(read: notificationData["answeredStatus"].stringValue)
         NFFooter.frame = CGRect(x: 0, y: totalHeight, width: screenWidth, height: FOOTER_HEIGHT)
         totalHeight += CGFloat(FOOTER_HEIGHT)
         
@@ -123,5 +139,9 @@ class NotificationAcknolwdgementCell: UITableViewCell {
         
         totalHeight = max(totalHeight, (NFHeader.frame.origin.y + NFHeader.frame.size.height + 5))
         NFBackground.frame = CGRect(x: 0, y: 0, width: screenWidth, height: totalHeight)
+        
+//        blurView.frame.size.height = totalHeight
+//        blurView.frame.size.width = screenWidth
+//        blr.frame = CGRect(x: 0, y: 0, width: screenWidth, height: totalHeight)
     }
 }

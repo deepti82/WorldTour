@@ -27,20 +27,25 @@ class LocalLifePostsViewController: UIViewController, UIScrollViewDelegate, CLLo
     var locValue:CLLocationCoordinate2D!
     var layout:VerticalLayout!
     var loader = LoadingOverlay()
+    var pagenumber = 1
+    var loadingStatus:Bool = true
     override func viewDidLoad() {
         super.viewDidLoad()
         getDarkBackGround(self)
         layout = VerticalLayout(width:screenWidth)
+        scrollView.delegate = self
         scrollView.addSubview(layout)
         loader.showOverlay(self.view)
         setTopNavigation(text: nearMeType);
         self.detectLocation(UIButton())
         globalLocalLifeInside = self
         self.navigationController?.isNavigationBarHidden = false
+    }    
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        hideHeaderAndFooter(false)
     }
-    
-    
-    
     
     func addPostLayout(_ post:JSON) {
         let checkIn = LocalLifePost(width: layout.frame.width)
@@ -253,6 +258,15 @@ class LocalLifePostsViewController: UIViewController, UIScrollViewDelegate, CLLo
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        if scrollView.contentOffset.y >= (scrollView.contentSize.height - scrollView.frame.size.height) {
+            if loadingStatus {
+                print("in load more of data.")
+                pagenumber = pagenumber + 1
+                loadLocalLife()
+            }
+        }
+        
         if scrollView.panGestureRecognizer.translation(in: scrollView).y < 0 {
             hideHeaderAndFooter(true);
         }
@@ -278,6 +292,36 @@ class LocalLifePostsViewController: UIViewController, UIScrollViewDelegate, CLLo
         print("Error while updating location " + error.localizedDescription)
     }
     
+    func loadLocalLife() {
+        loadingStatus = false
+        request.getLocalLife(lat: String(locValue.latitude), lng: String(locValue.longitude),page:pagenumber,category:nearMeType, completion: { (response) in
+            DispatchQueue.main.async(execute: {
+                if (response.error != nil) {
+                    print("error: \(response.error?.localizedDescription)")
+                    
+                }
+                else if response["value"].bool! {
+//                    self.allLocalLife = response["data"].arrayValue
+                    for local in response["data"].arrayValue {
+                        
+                        self.allLocalLife.append(local)
+                        print("ISitFromHere?")
+                        self.addPostLayout(local);
+                        self.loader.hideOverlayView()
+                        
+                    }
+                    self.loadingStatus = true
+                }else{
+                    self.loadingStatus = false
+                }
+                if response["data"].count == 0 {
+                    self.loadingStatus = false
+                }
+            })
+        })
+
+    }
+    
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
@@ -285,26 +329,7 @@ class LocalLifePostsViewController: UIViewController, UIScrollViewDelegate, CLLo
             locValue = manager.location!.coordinate
             print(locValue);
             userLocation = locValue
-            request.getLocalLife(lat: String(locValue.latitude), lng: String(locValue.longitude),page:1,category:nearMeType, completion: { (response) in
-                DispatchQueue.main.async(execute: {
-                    if (response.error != nil) {
-                        print("error: \(response.error?.localizedDescription)")
-                        
-                    }
-                    else if response["value"].bool! {
-                        self.allLocalLife = response["data"].arrayValue
-                        for local in self.allLocalLife {
-                            print("forLocal")
-                            print(local);
-                            print("fromWhere")
-                            print(self.allLocalLife)
-                            print("ISitFromHere?")
-                            self.addPostLayout(local);
-                            self.loader.hideOverlayView()
-                        }
-                    }
-                })
-            })
+            loadLocalLife()
         }
     }
 }

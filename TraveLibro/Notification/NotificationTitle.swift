@@ -46,33 +46,10 @@ class NotificationTitle: UIView {
         switch notificationType {
            
         case "postFirstTime":
-            str2 = " has shared a "
+            str2 = " has shared "
             
         case "postTag":
-            
-            str2 = " has checked-in with you in an "
-            if (data["data"]["type"].string == "photo") {
-                str2 = " has uploaded a photo to "
-            }
-            else if (data["data"]["type"].string == "video") {
-                str2 = " has uploaded a video to "
-            }
-            else if ((data["data"]["videos"].array?.count)! > 0) {
-                str2 = " has uploaded a video to "
-            }
-            else if ((data["data"]["photos"].array?.count)! > 0) {
-                str2 = " has uploaded a photo to "
-            }        
-            else if data["data"]["showMap"].boolValue && data["data"]["checkIn"]["location"] != "" {
-                let gen = data["userFrom"]["gender"].stringValue
-                str2 = " has checked-in with you at \(data["data"]["checkIn"]["location"].stringValue) in \((gen == "male" ? "his" : "her")) "                
-            }
-            else if (data["thoughts"].stringValue != "") {                
-                str2 = " has tagged you in a thought in an "
-            }
-            else if checkIfComment(notificationData: data) {
-                str2 = " has tagged you in a thought in an "
-            }
+            str2 = " has tagged you in "
             
         case "postLike":
             str2 = " has liked your "
@@ -84,7 +61,7 @@ class NotificationTitle: UIView {
             str2 = " has commented on a photo in your "
             
         case "photoLike":
-            str2 = " has liked photo in your "
+            str2 = " has liked your photo. "
             
         case "userFollowing":
             str2 = " has started following you."
@@ -112,7 +89,7 @@ class NotificationTitle: UIView {
         case "journeyComment": 
             fallthrough
         case "itineraryComment":
-            str2 = " has commented on the "
+            str2 = " has commented on your "
             
         case "journeyLike":
             str2 = " has liked the On The Go Journey - "
@@ -127,7 +104,7 @@ class NotificationTitle: UIView {
             str2 = " has mentioned you in a comment On "
             
         case "itineraryLike":
-            str2 = " has liked "
+            str2 = " has liked your "
             
         default:
             str2 = " wants to tag you in her On The Go Journey"
@@ -147,11 +124,28 @@ class NotificationTitle: UIView {
             notificationType != "journeyReject" &&
             notificationType != "journeyAccept" &&
             notificationType != "photoLike" &&
+            notificationType != "postComment" &&
             notificationType != "journeyRequest" &&
             notificationType != "itineraryMentionComment" &&
             notificationType != "itineraryLike" &&
             notificationType != "itineraryComment"{ 
             //Travel type
+            let travelType = data["data"]["type"].string
+            if travelType != nil {
+                if travelType == "local-life" {
+                    str3 = "a Local Life Activity "
+                }
+                else if travelType == "on_the_go" {
+                    str3 = "an On The Go Activity "
+                }
+                else if travelType == "travel-life" {
+                    str3 = "a Travel Life Activity "
+                }
+            }
+            
+            message.append(getBoldString(string: str3, size: 12))
+        }
+        if notificationType == "postComment" {
             let travelType = data["data"]["type"].string
             if travelType != nil {
                 if travelType == "local-life" {
@@ -177,20 +171,24 @@ class NotificationTitle: UIView {
         else if notificationType == "journeyReject" {
             str4 = "On Go Activity - "
         }
-        else if notificationType == "journeyComment" ||
-            notificationType == "photoLike" {
+        else if notificationType == "journeyComment" {
             str4 = "Local Life Activity. "
         }
         else if notificationType == "itineraryMentionComment" ||
             notificationType == "itineraryLike" ||
             notificationType == "itineraryComment" {
-            str4 = data["data"]["type"].stringValue.capitalized + " - "
+            if data["data"]["type"].stringValue == "detail-itinerary" {
+                str4 = "Detailed Itinerary - "
+            }
+            else {
+                str4 = "Quick Itinerary - "
+            }
         }
         
         message.append(getBoldString(string: str4, size: 12))
         
         if notificationType == "postFirstTime" {
-            str4 = " for first time "
+            str4 = " for the first time. "
             message.append(getRegularString(string: str4, size: 12))
         }
         

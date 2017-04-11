@@ -84,25 +84,18 @@ class ActivityFeedFooter: UIView {
         catch{
             print(error)
         }
-        audioPlayer.prepareToPlay()
-
-        
+        audioPlayer.prepareToPlay()        
     }
+    
     func setView(feed:JSON) {
         postTop = feed
         //  RATING
-        if feed["type"].stringValue == "travel-life" {
-            localLifeTravelImage.image = UIImage(named: "travel_life")
-            localLifeTravelImage.tintColor = mainOrangeColor
-            
-        }else if feed["type"].stringValue == "local-life" {
-            localLifeTravelImage.image = UIImage(named: "local_life")
-            localLifeTravelImage.tintColor = endJourneyColor
-        }else{
-            localLifeTravelImage.image = UIImage(named: "travel_life")
-            localLifeTravelImage.tintColor = mainOrangeColor
-        }
         
+        if currentUser != nil {
+            optionButton.isHidden = false
+        }else{
+            optionButton.isHidden = true
+        }        
     }
     
     func showLike(_ sender: UITapGestureRecognizer) {
@@ -135,7 +128,7 @@ class ActivityFeedFooter: UIView {
             default:
                 comment.type = "post"
             }
-            globalNavigationController?.setNavigationBarHidden(false, animated: true)
+            globalNavigationController?.setNavigationBarHidden(false, animated: false)
             globalNavigationController?.pushViewController(comment, animated: true)
         }
         else {
@@ -152,23 +145,6 @@ class ActivityFeedFooter: UIView {
     func showComment(_ sender: UITapGestureRecognizer) {
             toCommentView()
      }
-    
-    
-    func setLikeCount(_ post_likeCount:Int!) {
-        if(post_likeCount != nil) {
-            self.likeCount = post_likeCount
-            if(post_likeCount == 0) {
-                self.likeViewLabel.text = "0 Like"
-            } else if(post_likeCount == 1) {
-                self.likeViewLabel.text = "1 Like"
-            } else if(post_likeCount > 1) {
-                let counts = String(post_likeCount)
-                self.likeViewLabel.text = "\(counts) Likes"
-            }
-        }
-        self.checkHideView()
-        
-    }
     
     func setReviewCount(count:Int!) {
         if count != nil {
@@ -204,17 +180,17 @@ class ActivityFeedFooter: UIView {
     
     func checkHideView() {
         if(self.commentCounts == 0  && self.likeCount == 0 && self.reviewCount == 0) {
-            self.frame.size.height = 53;
+            self.frame.size.height = 51;
             
             border1.removeFromSuperlayer()
             border.isHidden = false
             let width = CGFloat(2)
+            
             border.frame = CGRect(x: 0, y: self.frame.size.height - width, width:  self.frame.size.width, height: self.frame.size.height)
             border.borderColor = UIColor(colorLiteralRed: 0/255, green: 0/255, blue: 0/255, alpha: 0.5).cgColor
             border.borderWidth = width
             self.layer.addSublayer(border)
             self.layer.masksToBounds = true
-
             
         } else {
             self.frame.size.height = 90;
@@ -228,6 +204,8 @@ class ActivityFeedFooter: UIView {
             self.layer.addSublayer(border1)
             
             self.layer.masksToBounds = true
+
+            
             
         }
         let path = UIBezierPath(roundedRect:self.bounds,
@@ -246,82 +224,25 @@ class ActivityFeedFooter: UIView {
         }
     }
     
-    func setLikeSelected (_ isSelected:Bool) {
-         
-        if(isSelected) {
-            self.likeButton.tag = 1
-            self.likeButton.setImage(UIImage(named: "liked"), for: .normal)
-            
-        } else {
-            self.likeButton.setImage(UIImage(named: "likeButton"), for: .normal)
-            self.likeButton.tag = 0
-            
-        }
-    }
     
-    @IBAction func sendLikes(_ sender: UIButton) {
+    func isBuddy() -> Bool {
         
-        if currentUser != nil {
-            audioPlayer.play()
-            likeButton.animation = "pop"
-            likeButton.velocity = 2
-            likeButton.force = 2
-            likeButton.damping = 10
-            likeButton.curve = "spring"
-            likeButton.animateTo()
-            
-            print("like button tapped \(sender.titleLabel!.text)")
-            
-            var hasLiked = false
-            if sender.tag == 1 {
-                hasLiked = true
-                sender.tag = 0
-            }
-            else {
-                sender.tag = 1
-            }
-            
-            
-                request.globalLike(postTop["_id"].stringValue, userId: user.getExistingUser(), unlike: hasLiked, type: postTop["type"].stringValue, completion: {(response) in
-                    DispatchQueue.main.async(execute: {
-                        if response.error != nil {
-                            print("error: \(response.error!.localizedDescription)")
-                        }
-                        else if response["value"].bool! {
-                            if sender.tag == 1 {
-                                self.setLikeSelected(true)
-                                self.likeCount = self.likeCount + 1
-                                self.setLikeCount(self.likeCount)
-                            } else {
-                                self.setLikeSelected(false)
-                                if self.likeCount <= 0 {
-                                    self.likeCount = 0
-                                } else {
-                                    self.likeCount = self.likeCount - 1
-                                }
-                                self.setLikeCount(self.likeCount)
-                            }
-                        } else {
-                            
-                        }
-                    })
-                })
+        if postTop["buddies"].contains(where: {$0.1["_id"].stringValue == user.getExistingUser()}) {
+            return true
+        }else{
+            return false
         }
-        else {
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
-        }
-        
     }
     
     @IBAction func optionClick(_ sender: UIButton) {
         
-        if currentUser != nil {
-            
             let actionSheetControllerIOS8: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
             
             if(self.type == "MyLifeFeeds") {
                 
                 if(postTop["type"].stringValue == "detail-itinerary") {
+                    if isSelfUser(otherUserID: currentUser["_id"].stringValue) {
+                        
                     let editActionButton: UIAlertAction = UIAlertAction(title: "Edit", style: .default)
                     {action -> Void in
                         let alert = UIAlertController(title: "Edit Itinerary", message: "You can only edit your Itinerary on Web.", preferredStyle: UIAlertControllerStyle.alert)
@@ -339,12 +260,22 @@ class ActivityFeedFooter: UIView {
                     //                {action -> Void in
                     //                }
                     //                actionSheetControllerIOS8.addAction(deleteActionButton)
+                    }else{
+                        let reportActionButton: UIAlertAction = UIAlertAction(title: "Report", style: .default)
+                        {action -> Void in
+                            let alert = UIAlertController(title: "Report", message: "Reported Successfully.", preferredStyle: UIAlertControllerStyle.alert)
+                            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                            globalNavigationController.present(alert, animated: true, completion: nil)
+                        }
+                        actionSheetControllerIOS8.addAction(reportActionButton)
+                    }
                     
                     let cancel: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel)
                     { action -> Void in
                         
                     }
                     actionSheetControllerIOS8.addAction(cancel)
+                        
                 }
                 
                 if(postTop["type"].stringValue == "quick-itinerary") {
@@ -356,13 +287,24 @@ class ActivityFeedFooter: UIView {
                     }
                     actionSheetControllerIOS8.addAction(editActionButton)
                     
-                    //                let changeCoverActionButton: UIAlertAction = UIAlertAction(title: "Change Cover Photo", style: .default)
-                    //                {action -> Void in
-                    //                }
-                    //                actionSheetControllerIOS8.addAction(changeCoverActionButton)
-                    
                     let deleteActionButton: UIAlertAction = UIAlertAction(title: "Delete", style: .destructive)
                     {action -> Void in
+                        
+                        let alert = UIAlertController(title: "", message: "Are you sure you want to delete this Itinerary.", preferredStyle: UIAlertControllerStyle.alert)
+                        alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil))
+                        alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.destructive, handler: { action in
+                            request.deleteItinerary(id: self.postTop["_id"].stringValue, completion: {(response) in
+                                
+                                let a = globalMyLifeContainerViewController.onTab
+                                globalMyLifeContainerViewController.loadData(a, pageNumber: 1)
+                                
+                            })
+                            
+                            
+                        }))
+                        globalMyLifeViewController.present(alert, animated: true, completion: nil)
+
+                        
                     }
                     actionSheetControllerIOS8.addAction(deleteActionButton)
                     
@@ -372,8 +314,34 @@ class ActivityFeedFooter: UIView {
                     }
                     actionSheetControllerIOS8.addAction(cancel)
                 }
+                if postTop["type"].stringValue == "travel-life" || postTop["type"].stringValue == "local-life" {
+                    if isBuddy() && self.type == "MyLifeFeeds" && isSelfUser(otherUserID: currentUser["_id"].stringValue){
+                        
+                        let DeletePost: UIAlertAction = UIAlertAction(title: "Delete Activity", style: .default)
+                        { action -> Void in
+                            
+                            let alert = UIAlertController(title: "", message: "Are you sure you want to delete this Activtiy", preferredStyle: UIAlertControllerStyle.alert)
+                            alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil))
+                            alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.destructive, handler: { action in
+                                request.deletePost(self.postTop["_id"].string!, uniqueId: self.postTop["uniqueId"].string!, user:currentUser["_id"].stringValue, completion: {(response) in
+                                    
+                                    let a = globalMyLifeContainerViewController.onTab
+                                    globalMyLifeContainerViewController.loadData(a, pageNumber: 1)
+                                    
+                                })
+                                
+                                
+                            }))
+                            globalMyLifeViewController.present(alert, animated: true, completion: nil)
+                            
+                        }
+                        actionSheetControllerIOS8.addAction(DeletePost)
+                        
+                    }
+                }
                 if(postTop["type"].stringValue == "ended-journey" || postTop["type"].stringValue == "on-the-go-journey") {
-                    
+                    if isSelfUser(otherUserID: currentUser["_id"].stringValue) {
+                        
                     let changeNameActionButton: UIAlertAction = UIAlertAction(title: "Change Journey Name", style: .default)
                     {action -> Void in
                         
@@ -431,7 +399,17 @@ class ActivityFeedFooter: UIView {
                         end.type = "MyLife"
                         globalMyLifeContainerViewController.navigationController?.pushViewController(end, animated: true)
                     }
-                    actionSheetControllerIOS8.addAction(changeCoverCountriesActionButton)
+                        actionSheetControllerIOS8.addAction(changeCoverCountriesActionButton)
+                    }else{
+                        let reportActionButton: UIAlertAction = UIAlertAction(title: "Report", style: .default)
+                        {action -> Void in
+                            let alert = UIAlertController(title: "Report", message: "Reported Successfully.", preferredStyle: UIAlertControllerStyle.alert)
+                            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                            globalNavigationController.present(alert, animated: true, completion: nil)
+                        }
+                        actionSheetControllerIOS8.addAction(reportActionButton)
+                    }
+                    
                     
                     let cancel: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel)
                     { action -> Void in
@@ -456,50 +434,16 @@ class ActivityFeedFooter: UIView {
                 actionSheetControllerIOS8.addAction(cancelActionButton)
                 let reportActionButton: UIAlertAction = UIAlertAction(title: "Report", style: .default)
                 {action -> Void in
-                    let alert = UIAlertController(title: "Report", message: "Reported successfuly.", preferredStyle: UIAlertControllerStyle.alert)
+                    let alert = UIAlertController(title: "Report", message: "Reported Successfully.", preferredStyle: UIAlertControllerStyle.alert)
                     alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
                     globalNavigationController.present(alert, animated: true, completion: nil)
                 }
                 actionSheetControllerIOS8.addAction(reportActionButton)
             }
             globalNavigationController.topViewController?.present(actionSheetControllerIOS8, animated: true, completion: nil)            
-        }
-        else {
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
-        }
+        
     }
     
-    
-    @IBAction func reviewClicked(_ sender: UIButton) {
-        let tapout = UITapGestureRecognizer(target: self, action: #selector(ActivityFeedFooter.reviewTapOut(_:)))
-        
-        backgroundReview = UIView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: (globalNavigationController.topViewController?.view.frame.size.height)!))
-        backgroundReview.addGestureRecognizer(tapout)
-        backgroundReview.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.4)
-        globalNavigationController.topViewController?.view.addSubview(backgroundReview)
-        globalNavigationController.topViewController?.view.bringSubview(toFront: backgroundReview)
-        
-        let rating = AddRating(frame: CGRect(x: 0, y: 0, width: width - 40, height: 335))
-        rating.activityJson = postTop
-        rating.activity = self
-        rating.checkView = "activity"
-        
-        if postTop["userReview"][0]["rating"] != nil  && postTop["userReview"].count != 0 {
-            rating.starCount = postTop["userReview"][0]["rating"].intValue
-            rating.ratingDisplay(postTop["userReview"][0])
-        }else{
-            rating.starCount = 1
-        }
-        
-        rating.center = backgroundReview.center
-        rating.layer.cornerRadius = 5
-        rating.clipsToBounds = true
-        rating.addGestureRecognizer(UITapGestureRecognizer(target: self, action: nil))
-
-        rating.navController = globalNavigationController
-        backgroundReview.addSubview(rating)
-
-    }
     
     @IBAction func sharingTap(_ sender: Any) {
         sharingUrl(url:  postTop["sharingUrl"].stringValue, onView: globalNavigationController.topViewController!)
@@ -509,5 +453,109 @@ class ActivityFeedFooter: UIView {
         print("in footer tap out")
         backgroundReview.removeFromSuperview()
         
+    }
+    
+    
+    //MARK: - Like
+    
+    @IBAction func sendLikes(_ sender: UIButton) {
+        
+        if currentUser != nil {
+            audioPlayer.play()
+            likeButton.animation = "pop"
+            likeButton.velocity = 2
+            likeButton.force = 2
+            likeButton.damping = 10
+            likeButton.curve = "spring"
+            likeButton.animateTo()
+            
+            print("like button tapped \(sender.titleLabel!.text)")
+            
+            var hasLiked = false
+            if sender.tag == 1 {
+                hasLiked = true
+                sender.tag = 0
+            }
+            else {
+                sender.tag = 1
+            }
+            
+            self.updateLikeSuccess(sender: sender)
+            
+            request.globalLike(postTop["_id"].stringValue, userId: user.getExistingUser(), unlike: hasLiked, type: postTop["type"].stringValue, completion: {(response) in
+                DispatchQueue.main.async(execute: {
+                    if response.error != nil {
+                        print("error: \(response.error!.localizedDescription)")
+                    }
+                    else if response["value"].bool! {
+                    } else {
+                        self.updateLikeFailure(sender: sender)
+                    }
+                })
+            })
+        }
+        else {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
+        }
+        
+    }
+    
+    func updateLikeSuccess(sender : UIButton) {
+        if sender.tag == 1 {
+            self.setLikeSelected(true)
+            self.likeCount = self.likeCount + 1
+            self.setLikeCount(self.likeCount)
+        }
+        else {
+            self.setLikeSelected(false)
+            if self.likeCount <= 0 {
+                self.likeCount = 0
+            } else {
+                self.likeCount = self.likeCount - 1
+            }
+            self.setLikeCount(self.likeCount)
+        }
+    }
+    
+    func updateLikeFailure(sender : UIButton) {
+        if sender.tag == 1 {
+            self.setLikeSelected(false)
+            if self.likeCount <= 0 {
+                self.likeCount = 0
+            } else {
+                self.likeCount = self.likeCount - 1
+            }
+            self.setLikeCount(self.likeCount)
+        }
+        else {
+            self.setLikeSelected(true)
+            self.likeCount = self.likeCount + 1
+            self.setLikeCount(self.likeCount)            
+        }
+    }
+    
+    func setLikeCount(_ post_likeCount:Int!) {
+        if(post_likeCount != nil) {
+            self.likeCount = post_likeCount
+            if(post_likeCount == 0) {
+                self.likeViewLabel.text = "0 Like"
+            } else if(post_likeCount == 1) {
+                self.likeViewLabel.text = "1 Like"
+            } else if(post_likeCount > 1) {
+                let counts = String(post_likeCount)
+                self.likeViewLabel.text = "\(counts) Likes"
+            }
+        }
+        self.checkHideView()        
+    }
+    
+    func setLikeSelected (_ isSelected:Bool) {         
+        if(isSelected) {
+            self.likeButton.tag = 1
+            self.likeButton.setImage(UIImage(named: "liked"), for: .normal)            
+        } else {
+            self.likeButton.setImage(UIImage(named: "likeButton"), for: .normal)
+            self.likeButton.tag = 0            
+        }
     }
 }

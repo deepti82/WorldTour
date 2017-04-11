@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -23,13 +23,13 @@
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qpj-n0-sgO">
                     <rect key="frame" x="8" y="0.0" width="359" height="1"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="0.98697105929999995" green="0.99956106259999999" blue="1" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="sll-U6-eYX"/>
                     </constraints>
                 </view>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="..." selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pHq-mg-oUi">
-                    <rect key="frame" x="0.0" y="0.0" width="343" height="38"/>
+                    <rect key="frame" x="0.0" y="0.0" width="370" height="38"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="38" id="CJn-hv-8sV"/>
                     </constraints>
@@ -45,9 +45,9 @@
                     </constraints>
                 </imageView>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" red="0.98697105929999995" green="0.99956106259999999" blue="1" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="pHq-mg-oUi" secondAttribute="trailing" constant="32" id="6sq-Zz-zG5"/>
+                <constraint firstAttribute="trailing" secondItem="pHq-mg-oUi" secondAttribute="trailing" constant="5" id="6sq-Zz-zG5"/>
                 <constraint firstItem="Je4-JU-ajm" firstAttribute="leading" secondItem="pHq-mg-oUi" secondAttribute="trailing" id="9Ox-Dy-k6O"/>
                 <constraint firstAttribute="bottom" secondItem="pHq-mg-oUi" secondAttribute="bottom" id="HXR-rV-E6G"/>
                 <constraint firstItem="pHq-mg-oUi" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Tzu-lH-yNb"/>
@@ -59,6 +59,11 @@
                 <constraint firstItem="Qpj-n0-sgO" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="t8i-89-waQ"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="subviews">
+                    <exclude reference="Je4-JU-ajm"/>
+                </mask>
+            </variation>
             <point key="canvasLocation" x="38.5" y="-173"/>
         </view>
     </objects>

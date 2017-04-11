@@ -16,6 +16,8 @@ class VideoView: UIView {
     @IBOutlet weak var toggleSound: UIButton!
     @IBOutlet weak var tagText: UILabel!
     @IBOutlet weak var tagView: UIView!
+    @IBOutlet weak var playBtn: UIImageView!
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()

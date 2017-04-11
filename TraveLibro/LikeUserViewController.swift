@@ -36,7 +36,7 @@ class LikeUserViewController: UITableViewController {
                     loader.hideOverlayView()
                     
                     self.data = request["data"]["like"]
-                    self.tableView.reloadData()
+                    self.reloadTableView()
                 })
             })
         case "quick-itinerary", "detail-itinerary":
@@ -45,7 +45,7 @@ class LikeUserViewController: UITableViewController {
                     loader.hideOverlayView()
                     
                     self.data = request["data"]["like"]
-                    self.tableView.reloadData()
+                    self.reloadTableView()
                 })
             })
         case "photo":
@@ -54,7 +54,7 @@ class LikeUserViewController: UITableViewController {
                     loader.hideOverlayView()
                     
                     self.data = request["data"]["like"]
-                    self.tableView.reloadData()
+                    self.reloadTableView()
                 })
             })
         case "video":
@@ -63,7 +63,7 @@ class LikeUserViewController: UITableViewController {
                     loader.hideOverlayView()
                     
                     self.data = request["data"]["like"]
-                    self.tableView.reloadData()
+                    self.reloadTableView()
                 })
             })
         default:
@@ -72,11 +72,16 @@ class LikeUserViewController: UITableViewController {
                     loader.hideOverlayView()
                     
                     self.data = request["data"]["like"]
-                    self.tableView.reloadData()
+                    self.reloadTableView()
                 })
             })
         }
         
+    }
+    
+    func reloadTableView(){
+        self.title = "Likes (\(self.data.count))"
+        self.tableView.reloadData()
     }
     
     func createNavigation() {
@@ -116,10 +121,9 @@ class LikeUserViewController: UITableViewController {
         cell.profileName.text = self.data[indexPath.row]["name"].stringValue
         cell.profileImage.hnk_setImageFromURL(getImageURL(self.data[indexPath.row]["profilePicture"].stringValue, width: 300))
         cell.urlSlurg.text = self.data[indexPath.row]["urlSlug"].stringValue
-        makeTLProfilePicture(cell.profileImage)
+        makeBuddiesTLProfilePicture(cell.profileImage)
         return cell
     }
-    
     
 }
 

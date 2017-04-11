@@ -31,7 +31,7 @@ class NotificationFooter: UIView {
     }
     
     func updateReadStatus(read: String) {
-        if read == "unread" {
+        if read == "" {
             NFReadMark.tintColor = UIColor.clear
         }
         else {

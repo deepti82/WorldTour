@@ -5,6 +5,7 @@ import OneSignal
 import Haneke
 import Crashlytics
 
+//var adminUrl = "https://travelibro.wohlig.com/api/"
 var adminUrl = "https://travelibro.com/api/"
 var adminBackendUrl = "http://travelibrobackend.wohlig.com/api/"
 var mapKey = "AIzaSyDPH6EYKMW97XMTJzqYqA0CR4fk5l2gzE4"
@@ -14,6 +15,7 @@ class Navigation {
     let cache = Shared.dataCache
     
 //    var json: JSON!
+
     
     func saveUser(_ firstName: String, lastName: String, email: String, mobile: String, fbId: String, googleId: String, twitterId: String, instaId: String, nationality: String, profilePicture: String, gender: String, dob: String, completion: @escaping ((JSON) -> Void)) {
         
@@ -480,10 +482,14 @@ class Navigation {
                 
                 id = "\(localDbId!)"
             }
+            HTTP.globalRequest { req in
+                req.timeoutInterval = 6000
+            }
             
             print("inside upload files: \(id) \(file)")
             
             let opt = try HTTP.POST(adminUrl + "upload", parameters: ["localId": id, "file": Upload(fileUrl: file)])
+            
             var json = JSON(1);
             opt.start { response in
                 //                print("started response: \(response)")
@@ -710,6 +716,10 @@ class Navigation {
             
 //            let params = ["file": file]
             print("file to be read: \(file)")
+            
+//            HTTP.globalRequest { req in
+//                req.timeoutInterval = 6000
+//            }
             let opt = try HTTP.GET(adminUrl + "upload/readFile?file=" + file)
             print("opt: \(opt)")
             var json = JSON(1);
@@ -1362,6 +1372,29 @@ class Navigation {
     }
     
     //  quick itinerery
+    
+    func deleteItinerary(id:String, completion: @escaping ((JSON) -> Void)) {
+        
+        do {
+            let opt = try HTTP.POST(adminUrl + "itinerary/deleteItinerary", parameters: ["_id":id, "user":user.getExistingUser()])
+            var json = JSON(1);
+            opt.start {response in
+                if let err = response.error {
+                    print("error: \(err.code) && msg : \(err.localizedDescription)")
+                }
+                else
+                {
+                                        
+                    json  = JSON(data: response.data)
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+        
+    }
+    
     func postQuickitenary(title:String, year:Int, month:String, duration:Int, description:String, itineraryType:JSON, countryVisited:JSON,photos:[JSON],status:Bool,editId:String,completion: @escaping ((JSON) -> Void)) {
         
         var params: JSON = ["name":title, "year":year, "month":month, "description":description, "duration":duration, "user":currentUser["_id"], "status":status]
@@ -1430,40 +1463,6 @@ class Navigation {
         }
     }
     
-    
-    func getNotify(_ id: String, pageNumber: Int, completion: @escaping ((JSON) -> Void)) {
-        let urlString = adminUrl + "notification/getNotification"
-        
-        if(pageNumber == 1) {
-            self.cache.fetch(key: urlString+id).onSuccess { data in
-                let json = JSON(data: data)
-                completion(json)
-            }
-        }
-        
-        do {
-            let opt = try HTTP.POST(urlString, parameters: ["user": id,"pagenumber":pageNumber])
-            var json = JSON(1);
-            opt.start {response in
-                if let err = response.error {
-                    print("error: \(err.code) && msg : \(err.localizedDescription)")                    
-                }
-                else
-                {
-                    
-                    if(pageNumber == 1) {
-                        self.cache.set(value: response.data, key: urlString+id)
-                    }
-                    
-                    json  = JSON(data: response.data)
-                    completion(json)
-                }
-            }
-        } catch let error {
-            print("got an error creating the request: \(error)")
-        }
-    }    
-    
     func getPlaceId(_ placeId: String, completion: @escaping ((JSON) -> Void)) {
         
         do {
@@ -1487,8 +1486,19 @@ class Navigation {
         }
     }
     
+    func checkActivityCache(_ user: String, completion: @escaping ((JSON) -> Void)) {
+        let urlString = adminUrl + "activityfeed/getData"
+        var json:JSON = [];
+        self.cache.fetch(key: urlString+user).onSuccess { (data) in            
+            json = JSON(data: data)
+            completion(json)
+            }.onFailure { (error) in
+                completion(json)
+        }
+    }
+    
     func getActivityFeeds(_ user: String, pageNumber: Int, completion: @escaping ((JSON,[JSON],[JSON]) -> Void)) {
-        var urlString = adminUrl + "activityfeed/getData"
+        let urlString = adminUrl + "activityfeed/getData"
         
         var json:JSON = [];
         if(pageNumber == 1) {
@@ -1664,7 +1674,7 @@ class Navigation {
                 } else if type == "local-life" {
                     params = ["user": user, "token": token, "type": type, "limit": 1, "times": 6, "urlSlug": urlSlug!]
                 } else {
-                    params = ["user": user, "token": token, "type": type, "limit": 20, "times": 10, "urlSlug": urlSlug!]
+                    params = ["user": user, "token": token, "type": type, "limit": 10, "times": 10, "urlSlug": urlSlug!]
                 }
 
             }else{
@@ -1673,7 +1683,7 @@ class Navigation {
                 } else if type == "local-life" {
                     params = ["user": user, "token": token, "type": type, "limit": 1, "times": 6]
                 } else {
-                    params = ["user": user, "token": token, "type": type, "limit": 20, "times": 10]
+                    params = ["user": user, "token": token, "type": type, "limit": 10, "times": 10]
                 }
 
             }
@@ -2188,10 +2198,11 @@ class Navigation {
             print("like post: \(params) \(type)")
             
             let opt = try HTTP.POST(adminUrl + url, parameters: [params])
-            var json = JSON(1);
+            var json = JSON(["value" : false])
             opt.start {response in
                 if let err = response.error {
                     print("error: \(err.localizedDescription)")
+                    completion(json)
                 }
                 else
                 {
@@ -3502,6 +3513,53 @@ class Navigation {
 //            let opt = try HTTP.POST(adminUrl + )
 //        }
 //    }
+    
+    
+    //MARK: - Notifications
+    
+    func checkNotificationCache(_ user: String, completion: @escaping ((JSON) -> Void)) {
+        let urlString = adminUrl + "notification/getNotification"
+        var json:JSON = [];
+        self.cache.fetch(key: urlString+user).onSuccess { (data) in            
+            json = JSON(data: data)
+            completion(json)
+        }.onFailure { (error) in
+            completion(json)
+        }
+    }    
+    
+    func getNotify(_ id: String, pageNumber: Int, completion: @escaping ((JSON) -> Void)) {
+        let urlString = adminUrl + "notification/getNotification"
+        
+        if(pageNumber == 1) {
+            self.cache.fetch(key: urlString+id).onSuccess { data in
+                let json = JSON(data: data)
+                completion(json)
+            }
+        }
+        
+        do {
+            let opt = try HTTP.POST(urlString, parameters: ["user": id,"pagenumber":pageNumber])
+            var json = JSON(1);
+            opt.start {response in
+                if let err = response.error {
+                    print("error: \(err.code) && msg : \(err.localizedDescription)")                    
+                }
+                else
+                {
+                    
+                    if(pageNumber == 1) {
+                        self.cache.set(value: response.data, key: urlString+id)
+                    }
+                    
+                    json  = JSON(data: response.data)
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+    }
     
     
     //MARK: - Unread Notification's Count

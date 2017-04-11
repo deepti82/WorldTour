@@ -214,6 +214,10 @@ class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDele
             carouselView.scrollToItem(at: carouselView.currentItemIndex, animated: true)
         }
     }
+
+    func playerPlaybackStateDidChange(_ player: Player) {
+        print(player.playbackState)
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -359,12 +363,18 @@ class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDele
         if (carouselView != nil) {
             self.index = carouselView.currentItemIndex
         }
+        if (self.index == -1 ) {
+            self.index = 0
+        }
         toCommentView()
     }
     
     @IBAction func sendComment(_ sender: UIButton) {
         if (carouselView != nil) {
             self.index = carouselView.currentItemIndex
+        }
+        if (self.index == -1 ) {
+            self.index = 0
         }
         toCommentView()
     }
@@ -480,6 +490,9 @@ class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDele
     //MARK:- Bottom View Updation
     
     func fromPhotoFunction(data:JSON) {
+        
+        self.imageCaption.text = ""
+        
         if (carouselView.isHidden) {
             carouselView.isHidden = false
             if (player != nil && player.playbackState == PlaybackState.playing){
@@ -520,6 +533,8 @@ class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDele
     
     func fromVideoFunction(data:JSON) {
         loader.hideOverlayView()
+        
+        self.imageCaption.text = ""
         
         let mainImageString = "\(adminUrl)upload/readFile?file=\(data["name"].string!)"
         self.mainImage.hnk_setImageFromURL(NSURL(string:mainImageString) as! URL)
@@ -607,6 +622,7 @@ class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDele
     func playerReady(_ player: Player) {
         self.player.playFromBeginning()
     }
+    
     
     
     //MARK: - Helper
@@ -812,14 +828,10 @@ class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDele
         }
         
         if shouldCreateView {
-            currentImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: carousel.frame.size.width*0.90, height: carousel.frame.size.height*0.90))
-            currentImageView.contentMode = .scaleAspectFill
-            currentImageView.clipsToBounds = true
+            currentImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: carousel.frame.size.width*0.95, height: carousel.frame.size.height*0.95))
+            currentImageView.contentMode = .scaleAspectFit
             currentImageView.backgroundColor = UIColor.clear
             currentImageView.tag = 999
-            currentImageView.layer.borderColor = UIColor.lightGray.cgColor
-            currentImageView.layer.borderWidth = 0.5
-            currentImageView.layer.cornerRadius = 5.0
         }
         
         currentImageView.image = UIImage(named: "logo-default")
@@ -875,7 +887,7 @@ class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDele
     }
     
     
-    //MARK: - Blur effect 58d9f78f0b77702d741bdb39
+    //MARK: - Blur Effect
     
     func setBackgroundBlur() {
         
@@ -884,7 +896,7 @@ class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDele
         bgImage.isUserInteractionEnabled = false
         self.view.addSubview(bgImage)
         self.view.sendSubview(toBack: bgImage)
-        
+                
         let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.light)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.frame = view.bounds

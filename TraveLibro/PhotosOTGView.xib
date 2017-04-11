@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -37,13 +37,12 @@
                 </view>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aYL-sn-6xk">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="88"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="88" id="kuD-jK-Obw"/>
                     </constraints>
                 </scrollView>
             </subviews>
-            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.98697105929999995" green="0.99956106259999999" blue="1" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="eqh-AU-2QQ" firstAttribute="leading" secondItem="aYL-sn-6xk" secondAttribute="leading" id="CZY-ex-h3W"/>
                 <constraint firstItem="eqh-AU-2QQ" firstAttribute="top" secondItem="aYL-sn-6xk" secondAttribute="top" id="Ixx-yP-r8L"/>

@@ -32,6 +32,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
     var popularItinerary: PopularItinerary!
     var feeds: JSON = []
     var displayData: String = ""
+    var willPlay = false
     
     var scrollView:UIScrollView!
     
@@ -43,16 +44,17 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             headerLayout(feed: feed)
         }
         
-        
-        
         middleLayoout(feed:feed)
         
         if !feed["offline"].boolValue {
             footerLayout(feed:feed)
         }
         
-        
         self.layoutSubviews()
+    }
+    
+    func setBlurBounds() {
+        globalActivityFeedsController.blr?.bounds = self.bounds
     }
     
     func videosAndPhotosLayout(feed:JSON) {
@@ -73,26 +75,34 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             self.player.playbackLoops = true
             self.player.muted = true
             self.player.fillMode = "AVLayerVideoGravityResizeAspectFill"
+            self.player.playbackFreezesAtEnd = true
             self.videoContainer.player = self.player
-            var videoUrl:URL!
+            self.videoContainer.bringSubview(toFront: videoContainer.playBtn)
+            
+            
+            var videoUrl = URL(string:self.feeds["videos"][0]["name"].stringValue)
+            if(videoUrl == nil) {
+                videoUrl = URL(string:self.feeds["videos"][0]["localUrl"].stringValue)
+            }
+            
+            getThumbnailFromVideoURL(url: videoUrl!, onView: self.videoContainer.videoHolder)
+            
             if feed["type"].stringValue == "travel-life" {
                 videoContainer.tagText.text = "Travel Life"
                 videoContainer.tagView.backgroundColor = mainOrangeColor
-            }else{
+                videoContainer.playBtn.tintColor = mainOrangeColor
+            }
+            else{
                 videoContainer.tagText.text = "  Local Life"
                 videoContainer.tagText.textColor = UIColor(hex: "#303557")
                 videoContainer.tagView.backgroundColor = endJourneyColor
-                //                profileHeader.category.imageView?.tintColor = UIColor(hex: "#303557")
+                videoContainer.playBtn.tintColor = endJourneyColor
             }
-            videoUrl = URL(string:feed["videos"][0]["name"].stringValue)
-            if(videoUrl == nil) {
-                videoUrl = URL(string:feed["videos"][0]["localUrl"].stringValue)
-            }
-            self.player.setUrl(videoUrl!)
             self.videoContainer.videoHolder.addSubview(self.player.view)
             self.addSubview(self.videoContainer)
             
-        } else if(feed["photos"].count > 0) {
+        } 
+        else if(feed["photos"].count > 0) {
             self.mainPhoto = UIImageView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.width))
             self.addSubview(self.mainPhoto)
             self.mainPhoto.contentMode = UIViewContentMode.scaleAspectFill
@@ -115,7 +125,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             
             self.addSubview(mainPhoto)
             
-            let imgStr = getImageURL(feed["photos"][0]["name"].stringValue, width: 300)
+            let imgStr = getImageURL(feed["photos"][0]["name"].stringValue, width: 0)
             
             cache.fetch(URL: imgStr).onSuccess({ (data) in
                 self.mainPhoto.image = UIImage(data: data as Data)
@@ -154,7 +164,9 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
                 }
                 
             })
-        }else{
+        }
+            
+        else{
             if feed["imageUrl"] != nil {
                 self.mainPhoto = UIImageView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.width))
                 self.addSubview(self.mainPhoto)
@@ -227,25 +239,25 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
                 footerView.setLikeCount(feed["likeCount"].intValue)
                 footerView.setView(feed:feed)
                 footerView.setLikeSelected(feed["likeDone"].boolValue)
-
+                
                 self.addSubview(footerView)
-
+                
             }else{
-            footerViewReview = ActivityFeedFooter(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 65))
-            footerViewReview.postTop = feed
-            footerViewReview.topLayout = self
-            footerViewReview.type = "ActivityFeeds"
-            footerViewReview.setView(feed: feed)
-            footerViewReview.setCommentCount(footerViewReview.postTop["commentCount"].intValue)
-            footerViewReview.setLikeCount(footerViewReview.postTop["likeCount"].intValue)
-            footerViewReview.setReviewCount(count: footerViewReview.postTop["userReviewCount"].intValue)
-            footerViewReview.setLikeSelected(feed["likeDone"].boolValue)
-
-            //footerViewReview.reviewButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ActivityFeedsLayout.rateButtonTapped(_:))))
-            
-            self.addSubview(footerViewReview)
-            //            dropView = DropShadow2(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 2))
-            //            self.addSubview(dropView)
+                footerViewReview = ActivityFeedFooter(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 65))
+                footerViewReview.postTop = feed
+                footerViewReview.topLayout = self
+                footerViewReview.type = "ActivityFeeds"
+                footerViewReview.setView(feed: feed)
+                footerViewReview.setCommentCount(footerViewReview.postTop["commentCount"].intValue)
+                footerViewReview.setLikeCount(footerViewReview.postTop["likeCount"].intValue)
+                footerViewReview.setReviewCount(count: footerViewReview.postTop["userReviewCount"].intValue)
+                footerViewReview.setLikeSelected(feed["likeDone"].boolValue)
+                
+                //footerViewReview.reviewButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ActivityFeedsLayout.rateButtonTapped(_:))))
+                
+                self.addSubview(footerViewReview)
+                //            dropView = DropShadow2(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 2))
+                //            self.addSubview(dropView)
             }
             
             
@@ -335,17 +347,20 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "EachItineraryViewController") as! EachItineraryViewController
         controller.fromOutSide = feeds["_id"].stringValue
-        globalNavigationController?.setNavigationBarHidden(false, animated: true)
+        globalNavigationController?.setNavigationBarHidden(false, animated: false)
         globalNavigationController?.pushViewController(controller, animated: true)
         
     }
     
     func headerLayout(feed:JSON) {
         
+        var blr: UIView?
         profileHeader = ActivityProfileHeader(frame: CGRect(x: 0, y: 20, width: self.frame.width, height: 69))
         
-        profileHeader.fillProfileHeader(feed:feed)
         self.addSubview(profileHeader)
+        
+        profileHeader.fillProfileHeader(feed:feed)
+        
         
         if feed["type"].stringValue == "on-the-go-journey"{
             profileHeader.localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["startTime"].stringValue, isDate: true)
@@ -406,6 +421,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             textHeader.sizeToFit()
             textHeader.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: textHeader.headerText.frame.height + 1.5)
             if(textHeader.headerText.text != "") {
+                                
                 self.addSubview(textHeader)
             }
             
@@ -435,7 +451,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let controller = storyboard.instantiateViewController(withIdentifier: "EachItineraryViewController") as! EachItineraryViewController
             controller.fromOutSide = feeds["_id"].stringValue
-            globalNavigationController?.setNavigationBarHidden(false, animated: true)
+            globalNavigationController?.setNavigationBarHidden(false, animated: false)
             globalNavigationController?.pushViewController(controller, animated: true)
         }
         else {
@@ -508,20 +524,50 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
     }
     
     func videoToPlay ()  {
+        
+        if isVideoViewInRangeToPlay() {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: { 
+                if self.isVideoViewInRangeToPlay() {
+                    if !self.willPlay {
+                        self.videoContainer.playBtn.isHidden = true
+                        self.willPlay = true
+                        var videoUrl = URL(string:self.feeds["videos"][0]["name"].stringValue)
+                        if(videoUrl == nil) {
+                            videoUrl = URL(string:self.feeds["videos"][0]["localUrl"].stringValue)
+                        }
+                        self.player.setUrl(videoUrl!)
+                        self.player.playFromBeginning()
+                    }
+                }
+                else {
+                    self.player.stop()
+                    self.willPlay = false
+                    self.videoContainer.playBtn.isHidden = false
+                }
+            })
+        }
+        else {
+            self.player.stop()
+            self.willPlay = false
+            self.videoContainer.playBtn.isHidden = false
+        }
+    }
+    
+    func isVideoViewInRangeToPlay() -> Bool {
         let min = self.frame.origin.y + self.videoContainer.frame.origin.y
         let max = min + self.videoContainer.frame.size.height
         let scrollMin = self.scrollView.contentOffset.y
         let scrollMax = scrollMin + self.scrollView.frame.height
-        if(scrollMin < min && scrollMax > max ) {
-            self.player.playFromCurrentTime()
+       
+        if (scrollMin < min && scrollMax > max ) {
+            return true
         }
-        else {
-            self.player.pause()
-        }
+        
+        return false
     }
     
     func playerReady(_ player: Player) {
-        videoToPlay()
+        //videoToPlay()
     }
     
     func rateButtonTapped(_ sender: AnyObject) {
@@ -547,6 +593,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
         blackBg.addSubview(ratingDialog)
         
     }
+    
     func closeDialog(_ sender: AnyObject) {
         
         blackBg.isHidden = true
@@ -563,8 +610,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
         //        checkInPost.ratingLabel.isHidden = false
         //        checkInPost.ratingStack.isHidden = false
         
-    }
-    
+    }    
     
     func changeDateFormat(_ givenFormat: String, getFormat: String, date: String, isDate: Bool) -> String {
         

@@ -19,6 +19,8 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
     var rateButton:RatingCheckIn!
     var dropView: DropShadow1!
     var journeyUser: String = ""
+    var willPlay = false
+    
     func generatePost(_ post:Post) {
         
         self.layer.cornerRadius = 5.0
@@ -90,7 +92,11 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
             } else {
                 videoUrl = post.videoArr[0].imageUrl
             }
-            self.player.setUrl(videoUrl!)
+            
+            videoContainer.playBtn.tintColor = mainOrangeColor
+            
+            getThumbnailFromVideoURL(url: videoUrl!, onView: self.videoContainer.videoHolder)
+            
             self.videoContainer.videoHolder.addSubview(self.player.view)
             self.addSubview(self.videoContainer)
             
@@ -288,22 +294,54 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
     
     }
     
-        
-    func playerReady(_ player: Player) {
-        videoToPlay()
-    }
     
     func videoToPlay ()  {
-        let min = self.frame.origin.y + self.videoContainer.frame.origin.y
-        let max = min + self.videoContainer.frame.size.height
-        let scrollMin = scrollView.contentOffset.y
-        let scrollMax = scrollMin + scrollView.frame.height
-        if(scrollMin < min && scrollMax > max ) {
-            self.player.playFromCurrentTime()
+        
+        if isVideoViewInRangeToPlay() {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: { 
+                if self.isVideoViewInRangeToPlay() {
+                    if !self.willPlay {
+                        self.videoContainer.playBtn.isHidden = true
+                        self.willPlay = true
+                        var videoUrl : URL!
+                        if(!self.postTop.post_isOffline) {
+                            videoUrl = URL(string: self.postTop.videoArr[0].serverUrl)
+                        } else {
+                            videoUrl = self.postTop.videoArr[0].imageUrl
+                        }
+                        self.player.setUrl(videoUrl!)
+                        self.player.playFromBeginning()
+                    }
+                }
+                else {
+                    self.player.stop()
+                    self.willPlay = false
+                    self.videoContainer.playBtn.isHidden = false
+                }
+            })
         }
         else {
-            self.player.pause()
+            self.player.stop()
+            self.willPlay = false
+            self.videoContainer.playBtn.isHidden = false
         }
     }
+    
+    func isVideoViewInRangeToPlay() -> Bool {
+        let min = self.frame.origin.y + self.videoContainer.frame.origin.y
+        let max = min + self.videoContainer.frame.size.height
+        let scrollMin = self.scrollView.contentOffset.y
+        let scrollMax = scrollMin + self.scrollView.frame.height
+        
+        if (scrollMin < min && scrollMax > max ) {
+            return true
+        }
+        
+        return false
+    }
+    
+    func playerReady(_ player: Player) {
+//        videoToPlay()
+    }    
 
 }

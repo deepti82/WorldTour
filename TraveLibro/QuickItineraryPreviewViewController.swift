@@ -21,9 +21,12 @@ class QuickItineraryPreviewViewController: UIViewController {
     
     func loadPreview() {
         let prev = QuickItineraryPreview(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 837))
-        //        self.view.addSubview(prev)
+        //        self.view.addSubview(prev)        
         
-        let getImageUrl = adminUrl + "upload/readFile?file=" + currentUser["profilePicture"].stringValue + "&width=100"
+        
+        let getImageUrl = adminUrl + "upload/readFile?file=" + ((quickItinery["status"].boolValue) ? 
+            quickItinery["creator"]["profilePicture"].stringValue + "&width=100" :
+            currentUser["profilePicture"].stringValue) + "&width=100"
         prev.getGradiant()
         prev.gradiantLayer = CAGradientLayer()
         prev.gradiantLayer.frame.size = prev.displayPiture.frame.size
@@ -42,7 +45,7 @@ class QuickItineraryPreviewViewController: UIViewController {
             }
         }
         
-        prev.userName.text? = currentUser["firstName"].stringValue + " " + currentUser["lastName"].stringValue
+        prev.userName.text? = (quickItinery["status"].boolValue) ? quickItinery["creator"]["name"].stringValue : currentUser["name"].stringValue
         if quickItinery["title"] != nil {
             prev.quickTitle.text? = quickItinery["title"].stringValue
         }else{

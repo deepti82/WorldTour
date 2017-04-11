@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 
 func addShadow(_ myView: UIView, offset: CGSize, opacity: CGFloat, shadowRadius: CGFloat, cornerRadius: CGFloat) {
@@ -36,7 +37,7 @@ func getBackGround(_ myVC: UIViewController) -> Void {
     
 //    myVC.view.backgroundColor = UIColor(patternImage: UIImage(named: "bg")!)
     let bgImage = UIImageView(frame: myVC.view.frame)
-    bgImage.image = UIImage(named: "bg")
+    bgImage.image = UIImage(named: "back_7_4")
     bgImage.layer.zPosition = -1
     bgImage.isUserInteractionEnabled = false
     myVC.view.addSubview(bgImage)
@@ -55,7 +56,9 @@ func segueFromPagerStrip(_ vc: UINavigationController, nextVC: UIViewController)
 func getDarkBackGround(_ myVC: UIViewController) -> Void {
     
     let bgImage = UIImageView(frame: myVC.view.frame)
-    bgImage.image = UIImage(named: "darkBgNew")
+//    bgImage.image = UIImage(named: "darkBgNew")
+    bgImage.image = UIImage(named: "back_7_4")
+//    bgImage.backgroundColor = UIColor.white
     bgImage.layer.zPosition = -1
     bgImage.isUserInteractionEnabled = false
     myVC.view.addSubview(bgImage)
@@ -66,7 +69,7 @@ func getDarkBackGround(_ myVC: UIViewController) -> Void {
 func getDarkBackGroundBlur(_ myVC: UIViewController) -> Void {
     
     let bgImage = UIImageView(frame: myVC.view.frame)
-    bgImage.image = UIImage(named: "darkBg")
+    bgImage.image = UIImage(named: "back_7_4")
     bgImage.layer.zPosition = -1
     bgImage.isUserInteractionEnabled = false
     
@@ -80,7 +83,7 @@ func getDarkBackGroundBlur(_ myVC: UIViewController) -> Void {
 func getDarkBackGroundBlue(_ myVC: UIViewController) {
     
     let bgImage = UIImageView(frame: myVC.view.frame)
-    bgImage.image = UIImage(named: "darkBgNew")
+    bgImage.image = UIImage(named: "back_7_4")
     bgImage.layer.zPosition = -1
     bgImage.isUserInteractionEnabled = false
     
@@ -104,7 +107,7 @@ func getDarkBackGroundBlue(_ myVC: UIViewController) {
 func getDarkBackGroundNew(_ myVC: UIViewController) {
     
     let bgImage = UIImageView(frame: myVC.view.frame)
-    bgImage.image = UIImage(named: "darkBgNew")
+    bgImage.image = UIImage(named: "back_7_4")
     bgImage.layer.zPosition = -1
     bgImage.isUserInteractionEnabled = false
     
@@ -181,22 +184,19 @@ class LeftPaddedText:  UITextField {
     }
     
 }
-
-
-open class LoadingOverlay{
+open class BlurOnView{
     
     var loader: UIView?
     var imageView1 = UIImageView()
     
-    class var shared: LoadingOverlay {
-        struct Static {
-            static let instance: LoadingOverlay = LoadingOverlay()
-        }
-        return Static.instance
-    }
+//    class var shared: BlurOnView {
+//        struct Static {
+//            static let instance: BlurOnView = BlurOnView()
+//        }
+//        return Static.instance
+//    }
     
-    func showOverlay(_ view: UIView) {
-        hideOverlayView()
+    func showBlur(_ view: UIView) {
         print("show loader : viewYPos : \(view.frame.origin.y)")
         
         let darkBlur = UIBlurEffect(style: UIBlurEffectStyle.dark)
@@ -205,28 +205,62 @@ open class LoadingOverlay{
         blurView.frame.size.width = view.frame.width + 50
         blurView.layer.zPosition = 6000000
         blurView.isUserInteractionEnabled = false
-
+        
         loader = UIView(frame:CGRect(x: 0, y: 0, width: view.frame.size.width + 50, height: view.frame.size.height + 50))
         
-        let imageView1 = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
-        imageView1.backgroundColor = UIColor.clear
-        imageView1.image = UIImage.gif(name: "200_200")
-        imageView1.contentMode = .scaleAspectFit
-        imageView1.center = CGPoint(x: view.center.x, y: ((view.frame.size.height/2) - ( globalNavigationController != nil ? (globalNavigationController?.navigationBar.frame.size.height)! : 0) ))
         
-        blurView.addSubview(imageView1)
-         loader!.addSubview(blurView)
-//        loader.backgroundColor = UIColor(colorLiteralRed: 0/255, green: 0/255, blue: 0/255, alpha: 0.4)
+        loader!.addSubview(blurView)
         view.addSubview(loader!)
         
     }
     
-    func hideOverlayView() {
-        if loader != nil {
-            loader!.removeFromSuperview()
-            loader = nil
-        }else {
-            //
+}
+
+open class LoadingOverlay{
+    
+    var overlayView = UIView()
+    var activityIndicator = UIActivityIndicatorView()
+    var blurView: UIVisualEffectView!
+    
+    class var shared: LoadingOverlay {
+        struct Static {
+            static let instance: LoadingOverlay = LoadingOverlay()
+            
+        }
+        return Static.instance
+    }
+    
+    public func showOverlay(_ view: UIView) {
+        hideOverlayView()
+        overlayView.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+        overlayView.center = CGPoint(x: (screenWidth/2), y: (view.frame.size.height/2))
+        overlayView.backgroundColor = UIColor.clear
+        overlayView.clipsToBounds = true
+        overlayView.layer.cornerRadius = 10
+        
+        let darkBlur = UIBlurEffect(style: UIBlurEffectStyle.dark)
+        blurView = UIVisualEffectView(effect: darkBlur)
+        blurView.frame.size.height = view.frame.height
+        blurView.frame.size.width = screenWidth
+        blurView.isUserInteractionEnabled = false
+        blurView.addSubview(overlayView)
+        
+        activityIndicator.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+        activityIndicator.activityIndicatorViewStyle = .whiteLarge
+        activityIndicator.center = CGPoint(x: overlayView.bounds.width / 2, y: overlayView.bounds.height / 2)
+        activityIndicator.color = mainOrangeColor
+        
+        overlayView.addSubview(activityIndicator)
+        view.addSubview(blurView)
+        
+        activityIndicator.startAnimating()
+    }
+    
+    public func hideOverlayView() {
+        if blurView != nil {
+            activityIndicator.stopAnimating()
+            blurView.removeFromSuperview()
+            blurView = nil
         }
     }
 }
@@ -747,7 +781,7 @@ func shouldShowBigImage(position: Int) -> Bool {
 
 func setFollowButtonTitle(button:UIButton, followType: Int, otherUserID: String) {
     
-    if otherUserID == "admin" || isSelfUser(otherUserID: otherUserID) {
+    if otherUserID == "admin" || otherUserID == "" || isSelfUser(otherUserID: otherUserID) {
         button.isHidden = true
     }
     else{
@@ -834,6 +868,30 @@ func isSelfUser(otherUserID: String) -> Bool {
         return false
     }
 }
+
+
+//MARK: - Video thumbnail
+
+func getThumbnailFromVideoURL(url : URL, onView: UIImageView) {
+    DispatchQueue.global().async {
+        var image = UIImage(named: "logo-default")
+        let asset = AVURLAsset(url: url, options: nil)
+        let imgGenerator = AVAssetImageGenerator(asset: asset)
+        do {
+            let imageRef = try imgGenerator.copyCGImage(at: CMTimeMake(0, 1), actualTime: nil)
+            image = UIImage(cgImage: imageRef)
+            DispatchQueue.main.async(execute: {
+                onView.image = image
+            })
+        } catch {
+            print(error)
+            DispatchQueue.main.async(execute: {
+                onView.image = image
+            })
+        }
+    }
+}
+
 
 
 //LoadingOverlay.shared.showOverlay(self.view)

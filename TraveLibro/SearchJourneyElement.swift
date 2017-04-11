@@ -68,8 +68,8 @@ class SearchJourneyElement: UIView {
         print("set data clicked")
         feeds = data
         index = tabs
-        self.creatorName.text = data["journeyCreator"]["name"].stringValue
-        self.creatorPic.hnk_setImageFromURL(getImageURL(data["journeyCreator"]["profilePicture"].stringValue, width: 300))
+        self.creatorName.text = data["user"]["name"].stringValue
+        self.creatorPic.hnk_setImageFromURL(getImageURL(data["user"]["profilePicture"].stringValue, width: 300))
         self.days.text = data["duration"].stringValue
         if data["duration"].intValue > 1 {
             self.dayText.text = "Days"
@@ -112,7 +112,7 @@ class SearchJourneyElement: UIView {
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let controller = storyboard.instantiateViewController(withIdentifier: "EachItineraryViewController") as! EachItineraryViewController
                 controller.fromOutSide = feeds["_id"].stringValue
-                globalNavigationController?.setNavigationBarHidden(false, animated: true)
+                globalNavigationController?.setNavigationBarHidden(false, animated: false)
                 globalNavigationController?.pushViewController(controller, animated: true)
             }
             

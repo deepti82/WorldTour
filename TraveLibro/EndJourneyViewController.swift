@@ -343,7 +343,7 @@ class EndJourneyViewController: UIViewController {
         
         let rating = AddRatingCountries(frame: CGRect(x: 0, y: 0, width: width - 40, height: 423))
         rating.endJourney = self;
-        rating.center = backgroundReview.center
+        rating.center = CGPoint(x: backgroundReview.frame.width/2, y: backgroundReview.frame.height/2)
         rating.layer.cornerRadius = 5
         //        rating.postReview.setTitle(sender.titleLabel!.text!, for: .application)
         rating.tag = sender.tag
@@ -475,10 +475,13 @@ class EndJourneyViewController: UIViewController {
     }
     
     func doneEndJourney(_ sender: UIButton) {
+        
+        loader.showOverlay(self.view)
+        
         if coverImage.contains("UIImage") {
             let exportFileUrl = "file://" + NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] + "/coverimage.jpg"
             DispatchQueue.main.async(execute: {
-                
+                self.loader.hideOverlayView()
                 do {
                     
                     if let data = UIImageJPEGRepresentation(self.coverImageImg, 0.35) {
@@ -496,7 +499,8 @@ class EndJourneyViewController: UIViewController {
                                         if response.error != nil {
                                             print("error: \(response.error!.localizedDescription)")
                                         }
-                                        else if response["value"].bool! {                                            
+                                        else if response["value"].bool! {
+                                            
                                             self.goBack()
                                         }
                                         else {
@@ -530,15 +534,15 @@ class EndJourneyViewController: UIViewController {
             
         }
         else{
-            let tstr = Toast(text: "Wait a while.....")
-            tstr.show()
+//            let tstr = Toast(text: "Wait a while.....")
+//            tstr.show()
             
             request.endJourney(journey["_id"].string!, uniqueId: journey["uniqueId"].string!, user: currentUser["_id"].string!, userName: currentUser["name"].string!, buddies: journey["buddies"].array!, photo: coverImage, journeyName: journey["name"].stringValue, notificationID: self.notificationID, completion: {(response) in
                 
                 print("End Journey response : \(response)")
                 
                 DispatchQueue.main.async(execute: {
-                    
+                    self.loader.hideOverlayView()
                     if response.error != nil {
                         print("error: \(response.error!.localizedDescription)")
                     }

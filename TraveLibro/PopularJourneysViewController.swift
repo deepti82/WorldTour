@@ -36,6 +36,11 @@ class PopularJourneysViewController: UIViewController, UITableViewDelegate, UITa
         super.viewWillAppear(animated)
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        hideHeaderAndFooter(false)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -120,14 +125,11 @@ class PopularJourneysViewController: UIViewController, UITableViewDelegate, UITa
     
     func hideHeaderAndFooter(_ isShow:Bool) {
         if(isShow) {
-            self.navigationController?.setNavigationBarHidden(true, animated: true)
-            
+            self.navigationController?.setNavigationBarHidden(true, animated: true)            
             self.mainFooter.frame.origin.y = self.view.frame.height + 95
         } else {
-            self.navigationController?.setNavigationBarHidden(false, animated: true)
-            
-            self.mainFooter.frame.origin.y = self.view.frame.height - 65
-            
+            self.navigationController?.setNavigationBarHidden(false, animated: true)            
+            self.mainFooter.frame.origin.y = self.view.frame.height - 65            
         }
     }
 

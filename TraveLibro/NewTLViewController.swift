@@ -1041,7 +1041,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
-      
+      globalActivityFeedsController = nil
                 ToastView.appearance().backgroundColor = endJourneyColor
 
         self.layout = VerticalLayout(width: view.frame.size.width)
@@ -1049,6 +1049,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         let i  = PostImage();
         i.uploadPhotos()
         self.setTopNavigation(text: "On The Go")
+        
+        
         globalNewTLViewController = self;
         getDarkBackGroundNew(self)
         mainScroll.delegate = self
@@ -1135,10 +1137,15 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         self.view.addSubview(TLLoader)
         self.navigationController?.setNavigationBarHidden(true, animated: true)
         mainScroll.delegate = self
-        loader.showOverlay(self.mainScroll)
+        loader.showOverlay(self.view)
         
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        hideHeaderAndFooter(false)
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+    }
     
     func willSee(_ sender: UIButton){
         print("GoForIt")
@@ -1485,7 +1492,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
                     rateButton.rateCheckInButton.addTarget(self, action: #selector(NewTLViewController.addRatingPost(_:)), for: .touchUpInside)
                     print(">>>>>>>>>>>> \(myJourney)")
                     if myJourney != nil {
-                            rateButton.journeyUser = myJourney["journeyCreator"]["_id"].stringValue
+                            rateButton.journeyUser = myJourney["user"]["_id"].stringValue
                     }
                     
                     rateButton.review = post["checkIn"]

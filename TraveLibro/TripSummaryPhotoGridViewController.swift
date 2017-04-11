@@ -108,7 +108,7 @@ class TripSummaryPhotoGridViewController: UICollectionViewController, ToolStackC
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         if shouldShowBigImage(position: indexPath.row) {
-            return CGSize(width: (collectionView.frame.size.width - 2), height: collectionView.frame.size.width * 0.5)
+            return CGSize(width: (collectionView.frame.size.width - 3), height: (collectionView.frame.size.width - 3) * 0.7)
         }
         
         return CGSize(width: (collectionView.frame.size.width/3 - 3), height: (collectionView.frame.size.width/3 - 3))       
@@ -129,9 +129,11 @@ class TripSummaryPhotoGridViewController: UICollectionViewController, ToolStackC
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! gridCollectionViewCell
+        cell.photo.image = UIImage(named: "logo-default")
+        
         
         if type == "photos" {
-            cell.photo.hnk_setImageFromURL(getImageURL(myPhotos[indexPath.row]["name"].stringValue, width: 300))
+            cell.photo.hnk_setImageFromURL(getImageURL(myPhotos[indexPath.row]["name"].stringValue, width: 0))
 
         }else{
             self.videoContainer = VideoView(frame: CGRect(x: 0, y: 0, width: cell.frame.width, height: cell.frame.width))

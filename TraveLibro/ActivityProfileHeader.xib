@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -43,7 +43,7 @@
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="John Doe" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="efA-ql-TBn" customClass="ActiveLabel" customModule="TraveLibro" customModuleProvider="target">
-                            <rect key="frame" x="71" y="10" width="257" height="21"/>
+                            <rect key="frame" x="71" y="10" width="67.5" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="Amf-YV-asV"/>
                             </constraints>
@@ -135,7 +135,7 @@
                             </constraints>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EHs-Xp-oI2">
-                            <rect key="frame" x="305" y="40" width="62" height="23"/>
+                            <rect key="frame" x="305" y="23" width="62" height="23"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="23" id="98x-3W-l93"/>
                             </constraints>
@@ -160,11 +160,18 @@
                         <constraint firstAttribute="trailing" secondItem="lXN-gl-LUN" secondAttribute="trailing" constant="8" id="aOh-C5-JxP"/>
                         <constraint firstItem="efA-ql-TBn" firstAttribute="top" secondItem="bwI-Wu-NGv" secondAttribute="top" constant="10" id="dUG-fe-I2b"/>
                         <constraint firstItem="IjA-We-BE0" firstAttribute="top" secondItem="efA-ql-TBn" secondAttribute="bottom" constant="2" id="jZX-hF-GJi"/>
+                        <constraint firstItem="EHs-Xp-oI2" firstAttribute="centerY" secondItem="bwI-Wu-NGv" secondAttribute="centerY" id="pXU-EI-byx"/>
                         <constraint firstItem="efA-ql-TBn" firstAttribute="leading" secondItem="kNQ-Yo-NhR" secondAttribute="trailing" constant="8" id="qyU-Pa-D3p"/>
                         <constraint firstItem="kNQ-Yo-NhR" firstAttribute="top" secondItem="bwI-Wu-NGv" secondAttribute="top" constant="7" id="ypv-z4-isT"/>
                     </constraints>
+                    <variation key="default">
+                        <mask key="subviews">
+                            <exclude reference="lXN-gl-LUN"/>
+                        </mask>
+                    </variation>
                 </view>
             </subviews>
+            <color key="backgroundColor" red="0.98697105929999995" green="0.99956106259999999" blue="1" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="bwI-Wu-NGv" firstAttribute="leading" secondItem="Ott-pw-wP9" secondAttribute="leading" id="RgP-Po-Rgz"/>
                 <constraint firstAttribute="trailing" secondItem="bwI-Wu-NGv" secondAttribute="trailing" id="fff-w2-5ts"/>

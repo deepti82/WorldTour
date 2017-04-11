@@ -32,9 +32,9 @@ class EachItineraryPhotosViewController: UIViewController, UICollectionViewDataS
         photoJSON = (selectedItinerary["photos"].arrayValue)
         
         if selectedItinerary != "" {
-            itineraryNameLabel.text = "Photo(\(self.photoJSON.count))"            
+            itineraryNameLabel.text = "Photo (\(self.photoJSON.count))"            
         }else{
-            itineraryNameLabel.text = "Photo(\(globalPostImage.count))"
+            itineraryNameLabel.text = "Photo (\(globalPostImage.count))"
         }      
         
 //        if (photoJSON.count == 0) {
@@ -71,10 +71,10 @@ class EachItineraryPhotosViewController: UIViewController, UICollectionViewDataS
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         if shouldShowBigImage(position: indexPath.row) {
-            return CGSize(width: (collectionView.frame.size.width), height: collectionView.frame.size.width * 0.5)
+            return CGSize(width: (collectionView.frame.size.width), height: collectionView.frame.size.width * 0.7)
         }
         
-        return CGSize(width: (collectionView.frame.size.width/3 - 2), height: (collectionView.frame.size.width/2 - 3))       
+        return CGSize(width: (collectionView.frame.size.width/3 - 2), height: (collectionView.frame.size.width/3 - 2))       
     }
     
     func collectionView(_ collectionView: UICollectionView,

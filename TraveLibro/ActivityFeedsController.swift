@@ -28,9 +28,10 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
     var checkpoint = true
     var refreshControl = UIRefreshControl()
     var isRefreshing = false
+    var blr: UIView?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("in did load")
         
         refreshControl.addTarget(self, action: #selector(ActivityFeedsController.refresh(_:)), for: .valueChanged)
         refreshControl.tintColor = mainOrangeColor
@@ -42,10 +43,6 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
         getDarkBackGround(self)
         layout = VerticalLayout(width: screenWidth)
         activityScroll.addSubview(layout)
-        getActivity(pageNumber: pageno)
-        loader.showOverlay(self.view)
-        
-        print("Chintan");
         
         self.mainFooter = FooterViewNew(frame: CGRect.zero)
         self.mainFooter.layer.zPosition = 5
@@ -53,8 +50,17 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
         mainFooter.activityImage.tintColor = mainOrangeColor
         mainFooter.activityOrange.textColor = mainOrangeColor
         
-        let i = PostImage()
-        i.uploadPhotos()
+        request.checkActivityCache(user.getExistingUser()) { (response) in
+            if response.count == 0 {
+                self.loader.showOverlay(self.view)
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+                self.getActivity(pageNumber: self.pageno)
+                
+                let i = PostImage()
+                i.uploadPhotos()
+            })
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -71,8 +77,12 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        hideHeaderAndFooter(false)
         displayData = "activity"
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        print()
+        
+//        globalActivityFeedsController = nil
     }
     
     func refresh(_ sender: AnyObject) {
@@ -130,6 +140,7 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
         self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
+    
     func getActivity(pageNumber: Int) {
         print("notification called \(displayData)")
         print("Page Number : \(pageNumber)")
@@ -144,9 +155,9 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
             showBottomLoader(onView: self.view)
             request.getActivityFeeds(currentUser["_id"].stringValue, pageNumber: pageNumber, completion: {(request, localLifeJsons,quickJsons) in
                 DispatchQueue.main.async(execute: {
-                    hideBottomLoader()
-                    NSLog(" check Response received \(request)")
                     
+                    hideBottomLoader()
+                    self.loader.hideOverlayView()
                     
                     if self.isRefreshing {
                         self.refreshControl.endRefreshing()
@@ -225,8 +236,6 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
                         
                     }
                     
-                    
-                    
                     if !(request["data"].isEmpty) {
                         
                         self.loadStatus = true
@@ -243,6 +252,25 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
                             //                                print("\n\n\n POST ::: \n \(post) \n\n\n")
                             checkIn.createProfileHeader(feed: post)
                             checkIn.activityFeed = self
+                            
+                            
+//                            let darkBlur = UIBlurEffect(style: UIBlurEffectStyle.extraLight)
+//                            let blurView = UIVisualEffectView(effect: darkBlur)
+//                            blurView.frame.size.height = checkIn.frame.height
+//                            blurView.frame.size.width = checkIn.frame.width
+//                            //        blurView.layer.zPosition = 6000000
+//                            
+//                            blurView.isUserInteractionEnabled = false
+//                            
+//                            self.blr = UIView(frame:CGRect(x: 0, y: 20, width: checkIn.frame.width, height: checkIn.frame.height))
+//                            
+//                            
+//                            self.blr!.addSubview(blurView)
+//                            self.blr?.addSubview(checkIn)
+//                            self.layout.addSubview(self.blr!)
+
+                            
+                            
                             self.layout.addSubview(checkIn)
                             self.addHeightToLayout()
                             NSLog(" check 2 \n")
@@ -264,7 +292,6 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
                     }
                     else{
                         //                        self.loadStatus = false
-                        self.loader.hideOverlayView()
                     }                       
                     
                 })
@@ -280,6 +307,7 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
                     self.loader.hideOverlayView()
                     if !(request["data"].isEmpty) {
                         self.loadStatus = true
+                        print("print print: \(request["data"])")
                         for post in request["data"].array! {
                             self.feeds.arrayObject?.append(post)
                             let checkIn = ActivityFeedsLayout(width: self.view.frame.width)
@@ -380,7 +408,18 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
                 self.view.addSubview(self.noInternet)
 
             }
+        }        
+        
+        if scrollView.panGestureRecognizer.translation(in: scrollView).y < 0 {
+            hideHeaderAndFooter(true);
         }
+        else{
+            hideHeaderAndFooter(false);
+        }
+    }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        print("\n scrollViewDidEndDragging ")
         
         for postView in layout.subviews {
             if(postView is ActivityFeedsLayout) {
@@ -389,14 +428,6 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
                     feeds.videoToPlay()
                 }
             }
-        }
-        
-        
-        if scrollView.panGestureRecognizer.translation(in: scrollView).y < 0 {
-            hideHeaderAndFooter(true);
-        }
-        else{
-            hideHeaderAndFooter(false);
         }
     }
     
