@@ -34,7 +34,12 @@ class notificationHeader: UIView {
     
     func setHeaderData(data: JSON) {
         
-        NFProfilePicture.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(data["userFrom"]["profilePicture"])", width: 100))
+        if data["type"].stringValue == "userBadge" {
+            NFProfilePicture.hnk_setImageFromURL(getImageURL(currentUser["profilePicture"].stringValue, width: 100))
+        }
+        else {
+            NFProfilePicture.hnk_setImageFromURL(getImageURL(data["userFrom"]["profilePicture"].stringValue, width: 100))
+        }
           
         makeBuddiesTLProfilePicture(NFProfilePicture)
     }

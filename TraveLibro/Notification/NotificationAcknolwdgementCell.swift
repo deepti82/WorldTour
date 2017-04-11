@@ -99,7 +99,7 @@ class NotificationAcknolwdgementCell: UITableViewCell {
         NFHeader.setHeaderData(data: notificationData)
         let xPos = NFHeader.frame.origin.x + NFHeader.frame.size.width
         
-        if notificationData["type"] == "userBadge" {
+        if notificationData["type"].stringValue == "userBadge" {
             
             let message = getRegularString(string: "Congratulations! You have moved from  ", size: 12)        
             let from = notificationData["data"]["from"].stringValue        
