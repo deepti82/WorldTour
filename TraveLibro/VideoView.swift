@@ -10,13 +10,15 @@ import UIKit
 import Player
 
 class VideoView: UIView {
-    @IBOutlet weak var videoHolder: UIImageView!
-    var player:Player!
-    var defaultMute = true
+    @IBOutlet weak var videoHolder: UIImageView!    
     @IBOutlet weak var toggleSound: UIButton!
     @IBOutlet weak var tagText: UILabel!
     @IBOutlet weak var tagView: UIView!
     @IBOutlet weak var playBtn: UIImageView!
+    
+    var player:Player!
+    var defaultMute = true
+    var loadingIndicator : UIActivityIndicatorView?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -55,6 +57,36 @@ class VideoView: UIView {
             defaultMute = true;
             player.muted = defaultMute
             toggleSound.setTitle(String(format: "%C",0xf026) + "⨯", for: UIControlState())
+        }
+    }
+    
+    
+    //MARK: - Indicator
+    
+    func showLoadingIndicator(color: UIColor) {
+        stopLoadingIndicator()
+        
+        if loadingIndicator == nil {
+            loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+            loadingIndicator?.activityIndicatorViewStyle = .whiteLarge
+            loadingIndicator?.color = color
+            loadingIndicator?.hidesWhenStopped = true
+            loadingIndicator?.center = playBtn.center
+            loadingIndicator?.startAnimating()
+            self.addSubview(loadingIndicator!)
+        }
+        else{
+            print("\n\n Already animating bottom loading indicator \n\n")
+        }
+    }
+    
+    
+    func stopLoadingIndicator() {
+        
+        if loadingIndicator != nil {
+            loadingIndicator?.stopAnimating()
+            loadingIndicator?.removeFromSuperview()
+            loadingIndicator = nil
         }
     }
 }

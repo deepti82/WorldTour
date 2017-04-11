@@ -274,12 +274,24 @@ class LocalLifePostsViewController: UIViewController, UIScrollViewDelegate, CLLo
             hideHeaderAndFooter(false);
         }
     }
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        print("Chinatn Shah");
-    }
+    
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         print("JAgruti Patil");
     }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        print("Chinatn Shah");
+        
+        for postView in layout.subviews {
+            if(postView is LocalLifePost) {
+                let feeds = postView as! LocalLifePost
+                if(feeds.videoContainer != nil) {
+                    feeds.videoToPlay()
+                }
+            }
+        }
+    }
+    
     
     func detectLocation(_ sender: AnyObject?) {
         locationManager.requestAlwaysAuthorization()

@@ -855,6 +855,8 @@ func isSelfUser(otherUserID: String) -> Bool {
 
 func getThumbnailFromVideoURL(url : URL, onView: UIImageView) {
     DispatchQueue.global().async {
+        onView.contentMode = UIViewContentMode.scaleAspectFill
+        onView.clipsToBounds = true
         var image = UIImage(named: "logo-default")
         let asset = AVURLAsset(url: url, options: nil)
         let imgGenerator = AVAssetImageGenerator(asset: asset)

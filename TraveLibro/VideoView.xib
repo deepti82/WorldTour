@@ -34,10 +34,10 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="red_video_play_icon" translatesAutoresizingMaskIntoConstraints="NO" id="d8r-FU-Y77">
-                    <rect key="frame" x="149.5" y="308.5" width="75" height="50"/>
+                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="red_video_play_icon" translatesAutoresizingMaskIntoConstraints="NO" id="d8r-FU-Y77">
+                    <rect key="frame" x="150" y="309" width="75" height="50"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <color key="tintColor" red="0.93818825480000001" green="0.4177091718" blue="0.13715940709999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="d8r-FU-Y77" secondAttribute="height" multiplier="149:99" id="cJK-0p-WkZ"/>
                     </constraints>

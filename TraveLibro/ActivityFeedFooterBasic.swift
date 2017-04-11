@@ -172,7 +172,15 @@ class ActivityFeedFooterBasic: UIView {
     
     func canRate() -> Bool {
         if (self.type == "MyLifeFeeds") {
-            if (isSelfUser(otherUserID: currentUser["_id"].stringValue)) {
+            if isSelfUser(otherUserID: currentUser["_id"].stringValue) {
+                return true
+            }
+            else {
+                return false
+            }
+        }
+        else if (self.type == "LocalLife"){
+            if isSelfUser(otherUserID: postTop["postCreator"]["_id"].stringValue) {
                 return true
             }
             else {

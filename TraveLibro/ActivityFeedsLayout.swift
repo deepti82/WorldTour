@@ -87,7 +87,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             
             getThumbnailFromVideoURL(url: videoUrl!, onView: self.videoContainer.videoHolder)
             
-            if feed["type"].stringValue == "travel-life" {
+            if feeds["type"].stringValue == "travel-life" {
                 videoContainer.tagText.text = "Travel Life"
                 videoContainer.tagView.backgroundColor = mainOrangeColor
                 videoContainer.playBtn.tintColor = mainOrangeColor
@@ -526,10 +526,14 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
     func videoToPlay ()  {
         
         if isVideoViewInRangeToPlay() {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: { 
+            if !self.willPlay {
+                self.videoContainer.showLoadingIndicator(color: (feeds["type"].stringValue == "travel-life" ? mainOrangeColor : endJourneyColor))
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
+                self.videoContainer.stopLoadingIndicator()
                 if self.isVideoViewInRangeToPlay() {
                     if !self.willPlay {
-                        self.videoContainer.playBtn.isHidden = true
+//                        self.videoContainer.playBtn.isHidden = true                        
                         self.willPlay = true
                         var videoUrl = URL(string:self.feeds["videos"][0]["name"].stringValue)
                         if(videoUrl == nil) {
@@ -542,14 +546,16 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
                 else {
                     self.player.stop()
                     self.willPlay = false
-                    self.videoContainer.playBtn.isHidden = false
+//                    self.videoContainer.playBtn.isHidden = false
+                    self.videoContainer.stopLoadingIndicator()
                 }
             })
         }
         else {
             self.player.stop()
             self.willPlay = false
-            self.videoContainer.playBtn.isHidden = false
+//            self.videoContainer.playBtn.isHidden = false
+            self.videoContainer.stopLoadingIndicator()
         }
     }
     

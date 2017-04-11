@@ -102,7 +102,7 @@ class ActivityProfileHeader: UIView {
             category.isHidden = true
         }
         
-        setFollowButtonTitle(button: followButton, followType: feed["following"].intValue, otherUserID: feed["_id"].stringValue)
+        setFollowButtonTitle(button: followButton, followType: feed["following"].intValue, otherUserID: (feed["_id"] != nil ? feed["_id"].stringValue : "admin"))
         
         if((currentUser != nil) && feed["user"]["_id"].stringValue == currentUser["_id"].stringValue) {
             followButton.isHidden = true
