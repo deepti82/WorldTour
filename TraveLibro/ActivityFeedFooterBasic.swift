@@ -101,15 +101,6 @@ class ActivityFeedFooterBasic: UIView {
     
     }
     
-    func isBuddy() -> Bool {
-        
-        if postTop["buddies"].contains(where: {$0.1["_id"].stringValue == user.getExistingUser()}) && user.getExistingUser() == currentUser["_id"].stringValue {
-            return true
-        }else{
-            return false
-        }
-    }
-    
     func setView(feed:JSON) {
         
         postTop = feed
@@ -167,14 +158,34 @@ class ActivityFeedFooterBasic: UIView {
         }
     }
     
-    //MARK: - CanRate
+    
+    //MARK: - Helper functions
+    
+    func isBuddy() -> Bool {
+        
+        if postTop["buddies"].contains(where: {$0.1["_id"].stringValue == user.getExistingUser()}) && user.getExistingUser() == currentUser["_id"].stringValue {
+            return true
+        }else{
+            return false
+        }
+    }
     
     func canRate() -> Bool {
-        if ((isSelfUser(otherUserID: postTop["user"]["_id"].stringValue)) || isBuddy()){
-            return true
+        if (self.type == "MyLifeFeeds") {
+            if (isSelfUser(otherUserID: currentUser["_id"].stringValue)) {
+                return true
+            }
+            else {
+                return false
+            }
         }
         else {
-            return false
+            if ((isSelfUser(otherUserID: postTop["user"]["_id"].stringValue)) || isBuddy()){
+                return true
+            }
+            else {
+                return false
+            }
         }
     }
     
@@ -295,7 +306,8 @@ class ActivityFeedFooterBasic: UIView {
                 
             }
             
-        }else{
+        }
+        else{
             if isBuddy() {
                 if self.type == "MyLifeFeeds"{
                 let DeletePost: UIAlertAction = UIAlertAction(title: "Delete Activity", style: .default)
@@ -321,15 +333,14 @@ class ActivityFeedFooterBasic: UIView {
                 }
                 
             }
-            let reportActionButton1: UIAlertAction = UIAlertAction(title: "Report", style: .default)
-            {action -> Void in
+            
+            let reportActionButton1: UIAlertAction = UIAlertAction(title: "Report", style: .default) {action -> Void in
                 let alert = UIAlertController(title: "Report", message: "Reported Successfully", preferredStyle: UIAlertControllerStyle.alert)
                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
                 globalNavigationController.present(alert, animated: true, completion: nil)
             }
             
-            let reportActionButton: UIAlertAction = UIAlertAction(title: "Hide", style: .default)
-            {action -> Void in
+            let reportActionButton: UIAlertAction = UIAlertAction(title: "Hide", style: .default) {action -> Void in
                 let alert = UIAlertController(title: "Hide", message: "Hided successfuly", preferredStyle: UIAlertControllerStyle.alert)
                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
                 globalNavigationController.present(alert, animated: true, completion: nil)
@@ -337,7 +348,8 @@ class ActivityFeedFooterBasic: UIView {
             
             if self.type == "popular"{
                 actionSheetControllerIOS8.addAction(reportActionButton1)
-            }else{
+            }
+            else{
             
                 if isSelfUser(otherUserID: postTop["user"]["_id"].stringValue) {
                     actionSheetControllerIOS8.addAction(reportActionButton)
