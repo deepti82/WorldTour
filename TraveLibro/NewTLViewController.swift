@@ -1025,11 +1025,11 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
             if (myJourney != nil) {
                 self.customNavigationBar(left: leftButton, right: rightButton)
             }else{
-                self.customNavigationBar(left: leftButton, right: nil)
+                self.customNavigationBar(left: leftButton, right: rightButton)
             }
 
         }else{
-            self.customNavigationBar(left: outButton, right: nil)
+            self.customNavigationBar(left: outButton, right: rightButton)
         }
         
     }
@@ -1048,7 +1048,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         mainScroll.addSubview(layout)
         let i  = PostImage();
         i.uploadPhotos()
-        self.setTopNavigation(text: "On The Go")
+        self.setTopNavigation(text: "")
         
         
         globalNewTLViewController = self;
