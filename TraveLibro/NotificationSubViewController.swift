@@ -54,8 +54,8 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         refreshControl.tintColor = lightOrangeColor
         notifyTableView.addSubview(refreshControl)
         
-        mainFooter.notificationIcon.tintColor = mainOrangeColor
-        mainFooter.notifications.textColor = mainOrangeColor
+//        mainFooter.notificationIcon.tintColor = mainOrangeColor
+//        mainFooter.notifications.textColor = mainOrangeColor
         
         request.checkNotificationCache(user.getExistingUser()) { (response) in
             if response.count == 0 {
@@ -786,11 +786,11 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
     func hideHeaderAndFooter(_ isShow:Bool) {
         if(isShow) {
             self.navigationController?.setNavigationBarHidden(true, animated: true)
-            self.mainFooter.frame.origin.y = self.view.frame.height + 95
+            self.mainFooter.frame.origin.y = self.view.frame.height + 50
         }
         else {
             self.navigationController?.setNavigationBarHidden(false, animated: true)
-            self.mainFooter.frame.origin.y = self.view.frame.height - 65            
+            self.mainFooter.frame.origin.y = self.view.frame.height - 50
         }
     }
     

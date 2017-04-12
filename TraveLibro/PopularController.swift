@@ -231,10 +231,10 @@ class PopularController: UIViewController, UIScrollViewDelegate {
     func hideHeaderAndFooter(_ isShow:Bool) {
         if(isShow) {
             self.navigationController?.setNavigationBarHidden(true, animated: true)            
-            self.mainFooter.frame.origin.y = self.view.frame.height + 95
+            self.mainFooter.frame.origin.y = self.view.frame.height + 50
         } else {
             self.navigationController?.setNavigationBarHidden(false, animated: true)           
-            self.mainFooter.frame.origin.y = self.view.frame.height - 65            
+            self.mainFooter.frame.origin.y = self.view.frame.height - 50
         }
     }
 

@@ -46,9 +46,14 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
         
         self.mainFooter = FooterViewNew(frame: CGRect.zero)
         self.mainFooter.layer.zPosition = 5
+//        mainFooter.activityImage.tintColor = mainOrangeColor
+//        mainFooter.activityText.tintColor = mainOrangeColor
+        
+        mainFooter.activityImage.imageView?.tintColor = mainOrangeColor
+        mainFooter.activityText.setTitleColor(mainOrangeColor, for: .normal)
+        
         self.view.addSubview(self.mainFooter)
-        mainFooter.activityImage.tintColor = mainOrangeColor
-        mainFooter.activityOrange.textColor = mainOrangeColor
+
         
         request.checkActivityCache(user.getExistingUser()) { (response) in
             if response.count == 0 {
@@ -65,7 +70,7 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.mainFooter.frame = CGRect(x: 0, y: self.view.frame.height - 65, width: self.view.frame.width, height: 65)
+        self.mainFooter.frame = CGRect(x: 0, y: self.view.frame.height - 50, width: self.view.frame.width, height: 50)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -443,7 +448,7 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
                 noInternet.isHidden = true
             }
             
-            self.mainFooter.frame.origin.y = self.view.frame.height + 95
+            self.mainFooter.frame.origin.y = self.view.frame.height + 50
         } else {
             //            scrollTopConstraint.constant = (self.navigationController?.navigationBar.frame.size.height)!
             self.navigationController?.setNavigationBarHidden(false, animated: true)
@@ -451,7 +456,7 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
                 noInternet.isHidden = false
             }
             
-            self.mainFooter.frame.origin.y = self.view.frame.height - 65
+            self.mainFooter.frame.origin.y = self.view.frame.height - 50
             
         }
     }

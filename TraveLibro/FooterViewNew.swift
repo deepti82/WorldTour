@@ -33,7 +33,7 @@ class FooterViewNew: UIView {
     @IBOutlet weak var travelLifeIcon: UIImageView!
     
     @IBOutlet weak var activityOrange: UILabel!
-    @IBOutlet weak var activityImage: UIImageView!
+//    @IBOutlet weak var activityImage: UIImageView!
     
     @IBOutlet var footerIconImages: [UIImageView]!
     
@@ -44,6 +44,9 @@ class FooterViewNew: UIView {
     @IBOutlet weak var lowerMainView: UIView!
     @IBOutlet weak var upperMainView: UIView!
     @IBOutlet weak var badgeButton: UIButton!
+    
+    @IBOutlet weak var activityImage: UIButton!
+    @IBOutlet weak var activityText: UIButton!
     
     
     
@@ -98,8 +101,16 @@ class FooterViewNew: UIView {
 //        self.LLView.addGestureRecognizer(tapLocalLife)
     }
     
-    
     //MARK:- Footer Actions
+    
+   
+    @IBAction func showActivity(_ sender: UIButton) {
+        gotoFeed()
+    }
+    
+    @IBAction func showNotification(_ sender: UIButton) {
+        openNotifications()
+    }
     
     func gotoOTG(_ sender: UITapGestureRecognizer) {
         
@@ -127,11 +138,11 @@ class FooterViewNew: UIView {
         
     }
     
-    func gotoFeed(_ sender: UITapGestureRecognizer) {
+    func gotoFeed() {
         if currentUser != nil {
             setFooterDeafultState()
-            self.activityImage.tintColor = mainOrangeColor
-            self.activityOrange.textColor = mainOrangeColor
+            self.activityImage.imageView?.tintColor = mainOrangeColor
+            self.activityText.setTitleColor(mainOrangeColor, for: .normal)
             
             request.getUserFromCache(user.getExistingUser(), completion: { (response) in
                 DispatchQueue.main.async {
@@ -149,11 +160,11 @@ class FooterViewNew: UIView {
         }
     }
     
-    func openNotifications(_ sender: UITapGestureRecognizer) {
+    func openNotifications() {
         if currentUser != nil {
             setFooterDeafultState()
-            self.notificationIcon.tintColor = mainOrangeColor
-            self.notifications.textColor = mainOrangeColor
+//            self.notificationIcon.tintColor = mainOrangeColor
+//            self.notifications.textColor = mainOrangeColor
             
             request.getUserFromCache(user.getExistingUser(), completion: { (response) in
                 DispatchQueue.main.async {
@@ -221,17 +232,17 @@ class FooterViewNew: UIView {
     //MARK: - Clear State
     
     func setFooterDeafultState() {
-        self.travelLifeIcon.tintColor = UIColor.white
-        self.travelLife.textColor = UIColor.white
-        
-        self.activityImage.tintColor = UIColor.white
-        self.activityOrange.textColor = UIColor.white
-        
-        self.notificationIcon.tintColor = UIColor.white
-        self.notifications.textColor = UIColor.white
-        
-        self.localLifeIcon.tintColor = UIColor.white
-        self.localLife.textColor = UIColor.white        
+//        self.travelLifeIcon.tintColor = UIColor.white
+//        self.travelLife.textColor = UIColor.white
+//        
+//        self.activityImage.tintColor = UIColor.white
+//        self.activityOrange.textColor = UIColor.white
+//        
+//        self.notificationIcon.tintColor = UIColor.white
+//        self.notifications.textColor = UIColor.white
+//        
+//        self.localLifeIcon.tintColor = UIColor.white
+//        self.localLife.textColor = UIColor.white        
     }
     
 }
