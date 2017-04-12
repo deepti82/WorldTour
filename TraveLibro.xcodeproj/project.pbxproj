@@ -81,6 +81,8 @@
 		44081CF81E55EEC5006EA74C /* NotificationFollowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44081CF71E55EEC5006EA74C /* NotificationFollowCell.swift */; };
 		440918041E9DE80100AE20F4 /* notificationEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440918031E9DE80100AE20F4 /* notificationEmptyView.swift */; };
 		440918061E9DE83100AE20F4 /* notificationEmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 440918051E9DE83100AE20F4 /* notificationEmptyView.xib */; };
+		440918081E9DF94600AE20F4 /* activityEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440918071E9DF94600AE20F4 /* activityEmptyView.swift */; };
+		4409180A1E9DF97100AE20F4 /* activityEmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 440918091E9DF97100AE20F4 /* activityEmptyView.xib */; };
 		443225AA1E668332008AB156 /* locallife.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 443225A71E668332008AB156 /* locallife.mp4 */; };
 		443225AB1E668332008AB156 /* mylife.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 443225A81E668332008AB156 /* mylife.mp4 */; };
 		443225AC1E668332008AB156 /* travellife.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 443225A91E668332008AB156 /* travellife.mp4 */; };
@@ -614,6 +616,8 @@
 		44081CF71E55EEC5006EA74C /* NotificationFollowCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationFollowCell.swift; path = Notification/NotificationFollowCell.swift; sourceTree = "<group>"; };
 		440918031E9DE80100AE20F4 /* notificationEmptyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = notificationEmptyView.swift; path = EmptyScreens/notificationEmptyView.swift; sourceTree = "<group>"; };
 		440918051E9DE83100AE20F4 /* notificationEmptyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = notificationEmptyView.xib; path = EmptyScreens/notificationEmptyView.xib; sourceTree = "<group>"; };
+		440918071E9DF94600AE20F4 /* activityEmptyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = activityEmptyView.swift; path = EmptyScreens/activityEmptyView.swift; sourceTree = "<group>"; };
+		440918091E9DF97100AE20F4 /* activityEmptyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = activityEmptyView.xib; path = EmptyScreens/activityEmptyView.xib; sourceTree = "<group>"; };
 		443225A71E668332008AB156 /* locallife.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = locallife.mp4; sourceTree = "<group>"; };
 		443225A81E668332008AB156 /* mylife.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = mylife.mp4; sourceTree = "<group>"; };
 		443225A91E668332008AB156 /* travellife.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = travellife.mp4; sourceTree = "<group>"; };
@@ -1449,6 +1453,8 @@
 			children = (
 				440918031E9DE80100AE20F4 /* notificationEmptyView.swift */,
 				440918051E9DE83100AE20F4 /* notificationEmptyView.xib */,
+				440918071E9DF94600AE20F4 /* activityEmptyView.swift */,
+				440918091E9DF97100AE20F4 /* activityEmptyView.xib */,
 			);
 			name = EmptyScreens;
 			sourceTree = "<group>";
@@ -3068,6 +3074,7 @@
 				841E43AC1E1D1DD6000D2E6B /* EndJourneyView.xib in Resources */,
 				3AEEB0091CE6F64F0085EEF5 /* Rating.xib in Resources */,
 				C2FF64871D82ED0900F3866A /* AddActivityOTG.xib in Resources */,
+				4409180A1E9DF97100AE20F4 /* activityEmptyView.xib in Resources */,
 				3AFB01C61DDC30DA00BCD523 /* AddRatingCountries.xib in Resources */,
 				C2A5C1D51CF9A7F90035EF0E /* MoreAboutMe.xib in Resources */,
 				C2A6E25D1CE9C88D00D3F845 /* TripInfoView.xib in Resources */,
@@ -3496,6 +3503,7 @@
 				367B90F71DC23ADF00D76F13 /* ActiveType.swift in Sources */,
 				FCCA8F251E28C38D00775985 /* TripSummaryFooter.swift in Sources */,
 				C25F488A1CF31B1300C6C28C /* MomentsEachViewController.swift in Sources */,
+				440918081E9DF94600AE20F4 /* activityEmptyView.swift in Sources */,
 				C23B34D91D7AF0AE00EBBF25 /* ProfilePicFancy.swift in Sources */,
 				C2AE193B1DF57078006FF114 /* ImageCropperViewController.swift in Sources */,
 				842484FC1E13AC6400083115 /* PhotoOTGFooter.swift in Sources */,

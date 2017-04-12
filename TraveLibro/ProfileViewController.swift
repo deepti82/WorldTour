@@ -290,7 +290,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         profile = ProfilePicFancy(frame: CGRect(x: 10, y: 0, width: profileView.frame.width, height: profileView.frame.height))
         profile.backgroundColor = UIColor.clear
         profileView.addSubview(profile)
-        footer = FooterViewNew(frame: CGRect(x: 0, y: self.view.frame.height - 50, width: self.view.frame.width, height: 50))
+        footer = FooterViewNew(frame: CGRect(x: 0, y: self.view.frame.height - MAIN_FOOTER_HEIGHT, width: self.view.frame.width, height: MAIN_FOOTER_HEIGHT))
         self.view.addSubview(footer)
         makeMenuProfilePicture(profile.image)
         profilePicture.isHidden = true

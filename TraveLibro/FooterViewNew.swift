@@ -22,35 +22,30 @@ func sharedInstance(newFrame: CGRect) -> FooterViewNew {
 }
 
 class FooterViewNew: UIView {
-        
-    @IBOutlet weak var activityImage: UIButton!
-    @IBOutlet weak var activityText: UIButton!
-    
-    @IBOutlet weak var buttonStackView: UIStackView!
-    
     
     @IBOutlet weak var activityButton: UIButton!
     @IBOutlet weak var traveLifeButton: UIButton!
     @IBOutlet weak var myLifeButton: UIButton!
     @IBOutlet weak var locaLifeButton: UIButton!
-    @IBOutlet weak var alertButton
-    : UIButton!
-
+    @IBOutlet weak var alertButton : UIButton!
     
-    
-    
+    var allButtons: [UIButton]!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         loadViewFromNib ()
         
-//        for icon in footerIconImages {
-//            
-//            icon.tintColor = UIColor.white
-//            
-//        }
-//        
+        allButtons = [activityButton, traveLifeButton, myLifeButton, locaLifeButton, alertButton]
+        
+        for btn in allButtons {
+            self.setupButton(button: btn)
+        }
+        
+        footerSharedInstance = self
+        
+        setBadge()
+        
 //        upperMainView.layer.cornerRadius = 20
 //        upperMainView.layer.borderWidth = 2
 //        
@@ -58,10 +53,8 @@ class FooterViewNew: UIView {
 //        badgeButton.layer.zPosition = 15000
 //        
 //        upperMainView.layer.borderColor = UIColor(red: 57/255, green: 66/255, blue: 106/255, alpha: 1).cgColor
-//        
-//        footerSharedInstance = self
-//        
-//        setBadge()
+        
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -91,8 +84,7 @@ class FooterViewNew: UIView {
     }
     
     func setupButton(button: UIButton) {
-        let spacing: CGFloat = 0.0
-        //        button.imageView?.frame = CGRect(x: (button.imageView?.frame.origin.x)!, y: (button.imageView?.frame.origin.y)!, width: 25, height: 25)
+        let spacing: CGFloat = -2.0
         let imageSize: CGSize = button.imageView!.image!.size //button.imageView!.frame.size
         button.titleEdgeInsets = UIEdgeInsetsMake(0.0, -imageSize.width, -(imageSize.height + spacing), 0.0)
         let labelString = NSString(string: button.titleLabel!.text!)
@@ -140,9 +132,7 @@ class FooterViewNew: UIView {
     func gotoFeed() {
         if currentUser != nil {
             setFooterDeafultState()
-            self.activityImage.imageView?.tintColor = mainOrangeColor
-            self.activityText.setTitleColor(mainOrangeColor, for: .normal)
-            
+            self.activityButton.tintColor = mainOrangeColor
             request.getUserFromCache(user.getExistingUser(), completion: { (response) in
                 DispatchQueue.main.async {
                     popularView = "activity"
@@ -227,20 +217,13 @@ class FooterViewNew: UIView {
 //        }
     }
     
+    
     //MARK: - Clear State
     
     func setFooterDeafultState() {
-//        self.travelLifeIcon.tintColor = UIColor.white
-//        self.travelLife.textColor = UIColor.white
-//        
-//        self.activityImage.tintColor = UIColor.white
-//        self.activityOrange.textColor = UIColor.white
-//        
-//        self.notificationIcon.tintColor = UIColor.white
-//        self.notifications.textColor = UIColor.white
-//        
-//        self.localLifeIcon.tintColor = UIColor.white
-//        self.localLife.textColor = UIColor.white        
+        for btn in allButtons {
+            btn.tintColor = UIColor.white
+        }
     }
     
 }

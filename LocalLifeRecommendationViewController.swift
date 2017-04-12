@@ -185,7 +185,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.detectLocation(UIButton())
-        self.mainFooter.frame = CGRect(x: 0, y: self.view.frame.height - 50, width: self.view.frame.width, height: 50)
+        self.mainFooter.frame = CGRect(x: 0, y: self.view.frame.height - MAIN_FOOTER_HEIGHT, width: self.view.frame.width, height: MAIN_FOOTER_HEIGHT)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -597,10 +597,10 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
     func hideHeaderAndFooter(_ isShow:Bool) {
         if(isShow) {
             self.navigationController?.setNavigationBarHidden(true, animated: true)
-            self.mainFooter.frame.origin.y = self.view.frame.height + 95
+            self.mainFooter.frame.origin.y = self.view.frame.height + MAIN_FOOTER_HEIGHT
         } else {
             self.navigationController?.setNavigationBarHidden(false, animated: true)
-            self.mainFooter.frame.origin.y = self.view.frame.height - 65
+            self.mainFooter.frame.origin.y = self.view.frame.height - MAIN_FOOTER_HEIGHT
         }
     }
 

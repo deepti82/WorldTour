@@ -13,7 +13,6 @@
             <connections>
                 <outlet property="activityButton" destination="mCZ-SM-zDO" id="kvC-ug-Nu1"/>
                 <outlet property="alertButton" destination="NkH-cH-5PP" id="piT-VQ-eky"/>
-                <outlet property="buttonStackView" destination="0TA-1Y-Hsc" id="r0x-yp-e1x"/>
                 <outlet property="locaLifeButton" destination="3my-Wc-MOC" id="o4V-pk-JbX"/>
                 <outlet property="myLifeButton" destination="caz-D7-WXQ" id="8ov-3c-Pyw"/>
                 <outlet property="traveLifeButton" destination="z2P-g7-4RI" id="p9A-Fc-em1"/>
@@ -68,9 +67,9 @@
         </view>
     </objects>
     <resources>
-        <image name="footer_activity" width="66" height="66"/>
-        <image name="footer_mylife" width="66" height="66"/>
-        <image name="footer_notification" width="66" height="66"/>
-        <image name="footer_white_plus" width="66" height="66"/>
+        <image name="footer_activity" width="55" height="55"/>
+        <image name="footer_mylife" width="135" height="135"/>
+        <image name="footer_notification" width="135" height="135"/>
+        <image name="footer_white_plus" width="135" height="135"/>
     </resources>
 </document>

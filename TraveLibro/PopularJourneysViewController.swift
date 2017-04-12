@@ -20,7 +20,7 @@ class PopularJourneysViewController: UIViewController, UITableViewDelegate, UITa
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.mainFooter = FooterViewNew(frame: CGRect(x: 0, y: self.view.frame.height - 50, width: self.view.frame.width, height: 50))
+        self.mainFooter = FooterViewNew(frame: CGRect(x: 0, y: self.view.frame.height - MAIN_FOOTER_HEIGHT, width: self.view.frame.width, height: MAIN_FOOTER_HEIGHT))
         self.mainFooter.layer.zPosition = 5
         self.view.addSubview(self.mainFooter)
         getDarkBackGround(self)
@@ -126,10 +126,10 @@ class PopularJourneysViewController: UIViewController, UITableViewDelegate, UITa
     func hideHeaderAndFooter(_ isShow:Bool) {
         if(isShow) {
             self.navigationController?.setNavigationBarHidden(true, animated: true)            
-            self.mainFooter.frame.origin.y = self.view.frame.origin.y + self.view.frame.height + 50
+            self.mainFooter.frame.origin.y = self.view.frame.origin.y + self.view.frame.height + MAIN_FOOTER_HEIGHT
         } else {
             self.navigationController?.setNavigationBarHidden(false, animated: true)            
-            self.mainFooter.frame.origin.y = self.view.frame.origin.y + self.view.frame.height - 50
+            self.mainFooter.frame.origin.y = self.view.frame.origin.y + self.view.frame.height - MAIN_FOOTER_HEIGHT
         }
     }
 

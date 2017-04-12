@@ -1107,7 +1107,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         self.view.addSubview(self.addPostsButton)
         addPostsButton.isHidden = true
         
-        self.mainFooter = FooterViewNew(frame: CGRect(x: 0, y: self.view.frame.height - 50, width: self.view.frame.width, height: 50))
+        self.mainFooter = FooterViewNew(frame: CGRect(x: 0, y: self.view.frame.height - MAIN_FOOTER_HEIGHT, width: self.view.frame.width, height: MAIN_FOOTER_HEIGHT))
         self.mainFooter.layer.zPosition = 5
         self.view.addSubview(self.mainFooter)
         self.mainFooter.traveLifeButton.tintColor = mainOrangeColor
@@ -1175,7 +1175,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
                 if(self.addPostsButton != nil) {
                     UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut, animations: {
                         self.addPostsButton.frame.origin.y = self.view.frame.height + 10
-                        self.mainFooter.frame.origin.y = self.view.frame.height + 95
+                        self.mainFooter.frame.origin.y = self.view.frame.height + MAIN_FOOTER_HEIGHT
                     }, completion: nil)
                 }
             } else {
@@ -1185,7 +1185,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
                 }
                 UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut, animations: {
                     self.addPostsButton.frame.origin.y = self.view.frame.height - 120
-                    self.mainFooter.frame.origin.y = self.view.frame.height - 65
+                    self.mainFooter.frame.origin.y = self.view.frame.height - MAIN_FOOTER_HEIGHT
                 }, completion: nil)
             }
         }
