@@ -186,7 +186,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.detectLocation(UIButton())
-        self.mainFooter.frame = CGRect(x: 0, y: self.view.frame.height - 65, width: self.view.frame.width, height: 65)
+        self.mainFooter.frame = CGRect(x: 0, y: self.view.frame.height - 50, width: self.view.frame.width, height: 50)
     }
     
     override func viewDidAppear(_ animated: Bool) {

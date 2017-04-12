@@ -53,23 +53,23 @@ class FooterViewNew: UIView {
         
         loadViewFromNib ()
         
-        for icon in footerIconImages {
-            
-            icon.tintColor = UIColor.white
-            
-        }
-        
-        upperMainView.layer.cornerRadius = 20
-        upperMainView.layer.borderWidth = 2
-        
-        badgeButton.layer.cornerRadius = (badgeButton.frame.size.width/2)
-        badgeButton.layer.zPosition = 15000
-        
-        upperMainView.layer.borderColor = UIColor(red: 57/255, green: 66/255, blue: 106/255, alpha: 1).cgColor
-        
-        footerSharedInstance = self
-        
-        setBadge()
+//        for icon in footerIconImages {
+//            
+//            icon.tintColor = UIColor.white
+//            
+//        }
+//        
+//        upperMainView.layer.cornerRadius = 20
+//        upperMainView.layer.borderWidth = 2
+//        
+//        badgeButton.layer.cornerRadius = (badgeButton.frame.size.width/2)
+//        badgeButton.layer.zPosition = 15000
+//        
+//        upperMainView.layer.borderColor = UIColor(red: 57/255, green: 66/255, blue: 106/255, alpha: 1).cgColor
+//        
+//        footerSharedInstance = self
+//        
+//        setBadge()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -85,17 +85,17 @@ class FooterViewNew: UIView {
         self.addSubview(view);
         
         
-        let tlTap = UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.gotoOTG(_:)))
-        self.TLView.addGestureRecognizer(tlTap)
-        
-        let fvTap = UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.gotoFeed(_:)))
-        self.feedView.addGestureRecognizer(fvTap)
-        
-        let tapFour = UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.openNotifications(_:)))
-        self.notifyView.addGestureRecognizer(tapFour)
-        
-        let tapLocalLife = UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.goToLocalLife(_:)))
-        self.LLView.addGestureRecognizer(tapLocalLife)
+//        let tlTap = UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.gotoOTG(_:)))
+//        self.TLView.addGestureRecognizer(tlTap)
+//        
+//        let fvTap = UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.gotoFeed(_:)))
+//        self.feedView.addGestureRecognizer(fvTap)
+//        
+//        let tapFour = UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.openNotifications(_:)))
+//        self.notifyView.addGestureRecognizer(tapFour)
+//        
+//        let tapLocalLife = UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.goToLocalLife(_:)))
+//        self.LLView.addGestureRecognizer(tapLocalLife)
     }
     
     
