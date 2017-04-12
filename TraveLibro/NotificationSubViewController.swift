@@ -54,8 +54,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         refreshControl.tintColor = lightOrangeColor
         notifyTableView.addSubview(refreshControl)
         
-//        mainFooter.notificationIcon.tintColor = mainOrangeColor
-//        mainFooter.notifications.textColor = mainOrangeColor
+        mainFooter.setHighlightState(btn: mainFooter.alertButton, color: mainOrangeColor)
         
         request.checkNotificationCache(user.getExistingUser()) { (response) in
             if response.count == 0 {

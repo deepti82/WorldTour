@@ -44,17 +44,7 @@ class FooterViewNew: UIView {
         
         footerSharedInstance = self
         
-        setBadge()
-        
-//        upperMainView.layer.cornerRadius = 20
-//        upperMainView.layer.borderWidth = 2
-//        
-//        badgeButton.layer.cornerRadius = (badgeButton.frame.size.width/2)
-//        badgeButton.layer.zPosition = 15000
-//        
-//        upperMainView.layer.borderColor = UIColor(red: 57/255, green: 66/255, blue: 106/255, alpha: 1).cgColor
-        
-        
+        setBadge()        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -68,47 +58,45 @@ class FooterViewNew: UIView {
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view);
-        
-        
-//        let tlTap = UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.gotoOTG(_:)))
-//        self.TLView.addGestureRecognizer(tlTap)
-//        
-//        let fvTap = UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.gotoFeed(_:)))
-//        self.feedView.addGestureRecognizer(fvTap)
-//        
-//        let tapFour = UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.openNotifications(_:)))
-//        self.notifyView.addGestureRecognizer(tapFour)
-//        
-//        let tapLocalLife = UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.goToLocalLife(_:)))
-//        self.LLView.addGestureRecognizer(tapLocalLife)
     }
     
     func setupButton(button: UIButton) {
-        let spacing: CGFloat = -2.0
+        let spacing: CGFloat = -10.0
         let imageSize: CGSize = button.imageView!.image!.size //button.imageView!.frame.size
         button.titleEdgeInsets = UIEdgeInsetsMake(0.0, -imageSize.width, -(imageSize.height + spacing), 0.0)
         let labelString = NSString(string: button.titleLabel!.text!)
         let titleSize = labelString.size(attributes: [NSFontAttributeName: button.titleLabel!.font])
-        button.imageEdgeInsets = UIEdgeInsetsMake(-(titleSize.height + spacing), 0.0, 0.0, -titleSize.width)
-        button.contentEdgeInsets = UIEdgeInsetsMake(5.0, 0.0, 5.0, 0.0)
+        button.imageEdgeInsets = UIEdgeInsetsMake(-(titleSize.height + spacing), 0.0, 0.0, -titleSize.width)        
+        button.contentEdgeInsets = UIEdgeInsetsMake(3.0, 0.0, 7.0, 0.0)
     }
+    
     
     //MARK:- Footer Actions
     
-   
-    @IBAction func showActivity(_ sender: UIButton) {
-        gotoFeed()
-    }
-    
-    @IBAction func showNotification(_ sender: UIButton) {
-        openNotifications()
-    }
-    
-    func gotoOTG(_ sender: UITapGestureRecognizer) {
-        
+    @IBAction func activityButtonTabbed(_ sender: UIButton) {
         if currentUser != nil {
-            setFooterDeafultState()
-            self.traveLifeButton.tintColor = mainOrangeColor
+            setFooterDefaultState()
+            setHighlightState(btn: self.activityButton, color: mainOrangeColor)            
+            request.getUserFromCache(user.getExistingUser(), completion: { (response) in
+                DispatchQueue.main.async {
+                    popularView = "activity"
+                    currentUser = response["data"]
+                    let vc = storyboard!.instantiateViewController(withIdentifier: "activityFeeds") as! ActivityFeedsController
+                    vc.displayData = "activity"
+                    popularView = "activity"
+                    self.setVC(newViewController: vc)
+                }
+            })
+        }
+        else {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil )
+        }
+    }
+   
+    @IBAction func traveLifeButtonTabbed(_ sender: UIButton) {
+        if currentUser != nil {
+            setFooterDefaultState()
+            setHighlightState(btn: self.traveLifeButton, color: mainOrangeColor)
             request.getUser(user.getExistingUser(), urlSlug: nil, completion: { (response) in
                 DispatchQueue.main.async {
                     currentUser = response["data"]
@@ -125,53 +113,15 @@ class FooterViewNew: UIView {
         else {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: ["type":0])
         }
-        
-        
     }
     
-    func gotoFeed() {
-        if currentUser != nil {
-            setFooterDeafultState()
-            self.activityButton.tintColor = mainOrangeColor
-            request.getUserFromCache(user.getExistingUser(), completion: { (response) in
-                DispatchQueue.main.async {
-                    popularView = "activity"
-                    currentUser = response["data"]
-                    let vc = storyboard!.instantiateViewController(withIdentifier: "activityFeeds") as! ActivityFeedsController
-                    vc.displayData = "activity"
-                    popularView = "activity"
-                    self.setVC(newViewController: vc)
-                }
-            })
-        }
-        else {
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil )
-        }
+    @IBAction func myLifeButtonTabbed(_ sender: UIButton) {
     }
     
-    func openNotifications() {
+    @IBAction func locaLifeButtonTabbed(_ sender: UIButton) {
         if currentUser != nil {
-            setFooterDeafultState()
-//            self.notificationIcon.tintColor = mainOrangeColor
-//            self.notifications.textColor = mainOrangeColor
-            
-            request.getUserFromCache(user.getExistingUser(), completion: { (response) in
-                DispatchQueue.main.async {
-                    currentUser = response["data"]
-                    let vc = storyboard?.instantiateViewController(withIdentifier: "notifySub") as! NotificationSubViewController
-                    self.setVC(newViewController: vc)
-                }
-            })
-        }
-        else {
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil )
-        }
-    }
-    
-    func goToLocalLife(_ sender : AnyObject) {
-        if currentUser != nil {
-            setFooterDeafultState()
-            self.locaLifeButton.tintColor = mainGreenColor
+            setFooterDefaultState()
+            setHighlightState(btn: self.locaLifeButton, color: mainGreenColor)
             
             request.getUserFromCache(user.getExistingUser(), completion: { (response) in
                 DispatchQueue.main.async {
@@ -183,7 +133,24 @@ class FooterViewNew: UIView {
         }
         else {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: ["type":1])
-        }        
+        }
+    }
+    
+    @IBAction func alertButtonTabbed(_ sender: UIButton) {
+        if currentUser != nil {
+            setFooterDefaultState()
+            setHighlightState(btn: self.alertButton, color: mainOrangeColor)
+            request.getUserFromCache(user.getExistingUser(), completion: { (response) in
+                DispatchQueue.main.async {
+                    currentUser = response["data"]
+                    let vc = storyboard?.instantiateViewController(withIdentifier: "notifySub") as! NotificationSubViewController
+                    self.setVC(newViewController: vc)
+                }
+            })
+        }
+        else {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil )
+        }
     }
     
     func setVC(newViewController : UIViewController) {
@@ -218,12 +185,17 @@ class FooterViewNew: UIView {
     }
     
     
-    //MARK: - Clear State
+    //MARK: - Button State
     
-    func setFooterDeafultState() {
+    func setFooterDefaultState() {
         for btn in allButtons {
+            btn.setTitleColor(UIColor.white, for: .normal)
             btn.tintColor = UIColor.white
         }
     }
     
+    func setHighlightState(btn: UIButton, color: UIColor) {
+        btn.setTitleColor(color, for: .normal)
+        btn.tintColor = color
+    }
 }

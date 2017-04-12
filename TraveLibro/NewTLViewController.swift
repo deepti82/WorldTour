@@ -1041,8 +1041,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
-      globalActivityFeedsController = nil
-                ToastView.appearance().backgroundColor = endJourneyColor
+        globalActivityFeedsController = nil
+        ToastView.appearance().backgroundColor = endJourneyColor
 
         self.layout = VerticalLayout(width: view.frame.size.width)
         mainScroll.addSubview(layout)
@@ -1110,8 +1110,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         self.mainFooter = FooterViewNew(frame: CGRect(x: 0, y: self.view.frame.height - MAIN_FOOTER_HEIGHT, width: self.view.frame.width, height: MAIN_FOOTER_HEIGHT))
         self.mainFooter.layer.zPosition = 5
         self.view.addSubview(self.mainFooter)
-        self.mainFooter.traveLifeButton.tintColor = mainOrangeColor
-    
+        self.mainFooter.setHighlightState(btn: mainFooter.traveLifeButton, color: mainOrangeColor)
+        
         infoButton.isHidden = true
         
 //        addPostsButton.isHidden = true

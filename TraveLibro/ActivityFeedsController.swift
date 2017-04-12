@@ -46,8 +46,7 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
         
         self.mainFooter = FooterViewNew(frame: CGRect.zero)
         self.mainFooter.layer.zPosition = 5
-
-        self.mainFooter.activityButton.tintColor = mainOrangeColor
+        self.mainFooter.setHighlightState(btn: mainFooter.activityButton, color: mainOrangeColor)
         
         self.view.addSubview(self.mainFooter)
 
