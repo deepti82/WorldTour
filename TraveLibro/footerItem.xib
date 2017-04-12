@@ -30,6 +30,9 @@
                             <rect key="frame" x="0.0" y="0.0" width="91.5" height="45"/>
                             <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
                             <state key="normal" title="Activity" image="footer_activity"/>
+                            <connections>
+                                <action selector="showActivity:" destination="-1" eventType="touchUpInside" id="uqq-ax-e9c"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z2P-g7-4RI">
                             <rect key="frame" x="91.5" y="0.0" width="91.5" height="45"/>
@@ -50,6 +53,9 @@
                             <rect key="frame" x="366.5" y="0.0" width="91.5" height="45"/>
                             <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
                             <state key="normal" title="Alerts" image="footer_notification"/>
+                            <connections>
+                                <action selector="showNotification:" destination="-1" eventType="touchUpInside" id="o0M-pK-F14"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>

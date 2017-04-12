@@ -463,6 +463,8 @@
 		FC3248CD1DEDACD600ACDF85 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3248CC1DEDACD600ACDF85 /* VideoViewController.swift */; };
 		FC49DCFA1DE6D04D00B0DEF3 /* ImgLyKitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC49DCF91DE6D04D00B0DEF3 /* ImgLyKitViewController.swift */; };
 		FC7E4AFE1E9E33720066C454 /* footerItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC7E4AFD1E9E33720066C454 /* footerItem.xib */; };
+		FC7E4B001E9E59CD0066C454 /* MyLifeJourneyTravel.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC7E4AFF1E9E59CD0066C454 /* MyLifeJourneyTravel.xib */; };
+		FC7E4B021E9E5D1E0066C454 /* MyLifeJourneyTravel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7E4B011E9E5D1E0066C454 /* MyLifeJourneyTravel.swift */; };
 		FC807AD11E3C9B3300609E9B /* TripPhotoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC807AD01E3C9B3300609E9B /* TripPhotoLayout.swift */; };
 		FC807AD41E3CA62600609E9B /* TripPhotoHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC807AD31E3CA62600609E9B /* TripPhotoHeader.xib */; };
 		FC807AD61E3CAB1700609E9B /* TripPhotoHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC807AD51E3CAB1700609E9B /* TripPhotoHeader.swift */; };
@@ -1000,6 +1002,8 @@
 		FC3248CC1DEDACD600ACDF85 /* VideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
 		FC49DCF91DE6D04D00B0DEF3 /* ImgLyKitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImgLyKitViewController.swift; sourceTree = "<group>"; };
 		FC7E4AFD1E9E33720066C454 /* footerItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = footerItem.xib; sourceTree = "<group>"; };
+		FC7E4AFF1E9E59CD0066C454 /* MyLifeJourneyTravel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyLifeJourneyTravel.xib; sourceTree = "<group>"; };
+		FC7E4B011E9E5D1E0066C454 /* MyLifeJourneyTravel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyLifeJourneyTravel.swift; sourceTree = "<group>"; };
 		FC807AD01E3C9B3300609E9B /* TripPhotoLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripPhotoLayout.swift; sourceTree = "<group>"; };
 		FC807AD31E3CA62600609E9B /* TripPhotoHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TripPhotoHeader.xib; sourceTree = "<group>"; };
 		FC807AD51E3CAB1700609E9B /* TripPhotoHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripPhotoHeader.swift; sourceTree = "<group>"; };
@@ -1310,6 +1314,7 @@
 				FCD52B611E79377000CD64C2 /* SearchJourneyElement */,
 				FCCFAAE21E7A819E00F01DE6 /* PopularItinerary */,
 				FCA5E93A1E7D4E77009ADEF7 /* PopularLayout */,
+				FC7E4B031E9E5D280066C454 /* MyLifeJourneyTravel */,
 			);
 			name = UIViews;
 			sourceTree = "<group>";
@@ -2715,6 +2720,15 @@
 			name = SearchElement;
 			sourceTree = "<group>";
 		};
+		FC7E4B031E9E5D280066C454 /* MyLifeJourneyTravel */ = {
+			isa = PBXGroup;
+			children = (
+				FC7E4AFF1E9E59CD0066C454 /* MyLifeJourneyTravel.xib */,
+				FC7E4B011E9E5D1E0066C454 /* MyLifeJourneyTravel.swift */,
+			);
+			name = MyLifeJourneyTravel;
+			sourceTree = "<group>";
+		};
 		FC807AD21E3C9B4300609E9B /* TripPhotoLayout */ = {
 			isa = PBXGroup;
 			children = (
@@ -3000,6 +3014,7 @@
 				C26907821CF826B900F827E6 /* LocationTextField.xib in Resources */,
 				C276EDAA1D06CBB800906FEC /* EditDOB.xib in Resources */,
 				C2ABDBAE1CEC4CB400D7542E /* OnlyPhoto.xib in Resources */,
+				FC7E4B001E9E59CD0066C454 /* MyLifeJourneyTravel.xib in Resources */,
 				C2A27A451CEDC1F100F74DD1 /* LogInView.xib in Resources */,
 				3AF187041D78556500A86BC1 /* forDPThree.xib in Resources */,
 				FCCA8F1E1E28B74F00775985 /* TripSummaryMiddle.xib in Resources */,
@@ -3296,6 +3311,7 @@
 				842485011E13BF4600083115 /* PhotosOTGView.swift in Sources */,
 				C24F84DC1D000CF5002EA203 /* MoreAboutMe.swift in Sources */,
 				C2A2E7931D96565F005084A7 /* SearchLocationTableViewController.swift in Sources */,
+				FC7E4B021E9E5D1E0066C454 /* MyLifeJourneyTravel.swift in Sources */,
 				C267302C1D27D49100F2C822 /* SelectGenderViewController.swift in Sources */,
 				44725D2F1E5B06580074D925 /* NotificationDefaultCell.swift in Sources */,
 				C26962E41D377592004C0DE2 /* FeaturedCitiesNewViewController.swift in Sources */,
