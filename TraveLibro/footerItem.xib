@@ -30,27 +30,27 @@
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mCZ-SM-zDO">
                             <rect key="frame" x="0.0" y="0.0" width="91.5" height="45"/>
                             <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
-                            <state key="normal" title="Activity" image="activity"/>
+                            <state key="normal" title="Activity" image="footer_activity"/>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z2P-g7-4RI">
                             <rect key="frame" x="91.5" y="0.0" width="91.5" height="45"/>
                             <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
-                            <state key="normal" title="Travel Life" image="travelife"/>
+                            <state key="normal" title="Travel Life" image="footer_white_plus"/>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="caz-D7-WXQ">
                             <rect key="frame" x="183" y="0.0" width="92" height="45"/>
                             <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
-                            <state key="normal" title="My Life" image="mylife"/>
+                            <state key="normal" title="My Life" image="footer_mylife"/>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3my-Wc-MOC">
                             <rect key="frame" x="275" y="0.0" width="91.5" height="45"/>
                             <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
-                            <state key="normal" title="Local Life" image="localife"/>
+                            <state key="normal" title="Local Life" image="footer_white_plus"/>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NkH-cH-5PP">
                             <rect key="frame" x="366.5" y="0.0" width="91.5" height="45"/>
                             <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
-                            <state key="normal" title="Alerts" image="alerts"/>
+                            <state key="normal" title="Alerts" image="footer_notification"/>
                         </button>
                     </subviews>
                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -68,10 +68,9 @@
         </view>
     </objects>
     <resources>
-        <image name="activity" width="25" height="25"/>
-        <image name="alerts" width="25" height="25"/>
-        <image name="localife" width="25" height="25"/>
-        <image name="mylife" width="25" height="25"/>
-        <image name="travelife" width="25" height="25"/>
+        <image name="footer_activity" width="66" height="66"/>
+        <image name="footer_mylife" width="66" height="66"/>
+        <image name="footer_notification" width="66" height="66"/>
+        <image name="footer_white_plus" width="66" height="66"/>
     </resources>
 </document>
