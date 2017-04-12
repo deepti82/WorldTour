@@ -32,7 +32,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setNavigationBarItemText("Notifications")
+        setNavigationBarItemText("Alerts")
         
         self.automaticallyAdjustsScrollViewInsets = false
         
@@ -147,7 +147,22 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
                             }
                             self.notifyTableView.reloadData()
                             self.notifyTableView.scrollToRow(at: NSIndexPath.init(row: indexx, section: 0) as IndexPath as IndexPath, at: .none, animated: true)
-                        }                                                
+                            
+                            if self.notifications.isEmpty {
+                                self.noNotificationsFound()
+                            }
+                            else {
+                                self.removeEmptyScreen()
+                            }
+                        }
+                        else {
+                            if self.notifications.isEmpty {
+                                self.noNotificationsFound()
+                            }
+                            else {
+                                self.removeEmptyScreen()
+                            }
+                        }
                     }
                     else {
                         print("response error!")
@@ -779,6 +794,27 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         }
     }
     
+    
+    //MARK: - Empty screen
+
+    func removeEmptyScreen() {
+        for views in self.view.subviews {
+            if views.tag == 45 {
+                let expectedView = views
+                expectedView.removeFromSuperview()                
+            }
+        }
+    }
+    
+    func noNotificationsFound() {
+        
+        removeEmptyScreen()        
+        
+        let noNotification = notificationEmptyView(frame: CGRect(x: 0, y: 5, width: screenWidth, height: 150))
+        noNotification.tag = 45
+        self.view.addSubview(noNotification)
+    }
+
     
     //MARK: - Remote Notification Received
     

@@ -79,6 +79,8 @@
 		44081CF41E55E46B006EA74C /* NotificationAcknolwdgementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44081CF31E55E46B006EA74C /* NotificationAcknolwdgementCell.swift */; };
 		44081CF61E55EA5D006EA74C /* NotificationPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44081CF51E55EA5D006EA74C /* NotificationPhotoCell.swift */; };
 		44081CF81E55EEC5006EA74C /* NotificationFollowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44081CF71E55EEC5006EA74C /* NotificationFollowCell.swift */; };
+		440918041E9DE80100AE20F4 /* notificationEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440918031E9DE80100AE20F4 /* notificationEmptyView.swift */; };
+		440918061E9DE83100AE20F4 /* notificationEmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 440918051E9DE83100AE20F4 /* notificationEmptyView.xib */; };
 		443225AA1E668332008AB156 /* locallife.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 443225A71E668332008AB156 /* locallife.mp4 */; };
 		443225AB1E668332008AB156 /* mylife.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 443225A81E668332008AB156 /* mylife.mp4 */; };
 		443225AC1E668332008AB156 /* travellife.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 443225A91E668332008AB156 /* travellife.mp4 */; };
@@ -610,6 +612,8 @@
 		44081CF31E55E46B006EA74C /* NotificationAcknolwdgementCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationAcknolwdgementCell.swift; path = Notification/NotificationAcknolwdgementCell.swift; sourceTree = "<group>"; };
 		44081CF51E55EA5D006EA74C /* NotificationPhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationPhotoCell.swift; path = Notification/NotificationPhotoCell.swift; sourceTree = "<group>"; };
 		44081CF71E55EEC5006EA74C /* NotificationFollowCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationFollowCell.swift; path = Notification/NotificationFollowCell.swift; sourceTree = "<group>"; };
+		440918031E9DE80100AE20F4 /* notificationEmptyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = notificationEmptyView.swift; path = EmptyScreens/notificationEmptyView.swift; sourceTree = "<group>"; };
+		440918051E9DE83100AE20F4 /* notificationEmptyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = notificationEmptyView.xib; path = EmptyScreens/notificationEmptyView.xib; sourceTree = "<group>"; };
 		443225A71E668332008AB156 /* locallife.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = locallife.mp4; sourceTree = "<group>"; };
 		443225A81E668332008AB156 /* mylife.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = mylife.mp4; sourceTree = "<group>"; };
 		443225A91E668332008AB156 /* travellife.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = travellife.mp4; sourceTree = "<group>"; };
@@ -1161,6 +1165,7 @@
 		1A944E351CCB5A0C007EB5BD /* UIViews */ = {
 			isa = PBXGroup;
 			children = (
+				440918021E9DE7CF00AE20F4 /* EmptyScreens */,
 				848DE53C1E7919F6001CCDCF /* profilePicNavigation */,
 				84F25EB71E5D85BC00ED7A1E /* detailedItineraryStrip */,
 				84F25EB51E5D821000ED7A1E /* detailedItineraryStrip.xib */,
@@ -1437,6 +1442,15 @@
 				3AFB01C51DDC30DA00BCD523 /* AddRatingCountries.xib */,
 			);
 			name = AddRatingCountries;
+			sourceTree = "<group>";
+		};
+		440918021E9DE7CF00AE20F4 /* EmptyScreens */ = {
+			isa = PBXGroup;
+			children = (
+				440918031E9DE80100AE20F4 /* notificationEmptyView.swift */,
+				440918051E9DE83100AE20F4 /* notificationEmptyView.xib */,
+			);
+			name = EmptyScreens;
 			sourceTree = "<group>";
 		};
 		4435D2D11E543F7C003BD1D9 /* Notification */ = {
@@ -3045,6 +3059,7 @@
 				C24F85051D0065E2002EA203 /* CardCheckBoxes.xib in Resources */,
 				8453CF421E30AFAF00C41F82 /* ActivityFeedQuickItinerary.xib in Resources */,
 				443225AA1E668332008AB156 /* locallife.mp4 in Resources */,
+				440918061E9DE83100AE20F4 /* notificationEmptyView.xib in Resources */,
 				C23EB1DD1CFEED9B005B5CE8 /* EndLocalLife.xib in Resources */,
 				C2DCB3741CE7470F006E5CBD /* AddRating.xib in Resources */,
 				C269077D1CF819BA00F827E6 /* GenderInfo.xib in Resources */,
@@ -3325,6 +3340,7 @@
 				C28A92491D0EA12300CFEC7A /* BlogsListViewController.swift in Sources */,
 				C27E0F3A1D2A1EF10090880A /* FeedbackViewController.swift in Sources */,
 				C2DCAE411D18063E00B35331 /* NavigationStyle.swift in Sources */,
+				440918041E9DE80100AE20F4 /* notificationEmptyView.swift in Sources */,
 				C2C965991CE45A51007BDA34 /* Date&Time.swift in Sources */,
 				447492251E5D535300039D56 /* NotificationFollowRequestCell.swift in Sources */,
 				C20A18FF1D22A67700760BF9 /* AddBuddiesViewController.swift in Sources */,
