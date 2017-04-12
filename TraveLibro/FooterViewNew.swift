@@ -22,31 +22,20 @@ func sharedInstance(newFrame: CGRect) -> FooterViewNew {
 }
 
 class FooterViewNew: UIView {
-    
-    @IBOutlet weak var notificationIcon: UIImageView!
-    @IBOutlet weak var notifications: UILabel!
-    
-    @IBOutlet weak var localLife: UILabel!
-    @IBOutlet weak var localLifeIcon: UIImageView!
-    
-    @IBOutlet weak var travelLife: UILabel!
-    @IBOutlet weak var travelLifeIcon: UIImageView!
-    
-    @IBOutlet weak var activityOrange: UILabel!
-//    @IBOutlet weak var activityImage: UIImageView!
-    
-    @IBOutlet var footerIconImages: [UIImageView]!
-    
-    @IBOutlet weak var feedView: UIView!
-    @IBOutlet weak var notifyView: UIView!
-    @IBOutlet weak var LLView: UIView!
-    @IBOutlet weak var TLView: UIView!
-    @IBOutlet weak var lowerMainView: UIView!
-    @IBOutlet weak var upperMainView: UIView!
-    @IBOutlet weak var badgeButton: UIButton!
-    
+        
     @IBOutlet weak var activityImage: UIButton!
     @IBOutlet weak var activityText: UIButton!
+    
+    @IBOutlet weak var buttonStackView: UIStackView!
+    
+    
+    @IBOutlet weak var activityButton: UIButton!
+    @IBOutlet weak var traveLifeButton: UIButton!
+    @IBOutlet weak var myLifeButton: UIButton!
+    @IBOutlet weak var locaLifeButton: UIButton!
+    @IBOutlet weak var alertButton
+    : UIButton!
+
     
     
     
@@ -81,7 +70,7 @@ class FooterViewNew: UIView {
     
     func loadViewFromNib() {
         let bundle = Bundle(for: type(of: self))
-        let nib = UINib(nibName: "footerNew", bundle: bundle)
+        let nib = UINib(nibName: "footerItem", bundle: bundle)
         let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -101,6 +90,17 @@ class FooterViewNew: UIView {
 //        self.LLView.addGestureRecognizer(tapLocalLife)
     }
     
+    func setupButton(button: UIButton) {
+        let spacing: CGFloat = 0.0
+        //        button.imageView?.frame = CGRect(x: (button.imageView?.frame.origin.x)!, y: (button.imageView?.frame.origin.y)!, width: 25, height: 25)
+        let imageSize: CGSize = button.imageView!.image!.size //button.imageView!.frame.size
+        button.titleEdgeInsets = UIEdgeInsetsMake(0.0, -imageSize.width, -(imageSize.height + spacing), 0.0)
+        let labelString = NSString(string: button.titleLabel!.text!)
+        let titleSize = labelString.size(attributes: [NSFontAttributeName: button.titleLabel!.font])
+        button.imageEdgeInsets = UIEdgeInsetsMake(-(titleSize.height + spacing), 0.0, 0.0, -titleSize.width)
+        button.contentEdgeInsets = UIEdgeInsetsMake(5.0, 0.0, 5.0, 0.0)
+    }
+    
     //MARK:- Footer Actions
     
    
@@ -116,8 +116,7 @@ class FooterViewNew: UIView {
         
         if currentUser != nil {
             setFooterDeafultState()
-            self.travelLifeIcon.tintColor = mainOrangeColor
-            self.travelLife.textColor = mainOrangeColor
+            self.traveLifeButton.tintColor = mainOrangeColor
             request.getUser(user.getExistingUser(), urlSlug: nil, completion: { (response) in
                 DispatchQueue.main.async {
                     currentUser = response["data"]
@@ -182,8 +181,7 @@ class FooterViewNew: UIView {
     func goToLocalLife(_ sender : AnyObject) {
         if currentUser != nil {
             setFooterDeafultState()
-            self.localLifeIcon.tintColor = mainGreenColor
-            self.localLife.textColor = mainGreenColor
+            self.locaLifeButton.tintColor = mainGreenColor
             
             request.getUserFromCache(user.getExistingUser(), completion: { (response) in
                 DispatchQueue.main.async {
@@ -212,21 +210,21 @@ class FooterViewNew: UIView {
     //MARK: - Notification Badge
     
     func setBadge() {
-        if UserDefaults.standard.value(forKey: "notificationCount") != nil {
-            let notificationCount = UserDefaults.standard.value(forKey: "notificationCount") as! Int            
-            if notificationCount > 0 {
-                self.badgeButton.isHidden = false
-                self.badgeButton.setTitle(String(notificationCount), for: .normal)
-                self.badgeButton.titleLabel?.sizeToFit()
-                self.bringSubview(toFront: self.badgeButton)
-            }
-            else {
-                self.badgeButton.isHidden = true
-            }
-        }
-        else {
-            self.badgeButton.isHidden = true
-        }
+//        if UserDefaults.standard.value(forKey: "notificationCount") != nil {
+//            let notificationCount = UserDefaults.standard.value(forKey: "notificationCount") as! Int            
+//            if notificationCount > 0 {
+//                self.badgeButton.isHidden = false
+//                self.badgeButton.setTitle(String(notificationCount), for: .normal)
+//                self.badgeButton.titleLabel?.sizeToFit()
+//                self.bringSubview(toFront: self.badgeButton)
+//            }
+//            else {
+//                self.badgeButton.isHidden = true
+//            }
+//        }
+//        else {
+//            self.badgeButton.isHidden = true
+//        }
     }
     
     //MARK: - Clear State

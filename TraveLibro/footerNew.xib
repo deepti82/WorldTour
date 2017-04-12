@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FooterViewNew" customModule="TraveLibro" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner">
             <connections>
                 <outlet property="activityImage" destination="jx8-dI-NKw" id="1vH-NH-liY"/>
                 <outlet property="activityText" destination="HMm-Lp-p9o" id="3pT-Z2-31w"/>
@@ -37,7 +37,7 @@
                                     </state>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jx8-dI-NKw">
-                                    <rect key="frame" x="25.5" y="4" width="30" height="30"/>
+                                    <rect key="frame" x="25" y="4" width="30" height="30"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="30" id="rkG-b5-IMj"/>
                                         <constraint firstAttribute="height" constant="30" id="zi9-yU-HCU"/>
@@ -70,7 +70,7 @@
                                     </state>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xTZ-t2-rdC">
-                                    <rect key="frame" x="31" y="4" width="20" height="20"/>
+                                    <rect key="frame" x="30.5" y="4" width="20" height="20"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="20" id="QH1-Lm-GRo"/>
                                         <constraint firstAttribute="width" constant="20" id="aAP-kk-nrs"/>
@@ -100,7 +100,7 @@
                                     </state>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R3r-Pj-eEc">
-                                    <rect key="frame" x="25.5" y="4" width="30" height="30"/>
+                                    <rect key="frame" x="26" y="4" width="30" height="30"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="30" id="Pgm-2q-YWN"/>
                                         <constraint firstAttribute="height" constant="30" id="uqC-Mv-nsB"/>
@@ -130,7 +130,7 @@
                                     </state>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dxl-lj-IJ2">
-                                    <rect key="frame" x="31.5" y="5" width="20" height="20"/>
+                                    <rect key="frame" x="31" y="5" width="20" height="20"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="20" id="94m-3q-wBD"/>
                                         <constraint firstAttribute="height" constant="20" id="ZPg-c4-rwS"/>

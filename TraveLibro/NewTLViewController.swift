@@ -1110,8 +1110,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         self.mainFooter = FooterViewNew(frame: CGRect(x: 0, y: self.view.frame.height - 50, width: self.view.frame.width, height: 50))
         self.mainFooter.layer.zPosition = 5
         self.view.addSubview(self.mainFooter)
-        self.mainFooter.travelLifeIcon.tintColor = mainOrangeColor
-        self.mainFooter.travelLife.textColor = mainOrangeColor
+        self.mainFooter.traveLifeButton.tintColor = mainOrangeColor
     
         infoButton.isHidden = true
         

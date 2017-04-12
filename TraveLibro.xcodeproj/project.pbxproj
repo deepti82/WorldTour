@@ -460,13 +460,13 @@
 		FC259C291E79014D00AF815A /* MainSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC259C281E79014D00AF815A /* MainSearchViewController.swift */; };
 		FC3248CD1DEDACD600ACDF85 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3248CC1DEDACD600ACDF85 /* VideoViewController.swift */; };
 		FC49DCFA1DE6D04D00B0DEF3 /* ImgLyKitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC49DCF91DE6D04D00B0DEF3 /* ImgLyKitViewController.swift */; };
+		FC7E4AFE1E9E33720066C454 /* footerItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC7E4AFD1E9E33720066C454 /* footerItem.xib */; };
 		FC807AD11E3C9B3300609E9B /* TripPhotoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC807AD01E3C9B3300609E9B /* TripPhotoLayout.swift */; };
 		FC807AD41E3CA62600609E9B /* TripPhotoHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC807AD31E3CA62600609E9B /* TripPhotoHeader.xib */; };
 		FC807AD61E3CAB1700609E9B /* TripPhotoHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC807AD51E3CAB1700609E9B /* TripPhotoHeader.swift */; };
 		FC9484991E94E1E2000AB89F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FC9484981E94E1E1000AB89F /* GoogleService-Info.plist */; };
 		FC94849A1E94E1E2000AB89F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FC9484981E94E1E1000AB89F /* GoogleService-Info.plist */; };
 		FC94849B1E94E1E2000AB89F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FC9484981E94E1E1000AB89F /* GoogleService-Info.plist */; };
-		FC9699A11E9CFF0D00352F18 /* FooterItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC9699A01E9CFF0D00352F18 /* FooterItem.xib */; };
 		FC9A0C181E03CE5D00BC3F7A /* TagsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC9A0C171E03CE5D00BC3F7A /* TagsView.xib */; };
 		FC9A0C1A1E0924CD00BC3F7A /* CountrySummary.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC9A0C191E0924CD00BC3F7A /* CountrySummary.xib */; };
 		FC9A0C1C1E0932E300BC3F7A /* CountrySummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9A0C1B1E0932E300BC3F7A /* CountrySummary.swift */; };
@@ -995,11 +995,11 @@
 		FC259C281E79014D00AF815A /* MainSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainSearchViewController.swift; sourceTree = "<group>"; };
 		FC3248CC1DEDACD600ACDF85 /* VideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
 		FC49DCF91DE6D04D00B0DEF3 /* ImgLyKitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImgLyKitViewController.swift; sourceTree = "<group>"; };
+		FC7E4AFD1E9E33720066C454 /* footerItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = footerItem.xib; sourceTree = "<group>"; };
 		FC807AD01E3C9B3300609E9B /* TripPhotoLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripPhotoLayout.swift; sourceTree = "<group>"; };
 		FC807AD31E3CA62600609E9B /* TripPhotoHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TripPhotoHeader.xib; sourceTree = "<group>"; };
 		FC807AD51E3CAB1700609E9B /* TripPhotoHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripPhotoHeader.swift; sourceTree = "<group>"; };
 		FC9484981E94E1E1000AB89F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		FC9699A01E9CFF0D00352F18 /* FooterItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FooterItem.xib; sourceTree = "<group>"; };
 		FC9A0C171E03CE5D00BC3F7A /* TagsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TagsView.xib; sourceTree = "<group>"; };
 		FC9A0C191E0924CD00BC3F7A /* CountrySummary.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CountrySummary.xib; sourceTree = "<group>"; };
 		FC9A0C1B1E0932E300BC3F7A /* CountrySummary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountrySummary.swift; sourceTree = "<group>"; };
@@ -2332,7 +2332,7 @@
 			children = (
 				C26D61991D43A9FF0036714C /* footerNew.xib */,
 				C2823AFD1D45E09C0065A76C /* FooterViewNew.swift */,
-				FC9699A01E9CFF0D00352F18 /* FooterItem.xib */,
+				FC7E4AFD1E9E33720066C454 /* footerItem.xib */,
 			);
 			name = FooterNew;
 			sourceTree = "<group>";
@@ -3025,6 +3025,7 @@
 				1A65E7A91CD72F1F009374DA /* Avenir-Heavy.ttf in Resources */,
 				C2FA1E111D5485F50034DE97 /* QuickItineraryFive.xib in Resources */,
 				C28A92431D0E839B00CFEC7A /* FilterRestaurants.xib in Resources */,
+				FC7E4AFE1E9E33720066C454 /* footerItem.xib in Resources */,
 				C2EA3A1B1CDB790000122941 /* TypeOfJourney.xib in Resources */,
 				36E3B8241E34B54C00C597BA /* ActivityFeedFooterBasic.xib in Resources */,
 				C258A3391D6C83D600664CF7 /* ExistingAccountPopup.xib in Resources */,
@@ -3110,7 +3111,6 @@
 				8453CF3D1E30A12400C41F82 /* ActivityDetailItinerary.xib in Resources */,
 				C2A5C1D71CF9B09E0035EF0E /* TraveLifeVideoPost.xib in Resources */,
 				44B17E911E691D4700CA8F0C /* notificationTimeView.xib in Resources */,
-				FC9699A11E9CFF0D00352F18 /* FooterItem.xib in Resources */,
 				C27F6BFD1CF037C60049F012 /* ProfileMainView.xib in Resources */,
 				368A56901E3CD6E600DC8A19 /* loader.gif in Resources */,
 				FCCA8F171E28AE7200775985 /* TripSummaryCell.xib in Resources */,

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FooterViewNew" customModule="TraveLibro" customModuleProvider="target">
+            <connections>
+                <outlet property="activityButton" destination="mCZ-SM-zDO" id="kvC-ug-Nu1"/>
+                <outlet property="alertButton" destination="NkH-cH-5PP" id="piT-VQ-eky"/>
+                <outlet property="buttonStackView" destination="0TA-1Y-Hsc" id="r0x-yp-e1x"/>
+                <outlet property="locaLifeButton" destination="3my-Wc-MOC" id="o4V-pk-JbX"/>
+                <outlet property="myLifeButton" destination="caz-D7-WXQ" id="8ov-3c-Pyw"/>
+                <outlet property="traveLifeButton" destination="z2P-g7-4RI" id="p9A-Fc-em1"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="458" height="45"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="0TA-1Y-Hsc">
+                    <rect key="frame" x="0.0" y="0.0" width="458" height="45"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mCZ-SM-zDO">
+                            <rect key="frame" x="0.0" y="0.0" width="91.5" height="45"/>
+                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
+                            <state key="normal" title="Activity" image="activity"/>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z2P-g7-4RI">
+                            <rect key="frame" x="91.5" y="0.0" width="91.5" height="45"/>
+                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
+                            <state key="normal" title="Travel Life" image="travelife"/>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="caz-D7-WXQ">
+                            <rect key="frame" x="183" y="0.0" width="92" height="45"/>
+                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
+                            <state key="normal" title="My Life" image="mylife"/>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3my-Wc-MOC">
+                            <rect key="frame" x="275" y="0.0" width="91.5" height="45"/>
+                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
+                            <state key="normal" title="Local Life" image="localife"/>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NkH-cH-5PP">
+                            <rect key="frame" x="366.5" y="0.0" width="91.5" height="45"/>
+                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
+                            <state key="normal" title="Alerts" image="alerts"/>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" red="0.17254901960784313" green="0.21568627450980393" blue="0.3411764705882353" alpha="0.84999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="0TA-1Y-Hsc" secondAttribute="trailing" id="7cI-k5-FIe"/>
+                <constraint firstAttribute="bottom" secondItem="0TA-1Y-Hsc" secondAttribute="bottom" id="XVi-US-JfV"/>
+                <constraint firstItem="0TA-1Y-Hsc" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="ejz-dh-Q3X"/>
+                <constraint firstItem="0TA-1Y-Hsc" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="r1Q-eK-IOh"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="67" y="50.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="activity" width="25" height="25"/>
+        <image name="alerts" width="25" height="25"/>
+        <image name="localife" width="25" height="25"/>
+        <image name="mylife" width="25" height="25"/>
+        <image name="travelife" width="25" height="25"/>
+    </resources>
+</document>
