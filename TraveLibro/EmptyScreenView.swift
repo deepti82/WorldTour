@@ -11,8 +11,8 @@ class EmptyScreenView: UIView {
         super.init(frame: frame)
         loadViewFromNib ()
         
-        TL.tintColor = UIColor(red: 241/255, green: 242/255, blue: 242/255, alpha: 1)
-        LL.tintColor = UIColor(red: 241/255, green: 242/255, blue: 242/255, alpha: 1)
+//        TL.tintColor = UIColor(red: 241/255, green: 242/255, blue: 242/255, alpha: 1)
+//        LL.tintColor = UIColor(red: 241/255, green: 242/255, blue: 242/255, alpha: 1)
         
     }
     
