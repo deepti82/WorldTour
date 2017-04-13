@@ -89,6 +89,7 @@ class AddNationalityNewViewController: UIViewController, UIPickerViewDelegate {
             rightButton.addTarget(self, action: #selector(AddNationalityNewViewController.saveCountry(_:)), for: .touchUpInside)
             rightButton.frame = CGRect(x: 0, y: 8, width: 30, height: 30)
             self.customNavigationBar(left: nil, right: rightButton)
+            self.navigationItem.hidesBackButton = true
         }
         
         hintLabel = UILabel(frame: CGRect(x: 20, y: 0, width: screenWidth - 40, height: 30))
