@@ -119,22 +119,56 @@ class DisplayPagesFourViewController: UIViewController {
         
         
         let req = ["kindOfHoliday":kindOfJourney,"usuallyGo":[youUsuallyGo],"preferToTravel":preferToTravel,"holidayType":yourIdeal] as [String : Any]
-//
-        request.addCard(currentUser["_id"].string!, editFieldValue: req, completion: {(responce) in
-            DispatchQueue.main.async(execute: {
-                if responce["value"] != true{
-                    self.alert(message: "Enable to save", title: "Holiday Type")
+        
+        var popToVC : UIViewController!
+        
+        if kindOfJourney.isEmpty {
+            for vc in (self.navigationController?.viewControllers)! {
+                if vc.isKind(of: DisplayPagesOneViewController.self) {
+                    popToVC = vc
+                    break
                 }
-                else {
+            }
+        }
+        else if youUsuallyGo == "" {
+            for vc in (self.navigationController?.viewControllers)! {
+                if vc.isKind(of: DisplayPagesTwoViewController.self) {
+                    popToVC = vc
+                    break
+                }
+            }
+        }
+        else if preferToTravel.isEmpty {
+            for vc in (self.navigationController?.viewControllers)! {
+                if vc.isKind(of: DisplayPagesThreeViewController.self) {
+                    popToVC = vc
+                    break
+                }
+            }
+        }
+        else if youUsuallyGo == "" {
+            for vc in (self.navigationController?.viewControllers)! {
+                if vc.isKind(of: DisplayPagesFourViewController.self) {
+                    popToVC = vc
+                    break
+                }
+            }
+        }
+        
+        if kindOfJourney.isEmpty || youUsuallyGo == "" || preferToTravel.isEmpty || yourIdeal.isEmpty {            
+            _ = self.navigationController?.popToViewController(popToVC, animated: true)
+        }
+        else {
+            request.addCard(currentUser["_id"].string!, editFieldValue: req, completion: {(responce) in
+                DispatchQueue.main.async(execute: {
+                    if responce["value"] != true{
+                        self.alert(message: "Enable to save", title: "Holiday Type")
+                    }                    
                     let next = self.storyboard?.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
                     self.navigationController?.pushViewController(next, animated: true)
-                }
-                
+                })
             })
-        })
-
-        
-        
+        }
     }
     
     override func didReceiveMemoryWarning() {

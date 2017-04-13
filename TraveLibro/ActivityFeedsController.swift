@@ -477,9 +477,8 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
     
     func noActivityFound() {
         
-        removeEmptyScreen()        
-        
-        let noActivity = activityEmptyView(frame: CGRect(x: 0, y: 0, width: screenWidth*0.8, height: 160))
+        removeEmptyScreen()
+        let noActivity = activityEmptyView(frame: CGRect(x: 0, y: 0, width: min(screenWidth*0.8, 256)  , height: 160))
         noActivity.headerLabel.text = "Hi, \(currentUser["name"].stringValue)"
         noActivity.tag = 46
         noActivity.center = CGPoint(x: screenWidth/2, y: screenHeight/2 - 50)
