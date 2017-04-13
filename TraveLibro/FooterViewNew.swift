@@ -115,7 +115,23 @@ class FooterViewNew: UIView {
         }
     }
     
-    @IBAction func myLifeButtonTabbed(_ sender: UIButton) {
+    @IBAction func myLifeButtonTabbed(_ sender: UIButton) {        
+        if currentUser != nil {
+            setFooterDefaultState()
+            setHighlightState(btn: self.myLifeButton, color: mainOrangeColor)
+            
+            request.getUserFromCache(user.getExistingUser(), completion: { (response) in
+                DispatchQueue.main.async {
+                    currentUser = response["data"]
+                    let vc = storyboard?.instantiateViewController(withIdentifier: "myLife") as! MyLifeViewController
+                    vc.isFromFooter = true
+                    self.setVC(newViewController: vc)
+                }
+            })
+        }
+        else {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: ["type":1])
+        }
     }
     
     @IBAction func locaLifeButtonTabbed(_ sender: UIButton) {
