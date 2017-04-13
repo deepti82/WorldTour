@@ -22,7 +22,7 @@ class FeedbackViewController: UIViewController, UITextViewDelegate {
         let alertController = UIAlertController(title: nil, message:
             "Successfully Submitted", preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "OK", style: .default,handler: nil))
-        
+
         self.present(alertController, animated: true, completion: nil)
         
     }

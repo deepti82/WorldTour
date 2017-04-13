@@ -169,7 +169,13 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
                 
         }))
         optionsController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        self.present(optionsController, animated: true, completion: nil)
+
+        showPopover(optionsController: optionsController, sender: sender, vc: self)
+//        if let popover = optionsController.popoverPresentationController{
+//            popover.sourceView = sender
+//            popover.sourceRect = sender.bounds
+//        }
+//        self.present(optionsController, animated: true, completion: nil)
     }
     
     func displayFriendsCount() {
@@ -636,7 +642,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
                             
                             let alert = UIAlertController(title: nil, message:
                                 "response error!", preferredStyle: .alert)
-                            
+
                             self.present(alert, animated: false, completion: nil)
                             
                             alert.addAction(UIAlertAction(title: "OK", style: .default, handler:

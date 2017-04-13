@@ -265,7 +265,8 @@ class ActivityFeedFooter: UIView {
                         {action -> Void in
                             let alert = UIAlertController(title: "Report", message: "Reported Successfully.", preferredStyle: UIAlertControllerStyle.alert)
                             alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-                            globalNavigationController.present(alert, animated: true, completion: nil)
+                            showPopover(optionsController: alert, sender: sender, vc: globalNavigationController)
+//                            globalNavigationController.present(alert, animated: true, completion: nil)
                         }
                         actionSheetControllerIOS8.addAction(reportActionButton)
                     }
@@ -302,7 +303,9 @@ class ActivityFeedFooter: UIView {
                             
                             
                         }))
-                        globalMyLifeViewController.present(alert, animated: true, completion: nil)
+                        showPopover(optionsController: alert, sender: sender, vc: globalMyLifeViewController)
+
+//                        globalMyLifeViewController.present(alert, animated: true, completion: nil)
 
                         
                     }
@@ -332,7 +335,9 @@ class ActivityFeedFooter: UIView {
                                 
                                 
                             }))
-                            globalMyLifeViewController.present(alert, animated: true, completion: nil)
+                            showPopover(optionsController: alert, sender: sender, vc: globalMyLifeViewController)
+
+//                            globalMyLifeViewController.present(alert, animated: true, completion: nil)
                             
                         }
                         actionSheetControllerIOS8.addAction(DeletePost)
@@ -369,7 +374,9 @@ class ActivityFeedFooter: UIView {
                         alert.addAction(cancel)
                         
                         // 4. Present the alert.
-                        globalMyLifeContainerViewController.present(alert, animated: true, completion: nil)
+                        showPopover(optionsController: alert, sender: sender, vc: globalMyLifeContainerViewController)
+
+//                        globalMyLifeContainerViewController.present(alert, animated: true, completion: nil)
                         
                     }
                     actionSheetControllerIOS8.addAction(changeNameActionButton)
@@ -405,7 +412,8 @@ class ActivityFeedFooter: UIView {
                         {action -> Void in
                             let alert = UIAlertController(title: "Report", message: "Reported Successfully.", preferredStyle: UIAlertControllerStyle.alert)
                             alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-                            globalNavigationController.present(alert, animated: true, completion: nil)
+                            showPopover(optionsController: alert, sender: sender, vc: globalNavigationController)
+//                            globalNavigationController.present(alert, animated: true, completion: nil)
                         }
                         actionSheetControllerIOS8.addAction(reportActionButton)
                     }
@@ -436,11 +444,13 @@ class ActivityFeedFooter: UIView {
                 {action -> Void in
                     let alert = UIAlertController(title: "Report", message: "Reported Successfully.", preferredStyle: UIAlertControllerStyle.alert)
                     alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                    showPopover(optionsController: alert, sender: sender, vc: globalNavigationController)
                     globalNavigationController.present(alert, animated: true, completion: nil)
                 }
                 actionSheetControllerIOS8.addAction(reportActionButton)
             }
-            globalNavigationController.topViewController?.present(actionSheetControllerIOS8, animated: true, completion: nil)            
+        showPopover(optionsController: actionSheetControllerIOS8, sender: sender, vc: globalNavigationController)
+//            globalNavigationController.topViewController?.present(actionSheetControllerIOS8, animated: true, completion: nil)            
         
     }
     

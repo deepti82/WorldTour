@@ -78,7 +78,9 @@ class AddCaptionsViewController: UIViewController, UITextFieldDelegate, ToolStac
                 self.goBack(UIButton());
             }
         }))
-        self.present(alert, animated: true, completion: nil)
+        showPopover(optionsController: alert, sender: sender, vc: self)
+
+//        self.present(alert, animated: true, completion: nil)
     }
     
     @IBAction func editPhoto(_ sender: UIButton) {

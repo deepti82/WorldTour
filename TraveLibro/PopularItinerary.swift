@@ -43,7 +43,7 @@ class PopularItinerary: UIView {
         let transparent = UIColor.clear.cgColor as CGColor
         
         gradient.frame = self.gradiantView.bounds
-        gradient.frame.size.width = gradiantView.frame.width + 40
+        gradient.frame.size.width = self.frame.width + 40
         gradient.colors = [blackColour, transparent]
         gradient.locations = [0.0, 0.75]
         

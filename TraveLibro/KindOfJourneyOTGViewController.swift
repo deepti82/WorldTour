@@ -104,7 +104,9 @@ class KindOfJourneyOTGViewController: UIViewController {
             
             let alert = UIAlertController(title: "Invalid input", message: "You need to select atleast one category", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
+            showPopover(optionsController: alert, sender: sender, vc: self)
+
+//            self.present(alert, animated: true, completion: nil)
             
         }
         else if isEdit {

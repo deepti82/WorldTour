@@ -876,6 +876,15 @@ func getThumbnailFromVideoURL(url : URL, onView: UIImageView) {
 }
 
 
+//PRESEND ACTION VIEW
+func showPopover(optionsController:UIAlertController, sender:UIView, vc:UIViewController){
+    if let popover = optionsController.popoverPresentationController{
+        popover.sourceView = sender
+        popover.sourceRect = sender.bounds
+    }
+    vc.present(optionsController, animated: true, completion: nil)
+}
+
 
 //LoadingOverlay.shared.showOverlay(self.view)
 ////To to long tasks

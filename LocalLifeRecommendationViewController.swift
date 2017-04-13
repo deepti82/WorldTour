@@ -243,7 +243,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
             }
             alertController.addAction(settingsAction)
             alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-            
+
             self.present(alertController, animated: true, completion: nil)
         } else {
             //Add Dard Blur Background

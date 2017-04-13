@@ -267,6 +267,7 @@ class BucketListTableViewController: UITableViewController  {
                         }
                     });
                 }))
+
                 self.present(alert, animated: true, completion: nil)
             } else if self.whichView == "CountriesVisited" {
                 let alert = UIAlertController(title: "", message: "Are you sure you want to delete \(cell.countryName.text!) from Countries Visited", preferredStyle: UIAlertControllerStyle.alert)
@@ -281,6 +282,7 @@ class BucketListTableViewController: UITableViewController  {
                         }
                     });
                 }))
+
                 self.present(alert, animated: true, completion: nil)
             }
         }
