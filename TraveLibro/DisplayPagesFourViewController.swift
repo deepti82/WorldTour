@@ -18,7 +18,7 @@ class DisplayPagesFourViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        getDarkBackGroundBlur(self)
+        getDarkBackGroundBlur(self)        
 
 //        let indicatorFour = UIImageView(frame: CGRect(x: 0, y: 0, width: 60, height: 20))
 //        indicatorFour.image = UIImage(named: "headerindicator4")
@@ -49,13 +49,13 @@ class DisplayPagesFourViewController: UIViewController {
 //        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(DisplayPagesTwoViewController.nextPage(_:)))
 //        swipeLeft.direction = UISwipeGestureRecognizerDirection.Left
 //        self.view.addGestureRecognizer(swipeLeft)
-        
+        print("ypos : \(self.view.frame.origin.y)")
         let scroll = UIScrollView(frame: CGRect(x: 0, y: 60, width: self.view.frame.width, height: self.view.frame.height))
         self.view.addSubview(scroll)
         
         scroll.contentSize.height = 1050.0
         
-        let page = forDpFour(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 950))
+        let page = forDpFour(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 950))        
         scroll.addSubview(page)
         
         for button in page.checkboxFourButtons {
@@ -125,8 +125,10 @@ class DisplayPagesFourViewController: UIViewController {
                 if responce["value"] != true{
                     self.alert(message: "Enable to save", title: "Holiday Type")
                 }
-                let next = self.storyboard?.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
-                self.navigationController?.pushViewController(next, animated: true)
+                else {
+                    let next = self.storyboard?.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
+                    self.navigationController?.pushViewController(next, animated: true)
+                }
                 
             })
         })

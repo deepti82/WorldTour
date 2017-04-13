@@ -46,12 +46,13 @@ class DisplayPagesThreeViewController: UIViewController {
         swipeLeft.direction = UISwipeGestureRecognizerDirection.left
         self.view.addGestureRecognizer(swipeLeft)
         
-        let scroll = UIScrollView(frame: CGRect(x: 0, y: 60, width: self.view.frame.width, height: self.view.frame.height))
+        let scroll = UIScrollView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
         self.view.addSubview(scroll)
         
         scroll.contentSize.height = 750
         
         let page = forDPThree(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 700))
+        page.center = self.view.center
         scroll.addSubview(page)
         
         for button in page.checkboxButtons {
