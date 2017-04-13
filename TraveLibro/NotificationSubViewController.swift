@@ -309,7 +309,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
             fallthrough
         case "itineraryComment":
             fallthrough
-        case "postMentionComment":            
+        case "postMentionComment":
             
             if cellNotificationData["data"]["thoughts"].stringValue != "" && canLoadCommentCell(data: cellNotificationData) {
                 
@@ -803,6 +803,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
                 expectedView.removeFromSuperview()                
             }
         }
+        self.notifyTableView.isUserInteractionEnabled = true
     }
     
     func noNotificationsFound() {
@@ -812,6 +813,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         let noNotification = notificationEmptyView(frame: CGRect(x: 0, y: 5, width: screenWidth, height: 150))
         noNotification.tag = 45
         self.view.addSubview(noNotification)
+        self.notifyTableView.isUserInteractionEnabled = false
     }
 
     

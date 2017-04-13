@@ -106,7 +106,7 @@ let screenHeight = screenSize.height
 
 let HEADER_HEIGHT = CGFloat(55)
 let FOOTER_HEIGHT = CGFloat(20)
-let IMAGE_HEIGHT = (screenWidth * 0.20)
+let IMAGE_HEIGHT = min((screenWidth * 0.20), 65)
 let TITLE_HEIGHT = 80
 let BUTTON_HEIGHT = CGFloat(28)
 let DETAILS_HEIGHT = CGFloat(50)
