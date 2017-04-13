@@ -385,9 +385,9 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
             self.cameraViewController = CameraViewController(configuration:configuration)
 //            timeLabel.text = self.cameraViewController.recordingTimeLabel.text
             self.cameraViewController.completionBlock = self.completionVideoBlock
-            showPopover(optionsController: actionSheetControllerIOS8, sender: sender, vc: globalNavigationController)
+            showPopover(optionsController: optionMenu, sender: sender, vc: globalNavigationController)
 
-            globalNavigationController.topViewController?.present(self.cameraViewController, animated: true, completion: nil)
+//            globalNavigationController.topViewController?.present(self.cameraViewController, animated: true, completion: nil)
         })
         
         func buttonColor (button:UIButton) {
