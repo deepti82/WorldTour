@@ -67,6 +67,17 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.mainFooter.frame = CGRect(x: 0, y: self.view.frame.height - MAIN_FOOTER_HEIGHT, width: self.view.frame.width, height: MAIN_FOOTER_HEIGHT)
+        
+        var isEmptyScreenPresent = false
+        for views in self.view.subviews {
+            if views.tag == 46 {
+                isEmptyScreenPresent = true                
+            }
+        }
+        
+        if isEmptyScreenPresent {
+            self.getActivity(pageNumber: self.pageno)
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -154,7 +165,7 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
             self.loadStatus = false
             
             showBottomLoader(onView: self.view)
-            request.getActivityFeeds(currentUser["_id"].stringValue, pageNumber: pageNumber, completion: {(request, localLifeJsons,quickJsons) in
+            request.getActivityFeeds(currentUser["_id"].stringValue, pageNumber: pageNumber, completion: {(request, localLifeJsons,quickJsons, isfromCache) in
                 DispatchQueue.main.async(execute: {
                     
                     hideBottomLoader()
@@ -294,11 +305,13 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
                         
                     else{
                         //                        self.loadStatus = false
-                        if self.feeds.isEmpty {
-                            self.noActivityFound()
-                        }
-                        else {
-                            self.removeEmptyScreen()
+                        if !isfromCache {
+                            if self.feeds.isEmpty {
+                                self.noActivityFound()
+                            }
+                            else {
+                                self.removeEmptyScreen()
+                            }
                         }
                     }
                 })
@@ -478,6 +491,7 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
     func noActivityFound() {
         
         removeEmptyScreen()
+        
         let noActivity = activityEmptyView(frame: CGRect(x: 0, y: 0, width: min(screenWidth*0.8, 256)  , height: 160))
         noActivity.headerLabel.text = "Hi, \(currentUser["name"].stringValue)"
         noActivity.tag = 46

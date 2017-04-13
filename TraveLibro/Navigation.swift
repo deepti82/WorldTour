@@ -1497,7 +1497,7 @@ class Navigation {
         }
     }
     
-    func getActivityFeeds(_ user: String, pageNumber: Int, completion: @escaping ((JSON,[JSON],[JSON]) -> Void)) {
+    func getActivityFeeds(_ user: String, pageNumber: Int, completion: @escaping ((JSON,[JSON],[JSON],Bool) -> Void)) {
         let urlString = adminUrl + "activityfeed/getData"
         
         var json:JSON = [];
@@ -1512,7 +1512,7 @@ class Navigation {
                     newJson = ll.getAllJson()
                     newQi = qi.getAll()
                 }
-                completion(json,newJson,newQi)
+                completion(json,newJson,newQi,true)
             }.onFailure { (err) in
                 let ll = LocalLifePostModel()
                 let qi = QuickItinerary()
@@ -1521,8 +1521,8 @@ class Navigation {
                 if(pageNumber <= 1) {
                     newJson = ll.getAllJson()
                     newQi = qi.getAll()
-                }
-                completion([],newJson,newQi)
+                }                
+                completion([],newJson,newQi,true)
             }
         }
         
@@ -1553,7 +1553,7 @@ class Navigation {
                             newQi = qi.getAll()
                         }
                         
-                        completion(json,newJson,newQi)
+                        completion(json,newJson,newQi,false)
                     }
                 }
             } catch let error {
