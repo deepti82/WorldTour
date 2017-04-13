@@ -271,7 +271,8 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
                     print("Abusive Content")
                 }
                 actionSheet.addAction(abusiveActionButton)
-                self.present(actionSheet, animated: true, completion: nil)
+                showPopover(optionsController: actionSheet, sender: tableView, vc: self)
+//                self.present(actionSheet, animated: true, completion: nil)
             }
 //            report.backgroundColor = UIColor(patternImage: UIImage(named: "info (3)")!)
               report.backgroundColor = UIColor.red
