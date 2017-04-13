@@ -10,7 +10,6 @@
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Unknown constraint types" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -7941,7 +7940,6 @@
                             <constraint firstItem="Qa3-iZ-cnU" firstAttribute="leading" secondItem="8PJ-dR-ICq" secondAttribute="leading" id="hil-N0-IRR"/>
                             <constraint firstItem="qHW-Bq-XEn" firstAttribute="top" secondItem="9cb-St-KKB" secondAttribute="bottom" constant="20" id="igi-mm-MP8"/>
                             <constraint firstItem="wqz-zu-m4p" firstAttribute="trailing" secondItem="8PJ-dR-ICq" secondAttribute="trailingMargin" id="kua-OL-yzN"/>
-                            <constraint firstItem="F50-eo-sfK" firstAttribute="top" secondItem="Qa3-iZ-cnU" secondAttribute="bottom" constant="8" id="lAE-PU-lqG"/>
                             <constraint firstItem="YN7-Vd-3Np" firstAttribute="leading" secondItem="8PJ-dR-ICq" secondAttribute="leading" constant="7" id="mzq-5C-cCX"/>
                             <constraint firstItem="dp2-g7-LzW" firstAttribute="leading" secondItem="8PJ-dR-ICq" secondAttribute="leading" id="tyP-S9-uAo"/>
                             <constraint firstItem="F50-eo-sfK" firstAttribute="leading" secondItem="Qa3-iZ-cnU" secondAttribute="leading" id="vvI-Z0-Cuj"/>
@@ -7953,9 +7951,6 @@
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="oIQ-Xr-u2O"/>
-                            </mask>
-                            <mask key="constraints">
-                                <exclude reference="lAE-PU-lqG"/>
                             </mask>
                         </variation>
                     </view>
@@ -11284,7 +11279,7 @@
                                                         </mask>
                                                     </variation>
                                                 </view>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-default" translatesAutoresizingMaskIntoConstraints="NO" id="lX8-ul-C5W">
+                                                <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-default" translatesAutoresizingMaskIntoConstraints="NO" id="lX8-ul-C5W">
                                                     <rect key="frame" x="16" y="23" width="75" height="75"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="lX8-ul-C5W" secondAttribute="height" multiplier="1:1" id="d4I-qj-tke"/>
@@ -11452,7 +11447,6 @@
                                                 <constraint firstItem="bwl-Ug-GKU" firstAttribute="top" secondItem="lX8-ul-C5W" secondAttribute="bottom" constant="15" id="8i9-Ww-QgW"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="1j0-rL-dNE" secondAttribute="bottom" constant="6" id="9gg-if-3ve"/>
                                                 <constraint firstItem="pST-HH-Hi2" firstAttribute="top" secondItem="fbT-9C-vFQ" secondAttribute="bottom" constant="8" id="FXw-Ve-WD2"/>
-                                                <constraint firstItem="lX8-ul-C5W" firstAttribute="width" secondItem="OML-3M-Lar" secondAttribute="width" multiplier="0.2" id="FeX-CZ-kgt"/>
                                                 <constraint firstItem="fbT-9C-vFQ" firstAttribute="leading" secondItem="OML-3M-Lar" secondAttribute="leadingMargin" constant="8" id="GMZ-b1-kCJ"/>
                                                 <constraint firstItem="pST-HH-Hi2" firstAttribute="leading" secondItem="OML-3M-Lar" secondAttribute="leadingMargin" constant="8" id="H6y-3X-etA"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="3ib-3P-KEt" secondAttribute="trailing" constant="2" id="Hga-tb-MLm"/>
