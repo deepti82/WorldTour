@@ -218,7 +218,11 @@ class BucketListTableViewController: UITableViewController  {
             cell.yearOfVisit.layer.zPosition = 100
             cell.countryName.text = self.result[(indexPath as NSIndexPath).section]["countries"][(indexPath as NSIndexPath).row]["countryId"]["name"].string!
             cell.countryId =  self.result[(indexPath as NSIndexPath).section]["countries"][(indexPath as NSIndexPath).row]["countryId"]["_id"].string!
+            if self.result[indexPath.section]["year"].stringValue == "-1" {
+                cell.yearOfVisit.text = "-"
+            }else{
             cell.yearOfVisit.text = "\(self.result[(indexPath as NSIndexPath).section]["countries"][(indexPath as NSIndexPath).row]["year"])"
+            }
             cell.countryPicture.hnk_setImageFromURL(getImageURL(self.result[indexPath.section]["countries"][indexPath.row]["countryId"]["countryCoverPhoto"].stringValue,width: 500))
             cell.countryPicture.alpha = 1
 
@@ -304,8 +308,11 @@ class BucketListTableViewController: UITableViewController  {
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         
         if whichView == "CountriesVisited" {
-            
+            if self.result[section]["year"].stringValue == "-1" {
+                return "-"
+            }else{
             return "\(self.result[section]["year"])"
+            }
         }
         
         return nil
