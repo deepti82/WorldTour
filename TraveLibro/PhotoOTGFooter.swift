@@ -108,7 +108,7 @@ class PhotoOTGFooter: UIView {
     func showLike(_ sender: UITapGestureRecognizer) {
         print("fahsldkjfhlaksjdhfalkjsfhlk")
         let feedVC = storyboard!.instantiateViewController(withIdentifier: "likeTable") as! LikeUserViewController
-//        feedVC.postId = postTop["_id"].stringValue
+        feedVC.postId = postTop.post_ids
         globalNavigationController.pushViewController(feedVC, animated: true)
         
     }

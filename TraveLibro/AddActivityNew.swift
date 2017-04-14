@@ -693,7 +693,7 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
             }
             
             imagePickerController.sourceType = .camera
-            showPopover(optionsController: optionMenu, sender: sender as! UIView, vc: globalNavigationController)
+            showPopover(optionsController: optionMenu, sender: self.photosButton, vc: globalNavigationController)
 //            globalNavigationController?.topViewController?.present(imagePickerController, animated: true, completion: nil)
             
         })

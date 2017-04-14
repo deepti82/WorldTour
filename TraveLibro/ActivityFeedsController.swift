@@ -50,22 +50,22 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
         self.mainFooter.setHighlightState(btn: mainFooter.activityTextButton, color: mainOrangeColor)
         
         
-        let darkBlur = UIBlurEffect(style: UIBlurEffectStyle.light)
-                                    let blurView = UIVisualEffectView(effect: darkBlur)
-                                    blurView.frame.size.height = mainFooter.frame.height
-                                    blurView.frame.size.width = mainFooter.frame.width
-                                    //        blurView.layer.zPosition = 6000000
+//        let darkBlur = UIBlurEffect(style: UIBlurEffectStyle.light)
+//                                    let blurView = UIVisualEffectView(effect: darkBlur)
+//                                    blurView.frame.size.height = mainFooter.frame.height
+//                                    blurView.frame.size.width = mainFooter.frame.width
+//                                    //        blurView.layer.zPosition = 6000000
+//        
+//                                    blurView.isUserInteractionEnabled = false
+//        
+//                                    self.blr = UIView(frame:CGRect(x: 0, y: 0, width: mainFooter.frame.width, height: mainFooter.frame.height))
+//        
+//        
+//                                    self.blr!.addSubview(blurView)
+//                                    self.blr?.addSubview(mainFooter)
         
-                                    blurView.isUserInteractionEnabled = false
         
-                                    self.blr = UIView(frame:CGRect(x: 0, y: 0, width: mainFooter.frame.width, height: mainFooter.frame.height))
-        
-        
-                                    self.blr!.addSubview(blurView)
-                                    self.blr?.addSubview(mainFooter)
-        
-        
-        self.view.addSubview(self.blr!)
+        self.view.addSubview(self.mainFooter)
 
         
         request.checkActivityCache(user.getExistingUser()) { (response) in

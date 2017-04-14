@@ -267,7 +267,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
             return currentCellHeight + 8
             
         case "userWelcome":
-            return 150
+            return 180
             
             
         default:
@@ -826,7 +826,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         
         removeEmptyScreen()        
         
-        let noNotification = notificationEmptyView(frame: CGRect(x: 0, y: 5, width: screenWidth, height: 150))
+        let noNotification = notificationEmptyView(frame: CGRect(x: 0, y: 5, width: screenWidth, height: 180))
         noNotification.tag = 45
         self.view.addSubview(noNotification)
         self.notifyTableView.isUserInteractionEnabled = false

@@ -35,7 +35,7 @@ class NotificationWelcomeCell: UITableViewCell {
     }
     
     func createView (notificationData: JSON?, helper: NotificationSubViewController?) {
-        emptyView = notificationEmptyView(frame: CGRect(x: 0, y: 5, width: screenWidth, height: 150))
+        emptyView = notificationEmptyView(frame: CGRect(x: 0, y: 5, width: screenWidth, height: 180))
         emptyView.tag = 45
         self.contentView.addSubview(emptyView)
     }
@@ -44,9 +44,9 @@ class NotificationWelcomeCell: UITableViewCell {
         
         totalHeight = CGFloat(0)
         
-        emptyView.frame = CGRect(x: 0, y: 5, width: screenWidth, height: 150)
+        emptyView.frame = CGRect(x: 0, y: 5, width: screenWidth, height: 180)
         
-        totalHeight += CGFloat(150)
+        totalHeight += CGFloat(180)
         
         //        blurView.frame.size.height = totalHeight
         //        blurView.frame.size.width = screenWidth
