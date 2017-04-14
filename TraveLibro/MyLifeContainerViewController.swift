@@ -50,7 +50,7 @@ class MyLifeContainerViewController: UIViewController,UIScrollViewDelegate {
 
                 break
             case "travel-life":
-                emptyTravel.frame.size.height = 494.0
+                emptyTravel.frame.size.height = 322.0
                 self.view.addSubview(emptyTravel)
                 break
             case "local-life":
