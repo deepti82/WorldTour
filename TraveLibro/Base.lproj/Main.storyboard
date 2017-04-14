@@ -1058,7 +1058,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y2Y-Mc-iEO">
                                 <rect key="frame" x="0.0" y="20" width="375" height="40"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="-3" translatesAutoresizingMaskIntoConstraints="NO" id="9Mu-8v-4JA">
+                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" distribution="fillEqually" spacing="-3" translatesAutoresizingMaskIntoConstraints="NO" id="9Mu-8v-4JA">
                                         <rect key="frame" x="8" y="5" width="364" height="40"/>
                                         <subviews>
                                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bHc-x4-z9X">
@@ -4538,7 +4538,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="22" id="liL-EG-pIp"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
+                                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -4556,12 +4556,12 @@
                                                 <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                                 <state key="normal" title="backpacking" image="backpacking" backgroundImage="grey1"/>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Backpacking" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zzR-5f-PPS">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Backpacking" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="zzR-5f-PPS">
                                                 <rect key="frame" x="0.0" y="60" width="60" height="22"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="22" id="BOm-T0-GIS"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
+                                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -4584,7 +4584,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="22" id="F7f-dV-uq0"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
+                                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -4612,7 +4612,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="22" id="mr4-ZE-EZf"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
+                                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -4630,12 +4630,9 @@
                                                 <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                                 <state key="normal" title="romance" image="romance_new" backgroundImage="grey1"/>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Romance Getaway" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="soT-wA-yMX">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Romance Getaway" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="soT-wA-yMX">
                                                 <rect key="frame" x="0.0" y="60" width="60" height="22"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="22" id="CfX-qd-2md"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
+                                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -4644,7 +4641,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="60" translatesAutoresizingMaskIntoConstraints="NO" id="jgv-y6-ukB">
-                                <rect key="frame" x="99" y="279" width="180" height="82"/>
+                                <rect key="frame" x="99" y="275" width="180" height="82"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="DQ6-sY-bSd">
                                         <rect key="frame" x="0.0" y="0.0" width="60" height="82"/>
@@ -4663,7 +4660,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="22" id="8EQ-MA-3da"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
+                                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -4682,7 +4679,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="22" id="yiH-Vr-uGo"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
+                                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -4691,7 +4688,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="60" translatesAutoresizingMaskIntoConstraints="NO" id="FFn-Id-wUa">
-                                <rect key="frame" x="39" y="385" width="300" height="82"/>
+                                <rect key="frame" x="39" y="381" width="300" height="82"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="PFL-yR-lQI">
                                         <rect key="frame" x="0.0" y="0.0" width="60" height="82"/>
@@ -4710,7 +4707,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="22" id="06X-3p-lac"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
+                                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -4733,7 +4730,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="22" id="8no-PZ-ofa"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
+                                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -4756,7 +4753,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="22" id="P6W-jU-8Gr"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
+                                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -4765,7 +4762,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="94" translatesAutoresizingMaskIntoConstraints="NO" id="LlV-1f-KUM">
-                                <rect key="frame" x="80" y="494" width="214" height="82"/>
+                                <rect key="frame" x="80" y="490" width="214" height="82"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="U1D-xj-kad">
                                         <rect key="frame" x="0.0" y="0.0" width="60" height="82"/>
@@ -4784,7 +4781,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="22" id="4cc-aY-A18"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
+                                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -4807,7 +4804,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="22" id="uM5-IW-bCS"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
+                                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -4816,21 +4813,21 @@
                                 </subviews>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tjG-4e-4E3">
-                                <rect key="frame" x="32" y="265" width="303" height="2"/>
+                                <rect key="frame" x="32" y="258" width="303" height="2"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="2" id="q0O-Ec-uYI"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q4V-Ch-VUO">
-                                <rect key="frame" x="33" y="372" width="303" height="2"/>
+                                <rect key="frame" x="33" y="368" width="303" height="2"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="2" id="48s-5W-W1b"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ix4-2Y-yft">
-                                <rect key="frame" x="39" y="622" width="300" height="50"/>
+                                <rect key="frame" x="39" y="618" width="300" height="50"/>
                                 <color key="backgroundColor" red="1" green="0.40392156862745099" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="4sP-iW-FBk"/>
@@ -4857,8 +4854,8 @@
                             <constraint firstAttribute="trailingMargin" secondItem="q4V-Ch-VUO" secondAttribute="trailing" constant="23" id="Zku-cK-GNf"/>
                             <constraint firstItem="ix4-2Y-yft" firstAttribute="top" secondItem="LlV-1f-KUM" secondAttribute="bottom" constant="46" id="d4M-4K-sue"/>
                             <constraint firstItem="ix4-2Y-yft" firstAttribute="centerX" secondItem="HIn-uJ-sd9" secondAttribute="centerX" constant="1.5" id="jcN-Eb-tEx"/>
-                            <constraint firstItem="tjG-4e-4E3" firstAttribute="top" secondItem="PyY-Di-jez" secondAttribute="bottom" constant="27" id="lvS-QV-gTS"/>
-                            <constraint firstItem="jgv-y6-ukB" firstAttribute="top" secondItem="PyY-Di-jez" secondAttribute="bottom" constant="41" id="o1E-8G-IE9"/>
+                            <constraint firstItem="tjG-4e-4E3" firstAttribute="top" secondItem="PyY-Di-jez" secondAttribute="bottom" constant="20" id="lvS-QV-gTS"/>
+                            <constraint firstItem="jgv-y6-ukB" firstAttribute="top" secondItem="PyY-Di-jez" secondAttribute="bottom" constant="37" id="o1E-8G-IE9"/>
                             <constraint firstItem="rR1-d1-noX" firstAttribute="centerX" secondItem="HIn-uJ-sd9" secondAttribute="centerX" constant="-8.5" id="rmp-uP-Owf"/>
                             <constraint firstItem="q4V-Ch-VUO" firstAttribute="top" secondItem="jgv-y6-ukB" secondAttribute="bottom" constant="11" id="x5D-R6-jmA"/>
                             <constraint firstItem="rR1-d1-noX" firstAttribute="top" secondItem="wPB-dO-mDS" secondAttribute="bottom" constant="13" id="xVR-I0-J2A"/>
