@@ -60,8 +60,7 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
             self.title = "Following"
             headerText.text = " "
             configureSearchController()
-            getFollowing()
-            
+            getFollowing()           
         } 
         else if whichView == "No Followers" {
             
@@ -78,6 +77,13 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
             configureSearchController()            
             getFollowers()
             headerText.text = " "
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if whichView == "Following" {
+            customSearch.frame = CGRect(x: 10, y: 10, width: searchView.frame.width - 10, height: 30)           
         }
     }
     
