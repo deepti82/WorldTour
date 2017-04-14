@@ -263,8 +263,11 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
             fallthrough
         case "userFollowingResponse":
             fallthrough
-        case "journeyReject":
+        case "journeyReject":                                
             return currentCellHeight + 8
+            
+        case "userWelcome":
+            return 150
             
             
         default:
@@ -391,6 +394,19 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
             var cell = tableView.dequeueReusableCell(withIdentifier: "acknolwdgeCell", for: indexPath) as? NotificationAcknolwdgementCell
             if cell == nil {
                 cell = NotificationAcknolwdgementCell.init(style: .default, reuseIdentifier: "acknolwdgeCell", notificationData: cellNotificationData, helper: self) 
+            }
+            else{
+                cell?.setData(notificationData: cellNotificationData, helper: self)
+            }
+            
+            cell?.backgroundColor = UIColor.clear
+            currentCellHeight = (cell?.totalHeight)!
+            return cell!
+            
+        case "userWelcome":
+            var cell = tableView.dequeueReusableCell(withIdentifier: "acknolwdgeCell", for: indexPath) as? NotificationWelcomeCell
+            if cell == nil {
+                cell = NotificationWelcomeCell.init(style: .default, reuseIdentifier: "acknolwdgeCell", notificationData: cellNotificationData, helper: self) 
             }
             else{
                 cell?.setData(notificationData: cellNotificationData, helper: self)
