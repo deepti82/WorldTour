@@ -31,7 +31,7 @@ class LikeUserViewController: UITableViewController {
         
         switch type {
         case "on-the-go-journey", "ended-journey":
-            request.getJourneyLikes(userId: currentUser["_id"].stringValue, id: postId, pagenumber: pagenumber, completion: {(request) in
+            request.getJourneyLikes(userId: user.getExistingUser(), id: postId, pagenumber: pagenumber, completion: {(request) in
                 DispatchQueue.main.async(execute: {
                     loader.hideOverlayView()
                     
@@ -40,7 +40,7 @@ class LikeUserViewController: UITableViewController {
                 })
             })
         case "quick-itinerary", "detail-itinerary":
-            request.getItineraryLikes(userId: currentUser["_id"].stringValue, id: postId, pagenumber: pagenumber, completion: {(request) in
+            request.getItineraryLikes(userId: user.getExistingUser(), id: postId, pagenumber: pagenumber, completion: {(request) in
                 DispatchQueue.main.async(execute: {
                     loader.hideOverlayView()
                     
@@ -49,7 +49,7 @@ class LikeUserViewController: UITableViewController {
                 })
             })
         case "photo":
-            request.getPhotoLikes(userId: currentUser["_id"].stringValue, id: postId, pagenumber: pagenumber, completion: {(request) in
+            request.getPhotoLikes(userId: user.getExistingUser(), id: postId, pagenumber: pagenumber, completion: {(request) in
                 DispatchQueue.main.async(execute: {
                     loader.hideOverlayView()
                     
@@ -58,7 +58,7 @@ class LikeUserViewController: UITableViewController {
                 })
             })
         case "video":
-            request.getVideoLikes(userId: currentUser["_id"].stringValue, id: postId, pagenumber: pagenumber, completion: {(request) in
+            request.getVideoLikes(userId: user.getExistingUser(), id: postId, pagenumber: pagenumber, completion: {(request) in
                 DispatchQueue.main.async(execute: {
                     loader.hideOverlayView()
                     
@@ -67,7 +67,7 @@ class LikeUserViewController: UITableViewController {
                 })
             })
         default:
-            request.getLikes(userId: currentUser["_id"].stringValue, post: postId, pagenumber: pagenumber, completion: {(request) in
+            request.getLikes(userId: user.getExistingUser(), post: postId, pagenumber: pagenumber, completion: {(request) in
                 DispatchQueue.main.async(execute: {
                     loader.hideOverlayView()
                     
