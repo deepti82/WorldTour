@@ -35,6 +35,11 @@ class FooterViewNew: UIView {
     @IBOutlet weak var locaLifeTextButton: UIButton!
     @IBOutlet weak var alertTextButton: UIButton!
     
+    @IBOutlet weak var activityView: UIView!
+    @IBOutlet weak var travelView: UIView!
+    @IBOutlet weak var myLifeView: UIView!
+    @IBOutlet weak var localView: UIView!
+    @IBOutlet weak var notificationView: UIView!
     
     var allButtons: [UIButton]!
     
@@ -42,7 +47,21 @@ class FooterViewNew: UIView {
         super.init(frame: frame)
         
         loadViewFromNib ()
-        
+        let tapout = UITapGestureRecognizer(target: self, action: #selector(self.gotoActivity))
+        activityView.addGestureRecognizer(tapout)
+
+        let tapout1 = UITapGestureRecognizer(target: self, action: #selector(self.gotoTraveLife))
+        travelView.addGestureRecognizer(tapout1)
+
+        let tapout2 = UITapGestureRecognizer(target: self, action: #selector(self.gotoMyLife))
+        myLifeView.addGestureRecognizer(tapout2)
+
+        let tapout3 = UITapGestureRecognizer(target: self, action: #selector(self.gotoLocaLife))
+        localView.addGestureRecognizer(tapout3)
+
+        let tapout4 = UITapGestureRecognizer(target: self, action: #selector(self.gotoAlerts))
+        notificationView.addGestureRecognizer(tapout4)
+
         allButtons = [activityButton, activityTextButton, traveLifeButton, traveLifeTextButton, myLifeButton, myLifeTextButton, locaLifeButton, locaLifeTextButton, alertButton, alertTextButton]
         
 //        for btn in allButtons {
