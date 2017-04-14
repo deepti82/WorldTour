@@ -1117,6 +1117,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         self.mainFooter.layer.zPosition = 5
         self.view.addSubview(self.mainFooter)
         self.mainFooter.setHighlightState(btn: mainFooter.traveLifeButton, color: mainOrangeColor)
+        self.mainFooter.setHighlightState(btn: mainFooter.traveLifeTextButton, color: mainOrangeColor)
         
         infoButton.isHidden = true
         

@@ -9,15 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FooterViewNew" customModule="TraveLibro" customModuleProvider="target">
-            <connections>
-                <outlet property="activityButton" destination="mCZ-SM-zDO" id="kvC-ug-Nu1"/>
-                <outlet property="alertButton" destination="NkH-cH-5PP" id="piT-VQ-eky"/>
-                <outlet property="locaLifeButton" destination="3my-Wc-MOC" id="o4V-pk-JbX"/>
-                <outlet property="myLifeButton" destination="caz-D7-WXQ" id="8ov-3c-Pyw"/>
-                <outlet property="traveLifeButton" destination="z2P-g7-4RI" id="p9A-Fc-em1"/>
-            </connections>
-        </placeholder>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FooterViewNew" customModule="TraveLibro" customModuleProvider="target"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="458" height="65"/>
@@ -30,41 +22,26 @@
                             <rect key="frame" x="0.0" y="0.0" width="91.5" height="65"/>
                             <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
                             <state key="normal" title="Activity" image="footer_activity"/>
-                            <connections>
-                                <action selector="activityButtonTabbed:" destination="-1" eventType="touchUpInside" id="VB6-e4-VKB"/>
-                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z2P-g7-4RI">
                             <rect key="frame" x="91.5" y="0.0" width="91.5" height="65"/>
                             <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
                             <state key="normal" title="Travel Life" image="footer_white_plus"/>
-                            <connections>
-                                <action selector="traveLifeButtonTabbed:" destination="-1" eventType="touchUpInside" id="DTL-zR-O9p"/>
-                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="caz-D7-WXQ">
                             <rect key="frame" x="183" y="0.0" width="92" height="65"/>
                             <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
                             <state key="normal" title="My Life" image="footer_mylife"/>
-                            <connections>
-                                <action selector="myLifeButtonTabbed:" destination="-1" eventType="touchUpInside" id="TnF-ue-Wuc"/>
-                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3my-Wc-MOC">
                             <rect key="frame" x="275" y="0.0" width="91.5" height="65"/>
                             <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
                             <state key="normal" title="Local Life" image="footer_white_plus"/>
-                            <connections>
-                                <action selector="locaLifeButtonTabbed:" destination="-1" eventType="touchUpInside" id="kGT-rG-fK6"/>
-                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NkH-cH-5PP">
                             <rect key="frame" x="366.5" y="0.0" width="91.5" height="65"/>
                             <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
                             <state key="normal" title="Alerts" image="footer_notification"/>
-                            <connections>
-                                <action selector="alertButtonTabbed:" destination="-1" eventType="touchUpInside" id="R67-3k-NoH"/>
-                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>

@@ -55,6 +55,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         notifyTableView.addSubview(refreshControl)
         
         mainFooter.setHighlightState(btn: mainFooter.alertButton, color: mainOrangeColor)
+        mainFooter.setHighlightState(btn: mainFooter.alertTextButton, color: mainOrangeColor)
         
         request.checkNotificationCache(user.getExistingUser()) { (response) in
             if response.count == 0 {
@@ -79,7 +80,6 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        hideHeaderAndFooter(false)
         NotificationCenter.default.removeObserver(self)
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }

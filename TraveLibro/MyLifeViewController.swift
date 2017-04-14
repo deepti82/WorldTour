@@ -71,6 +71,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
             self.view.addSubview(self.mainFooter)
             
             self.mainFooter.setHighlightState(btn: self.mainFooter.myLifeButton, color: mainOrangeColor)
+            self.mainFooter.setHighlightState(btn: self.mainFooter.myLifeTextButton, color: mainOrangeColor)
             
             arrowDownButton.isHidden = true
         }

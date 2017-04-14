@@ -9,10 +9,18 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FooterViewNew" customModule="TraveLibro" customModuleProvider="target">
             <connections>
-                <outlet property="activityImage" destination="jx8-dI-NKw" id="1vH-NH-liY"/>
-                <outlet property="activityText" destination="HMm-Lp-p9o" id="3pT-Z2-31w"/>
+                <outlet property="activityButton" destination="jx8-dI-NKw" id="SIN-2R-aS5"/>
+                <outlet property="activityTextButton" destination="HMm-Lp-p9o" id="pMR-vT-Jot"/>
+                <outlet property="alertButton" destination="rZ7-vN-wwC" id="HJP-RU-B5Z"/>
+                <outlet property="alertTextButton" destination="PoE-T2-GRs" id="Czl-gE-9nQ"/>
+                <outlet property="locaLifeButton" destination="Dxl-lj-IJ2" id="Vue-JI-48e"/>
+                <outlet property="locaLifeTextButton" destination="c88-gc-s3K" id="4IC-f1-aba"/>
+                <outlet property="myLifeButton" destination="R3r-Pj-eEc" id="Q1L-sN-ykW"/>
+                <outlet property="myLifeTextButton" destination="aQb-kG-qwa" id="BPT-Kn-TPk"/>
+                <outlet property="traveLifeButton" destination="xTZ-t2-rdC" id="hah-ku-98z"/>
+                <outlet property="traveLifeTextButton" destination="NTZ-gw-gDi" id="gme-2y-j3c"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -35,6 +43,9 @@
                                     <state key="normal" title="Activity">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
+                                    <connections>
+                                        <action selector="activityTextBtnTabbed:" destination="-1" eventType="touchUpInside" id="LwP-yE-lBO"/>
+                                    </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jx8-dI-NKw">
                                     <rect key="frame" x="25" y="4" width="30" height="30"/>
@@ -44,7 +55,7 @@
                                     </constraints>
                                     <state key="normal" image="footer_activity"/>
                                     <connections>
-                                        <action selector="showActivity:" destination="-1" eventType="touchUpInside" id="r0C-H9-rTE"/>
+                                        <action selector="activityButtonTabbed:" destination="-1" eventType="touchUpInside" id="4nW-uG-RCl"/>
                                     </connections>
                                 </button>
                             </subviews>
@@ -68,14 +79,20 @@
                                     <state key="normal" title="Travel Life">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
+                                    <connections>
+                                        <action selector="traveLifeTextBtnTabbed:" destination="-1" eventType="touchUpInside" id="HDb-BH-q5B"/>
+                                    </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xTZ-t2-rdC">
-                                    <rect key="frame" x="30.5" y="4" width="20" height="20"/>
+                                    <rect key="frame" x="25.5" y="4" width="30" height="30"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="20" id="QH1-Lm-GRo"/>
-                                        <constraint firstAttribute="width" constant="20" id="aAP-kk-nrs"/>
+                                        <constraint firstAttribute="height" constant="30" id="QH1-Lm-GRo"/>
+                                        <constraint firstAttribute="width" constant="30" id="aAP-kk-nrs"/>
                                     </constraints>
                                     <state key="normal" image="footer_white_plus"/>
+                                    <connections>
+                                        <action selector="traveLifeButtonTabbed:" destination="-1" eventType="touchUpInside" id="kgU-fO-gnI"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <constraints>
@@ -98,6 +115,9 @@
                                     <state key="normal" title="My Life">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
+                                    <connections>
+                                        <action selector="myLifeTextBtnTabbed:" destination="-1" eventType="touchUpInside" id="EV5-Ru-TrJ"/>
+                                    </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R3r-Pj-eEc">
                                     <rect key="frame" x="26" y="4" width="30" height="30"/>
@@ -106,6 +126,9 @@
                                         <constraint firstAttribute="height" constant="30" id="uqC-Mv-nsB"/>
                                     </constraints>
                                     <state key="normal" image="footer_mylife"/>
+                                    <connections>
+                                        <action selector="myLifeButtonTabbed:" destination="-1" eventType="touchUpInside" id="UOv-xN-tV6"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <constraints>
@@ -128,14 +151,20 @@
                                     <state key="normal" title="Local Life">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
+                                    <connections>
+                                        <action selector="locaLifeTextBtnTabbed:" destination="-1" eventType="touchUpInside" id="Lwn-n4-KcL"/>
+                                    </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dxl-lj-IJ2">
-                                    <rect key="frame" x="31" y="5" width="20" height="20"/>
+                                    <rect key="frame" x="26" y="5" width="30" height="30"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="20" id="94m-3q-wBD"/>
-                                        <constraint firstAttribute="height" constant="20" id="ZPg-c4-rwS"/>
+                                        <constraint firstAttribute="width" constant="30" id="94m-3q-wBD"/>
+                                        <constraint firstAttribute="height" constant="30" id="ZPg-c4-rwS"/>
                                     </constraints>
                                     <state key="normal" image="footer_white_plus"/>
+                                    <connections>
+                                        <action selector="locaLifeButtonTabbed:" destination="-1" eventType="touchUpInside" id="PWl-DB-Tut"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <constraints>
@@ -167,7 +196,8 @@
                                     </constraints>
                                     <state key="normal" image="footer_notification"/>
                                     <connections>
-                                        <action selector="showNotification:" destination="-1" eventType="touchUpInside" id="eLd-Si-CWa"/>
+                                        <action selector="alertButtonTabbed:" destination="-1" eventType="touchUpInside" id="l0M-9S-AO1"/>
+                                        <action selector="alertTextBtnTabbed:" destination="-1" eventType="touchUpInside" id="aEc-ul-vXf"/>
                                     </connections>
                                 </button>
                             </subviews>

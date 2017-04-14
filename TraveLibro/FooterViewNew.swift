@@ -29,6 +29,13 @@ class FooterViewNew: UIView {
     @IBOutlet weak var locaLifeButton: UIButton!
     @IBOutlet weak var alertButton : UIButton!
     
+    @IBOutlet weak var activityTextButton: UIButton!
+    @IBOutlet weak var traveLifeTextButton: UIButton!
+    @IBOutlet weak var myLifeTextButton: UIButton!
+    @IBOutlet weak var locaLifeTextButton: UIButton!
+    @IBOutlet weak var alertTextButton: UIButton!
+    
+    
     var allButtons: [UIButton]!
     
     override init(frame: CGRect) {
@@ -36,11 +43,11 @@ class FooterViewNew: UIView {
         
         loadViewFromNib ()
         
-        allButtons = [activityButton, traveLifeButton, myLifeButton, locaLifeButton, alertButton]
+        allButtons = [activityButton, activityTextButton, traveLifeButton, traveLifeTextButton, myLifeButton, myLifeTextButton, locaLifeButton, locaLifeTextButton, alertButton, alertTextButton]
         
-        for btn in allButtons {
-            self.setupButton(button: btn)
-        }
+//        for btn in allButtons {
+//            self.setupButton(button: btn)
+//        }
         
         footerSharedInstance = self
         
@@ -53,7 +60,7 @@ class FooterViewNew: UIView {
     
     func loadViewFromNib() {
         let bundle = Bundle(for: type(of: self))
-        let nib = UINib(nibName: "footerItem", bundle: bundle)
+        let nib = UINib(nibName: "footerNew", bundle: bundle)
         let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -74,9 +81,18 @@ class FooterViewNew: UIView {
     //MARK:- Footer Actions
     
     @IBAction func activityButtonTabbed(_ sender: UIButton) {
+        gotoActivity()
+    }
+   
+    @IBAction func activityTextBtnTabbed(_ sender: UIButton) {
+        gotoActivity()
+    }
+    
+    func gotoActivity() {
         if currentUser != nil {
             setFooterDefaultState()
-            setHighlightState(btn: self.activityButton, color: mainOrangeColor)            
+            setHighlightState(btn: self.activityButton, color: mainOrangeColor)
+            setHighlightState(btn: self.activityTextButton, color: mainOrangeColor)
             request.getUserFromCache(user.getExistingUser(), completion: { (response) in
                 DispatchQueue.main.async {
                     popularView = "activity"
@@ -92,11 +108,20 @@ class FooterViewNew: UIView {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil )
         }
     }
-   
+    
     @IBAction func traveLifeButtonTabbed(_ sender: UIButton) {
+        gotoTraveLife()
+    }
+    
+    @IBAction func traveLifeTextBtnTabbed(_ sender: UIButton) {
+        gotoTraveLife()
+    }
+    
+    func gotoTraveLife() {
         if currentUser != nil {
             setFooterDefaultState()
             setHighlightState(btn: self.traveLifeButton, color: mainOrangeColor)
+            setHighlightState(btn: self.traveLifeTextButton, color: mainOrangeColor)
             request.getUser(user.getExistingUser(), urlSlug: nil, completion: { (response) in
                 DispatchQueue.main.async {
                     currentUser = response["data"]
@@ -108,7 +133,7 @@ class FooterViewNew: UIView {
                     }
                     self.setVC(newViewController: vc)
                 }
-            })            
+            })
         }
         else {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: ["type":0])
@@ -116,10 +141,18 @@ class FooterViewNew: UIView {
     }
     
     @IBAction func myLifeButtonTabbed(_ sender: UIButton) {        
+        gotoMyLife()
+    }
+    
+    @IBAction func myLifeTextBtnTabbed(_ sender: UIButton) {
+        gotoMyLife()
+    }
+    
+    func gotoMyLife() {
         if currentUser != nil {
             setFooterDefaultState()
             setHighlightState(btn: self.myLifeButton, color: mainOrangeColor)
-            
+            setHighlightState(btn: self.myLifeTextButton, color: mainOrangeColor)
             request.getUserFromCache(user.getExistingUser(), completion: { (response) in
                 DispatchQueue.main.async {
                     currentUser = response["data"]
@@ -135,10 +168,18 @@ class FooterViewNew: UIView {
     }
     
     @IBAction func locaLifeButtonTabbed(_ sender: UIButton) {
+        gotoLocaLife()
+    }
+    
+    @IBAction func locaLifeTextBtnTabbed(_ sender: UIButton) {
+        gotoLocaLife()
+    }
+    
+    func gotoLocaLife() {
         if currentUser != nil {
             setFooterDefaultState()
             setHighlightState(btn: self.locaLifeButton, color: mainGreenColor)
-            
+            setHighlightState(btn: self.locaLifeTextButton, color: mainGreenColor)
             request.getUserFromCache(user.getExistingUser(), completion: { (response) in
                 DispatchQueue.main.async {
                     currentUser = response["data"]
@@ -153,9 +194,18 @@ class FooterViewNew: UIView {
     }
     
     @IBAction func alertButtonTabbed(_ sender: UIButton) {
+        gotoAlerts()
+    }
+    
+    @IBAction func alertTextBtnTabbed(_ sender: UIButton) {
+        gotoAlerts()
+    }
+    
+    func gotoAlerts() {
         if currentUser != nil {
             setFooterDefaultState()
             setHighlightState(btn: self.alertButton, color: mainOrangeColor)
+            setHighlightState(btn: self.alertTextButton, color: mainGreenColor)
             request.getUserFromCache(user.getExistingUser(), completion: { (response) in
                 DispatchQueue.main.async {
                     currentUser = response["data"]
