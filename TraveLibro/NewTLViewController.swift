@@ -1019,8 +1019,13 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         rightButton1.addTarget(self, action: #selector(self.gotoNearMe(_:)), for: .touchUpInside)
         rightButton2.addTarget(self, action: #selector(self.infoCircle(_:)), for: .touchUpInside)
         
+        if  fromOutSide == "" {
         rightButton.addSubview(rightButton1)
+            rightButton.addSubview(rightButton2)
+
+        }else{
         rightButton.addSubview(rightButton2)
+        }
         
         //        rightButton.setTitle("i", for: UIControlState())
         //        rightButton.layer.borderWidth = 1.5

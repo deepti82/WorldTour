@@ -248,8 +248,10 @@ class AddNationalityNewViewController: UIViewController, UIPickerViewDelegate {
     
     
     func chooseCity(_ sender: UIButton) {
-        let cityVC = self.storyboard!.instantiateViewController(withIdentifier: "addCity") as! AddCityViewController
-        self.navigationController?.pushViewController(cityVC, animated: true)
+        if (self.navigationController?.topViewController?.isKind(of: AddNationalityNewViewController.self))! {
+            let cityVC = self.storyboard!.instantiateViewController(withIdentifier: "addCity") as! AddCityViewController
+            self.navigationController?.pushViewController(cityVC, animated: true)
+        }
     }
 
 }

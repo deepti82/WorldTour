@@ -7,7 +7,7 @@ import Crashlytics
 
 var adminUrl = "https://travelibro.wohlig.com/api/"
 //var adminUrl = "https://travelibro.com/api/"
-var adminBackendUrl = "http://travelibrobackend.wohlig.com/api/"
+var adminBackendUrl = "http://travelibroadmin.travelibro.com/api/"
 var mapKey = "AIzaSyDPH6EYKMW97XMTJzqYqA0CR4fk5l2gzE4"
 
 class Navigation {

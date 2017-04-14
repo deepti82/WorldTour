@@ -194,7 +194,7 @@
                                     </state>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rZ7-vN-wwC">
-                                    <rect key="frame" x="25.5" y="4" width="30" height="30"/>
+                                    <rect key="frame" x="28.5" y="4" width="30" height="30"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="30" id="hg6-ns-Uot"/>
                                         <constraint firstAttribute="height" constant="30" id="vH4-Ph-nE6"/>
@@ -209,7 +209,7 @@
                             <constraints>
                                 <constraint firstAttribute="bottom" secondItem="PoE-T2-GRs" secondAttribute="bottom" id="28c-hv-ymL"/>
                                 <constraint firstAttribute="trailing" secondItem="PoE-T2-GRs" secondAttribute="trailing" id="D3t-uG-ndy"/>
-                                <constraint firstItem="rZ7-vN-wwC" firstAttribute="centerX" secondItem="HzK-Rr-hOm" secondAttribute="centerX" id="DV2-cK-qdw"/>
+                                <constraint firstItem="rZ7-vN-wwC" firstAttribute="centerX" secondItem="HzK-Rr-hOm" secondAttribute="centerX" constant="2" id="DV2-cK-qdw"/>
                                 <constraint firstItem="rZ7-vN-wwC" firstAttribute="top" secondItem="HzK-Rr-hOm" secondAttribute="top" constant="4" id="Gfs-Cq-ncw"/>
                                 <constraint firstItem="PoE-T2-GRs" firstAttribute="leading" secondItem="HzK-Rr-hOm" secondAttribute="leading" id="oGM-RH-2oA"/>
                             </constraints>
@@ -217,7 +217,7 @@
                     </subviews>
                 </stackView>
             </subviews>
-            <color key="backgroundColor" red="0.17254901959999999" green="0.2156862745" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" red="0.17254901959999999" green="0.2156862745" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="4NL-U6-9On" secondAttribute="trailing" id="1lL-pQ-h0c"/>
                 <constraint firstItem="4NL-U6-9On" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="M8o-UT-ipp"/>

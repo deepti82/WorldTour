@@ -49,7 +49,23 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
         self.mainFooter.setHighlightState(btn: mainFooter.activityButton, color: mainOrangeColor)
         self.mainFooter.setHighlightState(btn: mainFooter.activityTextButton, color: mainOrangeColor)
         
-        self.view.addSubview(self.mainFooter)
+        
+        let darkBlur = UIBlurEffect(style: UIBlurEffectStyle.light)
+                                    let blurView = UIVisualEffectView(effect: darkBlur)
+                                    blurView.frame.size.height = mainFooter.frame.height
+                                    blurView.frame.size.width = mainFooter.frame.width
+                                    //        blurView.layer.zPosition = 6000000
+        
+                                    blurView.isUserInteractionEnabled = false
+        
+                                    self.blr = UIView(frame:CGRect(x: 0, y: 0, width: mainFooter.frame.width, height: mainFooter.frame.height))
+        
+        
+                                    self.blr!.addSubview(blurView)
+                                    self.blr?.addSubview(mainFooter)
+        
+        
+        self.view.addSubview(self.blr!)
 
         
         request.checkActivityCache(user.getExistingUser()) { (response) in
@@ -494,7 +510,7 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
         removeEmptyScreen()
         
         let noActivity = activityEmptyView(frame: CGRect(x: 0, y: 0, width: min(screenWidth*0.8, 256)  , height: 160))
-        noActivity.headerLabel.text = "Hi, \(currentUser["name"].stringValue)"
+        noActivity.headerLabel.text = "Hi \(currentUser["name"].stringValue),"
         noActivity.tag = 46
         noActivity.center = CGPoint(x: screenWidth/2, y: screenHeight/2 - 50)
         
