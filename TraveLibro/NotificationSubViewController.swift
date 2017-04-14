@@ -404,9 +404,9 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
             return cell!
             
         case "userWelcome":
-            var cell = tableView.dequeueReusableCell(withIdentifier: "acknolwdgeCell", for: indexPath) as? NotificationWelcomeCell
+            var cell = tableView.dequeueReusableCell(withIdentifier: "welcomeCell", for: indexPath) as? NotificationWelcomeCell
             if cell == nil {
-                cell = NotificationWelcomeCell.init(style: .default, reuseIdentifier: "acknolwdgeCell", notificationData: cellNotificationData, helper: self) 
+                cell = NotificationWelcomeCell.init(style: .default, reuseIdentifier: "welcomeCell", notificationData: cellNotificationData, helper: self)
             }
             else{
                 cell?.setData(notificationData: cellNotificationData, helper: self)

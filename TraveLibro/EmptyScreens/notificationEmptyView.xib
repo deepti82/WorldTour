@@ -23,7 +23,7 @@
                 </label>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tKj-IB-RTt">
                     <rect key="frame" x="10" y="46" width="356" height="123"/>
-                    <string key="text">TraveLibro lets you capture your travel journeys live, local life activities and document past journeys. It also allows you to share these activities with other travellers to inspire their wanderlust. Lastly, it also its a great way to achieve your personal history by reliving your moments, activities and reviews. </string>
+                    <string key="text">TraveLibro lets you capture your travel journeys live, local life activities and document past journeys. It also allows you to share these activities with other travellers to inspire their wanderlust. Lastly, it also its a great way to archive your personal history by reliving your moments, activities and reviews.</string>
                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
                     <color key="textColor" red="0.17254901959999999" green="0.2156862745" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>

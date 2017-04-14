@@ -11,6 +11,7 @@ import UIKit
 class NotificationWelcomeCell: UITableViewCell {
 
     var emptyView = notificationEmptyView()
+    var totalHeight = CGFloat(0)
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -33,10 +34,10 @@ class NotificationWelcomeCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func createView() {
+    func createView (notificationData: JSON?, helper: NotificationSubViewController?) {
         emptyView = notificationEmptyView(frame: CGRect(x: 0, y: 5, width: screenWidth, height: 150))
-        noNotification.tag = 45
-        self.view.addSubview(noNotification)
+        emptyView.tag = 45
+        self.contentView.addSubview(emptyView)
     }
     
     func setData(notificationData: JSON, helper: NotificationSubViewController) {        
@@ -46,8 +47,6 @@ class NotificationWelcomeCell: UITableViewCell {
         emptyView.frame = CGRect(x: 0, y: 5, width: screenWidth, height: 150)
         
         totalHeight += CGFloat(150)
-        
-        NFBackground.frame = CGRect(x: 0, y: 0, width: screenWidth, height: totalHeight)
         
         //        blurView.frame.size.height = totalHeight
         //        blurView.frame.size.width = screenWidth
