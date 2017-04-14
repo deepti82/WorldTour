@@ -20,7 +20,7 @@ class LikeUserViewController: UITableViewController {
         super.viewDidLoad()
         createNavigation()
         loadLikes(page: pagenumber)
-        self.tableView.backgroundView = UIImageView(image: UIImage(named: "darkBgNew"))
+        self.tableView.backgroundView = UIImageView(image: UIImage(named: "back_7_4"))
         self.tableView.tableFooterView = UIView()
     }
     

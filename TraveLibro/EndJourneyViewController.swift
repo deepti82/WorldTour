@@ -262,7 +262,7 @@ class EndJourneyViewController: UIViewController {
         journeyImages = []
         endJourneyState = true
         ToastView.appearance().backgroundColor = endJourneyColor
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "darkBgNew")!)
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "back_7_4")!)
         
         //  END VERTICAL LAYOUT
         loader.showOverlay(self.view)
