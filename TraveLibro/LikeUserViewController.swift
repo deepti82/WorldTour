@@ -120,9 +120,19 @@ class LikeUserViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "likeCell", for: indexPath) as! LikeCell
         cell.profileName.text = self.data[indexPath.row]["name"].stringValue
         cell.profileImage.hnk_setImageFromURL(getImageURL(self.data[indexPath.row]["profilePicture"].stringValue, width: 300))
-        cell.urlSlurg.text = self.data[indexPath.row]["urlSlug"].stringValue
+        cell.urlSlurg.text = "@\(self.data[indexPath.row]["urlSlug"].stringValue)"
         makeBuddiesTLProfilePicture(cell.profileImage)
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {        
+        selectedPeople = self.data[indexPath.row]["_id"].stringValue
+        selectedUser = self.data[indexPath.row]
+        
+        let profile = self.storyboard?.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
+        profile.displayData = "search"
+        profile.currentSelectedUser = self.data[indexPath.row]
+        globalNavigationController.pushViewController(profile, animated: true)
     }
     
 }
@@ -130,8 +140,7 @@ class LikeUserViewController: UITableViewController {
 class LikeCell: UITableViewCell {
     
     @IBOutlet weak var profileImage: UIImageView!
-    @IBOutlet weak var profileName: UILabel!
-    @IBOutlet weak var followButton: UIButton!
+    @IBOutlet weak var profileName: UILabel!    
     @IBOutlet weak var urlSlurg: UILabel!
     
     var parent = FollowersViewController()
@@ -140,8 +149,8 @@ class LikeCell: UITableViewCell {
         
         if sender.tag == 0 {
             
-            print("profile name follow: \(profileName.text)")
-            parent.followUser(profileName.text!, sender: sender)
+            print("profile name follow: \(profileName.text)")            
+            parent.followUser(getURLSlug(slug: urlSlurg.text!), sender: sender)
             sender.tag = 1
             sender.setImage(UIImage(named:"following"), for: .normal)
             sender.contentMode = .scaleAspectFit
@@ -150,15 +159,19 @@ class LikeCell: UITableViewCell {
             
         }
             
-        else {
+        else if sender.tag == 1 {
             print("profile name unfollow: \(profileName.text)")
-            parent.unFollowUser(profileName.text!, sender: sender)
+            parent.unFollowUser(getURLSlug(slug: urlSlurg.text!), sender: sender)
             sender.tag = 0
             sender.setImage(UIImage(named:"follow"), for: .normal)
             sender.contentMode = .scaleAspectFit
             sender.clipsToBounds = true
             sender.isSelected = false
             
+        }
+        
+        else if sender.tag == 2 {            
+            //Nothing should happen
         }
     }
     

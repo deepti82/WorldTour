@@ -520,13 +520,5 @@ class FollowersCell: UITableViewCell {
         }
     }
     
-    func getURLSlug(slug: String) -> String {
-        var myString = slug
-        myString.remove(at: myString.startIndex)
-        return myString
-    }
-    
-    
-    
 }
 

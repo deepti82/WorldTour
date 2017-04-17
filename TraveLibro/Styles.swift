@@ -876,7 +876,7 @@ func getThumbnailFromVideoURL(url : URL, onView: UIImageView) {
 }
 
 
-//PRESEND ACTION VIEW
+//MARK:- Present Action View
 func showPopover(optionsController:UIAlertController, sender:UIView, vc:UIViewController){
     if let popover = optionsController.popoverPresentationController{
         popover.sourceView = sender
@@ -885,7 +885,10 @@ func showPopover(optionsController:UIAlertController, sender:UIView, vc:UIViewCo
     vc.present(optionsController, animated: true, completion: nil)
 }
 
+//MARK: - Helpers
+func getURLSlug(slug: String) -> String {
+    var myString = slug
+    myString.remove(at: myString.startIndex)
+    return myString
+}
 
-//LoadingOverlay.shared.showOverlay(self.view)
-////To to long tasks
-//LoadingOverlay.shared.hideOverlayView()
