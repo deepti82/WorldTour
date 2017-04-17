@@ -46,9 +46,7 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
         
         self.mainFooter = FooterViewNew(frame: CGRect.zero)
         self.mainFooter.layer.zPosition = 5
-        self.mainFooter.setHighlightState(btn: mainFooter.activityButton, color: mainOrangeColor)
-        self.mainFooter.setHighlightState(btn: mainFooter.activityTextButton, color: mainOrangeColor)
-        
+        self.mainFooter.setHighlightStateForView(tag: 0, color: mainOrangeColor)        
         
 //        let darkBlur = UIBlurEffect(style: UIBlurEffectStyle.light)
 //                                    let blurView = UIVisualEffectView(effect: darkBlur)

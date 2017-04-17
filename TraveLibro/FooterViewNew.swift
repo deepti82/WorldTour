@@ -39,9 +39,11 @@ class FooterViewNew: UIView {
     @IBOutlet weak var travelView: UIView!
     @IBOutlet weak var myLifeView: UIView!
     @IBOutlet weak var localView: UIView!
-    @IBOutlet weak var notificationView: UIView!
+    @IBOutlet weak var alertView: UIView!
     
     var allButtons: [UIButton]!
+    var allFooterViews: [UIView]!
+    //MARK: - Lifecycle
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -60,13 +62,12 @@ class FooterViewNew: UIView {
         localView.addGestureRecognizer(tapout3)
 
         let tapout4 = UITapGestureRecognizer(target: self, action: #selector(self.gotoAlerts))
-        notificationView.addGestureRecognizer(tapout4)
+        alertView.addGestureRecognizer(tapout4)
 
         allButtons = [activityButton, activityTextButton, traveLifeButton, traveLifeTextButton, myLifeButton, myLifeTextButton, locaLifeButton, locaLifeTextButton, alertButton, alertTextButton]
+        allFooterViews = [activityView, travelView, myLifeView, localView, alertView]
         
-//        for btn in allButtons {
-//            self.setupButton(button: btn)
-//        }
+        self.setFooterDefaultState()              
         
         footerSharedInstance = self
         
@@ -110,8 +111,7 @@ class FooterViewNew: UIView {
     func gotoActivity() {
         if currentUser != nil {
             setFooterDefaultState()
-            setHighlightState(btn: self.activityButton, color: mainOrangeColor)
-            setHighlightState(btn: self.activityTextButton, color: mainOrangeColor)
+            setHighlightStateForView(tag: 0, color: mainOrangeColor)
             request.getUserFromCache(user.getExistingUser(), completion: { (response) in
                 DispatchQueue.main.async {
                     popularView = "activity"
@@ -139,8 +139,7 @@ class FooterViewNew: UIView {
     func gotoTraveLife() {
         if currentUser != nil {
             setFooterDefaultState()
-            setHighlightState(btn: self.traveLifeButton, color: mainOrangeColor)
-            setHighlightState(btn: self.traveLifeTextButton, color: mainOrangeColor)
+            setHighlightStateForView(tag: 1, color: mainOrangeColor)
             request.getUser(user.getExistingUser(), urlSlug: nil, completion: { (response) in
                 DispatchQueue.main.async {
                     currentUser = response["data"]
@@ -170,8 +169,7 @@ class FooterViewNew: UIView {
     func gotoMyLife() {
         if currentUser != nil {
             setFooterDefaultState()
-            setHighlightState(btn: self.myLifeButton, color: mainOrangeColor)
-            setHighlightState(btn: self.myLifeTextButton, color: mainOrangeColor)
+            setHighlightStateForView(tag: 2, color: mainOrangeColor)
             request.getUserFromCache(user.getExistingUser(), completion: { (response) in
                 DispatchQueue.main.async {
                     currentUser = response["data"]
@@ -197,8 +195,7 @@ class FooterViewNew: UIView {
     func gotoLocaLife() {
         if currentUser != nil {
             setFooterDefaultState()
-            setHighlightState(btn: self.locaLifeButton, color: mainGreenColor)
-            setHighlightState(btn: self.locaLifeTextButton, color: mainGreenColor)
+            setHighlightStateForView(tag: 3, color: mainGreenColor)
             request.getUserFromCache(user.getExistingUser(), completion: { (response) in
                 DispatchQueue.main.async {
                     currentUser = response["data"]
@@ -223,8 +220,7 @@ class FooterViewNew: UIView {
     func gotoAlerts() {
         if currentUser != nil {
             setFooterDefaultState()
-            setHighlightState(btn: self.alertButton, color: mainOrangeColor)
-            setHighlightState(btn: self.alertTextButton, color: mainGreenColor)
+            setHighlightStateForView(tag: 4, color: mainOrangeColor)
             request.getUserFromCache(user.getExistingUser(), completion: { (response) in
                 DispatchQueue.main.async {
                     currentUser = response["data"]
@@ -276,11 +272,79 @@ class FooterViewNew: UIView {
         for btn in allButtons {
             btn.setTitleColor(UIColor.white, for: .normal)
             btn.tintColor = UIColor.white
+            btn.isUserInteractionEnabled = true
+        }
+        
+        for view in allFooterViews {
+            view.isUserInteractionEnabled = true
         }
     }
     
-    func setHighlightState(btn: UIButton, color: UIColor) {
-        btn.setTitleColor(color, for: .normal)
-        btn.tintColor = color
+    func setHighlightStateForView(tag: Int, color: UIColor) {
+        switch tag {
+        case 0:
+            activityView.isUserInteractionEnabled = false
+            
+            activityButton.isUserInteractionEnabled = false
+            activityButton.tintColor = color
+            
+            activityTextButton.isUserInteractionEnabled = false
+            activityTextButton.setTitleColor(color, for: .normal)
+            
+            break
+            
+            
+        case 1:
+            travelView.isUserInteractionEnabled = false
+            
+            traveLifeButton.isUserInteractionEnabled = false
+            traveLifeButton.tintColor = color
+            
+            traveLifeTextButton.isUserInteractionEnabled = false
+            traveLifeTextButton.setTitleColor(color, for: .normal)
+            
+            break
+            
+            
+        case 2:
+            myLifeView.isUserInteractionEnabled = false
+            
+            myLifeButton.isUserInteractionEnabled = false
+            myLifeButton.tintColor = color
+            
+            myLifeTextButton.isUserInteractionEnabled = false
+            myLifeTextButton.setTitleColor(color, for: .normal)
+            
+            break
+            
+            
+        case 3:
+            localView.isUserInteractionEnabled = false
+            
+            locaLifeButton.isUserInteractionEnabled = false
+            locaLifeButton.tintColor = color
+            
+            locaLifeTextButton.isUserInteractionEnabled = false
+            locaLifeTextButton.setTitleColor(color, for: .normal)
+            
+            break
+            
+            
+        case 4:
+            alertView.isUserInteractionEnabled = false
+            
+            alertButton.isUserInteractionEnabled = false
+            alertButton.tintColor = color
+            
+            alertTextButton.isUserInteractionEnabled = false
+            alertTextButton.setTitleColor(color, for: .normal)
+            
+            break            
+            
+            
+        default:
+            print("Footer default : \(tag)")
+            break
+        }
     }
 }

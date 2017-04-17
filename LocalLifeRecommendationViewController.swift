@@ -174,8 +174,8 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
         layout.addSubview(myView5)
         
         self.mainFooter = FooterViewNew(frame: CGRect.zero)
-        mainFooter.setHighlightState(btn: mainFooter.locaLifeButton, color: mainGreenColor)
-        mainFooter.setHighlightState(btn: mainFooter.locaLifeTextButton, color: mainGreenColor)
+        mainFooter.setHighlightStateForView(tag: 3, color: mainGreenColor)
+
         self.view.addSubview(mainFooter)
         
         self.changeAddButton(false)
