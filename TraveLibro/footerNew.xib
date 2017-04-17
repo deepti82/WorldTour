@@ -43,10 +43,10 @@
                     <rect key="frame" x="0.0" y="10" width="407" height="50"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Y8-yP-GA0">
-                            <rect key="frame" x="0.0" y="0.0" width="81" height="50"/>
+                            <rect key="frame" x="0.0" y="0.0" width="81.5" height="50"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HMm-Lp-p9o">
-                                    <rect key="frame" x="0.0" y="30" width="81" height="20"/>
+                                    <rect key="frame" x="0.0" y="30" width="81.5" height="20"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="20" id="wqg-7H-PFE"/>
                                     </constraints>
@@ -79,10 +79,10 @@
                             </constraints>
                         </view>
                         <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LYy-Fx-UvU">
-                            <rect key="frame" x="81" y="0.0" width="82" height="50"/>
+                            <rect key="frame" x="81.5" y="0.0" width="81.5" height="50"/>
                             <subviews>
                                 <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NTZ-gw-gDi">
-                                    <rect key="frame" x="0.0" y="30" width="82" height="20"/>
+                                    <rect key="frame" x="0.0" y="30" width="81.5" height="20"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="20" id="jdZ-Mx-Np4"/>
                                     </constraints>
@@ -95,7 +95,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xTZ-t2-rdC">
-                                    <rect key="frame" x="26" y="4" width="30" height="30"/>
+                                    <rect key="frame" x="25.5" y="4" width="30" height="30"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="30" id="QH1-Lm-GRo"/>
                                         <constraint firstAttribute="width" constant="30" id="aAP-kk-nrs"/>
@@ -151,10 +151,10 @@
                             </constraints>
                         </view>
                         <view tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BF7-6A-fKm">
-                            <rect key="frame" x="244" y="0.0" width="82" height="50"/>
+                            <rect key="frame" x="244" y="0.0" width="81.5" height="50"/>
                             <subviews>
                                 <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c88-gc-s3K">
-                                    <rect key="frame" x="0.0" y="30" width="82" height="20"/>
+                                    <rect key="frame" x="0.0" y="30" width="81.5" height="20"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="20" id="a54-p5-0jx"/>
                                     </constraints>
@@ -187,10 +187,10 @@
                             </constraints>
                         </view>
                         <view tag="4" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HzK-Rr-hOm">
-                            <rect key="frame" x="326" y="0.0" width="81" height="50"/>
+                            <rect key="frame" x="325.5" y="0.0" width="81.5" height="50"/>
                             <subviews>
                                 <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PoE-T2-GRs">
-                                    <rect key="frame" x="0.0" y="30" width="81" height="20"/>
+                                    <rect key="frame" x="0.0" y="30" width="81.5" height="20"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="20" id="A0Q-z5-W1d"/>
                                     </constraints>
@@ -198,9 +198,12 @@
                                     <state key="normal" title="Alert">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
+                                    <connections>
+                                        <action selector="alertTextBtnTabbed:" destination="-1" eventType="touchUpInside" id="q2I-DZ-chD"/>
+                                    </connections>
                                 </button>
                                 <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rZ7-vN-wwC">
-                                    <rect key="frame" x="28" y="4" width="30" height="30"/>
+                                    <rect key="frame" x="28.5" y="4" width="30" height="30"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="30" id="hg6-ns-Uot"/>
                                         <constraint firstAttribute="height" constant="30" id="vH4-Ph-nE6"/>
@@ -208,11 +211,10 @@
                                     <state key="normal" image="footer_notification"/>
                                     <connections>
                                         <action selector="alertButtonTabbed:" destination="-1" eventType="touchUpInside" id="l0M-9S-AO1"/>
-                                        <action selector="alertTextBtnTabbed:" destination="-1" eventType="touchUpInside" id="aEc-ul-vXf"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BDE-vR-ru5">
-                                    <rect key="frame" x="48" y="-9" width="30" height="16"/>
+                                    <rect key="frame" x="48.5" y="-9" width="30" height="16"/>
                                     <color key="backgroundColor" red="0.98823529409999999" green="0.4039215686" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="16" id="qHe-gO-Vua"/>
