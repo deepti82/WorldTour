@@ -489,6 +489,7 @@
 		FCB2D69B1DE474180008634B /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB2D69A1DE474180008634B /* WebKit.framework */; };
 		FCB3D1791E5D6FC50041B121 /* OnlyLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB3D1781E5D6FC50041B121 /* OnlyLine.swift */; };
 		FCB3D17B1E5D6FF00041B121 /* OnlyLine.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCB3D17A1E5D6FEF0041B121 /* OnlyLine.xib */; };
+		FCBF52A21EA4A9540076463F /* NewProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCBF52A11EA4A9540076463F /* NewProfileViewController.swift */; };
 		FCBF88CC1E2E343B0092CB9D /* ActivityFeedsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCBF88CB1E2E343B0092CB9D /* ActivityFeedsController.swift */; };
 		FCBF88CE1E2E58660092CB9D /* ActivityProfileHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCBF88CD1E2E58660092CB9D /* ActivityProfileHeader.xib */; };
 		FCBF88D01E2E588E0092CB9D /* ActivityProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCBF88CF1E2E588E0092CB9D /* ActivityProfileHeader.swift */; };
@@ -1026,6 +1027,7 @@
 		FCB2D69A1DE474180008634B /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		FCB3D1781E5D6FC50041B121 /* OnlyLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnlyLine.swift; sourceTree = "<group>"; };
 		FCB3D17A1E5D6FEF0041B121 /* OnlyLine.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OnlyLine.xib; sourceTree = "<group>"; };
+		FCBF52A11EA4A9540076463F /* NewProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewProfileViewController.swift; sourceTree = "<group>"; };
 		FCBF88CB1E2E343B0092CB9D /* ActivityFeedsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityFeedsController.swift; sourceTree = "<group>"; };
 		FCBF88CD1E2E58660092CB9D /* ActivityProfileHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivityProfileHeader.xib; sourceTree = "<group>"; };
 		FCBF88CF1E2E588E0092CB9D /* ActivityProfileHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityProfileHeader.swift; sourceTree = "<group>"; };
@@ -2200,6 +2202,7 @@
 				FCEB1BF91E69447C00418812 /* LikeUserViewController.swift */,
 				FC259C281E79014D00AF815A /* MainSearchViewController.swift */,
 				FCC035FB1E7D37D8006767E2 /* PopularController.swift */,
+				FCBF52A11EA4A9540076463F /* NewProfileViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -3546,6 +3549,7 @@
 				3AF187101D786B2300A86BC1 /* DisplayPagesThreeViewController.swift in Sources */,
 				C2E159BB1D740A8300A5B721 /* EmptyScreenView.swift in Sources */,
 				4435D2D91E545A22003BD1D9 /* notificationHeader.swift in Sources */,
+				FCBF52A21EA4A9540076463F /* NewProfileViewController.swift in Sources */,
 				C24EB2EF1D30DE2E00EB95F6 /* NoFollowingViewController.swift in Sources */,
 				C2A6E26D1CE9E2DB00D3F845 /* AddFriendOTG.swift in Sources */,
 				C24B45611D0ADAEB002EA009 /* FilterItineraries.swift in Sources */,

@@ -69,9 +69,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
                 toggle = false
             }
         }
-        
-        
-        
+    
     }  
     
     
