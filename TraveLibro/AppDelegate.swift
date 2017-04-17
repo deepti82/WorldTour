@@ -40,7 +40,7 @@ let avenirBold = UIFont(name: "Avenir-Heavy", size: 14)
 let FontAwesomeFont = UIFont(name: "FontAwesome", size: 14)
 let NAVIGATION_FONT = UIFont(name: "Avenir-Roman", size: 18)
 
-let MAIN_FOOTER_HEIGHT = CGFloat(50)
+let MAIN_FOOTER_HEIGHT = CGFloat(60)
 
 var existingUserGlobal = ""
 

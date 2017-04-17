@@ -41,6 +41,9 @@ class FooterViewNew: UIView {
     @IBOutlet weak var localView: UIView!
     @IBOutlet weak var alertView: UIView!
     
+    @IBOutlet weak var badgeButton: UIButton!
+    @IBOutlet weak var badgeWidthConstraint: NSLayoutConstraint!
+    
     var allButtons: [UIButton]!
     var allFooterViews: [UIView]!
     //MARK: - Lifecycle
@@ -49,6 +52,10 @@ class FooterViewNew: UIView {
         super.init(frame: frame)
         
         loadViewFromNib ()
+        
+        badgeButton.layer.cornerRadius = 5.0
+        self.alertView.bringSubview(toFront: badgeButton)
+        
         let tapout = UITapGestureRecognizer(target: self, action: #selector(self.gotoActivity))
         activityView.addGestureRecognizer(tapout)
 
@@ -85,16 +92,6 @@ class FooterViewNew: UIView {
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view);
-    }
-    
-    func setupButton(button: UIButton) {
-        let spacing: CGFloat = -10.0
-        let imageSize: CGSize = button.imageView!.image!.size //button.imageView!.frame.size
-        button.titleEdgeInsets = UIEdgeInsetsMake(0.0, -imageSize.width, -(imageSize.height + spacing), 0.0)
-        let labelString = NSString(string: button.titleLabel!.text!)
-        let titleSize = labelString.size(attributes: [NSFontAttributeName: button.titleLabel!.font])
-        button.imageEdgeInsets = UIEdgeInsetsMake(-(titleSize.height + spacing), 0.0, 0.0, -titleSize.width)        
-        button.contentEdgeInsets = UIEdgeInsetsMake(3.0, 0.0, 7.0, 0.0)
     }
     
     
@@ -245,24 +242,24 @@ class FooterViewNew: UIView {
     }
     
     
-    //MARK: - Notification Badge
+    //MARK: - Alert Badge
     
-    func setBadge() {
-//        if UserDefaults.standard.value(forKey: "notificationCount") != nil {
-//            let notificationCount = UserDefaults.standard.value(forKey: "notificationCount") as! Int            
-//            if notificationCount > 0 {
-//                self.badgeButton.isHidden = false
-//                self.badgeButton.setTitle(String(notificationCount), for: .normal)
-//                self.badgeButton.titleLabel?.sizeToFit()
-//                self.bringSubview(toFront: self.badgeButton)
-//            }
-//            else {
-//                self.badgeButton.isHidden = true
-//            }
-//        }
-//        else {
-//            self.badgeButton.isHidden = true
-//        }
+    func setBadge() {        
+        if UserDefaults.standard.value(forKey: "notificationCount") != nil {
+            let notificationCount = UserDefaults.standard.value(forKey: "notificationCount") as! Int            
+            if notificationCount > 0 {
+                self.badgeButton.isHidden = false
+                self.badgeButton.setTitle(String(notificationCount), for: .normal)
+                self.badgeButton.sizeToFit()
+                self.bringSubview(toFront: self.badgeButton)
+            }
+            else {
+                self.badgeButton.isHidden = true
+            }
+        }
+        else {
+            self.badgeButton.isHidden = true
+        }
     }
     
     
