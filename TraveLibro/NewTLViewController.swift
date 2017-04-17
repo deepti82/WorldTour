@@ -2232,7 +2232,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
             height = 40.0
             mainScroll.animation.thenAfter(0.5).makeY(mainScroll.frame.origin.y - height).animate(0.5)
             
-            request.addNewOTG(journeyName, userId: currentUser["_id"].string!, startLocation: locationData, kindOfJourney: journeyCategories, timestamp: currentTime, lp: locationPic, completion: {(response) in
+            request.addNewOTG(journeyName, userId: currentUser["_id"].string!, startLocation: locationData, kindOfJourney: journeyCategories, timestamp: currentTime, lp: locationPic, lat: locationLat, long: locationLong, completion: {(response) in
 //                self.loader.removeFromSuperview()
                 DispatchQueue.main.async(execute: {
                     

@@ -308,7 +308,7 @@ class Navigation {
 //        
 //    }
     
-    func addNewOTG(_ name: String, userId: String, startLocation: String, kindOfJourney: [String], timestamp: String, lp: String, completion: @escaping ((JSON) -> Void)) {
+    func addNewOTG(_ name: String, userId: String, startLocation: String, kindOfJourney: [String], timestamp: String, lp: String, lat: String, long: String, completion: @escaping ((JSON) -> Void)) {
         
         let currentDate = Date()
         let currentDateFormatter = DateFormatter()
@@ -318,7 +318,7 @@ class Navigation {
         let showDateArray = "\(showDate)".components(separatedBy: " +")
 //        print("current date 2: \(currentDate) \(showDateArray[0])")
         
-        let params = ["name": name, "user":  userId, "startLocation": startLocation, "kindOfJourney": kindOfJourney, "timestamp": timestamp, "startLocationPic": lp, "startTime": "\(showDateArray[0])"] as [String : Any]
+        let params = ["name": name, "user":  userId, "startLocation": startLocation, "kindOfJourney": kindOfJourney, "timestamp": timestamp, "startLocationPic": lp, "startTime": "\(showDateArray[0])", "location": ["lat": lat, "long": long]] as [String : Any]
         print("parameters: \(params)")
         do {
             
