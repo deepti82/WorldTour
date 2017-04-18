@@ -46,31 +46,31 @@ class NotificationTitle: UIView {
         switch notificationType {
            
         case "postFirstTime":
-            str2 = " has shared "
+            str2 = " has shared"
             
         case "postTag":
-            str2 = " has tagged you in "
+            str2 = " has tagged you in"
             
         case "postLike":
-            str2 = " has liked your "
+            str2 = " has liked your"
             
         case "postComment":
-            str2 = " has commented on your "
+            str2 = " has commented on your"
             
         case "photoComment":
-            str2 = " has commented on a photo in your "
+            str2 = " has commented on a photo in your"
             
         case "photoLike":
-            str2 = " has liked your photo. "
+            str2 = " has liked your photo"
             
         case "userFollowing":
-            str2 = " has started following you."
+            str2 = " has started following you"
             
         case "userFollowingResponse":
-            str2 = " has accepted your follow request. "
+            str2 = " has accepted your follow request"
             
         case "userFollowingRequest":
-            str2 = " has requested to follow your travel and local activities. "
+            str2 = " has requested to follow your travel and local activities"
             
         case "journeyAccept":
             str2 = " has accepted your On The Go Journey - "
@@ -89,22 +89,22 @@ class NotificationTitle: UIView {
         case "journeyComment": 
             fallthrough
         case "itineraryComment":
-            str2 = " has commented on your "
+            str2 = " has commented on your"
             
         case "journeyLike":
             str2 = " has liked the On The Go Journey - "
             
         case "journeyReject":
-            str2 = " has rejected your request to join the "
+            str2 = " has rejected your request to join the"
             
         case "itineraryRequest":
             str2 = " wants to tag you in an itinerary - "
             
         case "itineraryMentionComment":
-            str2 = " has mentioned you in a comment On "
+            str2 = " has mentioned you in a comment On"
             
         case "itineraryLike":
-            str2 = " has liked your "
+            str2 = " has liked your"
             
         default:
             str2 = " wants to tag you in her On The Go Journey"
@@ -133,13 +133,13 @@ class NotificationTitle: UIView {
             let travelType = data["data"]["type"].string
             if travelType != nil {
                 if travelType == "local-life" {
-                    str3 = "a Local Life Activity "
+                    str3 = " a Local Life Activity"
                 }
                 else if travelType == "on_the_go" {
-                    str3 = "an On The Go Activity "
+                    str3 = " an On The Go Activity"
                 }
                 else if travelType == "travel-life" {
-                    str3 = "a Travel Life Activity "
+                    str3 = " a Travel Life Activity"
                 }
             }
             
@@ -149,13 +149,13 @@ class NotificationTitle: UIView {
             let travelType = data["data"]["type"].string
             if travelType != nil {
                 if travelType == "local-life" {
-                    str3 = "Local Life Activity "
+                    str3 = " Local Life Activity"
                 }
                 else if travelType == "on_the_go" {
-                    str3 = "On The Go Activity "
+                    str3 = " On The Go Activity"
                 }
                 else if travelType == "travel-life" {
-                    str3 = "Travel Life Activity "
+                    str3 = " Travel Life Activity"
                 }
             }
             
@@ -166,29 +166,29 @@ class NotificationTitle: UIView {
         var str4 = "" 
         
         if notificationType == "journeyComment" || notificationType == "journeyRequest"{
-            str4 = "On Go Journey - "
+            str4 = " On Go Journey - "
         }
         else if notificationType == "journeyReject" {
-            str4 = "On Go Activity - "
+            str4 = " On Go Activity - "
         }
         else if notificationType == "journeyComment" {
-            str4 = "Local Life Activity. "
+            str4 = " Local Life Activity"
         }
         else if notificationType == "itineraryMentionComment" ||
             notificationType == "itineraryLike" ||
             notificationType == "itineraryComment" {
             if data["data"]["type"].stringValue == "detail-itinerary" {
-                str4 = "Detailed Itinerary - "
+                str4 = " Detailed Itinerary - "
             }
             else {
-                str4 = "Quick Itinerary - "
+                str4 = " Quick Itinerary - "
             }
         }
         
         message.append(getBoldString(string: str4, size: 12))
         
         if notificationType == "postFirstTime" {
-            str4 = " for the first time. "
+            str4 = " for the first time"
             message.append(getRegularString(string: str4, size: 12))
         }
         
@@ -209,15 +209,16 @@ class NotificationTitle: UIView {
             message.append(getBoldString(string: str5, size: 12))
         }
         
+        message.append(getRegularString(string: ".", size: 12))
         
         NFMessageLabel.numberOfLines = 0
-        NFMessageLabel.lineBreakMode = .byWordWrapping
+        NFMessageLabel.lineBreakMode = .byWordWrapping        
         
         NFMessageLabel.attributedText = message
         NFMessageLabel.sizeToFit()
         
         NFMessageLabel.frame = CGRect(x: NFMessageLabel.frame.origin.x, y: NFMessageLabel.frame.origin.y, width: NFMessageLabel.frame.size.width,
-                                      height: heightForView(text: (firstName + str2 + str3 + str4 + str5 + "offset  ") , font: NFMessageLabel.font, width: NFMessageLabel.frame.size.width) + 10)
+                                      height: heightForView(text: (firstName + str2 + str3 + str4 + str5 + " ") , font: NFMessageLabel.font, width: NFMessageLabel.frame.size.width))
         
         return NFMessageLabel.frame.size.height
     }
