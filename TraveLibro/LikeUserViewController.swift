@@ -8,17 +8,19 @@
 
 import UIKit
 
+var likeDataArray:JSON = []
+
 class LikeUserViewController: UITableViewController {
     
     var postId:String = ""
     var userId:String = ""
-    var pagenumber:Int = 1
-    var data:JSON = []
+    var pagenumber:Int = 1    
     var type:String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         createNavigation()
+        likeDataArray = []
         loadLikes(page: pagenumber)
         self.tableView.backgroundView = UIImageView(image: UIImage(named: "back_7_4"))
         self.tableView.tableFooterView = UIView()
@@ -35,7 +37,7 @@ class LikeUserViewController: UITableViewController {
                 DispatchQueue.main.async(execute: {
                     loader.hideOverlayView()
                     
-                    self.data = request["data"]["like"]
+                    likeDataArray = request["data"]["like"]
                     self.reloadTableView()
                 })
             })
@@ -44,7 +46,7 @@ class LikeUserViewController: UITableViewController {
                 DispatchQueue.main.async(execute: {
                     loader.hideOverlayView()
                     
-                    self.data = request["data"]["like"]
+                    likeDataArray = request["data"]["like"]
                     self.reloadTableView()
                 })
             })
@@ -53,7 +55,7 @@ class LikeUserViewController: UITableViewController {
                 DispatchQueue.main.async(execute: {
                     loader.hideOverlayView()
                     
-                    self.data = request["data"]["like"]
+                    likeDataArray = request["data"]["like"]
                     self.reloadTableView()
                 })
             })
@@ -62,7 +64,7 @@ class LikeUserViewController: UITableViewController {
                 DispatchQueue.main.async(execute: {
                     loader.hideOverlayView()
                     
-                    self.data = request["data"]["like"]
+                    likeDataArray = request["data"]["like"]
                     self.reloadTableView()
                 })
             })
@@ -71,7 +73,7 @@ class LikeUserViewController: UITableViewController {
                 DispatchQueue.main.async(execute: {
                     loader.hideOverlayView()
                     
-                    self.data = request["data"]["like"]
+                    likeDataArray = request["data"]["like"]
                     self.reloadTableView()
                 })
             })
@@ -80,7 +82,7 @@ class LikeUserViewController: UITableViewController {
     }
     
     func reloadTableView(){
-        self.title = "Likes (\(self.data.count))"
+        self.title = "Likes (\(likeDataArray.count))"
         self.tableView.reloadData()
     }
     
@@ -112,27 +114,108 @@ class LikeUserViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.data.count
+        return likeDataArray.count
     }
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "likeCell", for: indexPath) as! LikeCell
-        cell.profileName.text = self.data[indexPath.row]["name"].stringValue
-        cell.profileImage.hnk_setImageFromURL(getImageURL(self.data[indexPath.row]["profilePicture"].stringValue, width: 300))
-        cell.urlSlurg.text = "@\(self.data[indexPath.row]["urlSlug"].stringValue)"
+        cell.profileName.text = likeDataArray[indexPath.row]["name"].stringValue
+        cell.profileImage.hnk_setImageFromURL(getImageURL(likeDataArray[indexPath.row]["profilePicture"].stringValue, width: 300))
+        cell.urlSlurg.text = "@\(likeDataArray[indexPath.row]["urlSlug"].stringValue)"
+        
+        setFollowButtonImage(button: cell.followButton, followType: likeDataArray[indexPath.row]["following"].intValue, otherUserID: likeDataArray[indexPath.row]["_id"].stringValue)
+        
         makeBuddiesTLProfilePicture(cell.profileImage)
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {        
-        selectedPeople = self.data[indexPath.row]["_id"].stringValue
-        selectedUser = self.data[indexPath.row]
+        selectedPeople = likeDataArray[indexPath.row]["_id"].stringValue
+        selectedUser = likeDataArray[indexPath.row]
         
         let profile = self.storyboard?.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
         profile.displayData = "search"
-        profile.currentSelectedUser = self.data[indexPath.row]
+        profile.currentSelectedUser = likeDataArray[indexPath.row]
         globalNavigationController.pushViewController(profile, animated: true)
+    }
+    
+    //MARK: - Follow actions 
+    
+    func followUser(_ followName: String, sender: UIButton) {
+        
+        var followId: String!
+        
+        for i in 0 ..< likeDataArray.count {
+            
+            if likeDataArray[i]["urlSlug"].string! == followName {
+                
+                followId = likeDataArray[i]["_id"].string!
+                break
+            }
+            
+        }
+        
+        request.followUser(user.getExistingUser(), followUserId: followId, completion: {(response) in
+            DispatchQueue.main.async(execute: {
+                if response.error != nil {
+                    
+                    print("error: \(response.error!.localizedDescription)")
+                    
+                }
+                else if response["value"].bool! {
+                    print("response arrived!")
+                    setFollowButtonTitle(button: sender, followType: response["data"]["responseValue"].intValue, otherUserID: "")
+                }
+                else {
+                    
+                    print("error: \(response["error"])")
+                    
+                }
+            })
+        })       
+    }
+    
+    func unFollowUser(_ unfollowName: String, sender: UIButton) {
+        
+        var unfollowId: String!
+        
+        for i in 0 ..< likeDataArray.count {
+            
+            if likeDataArray[i]["urlSlug"].string! == unfollowName {                
+                unfollowId = likeDataArray[i]["_id"].string!
+                break
+            }
+            
+        }
+        
+        request.unfollow(user.getExistingUser(), unFollowId: unfollowId, completion: {(response) in
+            DispatchQueue.main.async(execute: {
+                if response.error != nil {
+                    
+                    print("error: \(response.error!.localizedDescription)")
+                    
+                }
+                else if response["value"].bool! {
+                    
+                    print("response arrived! : \(response)")
+                    //                    var newJson = followers[Index]
+                    //                    newJson["following"] = JSON(response["data"]["responseValue"].stringValue)
+                    //                    followers[Index] = newJson
+                    //                    self.followerTable.reloadData()
+                    //                    self.followerTable.reloadRows(at: [NSIndexPath(row: Index, section: 0) as IndexPath], with: .automatic)
+                    setFollowButtonTitle(button: sender, followType: response["data"]["responseValue"].intValue, otherUserID: "")
+                }
+                else {
+                    
+                    print("error: \(response["error"])")
+                    
+                }                
+            })
+            
+        })
+        
+        
     }
     
 }
@@ -142,8 +225,9 @@ class LikeCell: UITableViewCell {
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var profileName: UILabel!    
     @IBOutlet weak var urlSlurg: UILabel!
+    @IBOutlet weak var followButton: UIButton!
     
-    var parent = FollowersViewController()
+    var parent = LikeUserViewController()
     
     @IBAction func followTap(_ sender: UIButton) {
         

@@ -364,28 +364,6 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
         }
     }
     
-    func setFollowButtonImage(button:UIButton, followType: Int, otherUserID: String) {
-        
-        if isSelfUser(otherUserID: otherUserID) {
-            button.isHidden = true
-        }
-        else{
-            button.isHidden = false
-            
-            if followType == 1 {
-                button.tag = 1
-                button.setImage(UIImage(named:"following"), for: .normal)
-            }
-            else if followType == 0 {
-                button.tag = 0
-                button.setImage(UIImage(named:"follow"), for: .normal)
-            }
-            else if followType == 2 {
-                button.tag = 2
-                button.setImage(UIImage(named:"requested"), for: .normal)
-            }
-        }
-    }
     
     //MARK: - Follow Actions
     
