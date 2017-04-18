@@ -160,6 +160,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         super.viewWillAppear(animated)
         if isFromFooter {
             self.mainFooter.frame = CGRect(x: 0, y: self.view.frame.height - MAIN_FOOTER_HEIGHT, width: self.view.frame.width, height: MAIN_FOOTER_HEIGHT)
+            globalNavigationController = self.navigationController
         }
     }
     
