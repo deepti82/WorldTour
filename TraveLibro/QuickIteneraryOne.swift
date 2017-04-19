@@ -76,15 +76,13 @@ class QuickIteneraryOne: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         }
 
         // Do any additional setup after loading the view.
+        print("jjjjjjjj  \(tripTitleView.frame.width)")
         transparentCardWhite(quickOneView)
+        self.view.layoutIfNeeded()
         monthView.underlined()
         yearView.underlined()
         tripTitleView.underlined()
         daysView.underlined()
-//        tripTitle.underlined()
-//        durationTextField.underlined()
-//        yearPickerView.underlined()
-//        monthPickerView.underlined()
         
         tripTitle.beginFloatingCursor(at: CGPoint(x: 10, y: 0))
         tripTitle.cursorPlace(tripTitle, position: 20)
