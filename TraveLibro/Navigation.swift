@@ -428,10 +428,12 @@ class Navigation {
             
             let opt = try HTTP.POST(adminUrl + "journey/getLocation", parameters: ["lat": lat, "long": long])
             var json = JSON(1);
+            json = JSON(["value" : false])            
             opt.start { response in
                 //                print("started response: \(response)")
                 if let err = response.error {
                     print("error: \(err.localizedDescription)")
+                    completion(json)
                 }
                 else
                 {

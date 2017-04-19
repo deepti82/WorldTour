@@ -46,7 +46,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     @IBOutlet weak var mainScroll: UIScrollView!
     var journeyName: String!
     var locationData = ""
-    let locationManager = CLLocationManager()
+    var locationManager : CLLocationManager?
     var locationPic = ""
     var journeyCategories = [String] ()
     var currentTime: String!
@@ -707,10 +707,20 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     }
     
     func detectLocation(_ sender: AnyObject?) {
-        locationManager.requestAlwaysAuthorization()
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.startMonitoringSignificantLocationChanges()
+        
+        self.stopDetectingLocation()
+        
+        locationManager = CLLocationManager()
+        locationManager?.requestWhenInUseAuthorization()
+        locationManager?.delegate = self
+        locationManager?.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager?.startMonitoringSignificantLocationChanges()
+        self.updateStatus(status: CLLocationManager.authorizationStatus())
+    }
+    
+    func stopDetectingLocation() {
+        locationManager?.stopUpdatingLocation()
+        locationManager = nil
     }
     
     func getJourney() {
@@ -747,6 +757,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         })
         
     }
+    
     //MARK: - getone journey added.
     func getOneJourney() {
         request.getJourneyById(fromOutSide, completion: {(response) in
@@ -2147,10 +2158,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         otgView.locationLabel.resignFirstResponder()
         self.title = "On The Go"
         
-        locationManager.requestAlwaysAuthorization()
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.startMonitoringSignificantLocationChanges()
+        detectLocation(nil)
+        
         otgView.drawLineView3.isHidden = false
 //        otgView.bonVoyageLabel.isHidden = true
         if textField == otgView.nameJourneyTF {
@@ -2214,12 +2223,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         transparentCardWhite(otgView.nameJourneyView)
         self.view.bringSubview(toFront: mainFooter)
 //        transparentWhiteTextField(otgView.nameJourneyTF)
-                
-
-        //        locationManager.requestAlwaysAuthorization()
-        //        locationManager.delegate = self
-        //        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        //        locationManager.startMonitoringSignificantLocationChanges()
     }
     
     func journeyCategory(_ sender: UIButton) {
@@ -2744,26 +2747,58 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     }
     
     
+    //MARK: - Location Delegates
     
+    func updateStatus(status: CLAuthorizationStatus) {
+        switch status {
+            
+        case CLAuthorizationStatus.notDetermined:
+            self.requestAuthorization()
+            break
+            
+        case CLAuthorizationStatus.authorizedAlways:
+            fallthrough
+        case CLAuthorizationStatus.authorizedWhenInUse:
+            locationManager?.startUpdatingLocation()
+            break
+            
+        case CLAuthorizationStatus.denied:
+            fallthrough
+        case CLAuthorizationStatus.restricted:            
+            self.handleRestrictedMode()
+            break
+            
+            //        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "LabelHasbeenUpdated"), object: nil)        
+        }
+    }
     
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    func requestAuthorization() {
+        locationManager?.requestWhenInUseAuthorization()
+        locationManager?.startUpdatingLocation()
+    }
         
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let locValue:CLLocationCoordinate2D = manager.location!.coordinate
+        userLocation = locValue
+        print("\n lat: \(locValue.latitude) <<>> long: \(locValue.longitude)")
         if manager.location?.coordinate != nil {
             let locValue:CLLocationCoordinate2D = manager.location!.coordinate
             userLocation = locValue
             var coverImage: String!
             
             if !isJourneyOngoing {
-                request.getLocation(locValue.latitude, long: locValue.longitude, completion: {
-                    (response) in
-                    
+                
+                request.getLocation(locValue.latitude, long: locValue.longitude, completion: { (response) in
                     DispatchQueue.main.async(execute: {
-                       
+                        
                         if (response.error != nil) {
                             print("error: \(response.error?.localizedDescription)")
                         }
                         else if response["value"].bool! {
                             print(response["data"]);
+                            
+                            self.stopDetectingLocation()
+                            
                             self.locationData = response["data"]["name"].string!
                             self.otgView.locationLabel.text = response["data"]["name"].string!
                             self.locationPic = response["data"]["image"].string!
@@ -2801,10 +2836,15 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
                         else {
                             
                             print("response error!")
+                            print("\n show error alert")
+                            self.showNetworkErrorAlert()
                         }
                     })
                 })
             }
+        }
+        else {
+            print("\n auth status : \(CLLocationManager.authorizationStatus().rawValue)")
         }
     }
     
@@ -2812,5 +2852,45 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         
         print("Error while updating location " + error.localizedDescription)
         
+    }
+    
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        print("\n didChangeAuthorization : \(status.rawValue)")
+        self.updateStatus(status: status)
+    }
+    
+    
+    //MARK: - Location Alert
+    func showNetworkErrorAlert() {
+        let errorAlert = UIAlertController(title: "Error", message: "It seems that you are not connected with internet. Please check your internet connection ", preferredStyle: UIAlertControllerStyle.alert)
+        
+        let cancelAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+        errorAlert.addAction(cancelAction)
+        
+        self.navigationController?.present(errorAlert, animated: true, completion: nil)
+    }
+    
+    func handleRestrictedMode(){
+        print("\n handle restricted mode")
+        
+        let errorAlert = UIAlertController(title: "Turn on Location Services", message: "1. Tap Settings \n 2. Tap Location \n Tap While Using the App", preferredStyle: UIAlertControllerStyle.alert)
+        
+        let settingsAction = UIAlertAction(title: "Settings", style: .default) { (_) -> Void in
+            guard let settingsUrl = URL(string: UIApplicationOpenSettingsURLString) else {
+                return
+            }            
+            if UIApplication.shared.canOpenURL(settingsUrl) {
+                UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
+                    print("Settings opened: \(success)") // Prints true
+                })
+            }
+        }
+        errorAlert.addAction(settingsAction)
+        
+        let cancelAction = UIAlertAction(title: "Not Now", style: .default, handler: nil)
+        errorAlert.addAction(cancelAction)
+        
+        self.navigationController?.present(errorAlert, animated: true, completion: nil)
     }
 }

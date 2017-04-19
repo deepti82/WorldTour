@@ -900,6 +900,7 @@ func getThumbnailFromVideoURL(url : URL, onView: UIImageView) {
 
 
 //MARK:- Present Action View
+
 func showPopover(optionsController:UIAlertController, sender:UIView, vc:UIViewController){
     if let popover = optionsController.popoverPresentationController{
         popover.sourceView = sender
@@ -909,9 +910,15 @@ func showPopover(optionsController:UIAlertController, sender:UIView, vc:UIViewCo
 }
 
 //MARK: - Helpers
+
 func getURLSlug(slug: String) -> String {
     var myString = slug
     myString.remove(at: myString.startIndex)
     return myString
 }
 
+//MARK: - Location
+func enableLocationService() {
+    let locMgr = TLLocationManager()
+    locMgr.initLocationManager()
+}

@@ -82,14 +82,16 @@
 	<string>$(PRODUCT_NAME) will use Video Library</string>
 	<key>NSCameraUsageDescription</key>
 	<string>$(PRODUCT_NAME) will use Camera</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<true/>
 	<key>NSLocationWhenInUseUsageDescription</key>
+	<true/>
+	<key>NSLocationAlwaysUsageDescription</key>
 	<true/>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>$(PRODUCT_NAME) will use Library</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>$(PRODUCT_NAME) will use Photo Library</string>
+	<key>NSLocationUsageDescription</key>
+	<string>$(PRODUCT_NAME) will use location service</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>fontawesome-webfont.ttf</string>
@@ -120,9 +122,6 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationPortraitUpsideDown</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
