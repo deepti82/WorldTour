@@ -20,7 +20,7 @@ var globalNewTLViewController:NewTLViewController!
 
 
 class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, CLLocationManagerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIGestureRecognizerDelegate, UIScrollViewDelegate {
-    
+    var isRequestFromNewPost = false
     var myJourney: JSON!
     var isJourney = false
     var imageView1: UIImageView!
@@ -98,6 +98,11 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     var backView1: UIView!
     
     func addPosts(_ sender: UIButton) {
+        
+        if locationManager == nil {
+            isRequestFromNewPost = true
+            self.detectLocation()            
+        }
         showAddActivity()
         getJourneyBuddies(journey: myJourney)
     }
@@ -722,16 +727,17 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
                     self.prevPosts = []
                     self.isInitialLoad = true;
 //                    self.detectLocation()
+                    
+                    isJourneyOngoing = true
+                    self.journeyStart = true
+                    self.myJourney = response["data"]
+                    print("line no : \(self.myJourney)");
                     self.checkFetchedLocation()
                     self.latestCity = response["data"]["startLocation"].string!
                     if self.isRefreshing {
                         self.refreshControl.endRefreshing()
                         self.isRefreshing = false
                     }
-                    isJourneyOngoing = true
-                    self.journeyStart = true
-                    self.myJourney = response["data"]
-                    print("line no : \(self.myJourney)");
                     self.journeyID = self.myJourney["_id"].stringValue
                     self.journeyName = self.myJourney["name"].stringValue
                     self.isInitialLoad = false
@@ -2187,58 +2193,62 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     func checkFetchedLocation() {
         if !isJourneyOngoing {
             //            request.getLocation(15.8514, long: 73.6389, completion: { (response) in
-            
-            request.getLocation(userLocation.latitude, long: userLocation.longitude, completion: { (response) in
-                
-                DispatchQueue.main.async(execute: {
+            if userLocation != nil {
+                request.getLocation(userLocation.latitude, long: userLocation.longitude, completion: { (response) in
                     
-                    if (response.error != nil) {
-                        print("error: \(response.error?.localizedDescription)")
-                    }
-                    else if response["value"].bool! {
-                        print(response["data"]);
+                    DispatchQueue.main.async(execute: {
                         
-                        self.locationData = response["data"]["name"].string!
-                        self.otgView.locationLabel.text = response["data"]["name"].string!
-                        self.locationPic = response["data"]["image"].string!
-                        self.makeCoverPic(self.locationPic)
-                        //                            self.otgView.cityImage.hnk_setImageFromURL(URL(string: self.locationPic)!)
-                        self.locationName = self.locationData
-                        self.locationLat = String(userLocation.latitude)
-                        self.locationLong = String(userLocation.longitude)
-                        let dateFormatterTwo = DateFormatter()
-                        dateFormatterTwo.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-                        self.currentTime = dateFormatterTwo.string(from: Date())
-                        self.otgView.detectLocationView.animation.makeOpacity(0.0).animate(0.0)
-                        self.otgView.detectLocationView.isHidden = false
-                        self.otgView.placeLabel.text = self.locationData                        
-                        let localDate = self.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd-MM-yyyy", date: self.currentTime, isDate: true)
-                        let localTime = self.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: self.currentTime, isDate: false)
-                        self.otgView.timestampDate.text = "\(localDate) | \(localTime)" //self.currentTime
-                        
-                        
-                        //                        self.otgView.timestampDate.text = self.currentTime
-                        
-                        //                    self.otgView.timestampTime.text =
-                        self.otgView.cityView.layer.opacity = 0.0
-                        self.otgView.cityView.isHidden = false
-                        self.otgView.cityView.animation.makeOpacity(1.0).animate(0.0)
-                        self.otgView.journeyDetails.isHidden = true
-                        self.otgView.selectCategoryButton.isHidden = false
-                        self.height = 250.0
-                        self.mainScroll.animation.makeY(60.0).animate(0.7)
-                        self.otgView.animation.makeY(0.0).animate(0.7)
-                        
-                        self.scrollToBottom()
-                    }
-                    else {
-                        
-                        print("response error!")
-                        print("\n show error alert")
-                        self.showNetworkErrorAlert()
-                    }
+                        if (response.error != nil) {
+                            print("error: \(response.error?.localizedDescription)")
+                        }
+                        else if response["value"].bool! {
+                            print(response["data"]);
+                            
+                            self.locationData = response["data"]["name"].string!
+                            self.otgView.locationLabel.text = response["data"]["name"].string!
+                            self.locationPic = response["data"]["image"].string!
+                            self.makeCoverPic(self.locationPic)
+                            //                            self.otgView.cityImage.hnk_setImageFromURL(URL(string: self.locationPic)!)
+                            self.locationName = self.locationData
+                            self.locationLat = String(userLocation.latitude)
+                            self.locationLong = String(userLocation.longitude)
+                            let dateFormatterTwo = DateFormatter()
+                            dateFormatterTwo.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+                            self.currentTime = dateFormatterTwo.string(from: Date())
+                            self.otgView.detectLocationView.animation.makeOpacity(0.0).animate(0.0)
+                            self.otgView.detectLocationView.isHidden = false
+                            self.otgView.placeLabel.text = self.locationData                        
+                            let localDate = self.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd-MM-yyyy", date: self.currentTime, isDate: true)
+                            let localTime = self.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: self.currentTime, isDate: false)
+                            self.otgView.timestampDate.text = "\(localDate) | \(localTime)" //self.currentTime
+                            
+                            
+                            //                        self.otgView.timestampDate.text = self.currentTime
+                            
+                            //                    self.otgView.timestampTime.text =
+                            self.otgView.cityView.layer.opacity = 0.0
+                            self.otgView.cityView.isHidden = false
+                            self.otgView.cityView.animation.makeOpacity(1.0).animate(0.0)
+                            self.otgView.journeyDetails.isHidden = true
+                            self.otgView.selectCategoryButton.isHidden = false
+                            self.height = 250.0
+                            self.mainScroll.animation.makeY(60.0).animate(0.7)
+                            self.otgView.animation.makeY(0.0).animate(0.7)
+                            
+                            self.scrollToBottom()
+                        }
+                        else {
+                            
+                            print("response error!")
+                            print("\n show error alert")
+                            self.showNetworkErrorAlert()
+                        }
+                    })
                 })
-            })
+            }
+            else {
+                self.detectLocation()
+            }
         }
     }
     
@@ -2845,10 +2855,14 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
             
             self.stopDetectingLocation()
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
-                self.newOtg(nil)
-            })
-            
+            if !isRequestFromNewPost {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+                    self.newOtg(nil)
+                })                
+            }
+            else {
+                self.addView.addLocationTapped()
+            }
         }
         else {
             print("\n auth status : \(CLLocationManager.authorizationStatus().rawValue)")
@@ -2859,8 +2873,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         
         print("Error while updating location " + error.localizedDescription)
         
-    }
-    
+    }    
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         print("\n didChangeAuthorization : \(status.rawValue)")
@@ -2868,7 +2881,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     }
     
     
-    //MARK: - Location Alert
+    //MARK: - Location Error Handler
     
     func showNetworkErrorAlert() {
         let errorAlert = UIAlertController(title: "Error", message: "It seems that you are not connected with internet. Please check your internet connection ", preferredStyle: UIAlertControllerStyle.alert)
