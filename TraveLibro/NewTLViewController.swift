@@ -1004,6 +1004,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         
         UINavigationBar.appearance().backgroundColor = UIColor(hex: "#11d3cb")
         UINavigationBar.appearance().backgroundColor?.withAlphaComponent(0.9)
+        
         let rightButton = UIView()
         rightButton.frame = CGRect(x: 0, y: 0, width: 60, height: 35)
         let rightButton1 = UIButton()
@@ -1012,6 +1013,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
 //        rightButton1.imageView?.tintColor = UIColor(hex: "#11d3cb")
         rightButton1.imageView?.contentMode = .scaleAspectFit
         rightButton1.imageView?.clipsToBounds = true
+        
         let rightButton2 = UIButton()
         rightButton2.frame = CGRect(x: 40, y: 8, width: 25, height: 25)
         rightButton2.setImage(UIImage(named: "options_icon"), for: UIControlState())
@@ -1020,23 +1022,28 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         rightButton2.addTarget(self, action: #selector(self.infoCircle(_:)), for: .touchUpInside)
         
         if  fromOutSide == "" {
-        rightButton.addSubview(rightButton1)
+            
+            rightButton.addSubview(rightButton1)
             rightButton.addSubview(rightButton2)
 
         }else{
-        rightButton.addSubview(rightButton2)
+            
+            rightButton.addSubview(rightButton2)
+            
         }
         
         //        rightButton.setTitle("i", for: UIControlState())
         //        rightButton.layer.borderWidth = 1.5
         //        rightButton.layer.borderColor = UIColor.white.cgColor
         //        rightButton.layer.cornerRadius = rightButton.frame.width / 2
+        
         self.title = text
         if  fromOutSide == "" {
+            
             if (myJourney != nil) {
                 self.customNavigationBar(left: leftButton, right: rightButton)
             }else{
-                self.customNavigationBar(left: leftButton, right: rightButton)
+                self.customNavigationBar(left: leftButton, right: nil)
             }
 
         }else{
@@ -1217,12 +1224,12 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
             if(postView is PhotosOTG2) {
                 let photosOtg = postView as! PhotosOTG2
                 if(photosOtg.videoContainer != nil) {
+                    
                     photosOtg.videoToPlay()
                     
                 }
             }
         }
-        
         
     }
     
@@ -1988,6 +1995,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
             if myJourney["user"]["_id"].stringValue != user.getExistingUser() {
                 otgView.optionsButton.isHidden = true
             }
+        }else{
+            otgView.optionsButton.isHidden = true
         }
         
         otgView.shoewImage.alpha = 0

@@ -521,6 +521,9 @@ extension NewTLViewController {
                 if myJourney["user"]["_id"].stringValue != user.getExistingUser() {
                     otgView.optionsButton.isHidden = true
                 }
+            }else{
+                otgView.optionsButton.isHidden = true
+
             }
             
             
