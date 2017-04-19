@@ -457,7 +457,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
             label.mentionColor = UIColor(red: 238.0/255, green: 85.0/255, blue: 96.0/255, alpha: 1)
             label.URLColor = UIColor(red: 85.0/255, green: 238.0/255, blue: 151.0/255, alpha: 1)
             label.handleMentionTap {
-                checkIn.animation.makeY(50).animate(0.0)
+                checkIn.animation.makeY(0).animate(0.0)
                 let actionSheetControllerIOS8: UIAlertController = UIAlertController(title: "Mention", message: $0, preferredStyle: .alert)
                 let cancelActionButton: UIAlertAction = UIAlertAction(title: "OK", style: .default) {action -> Void in}
                 actionSheetControllerIOS8.addAction(cancelActionButton)
@@ -2223,6 +2223,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     }
     
     func journeyCategory(_ sender: UIButton) {
+        print("journey category clicked")
         otgView.selectCategoryButton.isHidden = true
         let categoryVC = storyboard?.instantiateViewController(withIdentifier: "kindOfJourneyVC") as! KindOfJourneyOTGViewController
         self.navigationController?.setNavigationBarHidden(false, animated: true)
