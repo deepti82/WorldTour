@@ -916,9 +916,3 @@ func getURLSlug(slug: String) -> String {
     myString.remove(at: myString.startIndex)
     return myString
 }
-
-//MARK: - Location
-func enableLocationService() {
-    let locMgr = TLLocationManager()
-    locMgr.initLocationManager()
-}
