@@ -30,6 +30,9 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
     var isRefreshing = false
     var blr: UIView?
     
+    
+    //MARK: - LifeCycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -66,17 +69,17 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
         self.view.addSubview(self.mainFooter)
 
         
-        request.checkActivityCache(user.getExistingUser()) { (response) in
-            if response.count == 0 {
+//        request.checkActivityCache(user.getExistingUser()) { (response) in
+//            if response.count == 0 {
                 self.loader.showOverlay(self.view)
-            }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+//            }
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
                 self.getActivity(pageNumber: self.pageno)
                 
                 let i = PostImage()
                 i.uploadPhotos()
-            })
-        }
+//            })
+//        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
