@@ -38,6 +38,8 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
     
     let imageArr: [String] = ["restaurantsandbars", "leaftrans", "sightstrans", "museumstrans", "zootrans", "shopping", "religious", "cinematrans", "hotels", "planetrans", "health_beauty", "rentals", "entertainment", "essential", "emergency", "othersdottrans"]
     
+    //MARK: - Layout
+    
     func createProfileHeader(feed:JSON) {
         
         if displayData != "popitinerary" {
@@ -53,8 +55,223 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
         self.layoutSubviews()
     }
     
-    func setBlurBounds() {
-        globalActivityFeedsController.blr?.bounds = self.bounds
+    func headerLayout(feed:JSON) {
+        
+        profileHeader = ActivityProfileHeader(frame: CGRect(x: 0, y: 20, width: self.frame.width, height: 69))
+        
+        self.addSubview(profileHeader)
+        
+        profileHeader.fillProfileHeader(feed:feed)
+        
+        
+        if feed["type"].stringValue == "on-the-go-journey"{
+            profileHeader.localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["startTime"].stringValue, isDate: true)
+            profileHeader.localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["startTime"].stringValue, isDate: false)
+        }else if feed["type"].stringValue == "ended-journey"{
+            profileHeader.localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["endTime"].stringValue, isDate: true)
+            profileHeader.localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["endTime"].stringValue, isDate: false)
+        }else if feed["type"].stringValue == "quick-itinerary"{
+            profileHeader.localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["createdAt"].stringValue, isDate: true)
+            profileHeader.localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["createdAt"].stringValue, isDate: false)
+        }else if feed["type"].stringValue == "detail-itinerary"{
+            profileHeader.localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["startDate"].stringValue, isDate: true)
+            profileHeader.localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["startTime"].stringValue, isDate: false)
+        }else {
+            profileHeader.localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["UTCModified"].stringValue, isDate: true)
+            profileHeader.localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["UTCModified"].stringValue, isDate: false)
+            
+        }
+        
+        if feed["thoughts"].stringValue != "" {
+            
+            //  START ACTIVITY TEXT HEADER
+            textHeader = ActivityTextHeader(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 0))
+            textHeader.headerText.attributedText = getThought(feed)
+            textHeader.headerText.sizeToFit()
+            textHeader.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: textHeader.headerText.frame.height + 1.5)
+            self.addSubview(textHeader)
+            textHeader.kindOfJourneyMyLife.isHidden = true
+            //  START ACTIVITY TEXT TAG
+            if feed["videos"].count == 0 && feed["photos"].count == 0 && feed["type"].stringValue != "on-the-go-journey" && feed["imageUrl"] == nil{
+                textTag = ActivityHeaderTag(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 30))
+                textTag.transparentBack()
+                textTag.colorTag(feed: feed)
+                
+                self.addSubview(textTag)
+            }
+            
+        } else {
+            // For header text
+            textHeader = ActivityTextHeader(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 70))
+            textHeader.kindOfJourneyMyLife.isHidden = true
+            switch feed["type"].stringValue {
+            case "on-the-go-journey":
+                setText(text: "Has started a Journey.")
+                
+            case "ended-journey":
+                setText(text: "Has ended this Journey.")
+                
+            case "quick-itinerary":
+                setText(text: "Has uploaded a new Itinerary.")
+                
+            case "detail-itinerary":
+                setText(text: "Has uploaded a new Itinerary.")
+            default:
+                textHeader.headerText.attributedText = getThought(feed)
+            }
+            textHeader.headerText.sizeToFit()
+            textHeader.sizeToFit()
+            textHeader.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: textHeader.headerText.frame.height + 1.5)
+            if(textHeader.headerText.text != "") {
+                
+                self.addSubview(textHeader)
+            }
+            
+            
+        }
+        
+    }
+    
+    func middleLayoout(feed:JSON) {
+        switch feed["type"].stringValue {
+        case "on-the-go-journey","ended-journey":
+            activityFeedImage = ActivityFeedImageView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.width))
+            activityFeedImage.fillData(feed: feed)
+            let tapRecognizer = UITapGestureRecognizer()
+            tapRecognizer.numberOfTapsRequired = 1
+            if displayData == "popular" {
+                activityFeedImage.OnTheGOText.isHidden = true
+            }
+            tapRecognizer.addTarget(self, action: #selector(self.toggleFullscreen))
+            activityFeedImage.addGestureRecognizer(tapRecognizer)
+            
+            activityFeedImage.clipsToBounds = true
+            
+            self.addSubview(activityFeedImage)
+        case "quick-itinerary":
+            if self.displayData == "popitinerary" {
+                popularItinerary = PopularItinerary(frame: CGRect(x: 0, y: 10, width: self.frame.width, height: 400))
+                let tapRecognizer = UITapGestureRecognizer()
+                tapRecognizer.numberOfTapsRequired = 1
+                tapRecognizer.addTarget(self, action: #selector(self.gotoDetail))
+                popularItinerary.addGestureRecognizer(tapRecognizer)
+                popularItinerary.fillData(feed: feed)
+                self.addSubview(popularItinerary)
+            }else{
+                activityQuickItinerary = ActivityFeedQuickItinerary(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.width))
+                let tapRecognizer = UITapGestureRecognizer()
+                tapRecognizer.numberOfTapsRequired = 1
+                tapRecognizer.addTarget(self, action: #selector(self.gotoDetail))
+                activityQuickItinerary.addGestureRecognizer(tapRecognizer)
+                activityQuickItinerary.fillData(feed: feed)
+                self.addSubview(activityQuickItinerary)
+            }
+            
+        case "detail-itinerary":
+            if self.displayData == "popitinerary" {
+                popularItinerary = PopularItinerary(frame: CGRect(x: 0, y: 10, width: self.frame.width, height: 400))
+                let tapRecognizer = UITapGestureRecognizer()
+                tapRecognizer.numberOfTapsRequired = 1
+                tapRecognizer.addTarget(self, action: #selector(self.showDetailedItinerary(_:)))
+                popularItinerary.addGestureRecognizer(tapRecognizer)
+                popularItinerary.fillData(feed: feed)
+                self.addSubview(popularItinerary)
+                
+            }else{
+                activityDetailItinerary = ActivityDetailItinerary(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.width))
+                activityDetailItinerary.fillData(feed: feed)
+                self.addSubview(activityDetailItinerary)
+                let tapRecognizer = UITapGestureRecognizer()
+                tapRecognizer.numberOfTapsRequired = 1
+                tapRecognizer.addTarget(self, action: #selector(self.showDetailedItinerary(_:)))
+                activityDetailItinerary.addGestureRecognizer(tapRecognizer)
+            }
+            
+        default:
+            print("default")
+            videosAndPhotosLayout(feed:feed)
+        }
+    }
+    
+    func footerLayout(feed:JSON) {
+        if(feed["type"].stringValue == "ended-journey" || feed["type"].stringValue == "quick-itinerary" || feed["type"].stringValue == "detail-itinerary" || feed["type"].stringValue == "on-the-go-journey") {
+            print("in review")
+            
+            if displayData == "popitinerary" {
+                footerView = ActivityFeedFooterBasic(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 65))
+                
+                //            footerView.postTop = feed
+                footerView.topLayout = self
+                footerView.localLifeTravelImage.isHidden = true
+                footerView.type = "ActivityFeeds"
+                
+                footerView.setCommentCount(feed["commentCount"].intValue)
+                footerView.setLikeCount(feed["likeCount"].intValue)
+                footerView.setView(feed:feed)
+                footerView.setLikeSelected(feed["likeDone"].boolValue)
+                
+                self.addSubview(footerView)
+                
+            }else{
+                footerViewReview = ActivityFeedFooter(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 65))
+                footerViewReview.postTop = feed
+                footerViewReview.topLayout = self
+                footerViewReview.type = "ActivityFeeds"
+                footerViewReview.setView(feed: feed)
+                footerViewReview.setCommentCount(footerViewReview.postTop["commentCount"].intValue)
+                footerViewReview.setLikeCount(footerViewReview.postTop["likeCount"].intValue)
+                footerViewReview.setReviewCount(count: footerViewReview.postTop["userReviewCount"].intValue)
+                footerViewReview.setLikeSelected(feed["likeDone"].boolValue)
+                
+                //footerViewReview.reviewButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ActivityFeedsLayout.rateButtonTapped(_:))))
+                
+                self.addSubview(footerViewReview)
+                //            dropView = DropShadow2(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 2))
+                //            self.addSubview(dropView)
+            }
+            
+            
+        } else {
+            print("in footer")
+            footerView = ActivityFeedFooterBasic(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 65))
+            
+            //            footerView.postTop = feed
+            footerView.topLayout = self
+            footerView.type = "ActivityFeeds"
+            
+            footerView.setCommentCount(feed["commentCount"].intValue)
+            footerView.setLikeCount(feed["likeCount"].intValue)
+            footerView.setView(feed:feed)
+            footerView.setLikeSelected(feed["likeDone"].boolValue)
+            self.addSubview(footerView)
+            //            dropView = DropShadow2(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 2))
+            //            self.addSubview(dropView)
+        }
+        
+        
+    }
+    
+    func addPhotoToLayout(_ post: JSON, startIndex: Int) {
+        centerView.horizontalScrollForPhotos.removeAll()
+        for i in startIndex ..< post["photos"].count {
+            let photosButton = UIImageView(frame: CGRect(x: 10, y: 5, width: 87, height: 87))
+            photosButton.image = UIImage(named: "logo-default")
+            photosButton.contentMode = UIViewContentMode.scaleAspectFill
+            
+            photosButton.frame.size.height = 82
+            photosButton.frame.size.width = 82
+            let urlStr = getImageURL(post["photos"][i]["name"].stringValue, width: 300)
+            photosButton.hnk_setImageFromURL(urlStr)
+            let tapGestureRecognizer = UITapGestureRecognizer(target:self, action: #selector(ActivityFeedsLayout.openSinglePhoto(_:)))
+            photosButton.isUserInteractionEnabled = true
+            photosButton.addGestureRecognizer(tapGestureRecognizer)
+            //photosButton.layer.cornerRadius = 5.0
+            photosButton.tag = i
+            photosButton.clipsToBounds = true
+            centerView.horizontalScrollForPhotos.addSubview(photosButton)
+        }
+        centerView.horizontalScrollForPhotos.layoutSubviews()
+        centerView.morePhotosView.contentSize = CGSize(width: centerView.horizontalScrollForPhotos.frame.width, height: centerView.horizontalScrollForPhotos.frame.height)
     }
     
     func videosAndPhotosLayout(feed:JSON) {
@@ -213,6 +430,17 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
         //End of Center
     }
     
+    
+    //MARK: - Navigate to Other
+    
+    func openSinglePhoto(_ sender: AnyObject) {
+        let singlePhotoController = storyboard?.instantiateViewController(withIdentifier: "singlePhoto") as! SinglePhotoViewController
+        singlePhotoController.fetchType = photoVCType.FROM_ACTIVITY
+        singlePhotoController.index = sender.view.tag
+        singlePhotoController.postId = feeds["_id"].stringValue
+        globalNavigationController.pushViewController(singlePhotoController, animated: true)
+    } 
+    
     func openSingleVideo(_ sender: AnyObject) {
         let singlePhotoController = storyboard?.instantiateViewController(withIdentifier: "singlePhoto") as! SinglePhotoViewController
         singlePhotoController.fetchType = photoVCType.FROM_ACTIVITY
@@ -221,217 +449,6 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
         singlePhotoController.postId = feeds["_id"].stringValue
         globalNavigationController.pushViewController(singlePhotoController, animated: true)
     }
-    
-    
-    func footerLayout(feed:JSON) {
-        if(feed["type"].stringValue == "ended-journey" || feed["type"].stringValue == "quick-itinerary" || feed["type"].stringValue == "detail-itinerary" || feed["type"].stringValue == "on-the-go-journey") {
-            print("in review")
-            
-            if displayData == "popitinerary" {
-                footerView = ActivityFeedFooterBasic(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 65))
-                
-                //            footerView.postTop = feed
-                footerView.topLayout = self
-                footerView.localLifeTravelImage.isHidden = true
-                footerView.type = "ActivityFeeds"
-                
-                footerView.setCommentCount(feed["commentCount"].intValue)
-                footerView.setLikeCount(feed["likeCount"].intValue)
-                footerView.setView(feed:feed)
-                footerView.setLikeSelected(feed["likeDone"].boolValue)
-                
-                self.addSubview(footerView)
-                
-            }else{
-                footerViewReview = ActivityFeedFooter(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 65))
-                footerViewReview.postTop = feed
-                footerViewReview.topLayout = self
-                footerViewReview.type = "ActivityFeeds"
-                footerViewReview.setView(feed: feed)
-                footerViewReview.setCommentCount(footerViewReview.postTop["commentCount"].intValue)
-                footerViewReview.setLikeCount(footerViewReview.postTop["likeCount"].intValue)
-                footerViewReview.setReviewCount(count: footerViewReview.postTop["userReviewCount"].intValue)
-                footerViewReview.setLikeSelected(feed["likeDone"].boolValue)
-                
-                //footerViewReview.reviewButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ActivityFeedsLayout.rateButtonTapped(_:))))
-                
-                self.addSubview(footerViewReview)
-                //            dropView = DropShadow2(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 2))
-                //            self.addSubview(dropView)
-            }
-            
-            
-        } else {
-            print("in footer")
-            footerView = ActivityFeedFooterBasic(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 65))
-            
-            //            footerView.postTop = feed
-            footerView.topLayout = self
-            footerView.type = "ActivityFeeds"
-            
-            footerView.setCommentCount(feed["commentCount"].intValue)
-            footerView.setLikeCount(feed["likeCount"].intValue)
-            footerView.setView(feed:feed)
-            footerView.setLikeSelected(feed["likeDone"].boolValue)
-            self.addSubview(footerView)
-            //            dropView = DropShadow2(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 2))
-            //            self.addSubview(dropView)
-        }
-        
-        
-    }
-    
-    func middleLayoout(feed:JSON) {
-        switch feed["type"].stringValue {
-        case "on-the-go-journey","ended-journey":
-            activityFeedImage = ActivityFeedImageView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.width))
-            activityFeedImage.fillData(feed: feed)
-            let tapRecognizer = UITapGestureRecognizer()
-            tapRecognizer.numberOfTapsRequired = 1
-            if displayData == "popular" {
-                activityFeedImage.OnTheGOText.isHidden = true
-            }
-            tapRecognizer.addTarget(self, action: #selector(self.toggleFullscreen))
-            activityFeedImage.addGestureRecognizer(tapRecognizer)
-            
-            activityFeedImage.clipsToBounds = true
-            
-            self.addSubview(activityFeedImage)
-        case "quick-itinerary":
-            if self.displayData == "popitinerary" {
-                popularItinerary = PopularItinerary(frame: CGRect(x: 0, y: 10, width: self.frame.width, height: 400))
-                let tapRecognizer = UITapGestureRecognizer()
-                tapRecognizer.numberOfTapsRequired = 1
-                tapRecognizer.addTarget(self, action: #selector(self.gotoDetail))
-                popularItinerary.addGestureRecognizer(tapRecognizer)
-                popularItinerary.fillData(feed: feed)
-                self.addSubview(popularItinerary)
-            }else{
-                activityQuickItinerary = ActivityFeedQuickItinerary(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.width))
-                let tapRecognizer = UITapGestureRecognizer()
-                tapRecognizer.numberOfTapsRequired = 1
-                tapRecognizer.addTarget(self, action: #selector(self.gotoDetail))
-                activityQuickItinerary.addGestureRecognizer(tapRecognizer)
-                activityQuickItinerary.fillData(feed: feed)
-                self.addSubview(activityQuickItinerary)
-            }
-            
-        case "detail-itinerary":
-            if self.displayData == "popitinerary" {
-                popularItinerary = PopularItinerary(frame: CGRect(x: 0, y: 10, width: self.frame.width, height: 400))
-                let tapRecognizer = UITapGestureRecognizer()
-                tapRecognizer.numberOfTapsRequired = 1
-                tapRecognizer.addTarget(self, action: #selector(self.showDetailedItinerary(_:)))
-                popularItinerary.addGestureRecognizer(tapRecognizer)
-                popularItinerary.fillData(feed: feed)
-                self.addSubview(popularItinerary)
-                
-            }else{
-                activityDetailItinerary = ActivityDetailItinerary(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.width))
-                activityDetailItinerary.fillData(feed: feed)
-                self.addSubview(activityDetailItinerary)
-                let tapRecognizer = UITapGestureRecognizer()
-                tapRecognizer.numberOfTapsRequired = 1
-                tapRecognizer.addTarget(self, action: #selector(self.showDetailedItinerary(_:)))
-                activityDetailItinerary.addGestureRecognizer(tapRecognizer)
-            }
-            
-        default:
-            print("default")
-            videosAndPhotosLayout(feed:feed)
-        }
-    }
-    
-    func showDetailItinerary(_ sender: UIButton){
-        
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let controller = storyboard.instantiateViewController(withIdentifier: "EachItineraryViewController") as! EachItineraryViewController
-        controller.fromOutSide = feeds["_id"].stringValue
-        globalNavigationController?.setNavigationBarHidden(false, animated: false)
-        globalNavigationController?.pushViewController(controller, animated: true)
-        
-    }
-    
-    func headerLayout(feed:JSON) {
-        
-        var blr: UIView?
-        profileHeader = ActivityProfileHeader(frame: CGRect(x: 0, y: 20, width: self.frame.width, height: 69))
-        
-        self.addSubview(profileHeader)
-        
-        profileHeader.fillProfileHeader(feed:feed)
-        
-        
-        if feed["type"].stringValue == "on-the-go-journey"{
-            profileHeader.localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["startTime"].stringValue, isDate: true)
-            profileHeader.localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["startTime"].stringValue, isDate: false)
-        }else if feed["type"].stringValue == "ended-journey"{
-            profileHeader.localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["endTime"].stringValue, isDate: true)
-            profileHeader.localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["endTime"].stringValue, isDate: false)
-        }else if feed["type"].stringValue == "quick-itinerary"{
-            profileHeader.localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["createdAt"].stringValue, isDate: true)
-            profileHeader.localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["createdAt"].stringValue, isDate: false)
-        }else if feed["type"].stringValue == "detail-itinerary"{
-            profileHeader.localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["startDate"].stringValue, isDate: true)
-            profileHeader.localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["startTime"].stringValue, isDate: false)
-        }else {
-            profileHeader.localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["UTCModified"].stringValue, isDate: true)
-            profileHeader.localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["UTCModified"].stringValue, isDate: false)
-
-        }
-        
-        if feed["thoughts"].stringValue != "" {
-            
-            //  START ACTIVITY TEXT HEADER
-            textHeader = ActivityTextHeader(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 0))
-            textHeader.headerText.attributedText = getThought(feed)
-            textHeader.headerText.sizeToFit()
-            textHeader.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: textHeader.headerText.frame.height + 1.5)
-            self.addSubview(textHeader)
-            textHeader.kindOfJourneyMyLife.isHidden = true
-            //  START ACTIVITY TEXT TAG
-            if feed["videos"].count == 0 && feed["photos"].count == 0 && feed["type"].stringValue != "on-the-go-journey" && feed["imageUrl"] == nil{
-                textTag = ActivityHeaderTag(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 30))
-                textTag.transparentBack()
-                textTag.colorTag(feed: feed)
-                
-                self.addSubview(textTag)
-            }
-            
-        } else {
-            // For header text
-            textHeader = ActivityTextHeader(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 70))
-            textHeader.kindOfJourneyMyLife.isHidden = true
-            switch feed["type"].stringValue {
-            case "on-the-go-journey":
-                setText(text: "Has started a Journey.")
-                
-            case "ended-journey":
-                setText(text: "Has ended this Journey.")
-                
-            case "quick-itinerary":
-                setText(text: "Has uploaded a new Itinerary.")
-                
-            case "detail-itinerary":
-                setText(text: "Has uploaded a new Itinerary.")
-            default:
-                textHeader.headerText.attributedText = getThought(feed)
-            }
-            textHeader.headerText.sizeToFit()
-            textHeader.sizeToFit()
-            textHeader.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: textHeader.headerText.frame.height + 1.5)
-            if(textHeader.headerText.text != "") {
-                                
-                self.addSubview(textHeader)
-            }
-            
-            
-        }
-        
-    }
-    
-    
-    //MARK: - GestureRecognizers
     
     func gotoDetail(_ sender: UIButton){
         if currentUser != nil {
@@ -487,94 +504,8 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
         }
     }
     
-    func setText(text: String) {
-        textHeader.headerText.text = text
-        //        self.addSubview(textHeader)
-    }
     
-    func addPhotoToLayout(_ post: JSON, startIndex: Int) {
-        centerView.horizontalScrollForPhotos.removeAll()
-        for i in startIndex ..< post["photos"].count {
-            let photosButton = UIImageView(frame: CGRect(x: 10, y: 5, width: 87, height: 87))
-            photosButton.image = UIImage(named: "logo-default")
-            photosButton.contentMode = UIViewContentMode.scaleAspectFill
-            
-            photosButton.frame.size.height = 82
-            photosButton.frame.size.width = 82
-            let urlStr = getImageURL(post["photos"][i]["name"].stringValue, width: 300)
-            photosButton.hnk_setImageFromURL(urlStr)
-            let tapGestureRecognizer = UITapGestureRecognizer(target:self, action: #selector(ActivityFeedsLayout.openSinglePhoto(_:)))
-            photosButton.isUserInteractionEnabled = true
-            photosButton.addGestureRecognizer(tapGestureRecognizer)
-            //photosButton.layer.cornerRadius = 5.0
-            photosButton.tag = i
-            photosButton.clipsToBounds = true
-            centerView.horizontalScrollForPhotos.addSubview(photosButton)
-        }
-        centerView.horizontalScrollForPhotos.layoutSubviews()
-        centerView.morePhotosView.contentSize = CGSize(width: centerView.horizontalScrollForPhotos.frame.width, height: centerView.horizontalScrollForPhotos.frame.height)
-    }
-    
-    func openSinglePhoto(_ sender: AnyObject) {
-        let singlePhotoController = storyboard?.instantiateViewController(withIdentifier: "singlePhoto") as! SinglePhotoViewController
-        singlePhotoController.fetchType = photoVCType.FROM_ACTIVITY
-        singlePhotoController.index = sender.view.tag
-        singlePhotoController.postId = feeds["_id"].stringValue
-        globalNavigationController.pushViewController(singlePhotoController, animated: true)
-    }
-    
-    func videoToPlay ()  {
-        
-        if isVideoViewInRangeToPlay() {
-            if !self.willPlay {
-                self.videoContainer.showLoadingIndicator(color: (feeds["type"].stringValue == "travel-life" ? mainOrangeColor : endJourneyColor))
-            }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
-                self.videoContainer.stopLoadingIndicator()
-                if self.isVideoViewInRangeToPlay() {
-                    if !self.willPlay {
-//                        self.videoContainer.playBtn.isHidden = true                        
-                        self.willPlay = true
-                        var videoUrl = URL(string:self.feeds["videos"][0]["name"].stringValue)
-                        if(videoUrl == nil) {
-                            videoUrl = URL(string:self.feeds["videos"][0]["localUrl"].stringValue)
-                        }
-                        self.player.setUrl(videoUrl!)
-                        self.player.playFromBeginning()
-                    }
-                }
-                else {
-                    self.player.stop()
-                    self.willPlay = false
-//                    self.videoContainer.playBtn.isHidden = false
-                    self.videoContainer.stopLoadingIndicator()
-                }
-            })
-        }
-        else {
-            self.player.stop()
-            self.willPlay = false
-//            self.videoContainer.playBtn.isHidden = false
-            self.videoContainer.stopLoadingIndicator()
-        }
-    }
-    
-    func isVideoViewInRangeToPlay() -> Bool {
-        let min = self.frame.origin.y + self.videoContainer.frame.origin.y
-        let max = min + self.videoContainer.frame.size.height
-        let scrollMin = self.scrollView.contentOffset.y
-        let scrollMax = scrollMin + self.scrollView.frame.height
-       
-        if (scrollMin < min && scrollMax > max ) {
-            return true
-        }
-        
-        return false
-    }
-    
-    func playerReady(_ player: Player) {
-        //videoToPlay()
-    }
+    //MARK: - Actions
     
     func rateButtonTapped(_ sender: AnyObject) {
         
@@ -595,17 +526,8 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
         let ratingDialog = AddRating(frame: CGRect(x: 0, y: 0, width: activityFeed.view.frame.width - 40, height: 400))
         ratingDialog.center = CGPoint(x: activityFeed.view.frame.width/2, y: activityFeed.view.frame.height/2)
         
-        ratingDialog.postReview.addTarget(self, action: #selector(ActivityFeedsLayout.closeDialog(_:)), for: .touchUpInside)
+        ratingDialog.postReview.addTarget(self, action: #selector(ActivityFeedsLayout.exitDialog(_:)), for: .touchUpInside)
         blackBg.addSubview(ratingDialog)
-        
-    }
-    
-    func closeDialog(_ sender: AnyObject) {
-        
-        blackBg.isHidden = true
-        //        checkInPost.rateButton.isHidden = true
-        //        checkInPost.ratingLabel.isHidden = false
-        //        checkInPost.ratingStack.isHidden = false
         
     }
     
@@ -635,6 +557,70 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
         let goodDate = dateFormatter.string(from: date!)
         return goodDate
         
+    }
+    
+    
+    //MARK:- Video Play Handling
+    
+    func videoToPlay ()  {
+        
+        if isVideoViewInRangeToPlay() {
+            if !self.willPlay {
+                self.videoContainer.showLoadingIndicator(color: (feeds["type"].stringValue == "travel-life" ? mainOrangeColor : endJourneyColor))
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
+                self.videoContainer.stopLoadingIndicator()
+                if self.isVideoViewInRangeToPlay() {
+                    if !self.willPlay {
+                        //                        self.videoContainer.playBtn.isHidden = true                        
+                        self.willPlay = true
+                        var videoUrl = URL(string:self.feeds["videos"][0]["name"].stringValue)
+                        if(videoUrl == nil) {
+                            videoUrl = URL(string:self.feeds["videos"][0]["localUrl"].stringValue)
+                        }
+                        self.player.setUrl(videoUrl!)
+                        self.player.playFromBeginning()
+                    }
+                }
+                else {
+                    self.player.stop()
+                    self.willPlay = false
+                    //                    self.videoContainer.playBtn.isHidden = false
+                    self.videoContainer.stopLoadingIndicator()
+                }
+            })
+        }
+        else {
+            self.player.stop()
+            self.willPlay = false
+            //            self.videoContainer.playBtn.isHidden = false
+            self.videoContainer.stopLoadingIndicator()
+        }
+    }
+    
+    func isVideoViewInRangeToPlay() -> Bool {
+        let min = self.frame.origin.y + self.videoContainer.frame.origin.y
+        let max = min + self.videoContainer.frame.size.height
+        let scrollMin = self.scrollView.contentOffset.y
+        let scrollMax = scrollMin + self.scrollView.frame.height
+        
+        if (scrollMin < min && scrollMax > max ) {
+            return true
+        }
+        
+        return false
+    }
+    
+    func playerReady(_ player: Player) {
+        //videoToPlay()
+    }
+    
+    
+    //MARK: - Helper
+    
+    func setText(text: String) {
+        textHeader.headerText.text = text
+        //        self.addSubview(textHeader)
     }
     
     func getCategoryImage(name: String) -> String {

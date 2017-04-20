@@ -292,16 +292,6 @@ class PopularLayout: VerticalLayout, PlayerDelegate {
         }
     }
     
-    func showDetailItinerary(_ sender: UIButton){
-        
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let controller = storyboard.instantiateViewController(withIdentifier: "EachItineraryViewController") as! EachItineraryViewController
-        controller.fromOutSide = feeds["_id"].stringValue
-        globalNavigationController?.setNavigationBarHidden(false, animated: false)
-        globalNavigationController?.pushViewController(controller, animated: true)
-        
-    }
-    
     func headerLayout(feed:JSON) {
         
         profileHeader = ActivityProfileHeader(frame: CGRect(x: 0, y: 20, width: self.frame.width, height: 69))

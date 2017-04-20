@@ -482,7 +482,7 @@ class MyLifeActivityFeedsLayout: VerticalLayout, PlayerDelegate {
         let ratingDialog = AddRating(frame: CGRect(x: 0, y: 0, width: activityFeed.view.frame.width - 40, height: 400))
         ratingDialog.center = CGPoint(x: activityFeed.view.frame.width/2, y: activityFeed.view.frame.height/2)
         
-        ratingDialog.postReview.addTarget(self, action: #selector(ActivityFeedsLayout.closeDialog(_:)), for: .touchUpInside)
+        ratingDialog.postReview.addTarget(self, action: #selector(ActivityFeedsLayout.exitDialog(_:)), for: .touchUpInside)
         blackBg.addSubview(ratingDialog)
         
     }
