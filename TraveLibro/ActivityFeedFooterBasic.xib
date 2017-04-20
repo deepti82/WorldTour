@@ -235,7 +235,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KYg-8S-fHf">
-                                    <rect key="frame" x="88" y="3" width="54" height="41"/>
+                                    <rect key="frame" x="78" y="3" width="54" height="41"/>
                                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="10"/>
                                     <state key="normal" title="0 Comment">
                                         <color key="titleColor" red="0.17254901960784313" green="0.20392156862745098" blue="0.3411764705882353" alpha="1" colorSpace="calibratedRGB"/>
@@ -250,7 +250,7 @@
                                 <constraint firstItem="KYg-8S-fHf" firstAttribute="top" secondItem="0gE-LF-giW" secondAttribute="top" constant="3" id="5Iv-PT-AHX"/>
                                 <constraint firstAttribute="bottom" secondItem="O7p-Qq-lQR" secondAttribute="bottom" constant="3" id="Bgs-C1-fcr"/>
                                 <constraint firstItem="KYg-8S-fHf" firstAttribute="centerY" secondItem="gdo-V6-Bi9" secondAttribute="centerY" id="DW5-mc-Or7"/>
-                                <constraint firstItem="KYg-8S-fHf" firstAttribute="leading" secondItem="gdo-V6-Bi9" secondAttribute="trailing" constant="13" id="L0T-aa-336"/>
+                                <constraint firstItem="KYg-8S-fHf" firstAttribute="leading" secondItem="gdo-V6-Bi9" secondAttribute="trailing" constant="3" id="L0T-aa-336"/>
                                 <constraint firstItem="O7p-Qq-lQR" firstAttribute="leading" secondItem="0oe-4v-fLt" secondAttribute="trailing" constant="-1" id="ONl-7S-mFI"/>
                                 <constraint firstItem="0oe-4v-fLt" firstAttribute="leading" secondItem="0gE-LF-giW" secondAttribute="leading" constant="8" id="WMM-PG-tnf"/>
                                 <constraint firstItem="gdo-V6-Bi9" firstAttribute="leading" secondItem="O7p-Qq-lQR" secondAttribute="trailing" constant="8" id="WNh-X8-x38"/>

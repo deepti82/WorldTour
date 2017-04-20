@@ -55,7 +55,7 @@
                                                         <constraint firstAttribute="width" secondItem="6xd-vA-ZIM" secondAttribute="height" multiplier="1:1" id="WLr-Sn-Xng"/>
                                                     </constraints>
                                                     <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
-                                                    <state key="normal" title="Button" image="C4EB999F-6467-4CB3-860E-A636B69CBCDD"/>
+                                                    <state key="normal" title="Button" image="E0766A2F-3BCA-4F21-807A-228E8A443B63"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="velocity">
                                                             <real key="value" value="2"/>
@@ -296,7 +296,7 @@
         </view>
     </objects>
     <resources>
-        <image name="C4EB999F-6467-4CB3-860E-A636B69CBCDD" width="128" height="128">
+        <image name="E0766A2F-3BCA-4F21-807A-228E8A443B63" width="128" height="128">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
