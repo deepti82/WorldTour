@@ -106,7 +106,7 @@ class UserProfileSettingsViewController: UIViewController, UITableViewDataSource
             
         else if (indexPath as NSIndexPath).section == 2 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "aboutCell") as! AboutTableViewCell
-            cell.aboutTL.text = labels[(indexPath as NSIndexPath).item]
+            cell.aboutTL.text = section2Labels[(indexPath as NSIndexPath).item]
             return cell
         }
         
