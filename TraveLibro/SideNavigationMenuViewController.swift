@@ -231,6 +231,8 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
             loginLabel.isHidden = false
             profileName.isHidden = true
         }
+        
+        profile.flag.isHidden = true
     }
     
     @IBAction func profileTap(_ sender: AnyObject) {
