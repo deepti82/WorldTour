@@ -23,6 +23,9 @@ func sharedInstance(newFrame: CGRect) -> FooterViewNew {
 
 class FooterViewNew: UIView {
     
+    
+    @IBOutlet weak var backView: UIView!
+    
     @IBOutlet weak var activityButton: UIButton!
     @IBOutlet weak var traveLifeButton: UIButton!
     @IBOutlet weak var myLifeButton: UIButton!
@@ -52,6 +55,8 @@ class FooterViewNew: UIView {
         super.init(frame: frame)
         
         loadViewFromNib ()
+        
+        backView.backgroundColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 1)
         
         badgeButton.layer.cornerRadius = (badgeButton.frame.size.width/2.0)
         self.alertView.bringSubview(toFront: badgeButton)
