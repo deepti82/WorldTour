@@ -10,8 +10,7 @@ class ActivityFeedFooterBasic: UIView {
     var postTop:JSON!
     
     
-    @IBOutlet weak var followBtn: UIButton!
-    @IBOutlet weak var dropShadowActivity: UIView!
+    @IBOutlet weak var followBtn: UIButton!    
     @IBOutlet var starImageArray: [UIImageView]!
     @IBOutlet weak var ratingStack: UIStackView!
     @IBOutlet weak var rateThisButton: UIButton!
@@ -21,9 +20,11 @@ class ActivityFeedFooterBasic: UIView {
     @IBOutlet weak var shareButton: UIButton!
     @IBOutlet weak var optionButton: UIButton!
     @IBOutlet weak var likeHeart: UILabel!
-    @IBOutlet weak var likeViewLabel: UILabel!
-    @IBOutlet weak var commentIcon: UIImageView!
-    @IBOutlet weak var commentCount: UILabel!
+    @IBOutlet weak var commentIcon: UIImageView!    
+    @IBOutlet weak var likeCountButton: UIButton!
+    @IBOutlet weak var commentCountButton: UIButton!
+    @IBOutlet weak var bottomView: UIView!
+    
     var topLayout:VerticalLayout!
     var backgroundReview: UIView!
     var rating: AddRating!
@@ -82,14 +83,6 @@ class ActivityFeedFooterBasic: UIView {
         commentButton.imageView?.contentMode = .scaleAspectFit
         likeButton.imageView?.contentMode = .scaleAspectFit
         self.likeHeart.text = String(format: "%C", faicon["likes"]!)
-
-        let tapout1 = UITapGestureRecognizer(target: self, action: #selector(ActivityFeedFooterBasic.showLike(_:)))
-        tapout1.numberOfTapsRequired = 1
-        likeViewLabel.addGestureRecognizer(tapout1)
-
-        let tapout2 = UITapGestureRecognizer(target: self, action: #selector(ActivityFeedFooterBasic.showComment(_:)))
-        tapout2.numberOfTapsRequired = 1
-        commentCount.addGestureRecognizer(tapout2)
         
         do {
             audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: like))
@@ -400,6 +393,10 @@ class ActivityFeedFooterBasic: UIView {
     
     //MARK: - Like
     
+    @IBAction func likeCountTabbed(_ sender: UIButton) {
+        self.showLike()
+    }
+    
     @IBAction func sendLikes(_ sender: UIButton) {
         if currentUser != nil {
             audioPlayer.play()
@@ -502,7 +499,7 @@ class ActivityFeedFooterBasic: UIView {
         }
     }
     
-    func showLike(_ sender: UITapGestureRecognizer) {
+    func showLike() {
         print("in footer tap out \(postTop)")
         if currentUser != nil {
             let feedVC = storyboard!.instantiateViewController(withIdentifier: "likeTable") as! LikeUserViewController
@@ -520,12 +517,12 @@ class ActivityFeedFooterBasic: UIView {
         if(post_likeCount != nil) {
             self.likeCount = post_likeCount
             if(post_likeCount == 0) {
-                self.likeViewLabel.text = "0 Like"
+                self.likeCountButton.setTitle("0 Like", for: .normal)
             } else if(post_likeCount == 1) {
-                self.likeViewLabel.text = "1 Like"
+                self.likeCountButton.setTitle("1 Like", for: .normal)
             } else if(post_likeCount > 1) {
                 let counts = String(post_likeCount)
-                self.likeViewLabel.text = "\(counts) Likes"
+                self.likeCountButton.setTitle("\(counts) Likes", for: .normal)
             }
         }
         self.checkHideView()
@@ -533,6 +530,10 @@ class ActivityFeedFooterBasic: UIView {
     
     
     //MARK: - Comment
+    
+    @IBAction func commentCountTabbed(_ sender: UIButton) {
+        showComment()
+    }
     
     @IBAction func sendComments(_ sender: UIButton) {
         if currentUser != nil {
@@ -544,7 +545,7 @@ class ActivityFeedFooterBasic: UIView {
         }
     }
     
-    func showComment(_ sender: UITapGestureRecognizer) {
+    func showComment() {
         if currentUser != nil {
             toCommentPage()
         }
@@ -598,12 +599,14 @@ class ActivityFeedFooterBasic: UIView {
         if(post_commentCount != nil) {
             self.commentCounts = post_commentCount
             if(post_commentCount == 0) {
-                self.commentCount.text = "0 Comment"
+                self.commentCountButton.setTitle("0 Comment", for: .normal)
             } else if(post_commentCount == 1) {
-                self.commentCount.text = "1 Comment"
+                self.commentCountButton.setTitle("1 Comment", for: .normal)
             } else if(post_commentCount > 1) {
                 let counts = String(post_commentCount)
-                self.commentCount.text = "\(counts) Comments"
+                self.commentCountButton.setTitle("\(counts) Comments", for: .normal)
+                
+                
             }
         }
         self.checkHideView()
