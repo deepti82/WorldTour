@@ -91,7 +91,15 @@ class ActivityFeedFooter: UIView {
             optionButton.isHidden = false
         }else{
             optionButton.isHidden = true
-        }        
+        }
+        
+        if (isSelfUser(otherUserID: postTop["user"]["_id"].stringValue) && self.type != "MyLifeFeeds") {
+            optionButton.isHidden = true
+        }
+        else {
+            optionButton.isHidden = false
+        }
+        
     }
         
     
@@ -305,7 +313,7 @@ class ActivityFeedFooter: UIView {
     //MARK: - Option
     
     @IBAction func optionClick(_ sender: UIButton) {
-        
+//        print(postTop)
         let actionSheetControllerIOS8: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         if(self.type == "MyLifeFeeds") {

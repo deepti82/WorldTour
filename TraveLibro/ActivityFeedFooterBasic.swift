@@ -111,7 +111,6 @@ class ActivityFeedFooterBasic: UIView {
             lineView.isHidden = true
         }
         
-        
         if currentUser != nil {
             optionButton.isHidden = false
             rateThisButton.isHidden = false
@@ -148,6 +147,14 @@ class ActivityFeedFooterBasic: UIView {
                 ratingStack.isHidden = true
                 rateThisButton.isHidden = true
             }
+        }
+        
+        
+        if (isSelfUser(otherUserID: postTop["user"]["_id"].stringValue) && self.type != "MyLifeFeeds") {
+            optionButton.isHidden = true
+        }
+        else {
+            optionButton.isHidden = false
         }
     }
     
@@ -488,8 +495,8 @@ class ActivityFeedFooterBasic: UIView {
     //MARK: - Options
     
     @IBAction func optionClick(_ sender: UIButton) {
-        print(user.getExistingUser())
-        print(postTop)
+//        print(user.getExistingUser())
+//        print(postTop)
         var shouldPresent = true
         let actionSheetControllerIOS8: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
@@ -544,7 +551,8 @@ class ActivityFeedFooterBasic: UIView {
                 }
                 actionSheetControllerIOS8.addAction(cancel)
                 
-            } else {
+            } 
+            else {
                 if isBuddy() {
                     let DeletePost: UIAlertAction = UIAlertAction(title: "Delete Activity", style: .default)
                     { action -> Void in
@@ -570,8 +578,7 @@ class ActivityFeedFooterBasic: UIView {
                     
                 }
                 
-                let reportActionButton: UIAlertAction = UIAlertAction(title: "Hide", style: .default)
-                {action -> Void in
+                let reportActionButton: UIAlertAction = UIAlertAction(title: "Hide", style: .default) {action -> Void in
                     let alert = UIAlertController(title: "Hide", message: "Hided successfuly", preferredStyle: UIAlertControllerStyle.alert)
                     alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
                     showPopover(optionsController: alert, sender: sender, vc: globalNavigationController)
@@ -579,8 +586,7 @@ class ActivityFeedFooterBasic: UIView {
                     //                    globalNavigationController.present(alert, animated: true, completion: nil)
                 }
                 
-                let reportActionButton1: UIAlertAction = UIAlertAction(title: "Report", style: .default)
-                {action -> Void in
+                let reportActionButton1: UIAlertAction = UIAlertAction(title: "Report", style: .default) {action -> Void in
                     let alert = UIAlertController(title: "Report", message: "Reported Successfully", preferredStyle: UIAlertControllerStyle.alert)
                     alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
                     showPopover(optionsController: alert, sender: sender, vc: globalNavigationController)
