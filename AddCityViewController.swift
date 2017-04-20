@@ -7,7 +7,7 @@ import Toaster
 class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate, UITextFieldDelegate {
     var loader = LoadingOverlay()
     var places: [JSON] = []
-    let locationManager = CLLocationManager()
+    var locationManager : CLLocationManager?
     var locValue:CLLocationCoordinate2D!
     var locationData: String!
     internal var isFromSettings: Bool!
@@ -16,57 +16,7 @@ class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var cityTextField: UITextField!
     @IBOutlet weak var mainTableView: UITableView!
     
-    @IBAction func detectLocationButton(_ sender: AnyObject) {
-        locationManager.requestAlwaysAuthorization()
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.startMonitoringSignificantLocationChanges()
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let locValue:CLLocationCoordinate2D!
-        if(manager.location != nil) {
-            locValue = manager.location!.coordinate
-            request.getLocation(locValue.latitude, long: locValue.longitude, completion: { (response) in
-                
-                DispatchQueue.main.async(execute: {
-                    print(response);
-                    if (response.error != nil) {
-                        
-                        print("error: \(response.error?.localizedDescription)")
-                        
-                    }
-                        
-                    else {
-                        
-                        if response["value"].boolValue {
-                            
-                            print("response: \(response)")
-                            self.locationData = response["data"]["name"].string
-                            print("location: \(self.locationData)")
-                            
-                            if self.locationData != nil {                                
-                                self.cityTextField.text = self.locationData!
-                                if (self.isFromSettings != nil && self.isFromSettings == true && self.isFromLocalLife == false) {
-                                    //TODO:Check this if autoSave should be supported
-                                }
-                                else {
-                                    self.saveCity()                                    
-                                }
-                            }
-                        }
-                        else {
-                            
-                            print("response error: \(response["data"])")
-                            
-                        }
-                    }
-                })
-            })
-        } else {
-            print("Not able to detect the location");
-        }        
-    }
+    //MARK:- Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -101,7 +51,7 @@ class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         mainTableView.tableFooterView = UIView()
         
-        detectLocationButton(UIView())
+        self.detectLocation()
         
         if currentUser["homeCity"] != nil {
             cityTextField.text = currentUser["homeCity"].string!            
@@ -298,7 +248,111 @@ class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     
-
+    //MARK: - -- Location --
+    
+    func detectLocation() {
+        
+        self.stopDetectingLocation()
+        
+        locationManager = CLLocationManager()
+        locationManager?.requestWhenInUseAuthorization()
+        locationManager?.delegate = self
+        locationManager?.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager?.startMonitoringSignificantLocationChanges()
+        self.updateStatus(status: CLLocationManager.authorizationStatus())
+    }
+    
+    func stopDetectingLocation() {
+        locationManager?.stopUpdatingLocation()
+        locationManager = nil
+    }
+    
+    func updateStatus(status: CLAuthorizationStatus) {
+        switch status {
+            
+        case CLAuthorizationStatus.notDetermined:
+            self.requestAuthorization()
+            break
+            
+        case CLAuthorizationStatus.authorizedAlways:
+            fallthrough
+        case CLAuthorizationStatus.authorizedWhenInUse:
+            locationManager?.startUpdatingLocation()
+            break
+            
+        case CLAuthorizationStatus.denied:
+            fallthrough
+        case CLAuthorizationStatus.restricted:            
+            handleRestrictedMode(onVC: self)
+            break
+        }
+    }
+    
+    func requestAuthorization() {
+        locationManager?.requestWhenInUseAuthorization()
+        locationManager?.startUpdatingLocation()
+    }
+    
+    //MARK:-  Location Delegates
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        let locValue:CLLocationCoordinate2D!
+       
+        if(manager.location != nil) {
+            locValue = manager.location!.coordinate
+            
+            self.stopDetectingLocation()
+            
+            request.getLocation(locValue.latitude, long: locValue.longitude, completion: { (response) in
+                
+                DispatchQueue.main.async(execute: {
+                    print(response);
+                    if (response.error != nil) {
+                        print("error: \(response.error?.localizedDescription)")
+                    }
+                        
+                    else {                        
+                        if response["value"].boolValue {
+                            
+                            print("response: \(response)")
+                            self.locationData = response["data"]["name"].string
+                            print("location: \(self.locationData)")
+                            
+                            if self.locationData != nil {                                
+                                self.cityTextField.text = self.locationData!
+                                if (self.isFromSettings != nil && self.isFromSettings == true && self.isFromLocalLife == false) {
+                                    //TODO:Check this if autoSave should be supported
+                                }
+                                else {
+                                    self.saveCity()                                    
+                                }
+                            }
+                        }
+                        else {
+                            
+                            print("response error: \(response["data"])")
+                            
+                        }
+                    }
+                })
+            })
+        } else {
+            print("Not able to detect the location");
+        }        
+    }    
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        
+        print("Error while updating location " + error.localizedDescription)
+        
+    }    
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        print("\n didChangeAuthorization : \(status.rawValue)")
+        self.updateStatus(status: status)
+    }    
+    
 }
 
 class addCityTableviewCell: UITableViewCell {

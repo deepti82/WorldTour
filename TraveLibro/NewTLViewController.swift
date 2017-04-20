@@ -2831,10 +2831,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         case CLAuthorizationStatus.denied:
             fallthrough
         case CLAuthorizationStatus.restricted:            
-            self.handleRestrictedMode()
-            break
-            
-            //        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "LabelHasbeenUpdated"), object: nil)        
+            handleRestrictedMode(onVC: self)
+            break        
         }
     }
     
@@ -2890,28 +2888,5 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         errorAlert.addAction(cancelAction)
         
         self.navigationController?.present(errorAlert, animated: true, completion: nil)
-    }
-    
-    func handleRestrictedMode(){
-        print("\n handle restricted mode")
-        
-        let errorAlert = UIAlertController(title: "Turn on Location Services", message: "1. Tap Settings \n 2. Tap Location \n Tap While Using the App", preferredStyle: UIAlertControllerStyle.alert)
-        
-        let settingsAction = UIAlertAction(title: "Settings", style: .default) { (_) -> Void in
-            guard let settingsUrl = URL(string: UIApplicationOpenSettingsURLString) else {
-                return
-            }            
-            if UIApplication.shared.canOpenURL(settingsUrl) {
-                UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
-                    print("Settings opened: \(success)") // Prints true
-                })
-            }
-        }
-        errorAlert.addAction(settingsAction)
-        
-        let cancelAction = UIAlertAction(title: "Not Now", style: .default, handler: nil)
-        errorAlert.addAction(cancelAction)
-        
-        self.navigationController?.present(errorAlert, animated: true, completion: nil)
-    }
+    }    
 }

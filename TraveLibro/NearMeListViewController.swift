@@ -20,7 +20,7 @@ class NearMeListViewController: UIViewController, UITableViewDataSource, UITable
     var nearMeAddress = NSMutableAttributedString()
     var lat: Double!
     var long: Double!
-    let locationManager = CLLocationManager()
+    var locationManager : CLLocationManager!
     let border = CALayer()
     let layer1 = CAShapeLayer()
     var fromLocal:Bool = false
@@ -36,28 +36,10 @@ class NearMeListViewController: UIViewController, UITableViewDataSource, UITable
         navigationController?.hidesBarsOnSwipe = false
         //nearMeListTableView.isHidden = true
         setTopNavigation(nearMeType)
-        locationManager.requestAlwaysAuthorization()
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.startMonitoringSignificantLocationChanges()
+        self.detectLocation()
         nearMeListTableView.delegate = self
         nearMeListTableView.dataSource = self
         
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
-        if manager.location?.coordinate != nil {
-            let locValue: CLLocationCoordinate2D = manager.location!.coordinate
-            lat = locValue.latitude
-            long = locValue.longitude
-            getNearMeValues()
-        }
-        
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print("Error while updating location " + error.localizedDescription)
     }
     
     func getNearMeValues() {
@@ -205,7 +187,73 @@ class NearMeListViewController: UIViewController, UITableViewDataSource, UITable
     
     
     func goBack(_ sender:AnyObject) {
-        self.navigationController!.popViewController(animated: true)
+        _ = self.navigationController!.popViewController(animated: true)
+    }
+    
+    //MARK: - -- Location --
+    
+    func detectLocation() {
+        
+        self.stopDetectingLocation()
+        
+        locationManager = CLLocationManager()
+        locationManager?.requestWhenInUseAuthorization()
+        locationManager?.delegate = self
+        locationManager?.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager?.startMonitoringSignificantLocationChanges()
+        self.updateStatus(status: CLLocationManager.authorizationStatus())
+    }
+    
+    func stopDetectingLocation() {
+        locationManager?.stopUpdatingLocation()
+        locationManager = nil
+    }
+    
+    func updateStatus(status: CLAuthorizationStatus) {
+        switch status {
+            
+        case CLAuthorizationStatus.notDetermined:
+            self.requestAuthorization()
+            break
+            
+        case CLAuthorizationStatus.authorizedAlways:
+            fallthrough
+        case CLAuthorizationStatus.authorizedWhenInUse:
+            locationManager?.startUpdatingLocation()
+            break
+            
+        case CLAuthorizationStatus.denied:
+            fallthrough
+        case CLAuthorizationStatus.restricted:            
+            handleRestrictedMode(onVC: self)
+            break
+        }
+    }
+    
+    func requestAuthorization() {
+        locationManager?.requestWhenInUseAuthorization()
+        locationManager?.startUpdatingLocation()
+    }
+
+    
+    //MARK: - Location Delegates
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if manager.location?.coordinate != nil {
+            let locValue: CLLocationCoordinate2D = manager.location!.coordinate
+            lat = locValue.latitude
+            long = locValue.longitude
+            getNearMeValues()
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Error while updating location " + error.localizedDescription)
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        print("\n didChangeAuthorization : \(status.rawValue)")
+        self.updateStatus(status: status)        
     }
     
     
