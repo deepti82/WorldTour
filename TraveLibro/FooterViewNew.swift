@@ -53,7 +53,7 @@ class FooterViewNew: UIView {
         
         loadViewFromNib ()
         
-        badgeButton.layer.cornerRadius = 5.0
+        badgeButton.layer.cornerRadius = (badgeButton.frame.size.width/2.0)
         self.alertView.bringSubview(toFront: badgeButton)
         
         let tapout = UITapGestureRecognizer(target: self, action: #selector(self.gotoActivity))
@@ -250,7 +250,7 @@ class FooterViewNew: UIView {
             if notificationCount > 0 {
                 self.badgeButton.isHidden = false
                 self.badgeButton.setTitle(String(notificationCount), for: .normal)
-                self.badgeButton.sizeToFit()
+                self.badgeButton.titleLabel?.adjustsFontSizeToFitWidth = true
                 self.bringSubview(toFront: self.badgeButton)
             }
             else {
