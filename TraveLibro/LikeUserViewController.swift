@@ -126,7 +126,10 @@ class LikeUserViewController: UITableViewController {
         
         setFollowButtonImage(button: cell.followButton, followType: likeDataArray[indexPath.row]["following"].intValue, otherUserID: likeDataArray[indexPath.row]["_id"].stringValue)
         
+        cell.followButton.isHidden = true
+        
         makeBuddiesTLProfilePicture(cell.profileImage)
+        
         return cell
     }
     
