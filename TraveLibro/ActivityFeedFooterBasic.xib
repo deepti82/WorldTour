@@ -23,6 +23,8 @@
                 <outlet property="commentIcon" destination="gdo-V6-Bi9" id="No9-iU-B9e"/>
                 <outlet property="followBtn" destination="kn4-Pj-OTq" id="Al5-ac-595"/>
                 <outlet property="footerColorView" destination="HWH-5K-hPB" id="LWf-Ax-LCP"/>
+                <outlet property="leadingToRateThisConstraint" destination="wVn-v9-31f" id="x6W-dn-XV1"/>
+                <outlet property="leadingToRatingStackConstraint" destination="lm1-23-ObV" id="p7N-a0-MGZ"/>
                 <outlet property="likeButton" destination="czX-nC-TiV" id="IXM-Qs-W3L"/>
                 <outlet property="likeCountButton" destination="O7p-Qq-lQR" id="kob-ej-B0p"/>
                 <outlet property="likeHeart" destination="0oe-4v-fLt" id="z1k-n2-BrS"/>

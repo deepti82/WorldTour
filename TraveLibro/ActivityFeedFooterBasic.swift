@@ -25,6 +25,9 @@ class ActivityFeedFooterBasic: UIView {
     @IBOutlet weak var commentCountButton: UIButton!
     @IBOutlet weak var bottomView: UIView!
     
+    @IBOutlet weak var leadingToRatingStackConstraint: NSLayoutConstraint!    
+    @IBOutlet weak var leadingToRateThisConstraint: NSLayoutConstraint!
+    
     var topLayout:VerticalLayout!
     var backgroundReview: UIView!
     var rating: AddRating!
@@ -152,9 +155,13 @@ class ActivityFeedFooterBasic: UIView {
         
         if (isSelfUser(otherUserID: postTop["user"]["_id"].stringValue) && self.type != "MyLifeFeeds") {
             optionButton.isHidden = true
+            leadingToRatingStackConstraint.constant = CGFloat(-30)
+            leadingToRateThisConstraint.constant = CGFloat(-30)
         }
         else {
             optionButton.isHidden = false
+            leadingToRatingStackConstraint.constant = CGFloat(8)
+            leadingToRateThisConstraint.constant = CGFloat(8)
         }
     }
     
