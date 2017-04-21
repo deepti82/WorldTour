@@ -719,7 +719,7 @@ class ActivityFeedFooterBasic: UIView {
                 return false
             }
         }
-        else if (self.type == "LocalLife"){
+        else {
             if isSelfUser(otherUserID: postTop["postCreator"]["_id"].stringValue) {
                 return true
             }
@@ -727,14 +727,22 @@ class ActivityFeedFooterBasic: UIView {
                 return false
             }
         }
-        else {
-            if ((isSelfUser(otherUserID: postTop["user"]["_id"].stringValue)) || isBuddy()){
-                return true
-            }
-            else {
-                return false
-            }
-        }
+//        else if (self.type == "LocalLife"){
+//            if isSelfUser(otherUserID: postTop["postCreator"]["_id"].stringValue) {
+//                return true
+//            }
+//            else {
+//                return false
+//            }
+//        }
+//        else {
+//            if ((isSelfUser(otherUserID: postTop["user"]["_id"].stringValue)) || isBuddy()){
+//                return true
+//            }
+//            else {
+//                return false
+//            }
+//        }
     }
     
     func checkHideView() {
