@@ -41,7 +41,6 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
         activityScroll.addSubview(refreshControl)
         
         createNavigation()
-        globalActivityFeedsController = self
         activityScroll.delegate = self
         getDarkBackGround(self)
         layout = VerticalLayout(width: screenWidth)
@@ -84,6 +83,9 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        globalActivityFeedsController = self
+        
         self.mainFooter.frame = CGRect(x: 0, y: self.view.frame.height - MAIN_FOOTER_HEIGHT, width: self.view.frame.width, height: MAIN_FOOTER_HEIGHT)
         
         var isEmptyScreenPresent = false

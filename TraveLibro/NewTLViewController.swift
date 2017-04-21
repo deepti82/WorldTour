@@ -2856,7 +2856,9 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
             
             if !isRequestFromNewPost {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
-                    self.newOtg(nil)
+                    if !self.journeyStart {
+                        self.newOtg(nil)
+                    }
                 })                
             }
             else {
