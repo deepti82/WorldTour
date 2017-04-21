@@ -135,7 +135,7 @@ class QuickItineraryPreviewViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        footer.frame = CGRect(x: 0, y: self.view.frame.size.height - FOOTER_HEIGHT, width: screenWidth, height: FOOTER_HEIGHT)
+        footer.frame = CGRect(x: 0, y: self.view.frame.size.height - MAIN_FOOTER_HEIGHT, width: screenWidth, height: MAIN_FOOTER_HEIGHT)
         footerAbove.frame = CGRect(x: 0, y: self.view.frame.size.height - 105, width: screenWidth, height: 40)
     }
     
