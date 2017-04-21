@@ -36,7 +36,7 @@ class QuickItineraryPreviewViewController: UIViewController {
         prev.userPhoto.hnk_setImageFromURL(URL(string: getImageUrl)!)
         if selectedQuickI != "" {
             if quickItinery["coverPhoto"] != nil {
-                prev.displayPiture.hnk_setImageFromURL(getImageURL(quickItinery["coverPhoto"].stringValue, width: 200))
+                prev.displayPiture.hnk_setImageFromURL(getImageURL(quickItinery["coverPhoto"].stringValue, width: BIG_PHOTO_WIDTH))
             }
         }else{
             if globalPostImage.count != 0 {

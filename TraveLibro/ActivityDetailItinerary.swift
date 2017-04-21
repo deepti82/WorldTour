@@ -110,12 +110,12 @@ class ActivityDetailItinerary: UIView {
 //        checkInCount.text = feed["checkInCount"].stringValue
         
         if feed["coverPhoto"] != nil && feed["coverPhoto"] != "" {
-            detailItineraryImage.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(feed["coverPhoto"])", width: 100))
+            detailItineraryImage.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(feed["coverPhoto"])", width: BIG_PHOTO_WIDTH))
         }else{
             if feed["photos"] != nil && feed["photos"] != "" {
-                detailItineraryImage.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(feed["photos"][0]["name"])", width: 100))
+                detailItineraryImage.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(feed["photos"][0]["name"])", width: BIG_PHOTO_WIDTH))
             }else{
-            detailItineraryImage.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(feed["startLocationPic"])", width: 100))
+            detailItineraryImage.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(feed["startLocationPic"])", width: BIG_PHOTO_WIDTH))
             }
         }
         

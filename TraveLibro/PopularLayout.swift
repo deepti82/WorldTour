@@ -116,7 +116,7 @@ class PopularLayout: VerticalLayout, PlayerDelegate {
             
             self.addSubview(mainPhoto)
             
-            let imgStr = getImageURL(feed["photos"][0]["name"].stringValue, width: 300)
+            let imgStr = getImageURL(feed["photos"][0]["name"].stringValue, width: BIG_PHOTO_WIDTH)
             
             cache.fetch(URL: imgStr).onSuccess({ (data) in
                 self.mainPhoto.image = UIImage(data: data as Data)
@@ -435,7 +435,7 @@ class PopularLayout: VerticalLayout, PlayerDelegate {
             
             photosButton.frame.size.height = 82
             photosButton.frame.size.width = 82
-            let urlStr = getImageURL(post["photos"][i]["name"].stringValue, width: 300)
+            let urlStr = getImageURL(post["photos"][i]["name"].stringValue, width: BIG_PHOTO_WIDTH)
             photosButton.hnk_setImageFromURL(urlStr)
             let tapGestureRecognizer = UITapGestureRecognizer(target:self, action: #selector(PopularLayout.openSinglePhoto(_:)))
             photosButton.isUserInteractionEnabled = true

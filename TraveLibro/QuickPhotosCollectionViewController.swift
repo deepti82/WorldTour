@@ -84,7 +84,7 @@ class QuickPhotosCollectionViewController: UIViewController, UICollectionViewDel
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "QCell", for: indexPath) as! quickCell
         if selectedQuickI != "" {
-            cell.qPhoto.hnk_setImageFromURL(getImageURL(selectedQuick[indexPath.row]["name"].stringValue, width: 200))
+            cell.qPhoto.hnk_setImageFromURL(getImageURL(selectedQuick[indexPath.row]["name"].stringValue, width: BIG_PHOTO_WIDTH))
 
         }else{
         

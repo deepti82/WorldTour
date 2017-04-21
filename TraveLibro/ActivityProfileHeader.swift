@@ -111,7 +111,7 @@ class ActivityProfileHeader: UIView {
         self.category.imageView?.contentMode = UIViewContentMode.scaleAspectFit
         
         userName.text = feed["user"]["name"].stringValue
-        profilePic.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(feed["user"]["profilePicture"])", width: 100))        
+        profilePic.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(feed["user"]["profilePicture"])", width: SMALL_PHOTO_WIDTH))        
         if feed["timestamp"].stringValue != "" {
             localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd-MM-yyyy", date: feed["timestamp"].stringValue, isDate: true)
             localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["timestamp"].stringValue, isDate: false)            

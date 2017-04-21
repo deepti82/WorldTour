@@ -486,7 +486,7 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
             let cell = tableView.dequeueReusableCell(withIdentifier: "cellTwo") as! MentionSuggestionsTableViewCell
             cell.urlSlug.text = mentionSuggestions[indexPath.row]["urlSlug"].string!
             cell.titleLabel.text = mentionSuggestions[indexPath.row]["name"].string!
-            cell.profilePhoto.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(mentionSuggestions[indexPath.row]["profilePicture"])", width: 100))
+            cell.profilePhoto.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(mentionSuggestions[indexPath.row]["profilePicture"])", width: SMALL_PHOTO_WIDTH))
             HiBye(cell.profilePhoto)
             
             return cell

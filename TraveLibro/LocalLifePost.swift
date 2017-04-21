@@ -266,7 +266,7 @@ class LocalLifePost: VerticalLayout, PlayerDelegate {
             
             photosButton.frame.size.height = 82
             photosButton.frame.size.width = 82
-            let urlStr = getImageURL(post["photos"][i]["name"].stringValue, width: 300)
+            let urlStr = getImageURL(post["photos"][i]["name"].stringValue, width: BIG_PHOTO_WIDTH)
             photosButton.hnk_setImageFromURL(urlStr)
             let tapGestureRecognizer = UITapGestureRecognizer(target:self, action: #selector(LocalLifePost.openSinglePhoto(_:)))
             photosButton.isUserInteractionEnabled = true

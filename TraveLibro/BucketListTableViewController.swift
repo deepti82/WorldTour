@@ -205,7 +205,7 @@ class BucketListTableViewController: UITableViewController  {
             cell.yearOfVisit.layer.zPosition = 100
             cell.countryId =  bucket[(indexPath as NSIndexPath).row]["_id"].string!
             cell.countryName.text = bucket[(indexPath as NSIndexPath).row]["name"].string!
-            cell.countryPicture.hnk_setImageFromURL(getImageURL(bucket[indexPath.row]["countryCoverPhoto"].stringValue,width: 500))
+            cell.countryPicture.hnk_setImageFromURL(getImageURL(bucket[indexPath.row]["countryCoverPhoto"].stringValue,width: BIG_PHOTO_WIDTH))
             cell.countryPicture.alpha = 1
             cell.yearOfVisit.isHidden = true
             return cell
@@ -223,7 +223,7 @@ class BucketListTableViewController: UITableViewController  {
             }else{
             cell.yearOfVisit.text = "\(self.result[(indexPath as NSIndexPath).section]["countries"][(indexPath as NSIndexPath).row]["year"])"
             }
-            cell.countryPicture.hnk_setImageFromURL(getImageURL(self.result[indexPath.section]["countries"][indexPath.row]["countryId"]["countryCoverPhoto"].stringValue,width: 500))
+            cell.countryPicture.hnk_setImageFromURL(getImageURL(self.result[indexPath.section]["countries"][indexPath.row]["countryId"]["countryCoverPhoto"].stringValue,width: BIG_PHOTO_WIDTH))
             cell.countryPicture.alpha = 1
 
             return cell

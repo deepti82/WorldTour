@@ -83,11 +83,11 @@ class Itineraries: UIView {
     //MARK: - SetData
     
     func setItineraryData(editJson : JSON) {
-        profileIcon.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(editJson["creator"]["profilePicture"].stringValue)", width: 100))
+        profileIcon.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(editJson["creator"]["profilePicture"].stringValue)", width: SMALL_PHOTO_WIDTH))
         makeBuddiesTLProfilePicture1(profileIcon)
         
         profileName.text = "By " + editJson["creator"]["name"].stringValue
-        coverImage.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(editJson["coverPhoto"].stringValue)", width: 100))
+        coverImage.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(editJson["coverPhoto"].stringValue)", width: BIG_PHOTO_WIDTH))
         if editJson["duration"].stringValue == "" {
             daysBG.isHidden = true
             daysLabel.isHidden = true

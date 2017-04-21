@@ -121,7 +121,7 @@ class LikeUserViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "likeCell", for: indexPath) as! LikeCell
         cell.profileName.text = likeDataArray[indexPath.row]["name"].stringValue
-        cell.profileImage.hnk_setImageFromURL(getImageURL(likeDataArray[indexPath.row]["profilePicture"].stringValue, width: 300))
+        cell.profileImage.hnk_setImageFromURL(getImageURL(likeDataArray[indexPath.row]["profilePicture"].stringValue, width: SMALL_PHOTO_WIDTH))
         cell.urlSlurg.text = "@\(likeDataArray[indexPath.row]["urlSlug"].stringValue)"
         
         setFollowButtonImage(button: cell.followButton, followType: likeDataArray[indexPath.row]["following"].intValue, otherUserID: likeDataArray[indexPath.row]["_id"].stringValue)

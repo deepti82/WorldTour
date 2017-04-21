@@ -41,7 +41,7 @@ class EmptyTableViewCell: UITableViewCell {
     func setData(data : JSON, helper: PopularJourneysViewController?) {
         
         popJourneyView.journeyCreatorLabel.text = data["journeyCreator"]["name"].stringValue
-        popJourneyView.journeyCreatorImage.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(data["journeyCreator"]["profilePicture"].stringValue)", width: 100))
+        popJourneyView.journeyCreatorImage.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(data["journeyCreator"]["profilePicture"].stringValue)", width: SMALL_PHOTO_WIDTH))
         
         popJourneyView.journetStartDate.text = getDateFormat(data["updatedAt"].stringValue, format: "dd MMM, yyyy")
         popJourneyView.journeyStartTime.text = getDateFormat(data["updatedAt"].stringValue, format: "hh.mm a")
@@ -55,7 +55,7 @@ class EmptyTableViewCell: UITableViewCell {
         if imageURL == nil || imageURL == "" {
             imageURL = data["startLocationPic"].stringValue
         }
-        popJourneyView.mainPhoto.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(imageURL!)", width: 100))
+        popJourneyView.mainPhoto.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(imageURL!)", width: BIG_PHOTO_WIDTH))
         
     }
 
