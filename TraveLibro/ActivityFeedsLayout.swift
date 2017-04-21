@@ -157,7 +157,8 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
                 popularItinerary.addGestureRecognizer(tapRecognizer)
                 popularItinerary.fillData(feed: feed)
                 self.addSubview(popularItinerary)
-            }else{
+            }
+            else{
                 activityQuickItinerary = ActivityFeedQuickItinerary(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.width))
                 let tapRecognizer = UITapGestureRecognizer()
                 tapRecognizer.numberOfTapsRequired = 1
@@ -177,7 +178,8 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
                 popularItinerary.fillData(feed: feed)
                 self.addSubview(popularItinerary)
                 
-            }else{
+            } 
+            else{
                 activityDetailItinerary = ActivityDetailItinerary(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.width))
                 activityDetailItinerary.fillData(feed: feed)
                 self.addSubview(activityDetailItinerary)
