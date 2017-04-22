@@ -385,7 +385,9 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
             self.cameraViewController = CameraViewController(configuration:configuration)
 //            timeLabel.text = self.cameraViewController.recordingTimeLabel.text
             self.cameraViewController.completionBlock = self.completionVideoBlock
-            globalNavigationController.topViewController?.present(self.cameraViewController, animated: true, completion: nil)
+            showPopover(optionsController: optionMenu, sender: sender, vc: globalNavigationController)
+
+//            globalNavigationController.topViewController?.present(self.cameraViewController, animated: true, completion: nil)
         })
         
         func buttonColor (button:UIButton) {
@@ -415,6 +417,8 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
             } else {
                 imagePickerController.delegate = globalNewTLViewController
             }
+//            showPopover(optionsController: imagePickerController, sender: sender, vc: globalNavigationController)
+
             globalNavigationController.topViewController?.present(imagePickerController, animated: true, completion: nil)
         })
         
@@ -426,8 +430,9 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
         optionMenu.addAction(takeVideo)
         optionMenu.addAction(takeVideoGallery)
         optionMenu.addAction(cancelAction)
-        
-        globalNavigationController.topViewController?.present(optionMenu, animated: true, completion: nil)
+        showPopover(optionsController: optionMenu, sender: sender, vc: globalNavigationController)
+
+//        globalNavigationController.topViewController?.present(optionMenu, animated: true, completion: nil)
         
         
     }
@@ -688,7 +693,8 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
             }
             
             imagePickerController.sourceType = .camera
-            globalNavigationController?.topViewController?.present(imagePickerController, animated: true, completion: nil)
+            showPopover(optionsController: optionMenu, sender: self.photosButton, vc: globalNavigationController)
+//            globalNavigationController?.topViewController?.present(imagePickerController, animated: true, completion: nil)
             
         })
         let photoLibrary = UIAlertAction(title: "Photos Library", style: .default, handler: {
@@ -738,8 +744,9 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
         optionMenu.addAction(photoLibrary)
         optionMenu.addAction(cancelAction)
         //        optionMenu.addAction(customeAction)
-        
-        globalNavigationController?.topViewController?.present(optionMenu, animated: true, completion: nil)
+        showPopover(optionsController: optionMenu, sender: sender as! UIView, vc: globalNavigationController)
+
+//        globalNavigationController?.topViewController?.present(optionMenu, animated: true, completion: nil)
         
     }
     

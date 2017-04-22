@@ -266,7 +266,7 @@ class LocalLifePost: VerticalLayout, PlayerDelegate {
             
             photosButton.frame.size.height = 82
             photosButton.frame.size.width = 82
-            let urlStr = getImageURL(post["photos"][i]["name"].stringValue, width: 300)
+            let urlStr = getImageURL(post["photos"][i]["name"].stringValue, width: BIG_PHOTO_WIDTH)
             photosButton.hnk_setImageFromURL(urlStr)
             let tapGestureRecognizer = UITapGestureRecognizer(target:self, action: #selector(LocalLifePost.openSinglePhoto(_:)))
             photosButton.isUserInteractionEnabled = true
@@ -283,10 +283,14 @@ class LocalLifePost: VerticalLayout, PlayerDelegate {
     func videoToPlay ()  {
         
         if isVideoViewInRangeToPlay() {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: { 
+            if !self.willPlay {
+                self.videoContainer.showLoadingIndicator(color: (feed["type"].stringValue == "travel-life" ? mainOrangeColor : endJourneyColor))
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
+                self.videoContainer.stopLoadingIndicator()
                 if self.isVideoViewInRangeToPlay() {
                     if !self.willPlay {
-                        self.videoContainer.playBtn.isHidden = true
+//                        self.videoContainer.playBtn.isHidden = true                        
                         self.willPlay = true
                         let videoUrl = URL(string:self.feed["videos"][0]["name"].stringValue)
                         self.player.setUrl(videoUrl!)
@@ -296,14 +300,16 @@ class LocalLifePost: VerticalLayout, PlayerDelegate {
                 else {
                     self.player.stop()
                     self.willPlay = false
-                    self.videoContainer.playBtn.isHidden = false
+//                    self.videoContainer.playBtn.isHidden = false
+                    self.videoContainer.stopLoadingIndicator()
                 }
             })
         }
         else {
             self.player.stop()
             self.willPlay = false
-            self.videoContainer.playBtn.isHidden = false
+//            self.videoContainer.playBtn.isHidden = false
+            self.videoContainer.stopLoadingIndicator()
         }
     }
     

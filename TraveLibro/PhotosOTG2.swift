@@ -298,10 +298,14 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
     func videoToPlay ()  {
         
         if isVideoViewInRangeToPlay() {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: { 
+            if !self.willPlay {
+                self.videoContainer.showLoadingIndicator(color: mainOrangeColor)
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
+                self.videoContainer.stopLoadingIndicator()
                 if self.isVideoViewInRangeToPlay() {
                     if !self.willPlay {
-                        self.videoContainer.playBtn.isHidden = true
+//                        self.videoContainer.playBtn.isHidden = true
                         self.willPlay = true
                         var videoUrl : URL!
                         if(!self.postTop.post_isOffline) {
@@ -316,14 +320,16 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
                 else {
                     self.player.stop()
                     self.willPlay = false
-                    self.videoContainer.playBtn.isHidden = false
+//                    self.videoContainer.playBtn.isHidden = false
+                    self.videoContainer.stopLoadingIndicator()
                 }
             })
         }
         else {
             self.player.stop()
             self.willPlay = false
-            self.videoContainer.playBtn.isHidden = false
+//            self.videoContainer.playBtn.isHidden = false
+            self.videoContainer.stopLoadingIndicator()
         }
     }
     

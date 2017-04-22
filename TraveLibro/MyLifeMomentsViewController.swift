@@ -275,7 +275,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
                 print("in moments all")
                 empty.frame.size.height = 250.0
                 empty.viewHeading.text = "Unwind​ B​y Rewinding"
-                empty.viewBody.text = "Revisit and reminisce the days gone by through brilliant pictures and videos of your travel and local life."
+                empty.viewBody.text = "Revisit and reminisce the days gone by through those special pictures and videos of your travel and local life."
                 break
             case "travel-life":
                 print("in moments tl")

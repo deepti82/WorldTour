@@ -174,19 +174,19 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
         layout.addSubview(myView5)
         
         self.mainFooter = FooterViewNew(frame: CGRect.zero)
-        mainFooter.localLifeIcon.tintColor = mainGreenColor
-        mainFooter.localLife.textColor = mainGreenColor
+        mainFooter.setHighlightStateForView(tag: 3, color: mainGreenColor)
+
         self.view.addSubview(mainFooter)
         
         self.changeAddButton(false)
         self.addHeightToLayout();
         
+        self.detectLocation()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.detectLocation(UIButton())
-        self.mainFooter.frame = CGRect(x: 0, y: self.view.frame.height - 65, width: self.view.frame.width, height: 65)
+        super.viewWillAppear(animated)        
+        self.mainFooter.frame = CGRect(x: 0, y: self.view.frame.height - MAIN_FOOTER_HEIGHT, width: self.view.frame.width, height: MAIN_FOOTER_HEIGHT)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -244,7 +244,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
             }
             alertController.addAction(settingsAction)
             alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-            
+
             self.present(alertController, animated: true, completion: nil)
         } else {
             //Add Dard Blur Background
@@ -454,18 +454,54 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
         }
     }
     
-    func detectLocation(_ sender: AnyObject?) {
+    
+    //MARK: - -- Location --
+    
+    func detectLocation() {
+        
+        self.stopDetectingLocation()
+        
         locationManager = CLLocationManager()
-        locationManager.requestAlwaysAuthorization()
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.startMonitoringSignificantLocationChanges()
+        locationManager?.requestWhenInUseAuthorization()
+        locationManager?.delegate = self
+        locationManager?.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager?.startMonitoringSignificantLocationChanges()
+        self.updateStatus(status: CLLocationManager.authorizationStatus())
     }
     
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print("Error while updating location " + error.localizedDescription)
+    func stopDetectingLocation() {
+        locationManager?.stopUpdatingLocation()
+        locationManager = nil
     }
     
+    func updateStatus(status: CLAuthorizationStatus) {
+        switch status {
+            
+        case CLAuthorizationStatus.notDetermined:
+            self.requestAuthorization()
+            break
+            
+        case CLAuthorizationStatus.authorizedAlways:
+            fallthrough
+        case CLAuthorizationStatus.authorizedWhenInUse:
+            locationManager?.startUpdatingLocation()
+            break
+            
+        case CLAuthorizationStatus.denied:
+            fallthrough
+        case CLAuthorizationStatus.restricted:            
+            handleRestrictedMode(onVC: self)
+            break        
+        }
+    }
+    
+    func requestAuthorization() {
+        locationManager?.requestWhenInUseAuthorization()
+        locationManager?.startUpdatingLocation()
+    }
+    
+    
+    //MARK: - Location Delegates
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         loader.hideOverlayView()
@@ -473,6 +509,9 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
             locValue = manager.location!.coordinate
             print(locValue);
             userLocation = locValue
+           
+            self.stopDetectingLocation()
+            
             request.checkLocalLife(lat: String(locValue.latitude), lng: String(locValue.longitude), completion: { (response) in
                 DispatchQueue.main.async(execute: {
                     if (response.error != nil) {
@@ -494,6 +533,14 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
         }
     }
     
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Error while updating location " + error.localizedDescription)
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        print("\n didChangeAuthorization : \(status.rawValue)")
+        self.updateStatus(status: status)        
+    }
     
     func getCategoryLocalLife(_ sender:AnyObject ) {
         if(self.json != nil) {
@@ -598,10 +645,10 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
     func hideHeaderAndFooter(_ isShow:Bool) {
         if(isShow) {
             self.navigationController?.setNavigationBarHidden(true, animated: true)
-            self.mainFooter.frame.origin.y = self.view.frame.height + 95
+            self.mainFooter.frame.origin.y = self.view.frame.height + MAIN_FOOTER_HEIGHT
         } else {
             self.navigationController?.setNavigationBarHidden(false, animated: true)
-            self.mainFooter.frame.origin.y = self.view.frame.height - 65
+            self.mainFooter.frame.origin.y = self.view.frame.height - MAIN_FOOTER_HEIGHT
         }
     }
 

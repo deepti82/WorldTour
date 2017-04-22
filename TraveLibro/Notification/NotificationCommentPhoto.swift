@@ -76,7 +76,7 @@ class NotificationCommentPhoto: UIView {
             imageURL = data["thoughts"].stringValue
         }
         
-        NFPhotoImage.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(imageURL)", width: 100))
+        NFPhotoImage.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(imageURL)", width: SMALL_PHOTO_WIDTH))
     }
 
 }

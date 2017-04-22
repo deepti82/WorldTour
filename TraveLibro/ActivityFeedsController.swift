@@ -30,6 +30,9 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
     var isRefreshing = false
     var blr: UIView?
     
+    
+    //MARK: - LifeCycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -38,7 +41,6 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
         activityScroll.addSubview(refreshControl)
         
         createNavigation()
-        globalActivityFeedsController = self
         activityScroll.delegate = self
         getDarkBackGround(self)
         layout = VerticalLayout(width: screenWidth)
@@ -46,26 +48,56 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
         
         self.mainFooter = FooterViewNew(frame: CGRect.zero)
         self.mainFooter.layer.zPosition = 5
-        self.view.addSubview(self.mainFooter)
-        mainFooter.activityImage.tintColor = mainOrangeColor
-        mainFooter.activityOrange.textColor = mainOrangeColor
+        self.mainFooter.setHighlightStateForView(tag: 0, color: mainOrangeColor)        
         
-        request.checkActivityCache(user.getExistingUser()) { (response) in
-            if response.count == 0 {
+//        let darkBlur = UIBlurEffect(style: UIBlurEffectStyle.light)
+//                                    let blurView = UIVisualEffectView(effect: darkBlur)
+//                                    blurView.frame.size.height = mainFooter.frame.height
+//                                    blurView.frame.size.width = mainFooter.frame.width
+//                                    //        blurView.layer.zPosition = 6000000
+//        
+//                                    blurView.isUserInteractionEnabled = false
+//        
+//                                    self.blr = UIView(frame:CGRect(x: 0, y: 0, width: mainFooter.frame.width, height: mainFooter.frame.height))
+//        
+//        
+//                                    self.blr!.addSubview(blurView)
+//                                    self.blr?.addSubview(mainFooter)
+        
+        
+        self.view.addSubview(self.mainFooter)
+
+        
+//        request.checkActivityCache(user.getExistingUser()) { (response) in
+//            if response.count == 0 {
                 self.loader.showOverlay(self.view)
-            }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+//            }
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
                 self.getActivity(pageNumber: self.pageno)
                 
                 let i = PostImage()
                 i.uploadPhotos()
-            })
-        }
+//            })
+//        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.mainFooter.frame = CGRect(x: 0, y: self.view.frame.height - 65, width: self.view.frame.width, height: 65)
+        
+        globalActivityFeedsController = self
+        
+        self.mainFooter.frame = CGRect(x: 0, y: self.view.frame.height - MAIN_FOOTER_HEIGHT, width: self.view.frame.width, height: MAIN_FOOTER_HEIGHT)
+        
+        var isEmptyScreenPresent = false
+        for views in self.view.subviews {
+            if views.tag == 46 {
+                isEmptyScreenPresent = true                
+            }
+        }
+        
+        if isEmptyScreenPresent {
+            self.getActivity(pageNumber: self.pageno)
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -144,6 +176,7 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
     func getActivity(pageNumber: Int) {
         print("notification called \(displayData)")
         print("Page Number : \(pageNumber)")
+        
         if checkpoint {
             checkpoint = false
         }
@@ -151,9 +184,8 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
             print("in activity")            
             self.loadStatus = false
             
-            //            if pageNumber == 13 {
             showBottomLoader(onView: self.view)
-            request.getActivityFeeds(currentUser["_id"].stringValue, pageNumber: pageNumber, completion: {(request, localLifeJsons,quickJsons) in
+            request.getActivityFeeds(currentUser["_id"].stringValue, pageNumber: pageNumber, completion: {(request, localLifeJsons,quickJsons, isfromCache) in
                 DispatchQueue.main.async(execute: {
                     
                     hideBottomLoader()
@@ -162,13 +194,14 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
                     if self.isRefreshing {
                         self.refreshControl.endRefreshing()
                         self.isRefreshing = false
-                        
-                        
                     }
+                    
                     if pageNumber == 1 {
                         self.layout.removeAll()
-                        
                     }
+                    
+                    self.removeEmptyScreen()
+                    
                     for var post in quickJsons {
                         self.loader.hideOverlayView()
                         self.feeds.arrayObject?.append(post)
@@ -274,8 +307,7 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
                             self.layout.addSubview(checkIn)
                             self.addHeightToLayout()
                             NSLog(" check 2 \n")
-                        }
-                        
+                        }                        
                         
                         if isConnectedToNetwork() {
                             NSLog(" check started building actual layout \n")
@@ -290,13 +322,21 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
                         
                         self.addHeightToLayout()
                     }
+                        
                     else{
                         //                        self.loadStatus = false
-                    }                       
-                    
+                        if !isfromCache {
+                            if self.feeds.isEmpty {
+                                self.noActivityFound()
+                            }
+                            else {
+                                self.removeEmptyScreen()
+                            }
+                        }
+                    }
                 })
             })
-            //            }
+            
             
         }
         else if displayData == "popular" {
@@ -443,7 +483,7 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
                 noInternet.isHidden = true
             }
             
-            self.mainFooter.frame.origin.y = self.view.frame.height + 95
+            self.mainFooter.frame.origin.y = self.view.frame.height + MAIN_FOOTER_HEIGHT
         } else {
             //            scrollTopConstraint.constant = (self.navigationController?.navigationBar.frame.size.height)!
             self.navigationController?.setNavigationBarHidden(false, animated: true)
@@ -451,10 +491,42 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
                 noInternet.isHidden = false
             }
             
-            self.mainFooter.frame.origin.y = self.view.frame.height - 65
+            self.mainFooter.frame.origin.y = self.view.frame.height - MAIN_FOOTER_HEIGHT
             
         }
     }
     
+    
+    //MARK: - Empty screen
+    
+    func removeEmptyScreen() {
+        for views in self.view.subviews {
+            if views.tag == 46 {
+                let expectedView = views
+                expectedView.removeFromSuperview()                
+            }
+        }
+    }
+    
+    func noActivityFound() {
+        
+        removeEmptyScreen()
+        
+        let noActivity = activityEmptyView(frame: CGRect(x: 0, y: 0, width: min(screenWidth*0.8, 256)  , height: 160))
+        noActivity.headerLabel.text = "Hi \(currentUser["name"].stringValue),"
+        noActivity.tag = 46
+        noActivity.center = CGPoint(x: screenWidth/2, y: screenHeight/2 - 50)
+        
+        noActivity.exploreView.isUserInteractionEnabled = true        
+        let tlTap = UITapGestureRecognizer(target: self, action: #selector(self.exploreNowClicked))
+        noActivity.exploreView.addGestureRecognizer(tlTap)
+        
+        self.view.addSubview(noActivity)
+    }
+    
+    func exploreNowClicked() {
+        print("\n Explore now clicked")
+        self.searchTapped(UIButton())
+    }
     
 }

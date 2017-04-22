@@ -108,7 +108,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
             
         }
         
-        search = SearchFieldView(frame: CGRect(x: 45, y: 8, width: searchView.frame.width - 60 , height: 30))
+        search = SearchFieldView(frame: CGRect(x: 45, y: 8, width: searchView.bounds.width - 60 , height: 30))
         search.searchField.returnKeyType = .done
         searchView.addSubview(search)
         
@@ -136,6 +136,17 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print("searchView : \(searchView.frame.size)")
+        search.frame = CGRect(x: 45, y: 8, width: searchView.frame.width - 60 , height: 30)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        print("searchView : \(searchView.frame.size)")
+        search.frame = CGRect(x: 45, y: 8, width: searchView.frame.width - 60 , height: 30)
+    }
     
     
     

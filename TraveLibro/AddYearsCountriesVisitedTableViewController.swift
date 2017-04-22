@@ -32,7 +32,7 @@ class AddYearsCountriesVisitedTableViewController: UITableViewController {
         //loader.showOverlay(self.view)
 //        getDarkBackGround(self)
         
-        self.tableView.backgroundView = UIImageView(image: UIImage(named: "darkBgNew"))
+        self.tableView.backgroundView = UIImageView(image: UIImage(named: "back_7_4"))
         
         trialVariable = []
         let dateFormatter = DateFormatter()        

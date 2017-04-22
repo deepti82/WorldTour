@@ -271,7 +271,8 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
                     print("Abusive Content")
                 }
                 actionSheet.addAction(abusiveActionButton)
-                self.present(actionSheet, animated: true, completion: nil)
+                showPopover(optionsController: actionSheet, sender: tableView, vc: self)
+//                self.present(actionSheet, animated: true, completion: nil)
             }
 //            report.backgroundColor = UIColor(patternImage: UIImage(named: "info (3)")!)
               report.backgroundColor = UIColor.red
@@ -485,7 +486,7 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
             let cell = tableView.dequeueReusableCell(withIdentifier: "cellTwo") as! MentionSuggestionsTableViewCell
             cell.urlSlug.text = mentionSuggestions[indexPath.row]["urlSlug"].string!
             cell.titleLabel.text = mentionSuggestions[indexPath.row]["name"].string!
-            cell.profilePhoto.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(mentionSuggestions[indexPath.row]["profilePicture"])", width: 100))
+            cell.profilePhoto.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(mentionSuggestions[indexPath.row]["profilePicture"])", width: SMALL_PHOTO_WIDTH))
             HiBye(cell.profilePhoto)
             
             return cell

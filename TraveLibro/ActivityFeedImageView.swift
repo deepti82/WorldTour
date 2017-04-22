@@ -8,7 +8,8 @@
 
 import UIKit
 
-class ActivityFeedImageView: UIView {
+class ActivityFeedImageView: UIView, UITextFieldDelegate {
+    
     @IBOutlet weak var nameJourneyActivityFeed: UILabel!
     @IBOutlet weak var flagOne: UIImageView!
     @IBOutlet weak var flageTwo: UIImageView!
@@ -34,10 +35,11 @@ class ActivityFeedImageView: UIView {
     @IBOutlet weak var CameraIcon: UIImageView!
     @IBOutlet var ImageCollectionCount: [UIImageView]!
     @IBOutlet var ActivityImageView: UIView!
+   
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
-       transparentCardWhite(ActivityImageView)
+        transparentCardWhite(ActivityImageView)
         makeFlagBorderWhiteCorner(flagOne)
         makeFlagBorderWhiteCorner(flageTwo)
         makeFlagBorderWhiteCorner(flagThree)
@@ -49,6 +51,7 @@ class ActivityFeedImageView: UIView {
         CameraIcon.tintColor = UIColor.white
         
         OnTheGOText.layer.cornerRadius = 5
+        OnTheGOText.delegate = self
         locationIcon.clipsToBounds = true
         
     }
@@ -78,15 +81,15 @@ class ActivityFeedImageView: UIView {
         }
         if feed["countryVisited"][0] != nil {
             flagOne.isHidden = false
-            flagOne.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(feed["countryVisited"][0]["country"]["flag"])", width: 100))
+            flagOne.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(feed["countryVisited"][0]["country"]["flag"])", width: SMALL_PHOTO_WIDTH))
         }
         if feed["countryVisited"][1] != nil {
             flageTwo.isHidden = false
-            flageTwo.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(feed["countryVisited"][1]["country"]["flag"])", width: 100))
+            flageTwo.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(feed["countryVisited"][1]["country"]["flag"])", width: SMALL_PHOTO_WIDTH))
         }
         if feed["countryVisited"][2] != nil {
             flagThree.isHidden = false
-            flagThree.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(feed["countryVisited"][2]["country"]["flag"])", width: 100))
+            flagThree.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(feed["countryVisited"][2]["country"]["flag"])", width: SMALL_PHOTO_WIDTH))
         }
         
 //        for category in stackView.subviews {
@@ -136,5 +139,13 @@ class ActivityFeedImageView: UIView {
 
         self.addSubview(view)
     }
+    
+    
+    //MARK: - TextField Delegate
+    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        return false
+    }
+    
 
 }

@@ -36,7 +36,7 @@ class QuickItineraryPreviewViewController: UIViewController {
         prev.userPhoto.hnk_setImageFromURL(URL(string: getImageUrl)!)
         if selectedQuickI != "" {
             if quickItinery["coverPhoto"] != nil {
-                prev.displayPiture.hnk_setImageFromURL(getImageURL(quickItinery["coverPhoto"].stringValue, width: 200))
+                prev.displayPiture.hnk_setImageFromURL(getImageURL(quickItinery["coverPhoto"].stringValue, width: BIG_PHOTO_WIDTH))
             }
         }else{
             if globalPostImage.count != 0 {
@@ -135,7 +135,7 @@ class QuickItineraryPreviewViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        footer.frame = CGRect(x: 0, y: self.view.frame.size.height - 65, width: screenWidth, height: 65)
+        footer.frame = CGRect(x: 0, y: self.view.frame.size.height - MAIN_FOOTER_HEIGHT, width: screenWidth, height: MAIN_FOOTER_HEIGHT)
         footerAbove.frame = CGRect(x: 0, y: self.view.frame.size.height - 105, width: screenWidth, height: 40)
     }
     

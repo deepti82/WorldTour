@@ -7,7 +7,7 @@ import Crashlytics
 
 //var adminUrl = "https://travelibro.wohlig.com/api/"
 var adminUrl = "https://travelibro.com/api/"
-var adminBackendUrl = "http://travelibrobackend.wohlig.com/api/"
+var adminBackendUrl = "http://travelibroadmin.travelibro.com/api/"
 var mapKey = "AIzaSyDPH6EYKMW97XMTJzqYqA0CR4fk5l2gzE4"
 
 class Navigation {
@@ -308,7 +308,7 @@ class Navigation {
 //        
 //    }
     
-    func addNewOTG(_ name: String, userId: String, startLocation: String, kindOfJourney: [String], timestamp: String, lp: String, completion: @escaping ((JSON) -> Void)) {
+    func addNewOTG(_ name: String, userId: String, startLocation: String, kindOfJourney: [String], timestamp: String, lp: String, lat: String, long: String, completion: @escaping ((JSON) -> Void)) {
         
         let currentDate = Date()
         let currentDateFormatter = DateFormatter()
@@ -318,7 +318,7 @@ class Navigation {
         let showDateArray = "\(showDate)".components(separatedBy: " +")
 //        print("current date 2: \(currentDate) \(showDateArray[0])")
         
-        let params = ["name": name, "user":  userId, "startLocation": startLocation, "kindOfJourney": kindOfJourney, "timestamp": timestamp, "startLocationPic": lp, "startTime": "\(showDateArray[0])"] as [String : Any]
+        let params = ["name": name, "user":  userId, "startLocation": startLocation, "kindOfJourney": kindOfJourney, "timestamp": timestamp, "startLocationPic": lp, "startTime": "\(showDateArray[0])", "location": ["lat": lat, "long": long]] as [String : Any]
         print("parameters: \(params)")
         do {
             
@@ -428,10 +428,12 @@ class Navigation {
             
             let opt = try HTTP.POST(adminUrl + "journey/getLocation", parameters: ["lat": lat, "long": long])
             var json = JSON(1);
+            json = JSON(["value" : false])            
             opt.start { response in
                 //                print("started response: \(response)")
                 if let err = response.error {
                     print("error: \(err.localizedDescription)")
+                    completion(json)
                 }
                 else
                 {
@@ -1497,7 +1499,7 @@ class Navigation {
         }
     }
     
-    func getActivityFeeds(_ user: String, pageNumber: Int, completion: @escaping ((JSON,[JSON],[JSON]) -> Void)) {
+    func getActivityFeeds(_ user: String, pageNumber: Int, completion: @escaping ((JSON,[JSON],[JSON],Bool) -> Void)) {
         let urlString = adminUrl + "activityfeed/getData"
         
         var json:JSON = [];
@@ -1512,7 +1514,7 @@ class Navigation {
                     newJson = ll.getAllJson()
                     newQi = qi.getAll()
                 }
-                completion(json,newJson,newQi)
+                completion(json,newJson,newQi,true)
             }.onFailure { (err) in
                 let ll = LocalLifePostModel()
                 let qi = QuickItinerary()
@@ -1521,8 +1523,8 @@ class Navigation {
                 if(pageNumber <= 1) {
                     newJson = ll.getAllJson()
                     newQi = qi.getAll()
-                }
-                completion([],newJson,newQi)
+                }                
+                completion([],newJson,newQi,true)
             }
         }
         
@@ -1553,7 +1555,7 @@ class Navigation {
                             newQi = qi.getAll()
                         }
                         
-                        completion(json,newJson,newQi)
+                        completion(json,newJson,newQi,false)
                     }
                 }
             } catch let error {

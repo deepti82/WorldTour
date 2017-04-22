@@ -449,7 +449,7 @@ extension NewTLViewController {
             makeTLProfilePictureNew(addNewView.profilePicture)
             addNewView.profileName.text = currentUser["name"].string!
             self.view.addSubview(addNewView)
-            addNewView.otgJourneyButton.addTarget(self, action: #selector(NewTLViewController.newOtg(_:)), for: .touchUpInside)
+            addNewView.otgJourneyButton.addTarget(self, action: #selector(NewTLViewController.checkForLocation(_:)), for: .touchUpInside)
             addNewView.itineraryButton.addTarget(self, action: #selector(NewTLViewController.newItinerary(_:)), for: .touchUpInside)
             addNewView.closeButton.addTarget(self, action: #selector(NewTLViewController.closeView(_:)), for: .touchUpInside)
         }
@@ -521,6 +521,9 @@ extension NewTLViewController {
                 if myJourney["user"]["_id"].stringValue != user.getExistingUser() {
                     otgView.optionsButton.isHidden = true
                 }
+            }else{
+                otgView.optionsButton.isHidden = true
+
             }
             
             

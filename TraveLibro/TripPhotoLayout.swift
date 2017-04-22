@@ -223,10 +223,14 @@ class TripPhotoLayout: VerticalLayout, PlayerDelegate {
     func videoToPlay ()  {
         
         if isVideoViewInRangeToPlay() {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: { 
+            if !self.willPlay {
+                self.videoContainer.showLoadingIndicator(color: mainOrangeColor)
+            }            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
+                self.videoContainer.stopLoadingIndicator()
                 if self.isVideoViewInRangeToPlay() {
                     if !self.willPlay {
-                        self.videoContainer.playBtn.isHidden = true
+//                        self.videoContainer.playBtn.isHidden = true                        
                         self.willPlay = true
                         let videoUrl = URL(string:self.feeds["name"].stringValue)
                         self.player.setUrl(videoUrl!)
@@ -236,14 +240,16 @@ class TripPhotoLayout: VerticalLayout, PlayerDelegate {
                 else {
                     self.player.stop()
                     self.willPlay = false
-                    self.videoContainer.playBtn.isHidden = false
+//                    self.videoContainer.playBtn.isHidden = false
+                    self.videoContainer.stopLoadingIndicator()
                 }
             })
         }
         else {
             self.player.stop()
             self.willPlay = false
-            self.videoContainer.playBtn.isHidden = false
+//            self.videoContainer.playBtn.isHidden = false
+            self.videoContainer.stopLoadingIndicator()
         }
     }
     

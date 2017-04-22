@@ -43,7 +43,7 @@ class PopularItinerary: UIView {
         let transparent = UIColor.clear.cgColor as CGColor
         
         gradient.frame = self.gradiantView.bounds
-        gradient.frame.size.width = gradiantView.frame.width + 40
+        gradient.frame.size.width = self.frame.width + 40
         gradient.colors = [blackColour, transparent]
         gradient.locations = [0.0, 0.75]
         
@@ -65,7 +65,7 @@ class PopularItinerary: UIView {
         
         activityFeedYear.text = "\(feed["startTimeApp"].stringValue) to \(feed["endTimeApp"].stringValue)"
         creatorName.text = feed["creator"]["name"].stringValue
-        creatorPic.hnk_setImageFromURL(getImageURL(feed["creator"]["profilePicture"].stringValue, width: 200))
+        creatorPic.hnk_setImageFromURL(getImageURL(feed["creator"]["profilePicture"].stringValue, width: SMALL_PHOTO_WIDTH))
         
         activityFeedDaysCount.text = feed["duration"].stringValue
         
@@ -91,15 +91,15 @@ class PopularItinerary: UIView {
         }
         if feed["countryVisited"][0] != nil {
             activityQuickFlagOne.isHidden = false
-            activityQuickFlagOne.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(feed["countryVisited"][0]["country"]["flag"])", width: 100))
+            activityQuickFlagOne.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(feed["countryVisited"][0]["country"]["flag"])", width: SMALL_PHOTO_WIDTH))
         }
         if feed["countryVisited"][1] != nil {
             activityQuickFlagTwo.isHidden = false
-            activityQuickFlagTwo.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(feed["countryVisited"][1]["country"]["flag"])", width: 100))
+            activityQuickFlagTwo.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(feed["countryVisited"][1]["country"]["flag"])", width: SMALL_PHOTO_WIDTH))
         }
         if feed["countryVisited"][2] != nil {
             activityFeedQuickThree.isHidden = false
-            activityFeedQuickThree.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(feed["countryVisited"][2]["country"]["flag"])", width: 100))
+            activityFeedQuickThree.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(feed["countryVisited"][2]["country"]["flag"])", width: SMALL_PHOTO_WIDTH))
         }
         
         //  CATEGOTY
@@ -126,14 +126,14 @@ class PopularItinerary: UIView {
         activityFeedItineraryName.text = feed["name"].stringValue
         
         if feed["coverPhoto"] != nil && feed["coverPhoto"] != "" {
-            activityQuickCoverPic.hnk_setImageFromURL(getImageURL(feed["coverPhoto"].stringValue, width: 300))
+            activityQuickCoverPic.hnk_setImageFromURL(getImageURL(feed["coverPhoto"].stringValue, width: BIG_PHOTO_WIDTH))
         }else{
             if feed["photos"] != nil && feed["photos"] != "" {
-                activityQuickCoverPic.hnk_setImageFromURL(getImageURL(feed["photos"][0]["name"].stringValue, width: 300))
+                activityQuickCoverPic.hnk_setImageFromURL(getImageURL(feed["photos"][0]["name"].stringValue, width: BIG_PHOTO_WIDTH))
             }else{
                 if feed["startLocationPic"] != nil && feed["startLocationPic"] != "" {
                     
-                    activityQuickCoverPic.hnk_setImageFromURL(getImageURL(feed["startLocationPic"].stringValue, width: 300))
+                    activityQuickCoverPic.hnk_setImageFromURL(getImageURL(feed["startLocationPic"].stringValue, width: BIG_PHOTO_WIDTH))
                     
                 }else{
                     

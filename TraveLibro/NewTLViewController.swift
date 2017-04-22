@@ -20,7 +20,7 @@ var globalNewTLViewController:NewTLViewController!
 
 
 class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, CLLocationManagerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIGestureRecognizerDelegate, UIScrollViewDelegate {
-    
+    var isRequestFromNewPost = false
     var myJourney: JSON!
     var isJourney = false
     var imageView1: UIImageView!
@@ -46,7 +46,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     @IBOutlet weak var mainScroll: UIScrollView!
     var journeyName: String!
     var locationData = ""
-    let locationManager = CLLocationManager()
+    var locationManager : CLLocationManager?
     var locationPic = ""
     var journeyCategories = [String] ()
     var currentTime: String!
@@ -98,6 +98,11 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     var backView1: UIView!
     
     func addPosts(_ sender: UIButton) {
+        
+        if locationManager == nil {
+            isRequestFromNewPost = true
+            self.detectLocation()            
+        }
         showAddActivity()
         getJourneyBuddies(journey: myJourney)
     }
@@ -169,7 +174,13 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
                 
         }))
         optionsController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        self.present(optionsController, animated: true, completion: nil)
+
+        showPopover(optionsController: optionsController, sender: sender, vc: self)
+//        if let popover = optionsController.popoverPresentationController{
+//            popover.sourceView = sender
+//            popover.sourceRect = sender.bounds
+//        }
+//        self.present(optionsController, animated: true, completion: nil)
     }
     
     func displayFriendsCount() {
@@ -451,7 +462,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
             label.mentionColor = UIColor(red: 238.0/255, green: 85.0/255, blue: 96.0/255, alpha: 1)
             label.URLColor = UIColor(red: 85.0/255, green: 238.0/255, blue: 151.0/255, alpha: 1)
             label.handleMentionTap {
-                checkIn.animation.makeY(50).animate(0.0)
+                checkIn.animation.makeY(0).animate(0.0)
                 let actionSheetControllerIOS8: UIAlertController = UIAlertController(title: "Mention", message: $0, preferredStyle: .alert)
                 let cancelActionButton: UIAlertAction = UIAlertAction(title: "OK", style: .default) {action -> Void in}
                 actionSheetControllerIOS8.addAction(cancelActionButton)
@@ -636,7 +647,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
                             
                             let alert = UIAlertController(title: nil, message:
                                 "response error!", preferredStyle: .alert)
-                            
+
                             self.present(alert, animated: false, completion: nil)
                             
                             alert.addAction(UIAlertAction(title: "OK", style: .default, handler:
@@ -700,12 +711,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         }
     }
     
-    func detectLocation(_ sender: AnyObject?) {
-        locationManager.requestAlwaysAuthorization()
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.startMonitoringSignificantLocationChanges()
-    }
+    
     
     func getJourney() {
        
@@ -720,16 +726,18 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
                     self.layout.removeAll()
                     self.prevPosts = []
                     self.isInitialLoad = true;
-                    self.detectLocation(nil)
+//                    self.detectLocation()
+                    
+                    isJourneyOngoing = true
+                    self.journeyStart = true
+                    self.myJourney = response["data"]
+                    print("line no : \(self.myJourney)");
+                    self.checkFetchedLocation()
                     self.latestCity = response["data"]["startLocation"].string!
                     if self.isRefreshing {
                         self.refreshControl.endRefreshing()
                         self.isRefreshing = false
                     }
-                    isJourneyOngoing = true
-                    self.journeyStart = true
-                    self.myJourney = response["data"]
-                    print("line no : \(self.myJourney)");
                     self.journeyID = self.myJourney["_id"].stringValue
                     self.journeyName = self.myJourney["name"].stringValue
                     self.isInitialLoad = false
@@ -741,6 +749,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         })
         
     }
+    
     //MARK: - getone journey added.
     func getOneJourney() {
         request.getJourneyById(fromOutSide, completion: {(response) in
@@ -760,7 +769,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
                     self.layout.removeAll()
                     self.prevPosts = []
                     self.isInitialLoad = true;
-                    self.detectLocation(nil)
+//                    self.detectLocation()
+                    self.checkFetchedLocation()
                     self.latestCity = response["data"]["startLocation"].string!
                     if self.isRefreshing {
                         self.refreshControl.endRefreshing()
@@ -998,6 +1008,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         
         UINavigationBar.appearance().backgroundColor = UIColor(hex: "#11d3cb")
         UINavigationBar.appearance().backgroundColor?.withAlphaComponent(0.9)
+        
         let rightButton = UIView()
         rightButton.frame = CGRect(x: 0, y: 0, width: 60, height: 35)
         let rightButton1 = UIButton()
@@ -1006,6 +1017,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
 //        rightButton1.imageView?.tintColor = UIColor(hex: "#11d3cb")
         rightButton1.imageView?.contentMode = .scaleAspectFit
         rightButton1.imageView?.clipsToBounds = true
+        
         let rightButton2 = UIButton()
         rightButton2.frame = CGRect(x: 40, y: 8, width: 25, height: 25)
         rightButton2.setImage(UIImage(named: "options_icon"), for: UIControlState())
@@ -1013,15 +1025,25 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         rightButton1.addTarget(self, action: #selector(self.gotoNearMe(_:)), for: .touchUpInside)
         rightButton2.addTarget(self, action: #selector(self.infoCircle(_:)), for: .touchUpInside)
         
-        rightButton.addSubview(rightButton1)
-        rightButton.addSubview(rightButton2)
+        if  fromOutSide == "" {
+            
+            rightButton.addSubview(rightButton1)
+            rightButton.addSubview(rightButton2)
+
+        }else{
+            
+            rightButton.addSubview(rightButton2)
+            
+        }
         
         //        rightButton.setTitle("i", for: UIControlState())
         //        rightButton.layer.borderWidth = 1.5
         //        rightButton.layer.borderColor = UIColor.white.cgColor
         //        rightButton.layer.cornerRadius = rightButton.frame.width / 2
+        
         self.title = text
         if  fromOutSide == "" {
+            
             if (myJourney != nil) {
                 self.customNavigationBar(left: leftButton, right: rightButton)
             }else{
@@ -1029,39 +1051,35 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
             }
 
         }else{
-            self.customNavigationBar(left: outButton, right: nil)
+            self.customNavigationBar(left: outButton, right: rightButton)
         }
         
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        globalNavigationController = self.navigationController
-    }
+   
+    //MARK: - LifeCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-      globalActivityFeedsController = nil
-                ToastView.appearance().backgroundColor = endJourneyColor
-
-        self.layout = VerticalLayout(width: view.frame.size.width)
-        mainScroll.addSubview(layout)
-        let i  = PostImage();
-        i.uploadPhotos()
-        self.setTopNavigation(text: "On The Go")
         
-        
+        globalActivityFeedsController = nil
         globalNewTLViewController = self;
         getDarkBackGroundNew(self)
+        
+        ToastView.appearance().backgroundColor = endJourneyColor
+        
+        self.setTopNavigation(text: "")
+
+        self.layout = VerticalLayout(width: view.frame.size.width)
+        
+        mainScroll.addSubview(layout)
         mainScroll.delegate = self
-        
-        
-        
-        self.infoView = TripInfoOTG(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 1000))
-        
-        
         mainScroll.showsVerticalScrollIndicator = false
         mainScroll.showsHorizontalScrollIndicator = false
+        mainScroll.clipsToBounds = true
+        
+        let i  = PostImage();
+        i.uploadPhotos()
         
         refreshControl.addTarget(self, action: #selector(NewTLViewController.refresh(_:)), for: .valueChanged)
         let attributes = [NSForegroundColorAttributeName: UIColor.white]
@@ -1070,11 +1088,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         refreshControl.tintColor = lightOrangeColor
         mainScroll.addSubview(refreshControl)
         
-        
-        //        otgView.nameJourneyTF.becomeFirstResponder()
-        //        otgView.nameJourneyView.becomeFirstResponder()
-        //        otgView.clipsToBounds = true
-        //        otgView.locationLabel.addTarget(self, action: #selector(NewTLViewController.showDropdown(_:)), for: .editingChanged)
+        self.infoView = TripInfoOTG(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 1000))
         
         TLLoader = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
         TLLoader.center = self.view.center
@@ -1084,8 +1098,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         NotificationCenter.default.addObserver(self, selector: #selector(NewTLViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(NewTLViewController.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
-        
-        mainScroll.clipsToBounds = true
         
         self.addPostsButton = UIButton(frame: CGRect(x: self.view.frame.width - 80, y: self.view.frame.height - 200, width: 65, height: 65))
 //        self.addPostsButton.layer.cornerRadius = 30
@@ -1107,18 +1119,18 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         self.view.addSubview(self.addPostsButton)
         addPostsButton.isHidden = true
         
-        self.mainFooter = FooterViewNew(frame: CGRect(x: 0, y: self.view.frame.height - 65, width: self.view.frame.width, height: 65))
+        self.mainFooter = FooterViewNew(frame: CGRect(x: 0, y: self.view.frame.height - MAIN_FOOTER_HEIGHT, width: self.view.frame.width, height: MAIN_FOOTER_HEIGHT))
         self.mainFooter.layer.zPosition = 5
         self.view.addSubview(self.mainFooter)
-        self.mainFooter.travelLifeIcon.tintColor = mainOrangeColor
-        self.mainFooter.travelLife.textColor = mainOrangeColor
-    
+        
+        
         infoButton.isHidden = true
         
 //        addPostsButton.isHidden = true
         
         if fromOutSide == "" {
             getJourney()
+            self.mainFooter.setHighlightStateForView(tag: 1, color: mainOrangeColor)
         }else{
             addPostsButton.isHidden = true
             getOneJourney()
@@ -1141,14 +1153,19 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        globalNavigationController = self.navigationController
+    }
+            
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         hideHeaderAndFooter(false)
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
     
-    func willSee(_ sender: UIButton){
-        print("GoForIt")
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()        
     }
     
     func success(_ sender: UIButton){
@@ -1176,7 +1193,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
                 if(self.addPostsButton != nil) {
                     UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut, animations: {
                         self.addPostsButton.frame.origin.y = self.view.frame.height + 10
-                        self.mainFooter.frame.origin.y = self.view.frame.height + 95
+                        self.mainFooter.frame.origin.y = self.view.frame.height + MAIN_FOOTER_HEIGHT
                     }, completion: nil)
                 }
             } else {
@@ -1186,7 +1203,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
                 }
                 UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut, animations: {
                     self.addPostsButton.frame.origin.y = self.view.frame.height - 120
-                    self.mainFooter.frame.origin.y = self.view.frame.height - 65
+                    self.mainFooter.frame.origin.y = self.view.frame.height - MAIN_FOOTER_HEIGHT
                 }, completion: nil)
             }
         }
@@ -1207,12 +1224,12 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
             if(postView is PhotosOTG2) {
                 let photosOtg = postView as! PhotosOTG2
                 if(photosOtg.videoContainer != nil) {
+                    
                     photosOtg.videoToPlay()
                     
                 }
             }
         }
-        
         
     }
     
@@ -1955,9 +1972,14 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         //        globalNavigationController.pushViewController(profile, animated: true)
     }
     
-    func newOtg(_ sender: UIButton) {
-        
-        
+    
+    //MARK:- First View Actions
+    
+    func checkForLocation(_ sender: UIButton?) {
+        self.detectLocation()
+    }
+    
+    func newOtg(_ sender: UIButton?) {
         
         self.journeyStart = true
         hideHeaderAndFooter(false)
@@ -1978,15 +2000,17 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
             if myJourney["user"]["_id"].stringValue != user.getExistingUser() {
                 otgView.optionsButton.isHidden = true
             }
+        }else{
+            otgView.optionsButton.isHidden = true
         }
         
         otgView.shoewImage.alpha = 0
-//        otgView.bonVoyageLabel.alpha = 0
+        //        otgView.bonVoyageLabel.alpha = 0
         otgView.lineOne.alpha = 0
         otgView.startJourneyButton.alpha = 0
         otgView.lineTwo.alpha = 0
-//         otgView.bonVoyageLabel.
-       addPostsButton.isHidden = true
+        //         otgView.bonVoyageLabel.
+        addPostsButton.isHidden = true
         otgView.shoewImage.animation.delay(0.2).makeAlpha(1.0).moveY(-25).animateWithCompletion(0.5, {
             print("shoeImage")
         })
@@ -2010,14 +2034,14 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         otgView.startJourneyButton.addTarget(self, action: #selector(NewTLViewController.startOTGJourney(_:)), for: .touchUpInside)
         otgView.selectCategoryButton.addTarget(self, action: #selector(NewTLViewController.journeyCategory(_:)), for: .touchUpInside)
         otgView.addBuddiesButton.addTarget(self, action: #selector(NewTLViewController.addBuddies(_:)), for: .touchUpInside)
-       
+        
         //                otgView.detectLocationView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.detectLocationViewTap(_:))))
         //                otgView.detectLocationButton.addTarget(self, action: #selector(NewTLViewController.detectLocation(_:)), for: .touchUpInside)
         otgView.nameJourneyTF.returnKeyType = .done
         otgView.locationLabel.returnKeyType = .done
         otgView.locationLabel.delegate = self
         otgView.optionsButton.addTarget(self, action: #selector(NewTLViewController.optionsAction(_:)), for: .touchUpInside)
-//        otgView.optionsButton.isHidden = true
+        //        otgView.optionsButton.isHidden = true
         otgView.nameJourneyTF.delegate = self
         otgView.clipsToBounds = true
         layout.addSubview(otgView)
@@ -2128,10 +2152,9 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         otgView.locationLabel.resignFirstResponder()
         self.title = "On The Go"
         
-        locationManager.requestAlwaysAuthorization()
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.startMonitoringSignificantLocationChanges()
+//        detectLocation()
+        self.checkFetchedLocation()
+        
         otgView.drawLineView3.isHidden = false
 //        otgView.bonVoyageLabel.isHidden = true
         if textField == otgView.nameJourneyTF {
@@ -2168,10 +2191,66 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-        //imageCache = nil
+    func checkFetchedLocation() {
+        if !isJourneyOngoing {
+            //            request.getLocation(15.8514, long: 73.6389, completion: { (response) in
+            if userLocation != nil {
+                request.getLocation(userLocation.latitude, long: userLocation.longitude, completion: { (response) in
+                    
+                    DispatchQueue.main.async(execute: {
+                        
+                        if (response.error != nil) {
+                            print("error: \(response.error?.localizedDescription)")
+                        }
+                        else if response["value"].bool! {
+                            print(response["data"]);
+                            
+                            self.locationData = response["data"]["name"].string!
+                            self.otgView.locationLabel.text = response["data"]["name"].string!
+                            self.locationPic = response["data"]["image"].string!
+                            self.makeCoverPic(self.locationPic)
+                            //                            self.otgView.cityImage.hnk_setImageFromURL(URL(string: self.locationPic)!)
+                            self.locationName = self.locationData
+                            self.locationLat = String(userLocation.latitude)
+                            self.locationLong = String(userLocation.longitude)
+                            let dateFormatterTwo = DateFormatter()
+                            dateFormatterTwo.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+                            self.currentTime = dateFormatterTwo.string(from: Date())
+                            self.otgView.detectLocationView.animation.makeOpacity(0.0).animate(0.0)
+                            self.otgView.detectLocationView.isHidden = false
+                            self.otgView.placeLabel.text = self.locationData                        
+                            let localDate = self.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd-MM-yyyy", date: self.currentTime, isDate: true)
+                            let localTime = self.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: self.currentTime, isDate: false)
+                            self.otgView.timestampDate.text = "\(localDate) | \(localTime)" //self.currentTime
+                            
+                            
+                            //                        self.otgView.timestampDate.text = self.currentTime
+                            
+                            //                    self.otgView.timestampTime.text =
+                            self.otgView.cityView.layer.opacity = 0.0
+                            self.otgView.cityView.isHidden = false
+                            self.otgView.cityView.animation.makeOpacity(1.0).animate(0.0)
+                            self.otgView.journeyDetails.isHidden = true
+                            self.otgView.selectCategoryButton.isHidden = false
+                            self.height = 250.0
+                            self.mainScroll.animation.makeY(60.0).animate(0.7)
+                            self.otgView.animation.makeY(0.0).animate(0.7)
+                            
+                            self.scrollToBottom()
+                        }
+                        else {
+                            
+                            print("response error!")
+                            print("\n show error alert")
+                            self.showNetworkErrorAlert()
+                        }
+                    })
+                })
+            }
+            else {
+                self.detectLocation()
+            }
+        }
     }
     
     func startOTGJourney(_ sender: UIButton) {
@@ -2195,15 +2274,10 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         transparentCardWhite(otgView.nameJourneyView)
         self.view.bringSubview(toFront: mainFooter)
 //        transparentWhiteTextField(otgView.nameJourneyTF)
-                
-
-        //        locationManager.requestAlwaysAuthorization()
-        //        locationManager.delegate = self
-        //        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        //        locationManager.startMonitoringSignificantLocationChanges()
     }
     
     func journeyCategory(_ sender: UIButton) {
+        print("journey category clicked")
         otgView.selectCategoryButton.isHidden = true
         let categoryVC = storyboard?.instantiateViewController(withIdentifier: "kindOfJourneyVC") as! KindOfJourneyOTGViewController
         self.navigationController?.setNavigationBarHidden(false, animated: true)
@@ -2222,7 +2296,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
             height = 40.0
             mainScroll.animation.thenAfter(0.5).makeY(mainScroll.frame.origin.y - height).animate(0.5)
             
-            request.addNewOTG(journeyName, userId: currentUser["_id"].string!, startLocation: locationData, kindOfJourney: journeyCategories, timestamp: currentTime, lp: locationPic, completion: {(response) in
+            request.addNewOTG(journeyName, userId: currentUser["_id"].string!, startLocation: locationData, kindOfJourney: journeyCategories, timestamp: currentTime, lp: locationPic, lat: locationLat, long: locationLong, completion: {(response) in
 //                self.loader.removeFromSuperview()
                 DispatchQueue.main.async(execute: {
                     
@@ -2723,68 +2797,76 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         
     }
     
+    //MARK: - -- Location --
     
+    func detectLocation() {
+        
+        self.stopDetectingLocation()
+        
+        locationManager = CLLocationManager()
+        locationManager?.requestWhenInUseAuthorization()
+        locationManager?.delegate = self
+        locationManager?.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager?.startMonitoringSignificantLocationChanges()
+        self.updateStatus(status: CLLocationManager.authorizationStatus())
+    }
     
+    func stopDetectingLocation() {
+        locationManager?.stopUpdatingLocation()
+        locationManager = nil
+    }
+    
+    func updateStatus(status: CLAuthorizationStatus) {
+        switch status {
+            
+        case CLAuthorizationStatus.notDetermined:
+            self.requestAuthorization()
+            break
+            
+        case CLAuthorizationStatus.authorizedAlways:
+            fallthrough
+        case CLAuthorizationStatus.authorizedWhenInUse:
+            locationManager?.startUpdatingLocation()
+            break
+            
+        case CLAuthorizationStatus.denied:
+            fallthrough
+        case CLAuthorizationStatus.restricted:            
+            handleRestrictedMode(onVC: self)
+            break        
+        }
+    }
+    
+    func requestAuthorization() {
+        locationManager?.requestWhenInUseAuthorization()
+        locationManager?.startUpdatingLocation()
+    }
+    
+    //MARK:-  Location Delegates
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
+        let locValue:CLLocationCoordinate2D = manager.location!.coordinate
+        userLocation = locValue
+        print("\n lat: \(locValue.latitude) <<>> long: \(locValue.longitude)")        
         if manager.location?.coordinate != nil {
             let locValue:CLLocationCoordinate2D = manager.location!.coordinate
             userLocation = locValue
-            var coverImage: String!
             
-            if !isJourneyOngoing {
-                request.getLocation(locValue.latitude, long: locValue.longitude, completion: {
-                    (response) in
-                    
-                    DispatchQueue.main.async(execute: {
-                       
-                        if (response.error != nil) {
-                            print("error: \(response.error?.localizedDescription)")
-                        }
-                        else if response["value"].bool! {
-                            print(response["data"]);
-                            self.locationData = response["data"]["name"].string!
-                            self.otgView.locationLabel.text = response["data"]["name"].string!
-                            self.locationPic = response["data"]["image"].string!
-                            self.makeCoverPic(self.locationPic)
-                            //                            self.otgView.cityImage.hnk_setImageFromURL(URL(string: self.locationPic)!)
-                            self.locationName = self.locationData
-                            self.locationLat = String(locValue.latitude)
-                            self.locationLong = String(locValue.longitude)
-                            let dateFormatterTwo = DateFormatter()
-                            dateFormatterTwo.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-                            self.currentTime = dateFormatterTwo.string(from: Date())
-                            self.otgView.detectLocationView.animation.makeOpacity(0.0).animate(0.0)
-                            self.otgView.detectLocationView.isHidden = false
-                            self.otgView.placeLabel.text = self.locationData
-                            let curDate = Date()
-                            let localDate = self.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd-MM-yyyy", date: self.currentTime, isDate: true)
-                            let localTime = self.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: self.currentTime, isDate: false)
-                            self.otgView.timestampDate.text = "\(localDate) | \(localTime)" //self.currentTime
-                            
-                            
-                            //                        self.otgView.timestampDate.text = self.currentTime
-                            
-                            //                    self.otgView.timestampTime.text =
-                            self.otgView.cityView.layer.opacity = 0.0
-                            self.otgView.cityView.isHidden = false
-                            self.otgView.cityView.animation.makeOpacity(1.0).animate(0.0)
-                            self.otgView.journeyDetails.isHidden = true
-                            self.otgView.selectCategoryButton.isHidden = false
-                            self.height = 250.0
-                            self.mainScroll.animation.makeY(60.0).animate(0.7)
-                            self.otgView.animation.makeY(0.0).animate(0.7)
-                            
-                            self.scrollToBottom()
-                        }
-                        else {
-                            
-                            print("response error!")
-                        }
-                    })
-                })
+            self.stopDetectingLocation()
+            
+            if !isRequestFromNewPost {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+                    if !self.journeyStart {
+                        self.newOtg(nil)
+                    }
+                })                
             }
+            else {
+                self.addView.addLocationTapped()
+            }
+        }
+        else {
+            print("\n auth status : \(CLLocationManager.authorizationStatus().rawValue)")
         }
     }
     
@@ -2792,5 +2874,22 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         
         print("Error while updating location " + error.localizedDescription)
         
+    }    
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        print("\n didChangeAuthorization : \(status.rawValue)")
+        self.updateStatus(status: status)
     }
+    
+    
+    //MARK: - Location Error Handler
+    
+    func showNetworkErrorAlert() {
+        let errorAlert = UIAlertController(title: "Error", message: "It seems that you are not connected with internet. Please check your internet connection ", preferredStyle: UIAlertControllerStyle.alert)
+        
+        let cancelAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+        errorAlert.addAction(cancelAction)
+        
+        self.navigationController?.present(errorAlert, animated: true, completion: nil)
+    }    
 }

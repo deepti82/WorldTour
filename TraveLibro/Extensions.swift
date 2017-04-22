@@ -88,6 +88,8 @@ extension UIView {
         borderBottom.borderColor = mainBlueColor.cgColor
         borderLeft.borderColor = mainBlueColor.cgColor
         borderRight.borderColor = mainBlueColor.cgColor
+        print(self.frame.size.width)
+        print(self.frame.size.height)
         
         borderBottom.frame = CGRect(x: 0, y: self.frame.size.height - width, width:  self.frame.size.width, height: self.frame.size.height)
         borderLeft.frame = CGRect(x: 0, y: some, width: width1, height: self.frame.size.height - some)

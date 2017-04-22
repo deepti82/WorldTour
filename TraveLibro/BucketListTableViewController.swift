@@ -205,7 +205,7 @@ class BucketListTableViewController: UITableViewController  {
             cell.yearOfVisit.layer.zPosition = 100
             cell.countryId =  bucket[(indexPath as NSIndexPath).row]["_id"].string!
             cell.countryName.text = bucket[(indexPath as NSIndexPath).row]["name"].string!
-            cell.countryPicture.hnk_setImageFromURL(getImageURL(bucket[indexPath.row]["countryCoverPhoto"].stringValue,width: 500))
+            cell.countryPicture.hnk_setImageFromURL(getImageURL(bucket[indexPath.row]["countryCoverPhoto"].stringValue,width: BIG_PHOTO_WIDTH))
             cell.countryPicture.alpha = 1
             cell.yearOfVisit.isHidden = true
             return cell
@@ -218,8 +218,12 @@ class BucketListTableViewController: UITableViewController  {
             cell.yearOfVisit.layer.zPosition = 100
             cell.countryName.text = self.result[(indexPath as NSIndexPath).section]["countries"][(indexPath as NSIndexPath).row]["countryId"]["name"].string!
             cell.countryId =  self.result[(indexPath as NSIndexPath).section]["countries"][(indexPath as NSIndexPath).row]["countryId"]["_id"].string!
+            if self.result[indexPath.section]["year"].stringValue == "-1" {
+                cell.yearOfVisit.text = "-"
+            }else{
             cell.yearOfVisit.text = "\(self.result[(indexPath as NSIndexPath).section]["countries"][(indexPath as NSIndexPath).row]["year"])"
-            cell.countryPicture.hnk_setImageFromURL(getImageURL(self.result[indexPath.section]["countries"][indexPath.row]["countryId"]["countryCoverPhoto"].stringValue,width: 500))
+            }
+            cell.countryPicture.hnk_setImageFromURL(getImageURL(self.result[indexPath.section]["countries"][indexPath.row]["countryId"]["countryCoverPhoto"].stringValue,width: BIG_PHOTO_WIDTH))
             cell.countryPicture.alpha = 1
 
             return cell
@@ -267,6 +271,7 @@ class BucketListTableViewController: UITableViewController  {
                         }
                     });
                 }))
+
                 self.present(alert, animated: true, completion: nil)
             } else if self.whichView == "CountriesVisited" {
                 let alert = UIAlertController(title: "", message: "Are you sure you want to delete \(cell.countryName.text!) from Countries Visited", preferredStyle: UIAlertControllerStyle.alert)
@@ -281,6 +286,7 @@ class BucketListTableViewController: UITableViewController  {
                         }
                     });
                 }))
+
                 self.present(alert, animated: true, completion: nil)
             }
         }
@@ -302,8 +308,11 @@ class BucketListTableViewController: UITableViewController  {
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         
         if whichView == "CountriesVisited" {
-            
+            if self.result[section]["year"].stringValue == "-1" {
+                return "-"
+            }else{
             return "\(self.result[section]["year"])"
+            }
         }
         
         return nil

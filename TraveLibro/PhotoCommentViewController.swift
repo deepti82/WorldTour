@@ -161,7 +161,7 @@ class PhotoCommentViewController: UIViewController, UITableViewDataSource, UITab
             cell.profileName.text = comments[indexPath.row]["user"]["name"].string!
             cell.profileComment.text = comments[(indexPath as NSIndexPath).row]["text"].string!
             DispatchQueue.main.async(execute: {
-                cell.profileImage.hnk_setImageFromURL(getImageURL(self.comments[indexPath.row]["user"]["profilePicture"].stringValue, width: 100))
+                cell.profileImage.hnk_setImageFromURL(getImageURL(self.comments[indexPath.row]["user"]["profilePicture"].stringValue, width: SMALL_PHOTO_WIDTH))
                 makeTLProfilePicture(cell.profileImage)
             })
             

@@ -124,7 +124,7 @@ class NotificationPhotoCell: UITableViewCell {
                 imageURL = notificationData["data"]["startLocationPic"].stringValue
             }
             NFPhoto.NFPlayImage.isHidden = true
-            NFPhoto.NFPhotoImage.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(imageURL!)", width: 100))
+            NFPhoto.NFPhotoImage.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(imageURL!)", width: SMALL_PHOTO_WIDTH))
         }
         else{
             NFPhoto.setPhoto(data: notificationData["data"])

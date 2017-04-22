@@ -234,14 +234,14 @@ class AddRating: UIView, UITextViewDelegate {
         
         if review["review"].string == "" || review["review"] == nil {
             reviewTextView.text = "Fill Me In..."            
-            if !isSelfUser(otherUserID: activityJson["user"]["_id"].stringValue) {
+            if !canRate {
                 reviewTextView.text = ""
                 addReviewText.text = ""
             }
             
         }else{
             reviewTextView.text = review["review"].string!
-            if !isSelfUser(otherUserID: activityJson["user"]["_id"].stringValue) {
+            if !canRate {
                 addReviewText.text = ""
             }
         }

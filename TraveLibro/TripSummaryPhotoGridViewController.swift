@@ -133,7 +133,7 @@ class TripSummaryPhotoGridViewController: UICollectionViewController, ToolStackC
         
         
         if type == "photos" {
-            cell.photo.hnk_setImageFromURL(getImageURL(myPhotos[indexPath.row]["name"].stringValue, width: 0))
+            cell.photo.hnk_setImageFromURL(getImageURL(myPhotos[indexPath.row]["name"].stringValue, width: 500))
 
         }else{
             self.videoContainer = VideoView(frame: CGRect(x: 0, y: 0, width: cell.frame.width, height: cell.frame.width))

@@ -168,7 +168,9 @@ class SetProfilePictureViewController: UIViewController, UIImagePickerController
             
         }
         chooseSource.addAction(deleteActionButton)
-        self.present(chooseSource, animated: true, completion: nil)
+        showPopover(optionsController: chooseSource, sender: uploadView, vc: self)
+
+//        self.present(chooseSource, animated: true, completion: nil)
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {

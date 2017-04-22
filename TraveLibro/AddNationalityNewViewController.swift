@@ -89,6 +89,7 @@ class AddNationalityNewViewController: UIViewController, UIPickerViewDelegate {
             rightButton.addTarget(self, action: #selector(AddNationalityNewViewController.saveCountry(_:)), for: .touchUpInside)
             rightButton.frame = CGRect(x: 0, y: 8, width: 30, height: 30)
             self.customNavigationBar(left: nil, right: rightButton)
+            self.navigationItem.hidesBackButton = true
         }
         
         hintLabel = UILabel(frame: CGRect(x: 20, y: 0, width: screenWidth - 40, height: 30))
@@ -247,8 +248,10 @@ class AddNationalityNewViewController: UIViewController, UIPickerViewDelegate {
     
     
     func chooseCity(_ sender: UIButton) {
-        let cityVC = self.storyboard!.instantiateViewController(withIdentifier: "addCity") as! AddCityViewController
-        self.navigationController?.pushViewController(cityVC, animated: true)
+        if (self.navigationController?.topViewController?.isKind(of: AddNationalityNewViewController.self))! {
+            let cityVC = self.storyboard!.instantiateViewController(withIdentifier: "addCity") as! AddCityViewController
+            self.navigationController?.pushViewController(cityVC, animated: true)
+        }
     }
 
 }

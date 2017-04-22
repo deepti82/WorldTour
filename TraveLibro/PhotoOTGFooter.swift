@@ -108,7 +108,7 @@ class PhotoOTGFooter: UIView {
     func showLike(_ sender: UITapGestureRecognizer) {
         print("fahsldkjfhlaksjdhfalkjsfhlk")
         let feedVC = storyboard!.instantiateViewController(withIdentifier: "likeTable") as! LikeUserViewController
-//        feedVC.postId = postTop["_id"].stringValue
+        feedVC.postId = postTop.post_ids
         globalNavigationController.pushViewController(feedVC, animated: true)
         
     }
@@ -356,7 +356,10 @@ class PhotoOTGFooter: UIView {
             globalNewTLViewController.showEditAddActivity(self.postTop)
         }
         actionSheetControllerIOS8.addAction(share)
-        globalNavigationController.topViewController?.present(actionSheetControllerIOS8, animated: true, completion: nil)
+        
+        showPopover(optionsController: actionSheetControllerIOS8, sender: sender, vc: globalNavigationController)
+
+//        globalNavigationController.topViewController?.present(actionSheetControllerIOS8, animated: true, completion: nil)
     }
     @IBAction func sharingTap(_ sender: Any) {
         sharingUrl(url:  postTop.jsonPost["sharingUrl"].stringValue, onView: globalNavigationController.topViewController!)

@@ -145,7 +145,7 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate {
         
         for (n,i) in quickItinery["countryVisited"] {
             
-            let quickCountry = QuickCountry(frame: CGRect(x: 0, y: 3, width: 327, height: 40))
+            let quickCountry = QuickCountry(frame: CGRect(x: 0, y: 3, width: self.verticalLayout.frame.width - 10, height: 40))
             
             quickCountry.countryName.text = i["name"].stringValue
             quickCountry.tag = Int(n)!
@@ -154,7 +154,7 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate {
             verticalLayout.addSubview(quickCountry)
             
             for (no,ob) in i["cityVisited"] {
-                let quickCity = QuickCity(frame: CGRect(x: 0, y: 3, width: 327, height: 40))
+                let quickCity = QuickCity(frame: CGRect(x: 0, y: 3, width: self.verticalLayout.frame.width - 10, height: 40))
                 quickCity.parentView = self
                 quickCity.cityName.text = ob["name"].stringValue
                 quickCity.countryTag = Int(n)!

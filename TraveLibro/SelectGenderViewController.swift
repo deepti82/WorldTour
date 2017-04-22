@@ -1,10 +1,13 @@
 import UIKit
 
 class SelectGenderViewController: UIViewController {
+    var dpVC: SetProfilePictureViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         getDarkBackGroundBlur(self)
+        
+        dpVC = self.storyboard!.instantiateViewController(withIdentifier: "setDp") as! SetProfilePictureViewController
 //        loader.showOverlay(self.view)
         
         let leftButton = UIButton()
@@ -64,9 +67,8 @@ class SelectGenderViewController: UIViewController {
                 }
                 else if response["value"].bool! {
                     
-                    print("response arrived!")
-                    let dpVC = self.storyboard!.instantiateViewController(withIdentifier: "setDp") as! SetProfilePictureViewController
-                    self.navigationController?.pushViewController(dpVC, animated: true)
+                    print("response arrived!")                    
+                    self.navigationController?.pushViewController(self.dpVC, animated: true)
                     
                 }
                 else {

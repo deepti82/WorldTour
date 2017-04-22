@@ -50,7 +50,7 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.mainFooter.frame = CGRect(x: 0, y: self.view.frame.height - 65, width: self.view.frame.width, height: 65)        
+        self.mainFooter.frame = CGRect(x: 0, y: self.view.frame.height - MAIN_FOOTER_HEIGHT, width: self.view.frame.width, height: MAIN_FOOTER_HEIGHT)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -61,6 +61,7 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         hideHeaderAndFooter(false)
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -157,7 +158,7 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
         
         let cellData = allUsers[indexPath.row]        
         cell.userIcon.image = UIImage(named:"logo-default")
-        cell.userIcon.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(cellData["profilePicture"].stringValue)", width: 100))
+        cell.userIcon.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(cellData["profilePicture"].stringValue)", width: SMALL_PHOTO_WIDTH))
         
         cell.userIcon.layer.masksToBounds = false
         cell.userIcon.layer.borderColor = UIColor.clear.cgColor
@@ -301,10 +302,10 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
     func hideHeaderAndFooter(_ isShow:Bool) {
         if(isShow) {
             self.navigationController?.setNavigationBarHidden(true, animated: true)
-            self.mainFooter.frame.origin.y = self.view.frame.height + 95
+            self.mainFooter.frame.origin.y = self.view.frame.height + MAIN_FOOTER_HEIGHT
         } else {
             self.navigationController?.setNavigationBarHidden(false, animated: true)           
-            self.mainFooter.frame.origin.y = self.view.frame.height - 65            
+            self.mainFooter.frame.origin.y = self.view.frame.height - MAIN_FOOTER_HEIGHT            
         }
     }
     

@@ -23,7 +23,7 @@ class LocalLifePostsViewController: UIViewController, UIScrollViewDelegate, CLLo
     @IBOutlet weak var scrollView: UIScrollView!
     var localLife: JSON!
     var locationData = ""
-    let locationManager = CLLocationManager()
+    var locationManager : CLLocationManager!
     var locValue:CLLocationCoordinate2D!
     var layout:VerticalLayout!
     var loader = LoadingOverlay()
@@ -37,7 +37,7 @@ class LocalLifePostsViewController: UIViewController, UIScrollViewDelegate, CLLo
         scrollView.addSubview(layout)
         loader.showOverlay(self.view)
         setTopNavigation(text: nearMeType);
-        self.detectLocation(UIButton())
+        self.detectLocation()
         globalLocalLifeInside = self
         self.navigationController?.isNavigationBarHidden = false
     }    
@@ -237,7 +237,7 @@ class LocalLifePostsViewController: UIViewController, UIScrollViewDelegate, CLLo
     func goToLocalLife(_ sender:AnyObject) {
 //        let vc = storyboard?.instantiateViewController(withIdentifier: "localLife") as! LocalLifeRecommendationViewController
 //        globalNavigationController?.pushViewController(vc, animated: false)
-        self.navigationController?.popViewController(animated: true)    
+        _ = self.navigationController?.popViewController(animated: true)    
     }
     
    
@@ -274,18 +274,88 @@ class LocalLifePostsViewController: UIViewController, UIScrollViewDelegate, CLLo
             hideHeaderAndFooter(false);
         }
     }
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        print("Chinatn Shah");
-    }
+    
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         print("JAgruti Patil");
     }
     
-    func detectLocation(_ sender: AnyObject?) {
-        locationManager.requestAlwaysAuthorization()
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.startMonitoringSignificantLocationChanges()
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        print("Chinatn Shah");
+        
+        for postView in layout.subviews {
+            if(postView is LocalLifePost) {
+                let feeds = postView as! LocalLifePost
+                if(feeds.videoContainer != nil) {
+                    feeds.videoToPlay()
+                }
+            }
+        }
+    }
+    
+    
+    //MARK: - -- Location --
+    
+    func detectLocation() {
+        
+        self.stopDetectingLocation()
+        
+        locationManager = CLLocationManager()
+        locationManager?.requestWhenInUseAuthorization()
+        locationManager?.delegate = self
+        locationManager?.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager?.startMonitoringSignificantLocationChanges()
+        self.updateStatus(status: CLLocationManager.authorizationStatus())
+    }
+    
+    func stopDetectingLocation() {
+        locationManager?.stopUpdatingLocation()
+        locationManager = nil
+    }
+    
+    func updateStatus(status: CLAuthorizationStatus) {
+        switch status {
+            
+        case CLAuthorizationStatus.notDetermined:
+            self.requestAuthorization()
+            break
+            
+        case CLAuthorizationStatus.authorizedAlways:
+            fallthrough
+        case CLAuthorizationStatus.authorizedWhenInUse:
+            locationManager?.startUpdatingLocation()
+            break
+            
+        case CLAuthorizationStatus.denied:
+            fallthrough
+        case CLAuthorizationStatus.restricted:            
+            handleRestrictedMode(onVC: self)
+            break
+        }
+    }
+    
+    func requestAuthorization() {
+        locationManager?.requestWhenInUseAuthorization()
+        locationManager?.startUpdatingLocation()
+    }
+    
+    //MARK: - Location Delegates
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        if manager.location?.coordinate != nil {
+            locValue = manager.location!.coordinate
+            print(locValue);
+            userLocation = locValue
+            
+            self.stopDetectingLocation()
+            
+            loadLocalLife()
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        print("\n didChangeAuthorization : \(status.rawValue)")
+        self.updateStatus(status: status)        
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
@@ -301,7 +371,7 @@ class LocalLifePostsViewController: UIViewController, UIScrollViewDelegate, CLLo
                     
                 }
                 else if response["value"].bool! {
-//                    self.allLocalLife = response["data"].arrayValue
+                    //                    self.allLocalLife = response["data"].arrayValue
                     for local in response["data"].arrayValue {
                         
                         self.allLocalLife.append(local)
@@ -319,17 +389,6 @@ class LocalLifePostsViewController: UIViewController, UIScrollViewDelegate, CLLo
                 }
             })
         })
-
-    }
-    
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
-        if manager.location?.coordinate != nil {
-            locValue = manager.location!.coordinate
-            print(locValue);
-            userLocation = locValue
-            loadLocalLife()
-        }
     }
 }

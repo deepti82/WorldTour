@@ -32,7 +32,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setNavigationBarItemText("Notifications")
+        setNavigationBarItemText("Alerts")
         
         self.automaticallyAdjustsScrollViewInsets = false
         
@@ -53,9 +53,8 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
 //        refreshControl.addTarget(self, action: #selector(NotificationSubViewController.pullToRefreshCalled), for: UIControlEvents.valueChanged)
         refreshControl.tintColor = lightOrangeColor
         notifyTableView.addSubview(refreshControl)
-        
-        mainFooter.notificationIcon.tintColor = mainOrangeColor
-        mainFooter.notifications.textColor = mainOrangeColor
+
+        mainFooter.setHighlightStateForView(tag: 4, color: mainOrangeColor)
         
         request.checkNotificationCache(user.getExistingUser()) { (response) in
             if response.count == 0 {
@@ -69,7 +68,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         NotificationCenter.default.addObserver(self, selector: #selector(customRemoteNotificationReceived(notification:)), name: NSNotification.Name(rawValue: "REMOTE_NOTIFICATION_RECEIVED"), object: nil)
-        self.mainFooter.frame = CGRect(x: 0, y: self.view.frame.height - 65, width: self.view.frame.width, height: 65)
+        self.mainFooter.frame = CGRect(x: 0, y: self.view.frame.height - MAIN_FOOTER_HEIGHT, width: self.view.frame.width, height: MAIN_FOOTER_HEIGHT)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -80,7 +79,6 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        hideHeaderAndFooter(false)
         NotificationCenter.default.removeObserver(self)
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
@@ -147,7 +145,22 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
                             }
                             self.notifyTableView.reloadData()
                             self.notifyTableView.scrollToRow(at: NSIndexPath.init(row: indexx, section: 0) as IndexPath as IndexPath, at: .none, animated: true)
-                        }                                                
+                            
+                            if self.notifications.isEmpty {
+                                self.noNotificationsFound()
+                            }
+                            else {
+                                self.removeEmptyScreen()
+                            }
+                        }
+                        else {
+                            if self.notifications.isEmpty {
+                                self.noNotificationsFound()
+                            }
+                            else {
+                                self.removeEmptyScreen()
+                            }
+                        }
                     }
                     else {
                         print("response error!")
@@ -249,8 +262,11 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
             fallthrough
         case "userFollowingResponse":
             fallthrough
-        case "journeyReject":
+        case "journeyReject":                                
             return currentCellHeight + 8
+            
+        case "userWelcome":
+            return 180
             
             
         default:
@@ -295,7 +311,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
             fallthrough
         case "itineraryComment":
             fallthrough
-        case "postMentionComment":            
+        case "postMentionComment":
             
             if cellNotificationData["data"]["thoughts"].stringValue != "" && canLoadCommentCell(data: cellNotificationData) {
                 
@@ -377,6 +393,19 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
             var cell = tableView.dequeueReusableCell(withIdentifier: "acknolwdgeCell", for: indexPath) as? NotificationAcknolwdgementCell
             if cell == nil {
                 cell = NotificationAcknolwdgementCell.init(style: .default, reuseIdentifier: "acknolwdgeCell", notificationData: cellNotificationData, helper: self) 
+            }
+            else{
+                cell?.setData(notificationData: cellNotificationData, helper: self)
+            }
+            
+            cell?.backgroundColor = UIColor.clear
+            currentCellHeight = (cell?.totalHeight)!
+            return cell!
+            
+        case "userWelcome":
+            var cell = tableView.dequeueReusableCell(withIdentifier: "welcomeCell", for: indexPath) as? NotificationWelcomeCell
+            if cell == nil {
+                cell = NotificationWelcomeCell.init(style: .default, reuseIdentifier: "welcomeCell", notificationData: cellNotificationData, helper: self)
             }
             else{
                 cell?.setData(notificationData: cellNotificationData, helper: self)
@@ -771,14 +800,37 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
     func hideHeaderAndFooter(_ isShow:Bool) {
         if(isShow) {
             self.navigationController?.setNavigationBarHidden(true, animated: true)
-            self.mainFooter.frame.origin.y = self.view.frame.height + 95
+            self.mainFooter.frame.origin.y = self.view.frame.height + MAIN_FOOTER_HEIGHT
         }
         else {
             self.navigationController?.setNavigationBarHidden(false, animated: true)
-            self.mainFooter.frame.origin.y = self.view.frame.height - 65            
+            self.mainFooter.frame.origin.y = self.view.frame.height - MAIN_FOOTER_HEIGHT
         }
     }
     
+    
+    //MARK: - Empty screen
+
+    func removeEmptyScreen() {
+        for views in self.view.subviews {
+            if views.tag == 45 {
+                let expectedView = views
+                expectedView.removeFromSuperview()                
+            }
+        }
+        self.notifyTableView.isUserInteractionEnabled = true
+    }
+    
+    func noNotificationsFound() {
+        
+        removeEmptyScreen()        
+        
+        let noNotification = notificationEmptyView(frame: CGRect(x: 0, y: 5, width: screenWidth, height: 180))
+        noNotification.tag = 45
+        self.view.addSubview(noNotification)
+        self.notifyTableView.isUserInteractionEnabled = false
+    }
+
     
     //MARK: - Remote Notification Received
     

@@ -18,7 +18,7 @@ class DisplayPagesFourViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        getDarkBackGroundBlur(self)
+        getDarkBackGroundBlur(self)        
 
 //        let indicatorFour = UIImageView(frame: CGRect(x: 0, y: 0, width: 60, height: 20))
 //        indicatorFour.image = UIImage(named: "headerindicator4")
@@ -49,13 +49,13 @@ class DisplayPagesFourViewController: UIViewController {
 //        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(DisplayPagesTwoViewController.nextPage(_:)))
 //        swipeLeft.direction = UISwipeGestureRecognizerDirection.Left
 //        self.view.addGestureRecognizer(swipeLeft)
-        
+        print("ypos : \(self.view.frame.origin.y)")
         let scroll = UIScrollView(frame: CGRect(x: 0, y: 60, width: self.view.frame.width, height: self.view.frame.height))
         self.view.addSubview(scroll)
         
         scroll.contentSize.height = 1050.0
         
-        let page = forDpFour(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 950))
+        let page = forDpFour(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 950))        
         scroll.addSubview(page)
         
         for button in page.checkboxFourButtons {
@@ -119,20 +119,56 @@ class DisplayPagesFourViewController: UIViewController {
         
         
         let req = ["kindOfHoliday":kindOfJourney,"usuallyGo":[youUsuallyGo],"preferToTravel":preferToTravel,"holidayType":yourIdeal] as [String : Any]
-//
-        request.addCard(currentUser["_id"].string!, editFieldValue: req, completion: {(responce) in
-            DispatchQueue.main.async(execute: {
-                if responce["value"] != true{
-                    self.alert(message: "Enable to save", title: "Holiday Type")
+        
+        var popToVC : UIViewController!
+        
+        if kindOfJourney.isEmpty {
+            for vc in (self.navigationController?.viewControllers)! {
+                if vc.isKind(of: DisplayPagesOneViewController.self) {
+                    popToVC = vc
+                    break
                 }
-                let next = self.storyboard?.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
-                self.navigationController?.pushViewController(next, animated: true)
-                
+            }
+        }
+        else if youUsuallyGo == "" {
+            for vc in (self.navigationController?.viewControllers)! {
+                if vc.isKind(of: DisplayPagesTwoViewController.self) {
+                    popToVC = vc
+                    break
+                }
+            }
+        }
+        else if preferToTravel.isEmpty {
+            for vc in (self.navigationController?.viewControllers)! {
+                if vc.isKind(of: DisplayPagesThreeViewController.self) {
+                    popToVC = vc
+                    break
+                }
+            }
+        }
+        else if youUsuallyGo == "" {
+            for vc in (self.navigationController?.viewControllers)! {
+                if vc.isKind(of: DisplayPagesFourViewController.self) {
+                    popToVC = vc
+                    break
+                }
+            }
+        }
+        
+        if kindOfJourney.isEmpty || youUsuallyGo == "" || preferToTravel.isEmpty || yourIdeal.isEmpty {            
+            _ = self.navigationController?.popToViewController(popToVC, animated: true)
+        }
+        else {
+            request.addCard(currentUser["_id"].string!, editFieldValue: req, completion: {(responce) in
+                DispatchQueue.main.async(execute: {
+                    if responce["value"] != true{
+                        self.alert(message: "Enable to save", title: "Holiday Type")
+                    }                    
+                    let next = self.storyboard?.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
+                    self.navigationController?.pushViewController(next, animated: true)
+                })
             })
-        })
-
-        
-        
+        }
     }
     
     override func didReceiveMemoryWarning() {

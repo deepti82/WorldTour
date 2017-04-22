@@ -6,6 +6,7 @@ class MyLifeContainerViewController: UIViewController,UIScrollViewDelegate {
     var layout: VerticalLayout!
     var isInitalLoad = true
     var empty: EmptyScreenView!
+    var emptyTravel : MyLifeJourneyTravel!
     var timeTag:TimestampTagViewOnScroll!
     var pageNumber = 1
     var hasNext: Bool = true
@@ -33,29 +34,35 @@ class MyLifeContainerViewController: UIViewController,UIScrollViewDelegate {
     func showNoData(show:Bool, type:String) {
         if empty != nil {
             self.empty.removeFromSuperview()
+            self.emptyTravel.removeFromSuperview()
+
         }
         if show {
             empty = EmptyScreenView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 250))
+            emptyTravel = MyLifeJourneyTravel(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 250))
+
             switch type {
             case "all":
                 empty.frame.size.height = 350.0
                 empty.viewHeading.text = "Travel in a Time Machine"
                 empty.viewBody.text = "Capture your journeys and activities whether local or global, creating a beautiful timeline and relive these treasured experiences of your past."
+                self.view.addSubview(empty)
+
                 break
             case "travel-life":
-                empty.frame.size.height = 350.0
-                empty.viewHeading.text = "On-the-Go Journeys"
-                empty.viewBody.text = "Capture each moment of your journey via check-ins, pictures, videos, and thoughts live On-the-Go to create a stunning timeline with friends and family."
+                emptyTravel.frame.size.height = 322.0
+                self.view.addSubview(emptyTravel)
                 break
             case "local-life":
                 empty.frame.size.height = 275.0
                 empty.viewHeading.text = "Life In The City"
                 empty.viewBody.text = "Candid, fun moments with friends, happy family get-togethers, some precious ‘me-time’…share your love for your city and inspire others to do the same. Cherish your local life memories eternally."
+                self.view.addSubview(empty)
+
                 break
             default:
                 break
             }
-            self.view.addSubview(empty)
 //            mainView.isHidden = true
         }
     }

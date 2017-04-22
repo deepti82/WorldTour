@@ -416,10 +416,14 @@ class MyLifeActivityFeedsLayout: VerticalLayout, PlayerDelegate {
     func videoToPlay ()  {
         
         if isVideoViewInRangeToPlay() {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: { 
+            if !self.willPlay {
+                self.videoContainer.showLoadingIndicator(color: (feeds["type"].stringValue == "travel-life" ? mainOrangeColor : endJourneyColor))
+            }            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
+                self.videoContainer.stopLoadingIndicator()
                 if self.isVideoViewInRangeToPlay() {
                     if !self.willPlay {
-                        self.videoContainer.playBtn.isHidden = true
+//                        self.videoContainer.playBtn.isHidden = true                        
                         self.willPlay = true
                         let videoUrl = URL(string:self.feeds["videos"][0]["name"].stringValue)
                         self.player.setUrl(videoUrl!)
@@ -429,14 +433,16 @@ class MyLifeActivityFeedsLayout: VerticalLayout, PlayerDelegate {
                 else {
                     self.player.stop()
                     self.willPlay = false
-                    self.videoContainer.playBtn.isHidden = false
+//                    self.videoContainer.playBtn.isHidden = false
+                    self.videoContainer.stopLoadingIndicator()
                 }
             })
         }
         else {
             self.player.stop()
             self.willPlay = false
-            self.videoContainer.playBtn.isHidden = false
+//            self.videoContainer.playBtn.isHidden = false
+            self.videoContainer.stopLoadingIndicator()
         }
     }
     
@@ -476,7 +482,7 @@ class MyLifeActivityFeedsLayout: VerticalLayout, PlayerDelegate {
         let ratingDialog = AddRating(frame: CGRect(x: 0, y: 0, width: activityFeed.view.frame.width - 40, height: 400))
         ratingDialog.center = CGPoint(x: activityFeed.view.frame.width/2, y: activityFeed.view.frame.height/2)
         
-        ratingDialog.postReview.addTarget(self, action: #selector(ActivityFeedsLayout.closeDialog(_:)), for: .touchUpInside)
+        ratingDialog.postReview.addTarget(self, action: #selector(ActivityFeedsLayout.exitDialog(_:)), for: .touchUpInside)
         blackBg.addSubview(ratingDialog)
         
     }

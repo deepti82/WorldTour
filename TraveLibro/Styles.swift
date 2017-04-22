@@ -751,25 +751,6 @@ func convertDateFormate(dateStr : String) -> String{
     return day + " " + newDate
 }
 
-func getPlainTextFromHTMLContentText(str : String?) -> String {
-    
-    
-    if str != nil && str != "" {
-        do {
-            print("\n Plain text : \n\n \(str)")
-            let regex =  "<.*?>"
-            let expr = try NSRegularExpression(pattern: regex, options: NSRegularExpression.Options.caseInsensitive)
-            let replacement = expr.stringByReplacingMatches(in: str!, options: [], range: NSMakeRange(0, (str!.characters.count)), withTemplate: "")
-            print("\n\n\n replacement text : \n\n \(replacement)")
-            return replacement
-            //replacement is the result
-        } catch {
-            // regex was bad!
-        }
-    }
-    return ""
-}
-
 func shouldShowBigImage(position: Int) -> Bool {
     if position == 0 || position % 4 == 0 {
         return true
@@ -781,7 +762,7 @@ func shouldShowBigImage(position: Int) -> Bool {
 
 func setFollowButtonTitle(button:UIButton, followType: Int, otherUserID: String) {
     
-    if otherUserID == "admin" || otherUserID == "" || isSelfUser(otherUserID: otherUserID) {
+    if otherUserID == "admin" || isSelfUser(otherUserID: otherUserID) {
         button.isHidden = true
     }
     else{
@@ -798,6 +779,29 @@ func setFollowButtonTitle(button:UIButton, followType: Int, otherUserID: String)
         else if followType == 0 {
             button.setTitle("Follow", for: .normal)
             button.tag = 0
+        }
+    }
+}
+
+func setFollowButtonImage(button:UIButton, followType: Int, otherUserID: String) {
+    
+    if isSelfUser(otherUserID: otherUserID) {
+        button.isHidden = true
+    }
+    else{
+        button.isHidden = false
+        
+        if followType == 1 {
+            button.tag = 1
+            button.setImage(UIImage(named:"following"), for: .normal)
+        }
+        else if followType == 0 {
+            button.tag = 0
+            button.setImage(UIImage(named:"follow"), for: .normal)
+        }
+        else if followType == 2 {
+            button.tag = 2
+            button.setImage(UIImage(named:"requested"), for: .normal)
         }
     }
 }
@@ -874,6 +878,8 @@ func isSelfUser(otherUserID: String) -> Bool {
 
 func getThumbnailFromVideoURL(url : URL, onView: UIImageView) {
     DispatchQueue.global().async {
+        onView.contentMode = UIViewContentMode.scaleAspectFill
+        onView.clipsToBounds = true
         var image = UIImage(named: "logo-default")
         let asset = AVURLAsset(url: url, options: nil)
         let imgGenerator = AVAssetImageGenerator(asset: asset)
@@ -893,7 +899,46 @@ func getThumbnailFromVideoURL(url : URL, onView: UIImageView) {
 }
 
 
+//MARK:- Present Action View
 
-//LoadingOverlay.shared.showOverlay(self.view)
-////To to long tasks
-//LoadingOverlay.shared.hideOverlayView()
+func showPopover(optionsController:UIAlertController, sender:UIView, vc:UIViewController){
+    if let popover = optionsController.popoverPresentationController{
+        popover.sourceView = sender
+        popover.sourceRect = sender.bounds
+    }
+    vc.present(optionsController, animated: true, completion: nil)
+}
+
+//MARK: - Helpers
+
+func getURLSlug(slug: String) -> String {
+    var myString = slug
+    myString.remove(at: myString.startIndex)
+    return myString
+}
+
+//MARK: - Location Error Handler
+
+func handleRestrictedMode(onVC: UIViewController) {
+    print("\n handle restricted mode")
+    
+    let errorAlert = UIAlertController(title: "Turn on Location Services", message: "1. Tap Settings \n 2. Tap Location \n Tap While Using the App", preferredStyle: UIAlertControllerStyle.alert)
+    
+    let cancelAction = UIAlertAction(title: "Not Now", style: .default, handler: nil)
+    errorAlert.addAction(cancelAction)
+    
+    let settingsAction = UIAlertAction(title: "Settings", style: .default) { (_) -> Void in
+        guard let settingsUrl = URL(string: UIApplicationOpenSettingsURLString) else {
+            return
+        }            
+        if UIApplication.shared.canOpenURL(settingsUrl) {
+            UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
+                print("Settings opened: \(success)") // Prints true
+            })
+        }
+    }
+    errorAlert.addAction(settingsAction)
+    
+    
+    onVC.navigationController?.present(errorAlert, animated: true, completion: nil)
+}

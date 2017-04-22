@@ -69,9 +69,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
                 toggle = false
             }
         }
-        
-        
-        
+    
     }  
     
     
@@ -290,7 +288,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         profile = ProfilePicFancy(frame: CGRect(x: 10, y: 0, width: profileView.frame.width, height: profileView.frame.height))
         profile.backgroundColor = UIColor.clear
         profileView.addSubview(profile)
-        footer = FooterViewNew(frame: CGRect(x: 0, y: self.view.frame.height - 65, width: self.view.frame.width, height: 65))
+        footer = FooterViewNew(frame: CGRect(x: 0, y: self.view.frame.height - MAIN_FOOTER_HEIGHT, width: self.view.frame.width, height: MAIN_FOOTER_HEIGHT))
         self.view.addSubview(footer)
         makeMenuProfilePicture(profile.image)
         profilePicture.isHidden = true
@@ -337,7 +335,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
             imageName = currentUser["profilePicture"].string!
             
             if currentUser["homeCountry"] != nil {                
-                profile.country.text = currentUser["homeCountry"]["name"].string! 
+                profile.country.text = self.getShortCountry(country: currentUser["homeCountry"]["name"].string!) 
                 profile.flag.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(currentUser["homeCountry"]["flag"].stringValue)", width: 100))
             }
             
@@ -395,6 +393,22 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
 
     }
     
+    func getShortCountry(country: String) -> String {
+        let stringInput = country
+        let stringInputArr = stringInput.components(separatedBy: " ")
+        var stringNeed = ""
+        
+        if stringInputArr.count > 1 {
+            for string in stringInputArr {
+                stringNeed = stringNeed + String(string.characters.first!)
+            }
+        }else{
+            stringNeed = country
+        }
+        
+        
+        return stringNeed
+    }
     
     func goToLocalLife(_ sender : AnyObject) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "localLife") as! LocalLifeRecommendationViewController

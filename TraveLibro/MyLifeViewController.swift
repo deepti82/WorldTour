@@ -26,6 +26,10 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var journeysContainerView: UIView!
     @IBOutlet weak var collectionContainer: UIView!
     @IBOutlet weak var tableContainer: UIView!
+    
+    var isFromFooter = false
+    var mainFooter: FooterViewNew!
+    
     var whichTab: String = ""
     var type = "on-the-go-journey"
     var journey: [JSON]!
@@ -59,25 +63,37 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         getDarkBackGround(self)
         globalMyLifeController = self
         
-        let leftButton = UIButton()
-        leftButton.titleLabel?.font = UIFont(name: "FontAwesome", size: 14)
-        let arrow = String(format: "%C", faicon["arrow-down"]!)
-        leftButton.setTitle(arrow, for: UIControlState())
-        leftButton.addTarget(self, action: #selector(MyLifeViewController.exitMyLife(_:)), for: .touchUpInside)
-        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-        
-        self.customNavigationBar(left: leftButton, right: rightButton)
-        
-        if currentUser != nil {
+        if isFromFooter {
+            setNavigationBarItem()
             
+            self.mainFooter = FooterViewNew(frame: CGRect.zero)
+            self.mainFooter.layer.zPosition = 5
+            self.view.addSubview(self.mainFooter)
+            
+            self.mainFooter.setHighlightStateForView(tag: 2, color: mainOrangeColor)
+            
+            arrowDownButton.isHidden = true
+        }
+        else {
+            let leftButton = UIButton()
+            leftButton.titleLabel?.font = UIFont(name: "FontAwesome", size: 14)        
+            let arrow = String(format: "%C", faicon["arrow-down"]!)
+            leftButton.setTitle(arrow, for: UIControlState())
+            leftButton.addTarget(self, action: #selector(MyLifeViewController.exitMyLife(_:)), for: .touchUpInside)
+            leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+            self.customNavigationBar(left: leftButton, right: rightButton)
+            
+            arrowDownButton.setTitle(arrow, for: UIControlState())
+            arrowDownButton.addTarget(self, action: #selector(MyLifeViewController.exitMyLife(_:)), for: .touchUpInside)
+            arrowDownButton.isHidden = false
+        }
+        
+        if currentUser != nil {            
             profileName.text = selectedUser.isEmpty ? currentUser["name"].string! : selectedUser["name"].string!
         }
         self.title = selectedUser.isEmpty ? currentUser["name"].string! : selectedUser["name"].string!
         
         isEmptyProfile = true
-        
-        arrowDownButton.setTitle(arrow, for: UIControlState())
-        arrowDownButton.addTarget(self, action: #selector(MyLifeViewController.exitMyLife(_:)), for: .touchUpInside)
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(MyLifeViewController.exitMyLife(_:)))
         profileName.addGestureRecognizer(tap)
@@ -140,6 +156,14 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         setDefaults()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if isFromFooter {
+            self.mainFooter.frame = CGRect(x: 0, y: self.view.frame.height - MAIN_FOOTER_HEIGHT, width: self.view.frame.width, height: MAIN_FOOTER_HEIGHT)
+            globalNavigationController = self.navigationController
+        }
+    }
+    
     func showLoader() {
         loader.showOverlay(self.view)
     }
@@ -157,15 +181,17 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     //MARK: - Actions
     
     func exitMyLife(_ sender: AnyObject ) {
-        
-        UIView.animate(withDuration: 0.75, animations: { () -> Void in
-            UIView.setAnimationCurve(UIViewAnimationCurve.easeInOut)
-            _ = self.navigationController?.popViewController(animated: true)
-            UIView.setAnimationTransition(.curlDown, for: self.navigationController!.view!, cache: false)
-            
-        })
+        if !isFromFooter {
+            _ = self.navigationController?.popViewController(animated: false)            
+        }
         
         
+//        UIView.animate(withDuration: 0.75, animations: { () -> Void in
+//            UIView.setAnimationCurve(UIViewAnimationCurve.easeInOut)
+//            _ = self.navigationController?.popViewController(animated: true)
+//            UIView.setAnimationTransition(.curlDown, for: self.navigationController!.view!, cache: false)
+//            
+//        })
     }
     
     func setDefaults() {
