@@ -372,8 +372,12 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         loader.showOverlay(self.view)
         let appID = "1056641759"
         let urlStr = "itms-apps://itunes.apple.com/app/travelibro/id" + appID
-        UIApplication.shared.open((NSURL(string: urlStr) as! URL), options: [:]) { (done) in
-            loader.hideOverlayView()
+        if #available(iOS 10.0, *) {
+            UIApplication.shared.open((NSURL(string: urlStr) as! URL), options: [:]) { (done) in
+                loader.hideOverlayView()
+            }
+        } else {
+            // Fallback on earlier versions
         }
     }
     

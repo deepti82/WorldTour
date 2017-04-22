@@ -367,6 +367,7 @@ class AddCaptionsViewController: UIViewController, UITextFieldDelegate, ToolStac
         }
     }
     
+    @available(iOS 10.0, *)
     func textFieldDidEndEditing(_ textField: UITextField, reason: UITextFieldDidEndEditingReason) {
         if(type != "videoCaption") {
             imageArr[currentImageIndex].caption = captionTextView.text!

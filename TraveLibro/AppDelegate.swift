@@ -220,10 +220,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
         
         _ = AppDelegate.getDatabase()
         
-        UNUserNotificationCenter.current().requestAuthorization(options: [.badge, .alert, .sound]) { (granted, error) in
-            if granted{
-                application.registerForRemoteNotifications()
+        if #available(iOS 10.0, *) {
+            UNUserNotificationCenter.current().requestAuthorization(options: [.badge, .alert, .sound]) { (granted, error) in
+                if granted{
+                    application.registerForRemoteNotifications()
+                }
             }
+        } else {
+            // Fallback on earlier versions
         }
         
         UINavigationBar.appearance().backgroundColor = mainBlueColor
