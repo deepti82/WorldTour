@@ -18,6 +18,15 @@ import Google
 
 import UserNotificationsUI
 
+
+enum layerEdge {
+    case TOP
+    case BOTTOM
+    case LEFT
+    case RIGHT
+}
+
+
 let cache = Shared.dataCache
 
 
