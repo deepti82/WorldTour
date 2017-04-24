@@ -116,7 +116,7 @@ class SocialLoginClass: UIViewController {
                                 })                            
                             }
                             else {
-                                request.saveUser(json["name"]["givenName"].string!, lastName: json["name"]["familyName"].string!, email: json["emails"][0]["value"].string!, mobile: "", fbId: "", googleId: json["id"].string!, twitterId: "", instaId: "", nationality: "", profilePicture: json["image"]["url"].string!, gender: "", dob: "", completion: {(response) in                                
+                                request.saveUser(json["name"]["givenName"].string!, lastName: json["name"]["familyName"].string!, email: json["emails"][0]["value"].string!, mobile: "", fbId: "", googleId: json["id"].string!, twitterId: "", instaId: "", nationality: "", profilePicture: json["image"]["url"].string!, gender: json["gender"].stringValue, dob: "", completion: {(response) in                                
                                     DispatchQueue.main.async(execute: {
                                         
                                         if (response.error != nil) {

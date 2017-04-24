@@ -96,8 +96,6 @@ class LocalLifePost: VerticalLayout, PlayerDelegate {
             
             
             self.addSubview(mainPhoto)
-            let heightForBlur = 10;
-            var thumbStr = "";
             let imgStr = getImageURL(feed["photos"][0]["name"].stringValue, width: 300)
             
             cache.fetch(URL: imgStr).onSuccess({ (data) in

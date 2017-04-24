@@ -12,8 +12,7 @@ extension UIViewController {
     
     func gotoNationalityPage() {
         
-        if currentUser["alreadyLoggedIn"].bool! {
-            profileVC.initialEntrance = true
+        if currentUser["alreadyLoggedIn"].bool! {            
             self.slideMenuController()?.changeMainViewController(profileVC, close: true)
             navigation.pushViewController(profileVC, animated: true)
         } else {
@@ -69,20 +68,6 @@ extension UIViewController {
         customNavigationBar(left: left, right: right)
         
         self.title = text
-        
-//        let leftBarButton = UIBarButtonItem()
-//        leftBarButton.customView = left
-//        self.navigationItem.leftBarButtonItem = leftBarButton
-//        
-//        if (right != nil) {
-//            let rightBarButton = UIBarButtonItem()
-//            rightBarButton.customView = right as? UIView
-//            self.navigationItem.rightBarButtonItem = rightBarButton
-//        }        
-//        
-//        self.slideMenuController()?.removeLeftGestures()
-//        self.slideMenuController()?.removeRightGestures()
-        
     }
     
     func setOnlyRightNavigationButton(_ button: UIButton) {
@@ -99,6 +84,16 @@ extension UIViewController {
         self.slideMenuController()?.addLeftGestures()
         //        self.slideMenuController()?.addRightGestures()
         
+    }
+    
+    func setTransperentNavigationBar() {
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
+        
+        self.navigationController?.navigationBar.barStyle = .default
+        self.navigationController?.navigationBar.barTintColor = UIColor.clear
+        self.navigationController?.toolbar.barTintColor = UIColor.clear
     }
     
     func nextController(_ sender: UIBarButtonItem) -> () {
@@ -120,6 +115,7 @@ extension UIViewController {
     func callBackViewC() {
         self.navigationController!.popViewController(animated: true)
     }
+    
     
     //MARK: - Remove NavigationItems
     
@@ -144,7 +140,6 @@ extension UIViewController {
         self.navigationController?.navigationBar.isTranslucent = false
         
     }
-    
     
     func removegestures() {
         

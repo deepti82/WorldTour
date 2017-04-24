@@ -9,7 +9,7 @@ import TAPageControl
 var currentUser: JSON!
 var loggedInUser : JSON!
 let social = SocialLoginClass()
-var profileVC: ProfileViewController!
+var profileVC: TLProfileViewController!
 var nationalityPage: AddNationalityNewViewController!
 var navigation: UINavigationController!
 
@@ -246,7 +246,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         
         toggleSoundButton.frame = CGRect(x: self.view.frame.maxX - 60, y: signInFooter.frame.origin.y - 60, width: 40, height: 32)
         
-        profileVC = self.storyboard?.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
+        profileVC = self.storyboard?.instantiateViewController(withIdentifier: "TLProfileView") as! TLProfileViewController
         
         nationalityPage = self.storyboard?.instantiateViewController(withIdentifier: "nationalityNew") as! AddNationalityNewViewController
         

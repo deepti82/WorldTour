@@ -411,7 +411,7 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
             imagePickerController.videoQuality = UIImagePickerControllerQualityType.type640x480
             
             if(self.typeOfAddActivtiy == "CreateLocalLife") {
-                imagePickerController.delegate = globalLocalLife as! (UIImagePickerControllerDelegate & UINavigationControllerDelegate)?
+                imagePickerController.delegate = globalLocalLife as(UIImagePickerControllerDelegate & UINavigationControllerDelegate)?
                 self.finalImageTag.tintColor = UIColor(hex: "#11d3cb")
                 self.videoTagFinal.tintColor = UIColor(hex: "#11d3cb")
             } else {

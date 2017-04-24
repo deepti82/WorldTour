@@ -199,9 +199,7 @@ class DisplayCardsViewController: UIPageViewController, UIPageViewControllerData
                             _ = self.navigationController?.popViewController(animated: true)
                         }                       
                         else {
-                            let home = self.storyboard!.instantiateViewController(withIdentifier: "Home") as! HomeViewController
-                            //                        self.slideMenuController()?.changeMainViewController(home, close: true)
-                            //                        home.initialEntrance = true
+                            let home = self.storyboard!.instantiateViewController(withIdentifier: "Home") as! HomeViewController                            
                             self.navigationController!.pushViewController(home, animated: true)
                         }
                         

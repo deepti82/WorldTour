@@ -130,12 +130,6 @@ class TripPhotoLayout: VerticalLayout, PlayerDelegate {
                     self.tripListView.addHeightToLayout()                    
                 }                
             })
-        
-        
-        var showImageIndexStart = 1
-        if(feed["videos"].count > 0) {
-            showImageIndexStart = 0
-        }
         }
     }
     

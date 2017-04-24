@@ -245,7 +245,7 @@ class QuickItineraryPreviewViewController: UIViewController {
             //                    quickItinery = []
             //                    let tstr = Toast(text: "Itenary saved successfully.")
             //                    tstr.show()
-            //                    let next = self.storyboard?.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
+            //                    let next = self.storyboard?.instantiateViewController(withIdentifier: "TLProfileView") as! TLProfileViewController
             //                    self.navigationController?.pushViewController(next, animated: true)
             //                    print("nothing")
             //                }

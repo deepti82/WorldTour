@@ -30,13 +30,20 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     
     @IBOutlet weak var exploreMyLifeView: UIView!
     
+    var footer: FooterViewNew!
+    
+    var user = User()
+    
     var currentlyShowingUser: JSON = []
+    var currentSelectedUser: JSON = []
     var isShowingSelf = true
     
     var strIndex = 0
-    var shouldStopAnimate = false
+    var shouldStopAnimate = true
+    var isProfileVCVisible = true
     
     var myLifeVC:MyLifeViewController!
+    var MAM: MoreAboutMe!
     var displayData: String = ""
     
     var loader = LoadingOverlay()
@@ -76,23 +83,36 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
         
         self.setNavigationBar()
         
-        self.getUser()
+        footer = FooterViewNew(frame: CGRect.zero)
+        self.view.addSubview(footer)
         
+        if self.displayData != "" {
+            self.getUser()            
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        selectedUser = currentlyShowingUser
+        if !currentlyShowingUser.isEmpty {
+            selectedUser = currentlyShowingUser            
+        }        
         
-        if (currentlyShowingUser.isEmpty) {            
+        if self.displayData == "" {
             self.getUser()
         }
         
-        if isCountryAdded {
-            isCountryAdded = false
-            getUser()
+        if isShowingSelf {
+            self.setData()
         }
+//        if (currentlyShowingUser.isEmpty) {            
+//            self.getUser()
+//        }
+//        
+//        if isCountryAdded {
+//            isCountryAdded = false
+//            getUser()
+//        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -101,6 +121,12 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
         globalNavigationController = self.navigationController
         
         updateUI()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        isProfileVCVisible = false
+        self.navigationController?.navigationBar.isTranslucent = false
     }
 
     override func didReceiveMemoryWarning() {
@@ -132,14 +158,19 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
             rightButton.setImage(UIImage(named: "search_toolbar"), for: UIControlState())
             rightButton.addTarget(self, action: #selector(self.searchTapped(_:)), for: .touchUpInside)
             rightButton.frame = CGRect(x: -10, y: 8, width: 30, height: 30)
+            
             self.setOnlyRightNavigationButton(rightButton)
         }
+        
+        //self.setTransperentNavigationBar()
     }
     
     func updateUI() {
         
-        self.addBorder(toView: self.profileCollectionView, position: layerEdge.TOP, color: UIColor.white, borderWidth: CGFloat(1), width: self.profileCollectionView.contentSize.width)
-        self.addBorder(toView: self.profileCollectionView, position: layerEdge.BOTTOM, color: UIColor.white, borderWidth: CGFloat(1), width: self.profileCollectionView.contentSize.width)
+        footer.frame = CGRect(x: 0, y: self.view.frame.height - MAIN_FOOTER_HEIGHT, width: self.view.frame.width, height: MAIN_FOOTER_HEIGHT)
+        
+        self.addBorder(toView: self.profileCollectionView, position: layerEdge.TOP, color: UIColor(white: 1, alpha: 0.9), borderWidth: CGFloat(1), width: self.profileCollectionView.contentSize.width)
+        self.addBorder(toView: self.profileCollectionView, position: layerEdge.BOTTOM, color: UIColor(white: 1, alpha: 0.9), borderWidth: CGFloat(1), width: self.profileCollectionView.contentSize.width)
         
         flagImageView.layer.masksToBounds = false
         flagImageView.layer.cornerRadius = flagImageView.frame.height/2
@@ -149,26 +180,36 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     }
     
     func setUserName(username: String) {
-        self.shouldStopAnimate = false
-        self.userNameLabel.text = ""
-        self.setTextWithAnimation(onView: self.userNameLabel, text: username)
+        self.self.userNameLabel.text = username
+        self.setCityName(cityName: self.currentlyShowingUser["homeCity"].stringValue, countryName: self.currentlyShowingUser["homeCountry"]["name"].stringValue)
+//        if self.shouldStopAnimate {
+//            self.shouldStopAnimate = false
+//            self.userNameLabel.text = ""
+//            self.setTextWithAnimation(onView: self.userNameLabel, text: username)            
+//        }
     }
     
-    func setCityName(cityName: String) {
-        self.shouldStopAnimate = true
-        self.cityNameLabel.text = ""
-        self.setTextWithAnimation(onView: self.cityNameLabel, text: "LIVES IN : \(cityName))")
+    func setCityName(cityName: String, countryName: String) {
+        self.cityNameLabel.text = "LIVES IN : \(cityName), \(countryName)"
+//        self.shouldStopAnimate = true
+//        self.cityNameLabel.text = ""
+//        self.setTextWithAnimation(onView: self.cityNameLabel, text: "LIVES IN : \(cityName), \(countryName)")
     }
     
     func setData() {
         
         self.loader.hideOverlayView()
         
+        if (MAM != nil){
+            MAM.removeFromSuperview()
+        }
+        
         if shouldRestrictCurrentUserProfile() {
             //Private Account
             moreAboutMeLabel.text = "This Account Is Private"
             moreAboutMeLabel.textColor = mainOrangeColor
             moreAboutMeButton.isHidden = true
+            mamStackView.isUserInteractionEnabled = false
             
             exploreMyLifeView.isUserInteractionEnabled = false
             exploreMyLifeView.backgroundColor = UIColor.lightGray
@@ -177,6 +218,7 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
             moreAboutMeLabel.text = "more about me..."
             moreAboutMeLabel.textColor = UIColor.white
             moreAboutMeButton.isHidden = false
+            mamStackView.isUserInteractionEnabled = true
             
             exploreMyLifeView.isUserInteractionEnabled = true
             exploreMyLifeView.backgroundColor = mainOrangeColor //TODO:Change this color later            
@@ -186,7 +228,9 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
             
             self.title = "My Life"
             
-            print("==========\(currentUser)")
+            print("SetData Called")
+            
+           // print("==========\(currentUser)")
             
             self.userProfileImageView.hnk_setImageFromURL(getImageURL(currentlyShowingUser["profilePicture"].stringValue, width: 0))
             
@@ -321,7 +365,7 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! ProfileDetailCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! TLProfileDetailCell
         cell.separatorView.isHidden = false
         
         cell.infoLabel.text = labels[indexPath.row]["text"]
@@ -413,14 +457,25 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     func toggleMAMTextView(stackView: UIStackView) {
         
         if stackView.tag == 0 {
-            UIView.animate(withDuration: 1) {
-                self.viewDidLayoutSubviews()
-                self.MAMTextViewHeightConstraint.constant = 30
-                self.MAMTextView.frame.size.height = 30
+//            UIView.animate(withDuration: 1) {
+                
+                self.MAM = MoreAboutMe(frame: CGRect(x: 0, y: 0, width: self.MAMTextView.frame.size.width, height: 70))
+                self.MAM.mainTextView.textColor = UIColor.white                
+                self.MAM.mainTextView.font = self.moreAboutMeLabel.font
+                self.MAM.backgroundColor = UIColor.clear
+                self.MAMTextView.addSubview(self.MAM)
+                self.MAMTextView.backgroundColor = UIColor.clear
+                
+                self.MAMTextViewHeightConstraint.constant = 70
+                self.MAMTextView.frame.size.height = 70
                 self.mamStackView.tag = 1
-            }
+//            }
         }
         else {
+            if (MAM != nil){
+                MAM.removeFromSuperview()
+            }
+            
             self.MAMTextViewHeightConstraint.constant = 0
             self.MAMTextView.frame.size.height = 0
             self.mamStackView.tag = 0
@@ -432,7 +487,7 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     
     func exploreMyLife(selectionTab: String) {
         let myLifeViewCtrllr = storyboard?.instantiateViewController(withIdentifier: "myLife") as! MyLifeViewController
-        myLifeViewCtrllr.whatEmptyTab = whichView
+        myLifeViewCtrllr.whatEmptyTab = selectionTab
         self.navigationController?.pushViewController(myLifeViewCtrllr, animated: true)
     }
     
@@ -448,7 +503,7 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     func gotoBucketList() {
         let num = Int(currentlyShowingUser["bucketList_count"].stringValue)
         if(num == 0) {
-            if !isShowingSelf {
+            if isShowingSelf {
                 let bucketVC = self.storyboard?.instantiateViewController(withIdentifier: "emptyPages") as! EmptyPagesViewController
                 bucketVC.whichView = "BucketList"
                 self.navigationController?.pushViewController(bucketVC, animated: true)
@@ -473,18 +528,20 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     //MARK: - Functional Helpers
     
     func getUser() {
+        print("\n getUser called")
+        
         request.getUser(user.getExistingUser(), urlSlug:selectedUser["urlSlug"].stringValue, completion: {(request) in
             DispatchQueue.main.async {
                 self.currentlyShowingUser = request["data"]
+                currentUser = request["data"]
                 if self.displayData == "search" {
                     self.setNavigationBar()
                     self.isShowingSelf = false
                 }
                 else {
-                    currentUser = request["data"]
                     self.isShowingSelf = true
                 }
-                
+                self.shouldStopAnimate = true
                 self.setData()
             }
         });
@@ -542,16 +599,20 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     func addNextChar(onView: UILabel, str: String) {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
-            print("onView.text \(onView.text)")
-            let charArray = Array(str.characters)
-            onView.text = onView.text?.appending(String(charArray[self.strIndex]))
-            self.strIndex += 1
-            
-            if self.strIndex < charArray.count { 
-                self.addNextChar(onView: onView, str: str)
-            }
-            else if !self.shouldStopAnimate {
-                self.setCityName(cityName: self.currentlyShowingUser["homeCity"].stringValue)
+            if self.isProfileVCVisible {
+                print("onView.text \(onView.text)")
+                let charArray = Array(str.characters)
+                if charArray.count > 0 { 
+                    onView.text = onView.text?.appending(String(charArray[self.strIndex]))
+                    self.strIndex += 1
+                    
+                    if self.strIndex < charArray.count { 
+                        self.addNextChar(onView: onView, str: str)
+                    }
+                    else if !self.shouldStopAnimate {
+                        self.setCityName(cityName: self.currentlyShowingUser["homeCity"].stringValue, countryName: self.currentlyShowingUser["homeCountry"]["name"].stringValue)
+                    }
+                }
             }
         }
         

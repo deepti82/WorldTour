@@ -39,7 +39,6 @@ class AddRatingCountries: UIView, UITextViewDelegate {
     
     @IBAction func postReviewTapped(_ sender: AnyObject) {
         
-        let journeyId = sender.title(for: .application)!
         let countryId = sender.title(for: .disabled)!
         
         var reviewText = ""

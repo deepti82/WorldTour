@@ -635,7 +635,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     // Add PhotosVideo
     
     func showEditAddActivity(_ postJson:JSON) {
-        var post = Post();
+        let post = Post();
         post.jsonToPost(postJson)
         print(postJson);
         var darkBlur: UIBlurEffect!

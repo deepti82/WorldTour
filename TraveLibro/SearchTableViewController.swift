@@ -60,7 +60,7 @@ class SearchTableViewController: UIViewController, UITableViewDelegate, UITableV
         }else{
             selectedPeople = allData[indexPath.row]["_id"].stringValue
             selectedUser = allData[indexPath.row]
-            let profile = self.storyboard!.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
+            let profile = self.storyboard!.instantiateViewController(withIdentifier: "TLProfileView") as! TLProfileViewController
             profile.displayData = "search"
             profile.currentSelectedUser = selectedUser
             self.navigationController!.pushViewController(profile, animated: true)

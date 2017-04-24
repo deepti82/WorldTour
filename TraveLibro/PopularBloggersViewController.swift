@@ -232,7 +232,7 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
         if currentUser != nil {
             selectedPeople = allUsers[indexPath.row]["_id"].stringValue
             selectedUser = allUsers[indexPath.row]
-            let profile = self.storyboard!.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
+            let profile = self.storyboard!.instantiateViewController(withIdentifier: "TLProfileView") as! TLProfileViewController
             profile.displayData = "search"
             profile.currentSelectedUser = selectedUser
             self.navigationController!.pushViewController(profile, animated: true)            

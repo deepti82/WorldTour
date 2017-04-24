@@ -408,7 +408,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
             self.addView.photosAdded(assets: imgA)
         } else {
             picker.dismiss(animated: true, completion: {})
-            self.addView.addVideoToBlock(video: info["UIImagePickerControllerMediaURL"] as! URL)
+            self.addView.addVideoToBlock(video: info["UIImagePickerControllerMediaURL"] as? URL)
         }
 
     }

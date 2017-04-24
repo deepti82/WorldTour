@@ -18,6 +18,7 @@ class Navigation {
 
     
     func saveUser(_ firstName: String, lastName: String, email: String, mobile: String, fbId: String, googleId: String, twitterId: String, instaId: String, nationality: String, profilePicture: String, gender: String, dob: String, completion: @escaping ((JSON) -> Void)) {
+        print("\n gender in saveUser : \(gender)")
         
         var json1 = JSON(1);        
         OneSignal.idsAvailable({(_ userId, _ pushToken) in
@@ -1322,9 +1323,7 @@ class Navigation {
                     print("Error -> \(error)")
                     return
                 }
-                do {
-                    print(data);
-                    print(response);
+                do {                    
                     let result = try JSONSerialization.jsonObject(with: data!, options: []) as! [String:AnyObject]
                     print("response: \(JSON(result))")
                     completion(JSON(result))

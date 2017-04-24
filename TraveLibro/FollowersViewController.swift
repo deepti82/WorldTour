@@ -334,7 +334,7 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
             selectedUser = followers[indexPath.row]
         }
         
-        let profile = storyboard?.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
+        let profile = storyboard?.instantiateViewController(withIdentifier: "TLProfileView") as! TLProfileViewController
         profile.displayData = "search"
         profile.currentSelectedUser = followers[indexPath.row]
         globalNavigationController.pushViewController(profile, animated: true)

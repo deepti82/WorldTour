@@ -177,7 +177,7 @@ class startOTGView: UIView {
         print(self.buddiesJson)
 //        print("clicked \(currentFeed)")
 //        selectedPeople = currentFeed["user"]["_id"].stringValue
-//        let profile = storyboard.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
+//        let profile = storyboard.instantiateViewController(withIdentifier: "TLProfileView") as! TLProfileViewController
 //        profile.displayData = "search"
 //        globalNavigationController.pushViewController(profile, animated: true)
     }

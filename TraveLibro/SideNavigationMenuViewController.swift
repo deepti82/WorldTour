@@ -1,6 +1,5 @@
 import UIKit
 import SABlurImageView
-var initialLogin = true
 
 class SideNavigationMenuViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -118,7 +117,7 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         let localLifeController = storyboard!.instantiateViewController(withIdentifier: "localLife") as! LocalLifeRecommendationViewController
         self.localLifeController = UINavigationController(rootViewController: localLifeController)
         
-        let myProfileController = storyboard!.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
+        let myProfileController = storyboard!.instantiateViewController(withIdentifier: "TLProfileView") as! TLProfileViewController
         self.myProfileViewController = UINavigationController(rootViewController: myProfileController)
         
         let signoutView = self.storyboard?.instantiateViewController(withIdentifier: "SignUpOne") as! SignInViewController

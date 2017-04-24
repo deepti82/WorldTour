@@ -253,7 +253,7 @@ class SummarySubViewController: UIViewController, UIScrollViewDelegate {
     
     func createList() {
         for (_, val) in tripCountData["checkIn"] {
-            var cell = tripSummaryEach(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 119))
+            let cell = tripSummaryEach(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 119))
             
             
         
