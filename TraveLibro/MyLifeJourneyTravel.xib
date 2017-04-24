@@ -9,7 +9,14 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MyLifeJourneyTravel" customModule="TraveLibro" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MyLifeJourneyTravel" customModule="TraveLibro" customModuleProvider="target">
+            <connections>
+                <outlet property="startDocument" destination="TP3-Ns-e1Q" id="rRs-LZ-kkw"/>
+                <outlet property="startDocumentText" destination="tRm-GG-IVE" id="SIT-sJ-Vhh"/>
+                <outlet property="startJourney" destination="u4C-1R-Kl6" id="bcl-g3-wXQ"/>
+                <outlet property="startJourneyText" destination="UUu-da-e0n" id="xiD-La-TgD"/>
+            </connections>
+        </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="gX2-CM-UZU">
             <rect key="frame" x="0.0" y="0.0" width="400" height="446"/>
@@ -78,6 +85,9 @@
                         <constraint firstAttribute="width" constant="50" id="sPl-Om-GN5"/>
                     </constraints>
                     <state key="normal" title="Button" image="tl"/>
+                    <connections>
+                        <action selector="createJourney:" destination="-1" eventType="touchUpInside" id="QRd-RB-z9F"/>
+                    </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Document Past Travels" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tRm-GG-IVE">
                     <rect key="frame" x="128" y="411" width="145" height="15"/>
@@ -96,6 +106,9 @@
                         <constraint firstAttribute="height" constant="50" id="ydf-LR-sXi"/>
                     </constraints>
                     <state key="normal" title="Button" image="tl"/>
+                    <connections>
+                        <action selector="createItinerary:" destination="-1" eventType="touchUpInside" id="X0h-eF-LTI"/>
+                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
