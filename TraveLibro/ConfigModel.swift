@@ -9,8 +9,9 @@
 
 
 import UIKit
+import Foundation
 
-class Config {
+public class Config {
     func changeDateFormat(_ givenFormat: String, getFormat: String, date: String, isDate: Bool) -> String {
         
         let dateFormatter = DateFormatter()
@@ -29,6 +30,25 @@ class Config {
         return goodDate
         
     }
+    
+    func setVC(newViewController : UIViewController) {
+        
+        let nvc = UINavigationController(rootViewController: newViewController)
+        leftViewController.mainViewController = nvc
+        leftViewController.slideMenuController()?.changeMainViewController(leftViewController.mainViewController, close: true)
+        
+        UIViewController().customiseNavigation()
+        nvc.delegate = UIApplication.shared.delegate as! UINavigationControllerDelegate?
+    }
+    
+    func getHeight(ht:Double) -> Double {
+        if isSelfUser(otherUserID: currentUser["_id"].stringValue) {
+            return ht
+        }else{
+            return ht - 65
+        }
+    }
+
     
 }
 

@@ -30,7 +30,7 @@ class MyLifeContainerViewController: UIViewController,UIScrollViewDelegate {
         
 //        self.loadData("all", pageNumber: pageNumber)
     }
-    
+    let cnfg = Config()
     func showNoData(show:Bool, type:String) {
         if empty != nil {
             self.empty.removeFromSuperview()
@@ -43,20 +43,23 @@ class MyLifeContainerViewController: UIViewController,UIScrollViewDelegate {
 
             switch type {
             case "all":
-                empty.frame.size.height = 350.0
+                empty.frame.size.height = CGFloat(cnfg.getHeight(ht: 350))
                 empty.viewHeading.text = "Travel in a Time Machine"
                 empty.viewBody.text = "Capture your journeys and activities whether local or global, creating a beautiful timeline and relive these treasured experiences of your past."
+                empty.setColor(life: "", buttonLabel: "Start a New Journey")
                 self.view.addSubview(empty)
 
                 break
             case "travel-life":
-                emptyTravel.frame.size.height = 322.0
+                emptyTravel.frame.size.height = CGFloat(cnfg.getHeight(ht: 451))
+                emptyTravel.setView()
                 self.view.addSubview(emptyTravel)
                 break
             case "local-life":
-                empty.frame.size.height = 275.0
+                empty.frame.size.height = CGFloat(cnfg.getHeight(ht: 275))
                 empty.viewHeading.text = "Life In The City"
                 empty.viewBody.text = "Candid, fun moments with friends, happy family get-togethers, some precious ‘me-time’…share your love for your city and inspire others to do the same. Cherish your local life memories eternally."
+                empty.setColor(life: "locallife", buttonLabel: "Add your first Local Activity")
                 self.view.addSubview(empty)
 
                 break

@@ -865,6 +865,7 @@ func sharingUrl(url: String, onView:UIViewController) {
 //MARK: - Current User Check
 
 func isSelfUser(otherUserID: String) -> Bool {
+    print("current user : \(otherUserID) ,,,,, existing : \(user.getExistingUser())")
     if otherUserID == user.getExistingUser() {
         return true
     }

@@ -102,16 +102,22 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
                 empty.frame.size.height = 250.0
                 empty.viewHeading.text = "Relive Y​our Storyline"
                 empty.viewBody.text = "Rate the places, restaurants, cuisines, theatres, parks, museums, and more, when you check-in. Jot down your thoughts and feelings about them."
+                empty.setColor(life: "", buttonLabel: "Start a New Journey")
+
                 break
             case "travel-life":
                 empty.frame.size.height = 350.0
                 empty.viewHeading.text = "The World I​s Your Oyster"
                 empty.viewBody.text = "A five star or a four star? What does that historical monument qualify for? Rate it and write a review. Help others with your rating and review."
+                empty.setColor(life: "", buttonLabel: "Add a Travel Journey")
+
                 break
             case "local-life":
                 empty.frame.size.height = 275.0
                 empty.viewHeading.text = "A Touch Of Your Daily Dose"
                 empty.viewBody.text = "Now how about rating and writing a super review for that newly-opened restaurant in your town? Wherever you go, click on a star and pen down your experiences."
+                empty.setColor(life: "locallife", buttonLabel: "Add your first Local Activity")
+
                 break
             default:
                 break
