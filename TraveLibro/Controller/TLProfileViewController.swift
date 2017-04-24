@@ -31,6 +31,7 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     @IBOutlet weak var exploreMyLifeView: UIView!
     
     var currentlyShowingUser: JSON = []
+    var isShowingSelf = true
     
     var strIndex = 0
     var shouldStopAnimate = false
@@ -163,8 +164,8 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
         
         self.loader.hideOverlayView()
         
-        if(!selectedUser.isEmpty && (currentlyShowingUser["status"].stringValue == "private" && (currentlyShowingUser["following"].intValue != 1))) {
-            //Dont show anything
+        if shouldRestrictCurrentUserProfile() {
+            //Private Account
             moreAboutMeLabel.text = "This Account Is Private"
             moreAboutMeLabel.textColor = mainOrangeColor
             moreAboutMeButton.isHidden = true
@@ -257,15 +258,15 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     }
     
     @IBAction func exploreMyLifeViewTabbed(_ sender: UITapGestureRecognizer) {
-        self.exploreMyLife()
+        self.exploreMyLife(selectionTab: "Journeys")
     }
     
     @IBAction func exploreMyLifeTextButtonTabbed(_ sender: UIButton) {
-        self.exploreMyLife()
+        self.exploreMyLife(selectionTab: "Journeys")
     }
     
     @IBAction func exploreMyLifeButtonTabbed(_ sender: UIButton) {
-        self.exploreMyLife()
+        self.exploreMyLife(selectionTab: "Journeys")
     }
     
     func rightFollowTapped(sender: UIButton) {
@@ -332,6 +333,80 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        switch indexPath.item {
+        case 0:
+            if isShowingSelf {
+                self.gotoFollowersController(selectionOption: "Following")
+            }else{
+                if currentlyShowingUser["following_count"].stringValue != "0" {
+                    self.gotoFollowersController(selectionOption: "Following")
+                }
+            }
+            break
+            
+        case 1:
+            if isShowingSelf {
+                self.gotoFollowersController(selectionOption: "Followers")
+            }else{
+                if currentlyShowingUser["followers_count"].stringValue != "0" {
+                    self.gotoFollowersController(selectionOption: "Followers")
+                }
+            }
+            break
+            
+        case 2:
+            if isShowingSelf {
+                gotoCountriesVisited()
+            }else{
+                if currentlyShowingUser["countriesVisited_count"].stringValue != "0" {
+                    gotoCountriesVisited()
+                }
+            }
+            break
+            
+        case 3:
+            gotoBucketList()
+            break
+            
+        case 4 :
+            fallthrough
+        case 5:
+            if isShowingSelf {
+                self.exploreMyLife(selectionTab: "Journeys")
+            }else{
+                if currentlyShowingUser[indexPath.item == 4 ? "journeysCreated_count" : "checkins_count" ].stringValue != "0" {
+                    self.exploreMyLife(selectionTab: "Journeys")
+                }
+            }
+            break
+        
+        case 6 :
+            if isShowingSelf {
+                self.exploreMyLife(selectionTab: "Moments")
+            }else{
+                if currentlyShowingUser["photos_count"].stringValue != "0" {
+                    self.exploreMyLife(selectionTab: "Moments")
+                }
+            }
+            break
+            
+        case 7 :
+            if isShowingSelf {
+                self.exploreMyLife(selectionTab: "Reviews")
+            }else{
+                if currentlyShowingUser["reviews_count"].stringValue != "0" {
+                    self.exploreMyLife(selectionTab: "Reviews")
+                }
+            }
+            break
+            
+        default:
+            break
+        }
+    }
+    
     
     //MARK: - Action Helpers
     
@@ -355,9 +430,45 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
         
     }
     
-    func exploreMyLife() {
-        print("\n Explore my life tabbed")
+    func exploreMyLife(selectionTab: String) {
+        let myLifeViewCtrllr = storyboard?.instantiateViewController(withIdentifier: "myLife") as! MyLifeViewController
+        myLifeViewCtrllr.whatEmptyTab = whichView
+        self.navigationController?.pushViewController(myLifeViewCtrllr, animated: true)
     }
+    
+    func gotoFollowersController(selectionOption: String) {
+        let followersVC = storyboard?.instantiateViewController(withIdentifier: "followers") as! FollowersViewController
+        followersVC.whichView = selectionOption
+        if !(selectedUser.isEmpty){
+            followersVC.back = false
+        }
+        self.navigationController?.pushViewController(followersVC, animated: true)
+    }
+    
+    func gotoBucketList() {
+        let num = Int(currentlyShowingUser["bucketList_count"].stringValue)
+        if(num == 0) {
+            if !isShowingSelf {
+                let bucketVC = self.storyboard?.instantiateViewController(withIdentifier: "emptyPages") as! EmptyPagesViewController
+                bucketVC.whichView = "BucketList"
+                self.navigationController?.pushViewController(bucketVC, animated: true)
+            }
+        }
+        else {
+            let bucketVC = self.storyboard?.instantiateViewController(withIdentifier: "bucketList") as! BucketListTableViewController
+            bucketVC.otherUser = displayData
+            bucketVC.whichView = "BucketList"
+            self.navigationController?.pushViewController(bucketVC, animated: true)
+        }
+    }
+    
+    func gotoCountriesVisited() {
+        let bucketVC = self.storyboard?.instantiateViewController(withIdentifier: "bucketList") as! BucketListTableViewController
+        bucketVC.otherUser = displayData        
+        bucketVC.whichView = "CountriesVisited"
+        self.navigationController?.pushViewController(bucketVC, animated: true)
+    }
+    
     
     //MARK: - Functional Helpers
     
@@ -367,15 +478,25 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
                 self.currentlyShowingUser = request["data"]
                 if self.displayData == "search" {
                     self.setNavigationBar()
+                    self.isShowingSelf = false
                 }
                 else {
                     currentUser = request["data"]
+                    self.isShowingSelf = true
                 }
                 
                 self.setData()
             }
         });
     }
+    
+    func shouldRestrictCurrentUserProfile() -> Bool {
+        if(!selectedUser.isEmpty && (currentlyShowingUser["status"].stringValue == "private" && (currentlyShowingUser["following"].intValue != 1))) {
+            return true
+        }
+        return false
+    }
+    
     
     //MARK: - UI Helper Functions
     
