@@ -43,8 +43,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     @IBOutlet weak var placeLabel: UILabel!
     @IBOutlet weak var profilePicture: UIImageView!
     
-    var toggle = false
-    var initialEntrance = false
+    var toggle = false    
     var user = User()
     
     @IBOutlet weak var collectionView: UICollectionView!
@@ -153,7 +152,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         profileUsername.layer.zPosition = 500000
         MAMatterView.layer.zPosition = 500000
         livesInStack.layer.zPosition = 500000
-        initialLogin = false
+        
         self.navigationController?.isNavigationBarHidden = false
         getDarkBackGround(self)
         profilePicture.contentMode = .scaleAspectFit

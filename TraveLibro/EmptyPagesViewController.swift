@@ -8,7 +8,7 @@ class EmptyPagesViewController: UIViewController {
         super.viewDidLoad()
         let leftButton = UIButton()
         leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
-        leftButton.addTarget(self, action: #selector(self.popToProfile(_:)), for: .touchUpInside)
+        leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
         leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         self.customNavigationBar(left: leftButton, right: nil)
         
@@ -31,11 +31,6 @@ class EmptyPagesViewController: UIViewController {
 
             nocountries.countriesVisitedLabel.text = "Add Countries To Your Countries Visited Here"
         }
-    }
-    
-    func popToProfile(_ sender: UIButton) {
-        let prevVC = storyboard?.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
-        self.navigationController?.pushViewController(prevVC, animated: false)
     }
     
     func addCountries(_ sender: UIButton) {

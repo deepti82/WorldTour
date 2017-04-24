@@ -1237,27 +1237,22 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         super.viewWillAppear(animated)
     }
     
-    func gotoProfile(_ sender: UIButton) {
-        
-        if isJourneyOngoing {
-            
-            let profile = self.storyboard!.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
-            self.navigationController?.setNavigationBarHidden(false, animated: true)
-            self.navigationController!.pushViewController(profile, animated: false)
-            buttons1.isHidden = true
-            buttons.isHidden = true
-            
-            
-        }
-        else {
-            
-            self.popVC(sender)
-            buttons1.isHidden = true
-            buttons.isHidden = true
-            
-        }
-        
-    }
+//    func gotoProfile(_ sender: UIButton) {
+//        
+//        if isJourneyOngoing {
+//            let profile = self.storyboard!.instantiateViewController(withIdentifier: "TLProfileView") as! TLProfileViewController
+//            self.navigationController?.setNavigationBarHidden(false, animated: true)
+//            self.navigationController!.pushViewController(profile, animated: false)
+//            buttons1.isHidden = true
+//            buttons.isHidden = true
+//        }
+//        else {
+//            self.popVC(sender)
+//            buttons1.isHidden = true
+//            buttons.isHidden = true
+//        }
+//        
+//    }
     
     var isRefreshing = false
     
@@ -1962,17 +1957,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         })
     }
     
-    func toProfile(_ sender: AnyObject) {
-        print("clickedddd")
-//        print(self.buddiesJson)
-        //        print("clicked \(currentFeed)")
-        //        selectedPeople = currentFeed["user"]["_id"].stringValue
-        //        let profile = storyboard.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
-        //        profile.displayData = "search"
-        //        globalNavigationController.pushViewController(profile, animated: true)
-    }
-    
-    
     //MARK:- First View Actions
     
     func checkForLocation(_ sender: UIButton?) {
@@ -1993,8 +1977,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         print("ooooooooo\(myJourney)")
         otgView.buddiesJson = self.addedBuddies
         
-        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(self.toProfile(_:)))
-        otgView.dpFriendOne.addGestureRecognizer(tapGestureRecognizer)
+//        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(self.toProfile(_:)))
+//        otgView.dpFriendOne.addGestureRecognizer(tapGestureRecognizer)
         
         if myJourney != nil {
             if myJourney["user"]["_id"].stringValue != user.getExistingUser() {

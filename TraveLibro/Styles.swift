@@ -128,16 +128,6 @@ func getDarkBackGroundNew(_ myVC: UIViewController) {
     
 }
 
-
-
-//func getBackGroundProfile(_ myVc: UIViewController) {
-//    
-//    //    myVC.view.backgroundColor = UIColor(patternImage: UIImage(named: "bg")!)
-//   let ProfileViewController = CGRect(x: 0, y: 0, width: myVc.view.frame.width, height: myVc.view.frame.height)
-//    myVc.addSubview(ProfileViewController)
-//}
-
-
 class LeftPaddedLabel:  UILabel {
     
     let padding = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 10)
