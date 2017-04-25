@@ -46,13 +46,17 @@ class EmptyScreenView: UIView {
     @IBAction func addButtonClicked(_ sender: UIButton) {
         if whichView == "locallife" {
             let vc = storyboard?.instantiateViewController(withIdentifier: "localLife") as! LocalLifeRecommendationViewController
-            self.setVC(newViewController: vc)
+            
+            globalNavigationController?.setNavigationBarHidden(false, animated: true)
+            globalNavigationController?.pushViewController(vc, animated: true)
+
         }else{
-        let vc = storyboard!.instantiateViewController(withIdentifier: "newTL") as! NewTLViewController
+            let vc = storyboard!.instantiateViewController(withIdentifier: "newTL") as! NewTLViewController
+            vc.isJourney = false
             vc.insideView = "journey"
-        vc.isJourney = false
-        
-            self.setVC(newViewController: vc)
+            globalNavigationController?.setNavigationBarHidden(false, animated: true)
+            globalNavigationController?.pushViewController(vc, animated: true)
+
         }
         
     }

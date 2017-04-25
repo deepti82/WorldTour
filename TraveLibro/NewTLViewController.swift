@@ -748,14 +748,12 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
                         self.showJourneyOngoing(journey: response["data"])
                     self.setTopNavigation(text: "On The Go");
                 }else{
+                    self.layout.removeAll()
                     if self.insideView == "journey" {
                         self.checkForLocation(nil)
                         
                     }else if self.insideView == "itinerary" {
                         self.newItinerary(nil)
-                    }
-                    else{
-                        self.showJourneyOngoing(journey: response["data"])
                     }
                 }
             })
@@ -1066,7 +1064,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         self.title = text
         if  fromOutSide == "" {
             if insideView == "journey" {
-                self.customNavigationBar(left: outButton, right: rightButton)
+                self.customNavigationBar(left: outButton, right: nil)
             }else{
             if (myJourney != nil) {
                 self.customNavigationBar(left: leftButton, right: rightButton)
