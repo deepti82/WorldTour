@@ -385,7 +385,16 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
             self.cameraViewController = CameraViewController(configuration:configuration)
 //            timeLabel.text = self.cameraViewController.recordingTimeLabel.text
             self.cameraViewController.completionBlock = self.completionVideoBlock
-            showPopover(optionsController: optionMenu, sender: sender, vc: globalNavigationController)
+            
+            if let popover = self.cameraViewController.popoverPresentationController{
+                popover.sourceView = self.videosButton
+                popover.sourceRect = sender.bounds
+            }
+            globalNavigationController.present(self.cameraViewController, animated: true, completion: nil)
+
+            
+            
+//            showPopover(optionsController: optionMenu, sender: sender, vc: globalNavigationController)
 
 //            globalNavigationController.topViewController?.present(self.cameraViewController, animated: true, completion: nil)
         })
@@ -419,7 +428,13 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
             }
 //            showPopover(optionsController: imagePickerController, sender: sender, vc: globalNavigationController)
 
-            globalNavigationController.topViewController?.present(imagePickerController, animated: true, completion: nil)
+            if let popover = imagePickerController.popoverPresentationController{
+                popover.sourceView = self.videosButton
+                popover.sourceRect = sender.bounds
+            }
+            globalNavigationController.present(imagePickerController, animated: true, completion: nil)
+            
+//            globalNavigationController.topViewController?.present(imagePickerController, animated: true, completion: nil)
         })
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: {
@@ -693,7 +708,17 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
             }
             
             imagePickerController.sourceType = .camera
-            showPopover(optionsController: optionMenu, sender: self.photosButton, vc: globalNavigationController)
+            
+            
+            if let popover = imagePickerController.popoverPresentationController{
+                popover.sourceView = self.photosButton
+                popover.sourceRect = sender.bounds
+            }
+            globalNavigationController.present(imagePickerController, animated: true, completion: nil)
+            
+            
+            
+//            showPopover(optionsController: , sender: self.photosButton, vc: globalNavigationController)
 //            globalNavigationController?.topViewController?.present(imagePickerController, animated: true, completion: nil)
             
         })
