@@ -288,7 +288,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
                 print("in moments tl")
                 
                     empty.frame.size.height = CGFloat(cnfg.getHeight(ht: 370))
-                    empty.viewHeading.text = "Travel Becomes A Reason To Take Pictures And Store Them"
+                    empty.viewHeading.text = "Travel Becomes A Reason To Take Pictures And Relive Them"
                     empty.viewBody.text = "Some memories are worth sharing, travel surely tops the list. Your travels will not only inspire you to explore more of the world, you may just move another soul or two!"
                     empty.setColor(life: "", buttonLabel: "Add a Travel Journey")
 

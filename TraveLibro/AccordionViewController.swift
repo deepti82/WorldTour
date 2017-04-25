@@ -102,8 +102,8 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
             switch reviewType {
             case "all":
                 empty.frame.size.height = CGFloat(cnfg.getHeight(ht: 350))
-                empty.viewHeading.text = "Relive Y​our Storyline"
-                empty.viewBody.text = "Rate the places, restaurants, cuisines, theatres, parks, museums, and more, when you check-in. Jot down your thoughts and feelings about them."
+                empty.viewHeading.text = "Relive Y​our Experiences"
+                empty.viewBody.text = "Rate the hotels, restaurants, cuisines, theatres, parks, museums, and more, when you check-in and review your experiences there."
                 empty.setColor(life: "", buttonLabel: "Start a New Journey")
 
                 break

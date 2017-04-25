@@ -23,55 +23,51 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tws-lD-t3n">
-                    <rect key="frame" x="43" y="27.5" width="342" height="222"/>
+                    <rect key="frame" x="22" y="28" width="384" height="222"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Travel in a Time Machine" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D6X-lr-sG0">
-                            <rect key="frame" x="0.0" y="8" width="342" height="31"/>
-                            <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="22"/>
-                            <color key="textColor" red="1" green="0.40392156862745099" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qfb-Eg-qyy">
-                            <rect key="frame" x="8" y="47" width="326" height="130"/>
+                            <rect key="frame" x="0.0" y="78" width="384" height="66"/>
                             <string key="text">Capture your journeys and activities whether local or global, creating a beautiful timeline and relive these treasured experiences of your past.</string>
                             <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
                             <color key="textColor" red="0.41960784313725491" green="0.41960784313725491" blue="0.41960784313725491" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start a New Journey" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HQa-Kb-Jp2">
-                            <rect key="frame" x="103" y="207.5" width="135" height="15"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="15" id="wuz-Hi-yT7"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="14"/>
+                            <rect key="frame" x="115.5" y="210" width="154.5" height="22"/>
+                            <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="16"/>
                             <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kgw-Vz-y65">
-                            <rect key="frame" x="146" y="155.5" width="50" height="50"/>
+                            <rect key="frame" x="167" y="152" width="50" height="50"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="50" id="6co-dq-ign"/>
-                                <constraint firstAttribute="width" constant="50" id="Emj-iL-YH5"/>
+                                <constraint firstAttribute="width" constant="50" id="Lqx-ZG-Bmq"/>
+                                <constraint firstAttribute="height" constant="50" id="kwq-Vf-fJa"/>
                             </constraints>
-                            <state key="normal" title="Button" image="5D2B42A9-E423-4FE6-AB46-146B8EBE36A6"/>
+                            <state key="normal" title="Button" image="704F3E25-00FD-4EA5-AE64-0B6C09810CC3"/>
                             <connections>
                                 <action selector="addButtonClicked:" destination="-1" eventType="touchUpInside" id="7SU-Qf-Jru"/>
                             </connections>
                         </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Travel in a Time Machine" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D6X-lr-sG0">
+                            <rect key="frame" x="38.5" y="39" width="307" height="31"/>
+                            <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="22"/>
+                            <color key="textColor" red="1" green="0.40392156862745099" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <constraints>
-                        <constraint firstAttribute="trailing" secondItem="Qfb-Eg-qyy" secondAttribute="trailing" constant="8" id="68n-MR-3aU"/>
-                        <constraint firstItem="D6X-lr-sG0" firstAttribute="centerX" secondItem="tws-lD-t3n" secondAttribute="centerX" id="6Qy-pX-OG4"/>
-                        <constraint firstItem="D6X-lr-sG0" firstAttribute="top" secondItem="tws-lD-t3n" secondAttribute="top" constant="8" id="ADo-3C-vPJ"/>
-                        <constraint firstItem="Qfb-Eg-qyy" firstAttribute="top" secondItem="D6X-lr-sG0" secondAttribute="bottom" constant="8" id="J2H-Zc-tz1"/>
-                        <constraint firstItem="D6X-lr-sG0" firstAttribute="leading" secondItem="tws-lD-t3n" secondAttribute="leading" id="KU6-TF-XUs"/>
-                        <constraint firstAttribute="bottom" secondItem="HQa-Kb-Jp2" secondAttribute="bottom" id="S7p-Vi-Wvx"/>
-                        <constraint firstItem="HQa-Kb-Jp2" firstAttribute="top" secondItem="kgw-Vz-y65" secondAttribute="bottom" constant="2" id="a7c-VG-lEM"/>
-                        <constraint firstAttribute="bottom" secondItem="Qfb-Eg-qyy" secondAttribute="bottom" constant="45" id="cZU-Lw-yFF"/>
-                        <constraint firstItem="kgw-Vz-y65" firstAttribute="centerX" secondItem="tws-lD-t3n" secondAttribute="centerX" id="eGU-PD-zLT"/>
-                        <constraint firstAttribute="trailing" secondItem="D6X-lr-sG0" secondAttribute="trailing" id="jWV-f1-lxS"/>
-                        <constraint firstItem="Qfb-Eg-qyy" firstAttribute="leading" secondItem="tws-lD-t3n" secondAttribute="leading" constant="8" id="wEk-sI-C1I"/>
-                        <constraint firstItem="HQa-Kb-Jp2" firstAttribute="centerX" secondItem="tws-lD-t3n" secondAttribute="centerX" id="xB0-Fg-vOr"/>
+                        <constraint firstItem="kgw-Vz-y65" firstAttribute="top" secondItem="Qfb-Eg-qyy" secondAttribute="bottom" constant="8" id="6BN-0B-d23"/>
+                        <constraint firstItem="kgw-Vz-y65" firstAttribute="centerX" secondItem="tws-lD-t3n" secondAttribute="centerX" id="Ctq-QT-DeC"/>
+                        <constraint firstItem="D6X-lr-sG0" firstAttribute="width" secondItem="tws-lD-t3n" secondAttribute="width" multiplier="0.8" id="DvD-Ai-uw5"/>
+                        <constraint firstItem="HQa-Kb-Jp2" firstAttribute="centerX" secondItem="tws-lD-t3n" secondAttribute="centerX" id="KBq-1J-pFU"/>
+                        <constraint firstItem="HQa-Kb-Jp2" firstAttribute="top" secondItem="kgw-Vz-y65" secondAttribute="bottom" constant="8" id="Mzc-Yi-Owb"/>
+                        <constraint firstItem="Qfb-Eg-qyy" firstAttribute="leading" secondItem="tws-lD-t3n" secondAttribute="leading" id="PsO-nR-1KR"/>
+                        <constraint firstItem="Qfb-Eg-qyy" firstAttribute="top" secondItem="D6X-lr-sG0" secondAttribute="bottom" constant="8" id="XZY-j8-hYG"/>
+                        <constraint firstAttribute="trailing" secondItem="Qfb-Eg-qyy" secondAttribute="trailing" id="apW-4k-tRB"/>
+                        <constraint firstItem="Qfb-Eg-qyy" firstAttribute="centerY" secondItem="tws-lD-t3n" secondAttribute="centerY" id="fXV-P6-Uzm"/>
+                        <constraint firstItem="Qfb-Eg-qyy" firstAttribute="centerX" secondItem="tws-lD-t3n" secondAttribute="centerX" id="hdy-OK-DEC"/>
+                        <constraint firstItem="D6X-lr-sG0" firstAttribute="centerX" secondItem="tws-lD-t3n" secondAttribute="centerX" id="i4w-4C-xGh"/>
                     </constraints>
                 </view>
             </subviews>
@@ -80,7 +76,7 @@
                 <constraint firstItem="tws-lD-t3n" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="0wl-Vp-WIw"/>
                 <constraint firstItem="tws-lD-t3n" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="aS4-r0-oZa"/>
                 <constraint firstItem="tws-lD-t3n" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.8" id="hfD-iY-6Ti"/>
-                <constraint firstItem="tws-lD-t3n" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.8" id="nQX-fX-uFl"/>
+                <constraint firstItem="tws-lD-t3n" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.9" id="nQX-fX-uFl"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -88,7 +84,7 @@
         </view>
     </objects>
     <resources>
-        <image name="5D2B42A9-E423-4FE6-AB46-146B8EBE36A6" width="300" height="300">
+        <image name="704F3E25-00FD-4EA5-AE64-0B6C09810CC3" width="300" height="300">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISgrLjQ3VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA

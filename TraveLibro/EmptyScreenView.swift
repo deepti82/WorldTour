@@ -28,6 +28,7 @@ class EmptyScreenView: UIView {
         self.addSubview(view);
     }
     func setColor(life:String, buttonLabel:String) {
+        whichView = life
         if isSelfUser(otherUserID: currentUser["_id"].stringValue) {
             addButton.isHidden = false
             buttonText.isHidden = false
