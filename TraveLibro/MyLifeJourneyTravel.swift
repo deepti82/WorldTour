@@ -56,21 +56,17 @@ class MyLifeJourneyTravel: UIView {
     @IBAction func createJourney(_ sender: UIButton) {
         let vc = storyboard!.instantiateViewController(withIdentifier: "newTL") as! NewTLViewController
         vc.isJourney = false
-        if(currentUser["journeyId"].stringValue == "-1") {
-            isJourneyOngoing = false
-            vc.showJourneyOngoing(journey: JSON(""))
-        }
-        self.setVC(newViewController: vc)
+        vc.insideView = "journey"
+        globalNavigationController?.setNavigationBarHidden(false, animated: true)
+        globalNavigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func createItinerary(_ sender: UIButton) {
-        let vc = storyboard!.instantiateViewController(withIdentifier: "newTL") as! NewTLViewController
-        vc.isJourney = false
-        if(currentUser["journeyId"].stringValue == "-1") {
-            isJourneyOngoing = false
-            vc.showJourneyOngoing(journey: JSON(""))
-        }
-        self.setVC(newViewController: vc)
+        
+        let vc = storyboard?.instantiateViewController(withIdentifier: "qiPVC") as! QIViewController
+        globalNavigationController?.setNavigationBarHidden(false, animated: true)
+        globalNavigationController?.pushViewController(vc, animated: true)
+        //        self.setVC(newViewController: vc)
     }
     
     func setVC(newViewController : UIViewController) {

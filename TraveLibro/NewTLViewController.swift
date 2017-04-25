@@ -38,6 +38,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     var textFieldYPos = CGFloat(0)
     var difference = CGFloat(0)
     var loader = LoadingOverlay()
+    var insideView:String = "both"
     
     @IBOutlet weak var infoButton: UIButton!
     @IBOutlet weak var toolbarView: UIView!
@@ -718,7 +719,9 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         request.getJourney(currentUser["_id"].string!, completion: {(response) in
             DispatchQueue.main.async(execute: {
                 self.loader.hideOverlayView()
+                print(response)
                 if response.error != nil {
+                    
                     print("error: \(response.error!.localizedDescription)")
                 }
                 else if response["value"].bool! {
@@ -741,8 +744,19 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
                     self.journeyID = self.myJourney["_id"].stringValue
                     self.journeyName = self.myJourney["name"].stringValue
                     self.isInitialLoad = false
-                    self.showJourneyOngoing(journey: response["data"])
+                    
+                        self.showJourneyOngoing(journey: response["data"])
                     self.setTopNavigation(text: "On The Go");
+                }else{
+                    if self.insideView == "journey" {
+                        self.checkForLocation(nil)
+                        
+                    }else if self.insideView == "itinerary" {
+                        self.newItinerary(nil)
+                    }
+                    else{
+                        self.showJourneyOngoing(journey: response["data"])
+                    }
                 }
             })
             
@@ -783,7 +797,15 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
                     self.journeyID = self.myJourney["_id"].stringValue
                     self.journeyName = self.myJourney["name"].stringValue
                     self.isInitialLoad = false
-                    self.showJourneyOngoing(journey: response["data"])
+                    if self.insideView == "journey" {
+                        self.checkForLocation(nil)
+                        
+                    }else if self.insideView == "itinerary" {
+//                        self.newItinerary(nil)
+                    }
+                    else{
+                        self.showJourneyOngoing(journey: response["data"])
+                    }
                     self.setTopNavigation(text: "\(response["data"]["name"].stringValue)");
                 }
             })
@@ -1043,11 +1065,14 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         
         self.title = text
         if  fromOutSide == "" {
-            
+            if insideView == "journey" {
+                self.customNavigationBar(left: outButton, right: rightButton)
+            }else{
             if (myJourney != nil) {
                 self.customNavigationBar(left: leftButton, right: rightButton)
             }else{
                 self.customNavigationBar(left: leftButton, right: nil)
+            }
             }
 
         }else{
@@ -2035,7 +2060,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         
     }
     
-    func newItinerary(_ sender: UIButton) {
+    func newItinerary(_ sender: UIButton?) {
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         let itineraryVC = storyboard?.instantiateViewController(withIdentifier: "qiPVC") as! QIViewController
         self.navigationController?.pushViewController(itineraryVC, animated: true)

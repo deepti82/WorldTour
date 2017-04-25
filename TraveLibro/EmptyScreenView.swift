@@ -49,11 +49,9 @@ class EmptyScreenView: UIView {
             self.setVC(newViewController: vc)
         }else{
         let vc = storyboard!.instantiateViewController(withIdentifier: "newTL") as! NewTLViewController
+            vc.insideView = "journey"
         vc.isJourney = false
-        if(currentUser["journeyId"].stringValue == "-1") {
-            isJourneyOngoing = false
-            vc.showJourneyOngoing(journey: JSON(""))
-        }
+        
             self.setVC(newViewController: vc)
         }
         
