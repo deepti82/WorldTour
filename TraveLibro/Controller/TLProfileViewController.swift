@@ -81,10 +81,15 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
         myLifeVC = storyboard?.instantiateViewController(withIdentifier: "myLife") as! MyLifeViewController
         myLifeVC.whatEmptyTab = "Journeys"
         
-        self.setNavigationBar()
-        
         footer = FooterViewNew(frame: CGRect.zero)
         self.view.addSubview(footer)
+        
+        if self.displayData == "search" {
+            self.isShowingSelf = false
+        }
+        else {
+            self.isShowingSelf = true
+        }
         
         if self.displayData != "" {
             self.getUser()            
@@ -105,14 +110,6 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
         if isShowingSelf {
             self.setData()
         }
-//        if (currentlyShowingUser.isEmpty) {            
-//            self.getUser()
-//        }
-//        
-//        if isCountryAdded {
-//            isCountryAdded = false
-//            getUser()
-//        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -120,13 +117,15 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
         
         globalNavigationController = self.navigationController
         
+        self.setNavigationBar()
+        
         updateUI()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         isProfileVCVisible = false
-        self.navigationController?.navigationBar.isTranslucent = false
+//        self.navigationController?.navigationBar.isTranslucent = false
     }
 
     override func didReceiveMemoryWarning() {
@@ -136,7 +135,16 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     
     //MARK: - UI
     
-    func setNavigationBar(){
+    func setNavigationBar() {
+        
+        let bar:UINavigationBar! =  self.navigationController?.navigationBar
+        bar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        bar.shadowImage = UIImage()
+        bar.titleTextAttributes = [NSFontAttributeName: NAVIGATION_FONT!, NSForegroundColorAttributeName: UIColor.white]
+        bar.backgroundColor = UIColor(red: 0.0, green: 0.3, blue: 0.5, alpha: 0)
+        bar.tintColor = UIColor.white        
+        self.navigationController?.navigationBar.barTintColor = UIColor.clear
+        self.navigationController?.toolbar.barTintColor = UIColor.clear
         
         if displayData == "search" {
             let leftButton = UIButton()
@@ -153,16 +161,25 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
             rightButton.addTarget(self, action: #selector(self.rightFollowTapped(sender:)), for: .touchUpInside)
             rightButton.frame = CGRect(x: 1000000, y: 5, width: 100, height: 40)
             self.customNavigationBar(left: leftButton, right: rightButton)
-        }else{
-            let rightButton = UIButton()
-            rightButton.setImage(UIImage(named: "search_toolbar"), for: UIControlState())
-            rightButton.addTarget(self, action: #selector(self.searchTapped(_:)), for: .touchUpInside)
-            rightButton.frame = CGRect(x: -10, y: 8, width: 30, height: 30)
-            
-            self.setOnlyRightNavigationButton(rightButton)
         }
-        
-        //self.setTransperentNavigationBar()
+        else{            
+            let rightButton = UIButton()
+            rightButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+            rightButton.addTarget(self, action: #selector(self.searchTapped(_:)), for: .touchUpInside)
+            rightButton.setImage(UIImage(named: "search_toolbar"), for: .normal)            
+            let rightBarButtonItem = UIBarButtonItem(customView: rightButton)
+            self.navigationItem.rightBarButtonItem = rightBarButtonItem
+            
+            
+            let leftButton = UIButton()
+            leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+            leftButton.addTarget(self, action: #selector(UIViewController.toggleLeft), for: .touchUpInside)
+            leftButton.setImage(UIImage(named: "menu_left_icon"), for: .normal)            
+            let leftBarButtonItem = UIBarButtonItem(customView: leftButton)
+            self.navigationItem.leftBarButtonItem = leftBarButtonItem
+        }
+        self.view.setNeedsDisplay()
+        self.navigationController?.navigationBar.setNeedsDisplay()
     }
     
     func updateUI() {
@@ -457,19 +474,17 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     func toggleMAMTextView(stackView: UIStackView) {
         
         if stackView.tag == 0 {
-//            UIView.animate(withDuration: 1) {
-                
-                self.MAM = MoreAboutMe(frame: CGRect(x: 0, y: 0, width: self.MAMTextView.frame.size.width, height: 70))
-                self.MAM.mainTextView.textColor = UIColor.white                
-                self.MAM.mainTextView.font = self.moreAboutMeLabel.font
-                self.MAM.backgroundColor = UIColor.clear
-                self.MAMTextView.addSubview(self.MAM)
-                self.MAMTextView.backgroundColor = UIColor.clear
-                
-                self.MAMTextViewHeightConstraint.constant = 70
-                self.MAMTextView.frame.size.height = 70
-                self.mamStackView.tag = 1
-//            }
+            self.MAM = MoreAboutMe(frame: CGRect(x: 0, y: 0, width: self.MAMTextView.frame.size.width, height: 70))
+            self.MAM.mainTextView.textColor = UIColor.white
+            self.MAM.mainTextView.textAlignment = .center
+            self.MAM.mainTextView.font = self.moreAboutMeLabel.font
+            self.MAM.backgroundColor = UIColor.clear
+            self.MAMTextView.addSubview(self.MAM)
+            self.MAMTextView.backgroundColor = UIColor.clear
+            
+            self.MAMTextViewHeightConstraint.constant = 70
+            self.MAMTextView.frame.size.height = 70
+            self.mamStackView.tag = 1
         }
         else {
             if (MAM != nil){
@@ -534,12 +549,8 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
             DispatchQueue.main.async {
                 self.currentlyShowingUser = request["data"]
                 currentUser = request["data"]
-                if self.displayData == "search" {
+                if !self.isShowingSelf {
                     self.setNavigationBar()
-                    self.isShowingSelf = false
-                }
-                else {
-                    self.isShowingSelf = true
                 }
                 self.shouldStopAnimate = true
                 self.setData()
@@ -548,7 +559,7 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     }
     
     func shouldRestrictCurrentUserProfile() -> Bool {
-        if(!selectedUser.isEmpty && (currentlyShowingUser["status"].stringValue == "private" && (currentlyShowingUser["following"].intValue != 1))) {
+        if(!isShowingSelf && (currentlyShowingUser["status"].stringValue == "private" && (currentlyShowingUser["following"].intValue != 1))) {
             return true
         }
         return false
