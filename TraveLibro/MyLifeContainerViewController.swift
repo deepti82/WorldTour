@@ -14,6 +14,7 @@ class MyLifeContainerViewController: UIViewController,UIScrollViewDelegate {
     var isViewed:Bool = true
     var onTab:String = "all"
     var loader = LoadingOverlay()
+    var isFromFooter:Bool = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,10 +57,12 @@ class MyLifeContainerViewController: UIViewController,UIScrollViewDelegate {
                 self.view.addSubview(emptyTravel)
                 break
             case "local-life":
-                empty.frame.size.height = CGFloat(cnfg.getHeight(ht: 275))
+                                
+                empty.frame.size.height = CGFloat(cnfg.getHeight(ht: 350))
                 empty.viewHeading.text = "Life In The City"
                 empty.viewBody.text = "Candid, fun moments with friends, happy family get-togethers, some precious ‘me-time’…share your love for your city and inspire others to do the same. Cherish your local life memories eternally."
                 empty.setColor(life: "locallife", buttonLabel: "Add your first Local Activity")
+
                 self.view.addSubview(empty)
 
                 break
@@ -87,7 +90,15 @@ class MyLifeContainerViewController: UIViewController,UIScrollViewDelegate {
 //            loader.showOverlay(self.view)
 
         }
-        request.getMomentJourney(pageNumber: pageNumber, type: type, urlSlug: selectedUser["urlSlug"].stringValue, completion: {(request) in
+        var urlslug = ""
+        if isFromFooter {
+            selectedUser = []
+            urlslug = ""
+        }else{
+            urlslug = selectedUser["urlSlug"].stringValue
+        }
+        
+        request.getMomentJourney(pageNumber: pageNumber, type: type, urlSlug: urlslug, completion: {(request) in
             DispatchQueue.main.async(execute: {
                 self.loader.hideOverlayView()
                 self.isViewed = false

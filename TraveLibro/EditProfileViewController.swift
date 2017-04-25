@@ -226,7 +226,8 @@ class EditProfileViewController: UIViewController, UITableViewDataSource, UITabl
                 self.present(self.imagePicker, animated: true, completion: nil)
             }
             actionSheetControllerIOS8.addAction(deleteActionButton)
-            self.present(actionSheetControllerIOS8, animated: true, completion: nil)
+            showPopover(optionsController: actionSheetControllerIOS8, sender: tableView, vc: self)
+//            self.present(actionSheetControllerIOS8, animated: true, completion: nil)
         
         case 4: //City
             shouldSave = false

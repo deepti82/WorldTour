@@ -314,7 +314,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         radioThree.image = UIImage(named: "radio_for_button")
         switch whatEmptyTab {
         case "Journeys":
-           
+            globalMyLifeContainerViewController.isFromFooter = self.isFromFooter
             globalMyLifeContainerViewController.loadData("all", pageNumber: 1);
         case "Moments":
             globalMyLifeMomentsViewController.page = 1

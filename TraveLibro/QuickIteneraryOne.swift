@@ -17,6 +17,7 @@ class QuickIteneraryOne: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     @IBOutlet weak var quickOneView: UIView!
     @IBOutlet weak var tripTitleView: UIView!
     
+    @IBOutlet weak var monthText: UILabel!
     @IBOutlet weak var yearView: UIView!
     @IBOutlet weak var monthView: UIView!
     @IBOutlet weak var durationTextField: UITextField!
@@ -74,6 +75,8 @@ class QuickIteneraryOne: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             yearsPicker.append(currentYear)
             currentYear -= 1
         }
+        
+        self.monthText.sizeToFit()
 
         // Do any additional setup after loading the view.
         print("jjjjjjjj  \(tripTitleView.frame.width)")
