@@ -131,14 +131,23 @@ extension UIViewController {
     
     func customiseNavigation() {
         
-        self.navigationController?.navigationBar.barStyle = .black        
-        self.navigationController?.navigationBar.tintColor = UIColor.white
-        self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName : NAVIGATION_FONT!]
+//        self.navigationController?.navigationBar.barStyle = .black
+//        self.navigationController?.navigationBar.tintColor = UIColor.white
+//        self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: NAVIGATION_FONT!, NSForegroundColorAttributeName: UIColor.white]
+//        self.navigationController?.navigationBar.barTintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 0.1)
+//        self.navigationController?.toolbar.barTintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 0.1)
+//        
+//        self.navigationController?.navigationBar.isTranslucent = false
+        
+        self.navigationController?.navigationBar.barStyle = .black
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: NAVIGATION_FONT!, NSForegroundColorAttributeName: UIColor.white]
+        self.navigationController?.navigationBar.backgroundColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 0.1)
+        self.navigationController?.navigationBar.tintColor = UIColor.white        
         self.navigationController?.navigationBar.barTintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 0.1)
         self.navigationController?.toolbar.barTintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 0.1)
-        
         self.navigationController?.navigationBar.isTranslucent = false
-        
     }
     
     func removegestures() {

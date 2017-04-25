@@ -48,14 +48,14 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     
     var loader = LoadingOverlay()
     
-    var labels = [["count":"0","text":"Following"],
-                  ["count":"0","text":"Followers"],
-                  ["count":"0","text":"Countries Visited"],
-                  ["count":"0","text":"Bucket List"],
-                  ["count":"0","text":"Journeys"],
-                  ["count":"0","text":"Check Ins"],
-                  ["count":"0","text":"Photos"],
-                  ["count":"0","text":"Reviews"]]
+    var labels = [["count":"0","text":"following"],
+                  ["count":"0","text":"followers"],
+                  ["count":"0","text":"countries visited"],
+                  ["count":"0","text":"bucket list"],
+                  ["count":"0","text":"journeys"],
+                  ["count":"0","text":"check ins"],
+                  ["count":"0","text":"photos"],
+                  ["count":"0","text":"reviews"]]
 
     
     //MARK: - LifeCycle
@@ -91,24 +91,22 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
             self.isShowingSelf = true
         }
         
-        if self.displayData != "" {
-            self.getUser()            
+        if !self.isShowingSelf {
+            self.getUser()
         }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        self.setNavigationBar()
+        
         if !currentlyShowingUser.isEmpty {
             selectedUser = currentlyShowingUser            
         }        
         
-        if self.displayData == "" {
+        if self.isShowingSelf {
             self.getUser()
-        }
-        
-        if isShowingSelf {
-            self.setData()
         }
     }
     
@@ -186,8 +184,8 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
         
         footer.frame = CGRect(x: 0, y: self.view.frame.height - MAIN_FOOTER_HEIGHT, width: self.view.frame.width, height: MAIN_FOOTER_HEIGHT)
         
-        self.addBorder(toView: self.profileCollectionView, position: layerEdge.TOP, color: UIColor(white: 1, alpha: 0.9), borderWidth: CGFloat(1), width: self.profileCollectionView.contentSize.width)
-        self.addBorder(toView: self.profileCollectionView, position: layerEdge.BOTTOM, color: UIColor(white: 1, alpha: 0.9), borderWidth: CGFloat(1), width: self.profileCollectionView.contentSize.width)
+        self.addBorder(toView: self.profileCollectionView, position: layerEdge.TOP, color: UIColor(white: 1, alpha: 0.7), borderWidth: CGFloat(1), width: self.profileCollectionView.contentSize.width)
+        self.addBorder(toView: self.profileCollectionView, position: layerEdge.BOTTOM, color: UIColor(white: 1, alpha: 0.7), borderWidth: CGFloat(1), width: self.profileCollectionView.contentSize.width)
         
         flagImageView.layer.masksToBounds = false
         flagImageView.layer.cornerRadius = flagImageView.frame.height/2
@@ -207,7 +205,7 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     }
     
     func setCityName(cityName: String, countryName: String) {
-        self.cityNameLabel.text = "LIVES IN : \(cityName), \(countryName)"
+        self.cityNameLabel.text = "LIVES IN : \(cityName.uppercased())"
 //        self.shouldStopAnimate = true
 //        self.cityNameLabel.text = ""
 //        self.setTextWithAnimation(onView: self.cityNameLabel, text: "LIVES IN : \(cityName), \(countryName)")
@@ -254,7 +252,7 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
             setUserName(username: currentlyShowingUser["name"].stringValue)
             
             if currentlyShowingUser["homeCountry"] != nil {
-                self.countryNameLabel.text = currentlyShowingUser["homeCountry"]["name"].stringValue
+                self.countryNameLabel.text = currentlyShowingUser["homeCountry"]["name"].stringValue.uppercased()
                 self.flagImageView.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(currentlyShowingUser["homeCountry"]["flag"].stringValue)", width: SMALL_PHOTO_WIDTH))
             }
             

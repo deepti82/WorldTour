@@ -57,7 +57,7 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
         followerTable.tableFooterView = UIView(frame: CGRect.zero)
         
         if whichView == "Following" {
-            setNavigationBarItemText("Following")
+            self.title = "Following"
             headerText.text = " "
             configureSearchController()
             getFollowing()           
