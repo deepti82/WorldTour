@@ -109,6 +109,7 @@ var jouurneyToShow:JSON = []
 var ATL:String = ""
 
 var leftViewController: SideNavigationMenuViewController!
+var shouldShowTransperentNavBar = false
 
 
 let screenSize = UIScreen.main.bounds
@@ -211,14 +212,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
     
     
         
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {        
         
-        createMenuView()
-        
+        createMenuView()        
         
         googleAnalytics()
-        
-        
         
         enableCrashReporting()
         
@@ -411,6 +409,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
     func enableCrashReporting() {
         Fabric.with([Crashlytics.self])
     }
+    
     func googleAnalytics() {
         // Configure tracker from GoogleService-Info.plist.
 //        var configureError: NSError?
@@ -424,6 +423,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
 //        gai.trackUncaughtExceptions = true  // report uncaught exceptions
 //        gai.logger.logLevel = GAILogLevel.verbose  // remove before app release
     }
+    
 }
 
 //MARK: - Other Functions

@@ -84,8 +84,8 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
         leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
         leftButton.addTarget(self, action: #selector(self.goBack(_:)), for: .touchUpInside)
-        let rightButton = UIView()
-        self.title = text
+        let rightButton = UIView()        
+        setNavigationBarItemText(text)
         self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Avenir-Medium", size: 18)!]
         
         self.customNavigationBar(left: leftButton, right: rightButton)

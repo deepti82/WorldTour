@@ -99,6 +99,8 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        shouldShowTransperentNavBar = true
+        
         self.setNavigationBar()
         
         if !currentlyShowingUser.isEmpty {
@@ -123,7 +125,7 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         isProfileVCVisible = false
-//        self.navigationController?.navigationBar.isTranslucent = false
+        shouldShowTransperentNavBar = false
     }
 
     override func didReceiveMemoryWarning() {
@@ -135,14 +137,7 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     
     func setNavigationBar() {
         
-        let bar:UINavigationBar! =  self.navigationController?.navigationBar
-        bar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-        bar.shadowImage = UIImage()
-        bar.titleTextAttributes = [NSFontAttributeName: NAVIGATION_FONT!, NSForegroundColorAttributeName: UIColor.white]
-        bar.backgroundColor = UIColor(red: 0.0, green: 0.3, blue: 0.5, alpha: 0)
-        bar.tintColor = UIColor.white        
-        self.navigationController?.navigationBar.barTintColor = UIColor.clear
-        self.navigationController?.toolbar.barTintColor = UIColor.clear
+        setNavigationBarItemText("My Life")
         
         if displayData == "search" {
             let leftButton = UIButton()
@@ -176,7 +171,6 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
             let leftBarButtonItem = UIBarButtonItem(customView: leftButton)
             self.navigationItem.leftBarButtonItem = leftBarButtonItem
         }
-        self.view.setNeedsDisplay()
         self.navigationController?.navigationBar.setNeedsDisplay()
     }
     
@@ -240,8 +234,6 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
         }
         
         if currentlyShowingUser != nil {
-            
-            self.title = "My Life"
             
             print("SetData Called")
             
