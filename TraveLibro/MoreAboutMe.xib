@@ -18,17 +18,17 @@
             <rect key="frame" x="0.0" y="0.0" width="400" height="300"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="..." textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vpS-gU-Nae">
-                    <rect key="frame" x="8" y="8" width="384" height="284"/>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="..." textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vpS-gU-Nae">
+                    <rect key="frame" x="8" y="3" width="384" height="294"/>
                     <color key="textColor" red="0.15294117647058825" green="0.16862745098039217" blue="0.28627450980392155" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="15"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
             </subviews>
             <constraints>
-                <constraint firstItem="vpS-gU-Nae" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="3aG-6j-1Ya"/>
+                <constraint firstItem="vpS-gU-Nae" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="3" id="3aG-6j-1Ya"/>
                 <constraint firstItem="vpS-gU-Nae" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="87g-uE-Rna"/>
-                <constraint firstAttribute="bottom" secondItem="vpS-gU-Nae" secondAttribute="bottom" constant="8" id="Hqe-Jw-eoR"/>
+                <constraint firstAttribute="bottom" secondItem="vpS-gU-Nae" secondAttribute="bottom" constant="3" id="Hqe-Jw-eoR"/>
                 <constraint firstAttribute="trailing" secondItem="vpS-gU-Nae" secondAttribute="trailing" constant="8" id="VCx-bN-9cq"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
