@@ -132,6 +132,11 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
         
     }
     
+    func setText(text: String) {
+        textHeader.headerText.text = text
+        //        self.addSubview(textHeader)
+    }
+    
     func middleLayoout(feed:JSON) {
         switch feed["type"].stringValue {
         case "on-the-go-journey","ended-journey":
@@ -619,11 +624,6 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
     
     
     //MARK: - Helper
-    
-    func setText(text: String) {
-        textHeader.headerText.text = text
-        //        self.addSubview(textHeader)
-    }
     
     func getCategoryImage(name: String) -> String {
         var str:String! = ""

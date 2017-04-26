@@ -170,8 +170,11 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        
         super.viewWillDisappear(animated)
+        if isFromFooter {
         self.mainFooter.setFooterDefaultState()
+        }
     }
     
     func showLoader() {

@@ -7,7 +7,8 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
     var endJourneyView: EndJourneyMyLife!
     var endJourneyCard: EndJourneyView!
     var lines: OnlyLine!
-    var header:PhotosOTGHeader!
+    var profileHeader:ActivityProfileHeader!
+    var textHeader:ActivityTextHeader!
     var centerView:PhotosOTGView!
     var footerView:PhotoOTGFooter!
     var mainPhoto:UIImageView!
@@ -27,51 +28,7 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
         self.clipsToBounds = true
         //header generation only
         
-        header = PhotosOTGHeader(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 102 ))
-        
-        self.addSubview(header)
-        
-        header.postDp.layer.zPosition = 5
-        header.calendarLabel.layer.zPosition = 5
-        header.clockLabel.layer.zPosition = 5
-        header.dateLabel.layer.zPosition = 5
-        header.whatPostIcon.layer.zPosition = 5
-        header.timeLabel.layer.zPosition = 5
-        header.photosTitle.layer.zPosition = 5
-        self.postTop = post;
-        post.getThought()
-        header.photosTitle.attributedText = post.finalThought
-        print(header.photosTitle.attributedText!)
-        print(post.finalThought)
-        post.getTypeOfPost()
-        
-        if(post.postCreator != nil) {
-            header.postDp.hnk_setImageFromURL(URL(string:"\(adminUrl)upload/readFile?file=\(post.postCreator["profilePicture"])&width=100")!)
-        }
-        else {
-            header.postDp.hnk_setImageFromURL(URL(string:"\(adminUrl)upload/readFile?file=\(currentUser["profilePicture"])&width=100")!)
-        }
-        
-        header.makeTLProfilePicture(header.postDp)
-        
-        header.dateLabel.text = post.post_dateDay
-        header.timeLabel.text = post.post_dateTime
-        
-        if((post.typeOfPost) != nil) {
-            switch(post.typeOfPost) {
-            case "Location":
-                header.whatPostIcon.setImage(UIImage(named: "location_icon"), for: .normal)
-            case "Image":
-                header.whatPostIcon.setImage(UIImage(named: "camera_icon"), for: .normal)
-            case "Videos":
-                header.whatPostIcon.setImage(UIImage(named: "video"), for: .normal)
-            case "Thoughts":
-                header.whatPostIcon.setImage(UIImage(named: "pen_icon"), for: .normal)
-            default:
-                break
-            }
-        }
-        // End of Header
+        headerLayout(feed: post.jsonPost)
         
         //Image generation only
         if(post.videoArr.count > 0) {
@@ -244,6 +201,82 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
         }
 
         self.layoutSubviews()
+    }
+    
+    
+    func headerLayout(feed:JSON) {
+        
+        profileHeader = ActivityProfileHeader(frame: CGRect(x: 0, y: 20, width: self.frame.width, height: 69))
+        
+        self.addSubview(profileHeader)
+        profileHeader.followButton.isHidden = true
+        
+        profileHeader.fillProfileHeader(feed:feed)
+        
+        
+        if feed["type"].stringValue == "on-the-go-journey"{
+            profileHeader.localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["startTime"].stringValue, isDate: true)
+            profileHeader.localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["startTime"].stringValue, isDate: false)
+        }else if feed["type"].stringValue == "ended-journey"{
+            profileHeader.localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["endTime"].stringValue, isDate: true)
+            profileHeader.localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["endTime"].stringValue, isDate: false)
+        }else if feed["type"].stringValue == "quick-itinerary"{
+            profileHeader.localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["createdAt"].stringValue, isDate: true)
+            profileHeader.localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["createdAt"].stringValue, isDate: false)
+        }else if feed["type"].stringValue == "detail-itinerary"{
+            profileHeader.localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["startDate"].stringValue, isDate: true)
+            profileHeader.localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["startTime"].stringValue, isDate: false)
+        }else {
+            profileHeader.localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["UTCModified"].stringValue, isDate: true)
+            profileHeader.localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["UTCModified"].stringValue, isDate: false)
+            
+        }
+        
+        if feed["thoughts"].stringValue != "" {
+            
+            //  START ACTIVITY TEXT HEADER
+            textHeader = ActivityTextHeader(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 0))
+            textHeader.headerText.attributedText = getThought(feed)
+            textHeader.headerText.sizeToFit()
+            textHeader.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: textHeader.headerText.frame.height + 1.5)
+            self.addSubview(textHeader)
+            textHeader.kindOfJourneyMyLife.isHidden = true
+            
+            
+        } else {
+            // For header text
+            textHeader = ActivityTextHeader(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 70))
+            textHeader.kindOfJourneyMyLife.isHidden = true
+            switch feed["type"].stringValue {
+            case "on-the-go-journey":
+                setText(text: "Has started a Journey.")
+                
+            case "ended-journey":
+                setText(text: "Has ended this Journey.")
+                
+            case "quick-itinerary":
+                setText(text: "Has uploaded a new Itinerary.")
+                
+            case "detail-itinerary":
+                setText(text: "Has uploaded a new Itinerary.")
+            default:
+                textHeader.headerText.attributedText = getThought(feed)
+            }
+            textHeader.headerText.sizeToFit()
+            textHeader.sizeToFit()
+            textHeader.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: textHeader.headerText.frame.height + 1.5)
+            if(textHeader.headerText.text != "") {
+                
+                self.addSubview(textHeader)
+            }
+            
+            
+        }
+        
+    }
+    func setText(text: String) {
+        textHeader.headerText.text = text
+        //        self.addSubview(textHeader)
     }
     
     func openSingleVideo(_ sender: AnyObject) {
