@@ -319,7 +319,6 @@
 		C276EDAA1D06CBB800906FEC /* EditDOB.xib in Resources */ = {isa = PBXBuildFile; fileRef = C276EDA91D06CBB800906FEC /* EditDOB.xib */; };
 		C276EDAC1D06CCBC00906FEC /* EditDOB.swift in Sources */ = {isa = PBXBuildFile; fileRef = C276EDAB1D06CCBC00906FEC /* EditDOB.swift */; };
 		C27C48091DB5ECDF00330ABF /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27C48081DB5ECDF00330ABF /* PostModel.swift */; };
-		C27E0F3A1D2A1EF10090880A /* FeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27E0F391D2A1EF10090880A /* FeedbackViewController.swift */; };
 		C27F6BFD1CF037C60049F012 /* ProfileMainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C27F6BFC1CF037C60049F012 /* ProfileMainView.xib */; };
 		C27F6BFF1CF03DF90049F012 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27F6BFE1CF03DF90049F012 /* ProfileViewController.swift */; };
 		C27F6C011CF03E280049F012 /* ProfileMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27F6C001CF03E280049F012 /* ProfileMainView.swift */; };
@@ -348,7 +347,6 @@
 		C28A92431D0E839B00CFEC7A /* FilterRestaurants.xib in Resources */ = {isa = PBXBuildFile; fileRef = C28A92421D0E839B00CFEC7A /* FilterRestaurants.xib */; };
 		C28A92451D0E83FD00CFEC7A /* FilterRestaurants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28A92441D0E83FD00CFEC7A /* FilterRestaurants.swift */; };
 		C28A92471D0E95ED00CFEC7A /* PopularBloggersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28A92461D0E95ED00CFEC7A /* PopularBloggersViewController.swift */; };
-		C28A92491D0EA12300CFEC7A /* BlogsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28A92481D0EA12300CFEC7A /* BlogsListViewController.swift */; };
 		C28A92511D0EBF5900CFEC7A /* FilterCheckboxesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28A92501D0EBF5900CFEC7A /* FilterCheckboxesViewController.swift */; };
 		C28A92531D0ECB4E00CFEC7A /* FilterBlogs.xib in Resources */ = {isa = PBXBuildFile; fileRef = C28A92521D0ECB4E00CFEC7A /* FilterBlogs.xib */; };
 		C28A92551D0ECD4300CFEC7A /* FilterBlogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28A92541D0ECD4300CFEC7A /* FilterBlogs.swift */; };
@@ -857,7 +855,6 @@
 		C276EDA91D06CBB800906FEC /* EditDOB.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EditDOB.xib; path = ../EditDOB.xib; sourceTree = "<group>"; };
 		C276EDAB1D06CCBC00906FEC /* EditDOB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditDOB.swift; path = ../EditDOB.swift; sourceTree = "<group>"; };
 		C27C48081DB5ECDF00330ABF /* PostModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
-		C27E0F391D2A1EF10090880A /* FeedbackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedbackViewController.swift; sourceTree = "<group>"; };
 		C27F6BFC1CF037C60049F012 /* ProfileMainView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileMainView.xib; sourceTree = "<group>"; };
 		C27F6BFE1CF03DF90049F012 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		C27F6C001CF03E280049F012 /* ProfileMainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileMainView.swift; sourceTree = "<group>"; };
@@ -886,7 +883,6 @@
 		C28A92421D0E839B00CFEC7A /* FilterRestaurants.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilterRestaurants.xib; sourceTree = "<group>"; };
 		C28A92441D0E83FD00CFEC7A /* FilterRestaurants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterRestaurants.swift; sourceTree = "<group>"; };
 		C28A92461D0E95ED00CFEC7A /* PopularBloggersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopularBloggersViewController.swift; sourceTree = "<group>"; };
-		C28A92481D0EA12300CFEC7A /* BlogsListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlogsListViewController.swift; sourceTree = "<group>"; };
 		C28A92501D0EBF5900CFEC7A /* FilterCheckboxesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterCheckboxesViewController.swift; sourceTree = "<group>"; };
 		C28A92521D0ECB4E00CFEC7A /* FilterBlogs.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FilterBlogs.xib; path = ../FilterBlogs.xib; sourceTree = "<group>"; };
 		C28A92541D0ECD4300CFEC7A /* FilterBlogs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FilterBlogs.swift; path = ../FilterBlogs.swift; sourceTree = "<group>"; };
@@ -2105,7 +2101,6 @@
 				C23EBC2F1D7FF49000D040DB /* AddYearsCountriesVisitedTableViewController.swift */,
 				C2DCB3711CE7454F006E5CBD /* AddYourRatingViewController.swift */,
 				C266AA161D4B75B300174612 /* AllJourneysViewController.swift */,
-				C28A92481D0EA12300CFEC7A /* BlogsListViewController.swift */,
 				C2803BC71CF426A8007A906E /* BlogViewViewController.swift */,
 				C2BB45F11CFDB39800251E8C /* BucketListTableViewController.swift */,
 				C20A18F51D225E9C00760BF9 /* CategoriseCheckInViewController.swift */,
@@ -2137,7 +2132,6 @@
 				C26962E31D377592004C0DE2 /* FeaturedCitiesNewViewController.swift */,
 				C2E697B41D3E510900E76F1E /* FeaturedCitiesRestViewController.swift */,
 				C25207381D09A4F7008F0E51 /* FeaturedCitiesViewController.swift */,
-				C27E0F391D2A1EF10090880A /* FeedbackViewController.swift */,
 				C28A92501D0EBF5900CFEC7A /* FilterCheckboxesViewController.swift */,
 				C29D2C101D1BE09600FA0602 /* FilterCityViewController.swift */,
 				C2BB45EF1CFD96E300251E8C /* FollowersViewController.swift */,
@@ -3369,8 +3363,6 @@
 				843510E41DF7F88100C3D8EE /* QuickIteneraryFour.swift in Sources */,
 				C2DA2B5B1CE6076600F15C5C /* MyCollectionViewCell.swift in Sources */,
 				C26B4DEF1D14288900213055 /* ConnectWithAgentViewController.swift in Sources */,
-				C28A92491D0EA12300CFEC7A /* BlogsListViewController.swift in Sources */,
-				C27E0F3A1D2A1EF10090880A /* FeedbackViewController.swift in Sources */,
 				C2DCAE411D18063E00B35331 /* NavigationStyle.swift in Sources */,
 				440918041E9DE80100AE20F4 /* notificationEmptyView.swift in Sources */,
 				C2C965991CE45A51007BDA34 /* Date&Time.swift in Sources */,

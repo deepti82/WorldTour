@@ -11,11 +11,9 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
     var homeController:UIViewController!
     var popJourneysController:UIViewController!
     var exploreDestinationsController:UIViewController!
-    var popBloggersController:UIViewController!
-    var blogsController:UIViewController!
+    var popBloggersController:UIViewController!    
     var inviteFriendsController:UIViewController!
-    var rateUsController:UIViewController!
-    var feedbackController:UIViewController!
+    var rateUsController:UIViewController!    
     var settingsViewController: UIViewController!
     var localLifeController: UIViewController!
     var myProfileViewController: UIViewController!
@@ -95,24 +93,17 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         self.popJourneysController = UINavigationController(rootViewController: PJController)
         
         let EDController = storyboard!.instantiateViewController(withIdentifier: "popular") as! PopularController
-        
         EDController.displayData = "popitinerary"
         self.exploreDestinationsController = UINavigationController(rootViewController: EDController)
         
         let PBController = storyboard!.instantiateViewController(withIdentifier: "popularBloggers") as! PopularBloggersViewController
         self.popBloggersController = UINavigationController(rootViewController: PBController)
         
-        let BlogsController = storyboard!.instantiateViewController(withIdentifier: "blogsList") as! BlogsListViewController
-        self.blogsController = UINavigationController(rootViewController: BlogsController)
-        
         let inviteController = storyboard!.instantiateViewController(withIdentifier: "inviteFriends") as! InviteFriendsViewController
         self.inviteFriendsController = UINavigationController(rootViewController: inviteController)
         
         let rateUsController = storyboard!.instantiateViewController(withIdentifier: "Home") as! HomeViewController
         self.rateUsController = UINavigationController(rootViewController: rateUsController)
-        
-        let FBController = storyboard!.instantiateViewController(withIdentifier: "FeedbackVC") as! FeedbackViewController
-        self.feedbackController = UINavigationController(rootViewController: FBController)
         
         let localLifeController = storyboard!.instantiateViewController(withIdentifier: "localLife") as! LocalLifeRecommendationViewController
         self.localLifeController = UINavigationController(rootViewController: localLifeController)

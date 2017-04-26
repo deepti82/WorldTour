@@ -26,6 +26,9 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     @IBOutlet weak var moreAboutMeButton: UIButton!
     @IBOutlet weak var MAMTextViewHeightConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var startStack: UIStackView!
+    @IBOutlet weak var userBadgeLabel: UILabel!    
+    @IBOutlet var badgeStarImageArray: [UIImageView]!
     @IBOutlet weak var profileCollectionView: UICollectionView!
     
     @IBOutlet weak var exploreMyLifeView: UIView!
@@ -126,6 +129,7 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
         super.viewWillDisappear(animated)
         isProfileVCVisible = false
         shouldShowTransperentNavBar = false
+        self.customiseNavigation()
     }
 
     override func didReceiveMemoryWarning() {
@@ -149,7 +153,7 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
             
             
             let rightButton = UIButton()
-            rightButton.titleLabel?.font = avenirFont
+            rightButton.titleLabel?.font = avenirBold
             setFollowButtonTitle(button: rightButton, followType: currentlyShowingUser["following"].intValue, otherUserID: currentlyShowingUser["_id"].stringValue)
             rightButton.addTarget(self, action: #selector(self.rightFollowTapped(sender:)), for: .touchUpInside)
             rightButton.frame = CGRect(x: 1000000, y: 5, width: 100, height: 40)
@@ -178,6 +182,8 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
         
         footer.frame = CGRect(x: 0, y: self.view.frame.height - MAIN_FOOTER_HEIGHT, width: self.view.frame.width, height: MAIN_FOOTER_HEIGHT)
         
+        self.userBadgeLabel.text = ""
+        
         self.addBorder(toView: self.profileCollectionView, position: layerEdge.TOP, color: UIColor(white: 1, alpha: 0.7), borderWidth: CGFloat(1), width: self.profileCollectionView.contentSize.width)
         self.addBorder(toView: self.profileCollectionView, position: layerEdge.BOTTOM, color: UIColor(white: 1, alpha: 0.7), borderWidth: CGFloat(1), width: self.profileCollectionView.contentSize.width)
         
@@ -186,6 +192,8 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
         flagImageView.clipsToBounds = true
         
         exploreMyLifeView.layer.cornerRadius = (exploreMyLifeView.frame.size.height * 0.15)
+        
+        setUserBadgeName(badge: currentlyShowingUser["userBadgeName"].stringValue)
     }
     
     func setUserName(username: String) {
@@ -203,6 +211,53 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
 //        self.shouldStopAnimate = true
 //        self.cityNameLabel.text = ""
 //        self.setTextWithAnimation(onView: self.cityNameLabel, text: "LIVES IN : \(cityName), \(countryName)")
+    }
+    
+    func setUserBadgeName(badge: String) {
+        self.userBadgeLabel.text = "\(badge.capitalized) - "
+        self.userBadgeLabel.sizeToFit()
+        self.userBadgeLabel.transform = CGAffineTransform(rotationAngle: -CGFloat.pi / 2)
+        
+//        self.userBadgeLabel.frame = CGRect(x: self.userBadgeLabel.frame.origin.x, y: mamStackView.frame.origin.y - 2.5*(self.userBadgeLabel.frame.size.width) , width: self.userBadgeLabel.frame.size.width, height: self.userBadgeLabel.frame.size.height)
+//        self.startStack.frame = CGRect(x: self.startStack.frame.origin.x, y: userBadgeLabel.frame.origin.y - (self.startStack.frame.size.height) , width: self.startStack.frame.size.width, height: self.startStack.frame.size.height)
+        self.setBadgeStars(badge: badge)
+    }
+    
+    func setBadgeStars(badge: String) {
+        
+        var starCnt = 0
+        
+        for item in badgeStarImageArray {
+            item.tintColor = UIColor.white
+            item.image = UIImage(named: "star_uncheck")
+        }
+        
+        if currentUser["userBadgeName"].string == "newbie"{
+            starCnt = 1
+        }
+        else if currentUser["userBadgeName"].string == "justGotWings"{
+            starCnt = 2
+        }
+        else if currentUser["userBadgeName"].string == "globeTrotter"{
+            starCnt = 3
+        }
+        else if currentUser["userBadgeName"].string == "wayfarer"{
+            starCnt = 4
+        } 
+        else if currentUser["userBadgeName"].string == "nomad"{
+            starCnt = 5
+        }
+        
+        if starCnt != 0 {            
+            for rat in badgeStarImageArray {
+                if rat.tag > starCnt {
+                    rat.image = UIImage(named: "star_uncheck")
+                }else{
+                    rat.image = UIImage(named: "star_check")
+                    rat.tintColor = UIColor.white
+                }
+            }
+        }        
     }
     
     func setData() {
@@ -230,7 +285,7 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
             mamStackView.isUserInteractionEnabled = true
             
             exploreMyLifeView.isUserInteractionEnabled = true
-            exploreMyLifeView.backgroundColor = mainOrangeColor //TODO:Change this color later            
+            exploreMyLifeView.backgroundColor = mainOrangeColor
         }
         
         if currentlyShowingUser != nil {
@@ -242,6 +297,8 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
             self.userProfileImageView.hnk_setImageFromURL(getImageURL(currentlyShowingUser["profilePicture"].stringValue, width: 0))
             
             setUserName(username: currentlyShowingUser["name"].stringValue)
+            
+            setUserBadgeName(badge: currentlyShowingUser["userBadgeName"].stringValue)
             
             if currentlyShowingUser["homeCountry"] != nil {
                 self.countryNameLabel.text = currentlyShowingUser["homeCountry"]["name"].stringValue.uppercased()
