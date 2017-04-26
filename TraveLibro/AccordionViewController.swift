@@ -103,7 +103,7 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
             case "all":
                 empty.frame.size.height = CGFloat(cnfg.getHeight(ht: 350))
                 empty.viewHeading.text = "Relive Y​our Experiences"
-                empty.viewBody.text = "Rate the hotels, restaurants, cuisines, theatres, parks, museums, and more, when you check-in and review your experiences there."
+                empty.viewBody.text = "Rate the hotels, restaurants, theatres, parks, museums, and more, when you check-in and review your experiences there."
                 empty.setColor(life: "", buttonLabel: "Start a New Journey")
 
                 break
