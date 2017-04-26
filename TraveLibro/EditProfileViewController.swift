@@ -44,6 +44,8 @@ class EditProfileViewController: UIViewController, UITableViewDataSource, UITabl
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        
         if shouldSave == true {
             DispatchQueue.main.async(execute: {
                 self.saveAll()                

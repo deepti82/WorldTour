@@ -18,6 +18,8 @@ class EditEditProfileViewController: UIViewController {
         
         print("which view: \(whichView)")
         
+        self.title = ""
+        
         
         if whichView == 5 {
          
@@ -39,6 +41,8 @@ class EditEditProfileViewController: UIViewController {
         else if whichView == 6 {
             
             getDarkBackGroundBlur(self)
+            
+            self.title = "Select Gender"
             
             genderView = GenderInfo(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 280))
             genderView.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/2)

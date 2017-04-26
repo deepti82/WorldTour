@@ -132,8 +132,8 @@ extension UIViewController {
     func customiseNavigation() {
         
         self.navigationController?.navigationBar.barStyle = .black
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.setBackgroundImage(nil, for: UIBarMetrics.default)
+        self.navigationController?.navigationBar.shadowImage = nil
         self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: NAVIGATION_FONT!, NSForegroundColorAttributeName: UIColor.white]        
         self.navigationController?.navigationBar.tintColor = UIColor.white
         self.navigationController?.navigationBar.barTintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 0.1)
@@ -141,6 +141,8 @@ extension UIViewController {
         self.navigationController?.navigationBar.isTranslucent = false
         
         if shouldShowTransperentNavBar {
+            self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+            self.navigationController?.navigationBar.shadowImage = UIImage()
             self.navigationController?.navigationBar.isTranslucent = true
             self.navigationController?.navigationBar.barStyle = .default
             self.navigationController?.navigationBar.backgroundColor = UIColor(red: 0.0, green: 0.3, blue: 0.5, alpha: 0)
