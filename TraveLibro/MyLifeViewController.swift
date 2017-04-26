@@ -529,13 +529,13 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         currentPhotoFooter = footer
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSZ"
-        self.inputview = UIView(frame: CGRect(x: 0, y: UIScreen.main.bounds.size.height - 200, width: self.view.frame.size.width, height: 240))
+        self.inputview = UIView(frame: CGRect(x: 0, y: UIScreen.main.bounds.size.height - 240, width: self.view.frame.size.width, height: 240))
         self.inputview.backgroundColor = UIColor.white
-        self.datePickerView = UIDatePicker(frame: CGRect(x: 0, y: 0, width: self.inputview.frame.size.width, height: 200))
+        self.datePickerView = UIDatePicker(frame: CGRect(x: 0, y: 0, width: self.inputview.frame.size.width, height: 240))
         self.datePickerView.datePickerMode = UIDatePickerMode.dateAndTime
         self.datePickerView.date = dateFormatter.date(from: footer.postTop["UTCModified"].stringValue)!
         self.datePickerView.maximumDate = Date()
-        self.backView = UIView(frame: CGRect(x: 0, y: UIScreen.main.bounds.size.height - 240, width: self.view.frame.size.width, height: 40))
+        self.backView = UIView(frame: CGRect(x: 0, y: UIScreen.main.bounds.size.height - 280, width: self.view.frame.size.width, height: 40))
         self.backView.backgroundColor = UIColor(hex: "#272b49")
         self.inputview.addSubview(self.datePickerView) // add date picker to UIView
         let doneButton = UIButton(frame: CGRect(x: UIScreen.main.bounds.size.width - 100, y: 0, width: 100, height: 40))
@@ -625,6 +625,8 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
 
     func doneButton(_ sender: UIButton){
         request.changeDateTimeLocal(currentPhotoFooter.postTop["_id"].stringValue, date: "\(dateSelected) \(timeSelected)", completion: {(response) in
+            print(response)
+            globalMyLifeContainerViewController.changeDateTag()
 //            self.getJourney()
         })
         self.inputview.removeFromSuperview() // To resign the inputView on clicking done.

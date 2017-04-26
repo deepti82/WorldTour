@@ -76,7 +76,7 @@ class MyLifeContainerViewController: UIViewController,UIScrollViewDelegate {
     func journeyLoader() {
         loader.showOverlay(self.view)
     }
-    
+        
     func loadData(_ type:String,pageNumber:Int) {
         onTab = type
         if pageNumber == 1 {
@@ -143,7 +143,12 @@ class MyLifeContainerViewController: UIViewController,UIScrollViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-       
+    func changeDateTag() {
+        loader.showOverlay(self.view)
+        isLoading = true
+        pageNumber = 1
+        loadData(onTab, pageNumber: pageNumber)
+    }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
