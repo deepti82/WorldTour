@@ -209,8 +209,8 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
         profileHeader = ActivityProfileHeader(frame: CGRect(x: 0, y: 20, width: self.frame.width, height: 69))
         
         self.addSubview(profileHeader)
+        profileHeader.ishidefollow = true
         profileHeader.followButton.isHidden = true
-        
         profileHeader.fillProfileHeader(feed:feed)
         
         

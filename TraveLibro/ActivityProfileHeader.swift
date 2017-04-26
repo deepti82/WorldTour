@@ -20,6 +20,7 @@ class ActivityProfileHeader: UIView {
     @IBOutlet weak var followButton: UIButton!
     @IBOutlet weak var localTime: UILabel!
     @IBOutlet weak var blurImageView: UIImageView!
+    var ishidefollow:Bool = false
     var currentFeed:JSON = []
     let imageArr: [String] = ["restaurantsandbars", "leaftrans", "sightstrans", "museumstrans", "zootrans", "shopping", "religious", "cinematrans", "hotels", "planetrans", "health_beauty", "rentals", "entertainment", "essential", "emergency", "othersdottrans"]
     
@@ -101,8 +102,9 @@ class ActivityProfileHeader: UIView {
         default:
             category.isHidden = true
         }
-        
-        setFollowButtonTitle(button: followButton, followType: feed["following"].intValue, otherUserID: (feed["_id"] != nil ? feed["_id"].stringValue : "admin"))
+        if !ishidefollow {
+            setFollowButtonTitle(button: followButton, followType: feed["following"].intValue, otherUserID: (feed["_id"] != nil ? feed["_id"].stringValue : "admin"))
+        }
         
         if((currentUser != nil) && feed["user"]["_id"].stringValue == currentUser["_id"].stringValue) {
             followButton.isHidden = true
