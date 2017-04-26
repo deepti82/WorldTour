@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -61,9 +60,8 @@
                             </constraints>
                         </imageView>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="po4-VN-8dh" customClass="ActiveLabel" customModule="TraveLibro" customModuleProvider="target">
-                            <rect key="frame" x="76" y="-2" width="232" height="40"/>
+                            <rect key="frame" x="76" y="-2" width="299" height="40"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="232" id="S8a-Nr-ERB"/>
                                 <constraint firstAttribute="height" constant="40" id="sMj-j6-YDs"/>
                             </constraints>
                             <attributedString key="attributedText">
@@ -107,13 +105,10 @@
                             <color key="textColor" red="0.17254901959999999" green="0.2156862745" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xvb-Pa-iMT">
+                        <button hidden="YES" opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xvb-Pa-iMT">
                             <rect key="frame" x="328" y="14" width="35" height="35"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="35" id="Bv1-yR-vFG"/>
-                                <constraint firstAttribute="width" constant="35" id="XUv-Vf-eCa"/>
-                            </constraints>
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <inset key="contentEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
                             <state key="normal" image="location_icon"/>
@@ -133,7 +128,6 @@
                     <constraints>
                         <constraint firstItem="dUH-xH-sbU" firstAttribute="top" secondItem="po4-VN-8dh" secondAttribute="bottom" id="1EF-hW-55E"/>
                         <constraint firstItem="bcT-oe-jCW" firstAttribute="top" secondItem="wBz-We-C2u" secondAttribute="top" constant="6" id="6pz-ij-5nU"/>
-                        <constraint firstAttribute="trailing" secondItem="Xvb-Pa-iMT" secondAttribute="trailing" constant="12" id="8X5-mF-Bu4"/>
                         <constraint firstItem="3Ij-Yi-cXb" firstAttribute="leading" secondItem="po4-VN-8dh" secondAttribute="leading" id="Ctc-Ra-koc"/>
                         <constraint firstItem="3Ij-Yi-cXb" firstAttribute="baseline" secondItem="wh2-Li-LqP" secondAttribute="baseline" id="Dqo-tD-Xj1"/>
                         <constraint firstItem="fid-yH-MEf" firstAttribute="leading" secondItem="3Ij-Yi-cXb" secondAttribute="trailing" constant="8" id="Ne3-NU-buN"/>
@@ -143,10 +137,9 @@
                         <constraint firstItem="dUH-xH-sbU" firstAttribute="leading" secondItem="wh2-Li-LqP" secondAttribute="trailing" constant="8" id="Y17-ku-rNA"/>
                         <constraint firstItem="3Ij-Yi-cXb" firstAttribute="firstBaseline" secondItem="wh2-Li-LqP" secondAttribute="firstBaseline" id="aE0-tS-xn6"/>
                         <constraint firstItem="fid-yH-MEf" firstAttribute="top" secondItem="po4-VN-8dh" secondAttribute="bottom" id="aok-Tq-ohN"/>
-                        <constraint firstItem="Xvb-Pa-iMT" firstAttribute="top" secondItem="bcT-oe-jCW" secondAttribute="top" constant="8" id="bA5-UG-LNw"/>
-                        <constraint firstItem="Xvb-Pa-iMT" firstAttribute="leading" secondItem="po4-VN-8dh" secondAttribute="trailing" constant="20" id="diO-gh-Geb"/>
                         <constraint firstItem="po4-VN-8dh" firstAttribute="top" secondItem="wBz-We-C2u" secondAttribute="top" constant="-2" id="jdW-GF-scm"/>
                         <constraint firstItem="wh2-Li-LqP" firstAttribute="leading" secondItem="Oys-D0-d9b" secondAttribute="trailing" constant="8" id="kdC-kQ-t1i"/>
+                        <constraint firstAttribute="trailing" secondItem="po4-VN-8dh" secondAttribute="trailing" id="lwQ-ay-3PP"/>
                         <constraint firstItem="po4-VN-8dh" firstAttribute="leading" secondItem="bcT-oe-jCW" secondAttribute="trailing" constant="20" id="oE7-WV-but"/>
                         <constraint firstAttribute="width" constant="375" id="sYU-G7-HGg"/>
                         <constraint firstItem="Oys-D0-d9b" firstAttribute="top" secondItem="wBz-We-C2u" secondAttribute="top" constant="38" id="tsW-WU-pDi"/>
