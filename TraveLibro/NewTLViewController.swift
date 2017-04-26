@@ -1152,8 +1152,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
 //        addPostsButton.isHidden = true
         
         if fromOutSide == "" {
-            getJourney()
-            self.mainFooter.setHighlightStateForView(tag: 1, color: mainOrangeColor)
+            getJourney()            
         }else{
             addPostsButton.isHidden = true
             getOneJourney()
@@ -1176,6 +1175,14 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if fromOutSide == "" {           
+            self.mainFooter.setHighlightStateForView(tag: 1, color: mainOrangeColor)
+        }
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         globalNavigationController = self.navigationController
@@ -1185,6 +1192,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         super.viewWillDisappear(animated)
         hideHeaderAndFooter(false)
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        self.mainFooter.setFooterDefaultState()
     }
     
     override func didReceiveMemoryWarning() {
@@ -1254,10 +1262,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
             }
         }
         
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
     }
     
 //    func gotoProfile(_ sender: UIButton) {

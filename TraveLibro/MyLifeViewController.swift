@@ -70,8 +70,6 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
             self.mainFooter.layer.zPosition = 5
             self.view.addSubview(self.mainFooter)
             
-            self.mainFooter.setHighlightStateForView(tag: 2, color: mainOrangeColor)
-            
             arrowDownButton.isHidden = true
         }
         else {
@@ -91,7 +89,13 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         if currentUser != nil {            
             profileName.text = selectedUser.isEmpty ? currentUser["name"].string! : selectedUser["name"].string!
         }
-        self.title = selectedUser.isEmpty ? currentUser["name"].string! : selectedUser["name"].string!
+        
+        if isFromFooter {
+            self.title = currentUser["name"].stringValue
+        }
+        else {
+            self.title = selectedUser.isEmpty ? currentUser["name"].string! : selectedUser["name"].string!
+        }
         
         isEmptyProfile = true
         
@@ -160,8 +164,14 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         super.viewWillAppear(animated)
         if isFromFooter {
             self.mainFooter.frame = CGRect(x: 0, y: self.view.frame.height - MAIN_FOOTER_HEIGHT, width: self.view.frame.width, height: MAIN_FOOTER_HEIGHT)
+            self.mainFooter.setHighlightStateForView(tag: 2, color: mainOrangeColor)
             globalNavigationController = self.navigationController
         }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.mainFooter.setFooterDefaultState()
     }
     
     func showLoader() {

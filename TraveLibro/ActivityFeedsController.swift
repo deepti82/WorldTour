@@ -47,8 +47,7 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
         activityScroll.addSubview(layout)
         
         self.mainFooter = FooterViewNew(frame: CGRect.zero)
-        self.mainFooter.layer.zPosition = 5
-        self.mainFooter.setHighlightStateForView(tag: 0, color: mainOrangeColor)        
+        self.mainFooter.layer.zPosition = 5                
         
 //        let darkBlur = UIBlurEffect(style: UIBlurEffectStyle.light)
 //                                    let blurView = UIVisualEffectView(effect: darkBlur)
@@ -87,6 +86,7 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
         globalActivityFeedsController = self
         
         self.mainFooter.frame = CGRect(x: 0, y: self.view.frame.height - MAIN_FOOTER_HEIGHT, width: self.view.frame.width, height: MAIN_FOOTER_HEIGHT)
+        self.mainFooter.setHighlightStateForView(tag: 0, color: mainOrangeColor)
         
         var isEmptyScreenPresent = false
         for views in self.view.subviews {
@@ -112,7 +112,7 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
         hideHeaderAndFooter(false)
         displayData = "activity"
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        print()
+        self.mainFooter.setFooterDefaultState()
         
 //        globalActivityFeedsController = nil
     }

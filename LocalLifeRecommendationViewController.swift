@@ -174,7 +174,6 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
         layout.addSubview(myView5)
         
         self.mainFooter = FooterViewNew(frame: CGRect.zero)
-        mainFooter.setHighlightStateForView(tag: 3, color: mainGreenColor)
 
         self.view.addSubview(mainFooter)
         
@@ -187,6 +186,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)        
         self.mainFooter.frame = CGRect(x: 0, y: self.view.frame.height - MAIN_FOOTER_HEIGHT, width: self.view.frame.width, height: MAIN_FOOTER_HEIGHT)
+        mainFooter.setHighlightStateForView(tag: 3, color: mainGreenColor)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -197,6 +197,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         hideHeaderAndFooter(false)
+        mainFooter.setFooterDefaultState()
     }
     
     func addHeightToLayout() {

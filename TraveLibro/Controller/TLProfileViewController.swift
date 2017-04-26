@@ -113,6 +113,8 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
         if self.isShowingSelf {
             self.getUser()
         }
+        
+        self.footer.setFooterDefaultState()
     }
     
     override func viewDidAppear(_ animated: Bool) {
