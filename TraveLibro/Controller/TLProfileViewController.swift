@@ -121,10 +121,6 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        print("\n Orientations : \(self.supportedInterfaceOrientations)")
-        self.supportedInterfaceOrientations = _orientations
-        print("\n Orientations : \(self.supportedInterfaceOrientations)")
-        
         globalNavigationController = self.navigationController
         
         self.setNavigationBar()
@@ -652,13 +648,7 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
             }
         }
         
-    }
-    
-    private var _orientations = UIInterfaceOrientationMask.portrait
-    override var supportedInterfaceOrientations : UIInterfaceOrientationMask {
-        get { return self._orientations }
-        set { self._orientations = newValue }
-    }    
+    }       
 }
 
 
