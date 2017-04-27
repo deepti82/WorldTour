@@ -387,7 +387,15 @@ public class LocalLifePostModel {
                     vidoesJson.append(vid.parseJson())
                 }
                 
-                let checkInJson:JSON = ["location":p.post_location,"category":p.post_category,"city":p.post_city,"country":p.post_country,"lat":p.post_latitude,"long":p.post_longitude]
+                var ctgry = ""
+                if p.post_category == "" {
+                    ctgry = "Others"
+                }else{
+                    ctgry = p.post_category
+                }
+
+                
+                let checkInJson:JSON = ["location":p.post_location,"category":ctgry,"city":p.post_city,"country":p.post_country,"lat":p.post_latitude,"long":p.post_longitude]
                 
                 var params:JSON = ["type":"local-life", "thoughts":p.post_thoughts,"user": p.post_userId,"date":p.post_date]
                 
