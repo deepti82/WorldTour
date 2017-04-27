@@ -29,6 +29,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
     var mainFooter: FooterViewNew!
     var textFieldYPos = CGFloat(0)
     var difference = CGFloat(0)
+    var isBack:Bool = false
   
     @IBOutlet weak var thisScroll: UIScrollView!
     @IBOutlet weak var plusButton: UIButton!
@@ -419,11 +420,21 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
         self.title = "Activity Feed"
         self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Avenir-Medium", size: 18)!]
         let leftButton = UIButton()
+        
+        if isBack {
+            leftButton.frame = CGRect(x: -10, y: 0, width: 30, height: 30)
+            leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
+            leftButton.imageView?.image = leftButton.imageView?.image!.withRenderingMode(.alwaysTemplate)
+            leftButton.imageView?.tintColor = UIColor.white
+            leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
+        }else{
+        
         leftButton.frame = CGRect(x: -10, y: 0, width: 30, height: 30)
         leftButton.setImage(UIImage(named: "menu_left_icon"), for: UIControlState())
         leftButton.imageView?.image = leftButton.imageView?.image!.withRenderingMode(.alwaysTemplate)
         leftButton.imageView?.tintColor = UIColor.white
         leftButton.addTarget(self, action: #selector(self.openSideMenu(_:)), for: .touchUpInside)
+        }
         
         
         let rightButton = UIButton()

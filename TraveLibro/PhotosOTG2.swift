@@ -28,7 +28,9 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
         self.clipsToBounds = true
         //header generation only
         
-        headerLayout(feed: post.jsonPost)
+        if (post.jsonPost != nil) {
+            headerLayout(feed: post.jsonPost)
+        }
         
         //Image generation only
         if(post.videoArr.count > 0) {

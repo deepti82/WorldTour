@@ -1122,7 +1122,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         NotificationCenter.default.addObserver(self, selector: #selector(NewTLViewController.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
         
-        self.addPostsButton = UIButton(frame: CGRect(x: self.view.frame.width - 80, y: self.view.frame.height - 200, width: 65, height: 65))
+        self.addPostsButton = UIButton(frame: CGRect(x: self.view.frame.width - 80, y: self.view.frame.height - 135, width: 65, height: 65))
 //        self.addPostsButton.layer.cornerRadius = 30
         let origImage = UIImage(named: "darkgreycircle");
         let tintedImage = origImage?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
@@ -1221,21 +1221,21 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
                 if(self.toolbarView != nil ){
                     self.toolbarView.animation.makeOpacity(0.0).animate(0.5)
                 }
-                if(self.addPostsButton != nil) {
-                    UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut, animations: {
-                        self.addPostsButton.frame.origin.y = self.view.frame.height + 10
-                        self.mainFooter.frame.origin.y = self.view.frame.height + MAIN_FOOTER_HEIGHT
-                    }, completion: nil)
-                }
+//                if(self.addPostsButton != nil) {
+//                    UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut, animations: {
+//                        self.addPostsButton.frame.origin.y = self.view.frame.height + 10
+//                        self.mainFooter.frame.origin.y = self.view.frame.height + MAIN_FOOTER_HEIGHT
+//                    }, completion: nil)
+//                }
             } else {
                 if(self.toolbarView != nil ){
                     self.navigationController?.setNavigationBarHidden(false, animated: true)
                     self.toolbarView.animation.makeOpacity(1.0).animate(0.5)
                 }
-                UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut, animations: {
-                    self.addPostsButton.frame.origin.y = self.view.frame.height - 120
-                    self.mainFooter.frame.origin.y = self.view.frame.height - MAIN_FOOTER_HEIGHT
-                }, completion: nil)
+//                UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut, animations: {
+//                    self.addPostsButton.frame.origin.y = self.view.frame.height - 120
+//                    self.mainFooter.frame.origin.y = self.view.frame.height - MAIN_FOOTER_HEIGHT
+//                }, completion: nil)
             }
         }
         else {
