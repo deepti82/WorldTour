@@ -79,6 +79,13 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         self.navigationController?.pushViewController(getBuddies, animated: true)
     }
     
+    override var shouldAutorotate: Bool {
+        return false
+    }
+    
+//    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+//        return UIInterfaceOrientationMask.Portrait
+//    }
     
     @IBAction func endJourneyTapped(_ sender: UIButton) {
         let end = storyboard!.instantiateViewController(withIdentifier: "endJourney") as! EndJourneyViewController
@@ -91,7 +98,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     @IBAction func infoCircle(_ sender: AnyObject) {
         getInfoCount()
     }
-    
     
     
     var newScroll: UIScrollView!
