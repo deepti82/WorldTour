@@ -44,7 +44,7 @@
                                 <constraint firstAttribute="width" constant="50" id="Lqx-ZG-Bmq"/>
                                 <constraint firstAttribute="height" constant="50" id="kwq-Vf-fJa"/>
                             </constraints>
-                            <state key="normal" title="Button" image="9E37ABA4-DBB9-4FA3-B5CB-66669ECF5143"/>
+                            <state key="normal" title="Button" image="D16E24DC-C7DF-4E85-B07E-F8BE7C7D87CE"/>
                             <connections>
                                 <action selector="addButtonClicked:" destination="-1" eventType="touchUpInside" id="7SU-Qf-Jru"/>
                             </connections>
@@ -85,7 +85,7 @@
         </view>
     </objects>
     <resources>
-        <image name="9E37ABA4-DBB9-4FA3-B5CB-66669ECF5143" width="300" height="300">
+        <image name="D16E24DC-C7DF-4E85-B07E-F8BE7C7D87CE" width="300" height="300">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISgrLjQ3VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
