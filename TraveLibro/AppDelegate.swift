@@ -375,6 +375,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
         print("\n error :\(error.localizedDescription)")
     }
+    
+    func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.portrait
+    }
 
     //MARK: - Navigation Delegate
     
