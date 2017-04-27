@@ -23,7 +23,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tws-lD-t3n">
-                    <rect key="frame" x="22" y="30.5" width="384" height="242"/>
+                    <rect key="frame" x="22" y="10.5" width="384" height="242"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qfb-Eg-qyy">
                             <rect key="frame" x="0.0" y="73" width="384" height="66"/>
@@ -44,7 +44,7 @@
                                 <constraint firstAttribute="width" constant="50" id="Lqx-ZG-Bmq"/>
                                 <constraint firstAttribute="height" constant="50" id="kwq-Vf-fJa"/>
                             </constraints>
-                            <state key="normal" title="Button" image="7EF9B5C6-0DEB-426C-A0A8-EA036FCEDEDD"/>
+                            <state key="normal" title="Button" image="9E37ABA4-DBB9-4FA3-B5CB-66669ECF5143"/>
                             <connections>
                                 <action selector="addButtonClicked:" destination="-1" eventType="touchUpInside" id="7SU-Qf-Jru"/>
                             </connections>
@@ -74,7 +74,7 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="tws-lD-t3n" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="0wl-Vp-WIw"/>
+                <constraint firstItem="tws-lD-t3n" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="-20" id="0wl-Vp-WIw"/>
                 <constraint firstItem="tws-lD-t3n" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="aS4-r0-oZa"/>
                 <constraint firstItem="tws-lD-t3n" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.8" id="hfD-iY-6Ti"/>
                 <constraint firstItem="tws-lD-t3n" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.9" id="nQX-fX-uFl"/>
@@ -85,7 +85,7 @@
         </view>
     </objects>
     <resources>
-        <image name="7EF9B5C6-0DEB-426C-A0A8-EA036FCEDEDD" width="300" height="300">
+        <image name="9E37ABA4-DBB9-4FA3-B5CB-66669ECF5143" width="300" height="300">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISgrLjQ3VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
