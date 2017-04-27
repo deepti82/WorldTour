@@ -259,16 +259,16 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
             self.empty.removeFromSuperview()
         }
         if show {
-            empty = EmptyScreenView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 250))
+            empty = EmptyScreenView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height + 10))
             
             if reviewPage == "travel-life" {
-                empty.frame.size.height = CGFloat(cnfg.getHeight(ht: 350.0))
+                empty.frame.size.height = CGFloat(cnfg.getHeight(ht: Double(self.view.frame.height + 10)))
                 empty.viewHeading.text = "The World I​s Your Oyster"
                 empty.viewBody.text = "A five star or a four star? What does that historical monument qualify for? Rate it and write a review. Help others with your rating and review."
                 empty.setColor(life: "", buttonLabel: "Start a New Journey")
 
             }else if reviewPage == "local-life" {
-                empty.frame.size.height = CGFloat(cnfg.getHeight(ht: 275.0))
+                empty.frame.size.height = CGFloat(cnfg.getHeight(ht: Double(self.view.frame.height + 10)))
                 empty.viewHeading.text = "A Touch Of Your Daily Dose"
                 empty.viewBody.text = "Now how about rating and writing a super review for that newly-opened restaurant in your town? Wherever you go, click on a star and pen down your experiences."
                 empty.setColor(life: "locallife", buttonLabel: "Add your first Local Activity")
@@ -278,7 +278,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
             switch momentType {
             case "all":
                 print("in moments all")
-                empty.frame.size.height = CGFloat(cnfg.getHeight(ht: 275))
+                empty.frame.size.height = CGFloat(cnfg.getHeight(ht: Double(self.view.frame.height + 10)))
                 empty.viewHeading.text = "Unwind​ B​y Rewinding"
                 empty.viewBody.text = "Revisit and reminisce the days gone by through those special pictures and videos of your travel and local life."
                 empty.setColor(life: "", buttonLabel: "Start a New Journey")
@@ -287,7 +287,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
             case "travel-life":
                 print("in moments tl")
                 
-                    empty.frame.size.height = CGFloat(cnfg.getHeight(ht: 370))
+                    empty.frame.size.height = CGFloat(cnfg.getHeight(ht: Double(self.view.frame.height + 10)))
                     empty.viewHeading.text = "Travel Becomes A Reason To Take Pictures And Relive Them"
                     empty.viewBody.text = "Some memories are worth sharing, travel surely tops the list. Your travels will not only inspire you to explore more of the world, you may just move another soul or two!"
                     empty.setColor(life: "", buttonLabel: "Add a Travel Journey")
@@ -297,7 +297,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
             case "local-life":
                 print("in moments ll")
                 
-                    empty.frame.size.height = CGFloat(cnfg.getHeight(ht: 275))
+                    empty.frame.size.height = CGFloat(cnfg.getHeight(ht: Double(self.view.frame.height + 10)))
                     empty.viewHeading.text = "Suspended In Time"
                     empty.viewBody.text = "Beautiful memories created through fabulous pictures and videos of those precious moments shared with family, friends and yourself."
                 empty.setColor(life: "locallife", buttonLabel: "Add your first Local Activity")

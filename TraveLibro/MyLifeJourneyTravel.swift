@@ -15,6 +15,7 @@ class MyLifeJourneyTravel: UIView {
     @IBOutlet weak var startDocument: UIButton!
     @IBOutlet weak var startJourneyText: UILabel!
     @IBOutlet weak var startDocumentText: UILabel!
+    @IBOutlet weak var nextParaTop: NSLayoutConstraint!
     override init(frame: CGRect) {
         
         super.init(frame: frame)
@@ -45,6 +46,7 @@ class MyLifeJourneyTravel: UIView {
             startJourneyText.isHidden = false
             
         }else{
+//            nextParaTop.constant = 8
             self.startJourney.isHidden = true
             self.startDocument.isHidden = true
             self.startDocumentText.isHidden = true

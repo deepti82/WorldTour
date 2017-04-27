@@ -45,7 +45,7 @@ public class Config {
         if isSelfUser(otherUserID: currentUser["_id"].stringValue) {
             return ht
         }else{
-            return ht - 65
+            return ht
         }
     }
 

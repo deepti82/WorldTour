@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina3_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -22,120 +22,83 @@
             <rect key="frame" x="0.0" y="0.0" width="400" height="446"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="My Tales &amp; Trails" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dDc-Am-bBk">
-                    <rect key="frame" x="20" y="45" width="360" height="31"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="31" id="dvb-Nn-CPK"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="22"/>
-                    <color key="textColor" red="1" green="0.4039215686" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="USt-UD-B6h">
-                    <rect key="frame" x="20" y="101" width="360" height="91"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="91" id="U4b-AE-Jtk"/>
-                    </constraints>
-                    <string key="text">Capture each moment of your journey via check-ins, pictures, videos, and thoughts live On-the-Go to create a stunning timeline with friends and family.</string>
-                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
-                    <color key="textColor" red="0.41960784309999999" green="0.41960784309999999" blue="0.41960784309999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="On-the-Go Journeys" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BbW-id-zjg">
-                    <rect key="frame" x="20" y="81" width="360" height="20"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="20" id="vNg-5P-cXo"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="16"/>
-                    <color key="textColor" red="0.54288086507478595" green="0.55084977117766309" blue="0.57475648948629443" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create a beautiful memoir of your past travels to revisit those treasured moments." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EDl-th-AqM">
-                    <rect key="frame" x="20.5" y="302" width="360" height="50"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="50" id="RWl-AM-IZi"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
-                    <color key="textColor" red="0.41960784309999999" green="0.41960784309999999" blue="0.41960784309999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Chronicling Past Travels" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NkR-rE-7dT">
-                    <rect key="frame" x="20" y="277" width="360" height="20"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="20" id="H98-qb-lEg"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="16"/>
-                    <color key="textColor" red="0.5428808651" green="0.5508497712" blue="0.57475648950000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start a New Journey" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UUu-da-e0n">
-                    <rect key="frame" x="122" y="246" width="157" height="15"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="15" id="ASj-qS-bVg"/>
-                        <constraint firstAttribute="width" constant="157" id="NaU-Ko-frV"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="16"/>
-                    <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u4C-1R-Kl6">
-                    <rect key="frame" x="175" y="194" width="50" height="50"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="50" id="f55-Hw-GTd"/>
-                        <constraint firstAttribute="width" constant="50" id="sPl-Om-GN5"/>
-                    </constraints>
-                    <state key="normal" title="Button" image="tl"/>
-                    <connections>
-                        <action selector="createJourney:" destination="-1" eventType="touchUpInside" id="QRd-RB-z9F"/>
-                    </connections>
-                </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Document Past Travels" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tRm-GG-IVE">
-                    <rect key="frame" x="114" y="411" width="173" height="15"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="15" id="iFh-uT-b3b"/>
-                        <constraint firstAttribute="width" constant="173" id="iW6-Z8-Owr"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="16"/>
-                    <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TP3-Ns-e1Q">
-                    <rect key="frame" x="175" y="359" width="50" height="50"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="50" id="Iia-RT-flA"/>
-                        <constraint firstAttribute="height" constant="50" id="ydf-LR-sXi"/>
-                    </constraints>
-                    <state key="normal" title="Button" image="tl"/>
-                    <connections>
-                        <action selector="createItinerary:" destination="-1" eventType="touchUpInside" id="X0h-eF-LTI"/>
-                    </connections>
-                </button>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="eL5-ed-iq3">
+                    <rect key="frame" x="20" y="32" width="360" height="382"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="748" text="My Tales &amp; Trails" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dDc-Am-bBk">
+                            <rect key="frame" x="102.5" y="0.0" width="155" height="27.5"/>
+                            <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="20"/>
+                            <color key="textColor" red="1" green="0.4039215686" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="747" text="On-the-Go Journeys" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BbW-id-zjg">
+                            <rect key="frame" x="104.5" y="35.5" width="151.5" height="22"/>
+                            <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="16"/>
+                            <color key="textColor" red="0.54288086507478595" green="0.55084977117766309" blue="0.57475648948629443" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="USt-UD-B6h">
+                            <rect key="frame" x="3" y="65.5" width="354.5" height="61.5"/>
+                            <string key="text">Capture each moment of your journey via check-ins, pictures, videos, and thoughts live On-the-Go to create a stunning timeline with friends and family.</string>
+                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="15"/>
+                            <color key="textColor" red="0.41960784309999999" green="0.41960784309999999" blue="0.41960784309999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u4C-1R-Kl6">
+                            <rect key="frame" x="155" y="135" width="50" height="50"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="50" id="Cxw-YD-o73"/>
+                                <constraint firstAttribute="height" constant="50" id="KyN-Li-oPf"/>
+                            </constraints>
+                            <state key="normal" title="Button" image="tl"/>
+                            <connections>
+                                <action selector="createJourney:" destination="-1" eventType="touchUpInside" id="QRd-RB-z9F"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start a New Journey" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UUu-da-e0n">
+                            <rect key="frame" x="103" y="193" width="154.5" height="22"/>
+                            <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="16"/>
+                            <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Chronicling Past Travels" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NkR-rE-7dT">
+                            <rect key="frame" x="91.5" y="223" width="177" height="22"/>
+                            <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="16"/>
+                            <color key="textColor" red="0.5428808651" green="0.5508497712" blue="0.57475648950000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Create a beautiful memoir of your past travels to revisit those treasured moments." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EDl-th-AqM">
+                            <rect key="frame" x="14" y="253" width="332" height="41"/>
+                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="15"/>
+                            <color key="textColor" red="0.41960784309999999" green="0.41960784309999999" blue="0.41960784309999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TP3-Ns-e1Q">
+                            <rect key="frame" x="155" y="302" width="50" height="50"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="50" id="hnK-Te-dvI"/>
+                                <constraint firstAttribute="height" constant="50" id="raO-tN-uo9"/>
+                            </constraints>
+                            <state key="normal" title="Button" image="tl"/>
+                            <connections>
+                                <action selector="createItinerary:" destination="-1" eventType="touchUpInside" id="X0h-eF-LTI"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Document Past Travels" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tRm-GG-IVE">
+                            <rect key="frame" x="95" y="360" width="170" height="22"/>
+                            <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="16"/>
+                            <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                </stackView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="dDc-Am-bBk" firstAttribute="top" secondItem="gX2-CM-UZU" secondAttribute="top" constant="45" id="0A7-93-AC4"/>
-                <constraint firstItem="TP3-Ns-e1Q" firstAttribute="top" secondItem="u4C-1R-Kl6" secondAttribute="bottom" constant="115" id="1f8-Md-3fn"/>
-                <constraint firstAttribute="bottom" secondItem="EDl-th-AqM" secondAttribute="bottom" constant="94" id="2DC-mE-ZUz"/>
-                <constraint firstItem="USt-UD-B6h" firstAttribute="width" secondItem="gX2-CM-UZU" secondAttribute="width" multiplier="0.9" id="2x8-ji-MK7"/>
-                <constraint firstItem="tRm-GG-IVE" firstAttribute="centerX" secondItem="gX2-CM-UZU" secondAttribute="centerX" id="6Fj-3o-Vh1"/>
-                <constraint firstItem="USt-UD-B6h" firstAttribute="centerX" secondItem="gX2-CM-UZU" secondAttribute="centerX" id="8y1-aV-uUo"/>
-                <constraint firstItem="UUu-da-e0n" firstAttribute="centerX" secondItem="gX2-CM-UZU" secondAttribute="centerX" id="B5v-sh-uYw"/>
-                <constraint firstItem="TP3-Ns-e1Q" firstAttribute="centerX" secondItem="gX2-CM-UZU" secondAttribute="centerX" id="QYs-Lp-rvO"/>
-                <constraint firstItem="EDl-th-AqM" firstAttribute="centerX" secondItem="gX2-CM-UZU" secondAttribute="centerX" id="RaO-Rs-sId"/>
-                <constraint firstItem="tRm-GG-IVE" firstAttribute="top" secondItem="TP3-Ns-e1Q" secondAttribute="bottom" constant="2" id="XCR-aW-Hs3"/>
-                <constraint firstItem="USt-UD-B6h" firstAttribute="top" secondItem="BbW-id-zjg" secondAttribute="bottom" id="aQO-wj-nwl"/>
-                <constraint firstItem="u4C-1R-Kl6" firstAttribute="top" secondItem="USt-UD-B6h" secondAttribute="bottom" constant="2" id="c5w-Id-Y5P"/>
-                <constraint firstItem="EDl-th-AqM" firstAttribute="width" secondItem="gX2-CM-UZU" secondAttribute="width" multiplier="0.9" id="goh-Nv-Pdd"/>
-                <constraint firstItem="dDc-Am-bBk" firstAttribute="leading" secondItem="gX2-CM-UZU" secondAttribute="leading" constant="20" id="lfO-ji-Dbv"/>
-                <constraint firstItem="BbW-id-zjg" firstAttribute="top" secondItem="dDc-Am-bBk" secondAttribute="bottom" constant="5" id="liZ-8q-wZ8"/>
-                <constraint firstAttribute="trailing" secondItem="NkR-rE-7dT" secondAttribute="trailing" constant="20" id="m68-TV-Igd"/>
-                <constraint firstItem="NkR-rE-7dT" firstAttribute="leading" secondItem="gX2-CM-UZU" secondAttribute="leading" constant="20" id="tCj-Dn-rbj"/>
-                <constraint firstAttribute="trailing" secondItem="dDc-Am-bBk" secondAttribute="trailing" constant="20" id="ukc-06-L9r"/>
-                <constraint firstItem="BbW-id-zjg" firstAttribute="leading" secondItem="gX2-CM-UZU" secondAttribute="leading" constant="20" id="upC-sJ-W5z"/>
-                <constraint firstAttribute="trailing" secondItem="BbW-id-zjg" secondAttribute="trailing" constant="20" id="vT2-eE-miA"/>
-                <constraint firstItem="EDl-th-AqM" firstAttribute="top" secondItem="NkR-rE-7dT" secondAttribute="bottom" constant="5" id="vxe-3T-4mj"/>
-                <constraint firstItem="UUu-da-e0n" firstAttribute="top" secondItem="u4C-1R-Kl6" secondAttribute="bottom" constant="2" id="xOV-Tc-WYc"/>
-                <constraint firstItem="u4C-1R-Kl6" firstAttribute="centerX" secondItem="gX2-CM-UZU" secondAttribute="centerX" id="yPg-TW-93b"/>
+                <constraint firstItem="eL5-ed-iq3" firstAttribute="height" relation="lessThanOrEqual" secondItem="gX2-CM-UZU" secondAttribute="height" multiplier="0.9" id="95N-v7-oe7"/>
+                <constraint firstItem="eL5-ed-iq3" firstAttribute="centerY" secondItem="gX2-CM-UZU" secondAttribute="centerY" id="I2Q-qt-iMu"/>
+                <constraint firstItem="eL5-ed-iq3" firstAttribute="centerX" secondItem="gX2-CM-UZU" secondAttribute="centerX" id="M65-zK-mIZ"/>
+                <constraint firstItem="eL5-ed-iq3" firstAttribute="width" secondItem="gX2-CM-UZU" secondAttribute="width" multiplier="0.9" id="buI-j8-Lei"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
