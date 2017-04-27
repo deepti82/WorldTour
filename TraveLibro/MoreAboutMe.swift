@@ -36,8 +36,12 @@ class MoreAboutMe: UIView {
     
     func reloadTravelPrefeces() {
         
+        let color = shouldShowTransperentNavBar ? UIColor.white : mainBlueColor
+        let fontSize = shouldShowTransperentNavBar ? 14 : 14
+        
         if currentUser["travelConfig"].isEmpty {
-            mainTextView.attributedText = getRegularString(string: "-", size: 14)
+            mainTextView.attributedText = getRegularStringWithColor(string: "-", size: fontSize, color: color)
+            //getRegularString(string: "-", size: 14)
             mainTextView.textAlignment = .center
         }
         else{
@@ -116,49 +120,49 @@ class MoreAboutMe: UIView {
             let MessageString = NSMutableAttributedString()
             
             if kindOfHolidayFinal != "" {
-            
-                MessageString.append(getBoldString(string: name, size: 14))
                 
-                MessageString.append(getRegularString(string: " loves to travel and explore ", size: 14))
+                MessageString.append(getBoldStringWithColor(string: name, size: fontSize, color: color))
                 
-                MessageString.append(getBoldString(string: "\(kindOfHolidayFinal). ", size: 14))
+                MessageString.append(getRegularStringWithColor(string: " loves to travel and explore ", size: fontSize, color: color))
+                
+                MessageString.append(getBoldStringWithColor(string: "\(kindOfHolidayFinal). ", size: fontSize, color: color))
             }
             
             if usuallyGo != "" {
                 if MessageString.string == "" {
-                    MessageString.append(getBoldString(string: name, size: 14))
+                    MessageString.append(getBoldStringWithColor(string: name, size: fontSize, color: color))
                 }
                 else {
-                    MessageString.append(getBoldString(string: pronoun, size: 14))
+                    MessageString.append(getBoldStringWithColor(string: pronoun, size: fontSize, color: color))
                 }
-                MessageString.append(getRegularString(string: " usually goes ", size: 14))
+                MessageString.append(getRegularStringWithColor(string: " usually goes ", size: fontSize, color: color))
                 
-                MessageString.append(getBoldString(string: "\(usuallyGo). ", size: 14))
+                MessageString.append(getBoldStringWithColor(string: "\(usuallyGo). ", size: fontSize, color: color))
             }
             
             if preferStatement != "" {
-                MessageString.append(getBoldString(string: (preferStatement + ". "), size: 14))
+                MessageString.append(getBoldStringWithColor(string: (preferStatement + ". "), size: fontSize, color: color))
             }
             
             if holidayType != "" {
-                MessageString.append(getBoldString(string: "\(name)'s", size: 14))
                 
-                MessageString.append(getRegularString(string: " ideal holiday type is ", size: 14))
+                MessageString.append(getBoldStringWithColor(string: "\(name)'s", size: fontSize, color: color))
                 
-                MessageString.append(getBoldString(string: "\(holidayType).", size: 14))
+                MessageString.append(getRegularStringWithColor(string: " ideal holiday type is ", size: fontSize, color: color))
+                
+                MessageString.append(getBoldStringWithColor(string: "\(holidayType).", size: fontSize, color: color))
             }
             
             if MessageString.string != "" {
                 mainTextView.attributedText = MessageString
             }
             else{
-                mainTextView.attributedText = getRegularString(string: "-", size: 14)
+                mainTextView.attributedText = getRegularStringWithColor(string: "-", size: fontSize, color: color)
             }
             
             mainTextView.textAlignment = .left
         
         }
-       
         
     }
 

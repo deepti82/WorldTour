@@ -26,9 +26,7 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     @IBOutlet weak var moreAboutMeButton: UIButton!
     @IBOutlet weak var MAMTextViewHeightConstraint: NSLayoutConstraint!
     
-    @IBOutlet weak var startStack: UIStackView!
-    @IBOutlet weak var userBadgeLabel: UILabel!    
-    @IBOutlet var badgeStarImageArray: [UIImageView]!
+    @IBOutlet weak var userBadgeImageView: UIImageView!
     @IBOutlet weak var profileCollectionView: UICollectionView!
     
     @IBOutlet weak var exploreMyLifeView: UIView!
@@ -44,6 +42,7 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     var strIndex = 0
     var shouldStopAnimate = true
     var isProfileVCVisible = true
+    var isLoadedForFirstTime = false
     
     var myLifeVC:MyLifeViewController!
     var MAM: MoreAboutMe!
@@ -65,6 +64,8 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        isLoadedForFirstTime = true
         
         self.automaticallyAdjustsScrollViewInsets = false
         
@@ -119,6 +120,10 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
+        print("\n Orientations : \(self.supportedInterfaceOrientations)")
+        self.supportedInterfaceOrientations = _orientations
+        print("\n Orientations : \(self.supportedInterfaceOrientations)")
         
         globalNavigationController = self.navigationController
         
@@ -184,14 +189,15 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
         
         footer.frame = CGRect(x: 0, y: self.view.frame.height - MAIN_FOOTER_HEIGHT, width: self.view.frame.width, height: MAIN_FOOTER_HEIGHT)
         
-        self.userBadgeLabel.text = ""
-        
-        self.addBorder(toView: self.profileCollectionView, position: layerEdge.TOP, color: UIColor(white: 1, alpha: 0.7), borderWidth: CGFloat(1), width: self.profileCollectionView.contentSize.width)
-        self.addBorder(toView: self.profileCollectionView, position: layerEdge.BOTTOM, color: UIColor(white: 1, alpha: 0.7), borderWidth: CGFloat(1), width: self.profileCollectionView.contentSize.width)
-        
         flagImageView.layer.masksToBounds = false
         flagImageView.layer.cornerRadius = flagImageView.frame.height/2
         flagImageView.clipsToBounds = true
+        
+        if isLoadedForFirstTime {
+            self.addBorder(toView: self.profileCollectionView, position: layerEdge.TOP, color: UIColor(white: 1, alpha: 0.2), borderWidth: CGFloat(1), width: self.profileCollectionView.contentSize.width)
+            self.addBorder(toView: self.profileCollectionView, position: layerEdge.BOTTOM, color: UIColor(white: 1, alpha: 0.2), borderWidth: CGFloat(1), width: self.profileCollectionView.contentSize.width)
+            isLoadedForFirstTime = false
+        }
         
         exploreMyLifeView.layer.cornerRadius = (exploreMyLifeView.frame.size.height * 0.15)
         
@@ -216,50 +222,22 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     }
     
     func setUserBadgeName(badge: String) {
-        self.userBadgeLabel.text = "\(badge.capitalized) - "
-        self.userBadgeLabel.sizeToFit()
-        self.userBadgeLabel.transform = CGAffineTransform(rotationAngle: -CGFloat.pi / 2)
-        
-//        self.userBadgeLabel.frame = CGRect(x: self.userBadgeLabel.frame.origin.x, y: mamStackView.frame.origin.y - 2.5*(self.userBadgeLabel.frame.size.width) , width: self.userBadgeLabel.frame.size.width, height: self.userBadgeLabel.frame.size.height)
-//        self.startStack.frame = CGRect(x: self.startStack.frame.origin.x, y: userBadgeLabel.frame.origin.y - (self.startStack.frame.size.height) , width: self.startStack.frame.size.width, height: self.startStack.frame.size.height)
-        self.setBadgeStars(badge: badge)
-    }
-    
-    func setBadgeStars(badge: String) {
-        
-        var starCnt = 0
-        
-        for item in badgeStarImageArray {
-            item.tintColor = UIColor.white
-            item.image = UIImage(named: "star_uncheck")
-        }
         
         if currentUser["userBadgeName"].string == "newbie"{
-            starCnt = 1
+            self.userBadgeImageView.image = UIImage(named: "badge1")
         }
         else if currentUser["userBadgeName"].string == "justGotWings"{
-            starCnt = 2
+            self.userBadgeImageView.image = UIImage(named: "badge2")
         }
         else if currentUser["userBadgeName"].string == "globeTrotter"{
-            starCnt = 3
+            self.userBadgeImageView.image = UIImage(named: "badge3")
         }
         else if currentUser["userBadgeName"].string == "wayfarer"{
-            starCnt = 4
+            self.userBadgeImageView.image = UIImage(named: "badge4")
         } 
         else if currentUser["userBadgeName"].string == "nomad"{
-            starCnt = 5
+            self.userBadgeImageView.image = UIImage(named: "badge5")
         }
-        
-        if starCnt != 0 {            
-            for rat in badgeStarImageArray {
-                if rat.tag > starCnt {
-                    rat.image = UIImage(named: "star_uncheck")
-                }else{
-                    rat.image = UIImage(named: "star_check")
-                    rat.tintColor = UIColor.white
-                }
-            }
-        }        
     }
     
     func setData() {
@@ -287,7 +265,7 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
             mamStackView.isUserInteractionEnabled = true
             
             exploreMyLifeView.isUserInteractionEnabled = true
-            exploreMyLifeView.backgroundColor = mainOrangeColor
+            exploreMyLifeView.backgroundColor = UIColor(red: 252/255, green: 103/255, blue: 89/255, alpha: 0.8)
         }
         
         if currentlyShowingUser != nil {
@@ -424,18 +402,19 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let cellWidth = (getTextSize(text: labels[indexPath.row]["text"]!).width + CGFloat(30))
+        let cellWidth = (getTextSize(text: labels[indexPath.row]["text"]!).width + CGFloat(10))
         return CGSize(width: cellWidth, height: profileCollectionView.bounds.height - 1)
-    }
-    
+    }    
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! TLProfileDetailCell
         cell.separatorView.isHidden = false
         
-        cell.infoLabel.text = labels[indexPath.row]["text"]
         cell.countLabel.text = labels[indexPath.row]["count"]
+        cell.infoLabel.text = labels[indexPath.row]["text"]
+//        cell.infoLabel.sizeToFit()
+//        cell.infoLabel.center = CGPoint(x: cell.center.x, y: cell.infoLabel.center.y)
         
         if indexPath.row == labels.count-1 {
             cell.separatorView.isHidden = true
@@ -523,16 +502,13 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     func toggleMAMTextView(stackView: UIStackView) {
         
         if stackView.tag == 0 {
-            self.MAM = MoreAboutMe(frame: CGRect(x: 0, y: 0, width: self.MAMTextView.frame.size.width, height: 90))
-            self.MAM.mainTextView.textColor = UIColor.white
+            self.MAM = MoreAboutMe(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width - 20, height: 100))
             self.MAM.mainTextView.textAlignment = .center
-            self.MAM.mainTextView.font = self.moreAboutMeLabel.font
             self.MAM.backgroundColor = UIColor.clear
             self.MAMTextView.addSubview(self.MAM)
-            self.MAMTextView.backgroundColor = UIColor.clear
             
-            self.MAMTextViewHeightConstraint.constant = 90
-            self.MAMTextView.frame.size.height = 90
+            self.MAMTextViewHeightConstraint.constant = 100
+            self.MAMTextView.frame.size.height = 100
             self.mamStackView.tag = 1
         }
         else {
@@ -678,6 +654,11 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
         
     }
     
+    private var _orientations = UIInterfaceOrientationMask.portrait
+    override var supportedInterfaceOrientations : UIInterfaceOrientationMask {
+        get { return self._orientations }
+        set { self._orientations = newValue }
+    }    
 }
 
 
