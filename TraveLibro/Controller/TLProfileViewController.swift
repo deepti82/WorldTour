@@ -50,14 +50,14 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     
     var loader = LoadingOverlay()
     
-    var labels = [["count":"0","text":"following"],
-                  ["count":"0","text":"followers"],
+    var labels = [["count":"0","text":" following "],
+                  ["count":"0","text":" followers "],
                   ["count":"0","text":"countries visited"],
                   ["count":"0","text":"bucket list"],
-                  ["count":"0","text":"journeys"],
-                  ["count":"0","text":"check ins"],
-                  ["count":"0","text":"photos"],
-                  ["count":"0","text":"reviews"]]
+                  ["count":"0","text":"  journeys  "],
+                  ["count":"0","text":"  check ins  "],
+                  ["count":"0","text":"   photos   "],
+                  ["count":"0","text":"   reviews   "]]
 
     
     //MARK: - LifeCycle

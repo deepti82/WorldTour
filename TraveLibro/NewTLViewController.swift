@@ -751,7 +751,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
                     self.journeyName = self.myJourney["name"].stringValue
                     self.isInitialLoad = false
                     
-                        self.showJourneyOngoing(journey: response["data"])
+                    self.showJourneyOngoing(journey: response["data"])
                     self.setTopNavigation(text: "On The Go");
                 }else{
                     self.layout.removeAll()
@@ -826,6 +826,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         }
         
         for post in posts {
+            
             if post["type"].string! == "join" {
                 if !self.prevPosts.contains(post) {
                     self.BuddyJoinInLayout(post)
