@@ -40,7 +40,7 @@ class MyLifeContainerViewController: UIViewController,UIScrollViewDelegate {
         }
         if show {
             empty = EmptyScreenView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height + 10))
-            emptyTravel = MyLifeJourneyTravel(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height + 10))
+            emptyTravel = MyLifeJourneyTravel(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
             emptyTravel.center = self.view.center
 
             switch type {

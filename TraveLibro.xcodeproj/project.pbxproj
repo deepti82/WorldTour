@@ -458,6 +458,8 @@
 		FC13D1D01E60309D008FC77D /* SearchElement.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC13D1CF1E60309D008FC77D /* SearchElement.xib */; };
 		FC259C291E79014D00AF815A /* MainSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC259C281E79014D00AF815A /* MainSearchViewController.swift */; };
 		FC49DCFA1DE6D04D00B0DEF3 /* ImgLyKitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC49DCF91DE6D04D00B0DEF3 /* ImgLyKitViewController.swift */; };
+		FC6317DF1EB30D6A000C0C05 /* DottedLine.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC6317DE1EB30D69000C0C05 /* DottedLine.xib */; };
+		FC6317E11EB30D88000C0C05 /* DottedLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC6317E01EB30D88000C0C05 /* DottedLine.swift */; };
 		FC7E4AFE1E9E33720066C454 /* footerItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC7E4AFD1E9E33720066C454 /* footerItem.xib */; };
 		FC7E4B001E9E59CD0066C454 /* MyLifeJourneyTravel.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC7E4AFF1E9E59CD0066C454 /* MyLifeJourneyTravel.xib */; };
 		FC7E4B021E9E5D1E0066C454 /* MyLifeJourneyTravel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7E4B011E9E5D1E0066C454 /* MyLifeJourneyTravel.swift */; };
@@ -993,6 +995,8 @@
 		FC13D1CF1E60309D008FC77D /* SearchElement.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchElement.xib; sourceTree = "<group>"; };
 		FC259C281E79014D00AF815A /* MainSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainSearchViewController.swift; sourceTree = "<group>"; };
 		FC49DCF91DE6D04D00B0DEF3 /* ImgLyKitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImgLyKitViewController.swift; sourceTree = "<group>"; };
+		FC6317DE1EB30D69000C0C05 /* DottedLine.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DottedLine.xib; sourceTree = "<group>"; };
+		FC6317E01EB30D88000C0C05 /* DottedLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DottedLine.swift; sourceTree = "<group>"; };
 		FC7E4AFD1E9E33720066C454 /* footerItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = footerItem.xib; sourceTree = "<group>"; };
 		FC7E4AFF1E9E59CD0066C454 /* MyLifeJourneyTravel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyLifeJourneyTravel.xib; sourceTree = "<group>"; };
 		FC7E4B011E9E5D1E0066C454 /* MyLifeJourneyTravel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyLifeJourneyTravel.swift; sourceTree = "<group>"; };
@@ -1308,6 +1312,7 @@
 				FCCFAAE21E7A819E00F01DE6 /* PopularItinerary */,
 				FCA5E93A1E7D4E77009ADEF7 /* PopularLayout */,
 				FC7E4B031E9E5D280066C454 /* MyLifeJourneyTravel */,
+				FC6317E21EB30ED6000C0C05 /* DottedLine */,
 			);
 			name = UIViews;
 			sourceTree = "<group>";
@@ -2717,6 +2722,15 @@
 			name = SearchElement;
 			sourceTree = "<group>";
 		};
+		FC6317E21EB30ED6000C0C05 /* DottedLine */ = {
+			isa = PBXGroup;
+			children = (
+				FC6317DE1EB30D69000C0C05 /* DottedLine.xib */,
+				FC6317E01EB30D88000C0C05 /* DottedLine.swift */,
+			);
+			name = DottedLine;
+			sourceTree = "<group>";
+		};
 		FC7E4B031E9E5D280066C454 /* MyLifeJourneyTravel */ = {
 			isa = PBXGroup;
 			children = (
@@ -3021,6 +3035,7 @@
 				FCCA8F231E28BA0E00775985 /* TripSummaryFooter.xib in Resources */,
 				1A944E121CCB4567007EB5BD /* LaunchScreen.storyboard in Resources */,
 				8480F2851E7BDD4900D54FEB /* tiny1.mp3 in Resources */,
+				FC6317DF1EB30D6A000C0C05 /* DottedLine.xib in Resources */,
 				C2803BC41CF41F99007A906E /* BlogView.xib in Resources */,
 				C268EBB01DF8491C002EDA30 /* QuickItineraryPreview.xib in Resources */,
 				4435D2F91E548A91003BD1D9 /* notificationUserFollowingView.xib in Resources */,
@@ -3403,6 +3418,7 @@
 				FCCA8F201E28B96700775985 /* TripSummaryMiddle.swift in Sources */,
 				C24909B81D4A09E6007EB6B4 /* TripSummaryPhotoListViewController.swift in Sources */,
 				C2EA3A161CDB3B9900122941 /* TextField.swift in Sources */,
+				FC6317E11EB30D88000C0C05 /* DottedLine.swift in Sources */,
 				3A7D360B1DE8441700786A83 /* PhotoCommentViewController.swift in Sources */,
 				C25BE1F71CFC2A2300C98DD3 /* InProfileOTGPost.swift in Sources */,
 				367B90F81DC23ADF00D76F13 /* RegexParser.swift in Sources */,

@@ -18,6 +18,7 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
     var player:Player!
     var scrollView:UIScrollView!
     var rateButton:RatingCheckIn!
+    var headerLine:DottedLine!
     var dropView: DropShadow1!
     var journeyUser: String = ""
     var willPlay = false
@@ -214,9 +215,9 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
     
     
     func headerLayout(feed:JSON) {
-        
-        profileHeader = ActivityProfileHeader(frame: CGRect(x: 0, y: 20, width: self.frame.width, height: 69))
-        
+        headerLine = DottedLine(frame: CGRect(x: 0, y: 2, width: self.frame.width, height: 38))
+        profileHeader = ActivityProfileHeader(frame: CGRect(x: 0, y: 2, width: self.frame.width, height: 69))
+        self.addSubview(headerLine)
         self.addSubview(profileHeader)
         profileHeader.ishidefollow = true
         profileHeader.followButton.isHidden = true
