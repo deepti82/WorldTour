@@ -1222,20 +1222,20 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
                     self.toolbarView.animation.makeOpacity(0.0).animate(0.5)
                 }
 //                if(self.addPostsButton != nil) {
-//                    UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut, animations: {
-//                        self.addPostsButton.frame.origin.y = self.view.frame.height + 10
-//                        self.mainFooter.frame.origin.y = self.view.frame.height + MAIN_FOOTER_HEIGHT
-//                    }, completion: nil)
+                    UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut, animations: {
+                        self.addPostsButton.frame.origin.y = self.view.frame.height - self.addPostsButton.frame.size.height - 10
+                        self.mainFooter.frame.origin.y = self.view.frame.height + MAIN_FOOTER_HEIGHT
+                    }, completion: nil)
 //                }
             } else {
+                self.navigationController?.setNavigationBarHidden(false, animated: true)
                 if(self.toolbarView != nil ){
-                    self.navigationController?.setNavigationBarHidden(false, animated: true)
                     self.toolbarView.animation.makeOpacity(1.0).animate(0.5)
                 }
-//                UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut, animations: {
-//                    self.addPostsButton.frame.origin.y = self.view.frame.height - 120
-//                    self.mainFooter.frame.origin.y = self.view.frame.height - MAIN_FOOTER_HEIGHT
-//                }, completion: nil)
+                UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut, animations: {
+                    self.addPostsButton.frame.origin.y = self.view.frame.height - 120
+                    self.mainFooter.frame.origin.y = self.view.frame.height - MAIN_FOOTER_HEIGHT
+                }, completion: nil)
             }
         }
         else {
