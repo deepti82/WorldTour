@@ -280,7 +280,6 @@
 		C25BE1F91CFC3ED900C98DD3 /* ProfilePostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25BE1F81CFC3ED900C98DD3 /* ProfilePostsViewController.swift */; };
 		C25C27EF1D4735BE00C21F23 /* KindOfJourneyOTGViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25C27EE1D4735BE00C21F23 /* KindOfJourneyOTGViewController.swift */; };
 		C25C27F11D4747AA00C21F23 /* NewTLViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25C27F01D4747AA00C21F23 /* NewTLViewController.swift */; };
-		C25F48861CF310FB00C6C28C /* MomentsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25F48851CF310FB00C6C28C /* MomentsTableViewController.swift */; };
 		C25F488A1CF31B1300C6C28C /* MomentsEachViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25F48891CF31B1300C6C28C /* MomentsEachViewController.swift */; };
 		C263E3A51D1E5D0C00D274FE /* NewThoughtsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C263E3A41D1E5D0C00D274FE /* NewThoughtsView.swift */; };
 		C263E3A71D1E5D2300D274FE /* NewThoughtsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C263E3A61D1E5D2300D274FE /* NewThoughtsView.xib */; };
@@ -816,7 +815,6 @@
 		C25BE1F81CFC3ED900C98DD3 /* ProfilePostsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilePostsViewController.swift; sourceTree = "<group>"; };
 		C25C27EE1D4735BE00C21F23 /* KindOfJourneyOTGViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KindOfJourneyOTGViewController.swift; sourceTree = "<group>"; };
 		C25C27F01D4747AA00C21F23 /* NewTLViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTLViewController.swift; sourceTree = "<group>"; };
-		C25F48851CF310FB00C6C28C /* MomentsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MomentsTableViewController.swift; path = ../MomentsTableViewController.swift; sourceTree = "<group>"; };
 		C25F48891CF31B1300C6C28C /* MomentsEachViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MomentsEachViewController.swift; path = ../MomentsEachViewController.swift; sourceTree = "<group>"; };
 		C263E3A41D1E5D0C00D274FE /* NewThoughtsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewThoughtsView.swift; path = ../NewThoughtsView.swift; sourceTree = "<group>"; };
 		C263E3A61D1E5D2300D274FE /* NewThoughtsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NewThoughtsView.xib; path = ../NewThoughtsView.xib; sourceTree = "<group>"; };
@@ -2146,7 +2144,6 @@
 				C2DCB36F1CE73650006E5CBD /* LocationCategoryViewController.swift */,
 				C2A27A481CEDC66B00F74DD1 /* LogInViewController.swift */,
 				C25F48891CF31B1300C6C28C /* MomentsEachViewController.swift */,
-				C25F48851CF310FB00C6C28C /* MomentsTableViewController.swift */,
 				C2DA2B5A1CE6076600F15C5C /* MyCollectionViewCell.swift */,
 				C212930D1D2E806B002D5A4A /* MyLifeContainerViewController.swift */,
 				C212930F1D2E830B002D5A4A /* MyLifeMomentsViewController.swift */,
@@ -3568,7 +3565,6 @@
 				4468E53B1EAB1B9600DECD77 /* TLProfileViewController.swift in Sources */,
 				C24B456B1D0AF674002EA009 /* EachMustDo.swift in Sources */,
 				840E256F1E5EF423003220FE /* LoaderViewController.swift in Sources */,
-				C25F48861CF310FB00C6C28C /* MomentsTableViewController.swift in Sources */,
 				3AEEB00B1CE7017E0085EEF5 /* Rating.swift in Sources */,
 				842019C41E5C8641001F97E3 /* EndJourneyMyLife.swift in Sources */,
 				841E43AE1E1D1DEA000D2E6B /* EndJourneyView.swift in Sources */,

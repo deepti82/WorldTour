@@ -540,6 +540,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     
     func changeDateAndTime(_ footer:ActivityFeedFooterBasic) {
         currentPhotoFooter = footer
+        hideHeaderAndFooter(true)
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSZ"
         self.inputview = UIView(frame: CGRect(x: 0, y: UIScreen.main.bounds.size.height - 240, width: self.view.frame.size.width, height: 240))
@@ -548,9 +549,11 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         self.datePickerView.datePickerMode = UIDatePickerMode.dateAndTime
         self.datePickerView.date = dateFormatter.date(from: footer.postTop["UTCModified"].stringValue)!
         self.datePickerView.maximumDate = Date()
+        
         self.backView = UIView(frame: CGRect(x: 0, y: UIScreen.main.bounds.size.height - 280, width: self.view.frame.size.width, height: 40))
         self.backView.backgroundColor = UIColor(hex: "#272b49")
         self.inputview.addSubview(self.datePickerView) // add date picker to UIView
+        
         let doneButton = UIButton(frame: CGRect(x: UIScreen.main.bounds.size.width - 100, y: 0, width: 100, height: 40))
         doneButton.setTitle("Save", for: .normal)
         doneButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14.0)
@@ -576,6 +579,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     
     func changeDateAndTimeEndJourney(_ footer:ActivityFeedFooter) {
         currentPhotoFooter2 = footer
+        hideHeaderAndFooter(true)
         let dateFormatter = DateFormatter()
         print(footer.postTop);
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSZ"
@@ -615,6 +619,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     func cancelButton(_ sender: UIButton){
         self.inputview.removeFromSuperview() // To resign the inputView on clicking done.
         self.backView.removeFromSuperview()
+        hideHeaderAndFooter(false)
     }
 
     func handleDatePicker(_ sender: UIDatePicker) {
@@ -633,10 +638,12 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         }
         self.inputview.removeFromSuperview() // To resign the inputView on clicking done.
         self.backView.removeFromSuperview()
+        hideHeaderAndFooter(false)
     }
 
 
     func doneButton(_ sender: UIButton){
+        
         request.changeDateTimeLocal(currentPhotoFooter.postTop["_id"].stringValue, date: "\(dateSelected) \(timeSelected)", completion: {(response) in
             print(response)
             globalMyLifeContainerViewController.changeDateTag()
@@ -644,6 +651,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         })
         self.inputview.removeFromSuperview() // To resign the inputView on clicking done.
         self.backView.removeFromSuperview()
+        hideHeaderAndFooter(false)
     }
 
     
@@ -720,6 +728,20 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         self.addView.typeOfAddActivtiy = "AddPhotosVideos"
         self.newScroll.addSubview(self.addView)
     }
+    
+    func hideHeaderAndFooter(_ isShow:Bool) {
+        if isFromFooter {
+        if(isShow) {
+            
+            self.mainFooter.frame.origin.y = self.view.frame.height + MAIN_FOOTER_HEIGHT
+        } else {
+            
+            self.mainFooter.frame.origin.y = self.view.frame.height - MAIN_FOOTER_HEIGHT
+            
+        }
+        }
+    }
+
     
 
 }
