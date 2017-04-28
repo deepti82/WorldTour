@@ -203,18 +203,15 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     func setUserName(username: String) {
         self.self.userNameLabel.text = username
         self.setCityName(cityName: self.currentlyShowingUser["homeCity"].stringValue, countryName: self.currentlyShowingUser["homeCountry"]["name"].stringValue)
-//        if self.shouldStopAnimate {
-//            self.shouldStopAnimate = false
-//            self.userNameLabel.text = ""
-//            self.setTextWithAnimation(onView: self.userNameLabel, text: username)            
-//        }
     }
     
     func setCityName(cityName: String, countryName: String) {
-        self.cityNameLabel.text = "LIVES IN : \(cityName.uppercased())"
-//        self.shouldStopAnimate = true
-//        self.cityNameLabel.text = ""
-//        self.setTextWithAnimation(onView: self.cityNameLabel, text: "LIVES IN : \(cityName), \(countryName)")
+        if !isShowingSelf && cityName == "" {
+            self.cityNameLabel.text = ""            
+        }
+        else {
+            self.cityNameLabel.text = "LIVES IN : \(cityName.uppercased())"
+        }
     }
     
     func setUserBadgeName(badge: String) {
