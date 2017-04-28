@@ -498,13 +498,13 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     func toggleMAMTextView(stackView: UIStackView) {
         
         if stackView.tag == 0 {
-            self.MAM = MoreAboutMe(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width - 20, height: 100))
+            self.MAM = MoreAboutMe(frame: CGRect(x: 0, y: 0, width: self.MAMTextView.frame.size.width, height: 140))
             self.MAM.mainTextView.textAlignment = .center
             self.MAM.backgroundColor = UIColor.clear
             self.MAMTextView.addSubview(self.MAM)
             
-            self.MAMTextViewHeightConstraint.constant = 100
-            self.MAMTextView.frame.size.height = 100
+            self.MAMTextViewHeightConstraint.constant = 140
+            self.MAMTextView.frame.size.height = 140
             self.mamStackView.tag = 1
         }
         else {
