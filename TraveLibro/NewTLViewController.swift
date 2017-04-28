@@ -732,6 +732,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
                 }
                 else if response["value"].bool! {
                     whichJourney = ""
+                    self.cancelButton(nil)
                     self.layout.removeAll()
                     self.prevPosts = []
                     self.isInitialLoad = true;
@@ -754,6 +755,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
                     self.showJourneyOngoing(journey: response["data"])
                     self.setTopNavigation(text: "On The Go");
                 }else{
+                    self.cancelButton(nil)
                     self.layout.removeAll()
                     if self.insideView == "journey" {
                         self.checkForLocation(nil)
@@ -784,6 +786,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
                         whichJourney = "otg"
                     }
                     jouurneyToShow = response["data"]
+                    self.cancelButton(nil)
                     self.layout.removeAll()
                     self.prevPosts = []
                     self.isInitialLoad = true;
@@ -1861,10 +1864,15 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         self.backView.removeFromSuperview()
     }
     
-    func cancelButton(_ sender: UIButton){
+    func cancelButton(_ sender: UIButton?){
         self.hideHeaderAndFooter(false)
-        self.inputview.removeFromSuperview() // To resign the inputView on clicking done.
-        self.backView.removeFromSuperview()
+        print("\n InputView : \(self.inputView)")
+        print("\n InputView : \(self.datePickerView)")
+        
+        if self.datePickerView != nil {
+            self.inputview.removeFromSuperview() // To resign the inputView on clicking done.
+            self.backView.removeFromSuperview()            
+        }
     }
     
     func sendComments(_ sender: UIButton) {
