@@ -1164,13 +1164,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
             addPostsButton.isHidden = true
             getOneJourney()
         }
-
-        
-        if fromOutSide != "" {
-            addPostsButton.isHidden = true
-        } else {
-            addPostsButton.isHidden = false
-        }
         
         self.view.bringSubview(toFront: infoButton)
         self.view.bringSubview(toFront: addPostsButton)
