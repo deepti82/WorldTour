@@ -366,7 +366,7 @@ func getThought (_ post:JSON) ->  NSMutableAttributedString {
     let retText = NSMutableAttributedString(string: "")
     let location = post["checkIn"]["location"].string;
     let buddy = post["buddies"].arrayValue;
-    if(post["thoughts"].stringValue != nil && post["thoughts"].stringValue != "") {
+    if(post["thoughts"].stringValue != "" && post["thoughts"].stringValue != "") {
 //        retText = post["thoughts"].stringValue
         retText.append(getRegularString(string: post["thoughts"].stringValue, size: 15))
         if(location != nil && location != "") {
@@ -473,6 +473,122 @@ func getThought (_ post:JSON) ->  NSMutableAttributedString {
     }
     
   return retText
+}
+
+
+func getThoughtForLocalPost (_ post: Post) ->  NSMutableAttributedString {
+    
+    let retText = NSMutableAttributedString(string: "")
+    let location = post.post_location
+    let buddy = post.buddyJson
+    
+    if(post.post_thoughts != "" ) {
+        //        retText = post["thoughts"].stringValue
+        retText.append(getRegularString(string: post.post_thoughts, size: 15))
+        if(location != nil && location != "") {
+            //            retText = retText + " at " + location!
+            retText.append(getRegularString(string: " at ", size: 15))
+            retText.append(getBoldString(string: location!, size: 15))
+            
+            if(buddy.count == 1) {
+                //                retText = retText + " with " + buddy[0]["name"].stringValue
+                retText.append(getRegularString(string: " with ", size: 15))
+                retText.append(getBoldString(string: buddy[0]["name"].stringValue, size: 15))
+            } else if (buddy.count == 2) {
+                //                retText = retText + " with " + buddy[0]["name"].stringValue + " and " + buddy[1]["name"].stringValue
+                retText.append(getRegularString(string: " with ", size: 15))
+                retText.append(getBoldString(string: buddy[0]["name"].stringValue, size: 15))
+                retText.append(getRegularString(string: " and ", size: 15))
+                retText.append(getBoldString(string: buddy[1]["name"].stringValue, size: 15))
+                
+            } else if (buddy.count > 2) {
+                let n = buddy.count - 1
+                //                retText = retText + " with " + buddy[0]["name"].stringValue + " and " + String(n) + " others"
+                retText.append(getRegularString(string: " with ", size: 15))
+                retText.append(getBoldString(string: buddy[0]["name"].stringValue, size: 15))
+                retText.append(getRegularString(string: " and ", size: 15))
+                retText.append(getRegularString(string: String(n), size: 15))
+                retText.append(getRegularString(string: " others", size: 15))
+            }
+        } else {
+            if(buddy.count == 1) {
+                //                retText = retText + " with " + buddy[0]["name"].stringValue
+                retText.append(getRegularString(string: " with ", size: 15))
+                retText.append(getBoldString(string: buddy[0]["name"].stringValue, size: 15))
+                
+            } else if (buddy.count == 2) {
+                //                retText = retText + " with " + buddy[0]["name"].stringValue + " and " + buddy[1]["name"].stringValue
+                retText.append(getRegularString(string: " with ", size: 15))
+                retText.append(getBoldString(string: buddy[0]["name"].stringValue, size: 15))
+                retText.append(getRegularString(string: " and ", size: 15))
+                retText.append(getBoldString(string: buddy[1]["name"].stringValue, size: 15))
+            } else if (buddy.count > 2) {
+                let n = buddy.count - 1
+                //                retText = retText + " with " + buddy[0]["name"].stringValue + " and " + String(n) + " others"
+                retText.append(getRegularString(string: " with ", size: 15))
+                retText.append(getBoldString(string: buddy[0]["name"].stringValue, size: 15))
+                retText.append(getRegularString(string: " and ", size: 15))
+                retText.append(getRegularString(string: String(n), size: 15))
+                retText.append(getRegularString(string: " others", size: 15))
+            }
+        }
+    } 
+    else {
+        if(location != nil && location != "") {
+            //            retText = "At " + location!
+            retText.append(getRegularString(string: "At ", size: 15))
+            retText.append(getBoldString(string: location!, size: 15))
+            
+            if(buddy.count == 1) {
+                //                retText = retText + " with " + buddy[0]["name"].stringValue
+                retText.append(getRegularString(string: " with ", size: 15))
+                retText.append(getBoldString(string: buddy[0]["name"].stringValue, size: 15))
+                
+            } else if (buddy.count == 2) {
+                //                retText = retText + " with " + buddy[0]["name"].stringValue + " and " + buddy[1]["name"].stringValue
+                retText.append(getRegularString(string: " with ", size: 15))
+                retText.append(getBoldString(string: buddy[0]["name"].stringValue, size: 15))
+                retText.append(getRegularString(string: " and ", size: 15))
+                retText.append(getBoldString(string: buddy[1]["name"].stringValue, size: 15))
+            } else if (buddy.count > 2) {
+                let n = buddy.count - 1
+                //                retText = retText + " with " + buddy[0]["name"].stringValue + " and " + String(n) + " others"
+                retText.append(getRegularString(string: " with ", size: 15))
+                retText.append(getBoldString(string: buddy[0]["name"].stringValue, size: 15))
+                retText.append(getRegularString(string: " and ", size: 15))
+                retText.append(getRegularString(string: String(n), size: 15))
+                retText.append(getRegularString(string: " others", size: 15))
+                
+            }
+        }
+        else {
+            if(buddy.count == 1) {
+                //                retText = "With " + buddy[0]["name"].stringValue
+                retText.append(getRegularString(string: "With ", size: 15))
+                retText.append(getBoldString(string: buddy[0]["name"].stringValue, size: 15))
+                
+            } else if (buddy.count == 2) {
+                //                retText = "With " + buddy[0]["name"].stringValue + " and " + buddy[1]["name"].stringValue
+                retText.append(getRegularString(string: "With ", size: 15))
+                retText.append(getBoldString(string: buddy[0]["name"].stringValue, size: 15))
+                retText.append(getRegularString(string: " and ", size: 15))
+                retText.append(getBoldString(string: buddy[1]["name"].stringValue, size: 15))
+                
+            } else if (buddy.count > 2) {
+                let n = buddy.count - 1
+                //              retText = "With " + buddy[0]["name"].stringValue + " and " + String(n) + " others"
+                retText.append(getRegularString(string: "With ", size: 15))
+                retText.append(getBoldString(string: buddy[0]["name"].stringValue, size: 15))
+                retText.append(getRegularString(string: " and ", size: 15))
+                retText.append(getRegularString(string: String(n), size: 15))
+                retText.append(getRegularString(string: " others", size: 15))
+                
+                
+            }
+        }
+    }
+    
+    return retText
 }
 
 

@@ -30,8 +30,13 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
         
         postTop = post
         
-        if (post.jsonPost != nil) {
-            headerLayout(feed: post.jsonPost)
+        if (postTop.jsonPost != nil) {
+            headerLayout(feed: postTop.jsonPost)
+        }
+        else {
+            if isSelfUser(otherUserID: postTop.post_userId) {
+                headerLayoutForLocalPost(post: postTop)                
+            }
         }
         
         //Image generation only
@@ -278,6 +283,56 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
         }
         
     }
+    
+    func headerLayoutForLocalPost(post: Post) {
+        
+        profileHeader = ActivityProfileHeader(frame: CGRect(x: 0, y: 20, width: self.frame.width, height: 69))
+        
+        self.addSubview(profileHeader)
+        profileHeader.ishidefollow = true
+        profileHeader.followButton.isHidden = true
+        profileHeader.fillProfileHeaderForLocalPost(post: post)
+        
+        if post.post_thoughts != "" {
+            //  START ACTIVITY TEXT HEADER
+            textHeader = ActivityTextHeader(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 0))
+            textHeader.headerText.attributedText = getThoughtForLocalPost(post)
+            textHeader.headerText.sizeToFit()
+            textHeader.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: textHeader.headerText.frame.height + 1.5)
+            self.addSubview(textHeader)
+            textHeader.kindOfJourneyMyLife.isHidden = true
+        }
+        else {
+            // For header text
+            textHeader = ActivityTextHeader(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 70))
+            textHeader.kindOfJourneyMyLife.isHidden = true
+            switch post.post_type {
+            case "on-the-go-journey":
+                setText(text: "Has started a Journey.")
+                
+            case "ended-journey":
+                setText(text: "Has ended this Journey.")
+                
+            case "quick-itinerary":
+                setText(text: "Has uploaded a new Itinerary.")
+                
+            case "detail-itinerary":
+                setText(text: "Has uploaded a new Itinerary.")
+            default:
+                textHeader.headerText.attributedText = getThoughtForLocalPost(post)
+            }
+            textHeader.headerText.sizeToFit()
+            textHeader.sizeToFit()
+            textHeader.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: textHeader.headerText.frame.height + 1.5)
+            if(textHeader.headerText.text != "") {
+                
+                self.addSubview(textHeader)
+            }
+        }
+        
+    }
+    
+    
     func setText(text: String) {
         textHeader.headerText.text = text
         //        self.addSubview(textHeader)

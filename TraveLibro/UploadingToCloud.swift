@@ -29,9 +29,7 @@ class UploadingToCloud: UIView {
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view)
-        
-        
-          }
+    }
     
 
 }

@@ -125,6 +125,37 @@ class ActivityProfileHeader: UIView {
         
     }
     
+    func fillProfileHeaderForLocalPost(post: Post) {
+//        currentFeed = feed
+        
+        self.followButton.isHidden = true        
+        
+        switch post.post_type {
+        case "local-life":
+            category.imageView?.tintColor = mainGreenColor
+        case "travel-life":
+            category.imageView?.tintColor = mainOrangeColor
+        default:
+            category.isHidden = true
+        }        
+        
+        
+        self.category.imageView?.contentMode = UIViewContentMode.scaleAspectFit
+        
+        userName.text = currentUser["name"].stringValue
+        profilePic.hnk_setImageFromURL(getImageURL(currentUser["profilePicture"].stringValue, width: SMALL_PHOTO_WIDTH))
+        
+        if post.post_date != "" {
+            localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd-MM-yyyy", date: post.post_date, isDate: true)
+            localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: post.post_date, isDate: false)
+        }
+        else {
+            localDate.text = ""
+            localTime.text = ""
+        }
+    }
+    
+    
     @IBAction func followClick(_ sender: UIButton) {
         
         if currentUser != nil {
