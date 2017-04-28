@@ -16,7 +16,6 @@
 		1A65E7AB1CD72F1F009374DA /* Avenir-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1A65E7A61CD72F1F009374DA /* Avenir-Medium.ttf */; };
 		1A65E7AC1CD72F1F009374DA /* Avenir-Roman.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1A65E7A71CD72F1F009374DA /* Avenir-Roman.ttf */; };
 		1A944E081CCB4567007EB5BD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A944E071CCB4567007EB5BD /* AppDelegate.swift */; };
-		1A944E0A1CCB4567007EB5BD /* OTGAddNewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A944E091CCB4567007EB5BD /* OTGAddNewViewController.swift */; };
 		1A944E0D1CCB4567007EB5BD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A944E0B1CCB4567007EB5BD /* Main.storyboard */; };
 		1A944E0F1CCB4567007EB5BD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A944E0E1CCB4567007EB5BD /* Assets.xcassets */; };
 		1A944E121CCB4567007EB5BD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A944E101CCB4567007EB5BD /* LaunchScreen.storyboard */; };
@@ -458,7 +457,6 @@
 		FC13D1CE1E603073008FC77D /* SearchElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC13D1CD1E603073008FC77D /* SearchElement.swift */; };
 		FC13D1D01E60309D008FC77D /* SearchElement.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC13D1CF1E60309D008FC77D /* SearchElement.xib */; };
 		FC259C291E79014D00AF815A /* MainSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC259C281E79014D00AF815A /* MainSearchViewController.swift */; };
-		FC3248CD1DEDACD600ACDF85 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3248CC1DEDACD600ACDF85 /* VideoViewController.swift */; };
 		FC49DCFA1DE6D04D00B0DEF3 /* ImgLyKitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC49DCF91DE6D04D00B0DEF3 /* ImgLyKitViewController.swift */; };
 		FC7E4AFE1E9E33720066C454 /* footerItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC7E4AFD1E9E33720066C454 /* footerItem.xib */; };
 		FC7E4B001E9E59CD0066C454 /* MyLifeJourneyTravel.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC7E4AFF1E9E59CD0066C454 /* MyLifeJourneyTravel.xib */; };
@@ -544,7 +542,6 @@
 		1A65E7A71CD72F1F009374DA /* Avenir-Roman.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Avenir-Roman.ttf"; sourceTree = "<group>"; };
 		1A944E041CCB4567007EB5BD /* TraveLibro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TraveLibro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A944E071CCB4567007EB5BD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1A944E091CCB4567007EB5BD /* OTGAddNewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTGAddNewViewController.swift; sourceTree = "<group>"; };
 		1A944E0C1CCB4567007EB5BD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1A944E0E1CCB4567007EB5BD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1A944E111CCB4567007EB5BD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -995,7 +992,6 @@
 		FC13D1CD1E603073008FC77D /* SearchElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchElement.swift; sourceTree = "<group>"; };
 		FC13D1CF1E60309D008FC77D /* SearchElement.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchElement.xib; sourceTree = "<group>"; };
 		FC259C281E79014D00AF815A /* MainSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainSearchViewController.swift; sourceTree = "<group>"; };
-		FC3248CC1DEDACD600ACDF85 /* VideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
 		FC49DCF91DE6D04D00B0DEF3 /* ImgLyKitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImgLyKitViewController.swift; sourceTree = "<group>"; };
 		FC7E4AFD1E9E33720066C454 /* footerItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = footerItem.xib; sourceTree = "<group>"; };
 		FC7E4AFF1E9E59CD0066C454 /* MyLifeJourneyTravel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyLifeJourneyTravel.xib; sourceTree = "<group>"; };
@@ -2160,7 +2156,6 @@
 				C2823B001D4625830065A76C /* NotificationSubViewController.swift */,
 				C2DCB3781CE75365006E5CBD /* NotificationsViewController.swift */,
 				C254434F1CD7391900C2C6CD /* OnTheGoViewController.swift */,
-				1A944E091CCB4567007EB5BD /* OTGAddNewViewController.swift */,
 				C2A6E2561CE9C13A00D3F845 /* OTGTimelineViewController.swift */,
 				C28521B91D365FDF001EF251 /* PagerTabViewController.swift */,
 				3A7D360A1DE8441700786A83 /* PhotoCommentViewController.swift */,
@@ -2193,7 +2188,6 @@
 				C24F84D91CFFFBF5002EA203 /* UserProfileSettingsViewController.swift */,
 				C2756C4C1D05884D0083CEBD /* VerifyEmailViewController.swift */,
 				C281FBED1D56170A00728BD9 /* VerifyIntermediateViewController.swift */,
-				FC3248CC1DEDACD600ACDF85 /* VideoViewController.swift */,
 				C2A36D031DF930DC0091AD56 /* QuickItineraryPreviewViewController.swift */,
 				FCA9E4211E00145B00F0845A /* QuickIteneraryTableViewController.swift */,
 				FCDF490C1E26054700ED9A32 /* QuickPhotosCollectionViewController.swift */,
@@ -3398,7 +3392,6 @@
 				C2FA1E131D54875D0034DE97 /* QuickItineraryFive.swift in Sources */,
 				8405998A1E3CDC4C004E0696 /* DropShadow2.swift in Sources */,
 				FC0B9A971E1FB7C8005D9206 /* QuickCountry.swift in Sources */,
-				FC3248CD1DEDACD600ACDF85 /* VideoViewController.swift in Sources */,
 				C2E45CEB1CE5A22B0096BDD1 /* IconButton.swift in Sources */,
 				3ACB7A681D7841FD008247B6 /* DisplayPagesOneViewController.swift in Sources */,
 				1A944E491CCB8C9F007EB5BD /* JourneyTitleView.swift in Sources */,
@@ -3408,7 +3401,6 @@
 				C24F85031D0064D7002EA203 /* TutorialCards.swift in Sources */,
 				C2A6E25B1CE9C27000D3F845 /* TimelineScroll.swift in Sources */,
 				FCCA8F201E28B96700775985 /* TripSummaryMiddle.swift in Sources */,
-				1A944E0A1CCB4567007EB5BD /* OTGAddNewViewController.swift in Sources */,
 				C24909B81D4A09E6007EB6B4 /* TripSummaryPhotoListViewController.swift in Sources */,
 				C2EA3A161CDB3B9900122941 /* TextField.swift in Sources */,
 				3A7D360B1DE8441700786A83 /* PhotoCommentViewController.swift in Sources */,
