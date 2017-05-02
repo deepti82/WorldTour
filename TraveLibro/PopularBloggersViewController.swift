@@ -141,53 +141,41 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {        
-        return min(210, (tableView.frame.size.height - 10) / 3)
+        return 275
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "popularCell") as! PopularBloggerTableViewCell
-//        cell.cellBackgroundView.layer.cornerRadius = 10
-//        cell.titleTag.layer.cornerRadius = 5
-//        cell.titleTag.layer.borderColor = mainBlueColor.cgColor
-//        cell.titleTag.layer.borderWidth = 1.5
-//        cell.cameraIcon.tintColor = mainBlueColor
-//        cell.videoIcon.tintColor = mainBlueColor
-//        cell.locationIcon.tintColor = mainBlueColor
-//        cell.selectionStyle = .none
-//        
-//        let cellData = allUsers[indexPath.row]        
-//        cell.userIcon.image = UIImage(named:"logo-default")
-//        cell.userIcon.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(cellData["profilePicture"].stringValue)", width: SMALL_PHOTO_WIDTH))
-//        
-//        cell.userIcon.layer.masksToBounds = false
-//        cell.userIcon.layer.borderColor = UIColor.clear.cgColor
-//        cell.userIcon.layer.cornerRadius = (37/100) * cell.userIcon.frame.size.width
-//        cell.userIcon.layer.borderWidth = 2.0
-//        cell.userIcon.layer.borderColor = UIColor.lightGray.cgColor
-//        cell.userIcon.contentMode = .scaleAspectFill
-//        cell.userIcon.clipsToBounds = true
-//        
-//        cell.userName.text = cellData["name"].stringValue
-//       
-//        cell.photoCountLabel.text = cellData["photos_count"].stringValue
-//        cell.videoCountLabel.text = cellData["videos_count"].stringValue
-//        cell.bucketListCount.text = cellData["checkins_count"].stringValue
-//        
-//        cell.countryVisitedCountLabel.text =  "Countries visited : " + cellData["countriesVisited_count"].stringValue
-//        cell.journeyCountLabel.text =  "Journeys : " + cellData["journeysCreated_count"].stringValue        
-//        cell.followerCountLabel.text = "Followers : " + cellData["followers_count"].stringValue
-//        
-//        cell.userBadgeImage.image = UIImage(named:cellData["userBadgeName"].stringValue.lowercased())
-//                
-//        if(currentUser != nil) {
-//            cell.followButton.tag = indexPath.row
-//            setFollowButtonTitle(button: cell.followButton, followType: cellData["following"].intValue, otherUserID: cellData["_id"].stringValue)
-//        }
-//        else {
-//            cell.followButton.setTitle("Follow", for: .normal)
-//        }
+        cell.followButton.layer.cornerRadius = 5
+        cell.followButton.layer.borderColor = UIColor.white.cgColor
+        cell.followButton.layer.borderWidth = 1.5
+        cell.followButton.clipsToBounds = true
         
+        let cellData = allUsers[indexPath.row]        
+        cell.userIcon.image = UIImage(named:"logo-default")
+        cell.userIcon.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(cellData["profilePicture"].stringValue)", width: SMALL_PHOTO_WIDTH))
+
+        cell.userName.text = cellData["name"].stringValue
+
+        cell.photoCountLabel.text = cellData["photos_count"].stringValue
+        cell.videoCountLabel.text = cellData["videos_count"].stringValue
+
+        cell.countryVisitedCountLabel.text = cellData["countriesVisited_count"].stringValue
+        cell.journeyCountLabel.text = cellData["journeysCreated_count"].stringValue
+        cell.followerCountLabel.text = cellData["followers_count"].stringValue
+
+        cell.userBadgeImage.image = UIImage(named:"\(cellData["userBadgeName"].stringValue.lowercased())blogger")
+
+        if(currentUser != nil) {
+            cell.followButton.tag = indexPath.row
+            setFollowButtonTitle(button: cell.followButton, followType: cellData["following"].intValue, otherUserID: cellData["_id"].stringValue)
+        }
+        else {
+            cell.followButton.setTitle("Follow", for: .normal)
+        }
+        cell.followButton.sizeToFit()
+
         return cell
         
     }
@@ -332,17 +320,17 @@ class PopularBloggerTableViewCell: UITableViewCell {
 //    @IBOutlet weak var videoIcon: UIImageView!
 //    @IBOutlet weak var locationIcon: UIImageView!
 //    
-//    @IBOutlet weak var userIcon: UIImageView!
+    @IBOutlet weak var userIcon: UIImageView!
     @IBOutlet weak var userName: UILabel!
-//    @IBOutlet weak var photoCountLabel: UILabel!
-//    @IBOutlet weak var videoCountLabel: UILabel!
+    @IBOutlet weak var photoCountLabel: UILabel!
+    @IBOutlet weak var videoCountLabel: UILabel!
 //    @IBOutlet weak var bucketListCount: UILabel!
 //    
-//    @IBOutlet weak var countryVisitedCountLabel: UILabel!
-//    @IBOutlet weak var followerCountLabel: UILabel!
-//    @IBOutlet weak var journeyCountLabel: UILabel!
-//    
-//    @IBOutlet weak var userBadgeImage: UIImageView!
-//    
-//    @IBOutlet weak var followButton: UIButton!
+    @IBOutlet weak var countryVisitedCountLabel: UILabel!
+    @IBOutlet weak var followerCountLabel: UILabel!
+    @IBOutlet weak var journeyCountLabel: UILabel!
+//
+    @IBOutlet weak var userBadgeImage: UIImageView!
+//
+    @IBOutlet weak var followButton: UIButton!
 }
