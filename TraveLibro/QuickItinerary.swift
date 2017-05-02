@@ -123,9 +123,8 @@ public class QuickItinerary {
                 check = true
                 let p = LocalLifePostModel();
                 
-                var postID = post1[id]
+                let postID = post1[id]
                 
-                let id_temp = Int(post1[id])
                 let quickItinery:JSON = JSON(data: (String(post1[quickJson])?.data(using: .utf8))! )
                 let editid_temp = String(post1[editId])
                 let status_temp = Bool(post1[status])

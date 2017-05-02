@@ -10,6 +10,8 @@ import UIKit
 
 class TLMainFeedsViewController: UIViewController {
 
+    @IBOutlet weak var feedsTableView: UITableView!
+    
     //MARK: - LifeCycle
     
     override func viewDidLoad() {

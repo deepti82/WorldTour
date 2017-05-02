@@ -194,10 +194,10 @@ class Navigation {
         if urlSlug != nil {
             params["urlSlug"] = urlSlug!
         }
-        var urlString = adminUrl + "user/getOne"
+        let urlString = adminUrl + "user/getOne"
         self.cache.fetch(key: urlString+id).onSuccess { data in
             print(data);
-            var json = JSON(data: data)
+            let json = JSON(data: data)
             completion(json)
         }.onFailure { (err) in
                 do {
@@ -1355,8 +1355,6 @@ class Navigation {
                     return
                 }
                 do {
-                    print(data);
-                    print(response);
                     let result = try JSONSerialization.jsonObject(with: data!, options: []) as! [String:AnyObject]
                     print("response: \(JSON(result))")
                     completion(JSON(result))
@@ -1460,7 +1458,7 @@ class Navigation {
                 }
             }
         } catch let error {
-            print("got an error creating the request")
+            print("got an error creating the request:: \(error)")
         }
     }
     

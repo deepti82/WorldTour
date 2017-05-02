@@ -328,8 +328,7 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
         let next = storyboard?.instantiateViewController(withIdentifier: "addBuddies") as! AddBuddiesViewController
         next.whichView = "AddActivity"
         
-        print(addedBuddies);
-        if addedBuddies != nil {
+        if !addedBuddies.isEmpty {
             next.addedFriends = addedBuddies
         }
         if(self.typeOfAddActivtiy == "AddPhotosVideos") {

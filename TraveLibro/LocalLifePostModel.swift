@@ -148,10 +148,10 @@ public class LocalLifePostModel {
                 p.post_date = String(post[date])
                 p.post_isOffline = true;
                 
-                var i = PostImage();
+                let i = PostImage();
                 p.imageArr = i.getAllImages(postNo: post[id])
                 
-                var v = PostVideo();
+                let v = PostVideo();
                 p.videoArr = v.getAll(postNo: post[id])
                 allPosts.append(p)
             }
@@ -186,10 +186,10 @@ public class LocalLifePostModel {
                 p.post_dateDay = changeDate(givenFormat: "yyyy-MM-dd'T'HH:mm:ss.SSZ", getFormat: "dd-MM-yyyy", date: p.post_date, isDate: true)
                 p.post_dateTime = changeDate(givenFormat: "yyyy-MM-dd'T'HH:mm:ss.SSZ", getFormat: "h:mm a", date: p.post_date, isDate: false)
                 
-                var i = PostImage();
+                let i = PostImage();
                 p.imageArr = i.getAllImages(postNo: post[id])
                 
-                var v = PostVideo();
+                let v = PostVideo();
                 p.videoArr = v.getAll(postNo: post[id])
                 allPosts.append(p)
                 

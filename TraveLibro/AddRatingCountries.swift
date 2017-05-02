@@ -87,8 +87,7 @@ class AddRatingCountries: UIView, UITextViewDelegate {
     }
     
     func updateSmiley(point:Int) {
-print(point)
-        if point != nil && point != 0 {
+        if point != 0 {
             ratingIndex = point
             reviewConclusion.text = moodArr[point - 1]
             smiley.setImage(UIImage(named: imageArr[point - 1]), for: UIControlState())

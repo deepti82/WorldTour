@@ -614,7 +614,7 @@ class EndJourneyViewController: UIViewController {
             
         }
         else {
-            self.navigationController?.popViewController(animated: true)
+           _ = self.navigationController?.popViewController(animated: true)
         }
     }
     

@@ -59,9 +59,7 @@ class QuickIteneraryOne: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         yearPickerView.inputView = pickerView
         monthPickerView.inputView = pickerView
         let calendar = NSCalendar.current
-        let dateFormatterMonth = DateFormatter()
         let dateFormatter = DateFormatter()
-        let components = calendar.dateComponents([.month , .year], from: date as Date)
         dateFormatter.dateFormat = "yyyy"
         quickItinery["title"] = JSON(tripTitle.text!)
         quickItinery["month"] = JSON(monthPickerView.text!)
@@ -71,7 +69,7 @@ class QuickIteneraryOne: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         self.durationTextField.delegate = self
         self.tripTitle.delegate = self
         self.commonSetup()
-        for i in 0..<35{
+        for _ in 0..<35{
             yearsPicker.append(currentYear)
             currentYear -= 1
         }
@@ -238,7 +236,7 @@ class QuickIteneraryOne: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     }
 
     
-    func textFieldShouldReturn(textField: UITextField!) -> Bool {
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
         self.view.endEditing(true);
         return false;
     }
