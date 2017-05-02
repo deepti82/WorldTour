@@ -333,7 +333,7 @@ class PopularBloggerTableViewCell: UITableViewCell {
 //    @IBOutlet weak var locationIcon: UIImageView!
 //    
 //    @IBOutlet weak var userIcon: UIImageView!
-//    @IBOutlet weak var userName: UILabel!
+    @IBOutlet weak var userName: UILabel!
 //    @IBOutlet weak var photoCountLabel: UILabel!
 //    @IBOutlet weak var videoCountLabel: UILabel!
 //    @IBOutlet weak var bucketListCount: UILabel!
