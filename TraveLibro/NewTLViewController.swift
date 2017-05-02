@@ -32,7 +32,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     var infoView: TripInfoOTG!
     var addPosts: AddPostsOTGView!
     var addNewView = NewQuickItinerary()
-    var buttons1 = Buttons2()
     var changeText = AddBuddiesViewController()
     var endJourneyView: EndJourneyMyLife!
     var textFieldYPos = CGFloat(0)
@@ -1205,8 +1204,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     func success(_ sender: UIButton){
         let nearMe = storyboard?.instantiateViewController(withIdentifier: "nearMeVC") as! NearMeViewController
         self.navigationController?.setNavigationBarHidden(false, animated: true)
-        self.navigationController?.pushViewController(nearMe, animated: true)
-        buttons1.isHidden = true
+        self.navigationController?.pushViewController(nearMe, animated: true)        
         buttons.isHidden = true
         
         
@@ -1273,12 +1271,10 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
 //            let profile = self.storyboard!.instantiateViewController(withIdentifier: "TLProfileView") as! TLProfileViewController
 //            self.navigationController?.setNavigationBarHidden(false, animated: true)
 //            self.navigationController!.pushViewController(profile, animated: false)
-//            buttons1.isHidden = true
 //            buttons.isHidden = true
 //        }
 //        else {
 //            self.popVC(sender)
-//            buttons1.isHidden = true
 //            buttons.isHidden = true
 //        }
 //        

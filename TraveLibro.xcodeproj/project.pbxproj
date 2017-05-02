@@ -45,8 +45,6 @@
 		369042C31E090E6700D266A7 /* PostImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369042C21E090E6700D266A7 /* PostImage.swift */; };
 		3690AB731E1CFA8500642A6A /* PhotosOTG2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3690AB721E1CFA8500642A6A /* PhotosOTG2.swift */; };
 		36E08BFB1DBB957E0032EF09 /* CAPSPageMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E08BFA1DBB957E0032EF09 /* CAPSPageMenu.swift */; };
-		36E3B81F1E349D0C00C597BA /* PostTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36E3B81E1E349D0C00C597BA /* PostTextView.xib */; };
-		36E3B8211E349D1900C597BA /* PostTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E3B8201E349D1900C597BA /* PostTextView.swift */; };
 		36E3B8241E34B54C00C597BA /* ActivityFeedFooterBasic.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36E3B8231E34B54C00C597BA /* ActivityFeedFooterBasic.xib */; };
 		36E3B8261E34B56200C597BA /* ActivityFeedFooterBasic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E3B8251E34B56200C597BA /* ActivityFeedFooterBasic.swift */; };
 		36EB3F981E0D81A000EFF9EC /* PostBuddy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EB3F971E0D81A000EFF9EC /* PostBuddy.swift */; };
@@ -115,6 +113,9 @@
 		447492251E5D535300039D56 /* NotificationFollowRequestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447492241E5D535200039D56 /* NotificationFollowRequestCell.swift */; };
 		44B17E911E691D4700CA8F0C /* notificationTimeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44B17E901E691D4700CA8F0C /* notificationTimeView.xib */; };
 		44B17E931E691DE700CA8F0C /* NotificationTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B17E921E691DE700CA8F0C /* NotificationTime.swift */; };
+		44F2FAC41EB85F66003BB3EA /* TLMainFeedsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F2FAC31EB85F66003BB3EA /* TLMainFeedsViewController.swift */; };
+		44F2FACC1EB86BB6003BB3EA /* EndJourneyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F2FACA1EB86BB6003BB3EA /* EndJourneyView.swift */; };
+		44F2FACD1EB86BB6003BB3EA /* EndJourneyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44F2FACB1EB86BB6003BB3EA /* EndJourneyView.xib */; };
 		840599831E3CDA60004E0696 /* DropShadow1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 840599821E3CDA60004E0696 /* DropShadow1.xib */; };
 		840599851E3CDB2B004E0696 /* DropShadow1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840599841E3CDB2B004E0696 /* DropShadow1.swift */; };
 		840599881E3CDBA6004E0696 /* DropShadow2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 840599871E3CDBA6004E0696 /* DropShadow2.xib */; };
@@ -123,8 +124,6 @@
 		841C9C461E14FAA6004E4CDD /* PhotosOTGController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841C9C451E14FAA6004E4CDD /* PhotosOTGController.swift */; };
 		841E43A71E1D1C7B000D2E6B /* UploadingToCloud.xib in Resources */ = {isa = PBXBuildFile; fileRef = 841E43A61E1D1C7B000D2E6B /* UploadingToCloud.xib */; };
 		841E43A91E1D1CA4000D2E6B /* UploadingToCloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841E43A81E1D1CA4000D2E6B /* UploadingToCloud.swift */; };
-		841E43AC1E1D1DD6000D2E6B /* EndJourneyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 841E43AB1E1D1DD6000D2E6B /* EndJourneyView.xib */; };
-		841E43AE1E1D1DEA000D2E6B /* EndJourneyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841E43AD1E1D1DEA000D2E6B /* EndJourneyView.swift */; };
 		842019C21E5C7EA2001F97E3 /* EndJourneyMyLife.xib in Resources */ = {isa = PBXBuildFile; fileRef = 842019C11E5C7EA2001F97E3 /* EndJourneyMyLife.xib */; };
 		842019C41E5C8641001F97E3 /* EndJourneyMyLife.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842019C31E5C8641001F97E3 /* EndJourneyMyLife.swift */; };
 		842484F41E139FBB00083115 /* PhotosOTGHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 842484F31E139FBA00083115 /* PhotosOTGHeader.xib */; };
@@ -135,8 +134,6 @@
 		842485011E13BF4600083115 /* PhotosOTGView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842485001E13BF4600083115 /* PhotosOTGView.swift */; };
 		842D7A501E1E5D3E00FEDCD1 /* NearMeOptionButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 842D7A4F1E1E5D3E00FEDCD1 /* NearMeOptionButton.xib */; };
 		842D7A521E1E60DD00FEDCD1 /* NearMeOptionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842D7A511E1E60DD00FEDCD1 /* NearMeOptionButton.swift */; };
-		842D7A551E1E6F6100FEDCD1 /* Buttons2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 842D7A541E1E6F6100FEDCD1 /* Buttons2.xib */; };
-		842D7A571E1E6FBC00FEDCD1 /* Buttons2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842D7A561E1E6FBC00FEDCD1 /* Buttons2.swift */; };
 		843510DE1DF7F7EC00C3D8EE /* QuickIteneraryOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843510DD1DF7F7EC00C3D8EE /* QuickIteneraryOne.swift */; };
 		843510E01DF7F84600C3D8EE /* QuickIteneraryTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843510DF1DF7F84600C3D8EE /* QuickIteneraryTwo.swift */; };
 		843510E21DF7F86400C3D8EE /* QuickIteneraryThree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843510E11DF7F86400C3D8EE /* QuickIteneraryThree.swift */; };
@@ -146,8 +143,6 @@
 		8453CF3F1E30A32300C41F82 /* ActivityDetailItinerary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8453CF3E1E30A32300C41F82 /* ActivityDetailItinerary.swift */; };
 		8453CF421E30AFAF00C41F82 /* ActivityFeedQuickItinerary.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8453CF411E30AFAF00C41F82 /* ActivityFeedQuickItinerary.xib */; };
 		8453CF451E30AFE200C41F82 /* ActivityFeedQuickItinerary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8453CF441E30AFE200C41F82 /* ActivityFeedQuickItinerary.swift */; };
-		845C43221E2F857A00800F51 /* ActivityFeedThoughts.xib in Resources */ = {isa = PBXBuildFile; fileRef = 845C43211E2F857A00800F51 /* ActivityFeedThoughts.xib */; };
-		845C43241E2F85CE00800F51 /* ActivityFeedThoughts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845C43231E2F85CE00800F51 /* ActivityFeedThoughts.swift */; };
 		845C43271E2F8A4100800F51 /* ActivityFeedImageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 845C43261E2F8A4100800F51 /* ActivityFeedImageView.xib */; };
 		845C43291E2F8A6700800F51 /* ActivityFeedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845C43281E2F8A6700800F51 /* ActivityFeedImageView.swift */; };
 		845C432C1E2FB14800800F51 /* ActivityFeedFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 845C432B1E2FB14800800F51 /* ActivityFeedFooter.xib */; };
@@ -157,14 +152,6 @@
 		848DE53E1E791A55001CCDCF /* profilePicNavigation.xib in Resources */ = {isa = PBXBuildFile; fileRef = 848DE53D1E791A55001CCDCF /* profilePicNavigation.xib */; };
 		848DE5401E791AF9001CCDCF /* profilePicnavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848DE53F1E791AF9001CCDCF /* profilePicnavigation.swift */; };
 		84CC75E31E8291EF0082F8CA /* 200_200.gif in Resources */ = {isa = PBXBuildFile; fileRef = 84CC75E21E8291EF0082F8CA /* 200_200.gif */; };
-		84E61E451E377665009A740F /* OtgCardUITextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84E61E441E377665009A740F /* OtgCardUITextView.xib */; };
-		84E61E471E377828009A740F /* OtgCardUITextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E61E461E377828009A740F /* OtgCardUITextView.swift */; };
-		84F25E971E5D63B300ED7A1E /* detailedItineraryMain.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84F25E961E5D63B300ED7A1E /* detailedItineraryMain.xib */; };
-		84F25E9B1E5D693E00ED7A1E /* detailedItineraryMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F25E9A1E5D693E00ED7A1E /* detailedItineraryMain.swift */; };
-		84F25EB21E5D7CE300ED7A1E /* detailedCity.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84F25EB11E5D7CE300ED7A1E /* detailedCity.xib */; };
-		84F25EB41E5D803F00ED7A1E /* detailedCity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F25EB31E5D803F00ED7A1E /* detailedCity.swift */; };
-		84F25EB61E5D821000ED7A1E /* detailedItineraryStrip.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84F25EB51E5D821000ED7A1E /* detailedItineraryStrip.xib */; };
-		84F25EB91E5D862000ED7A1E /* detailedItineraryStrip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F25EB81E5D862000ED7A1E /* detailedItineraryStrip.swift */; };
 		84FF89431E52E0A300FDE8F0 /* Search.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84FF89421E52E0A300FDE8F0 /* Search.xib */; };
 		84FF89491E52EAA800FDE8F0 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FF89481E52EAA800FDE8F0 /* SearchViewController.swift */; };
 		84FF894B1E531B1100FDE8F0 /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FF894A1E531B1100FDE8F0 /* Search.swift */; };
@@ -578,8 +565,6 @@
 		3690AB721E1CFA8500642A6A /* PhotosOTG2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosOTG2.swift; sourceTree = "<group>"; };
 		36CAA7F31E2E41F00019B380 /* TraveLibro.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TraveLibro.entitlements; sourceTree = "<group>"; };
 		36E08BFA1DBB957E0032EF09 /* CAPSPageMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CAPSPageMenu.swift; sourceTree = "<group>"; };
-		36E3B81E1E349D0C00C597BA /* PostTextView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostTextView.xib; sourceTree = "<group>"; };
-		36E3B8201E349D1900C597BA /* PostTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTextView.swift; sourceTree = "<group>"; };
 		36E3B8231E34B54C00C597BA /* ActivityFeedFooterBasic.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivityFeedFooterBasic.xib; sourceTree = "<group>"; };
 		36E3B8251E34B56200C597BA /* ActivityFeedFooterBasic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityFeedFooterBasic.swift; sourceTree = "<group>"; };
 		36EB3F971E0D81A000EFF9EC /* PostBuddy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostBuddy.swift; sourceTree = "<group>"; };
@@ -649,6 +634,9 @@
 		447492241E5D535200039D56 /* NotificationFollowRequestCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationFollowRequestCell.swift; path = Notification/NotificationFollowRequestCell.swift; sourceTree = "<group>"; };
 		44B17E901E691D4700CA8F0C /* notificationTimeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = notificationTimeView.xib; path = Notification/notificationTimeView.xib; sourceTree = "<group>"; };
 		44B17E921E691DE700CA8F0C /* NotificationTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationTime.swift; path = Notification/NotificationTime.swift; sourceTree = "<group>"; };
+		44F2FAC31EB85F66003BB3EA /* TLMainFeedsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TLMainFeedsViewController.swift; path = Controller/TLMainFeedsViewController.swift; sourceTree = "<group>"; };
+		44F2FACA1EB86BB6003BB3EA /* EndJourneyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndJourneyView.swift; sourceTree = "<group>"; };
+		44F2FACB1EB86BB6003BB3EA /* EndJourneyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EndJourneyView.xib; sourceTree = "<group>"; };
 		68BDE9BB1A9237C6DAC3ABB1 /* Pods-TraveLibro.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TraveLibro.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TraveLibro/Pods-TraveLibro.debug.xcconfig"; sourceTree = "<group>"; };
 		7C9DA33B215F40A9D4891CAE /* Pods_TraveLibroTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TraveLibroTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		840599821E3CDA60004E0696 /* DropShadow1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DropShadow1.xib; sourceTree = "<group>"; };
@@ -659,8 +647,6 @@
 		841C9C451E14FAA6004E4CDD /* PhotosOTGController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosOTGController.swift; sourceTree = "<group>"; };
 		841E43A61E1D1C7B000D2E6B /* UploadingToCloud.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UploadingToCloud.xib; sourceTree = "<group>"; };
 		841E43A81E1D1CA4000D2E6B /* UploadingToCloud.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadingToCloud.swift; sourceTree = "<group>"; };
-		841E43AB1E1D1DD6000D2E6B /* EndJourneyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EndJourneyView.xib; sourceTree = "<group>"; };
-		841E43AD1E1D1DEA000D2E6B /* EndJourneyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndJourneyView.swift; sourceTree = "<group>"; };
 		842019C11E5C7EA2001F97E3 /* EndJourneyMyLife.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EndJourneyMyLife.xib; sourceTree = "<group>"; };
 		842019C31E5C8641001F97E3 /* EndJourneyMyLife.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndJourneyMyLife.swift; sourceTree = "<group>"; };
 		842484F31E139FBA00083115 /* PhotosOTGHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotosOTGHeader.xib; sourceTree = "<group>"; };
@@ -671,8 +657,6 @@
 		842485001E13BF4600083115 /* PhotosOTGView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosOTGView.swift; sourceTree = "<group>"; };
 		842D7A4F1E1E5D3E00FEDCD1 /* NearMeOptionButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NearMeOptionButton.xib; sourceTree = "<group>"; };
 		842D7A511E1E60DD00FEDCD1 /* NearMeOptionButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearMeOptionButton.swift; sourceTree = "<group>"; };
-		842D7A541E1E6F6100FEDCD1 /* Buttons2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Buttons2.xib; sourceTree = "<group>"; };
-		842D7A561E1E6FBC00FEDCD1 /* Buttons2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Buttons2.swift; sourceTree = "<group>"; };
 		843510DD1DF7F7EC00C3D8EE /* QuickIteneraryOne.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickIteneraryOne.swift; sourceTree = "<group>"; };
 		843510DF1DF7F84600C3D8EE /* QuickIteneraryTwo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickIteneraryTwo.swift; sourceTree = "<group>"; };
 		843510E11DF7F86400C3D8EE /* QuickIteneraryThree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickIteneraryThree.swift; sourceTree = "<group>"; };
@@ -682,8 +666,6 @@
 		8453CF3E1E30A32300C41F82 /* ActivityDetailItinerary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityDetailItinerary.swift; sourceTree = "<group>"; };
 		8453CF411E30AFAF00C41F82 /* ActivityFeedQuickItinerary.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivityFeedQuickItinerary.xib; sourceTree = "<group>"; };
 		8453CF441E30AFE200C41F82 /* ActivityFeedQuickItinerary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityFeedQuickItinerary.swift; sourceTree = "<group>"; };
-		845C43211E2F857A00800F51 /* ActivityFeedThoughts.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivityFeedThoughts.xib; sourceTree = "<group>"; };
-		845C43231E2F85CE00800F51 /* ActivityFeedThoughts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityFeedThoughts.swift; sourceTree = "<group>"; };
 		845C43261E2F8A4100800F51 /* ActivityFeedImageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivityFeedImageView.xib; sourceTree = "<group>"; };
 		845C43281E2F8A6700800F51 /* ActivityFeedImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityFeedImageView.swift; sourceTree = "<group>"; };
 		845C432B1E2FB14800800F51 /* ActivityFeedFooter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivityFeedFooter.xib; sourceTree = "<group>"; };
@@ -693,14 +675,6 @@
 		848DE53D1E791A55001CCDCF /* profilePicNavigation.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = profilePicNavigation.xib; sourceTree = "<group>"; };
 		848DE53F1E791AF9001CCDCF /* profilePicnavigation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = profilePicnavigation.swift; sourceTree = "<group>"; };
 		84CC75E21E8291EF0082F8CA /* 200_200.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 200_200.gif; sourceTree = "<group>"; };
-		84E61E441E377665009A740F /* OtgCardUITextView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OtgCardUITextView.xib; sourceTree = "<group>"; };
-		84E61E461E377828009A740F /* OtgCardUITextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtgCardUITextView.swift; sourceTree = "<group>"; };
-		84F25E961E5D63B300ED7A1E /* detailedItineraryMain.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = detailedItineraryMain.xib; sourceTree = "<group>"; };
-		84F25E9A1E5D693E00ED7A1E /* detailedItineraryMain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = detailedItineraryMain.swift; sourceTree = "<group>"; };
-		84F25EB11E5D7CE300ED7A1E /* detailedCity.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = detailedCity.xib; sourceTree = "<group>"; };
-		84F25EB31E5D803F00ED7A1E /* detailedCity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = detailedCity.swift; sourceTree = "<group>"; };
-		84F25EB51E5D821000ED7A1E /* detailedItineraryStrip.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = detailedItineraryStrip.xib; sourceTree = "<group>"; };
-		84F25EB81E5D862000ED7A1E /* detailedItineraryStrip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = detailedItineraryStrip.swift; sourceTree = "<group>"; };
 		84FF89421E52E0A300FDE8F0 /* Search.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Search.xib; sourceTree = "<group>"; };
 		84FF89481E52EAA800FDE8F0 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		84FF894A1E531B1100FDE8F0 /* Search.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
@@ -1168,29 +1142,17 @@
 		1A944E351CCB5A0C007EB5BD /* UIViews */ = {
 			isa = PBXGroup;
 			children = (
+				44F2FAC91EB86BA7003BB3EA /* EndJourneyView */,
+				44F2FAC51EB86054003BB3EA /* FeedViews */,
 				440918021E9DE7CF00AE20F4 /* EmptyScreens */,
 				848DE53C1E7919F6001CCDCF /* profilePicNavigation */,
-				84F25EB71E5D85BC00ED7A1E /* detailedItineraryStrip */,
-				84F25EB51E5D821000ED7A1E /* detailedItineraryStrip.xib */,
-				84F25EAE1E5D7C8A00ED7A1E /* detailedCity */,
-				84F25E991E5D63E800ED7A1E /* detailItineraryMain */,
 				842019C01E5C7E1E001F97E3 /* EndJourneyMyLife */,
 				4435D2D11E543F7C003BD1D9 /* Notification */,
 				84FF89411E52DFF600FDE8F0 /* Search */,
 				840599861E3CDB65004E0696 /* DropShadow2 */,
 				840599811E3CDA14004E0696 /* DropShadow1 */,
-				84E61E431E377324009A740F /* OtgCardUITextView */,
-				36E3B8221E34B52B00C597BA /* ActivityFeedFooterBasic */,
-				36E3B81D1E349CD900C597BA /* PostTextView */,
-				8453CF401E30AF2800C41F82 /* ActivityFeedQuickItinerary */,
-				8453CF3B1E30A0BF00C41F82 /* ActivityDetailItinerary */,
-				845C432A1E2FB11100800F51 /* ActivityFeedFooter */,
-				845C43251E2F8A1600800F51 /* ActivityFeedImageView */,
-				845C43201E2F84D000800F51 /* ActivityFeedThoughts */,
 				3638F9E11E2C221700B2EA04 /* VideoView */,
-				842D7A531E1E6F2800FEDCD1 /* Buttons2 */,
 				842D7A4E1E1E598300FEDCD1 /* NearMeOptionButton */,
-				841E43AA1E1D1D93000D2E6B /* EndJourneyView */,
 				841E43A51E1D1C46000D2E6B /* UploadingCloud */,
 				842484FD1E13BE8C00083115 /* PhotosOTGCenter */,
 				842484F71E13A94F00083115 /* PhotosOTGHeader */,
@@ -1299,9 +1261,6 @@
 				FCCA8F1C1E28B64100775985 /* TripSummaryCell */,
 				FCCA8F261E28C3AE00775985 /* TripSummaryFooter */,
 				FCCA8F211E28B98E00775985 /* TripSummaryMiddle */,
-				FCE877FD1E3093B0005EE913 /* ActivityHeaderTag */,
-				FCBF88D11E2E58C30092CB9D /* ActivityProfileHeader */,
-				FCE877F81E308FC2005EE913 /* ActivityTextHeader */,
 				FC807AD21E3C9B4300609E9B /* TripPhotoLayout */,
 				FC807AD71E3CAB1F00609E9B /* TripPhotoHeader */,
 				FCB3D17C1E5D70520041B121 /* OnlyLine */,
@@ -1370,29 +1329,10 @@
 		3638F9E11E2C221700B2EA04 /* VideoView */ = {
 			isa = PBXGroup;
 			children = (
-				845C431F1E2F839700800F51 /* New Group */,
 				3638F9E21E2C224800B2EA04 /* VideoView.xib */,
 				3638F9E41E2C226200B2EA04 /* VideoView.swift */,
 			);
 			name = VideoView;
-			sourceTree = "<group>";
-		};
-		36E3B81D1E349CD900C597BA /* PostTextView */ = {
-			isa = PBXGroup;
-			children = (
-				36E3B81E1E349D0C00C597BA /* PostTextView.xib */,
-				36E3B8201E349D1900C597BA /* PostTextView.swift */,
-			);
-			name = PostTextView;
-			sourceTree = "<group>";
-		};
-		36E3B8221E34B52B00C597BA /* ActivityFeedFooterBasic */ = {
-			isa = PBXGroup;
-			children = (
-				36E3B8231E34B54C00C597BA /* ActivityFeedFooterBasic.xib */,
-				36E3B8251E34B56200C597BA /* ActivityFeedFooterBasic.swift */,
-			);
-			name = ActivityFeedFooterBasic;
 			sourceTree = "<group>";
 		};
 		3ABFD8DC1DA8C76D00A51034 /* ChangeCity */ = {
@@ -1517,6 +1457,70 @@
 			name = MainProfile;
 			sourceTree = "<group>";
 		};
+		44F2FAC21EB85E6E003BB3EA /* Feeds */ = {
+			isa = PBXGroup;
+			children = (
+				44F2FAC31EB85F66003BB3EA /* TLMainFeedsViewController.swift */,
+			);
+			name = Feeds;
+			sourceTree = "<group>";
+		};
+		44F2FAC51EB86054003BB3EA /* FeedViews */ = {
+			isa = PBXGroup;
+			children = (
+				44F2FAC61EB8608E003BB3EA /* HeaderLayout */,
+				44F2FAC71EB860A4003BB3EA /* MiddleLayout */,
+				44F2FAC81EB860BB003BB3EA /* FooterLayout */,
+			);
+			name = FeedViews;
+			sourceTree = "<group>";
+		};
+		44F2FAC61EB8608E003BB3EA /* HeaderLayout */ = {
+			isa = PBXGroup;
+			children = (
+				FCBF88CD1E2E58660092CB9D /* ActivityProfileHeader.xib */,
+				FCBF88CF1E2E588E0092CB9D /* ActivityProfileHeader.swift */,
+				FCE877F41E308F70005EE913 /* ActivityTextHeader.xib */,
+				FCE877F61E308F8C005EE913 /* ActivityTextHeader.swift */,
+				FCE877F91E309386005EE913 /* ActivityHeaderTag.xib */,
+				FCE877FB1E3093A4005EE913 /* ActivityHeaderTag.swift */,
+			);
+			name = HeaderLayout;
+			sourceTree = "<group>";
+		};
+		44F2FAC71EB860A4003BB3EA /* MiddleLayout */ = {
+			isa = PBXGroup;
+			children = (
+				845C43261E2F8A4100800F51 /* ActivityFeedImageView.xib */,
+				845C43281E2F8A6700800F51 /* ActivityFeedImageView.swift */,
+				8453CF411E30AFAF00C41F82 /* ActivityFeedQuickItinerary.xib */,
+				8453CF441E30AFE200C41F82 /* ActivityFeedQuickItinerary.swift */,
+				8453CF3C1E30A12400C41F82 /* ActivityDetailItinerary.xib */,
+				8453CF3E1E30A32300C41F82 /* ActivityDetailItinerary.swift */,
+			);
+			name = MiddleLayout;
+			sourceTree = "<group>";
+		};
+		44F2FAC81EB860BB003BB3EA /* FooterLayout */ = {
+			isa = PBXGroup;
+			children = (
+				845C432B1E2FB14800800F51 /* ActivityFeedFooter.xib */,
+				845C432D1E2FCE4200800F51 /* ActivityFeedFooter.swift */,
+				36E3B8231E34B54C00C597BA /* ActivityFeedFooterBasic.xib */,
+				36E3B8251E34B56200C597BA /* ActivityFeedFooterBasic.swift */,
+			);
+			name = FooterLayout;
+			sourceTree = "<group>";
+		};
+		44F2FAC91EB86BA7003BB3EA /* EndJourneyView */ = {
+			isa = PBXGroup;
+			children = (
+				44F2FACA1EB86BB6003BB3EA /* EndJourneyView.swift */,
+				44F2FACB1EB86BB6003BB3EA /* EndJourneyView.xib */,
+			);
+			name = EndJourneyView;
+			sourceTree = "<group>";
+		};
 		70E6CB1E8C296A54FDB1A1A7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1566,15 +1570,6 @@
 			name = UploadingCloud;
 			sourceTree = "<group>";
 		};
-		841E43AA1E1D1D93000D2E6B /* EndJourneyView */ = {
-			isa = PBXGroup;
-			children = (
-				841E43AB1E1D1DD6000D2E6B /* EndJourneyView.xib */,
-				841E43AD1E1D1DEA000D2E6B /* EndJourneyView.swift */,
-			);
-			name = EndJourneyView;
-			sourceTree = "<group>";
-		};
 		842019C01E5C7E1E001F97E3 /* EndJourneyMyLife */ = {
 			isa = PBXGroup;
 			children = (
@@ -1611,67 +1606,6 @@
 			name = NearMeOptionButton;
 			sourceTree = "<group>";
 		};
-		842D7A531E1E6F2800FEDCD1 /* Buttons2 */ = {
-			isa = PBXGroup;
-			children = (
-				842D7A541E1E6F6100FEDCD1 /* Buttons2.xib */,
-				842D7A561E1E6FBC00FEDCD1 /* Buttons2.swift */,
-			);
-			name = Buttons2;
-			sourceTree = "<group>";
-		};
-		8453CF3B1E30A0BF00C41F82 /* ActivityDetailItinerary */ = {
-			isa = PBXGroup;
-			children = (
-				8453CF3C1E30A12400C41F82 /* ActivityDetailItinerary.xib */,
-				8453CF3E1E30A32300C41F82 /* ActivityDetailItinerary.swift */,
-			);
-			name = ActivityDetailItinerary;
-			sourceTree = "<group>";
-		};
-		8453CF401E30AF2800C41F82 /* ActivityFeedQuickItinerary */ = {
-			isa = PBXGroup;
-			children = (
-				8453CF411E30AFAF00C41F82 /* ActivityFeedQuickItinerary.xib */,
-				8453CF441E30AFE200C41F82 /* ActivityFeedQuickItinerary.swift */,
-			);
-			name = ActivityFeedQuickItinerary;
-			sourceTree = "<group>";
-		};
-		845C431F1E2F839700800F51 /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "New Group";
-			sourceTree = "<group>";
-		};
-		845C43201E2F84D000800F51 /* ActivityFeedThoughts */ = {
-			isa = PBXGroup;
-			children = (
-				845C43211E2F857A00800F51 /* ActivityFeedThoughts.xib */,
-				845C43231E2F85CE00800F51 /* ActivityFeedThoughts.swift */,
-			);
-			name = ActivityFeedThoughts;
-			sourceTree = "<group>";
-		};
-		845C43251E2F8A1600800F51 /* ActivityFeedImageView */ = {
-			isa = PBXGroup;
-			children = (
-				845C43261E2F8A4100800F51 /* ActivityFeedImageView.xib */,
-				845C43281E2F8A6700800F51 /* ActivityFeedImageView.swift */,
-			);
-			name = ActivityFeedImageView;
-			sourceTree = "<group>";
-		};
-		845C432A1E2FB11100800F51 /* ActivityFeedFooter */ = {
-			isa = PBXGroup;
-			children = (
-				845C432B1E2FB14800800F51 /* ActivityFeedFooter.xib */,
-				845C432D1E2FCE4200800F51 /* ActivityFeedFooter.swift */,
-			);
-			name = ActivityFeedFooter;
-			sourceTree = "<group>";
-		};
 		847AACF81E02AE5F001C8ACA /* PhotosOTGFooter */ = {
 			isa = PBXGroup;
 			children = (
@@ -1688,41 +1622,6 @@
 				848DE53F1E791AF9001CCDCF /* profilePicnavigation.swift */,
 			);
 			name = profilePicNavigation;
-			sourceTree = "<group>";
-		};
-		84E61E431E377324009A740F /* OtgCardUITextView */ = {
-			isa = PBXGroup;
-			children = (
-				84E61E441E377665009A740F /* OtgCardUITextView.xib */,
-				84E61E461E377828009A740F /* OtgCardUITextView.swift */,
-			);
-			name = OtgCardUITextView;
-			sourceTree = "<group>";
-		};
-		84F25E991E5D63E800ED7A1E /* detailItineraryMain */ = {
-			isa = PBXGroup;
-			children = (
-				84F25E961E5D63B300ED7A1E /* detailedItineraryMain.xib */,
-				84F25E9A1E5D693E00ED7A1E /* detailedItineraryMain.swift */,
-			);
-			name = detailItineraryMain;
-			sourceTree = "<group>";
-		};
-		84F25EAE1E5D7C8A00ED7A1E /* detailedCity */ = {
-			isa = PBXGroup;
-			children = (
-				84F25EB11E5D7CE300ED7A1E /* detailedCity.xib */,
-				84F25EB31E5D803F00ED7A1E /* detailedCity.swift */,
-			);
-			name = detailedCity;
-			sourceTree = "<group>";
-		};
-		84F25EB71E5D85BC00ED7A1E /* detailedItineraryStrip */ = {
-			isa = PBXGroup;
-			children = (
-				84F25EB81E5D862000ED7A1E /* detailedItineraryStrip.swift */,
-			);
-			name = detailedItineraryStrip;
 			sourceTree = "<group>";
 		};
 		84FF89411E52DFF600FDE8F0 /* Search */ = {
@@ -2080,6 +1979,7 @@
 		C25443511CD7392000C2C6CD /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				44F2FAC21EB85E6E003BB3EA /* Feeds */,
 				4468E5391EAB1B2600DECD77 /* MainProfile */,
 				84FF894C1E53476A00FDE8F0 /* SearchTableViewController.swift */,
 				84FF89481E52EAA800FDE8F0 /* SearchViewController.swift */,
@@ -2780,15 +2680,6 @@
 			name = OnlyLine;
 			sourceTree = "<group>";
 		};
-		FCBF88D11E2E58C30092CB9D /* ActivityProfileHeader */ = {
-			isa = PBXGroup;
-			children = (
-				FCBF88CD1E2E58660092CB9D /* ActivityProfileHeader.xib */,
-				FCBF88CF1E2E588E0092CB9D /* ActivityProfileHeader.swift */,
-			);
-			name = ActivityProfileHeader;
-			sourceTree = "<group>";
-		};
 		FCCA8F131E28AAD600775985 /* TripSummaryView */ = {
 			isa = PBXGroup;
 			children = (
@@ -2850,24 +2741,6 @@
 				FCDF49091E255A1C00ED9A32 /* previewBase.swift */,
 			);
 			name = previewBase;
-			sourceTree = "<group>";
-		};
-		FCE877F81E308FC2005EE913 /* ActivityTextHeader */ = {
-			isa = PBXGroup;
-			children = (
-				FCE877F41E308F70005EE913 /* ActivityTextHeader.xib */,
-				FCE877F61E308F8C005EE913 /* ActivityTextHeader.swift */,
-			);
-			name = ActivityTextHeader;
-			sourceTree = "<group>";
-		};
-		FCE877FD1E3093B0005EE913 /* ActivityHeaderTag */ = {
-			isa = PBXGroup;
-			children = (
-				FCE877F91E309386005EE913 /* ActivityHeaderTag.xib */,
-				FCE877FB1E3093A4005EE913 /* ActivityHeaderTag.swift */,
-			);
-			name = ActivityHeaderTag;
 			sourceTree = "<group>";
 		};
 		FCE878001E30CB59005EE913 /* ActivityFeedsLayout */ = {
@@ -3014,7 +2887,6 @@
 				443225AB1E668332008AB156 /* mylife.mp4 in Resources */,
 				4435D2DF1E545FB5003BD1D9 /* notificationFollowPermissionView.xib in Resources */,
 				C20939061D1180C100CBA70F /* DJB My Mood Ring Says Blah.ttf in Resources */,
-				845C43221E2F857A00800F51 /* ActivityFeedThoughts.xib in Resources */,
 				C2889D3A1DB0E91700B302AF /* ShowRating.xib in Resources */,
 				1A65E7AB1CD72F1F009374DA /* Avenir-Medium.ttf in Resources */,
 				443757C91E6C0152007C0851 /* forgotPasswordView.xib in Resources */,
@@ -3040,7 +2912,6 @@
 				845C43271E2F8A4100800F51 /* ActivityFeedImageView.xib in Resources */,
 				FC13D1D01E60309D008FC77D /* SearchElement.xib in Resources */,
 				C24F84E01D0017BB002EA203 /* ResetPassword.xib in Resources */,
-				84F25E971E5D63B300ED7A1E /* detailedItineraryMain.xib in Resources */,
 				FCCA8F281E28DCE900775985 /* TripSummaryView.xib in Resources */,
 				1A65E7A21CD72EB3009374DA /* fontawesome-webfont.ttf in Resources */,
 				368A56921E3CDB5C00DC8A19 /* loader2.gif in Resources */,
@@ -3060,7 +2931,6 @@
 				C2EA3A1B1CDB790000122941 /* TypeOfJourney.xib in Resources */,
 				36E3B8241E34B54C00C597BA /* ActivityFeedFooterBasic.xib in Resources */,
 				C258A3391D6C83D600664CF7 /* ExistingAccountPopup.xib in Resources */,
-				36E3B81F1E349D0C00C597BA /* PostTextView.xib in Resources */,
 				C26907871CF82DF200F827E6 /* AccountVerified.xib in Resources */,
 				C29634EA1D06F01300E9DF71 /* SearchLocation.xib in Resources */,
 				C23EB1CB1CFEB008005B5CE8 /* CheckInLocalLife.xib in Resources */,
@@ -3096,7 +2966,6 @@
 				C2DCB3741CE7470F006E5CBD /* AddRating.xib in Resources */,
 				C269077D1CF819BA00F827E6 /* GenderInfo.xib in Resources */,
 				FCDF49081E25586C00ED9A32 /* previewBase.xib in Resources */,
-				841E43AC1E1D1DD6000D2E6B /* EndJourneyView.xib in Resources */,
 				3AEEB0091CE6F64F0085EEF5 /* Rating.xib in Resources */,
 				C2FF64871D82ED0900F3866A /* AddActivityOTG.xib in Resources */,
 				4409180A1E9DF97100AE20F4 /* activityEmptyView.xib in Resources */,
@@ -3121,7 +2990,6 @@
 				C2B0B2C51D93B7D0001243EF /* BuddyOTG.xib in Resources */,
 				C2EA3A191CDB3C1200122941 /* TextField.xib in Resources */,
 				C2DCB36A1CE701A4006E5CBD /* TripSummaryItinerary.xib in Resources */,
-				842D7A551E1E6F6100FEDCD1 /* Buttons2.xib in Resources */,
 				C2C965961CE458B7007BDA34 /* Date&Time.xib in Resources */,
 				C26B4DEB1D141D9D00213055 /* ConnectWithAgent.xib in Resources */,
 				842019C21E5C7EA2001F97E3 /* EndJourneyMyLife.xib in Resources */,
@@ -3137,7 +3005,6 @@
 				C24F84F01D004E59002EA203 /* NoFollowers.xib in Resources */,
 				4435D2FB1E548D02003BD1D9 /* notificationBackgroundView.xib in Resources */,
 				FCF610B11E979EB600761607 /* new-gif-14.3.2017.gif in Resources */,
-				84F25EB61E5D821000ED7A1E /* detailedItineraryStrip.xib in Resources */,
 				C24870551D0C4458003CB0DD /* HotelTypeSelect.xib in Resources */,
 				842484F61E13A4C000083115 /* PhotoOTGFooter.xib in Resources */,
 				8453CF3D1E30A12400C41F82 /* ActivityDetailItinerary.xib in Resources */,
@@ -3147,7 +3014,6 @@
 				368A56901E3CD6E600DC8A19 /* loader.gif in Resources */,
 				FCCA8F171E28AE7200775985 /* TripSummaryCell.xib in Resources */,
 				FC0B9A9A1E20BCC4005D9206 /* QuickCity.xib in Resources */,
-				84E61E451E377665009A740F /* OtgCardUITextView.xib in Resources */,
 				FC0B9A9F1E23BE13005D9206 /* TextBoxContainer.xib in Resources */,
 				C2873E8C1D9E8E510001431B /* BuddyLeaves.xib in Resources */,
 				C2ABDBB41CEC53C300D7542E /* StatusView.xib in Resources */,
@@ -3160,7 +3026,6 @@
 				C267301F1D279D7900F2C822 /* AddNewOTG.xib in Resources */,
 				C24F84F71D00546F002EA203 /* NoCountriesVisited.xib in Resources */,
 				848DE53E1E791A55001CCDCF /* profilePicNavigation.xib in Resources */,
-				84F25EB21E5D7CE300ED7A1E /* detailedCity.xib in Resources */,
 				C26D619A1D43A9FF0036714C /* footerNew.xib in Resources */,
 				841E43A71E1D1C7B000D2E6B /* UploadingToCloud.xib in Resources */,
 				842484F41E139FBB00083115 /* PhotosOTGHeader.xib in Resources */,
@@ -3169,6 +3034,7 @@
 				3AF187081D785C9D00A86BC1 /* forDpFour.xib in Resources */,
 				FCE877FA1E309386005EE913 /* ActivityHeaderTag.xib in Resources */,
 				840599831E3CDA60004E0696 /* DropShadow1.xib in Resources */,
+				44F2FACD1EB86BB6003BB3EA /* EndJourneyView.xib in Resources */,
 				C26695581D3CA2CD0068D9C7 /* TimestampTagViewOnScroll.xib in Resources */,
 				C20938FC1D11298A00CBA70F /* MoreAboutMeScrollForProfile.xib in Resources */,
 				C2A6E26B1CE9DF8D00D3F845 /* AddFriendOTG.xib in Resources */,
@@ -3332,11 +3198,9 @@
 				C22138F81D547C42008D9DEE /* QuickItineraryFour.swift in Sources */,
 				C28A92551D0ECD4300CFEC7A /* FilterBlogs.swift in Sources */,
 				C2DCB3701CE73650006E5CBD /* LocationCategoryViewController.swift in Sources */,
-				845C43241E2F85CE00800F51 /* ActivityFeedThoughts.swift in Sources */,
 				FCCA8F191E28B5BC00775985 /* TripSummaryView.swift in Sources */,
 				C2DCB3771CE7473A006E5CBD /* AddRating.swift in Sources */,
 				C23EB1DB1CFEE242005B5CE8 /* LocalLifeRecommendationViewController.swift in Sources */,
-				84F25E9B1E5D693E00ED7A1E /* detailedItineraryMain.swift in Sources */,
 				C25BE1F31CFC06BB00C98DD3 /* LocalLifePostsViewController.swift in Sources */,
 				C24909B11D49D616007EB6B4 /* tripSummaryEach.swift in Sources */,
 				C258A3371D6C74E600664CF7 /* AddNationalityNewViewController.swift in Sources */,
@@ -3364,7 +3228,6 @@
 				845C432E1E2FCE4200800F51 /* ActivityFeedFooter.swift in Sources */,
 				C27F6C011CF03E280049F012 /* ProfileMainView.swift in Sources */,
 				1A944E3A1CCB5B88007EB5BD /* FooterView.swift in Sources */,
-				84F25EB91E5D862000ED7A1E /* detailedItineraryStrip.swift in Sources */,
 				FCE877FC1E3093A4005EE913 /* ActivityHeaderTag.swift in Sources */,
 				843510E41DF7F88100C3D8EE /* QuickIteneraryFour.swift in Sources */,
 				C2DA2B5B1CE6076600F15C5C /* MyCollectionViewCell.swift in Sources */,
@@ -3415,6 +3278,7 @@
 				FCCA8F201E28B96700775985 /* TripSummaryMiddle.swift in Sources */,
 				C24909B81D4A09E6007EB6B4 /* TripSummaryPhotoListViewController.swift in Sources */,
 				C2EA3A161CDB3B9900122941 /* TextField.swift in Sources */,
+				44F2FAC41EB85F66003BB3EA /* TLMainFeedsViewController.swift in Sources */,
 				FC6317E11EB30D88000C0C05 /* DottedLine.swift in Sources */,
 				3A7D360B1DE8441700786A83 /* PhotoCommentViewController.swift in Sources */,
 				C25BE1F71CFC2A2300C98DD3 /* InProfileOTGPost.swift in Sources */,
@@ -3453,7 +3317,6 @@
 				44725D2D1E5ADBB70074D925 /* NotificationCommentCell.swift in Sources */,
 				C23B3BE01D4248F10075B733 /* EachCityPagerViewController.swift in Sources */,
 				C2823AFE1D45E09C0065A76C /* FooterViewNew.swift in Sources */,
-				842D7A571E1E6FBC00FEDCD1 /* Buttons2.swift in Sources */,
 				FC13D1CE1E603073008FC77D /* SearchElement.swift in Sources */,
 				C2E697B71D3E541500E76F1E /* FCMainViewController.swift in Sources */,
 				C2756C4F1D059F1E0083CEBD /* EditProfileViewController.swift in Sources */,
@@ -3462,7 +3325,6 @@
 				36EB3F981E0D81A000EFF9EC /* PostBuddy.swift in Sources */,
 				C23EB1D71CFED335005B5CE8 /* LocalLifeRecommends.swift in Sources */,
 				848DE5401E791AF9001CCDCF /* profilePicnavigation.swift in Sources */,
-				84E61E471E377828009A740F /* OtgCardUITextView.swift in Sources */,
 				3638F9E51E2C226200B2EA04 /* VideoView.swift in Sources */,
 				FCE877F71E308F8C005EE913 /* ActivityTextHeader.swift in Sources */,
 				1A4CA1201CCE189200EE9A90 /* AddCircle.swift in Sources */,
@@ -3517,7 +3379,6 @@
 				C24870481D0BEAF7003CB0DD /* EachItineraryViewController.swift in Sources */,
 				843510E01DF7F84600C3D8EE /* QuickIteneraryTwo.swift in Sources */,
 				843510DE1DF7F7EC00C3D8EE /* QuickIteneraryOne.swift in Sources */,
-				36E3B8211E349D1900C597BA /* PostTextView.swift in Sources */,
 				C281FBEB1D55EF4A00728BD9 /* ItineraryThree.swift in Sources */,
 				367B90F71DC23ADF00D76F13 /* ActiveType.swift in Sources */,
 				FCCA8F251E28C38D00775985 /* TripSummaryFooter.swift in Sources */,
@@ -3537,7 +3398,6 @@
 				C2DD03281CEB4D0F001878DD /* ImageMask.swift in Sources */,
 				C20352371CEF433500A20BB2 /* SideNavigationMenuViewController.swift in Sources */,
 				367B90F51DC23ADF00D76F13 /* ActiveBuilder.swift in Sources */,
-				84F25EB41E5D803F00ED7A1E /* detailedCity.swift in Sources */,
 				FC49DCFA1DE6D04D00B0DEF3 /* ImgLyKitViewController.swift in Sources */,
 				C25207371D096F27008F0E51 /* ExploreDestinationsViewController.swift in Sources */,
 				C28521BA1D365FDF001EF251 /* PagerTabViewController.swift in Sources */,
@@ -3567,7 +3427,6 @@
 				840E256F1E5EF423003220FE /* LoaderViewController.swift in Sources */,
 				3AEEB00B1CE7017E0085EEF5 /* Rating.swift in Sources */,
 				842019C41E5C8641001F97E3 /* EndJourneyMyLife.swift in Sources */,
-				841E43AE1E1D1DEA000D2E6B /* EndJourneyView.swift in Sources */,
 				C29767181D50D65200428269 /* ListPhotosViewController.swift in Sources */,
 				C24909B41D49F74B007EB6B4 /* TripSummaryPhotosViewController.swift in Sources */,
 				C21293101D2E830B002D5A4A /* MyLifeMomentsViewController.swift in Sources */,
@@ -3609,6 +3468,7 @@
 				446CEF561EA0D53200DD64EC /* NotificationWelcomeCell.swift in Sources */,
 				C25649971D48D7670046E36D /* TripInfoOTG.swift in Sources */,
 				1A944E081CCB4567007EB5BD /* AppDelegate.swift in Sources */,
+				44F2FACC1EB86BB6003BB3EA /* EndJourneyView.swift in Sources */,
 				843510E21DF7F86400C3D8EE /* QuickIteneraryThree.swift in Sources */,
 				C2A36D041DF930DC0091AD56 /* QuickItineraryPreviewViewController.swift in Sources */,
 				C23EB1E51CFF07EA005B5CE8 /* AddPostsLocalLife.swift in Sources */,

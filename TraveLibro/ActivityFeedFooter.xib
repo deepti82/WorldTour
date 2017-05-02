@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -55,7 +54,7 @@
                                                         <constraint firstAttribute="width" secondItem="6xd-vA-ZIM" secondAttribute="height" multiplier="1:1" id="WLr-Sn-Xng"/>
                                                     </constraints>
                                                     <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
-                                                    <state key="normal" title="Button" image="E0766A2F-3BCA-4F21-807A-228E8A443B63"/>
+                                                    <state key="normal" title="Button" image="12897751-450F-4A63-8AA0-1C1D8D0FB85F"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="velocity">
                                                             <real key="value" value="2"/>
@@ -296,7 +295,7 @@
         </view>
     </objects>
     <resources>
-        <image name="E0766A2F-3BCA-4F21-807A-228E8A443B63" width="128" height="128">
+        <image name="12897751-450F-4A63-8AA0-1C1D8D0FB85F" width="128" height="128">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw

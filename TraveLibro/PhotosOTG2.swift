@@ -4,8 +4,7 @@ import Spring
 
 class PhotosOTG2: VerticalLayout,PlayerDelegate {
     var postTop:Post!
-    var endJourneyView: EndJourneyMyLife!
-    var endJourneyCard: EndJourneyView!
+    var endJourneyView: EndJourneyMyLife!    
     var lines: OnlyLine!
     var profileHeader:ActivityProfileHeader!
     var textHeader:ActivityTextHeader!
