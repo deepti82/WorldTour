@@ -140,8 +140,11 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
         
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {        
-        return 275
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        print(screenHeight)
+        let tableh = screenHeight
+        let h = (tableh / 2) - 50
+        return h
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -166,6 +169,16 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
         cell.followerCountLabel.text = cellData["followers_count"].stringValue
 
         cell.userBadgeImage.image = UIImage(named:"\(cellData["userBadgeName"].stringValue.lowercased())blogger")
+        print("iiiiiiii \(cellData["userBadgeName"].stringValue.lowercased())")
+        
+        switch cellData["userBadgeName"].stringValue.lowercased() {
+        case "justgotWings":
+            cell.starWidth.constant = cell.starWidth.constant + 50
+        case "globetrotter":
+            cell.starWidth.constant = cell.starWidth.constant + 40
+        default:
+            cell.starWidth.constant = cell.starWidth.constant
+        }
 
         if(currentUser != nil) {
             cell.followButton.tag = indexPath.row
@@ -324,6 +337,7 @@ class PopularBloggerTableViewCell: UITableViewCell {
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var photoCountLabel: UILabel!
     @IBOutlet weak var videoCountLabel: UILabel!
+    @IBOutlet weak var starWidth: NSLayoutConstraint!
 //    @IBOutlet weak var bucketListCount: UILabel!
 //    
     @IBOutlet weak var countryVisitedCountLabel: UILabel!
