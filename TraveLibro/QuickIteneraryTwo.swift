@@ -7,10 +7,12 @@ class QuickIteneraryTwo: UIViewController {
     @IBOutlet weak var businessAnimation: SpringButton!
     var eachButton: [String] = []
     
+    @IBOutlet weak var firstStack: UIStackView!
     var itineraryTypes:JSON!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//        self.firstStack.spacing = firstStack.width
         let array = ["adventure", "business", "family", "budget", "backpacking", "romance", "friends", "religious", "luxury", "solo", "shopping", "festival"]
         if quickItinery["itineraryType"] == nil {
             quickItinery["itineraryType"] = JSON(eachButton)
