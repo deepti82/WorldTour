@@ -118,9 +118,10 @@ class FooterViewNew: UIView {
                 DispatchQueue.main.async {
                     popularView = "activity"
                     currentUser = response["data"]
-                    let vc = storyboard!.instantiateViewController(withIdentifier: "activityFeeds") as! ActivityFeedsController
-                    vc.displayData = "activity"
-                    popularView = "activity"
+                    let vc = storyboard!.instantiateViewController(withIdentifier: "TLMainFeedsView") as! TLMainFeedsViewController
+                    vc.pageType = viewType.VIEW_TYPE_ACTIVITY
+//                    vc.displayData = "activity"
+//                    popularView = "activity"
                     self.setVC(newViewController: vc)
                 }
             })

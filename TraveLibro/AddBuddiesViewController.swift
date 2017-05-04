@@ -33,7 +33,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
     
     @IBAction func saveButtonTapped(_ sender: UIButton) {
         sender.isEnabled = false
-        self.navigationController?.popViewController(animated: true)
+        _ = self.navigationController?.popViewController(animated: true)
         switch(whichView) {
         case "AddActivity":
             globalAddActivityNew.buddyAdded(addedFriends);

@@ -12,27 +12,25 @@ import AVFoundation
 
 class ActivityFeedFooter: UIView {
     
-    //    @IBOutlet weak var LineView1: UIView!
-    
-    
-    @IBOutlet weak var lineView: UIView!
-    @IBOutlet weak var localLifeTravelImage: UIImageView!
+   
     var backgroundReview: UIView!
-    @IBOutlet weak var footerColorView: UIView!
-    var postTop:JSON!
+   
+    var postTop: JSON!
+    var pageType: viewType!
+    var parentController: UIViewController!
     
-    @IBOutlet weak var reviewLabel: UILabel!
+    @IBOutlet weak var upperView: UIView!
     @IBOutlet weak var likeButton: SpringButton!
     @IBOutlet weak var commentButton: SpringButton!    
     @IBOutlet weak var shareButton: UIButton!
     @IBOutlet weak var optionButton: UIButton!
+    
+    @IBOutlet weak var lowerViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var lowerView: UIView!
     @IBOutlet weak var likeHeart: UILabel!    
     @IBOutlet weak var commentIcon: UIImageView!        
     @IBOutlet weak var likeCountButton: UIButton!
     @IBOutlet weak var commentCountButton: UIButton!
-    
-//    @IBOutlet weak var reviewButton: UIButton!
-    
     
     var topLayout:VerticalLayout!
     var type="ActivityFeeds"
@@ -63,7 +61,7 @@ class ActivityFeedFooter: UIView {
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view)
-//        transparentCardWhite(footerColorView)
+        
         likeButton.tintColor = mainBlueColor
         commentButton.tintColor = mainBlueColor
         shareButton.tintColor = mainBlueColor
@@ -85,13 +83,29 @@ class ActivityFeedFooter: UIView {
         audioPlayer.prepareToPlay()        
     }
     
-    func setView(feed:JSON) {
-        postTop = feed        
+    func fillFeedFooter(feed: JSON, pageType: viewType?) {
+        self.postTop = feed
+        self.pageType = pageType
+        
         if currentUser != nil {
-            optionButton.isHidden = false
-        }else{
+            if (isSelfUser(otherUserID: postTop["user"]["_id"].stringValue) && self.type != "MyLifeFeeds") {
+                optionButton.isHidden = true
+            }
+            else {
+                optionButton.isHidden = false
+            }
+        }
+        else {
             optionButton.isHidden = true
         }
+        
+        self.setLikeCount(postTop["likeCount"].intValue)
+        self.setCommentCount(postTop["commentCount"].intValue)
+        self.setLikeSelected(postTop["likeDone"].boolValue)
+    }
+    
+    func setView(feed:JSON) {
+        postTop = feed
         
         if (isSelfUser(otherUserID: postTop["user"]["_id"].stringValue) && self.type != "MyLifeFeeds") {
             optionButton.isHidden = true
@@ -99,7 +113,6 @@ class ActivityFeedFooter: UIView {
         else {
             optionButton.isHidden = false
         }
-        
     }
         
     
@@ -197,7 +210,6 @@ class ActivityFeedFooter: UIView {
                 self.likeCountButton.setTitle("\(counts) Likes", for: .normal)
             }
         }
-        self.checkHideView()        
     }
     
     func setLikeSelected (_ isSelected:Bool) {         
@@ -217,7 +229,7 @@ class ActivityFeedFooter: UIView {
             feedVC.postId = postTop["_id"].stringValue
             feedVC.type = postTop["type"].stringValue
             feedVC.title = postTop["name"].stringValue
-            globalNavigationController.pushViewController(feedVC, animated: true)
+            parentController.navigationController?.pushViewController(feedVC, animated: true)
         }
         else {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
@@ -253,8 +265,8 @@ class ActivityFeedFooter: UIView {
             default:
                 comment.type = "post"
             }
-            globalNavigationController?.setNavigationBarHidden(false, animated: false)
-            globalNavigationController?.pushViewController(comment, animated: true)
+            parentController.navigationController?.setNavigationBarHidden(false, animated: false)
+            parentController.navigationController?.pushViewController(comment, animated: true)
         }
         else {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
@@ -274,41 +286,14 @@ class ActivityFeedFooter: UIView {
                 self.commentCountButton.setTitle("\(counts) Comments", for: .normal)                
             }
         }
-        self.checkHideView()
     }
     
     
     //MARK: - Share
     
-    @IBAction func sharingTap(_ sender: Any) {
-        sharingUrl(url:  postTop["sharingUrl"].stringValue, onView: globalNavigationController.topViewController!)
+    @IBAction func sharingTap(_ sender: UIButton) {
+        sharingUrl(url:  postTop["sharingUrl"].stringValue, onView: parentController)
     }
-    
-    
-    //MARK: - Review
-    
-    func setReviewCount(count:Int!) {
-        if count != nil {
-            self.reviewCount = count
-            if(count == 0) {
-                self.reviewLabel.text = "0 Review"
-            } else if(count == 1) {
-                self.reviewLabel.text = "1 Review"
-            } else if(count > 1) {
-                let counts = String(count)
-                self.reviewLabel.text = "\(counts) Reviews"
-            }
-            
-        }
-        self.checkHideView()
-    }
-    
-    func reviewTapOut(_ sender: UITapGestureRecognizer) {
-        print("in footer tap out")
-        backgroundReview.removeFromSuperview()
-        
-    }
-    
     
     //MARK: - Option
     
@@ -343,8 +328,7 @@ class ActivityFeedFooter: UIView {
                     {action -> Void in
                         let alert = UIAlertController(title: "Report", message: "Reported Successfully.", preferredStyle: UIAlertControllerStyle.alert)
                         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-                        showPopover(optionsController: alert, sender: sender, vc: globalNavigationController)
-                        //                            globalNavigationController.present(alert, animated: true, completion: nil)
+                        showPopover(optionsController: alert, sender: sender, vc: self.parentController)
                     }
                     actionSheetControllerIOS8.addAction(reportActionButton)
                 }
@@ -490,8 +474,7 @@ class ActivityFeedFooter: UIView {
                     {action -> Void in
                         let alert = UIAlertController(title: "Report", message: "Reported Successfully.", preferredStyle: UIAlertControllerStyle.alert)
                         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-                        showPopover(optionsController: alert, sender: sender, vc: globalNavigationController)
-                        //                            globalNavigationController.present(alert, animated: true, completion: nil)
+                        showPopover(optionsController: alert, sender: sender, vc: self.parentController)
                     }
                     actionSheetControllerIOS8.addAction(reportActionButton)
                 }
@@ -522,14 +505,11 @@ class ActivityFeedFooter: UIView {
             {action -> Void in
                 let alert = UIAlertController(title: "Report", message: "Reported Successfully.", preferredStyle: UIAlertControllerStyle.alert)
                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-                showPopover(optionsController: alert, sender: sender, vc: globalNavigationController)
-                globalNavigationController.present(alert, animated: true, completion: nil)
+                showPopover(optionsController: alert, sender: sender, vc: self.parentController)
             }
             actionSheetControllerIOS8.addAction(reportActionButton)
         }
-        showPopover(optionsController: actionSheetControllerIOS8, sender: sender, vc: globalNavigationController)
-        //            globalNavigationController.topViewController?.present(actionSheetControllerIOS8, animated: true, completion: nil)            
-        
+        showPopover(optionsController: actionSheetControllerIOS8, sender: sender, vc: self.parentController)
     }
     
     

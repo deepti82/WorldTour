@@ -88,8 +88,8 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         let homeController = storyboard!.instantiateViewController(withIdentifier: "Home") as! HomeViewController
         self.homeController = UINavigationController(rootViewController: homeController)
         
-        let PJController = storyboard!.instantiateViewController(withIdentifier: "popular") as! PopularController
-        PJController.displayData = "popular"
+        let PJController = storyboard!.instantiateViewController(withIdentifier: "TLMainFeedsView") as! TLMainFeedsViewController
+        PJController.pageType = viewType.VIEW_TYPE_POPULAR_JOURNEY
         self.popJourneysController = UINavigationController(rootViewController: PJController)
         
         let EDController = storyboard!.instantiateViewController(withIdentifier: "popular") as! PopularController

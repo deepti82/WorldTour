@@ -5,8 +5,8 @@ import OneSignal
 import Haneke
 import Crashlytics
 
-var adminUrl = "https://travelibro.wohlig.com/api/"
-//var adminUrl = "https://travelibro.com/api/"
+//var adminUrl = "https://travelibro.wohlig.com/api/"
+var adminUrl = "https://travelibro.com/api/"
 var adminBackendUrl = "http://travelibroadmin.travelibro.com/api/"
 var mapKey = "AIzaSyDPH6EYKMW97XMTJzqYqA0CR4fk5l2gzE4"
 
@@ -3706,7 +3706,7 @@ class Navigation {
         do {
             var params: JSON
             
-            if userId == nil {
+            if userId == "" {
                 params = ["pagenumber": pagenumber]
             }else{
                 params = ["user": userId, "pagenumber": pagenumber]

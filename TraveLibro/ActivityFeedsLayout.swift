@@ -78,8 +78,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             profileHeader.localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["startTime"].stringValue, isDate: false)
         }else {
             profileHeader.localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["UTCModified"].stringValue, isDate: true)
-            profileHeader.localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["UTCModified"].stringValue, isDate: false)
-            
+            profileHeader.localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["UTCModified"].stringValue, isDate: false)            
         }
         
         if feed["thoughts"].stringValue != "" {
@@ -90,7 +89,6 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             textHeader.headerText.sizeToFit()
             textHeader.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: textHeader.headerText.frame.height + 1.5)
             self.addSubview(textHeader)
-            textHeader.kindOfJourneyMyLife.isHidden = true
             //  START ACTIVITY TEXT TAG
             if feed["videos"].count == 0 && feed["photos"].count == 0 && feed["type"].stringValue != "on-the-go-journey" && feed["imageUrl"] == nil{
                 textTag = ActivityHeaderTag(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 30))
@@ -103,7 +101,6 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
         } else {
             // For header text
             textHeader = ActivityTextHeader(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 70))
-            textHeader.kindOfJourneyMyLife.isHidden = true
             switch feed["type"].stringValue {
             case "on-the-go-journey":
                 setText(text: "Has started a Journey.")
@@ -145,7 +142,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             let tapRecognizer = UITapGestureRecognizer()
             tapRecognizer.numberOfTapsRequired = 1
             if displayData == "popular" {
-                activityFeedImage.OnTheGOText.isHidden = true
+                activityFeedImage.headerTagTextLabel.isHidden = true
             }
             tapRecognizer.addTarget(self, action: #selector(self.toggleFullscreen))
             activityFeedImage.addGestureRecognizer(tapRecognizer)
@@ -226,8 +223,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
                 footerViewReview.type = "ActivityFeeds"
                 footerViewReview.setView(feed: feed)
                 footerViewReview.setCommentCount(footerViewReview.postTop["commentCount"].intValue)
-                footerViewReview.setLikeCount(footerViewReview.postTop["likeCount"].intValue)
-                footerViewReview.setReviewCount(count: footerViewReview.postTop["userReviewCount"].intValue)
+                footerViewReview.setLikeCount(footerViewReview.postTop["likeCount"].intValue)                
                 footerViewReview.setLikeSelected(feed["likeDone"].boolValue)
                 
                 //footerViewReview.reviewButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ActivityFeedsLayout.rateButtonTapped(_:))))

@@ -192,8 +192,6 @@ class MyLifeActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             footerViewReview.type = "MyLifeFeeds"
             footerViewReview.setView(feed: feed)
             footerViewReview.setCommentCount(footerViewReview.postTop["commentCount"].intValue)
-            footerViewReview.setLikeCount(footerViewReview.postTop["likeCount"].intValue)
-            footerViewReview.setReviewCount(count: footerViewReview.postTop["userReviewCount"].intValue)
             footerViewReview.setLikeSelected(feed["likeDone"].boolValue)
 
             //footerViewReview.reviewButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ActivityFeedsLayout.rateButtonTapped(_:))))
@@ -237,7 +235,7 @@ class MyLifeActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             activityFeedImage.addGestureRecognizer(tapRecognizer)
 
             activityFeedImage.clipsToBounds = true
-            activityFeedImage.OnTheGOText.isHidden = true
+            activityFeedImage.headerTagTextLabel.isHidden = true
             self.addSubview(activityFeedImage)
         case "quick-itinerary":
             activityQuickItinerary = ActivityFeedQuickItinerary(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.width))
@@ -366,16 +364,6 @@ class MyLifeActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             self.addSubview(textHeader)
 //
         }
-        
-        switch feed["type"].stringValue {
-        case "local-life":
-            self.textHeader.kindOfJourneyMyLife.tintColor = mainGreenColor
-        case "travel-life":
-            self.textHeader.kindOfJourneyMyLife.tintColor = mainOrangeColor
-        default:
-            self.textHeader.kindOfJourneyMyLife.isHidden = true
-        }
-        
     }
     
     func setText(text: String) {

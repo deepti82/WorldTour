@@ -57,8 +57,6 @@ class AddRating: UIView, UITextViewDelegate {
         }
         // only for checkin
         if checkView == "activity" {
-            self.activity.reviewTapOut(UITapGestureRecognizer())
-            
         }else if checkView == "accordian" {
             self.accordianCell.afterRating(starCnt: starCount, review: reviewBody, type: activityJson["type"].stringValue, shouldReload: true)
             //            self.activityBasic.postTop["review"][0]["rating"] = JSON(starCount)

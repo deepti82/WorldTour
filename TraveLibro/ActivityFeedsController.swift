@@ -336,8 +336,6 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
                     }
                 })
             })
-            
-            
         }
         else if displayData == "popular" {
             let userr = User()

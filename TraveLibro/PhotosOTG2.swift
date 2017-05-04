@@ -249,13 +249,11 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
             textHeader.headerText.sizeToFit()
             textHeader.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: textHeader.headerText.frame.height + 1.5)
             self.addSubview(textHeader)
-            textHeader.kindOfJourneyMyLife.isHidden = true
             
             
         } else {
             // For header text
             textHeader = ActivityTextHeader(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 70))
-            textHeader.kindOfJourneyMyLife.isHidden = true
             switch feed["type"].stringValue {
             case "on-the-go-journey":
                 setText(text: "Has started a Journey.")
@@ -300,12 +298,10 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
             textHeader.headerText.sizeToFit()
             textHeader.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: textHeader.headerText.frame.height + 1.5)
             self.addSubview(textHeader)
-            textHeader.kindOfJourneyMyLife.isHidden = true
         }
         else {
             // For header text
-            textHeader = ActivityTextHeader(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 70))
-            textHeader.kindOfJourneyMyLife.isHidden = true
+            textHeader = ActivityTextHeader(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 70))            
             switch post.post_type {
             case "on-the-go-journey":
                 setText(text: "Has started a Journey.")

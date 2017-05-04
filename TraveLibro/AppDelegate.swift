@@ -116,6 +116,8 @@ let screenSize = UIScreen.main.bounds
 let screenWidth = screenSize.width
 let screenHeight = screenSize.height
 
+
+//Notification Constants
 let HEADER_HEIGHT = CGFloat(55)
 let FOOTER_HEIGHT = CGFloat(20)
 let IMAGE_HEIGHT = min((screenWidth * 0.20), 65)
@@ -123,6 +125,15 @@ let TITLE_HEIGHT = 80
 let BUTTON_HEIGHT = CGFloat(28)
 let DETAILS_HEIGHT = CGFloat(50)
 let TIME_HEIGHT = CGFloat(27)
+
+
+//Feeds Constant
+let FEEDS_HEADER_HEIGHT = CGFloat(71)
+
+
+//Font
+let TL_REGULAR_FONT_SIZE = 12
+
 
 let categoryImages = ["restaurant_checkin", "nature_checkin", "landmarks_checkin", "museums_landmarks", "adventure_icon", "aqua_checkin", "shopping", "beach_checkin", "cinema_checkin", "hotels-1", "planetrans", "reg", "othersdottrans", "city_icon", "health_beauty", "emergency", "essential", "entertainment"]
 
@@ -173,8 +184,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
         
         let nationality = storyboard.instantiateViewController(withIdentifier: "nationalityNew") as!AddNationalityNewViewController
         
-        let PJController = storyboard!.instantiateViewController(withIdentifier: "popular") as! PopularController
-        PJController.displayData = "popular"
+        let PJController = storyboard!.instantiateViewController(withIdentifier: "TLMainFeedsView") as! TLMainFeedsViewController
+        PJController.pageType = viewType.VIEW_TYPE_POPULAR_JOURNEY
         
         leftViewController.mainViewController = nvc
         

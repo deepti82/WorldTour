@@ -141,6 +141,8 @@ class PopularController: UIViewController, UIScrollViewDelegate {
                     if !(request["data"].isEmpty) {
                         self.loadStatus = true
                         for post in request["data"].array! {
+                            print("\n CellData :: type : \(post["type"].stringValue)")
+                            
                             self.feeds.arrayObject?.append(post)
                             let checkIn = PopularLayout(width: self.view.frame.width)
                             checkIn.feeds = post

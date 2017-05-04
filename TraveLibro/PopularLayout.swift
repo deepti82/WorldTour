@@ -240,7 +240,7 @@ class PopularLayout: VerticalLayout, PlayerDelegate {
             activityFeedImage.fillData(feed: feed)
             let tapRecognizer = UITapGestureRecognizer()
             tapRecognizer.numberOfTapsRequired = 1
-            activityFeedImage.OnTheGOText.isHidden = true
+            activityFeedImage.headerTagTextLabel.isHidden = true
             tapRecognizer.addTarget(self, action: #selector(self.toggleFullscreen))
             activityFeedImage.addGestureRecognizer(tapRecognizer)
             
@@ -326,7 +326,6 @@ class PopularLayout: VerticalLayout, PlayerDelegate {
             textHeader.headerText.sizeToFit()
             textHeader.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: textHeader.headerText.frame.height + 1.5)
             self.addSubview(textHeader)
-            textHeader.kindOfJourneyMyLife.isHidden = true
             //  START ACTIVITY TEXT TAG
             if feed["videos"].count == 0 && feed["photos"].count == 0 && feed["type"].stringValue != "on-the-go-journey" {
                 textTag = ActivityHeaderTag(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 30))
@@ -339,7 +338,6 @@ class PopularLayout: VerticalLayout, PlayerDelegate {
         } else {
             // For header text
             textHeader = ActivityTextHeader(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 70))
-            textHeader.kindOfJourneyMyLife.isHidden = true
             switch feed["type"].stringValue {
             case "on-the-go-journey":
                 setText(text: "Has started a Journey.")

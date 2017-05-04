@@ -12,14 +12,15 @@ class ActivityProfileHeader: UIView {
 
     @IBOutlet var activityProView: UIView!
     @IBOutlet weak var profilePic: UIImageView!
-    @IBOutlet weak var userName: UILabel!
-    @IBOutlet weak var category: UIButton!
+    @IBOutlet weak var userName: UILabel!    
     @IBOutlet weak var clockLabel: UILabel!
     @IBOutlet weak var localDate: UILabel!
     @IBOutlet weak var calendarLabel: UILabel!
     @IBOutlet weak var followButton: UIButton!
     @IBOutlet weak var localTime: UILabel!
     @IBOutlet weak var blurImageView: UIImageView!
+    var parentController: UIViewController!
+    
     var ishidefollow:Bool = false
     var currentFeed:JSON = []
     let imageArr: [String] = ["restaurantsandbars", "leaftrans", "sightstrans", "museumstrans", "zootrans", "shopping", "religious", "cinematrans", "hotels", "planetrans", "health_beauty", "rentals", "entertainment", "essential", "emergency", "othersdottrans"]
@@ -41,7 +42,6 @@ class ActivityProfileHeader: UIView {
         
         
         makeBuddiesTLProfilePicture(profilePic)
-        category.imageView?.tintColor = mainGreenColor
         clockLabel.text = String(format: "%C", faicon["calendar"]!)
         calendarLabel.text = String(format: "%C", faicon["clock"]!)
         
@@ -79,7 +79,7 @@ class ActivityProfileHeader: UIView {
             let profile = storyboard.instantiateViewController(withIdentifier: "TLProfileView") as! TLProfileViewController
             profile.displayData = "search"
             profile.currentSelectedUser = selectedUser
-            globalNavigationController.pushViewController(profile, animated: true)
+            parentController.navigationController?.pushViewController(profile, animated: true)
         }
         else {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
@@ -89,19 +89,17 @@ class ActivityProfileHeader: UIView {
     func fillProfileHeader(feed:JSON) {
         currentFeed = feed
         
+        self.removePreviousGesture()
+        
+        self.sendSubview(toBack: self.profilePic)
+        self.sendSubview(toBack: self.userName)
+        
+        self.isUserInteractionEnabled = true
         let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(self.toProfile(_:)))
-        self.profilePic.addGestureRecognizer(tapGestureRecognizer)
-        self.userName.addGestureRecognizer(tapGestureRecognizer)
+        self.addGestureRecognizer(tapGestureRecognizer)
+        
         self.followButton.isHidden = true
         
-        switch feed["type"].stringValue {
-        case "local-life":
-            category.imageView?.tintColor = mainGreenColor
-        case "travel-life":
-            category.imageView?.tintColor = mainOrangeColor
-        default:
-            category.isHidden = true
-        }
         if !ishidefollow {
             setFollowButtonTitle(button: followButton, followType: feed["following"].intValue, otherUserID: (feed["_id"] != nil ? feed["_id"].stringValue : "admin"))
         }
@@ -109,8 +107,6 @@ class ActivityProfileHeader: UIView {
         if((currentUser != nil) && feed["user"]["_id"].stringValue == currentUser["_id"].stringValue) {
             followButton.isHidden = true
         }
-        
-        self.category.imageView?.contentMode = UIViewContentMode.scaleAspectFit
         
         userName.text = feed["user"]["name"].stringValue
         profilePic.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(feed["user"]["profilePicture"])", width: SMALL_PHOTO_WIDTH))        
@@ -123,24 +119,29 @@ class ActivityProfileHeader: UIView {
             localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["UTCModified"].stringValue, isDate: false)
         }
         
+        if feed["type"].stringValue == "on-the-go-journey"{
+            localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["startTime"].stringValue, isDate: true)
+            localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["startTime"].stringValue, isDate: false)
+        }else if feed["type"].stringValue == "ended-journey"{
+            localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["endTime"].stringValue, isDate: true)
+            localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["endTime"].stringValue, isDate: false)
+        }else if feed["type"].stringValue == "quick-itinerary"{
+            localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["createdAt"].stringValue, isDate: true)
+            localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["createdAt"].stringValue, isDate: false)
+        }else if feed["type"].stringValue == "detail-itinerary"{
+            localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["startDate"].stringValue, isDate: true)
+            localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["startTime"].stringValue, isDate: false)
+        }else {
+            localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["UTCModified"].stringValue, isDate: true)
+            localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["UTCModified"].stringValue, isDate: false)            
+        }
+        
     }
     
     func fillProfileHeaderForLocalPost(post: Post) {
 //        currentFeed = feed
         
-        self.followButton.isHidden = true        
-        
-        switch post.post_type {
-        case "local-life":
-            category.imageView?.tintColor = mainGreenColor
-        case "travel-life":
-            category.imageView?.tintColor = mainOrangeColor
-        default:
-            category.isHidden = true
-        }        
-        
-        
-        self.category.imageView?.contentMode = UIViewContentMode.scaleAspectFit
+        self.followButton.isHidden = true
         
         userName.text = currentUser["name"].stringValue
         profilePic.hnk_setImageFromURL(getImageURL(currentUser["profilePicture"].stringValue, width: SMALL_PHOTO_WIDTH))
@@ -155,6 +156,11 @@ class ActivityProfileHeader: UIView {
         }
     }
     
+    func removePreviousGesture() {
+        for recognizer in self.gestureRecognizers ?? [] {
+            self.removeGestureRecognizer(recognizer)
+        }
+    }
     
     @IBAction func followClick(_ sender: UIButton) {
         
@@ -209,22 +215,5 @@ class ActivityProfileHeader: UIView {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
         }
     }
-    
-    func getCategoryImage(name: String) -> String {
-        var str:String! = ""
-        for img in imageArr {
-            print(img)
-            print(String(name.characters.suffix(4)))
-            if img.contains(String(name.characters.suffix(4))) {
-                str = img
-            }
-        }
-        return str
-        
-    }
-    
-    
-
-
 
 }

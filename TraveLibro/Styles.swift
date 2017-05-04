@@ -774,6 +774,11 @@ func heightForView(text:String, font:UIFont, width:CGFloat) -> CGFloat{
     return label.frame.height
 }
 
+func heightOfAttributedText(attributedString: NSMutableAttributedString, width: CGFloat) -> CGFloat {
+    let rect = attributedString.boundingRect(with: CGSize(width: width, height: 10000), options: .usesLineFragmentOrigin, context: nil)
+    return rect.size.height
+}
+
 func getWidthOfText(text:String, font:UIFont) -> CGFloat{
     let fontAttributes = [NSFontAttributeName: font]
     let size = (text as NSString).size(attributes: fontAttributes)
@@ -954,7 +959,7 @@ func inviteToAppClicked(sender: UIView, onView:UIViewController) {
 }
 
 
-func sharingUrl(url: String, onView:UIViewController) {
+func sharingUrl(url: String, onView: UIViewController) {
     let content = url
     
     let objectsToShare = [content]
@@ -1052,3 +1057,47 @@ func handleRestrictedMode(onVC: UIViewController) {
     
     onVC.navigationController?.present(errorAlert, animated: true, completion: nil)
 }
+
+
+//MARK:- Text for Header
+
+func getTextHeader(feed: JSON) -> NSMutableAttributedString {
+    
+    var displayText = getRegularString(string: "", size: TL_REGULAR_FONT_SIZE)
+    
+    if feed["thoughts"].stringValue != "" {
+        displayText = getThought(feed)
+    }
+    else {
+        
+        switch feed["type"].stringValue {
+        case "on-the-go-journey":
+            displayText = getRegularString(string: "Started a Journey - \(feed["name"].stringValue)", size: TL_REGULAR_FONT_SIZE)
+            
+        case "ended-journey":
+            displayText = getRegularString(string: "\(feed["name"].stringValue) - (\(feed["duration"].stringValue) Days).", size: TL_REGULAR_FONT_SIZE)
+            
+        case "quick-itinerary":
+            displayText = getRegularString(string: "Has uploaded a new Itinerary.", size: TL_REGULAR_FONT_SIZE)
+            
+        case "detail-itinerary":
+            displayText = getRegularString(string: "Has uploaded a new Itinerary.", size: TL_REGULAR_FONT_SIZE)
+            
+        default:
+            displayText = getThought(feed)
+        }
+    }
+    
+    return displayText
+}
+
+func shouldShowFooterCountView(feed: JSON) -> Bool{
+    
+    if feed["likeCount"].intValue > 0 ||
+        feed["commentCount"].intValue > 0 {
+        return true
+    }
+    
+    return false
+}
+

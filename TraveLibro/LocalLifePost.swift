@@ -227,7 +227,6 @@ class LocalLifePost: VerticalLayout, PlayerDelegate {
         
         // For header text
         textHeader = ActivityTextHeader(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 70))
-        textHeader.kindOfJourneyMyLife.isHidden = true
         switch feed["type"].stringValue {
         case "on-the-go-journey":
             setText(text: "Has started a Journey.")
