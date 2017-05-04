@@ -21,10 +21,9 @@ class TLFeedHeaderTextFlagView: UIView {
         super.init(frame: frame)
         loadViewFromNib ()
         
-        /*for flagImageView in flagImageArray {
+        for flagImageView in flagImageArray {
             makeTLProfilePictureBorderWhiteCorner(flagImageView)
-            flagImageView.isHidden = true
-        }*/
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -46,11 +45,20 @@ class TLFeedHeaderTextFlagView: UIView {
     
     func setFlag(feed: JSON) {
         
+        for imgView in self.flagImageArray {
+            imgView.image = nil
+            imgView.layer.borderColor = UIColor.clear.cgColor
+        }
+        
         if !((feed["countryVisited"].arrayValue).isEmpty) {
             for i in 0..<feed["countryVisited"].arrayValue.count {
-                //flagImageArray[i].isHidden = false
-                flagImageArray[i].hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(feed["countryVisited"][i]["country"]["flag"])", width: SMALL_PHOTO_WIDTH))
-                makeTLProfilePictureBorderWhiteCorner(flagImageArray[i])
+                if flagImageArray[i].frame.size.height > 0 {
+                    flagImageArray[i].hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(feed["countryVisited"][i]["country"]["flag"])", width: SMALL_PHOTO_WIDTH))
+                    flagImageArray[i].layer.borderColor = UIColor.white.cgColor
+                }
+                else {
+                    print("In else")
+                }
             }
         }
     }

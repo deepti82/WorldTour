@@ -31,28 +31,42 @@
                     </constraints>
                 </view>
                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="-15" translatesAutoresizingMaskIntoConstraints="NO" id="l7k-73-hI4">
-                    <rect key="frame" x="308" y="6" width="60" height="30"/>
+                    <rect key="frame" x="308" y="7" width="60" height="30"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="2" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Idz-BL-lov">
                             <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="30" id="dqE-wf-his"/>
-                                <constraint firstAttribute="width" secondItem="Idz-BL-lov" secondAttribute="height" multiplier="1:1" id="pfi-wZ-ija"/>
+                                <constraint firstAttribute="width" secondItem="Idz-BL-lov" secondAttribute="height" multiplier="1:1" id="NzY-kb-qrq"/>
                             </constraints>
                         </imageView>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3q0-gX-U9S">
                             <rect key="frame" x="15" y="0.0" width="30" height="30"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="3q0-gX-U9S" secondAttribute="height" multiplier="1:1" id="EZW-T1-1LE"/>
+                            </constraints>
                         </imageView>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QbI-pq-5Et">
                             <rect key="frame" x="30" y="0.0" width="30" height="30"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="QbI-pq-5Et" secondAttribute="height" multiplier="1:1" id="mV7-1H-2Zn"/>
+                            </constraints>
                         </imageView>
                     </subviews>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="6SG-Ez-67d"/>
+                        <constraint firstItem="QbI-pq-5Et" firstAttribute="top" secondItem="l7k-73-hI4" secondAttribute="top" id="CXv-kk-sDm"/>
+                        <constraint firstAttribute="bottom" secondItem="3q0-gX-U9S" secondAttribute="bottom" id="ESO-Of-b5n"/>
+                        <constraint firstItem="3q0-gX-U9S" firstAttribute="top" secondItem="l7k-73-hI4" secondAttribute="top" id="GmZ-hP-vxS"/>
+                        <constraint firstItem="Idz-BL-lov" firstAttribute="top" secondItem="l7k-73-hI4" secondAttribute="top" id="VeA-X4-HU7"/>
+                        <constraint firstAttribute="bottom" secondItem="Idz-BL-lov" secondAttribute="bottom" id="X01-mf-QNy"/>
+                        <constraint firstAttribute="bottom" secondItem="QbI-pq-5Et" secondAttribute="bottom" id="lXn-WR-7nY"/>
+                    </constraints>
                 </stackView>
                 <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7lA-Jr-ieA">
-                    <rect key="frame" x="8" y="5" width="295" height="32.5"/>
+                    <rect key="frame" x="8" y="5.5" width="295" height="32.5"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <color key="textColor" red="0.17254901960784313" green="0.21568627450980393" blue="0.3411764705882353" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>

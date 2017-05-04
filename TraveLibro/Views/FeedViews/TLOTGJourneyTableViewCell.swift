@@ -40,9 +40,12 @@ class TLOTGJourneyTableViewCell: UITableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         
-        let hasContentView = self.subviews.contains(self.contentView)
-        if hasContentView {
-            self.contentView.removeFromSuperview()
+        self.FTextHeader.headerTextView.text = ""
+        self.FTextHeader.headerTextView.attributedText = getRegularString(string: "", size: TL_REGULAR_FONT_SIZE)
+        
+        for imgView in self.FTextHeader.flagImageArray {
+            imgView.image = nil
+            imgView.layer.borderColor = UIColor.clear.cgColor
         }
     }
     

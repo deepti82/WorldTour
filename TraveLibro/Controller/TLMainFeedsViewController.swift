@@ -228,11 +228,6 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
                 feedCell = TLOTGJourneyTableViewCell.init(style: .default, reuseIdentifier: "OTGCell", feedData: cellData, helper: self)
             }
             
-            let hasContentView = feedCell?.subviews.contains((feedCell?.contentView)!)
-            if !hasContentView! {
-                feedCell?.addSubview((feedCell?.contentView)!)
-            }
-            
             feedCell?.setData(feedData: cellData, helper: self, pageType: pageType)
             return feedCell!
             
