@@ -30,17 +30,15 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("internet connection")
-        print(isConnectedToNetwork())
     
 //        loader.showOverlay(self.view)
+        self.view.layoutIfNeeded()
         cityPlaceholder()
         countryPlaceholder()
         cityView.underlined()
         countryView.underlined()
         cityVisited.layer.zPosition = 10
         countryVisited.layer.zPosition = 100000
-//        countryView.layer.zPosition = -1
         self.view.bringSubview(toFront: cityVisited)
         self.verticalLayout = VerticalLayout(width:self.quickScroll.frame.width)
         
