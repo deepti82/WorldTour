@@ -29,19 +29,21 @@ class KindOfJourneyOTGViewController: UIViewController {
     @IBOutlet var groupTwoCategoryButtons: [UIButton]!
     @IBOutlet var groupOneCategoryButtons: [UIButton]!
     @IBOutlet weak var doneButton: UIButton!
+    @IBOutlet weak var businessLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//        businessLabel.sizeToFit()
         
-        for labels in kindOfJourneyLabels{
-            labels.shadowColor = UIColor.black
-            labels.shadowOffset = CGSize(width: 2, height: 2)
-            labels.layer.masksToBounds = true
-
-        }
+//        for labels in kindOfJourneyLabels{
+//            labels.shadowColor = UIColor.black
+//            labels.shadowOffset = CGSize(width: 2, height: 2)
+//            labels.layer.masksToBounds = true
+//
+//        }
         
 //        loader.showOverlay(self.view)
-        self.setTopNavigation(text: "Kind of Journey");
+//        self.setTopNavigation(text: "Kind of Journey");
         getDarkBackGroundBlue(self)
         
         let allControllers = self.navigationController?.viewControllers
@@ -49,52 +51,52 @@ class KindOfJourneyOTGViewController: UIViewController {
         backVC = allControllers![allControllers!.count - 2] as! NewTLViewController
         backVC.journeyCategories = []
         
-        doneButton.addTarget(self, action: #selector(KindOfJourneyOTGViewController.categoriesSelected(_:)), for: .touchUpInside)
+//        doneButton.addTarget(self, action: #selector(KindOfJourneyOTGViewController.categoriesSelected(_:)), for: .touchUpInside)
         doneButton.layer.cornerRadius = 5
         
-        for button in groupOneCategoryButtons {
-            for cat in selectedCategories {
-                if cat.1.stringValue == (button.titleLabel?.text)! {
-                    backVC.journeyCategories.append(button.titleLabel!.text!)
-                    button.setBackgroundImage(UIImage(named: "halfgreenbox"), for: .normal)
-                    button.tag = 1
-                }
-            }
-            button.addTarget(self, action: #selector(KindOfJourneyOTGViewController.selectGroupOne(_:)), for: .touchUpInside)
-           button.imageView?.tintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 1)
-            
-        }
+//        for button in groupOneCategoryButtons {
+//            for cat in selectedCategories {
+//                if cat.1.stringValue == (button.titleLabel?.text)! {
+//                    backVC.journeyCategories.append(button.titleLabel!.text!)
+//                    button.setBackgroundImage(UIImage(named: "halfgreenbox"), for: .normal)
+//                    button.tag = 1
+//                }
+//            }
+//            button.addTarget(self, action: #selector(KindOfJourneyOTGViewController.selectGroupOne(_:)), for: .touchUpInside)
+//           button.imageView?.tintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 1)
+//            
+//        }
         
         
         
-        for button in groupTwoCategoryButtons {
-            
-            for cat in selectedCategories {
-                if cat.1.stringValue == (button.titleLabel?.text)! {
-                    backVC.journeyCategories.append(button.titleLabel!.text!)
-                    button.setBackgroundImage(UIImage(named: "halfgreenbox"), for: .normal)
-                    button.tag = 1
-                }
-            }
-            button.addTarget(self, action: #selector(KindOfJourneyOTGViewController.selectGroupTwo(_:)), for: .touchUpInside)
-            button.imageView?.tintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 1)
-            
-        }
-        
-        for button in groupThreeCategoryButtons {
-            
-            for cat in selectedCategories {
-                if cat.1.stringValue == (button.titleLabel?.text)! {
-                    backVC.journeyCategories.append(button.titleLabel!.text!)
-                    button.setBackgroundImage(UIImage(named: "halfgreenbox"), for: .normal)
-                    button.tag = 1
-                }
-            }
-            button.addTarget(self, action: #selector(KindOfJourneyOTGViewController.selectGroupThree(_:)), for: .touchUpInside)
-            button.imageView?.tintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 1)
-            
-        }
-        
+//        for button in groupTwoCategoryButtons {
+//            
+//            for cat in selectedCategories {
+//                if cat.1.stringValue == (button.titleLabel?.text)! {
+//                    backVC.journeyCategories.append(button.titleLabel!.text!)
+//                    button.setBackgroundImage(UIImage(named: "halfgreenbox"), for: .normal)
+//                    button.tag = 1
+//                }
+//            }
+//            button.addTarget(self, action: #selector(KindOfJourneyOTGViewController.selectGroupTwo(_:)), for: .touchUpInside)
+//            button.imageView?.tintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 1)
+//            
+//        }
+//        
+//        for button in groupThreeCategoryButtons {
+//            
+//            for cat in selectedCategories {
+//                if cat.1.stringValue == (button.titleLabel?.text)! {
+//                    backVC.journeyCategories.append(button.titleLabel!.text!)
+//                    button.setBackgroundImage(UIImage(named: "halfgreenbox"), for: .normal)
+//                    button.tag = 1
+//                }
+//            }
+//            button.addTarget(self, action: #selector(KindOfJourneyOTGViewController.selectGroupThree(_:)), for: .touchUpInside)
+//            button.imageView?.tintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 1)
+//            
+//        }
+//        
         
     }
     
