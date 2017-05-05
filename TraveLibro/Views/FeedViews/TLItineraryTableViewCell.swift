@@ -1,19 +1,19 @@
 //
-//  TLOTGJourneyTableViewCell.swift
+//  TLItineraryTableViewCell.swift
 //  TraveLibro
 //
-//  Created by Wohlig Technology on 02/05/17.
+//  Created by Wohlig Technology on 04/05/17.
 //  Copyright © 2017 Wohlig Technology. All rights reserved.
 //
 
 import UIKit
 
-class TLOTGJourneyTableViewCell: UITableViewCell {
+class TLItineraryTableViewCell: UITableViewCell {
 
-    var FBackground = NotificationBackground()
     var FProfileHeader: ActivityProfileHeader!
+    var FBackground = NotificationBackground()    
     var FTextHeader: TLFeedHeaderTextFlagView!
-    var FMiddleView: ActivityFeedImageView!
+    var FMiddleView: TLItinerayPostView!
     var FFooterView: ActivityFeedFooter!
     
     var totalHeight = CGFloat(0)
@@ -21,7 +21,7 @@ class TLOTGJourneyTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
@@ -60,7 +60,7 @@ class TLOTGJourneyTableViewCell: UITableViewCell {
         FTextHeader = TLFeedHeaderTextFlagView(frame: CGRect(x: 0, y: totalHeight, width: screenWidth, height: 21))
         self.contentView.addSubview(FTextHeader)
         
-        FMiddleView = ActivityFeedImageView(frame: CGRect.zero)
+        FMiddleView = TLItinerayPostView(frame: CGRect.zero)
         self.contentView.addSubview(FMiddleView)
         
         FFooterView = ActivityFeedFooter(frame: CGRect.zero)
@@ -77,13 +77,19 @@ class TLOTGJourneyTableViewCell: UITableViewCell {
     
     func setData(feedData: JSON, helper: TLMainFeedsViewController, pageType: viewType?) {        
         
+        print("\n FeedData : \(feedData) \n\n")
+        
         totalHeight = CGFloat(0)
         
-        FProfileHeader.frame = CGRect(x: 0, y: 0, width: screenWidth, height: FEEDS_HEADER_HEIGHT)        
-        FProfileHeader.parentController = helper
-        FProfileHeader.fillProfileHeader(feed: feedData, pageType: pageType, cellType: feedCellType.CELL_OTG_TYPE)
-        totalHeight += FEEDS_HEADER_HEIGHT
-        
+        if pageType == viewType.VIEW_TYPE_ACTIVITY {
+            FProfileHeader.frame = CGRect(x: 0, y: 0, width: screenWidth, height: FEEDS_HEADER_HEIGHT)        
+            FProfileHeader.parentController = helper
+            FProfileHeader.fillProfileHeader(feed: feedData, pageType: pageType, cellType: feedCellType.CELL_ITINERARY_TYPE)
+            totalHeight += FEEDS_HEADER_HEIGHT
+        }
+        else {
+            FProfileHeader.frame = CGRect.zero
+        }
         
         FTextHeader.setFlag(feed: feedData)
         FTextHeader.displayText = getTextHeader(feed: feedData, pageType: pageType!)        
@@ -99,11 +105,7 @@ class TLOTGJourneyTableViewCell: UITableViewCell {
         
         
         FMiddleView.frame = CGRect(x: 0, y: totalHeight, width: screenWidth, height: screenWidth*0.9)
-        FMiddleView.fillData(feed: feedData)
-        FMiddleView.headerTagTextLabel.isHidden = false
-        if pageType == viewType.VIEW_TYPE_POPULAR_JOURNEY {
-            FMiddleView.headerTagTextLabel.isHidden = true
-        }
+        FMiddleView.fillData(feed: feedData, pageType: pageType!)
         totalHeight += screenWidth*0.9
         
         

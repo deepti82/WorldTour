@@ -134,20 +134,30 @@
                         <action selector="followClick:" destination="-1" eventType="touchUpInside" id="mNy-sk-4PI"/>
                     </connections>
                 </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hF7-a9-1rl">
+                    <rect key="frame" x="8" y="69" width="359" height="1"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="iLb-eU-4ZU"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="EHs-Xp-oI2" secondAttribute="trailing" id="7Is-PF-pey"/>
                 <constraint firstItem="EHs-Xp-oI2" firstAttribute="top" secondItem="kNQ-Yo-NhR" secondAttribute="top" id="IHu-F3-r8H"/>
+                <constraint firstItem="hF7-a9-1rl" firstAttribute="leading" secondItem="Ott-pw-wP9" secondAttribute="leading" constant="8" id="JVu-Ax-dU7"/>
                 <constraint firstAttribute="bottom" secondItem="kNQ-Yo-NhR" secondAttribute="bottom" constant="8" id="Nwd-xT-nwh"/>
                 <constraint firstItem="EHs-Xp-oI2" firstAttribute="leading" secondItem="efA-ql-TBn" secondAttribute="trailing" constant="8" id="SGl-C7-nFf"/>
                 <constraint firstItem="kNQ-Yo-NhR" firstAttribute="leading" secondItem="Ott-pw-wP9" secondAttribute="leading" constant="8" id="ZTn-f5-Ko2"/>
                 <constraint firstItem="efA-ql-TBn" firstAttribute="top" secondItem="kNQ-Yo-NhR" secondAttribute="top" constant="3" id="cPO-4t-5M3"/>
                 <constraint firstItem="efA-ql-TBn" firstAttribute="leading" secondItem="kNQ-Yo-NhR" secondAttribute="trailing" constant="8" id="cj0-Gi-gtQ"/>
                 <constraint firstItem="IjA-We-BE0" firstAttribute="leading" secondItem="efA-ql-TBn" secondAttribute="leading" id="j65-8h-Gm3"/>
+                <constraint firstAttribute="bottom" secondItem="hF7-a9-1rl" secondAttribute="bottom" constant="1" id="ndl-cS-pgw"/>
                 <constraint firstItem="kNQ-Yo-NhR" firstAttribute="top" secondItem="Ott-pw-wP9" secondAttribute="top" constant="8" id="nzh-n6-EAy"/>
                 <constraint firstItem="IjA-We-BE0" firstAttribute="top" secondItem="efA-ql-TBn" secondAttribute="bottom" constant="3" id="oek-oQ-xjo"/>
                 <constraint firstAttribute="bottom" secondItem="EHs-Xp-oI2" secondAttribute="bottom" constant="8" id="xJ6-Jy-HLj"/>
+                <constraint firstAttribute="trailing" secondItem="hF7-a9-1rl" secondAttribute="trailing" constant="8" id="xOw-v9-NoJ"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

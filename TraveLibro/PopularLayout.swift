@@ -296,7 +296,7 @@ class PopularLayout: VerticalLayout, PlayerDelegate {
         
         profileHeader = ActivityProfileHeader(frame: CGRect(x: 0, y: 20, width: self.frame.width, height: 69))
         
-        profileHeader.fillProfileHeader(feed:feed)
+        profileHeader.fillProfileHeader(feed:feed, pageType: viewType.VIEW_TYPE_ACTIVITY, cellType: feedCellType.CELL_OTG_TYPE)
         self.addSubview(profileHeader)
         
         if feed["type"].stringValue == "on-the-go-journey"{

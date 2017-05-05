@@ -17,7 +17,7 @@ class ActivityFeedFooter: UIView {
    
     var postTop: JSON!
     var pageType: viewType!
-    var parentController: UIViewController!
+    var parentController: TLMainFeedsViewController!
     
     @IBOutlet weak var upperView: UIView!
     @IBOutlet weak var likeButton: SpringButton!
@@ -102,6 +102,26 @@ class ActivityFeedFooter: UIView {
         self.setLikeCount(postTop["likeCount"].intValue)
         self.setCommentCount(postTop["commentCount"].intValue)
         self.setLikeSelected(postTop["likeDone"].boolValue)
+        
+        self.removeTargetActions()
+        
+        self.addTargetActions()
+    }
+    
+    func removeTargetActions() {
+        self.likeButton.removeTarget(self, action: #selector(self.sendLikes(_:)), for: .touchUpInside)
+        self.commentButton.removeTarget(self, action: #selector(self.sendComments(_:)), for: .touchUpInside)
+        self.likeCountButton.removeTarget(self, action: #selector(self.likeCountTapped(_:)), for: .touchUpInside)
+        self.commentCountButton.removeTarget(self, action: #selector(self.commentCountTabbed(_:)), for: .touchUpInside)
+        self.optionButton.removeTarget(self, action: #selector(self.optionClick(_:)), for: .touchUpInside)
+    }
+    
+    func addTargetActions() {
+        self.likeButton.addTarget(self, action: #selector(self.sendLikes(_:)), for: .touchUpInside)        
+        self.commentButton.addTarget(self, action: #selector(self.sendComments(_:)), for: .touchUpInside)
+        self.likeCountButton.addTarget(self, action: #selector(self.likeCountTapped(_:)), for: .touchUpInside)
+        self.commentCountButton.addTarget(self, action: #selector(self.commentCountTabbed(_:)), for: .touchUpInside)
+        self.optionButton.addTarget(self, action: #selector(self.optionClick(_:)), for: .touchUpInside)
     }
     
     func setView(feed:JSON) {
@@ -119,7 +139,12 @@ class ActivityFeedFooter: UIView {
     //MARK: - Like    
     
     @IBAction func likeCountTapped(_ sender: UIButton) {
-        self.showLike()
+        if currentUser != nil {
+            parentController.showLike(sender: sender)
+        }
+        else {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
+        }
     }
     
     @IBAction func sendLikes(_ sender: UIButton) {
@@ -222,55 +247,17 @@ class ActivityFeedFooter: UIView {
         }
     }
     
-    func showLike() {
-        print("in footer tap out \(postTop)")
-        if currentUser != nil {
-            let feedVC = storyboard!.instantiateViewController(withIdentifier: "likeTable") as! LikeUserViewController
-            feedVC.postId = postTop["_id"].stringValue
-            feedVC.type = postTop["type"].stringValue
-            feedVC.title = postTop["name"].stringValue
-            parentController.navigationController?.pushViewController(feedVC, animated: true)
-        }
-        else {
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
-        }
-    }
-    
     
     //MARK: - Comment
     
     @IBAction func commentCountTabbed(_ sender: UIButton) {
-        toCommentView()
+        print("\n commentCountTabbed")
+        toCommentView(sender: sender)        
     }    
     
     @IBAction func sendComments(_ sender: UIButton) {
-        print("??//////// \(postTop["type"].stringValue)")
-        toCommentView()
-        
-    }
-    
-    func toCommentView() {
-        if currentUser != nil {
-            let comment = storyboard?.instantiateViewController(withIdentifier: "CommentsVC") as! CommentsViewController
-            comment.postId = postTop["uniqueId"].stringValue
-            comment.ids = postTop["_id"].stringValue
-            comment.footerViewFooter = self
-            switch postTop["type"].stringValue {
-            case "ended-journey", "on-the-go-journey":
-                comment.type = "journey"
-            case "quick-itinerary", "detail-itinerary":
-                comment.type = "itinerary"
-            case "travel-life", "local-life":
-                comment.type = "post"
-            default:
-                comment.type = "post"
-            }
-            parentController.navigationController?.setNavigationBarHidden(false, animated: false)
-            parentController.navigationController?.pushViewController(comment, animated: true)
-        }
-        else {
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
-        }
+        print("\n sendComments")
+        toCommentView(sender: sender)
     }
     
     func setCommentCount(_ post_commentCount:Int!) {
@@ -288,6 +275,32 @@ class ActivityFeedFooter: UIView {
         }
     }
     
+    func toCommentView(sender: UIButton) {
+        if currentUser != nil {            
+            let comment = storyboard!.instantiateViewController(withIdentifier: "CommentsVC") as! CommentsViewController
+            comment.postId = postTop["uniqueId"].stringValue
+            comment.ids = postTop["_id"].stringValue
+            comment.footerViewFooter = self
+            switch postTop["type"].stringValue {
+            case "ended-journey", "on-the-go-journey":
+                comment.type = "journey"
+            case "quick-itinerary", "detail-itinerary":
+                comment.type = "itinerary"
+            case "travel-life", "local-life":
+                comment.type = "post"
+            default:
+                comment.type = "post"
+            }
+            
+            parentController.navigationController?.setNavigationBarHidden(false, animated: false)
+            parentController.navigationController?.pushViewController(comment, animated: true)
+        }
+        else {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
+        }
+        
+        
+    }
     
     //MARK: - Share
     

@@ -23,13 +23,6 @@
             <rect key="frame" x="0.0" y="0.0" width="376" height="43"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="coj-qt-5u3">
-                    <rect key="frame" x="8" y="0.0" width="360" height="1"/>
-                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="1" id="iO6-VR-b3R"/>
-                    </constraints>
-                </view>
                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="-15" translatesAutoresizingMaskIntoConstraints="NO" id="l7k-73-hI4">
                     <rect key="frame" x="308" y="7" width="60" height="30"/>
                     <subviews>
@@ -66,7 +59,7 @@
                     </constraints>
                 </stackView>
                 <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7lA-Jr-ieA">
-                    <rect key="frame" x="8" y="5.5" width="295" height="32.5"/>
+                    <rect key="frame" x="8" y="2.5" width="295" height="32.5"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <color key="textColor" red="0.17254901960784313" green="0.21568627450980393" blue="0.3411764705882353" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
@@ -77,11 +70,8 @@
             <constraints>
                 <constraint firstItem="l7k-73-hI4" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="BXs-IO-w33"/>
                 <constraint firstAttribute="trailing" secondItem="l7k-73-hI4" secondAttribute="trailing" constant="8" id="DtJ-Xa-afm"/>
-                <constraint firstAttribute="trailing" secondItem="coj-qt-5u3" secondAttribute="trailing" constant="8" id="FoQ-Ir-Cfc"/>
-                <constraint firstItem="7lA-Jr-ieA" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="MEV-85-HkO"/>
+                <constraint firstItem="7lA-Jr-ieA" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="-3" id="MEV-85-HkO"/>
                 <constraint firstItem="7lA-Jr-ieA" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="aNn-O6-PoQ"/>
-                <constraint firstItem="coj-qt-5u3" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="iCX-H4-yzg"/>
-                <constraint firstItem="coj-qt-5u3" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="qrM-EB-Vxb"/>
                 <constraint firstItem="l7k-73-hI4" firstAttribute="leading" secondItem="7lA-Jr-ieA" secondAttribute="trailing" constant="5" id="z7X-VK-pCV"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

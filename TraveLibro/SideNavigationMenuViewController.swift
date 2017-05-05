@@ -92,8 +92,8 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         PJController.pageType = viewType.VIEW_TYPE_POPULAR_JOURNEY
         self.popJourneysController = UINavigationController(rootViewController: PJController)
         
-        let EDController = storyboard!.instantiateViewController(withIdentifier: "popular") as! PopularController
-        EDController.displayData = "popitinerary"
+        let EDController = storyboard!.instantiateViewController(withIdentifier: "TLMainFeedsView") as! TLMainFeedsViewController
+        EDController.pageType = viewType.VIEW_TYPE_POPULAR_ITINERARY
         self.exploreDestinationsController = UINavigationController(rootViewController: EDController)
         
         let PBController = storyboard!.instantiateViewController(withIdentifier: "popularBloggers") as! PopularBloggersViewController
@@ -288,12 +288,12 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         
         switch((indexPath as NSIndexPath).row)
         {
-        case 0:
-            popularView = "popular"
+        case 0:            
             self.slideMenuController()?.changeMainViewController(self.popJourneysController, close: true)
-        case 1:
-            popularView = "popitinerary"
+            
+        case 1:            
             self.slideMenuController()?.changeMainViewController(self.exploreDestinationsController, close: true)
+            
         case 2:
             self.slideMenuController()?.changeMainViewController(self.popBloggersController, close: true)        
         case 3:

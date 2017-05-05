@@ -80,6 +80,7 @@
 		440918061E9DE83100AE20F4 /* notificationEmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 440918051E9DE83100AE20F4 /* notificationEmptyView.xib */; };
 		440918081E9DF94600AE20F4 /* activityEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440918071E9DF94600AE20F4 /* activityEmptyView.swift */; };
 		4409180A1E9DF97100AE20F4 /* activityEmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 440918091E9DF97100AE20F4 /* activityEmptyView.xib */; };
+		440DE3F71EBB531B004FF2E5 /* TLItineraryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440DE3F61EBB531B004FF2E5 /* TLItineraryTableViewCell.swift */; };
 		443225AA1E668332008AB156 /* locallife.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 443225A71E668332008AB156 /* locallife.mp4 */; };
 		443225AB1E668332008AB156 /* mylife.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 443225A81E668332008AB156 /* mylife.mp4 */; };
 		443225AC1E668332008AB156 /* travellife.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 443225A91E668332008AB156 /* travellife.mp4 */; };
@@ -115,13 +116,13 @@
 		44B17E931E691DE700CA8F0C /* NotificationTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B17E921E691DE700CA8F0C /* NotificationTime.swift */; };
 		44B672101EB9B62F00F5561A /* FeedHeaderTextFlagView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44B6720F1EB9B62F00F5561A /* FeedHeaderTextFlagView.xib */; };
 		44B672121EB9B8D000F5561A /* TLFeedHeaderTextFlagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B672111EB9B8D000F5561A /* TLFeedHeaderTextFlagView.swift */; };
+		44D620EA1EBB19AC00326CB1 /* TLTravelLocalLifeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D620E91EBB19AC00326CB1 /* TLTravelLocalLifeTableViewCell.swift */; };
+		44D620F01EBB4AA100326CB1 /* TLItinerayPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D620EF1EBB4AA100326CB1 /* TLItinerayPostView.swift */; };
+		44D620F21EBB4ABB00326CB1 /* TLItinerayPostView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44D620F11EBB4ABB00326CB1 /* TLItinerayPostView.xib */; };
 		44F2FAC41EB85F66003BB3EA /* TLMainFeedsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F2FAC31EB85F66003BB3EA /* TLMainFeedsViewController.swift */; };
 		44F2FACC1EB86BB6003BB3EA /* EndJourneyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F2FACA1EB86BB6003BB3EA /* EndJourneyView.swift */; };
 		44F2FACD1EB86BB6003BB3EA /* EndJourneyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44F2FACB1EB86BB6003BB3EA /* EndJourneyView.xib */; };
 		44F2FAD11EB87EF3003BB3EA /* TLOTGJourneyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F2FAD01EB87EF3003BB3EA /* TLOTGJourneyTableViewCell.swift */; };
-		44F2FAD31EB87F33003BB3EA /* TLOTGEndedJourneyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F2FAD21EB87F33003BB3EA /* TLOTGEndedJourneyTableViewCell.swift */; };
-		44F2FAD51EB87F5A003BB3EA /* TLQuickItineraryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F2FAD41EB87F5A003BB3EA /* TLQuickItineraryTableViewCell.swift */; };
-		44F2FAD71EB87F73003BB3EA /* TLDetailItineraryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F2FAD61EB87F73003BB3EA /* TLDetailItineraryTableViewCell.swift */; };
 		840599831E3CDA60004E0696 /* DropShadow1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 840599821E3CDA60004E0696 /* DropShadow1.xib */; };
 		840599851E3CDB2B004E0696 /* DropShadow1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840599841E3CDB2B004E0696 /* DropShadow1.swift */; };
 		840599881E3CDBA6004E0696 /* DropShadow2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 840599871E3CDBA6004E0696 /* DropShadow2.xib */; };
@@ -607,6 +608,7 @@
 		440918051E9DE83100AE20F4 /* notificationEmptyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = notificationEmptyView.xib; path = EmptyScreens/notificationEmptyView.xib; sourceTree = "<group>"; };
 		440918071E9DF94600AE20F4 /* activityEmptyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = activityEmptyView.swift; path = EmptyScreens/activityEmptyView.swift; sourceTree = "<group>"; };
 		440918091E9DF97100AE20F4 /* activityEmptyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = activityEmptyView.xib; path = EmptyScreens/activityEmptyView.xib; sourceTree = "<group>"; };
+		440DE3F61EBB531B004FF2E5 /* TLItineraryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TLItineraryTableViewCell.swift; path = Views/FeedViews/TLItineraryTableViewCell.swift; sourceTree = "<group>"; };
 		443225A71E668332008AB156 /* locallife.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = locallife.mp4; sourceTree = "<group>"; };
 		443225A81E668332008AB156 /* mylife.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = mylife.mp4; sourceTree = "<group>"; };
 		443225A91E668332008AB156 /* travellife.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = travellife.mp4; sourceTree = "<group>"; };
@@ -642,13 +644,13 @@
 		44B17E921E691DE700CA8F0C /* NotificationTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationTime.swift; path = Notification/NotificationTime.swift; sourceTree = "<group>"; };
 		44B6720F1EB9B62F00F5561A /* FeedHeaderTextFlagView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FeedHeaderTextFlagView.xib; path = Views/FeedViews/FeedHeaderTextFlagView.xib; sourceTree = "<group>"; };
 		44B672111EB9B8D000F5561A /* TLFeedHeaderTextFlagView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TLFeedHeaderTextFlagView.swift; path = Views/FeedViews/TLFeedHeaderTextFlagView.swift; sourceTree = "<group>"; };
+		44D620E91EBB19AC00326CB1 /* TLTravelLocalLifeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TLTravelLocalLifeTableViewCell.swift; path = Views/FeedViews/TLTravelLocalLifeTableViewCell.swift; sourceTree = "<group>"; };
+		44D620EF1EBB4AA100326CB1 /* TLItinerayPostView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TLItinerayPostView.swift; path = Views/FeedViews/TLItinerayPostView.swift; sourceTree = "<group>"; };
+		44D620F11EBB4ABB00326CB1 /* TLItinerayPostView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TLItinerayPostView.xib; path = Views/FeedViews/TLItinerayPostView.xib; sourceTree = "<group>"; };
 		44F2FAC31EB85F66003BB3EA /* TLMainFeedsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TLMainFeedsViewController.swift; path = Controller/TLMainFeedsViewController.swift; sourceTree = "<group>"; };
 		44F2FACA1EB86BB6003BB3EA /* EndJourneyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndJourneyView.swift; sourceTree = "<group>"; };
 		44F2FACB1EB86BB6003BB3EA /* EndJourneyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EndJourneyView.xib; sourceTree = "<group>"; };
 		44F2FAD01EB87EF3003BB3EA /* TLOTGJourneyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TLOTGJourneyTableViewCell.swift; path = Views/FeedViews/TLOTGJourneyTableViewCell.swift; sourceTree = "<group>"; };
-		44F2FAD21EB87F33003BB3EA /* TLOTGEndedJourneyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TLOTGEndedJourneyTableViewCell.swift; path = Views/FeedViews/TLOTGEndedJourneyTableViewCell.swift; sourceTree = "<group>"; };
-		44F2FAD41EB87F5A003BB3EA /* TLQuickItineraryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TLQuickItineraryTableViewCell.swift; path = Views/FeedViews/TLQuickItineraryTableViewCell.swift; sourceTree = "<group>"; };
-		44F2FAD61EB87F73003BB3EA /* TLDetailItineraryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TLDetailItineraryTableViewCell.swift; path = Views/FeedViews/TLDetailItineraryTableViewCell.swift; sourceTree = "<group>"; };
 		68BDE9BB1A9237C6DAC3ABB1 /* Pods-TraveLibro.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TraveLibro.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TraveLibro/Pods-TraveLibro.debug.xcconfig"; sourceTree = "<group>"; };
 		7C9DA33B215F40A9D4891CAE /* Pods_TraveLibroTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TraveLibroTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		840599821E3CDA60004E0696 /* DropShadow1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DropShadow1.xib; sourceTree = "<group>"; };
@@ -1510,6 +1512,8 @@
 				8453CF441E30AFE200C41F82 /* ActivityFeedQuickItinerary.swift */,
 				8453CF3C1E30A12400C41F82 /* ActivityDetailItinerary.xib */,
 				8453CF3E1E30A32300C41F82 /* ActivityDetailItinerary.swift */,
+				44D620F11EBB4ABB00326CB1 /* TLItinerayPostView.xib */,
+				44D620EF1EBB4AA100326CB1 /* TLItinerayPostView.swift */,
 			);
 			name = MiddleLayout;
 			sourceTree = "<group>";
@@ -1548,9 +1552,8 @@
 			isa = PBXGroup;
 			children = (
 				44F2FAD01EB87EF3003BB3EA /* TLOTGJourneyTableViewCell.swift */,
-				44F2FAD21EB87F33003BB3EA /* TLOTGEndedJourneyTableViewCell.swift */,
-				44F2FAD41EB87F5A003BB3EA /* TLQuickItineraryTableViewCell.swift */,
-				44F2FAD61EB87F73003BB3EA /* TLDetailItineraryTableViewCell.swift */,
+				44D620E91EBB19AC00326CB1 /* TLTravelLocalLifeTableViewCell.swift */,
+				440DE3F61EBB531B004FF2E5 /* TLItineraryTableViewCell.swift */,
 			);
 			name = FeedMainViews;
 			sourceTree = "<group>";
@@ -2948,6 +2951,7 @@
 				FC13D1D01E60309D008FC77D /* SearchElement.xib in Resources */,
 				C24F84E01D0017BB002EA203 /* ResetPassword.xib in Resources */,
 				FCCA8F281E28DCE900775985 /* TripSummaryView.xib in Resources */,
+				44D620F21EBB4ABB00326CB1 /* TLItinerayPostView.xib in Resources */,
 				1A65E7A21CD72EB3009374DA /* fontawesome-webfont.ttf in Resources */,
 				368A56921E3CDB5C00DC8A19 /* loader2.gif in Resources */,
 				C2E45CE91CE5A1340096BDD1 /* IconButton.xib in Resources */,
@@ -3228,6 +3232,7 @@
 				C26962E41D377592004C0DE2 /* FeaturedCitiesNewViewController.swift in Sources */,
 				C2D67FF71CE5FD7500454A46 /* CollectionViewController.swift in Sources */,
 				C2BB45F21CFDB39800251E8C /* BucketListTableViewController.swift in Sources */,
+				44D620F01EBB4AA100326CB1 /* TLItinerayPostView.swift in Sources */,
 				C2A6E2691CE9DA8B00D3F845 /* PhotosOTG.swift in Sources */,
 				C2803BC61CF424EB007A906E /* BlogView.swift in Sources */,
 				C22138F81D547C42008D9DEE /* QuickItineraryFour.swift in Sources */,
@@ -3279,7 +3284,6 @@
 				3AF187021D78539D00A86BC1 /* DisplayPagesTwoViewController.swift in Sources */,
 				44F2FAD11EB87EF3003BB3EA /* TLOTGJourneyTableViewCell.swift in Sources */,
 				8453CF3F1E30A32300C41F82 /* ActivityDetailItinerary.swift in Sources */,
-				44F2FAD51EB87F5A003BB3EA /* TLQuickItineraryTableViewCell.swift in Sources */,
 				C263E3A91D1EAA4600D274FE /* FooterNavigation.swift in Sources */,
 				C26907841CF8275500F827E6 /* LocationTextField.swift in Sources */,
 				C28A92511D0EBF5900CFEC7A /* FilterCheckboxesViewController.swift in Sources */,
@@ -3291,6 +3295,7 @@
 				FCDF490A1E255A1C00ED9A32 /* previewBase.swift in Sources */,
 				44B17E931E691DE700CA8F0C /* NotificationTime.swift in Sources */,
 				C24F84F41D0052B9002EA203 /* EmptyPagesViewController.swift in Sources */,
+				44D620EA1EBB19AC00326CB1 /* TLTravelLocalLifeTableViewCell.swift in Sources */,
 				FCA5E9391E7D4E19009ADEF7 /* PopularLayout.swift in Sources */,
 				841E43A91E1D1CA4000D2E6B /* UploadingToCloud.swift in Sources */,
 				C2DCB36C1CE7043C006E5CBD /* TripSummaryItinerary.swift in Sources */,
@@ -3363,7 +3368,6 @@
 				C23EB1D71CFED335005B5CE8 /* LocalLifeRecommends.swift in Sources */,
 				848DE5401E791AF9001CCDCF /* profilePicnavigation.swift in Sources */,
 				3638F9E51E2C226200B2EA04 /* VideoView.swift in Sources */,
-				44F2FAD31EB87F33003BB3EA /* TLOTGEndedJourneyTableViewCell.swift in Sources */,
 				FCE877F71E308F8C005EE913 /* ActivityTextHeader.swift in Sources */,
 				1A4CA1201CCE189200EE9A90 /* AddCircle.swift in Sources */,
 				3A7D360D1DE8733D00786A83 /* CreatePostViewController.swift in Sources */,
@@ -3387,6 +3391,7 @@
 				3ABFD8E01DA8D4FC00A51034 /* ChangeCity.swift in Sources */,
 				C2EA3A141CDB228F00122941 /* TextLabelView.swift in Sources */,
 				C2C30D641CE1C9C5001189FC /* AddFriendsViewController.swift in Sources */,
+				440DE3F71EBB531B004FF2E5 /* TLItineraryTableViewCell.swift in Sources */,
 				C2B0B2C71D93BF23001243EF /* BuddyOTG.swift in Sources */,
 				C26B4DE71D13C88900213055 /* SlideMenuViewController.swift in Sources */,
 				C25443551CD75F2900C2C6CD /* drawLine.swift in Sources */,
@@ -3507,7 +3512,6 @@
 				446CEF561EA0D53200DD64EC /* NotificationWelcomeCell.swift in Sources */,
 				C25649971D48D7670046E36D /* TripInfoOTG.swift in Sources */,
 				1A944E081CCB4567007EB5BD /* AppDelegate.swift in Sources */,
-				44F2FAD71EB87F73003BB3EA /* TLDetailItineraryTableViewCell.swift in Sources */,
 				44F2FACC1EB86BB6003BB3EA /* EndJourneyView.swift in Sources */,
 				843510E21DF7F86400C3D8EE /* QuickIteneraryThree.swift in Sources */,
 				C2A36D041DF930DC0091AD56 /* QuickItineraryPreviewViewController.swift in Sources */,

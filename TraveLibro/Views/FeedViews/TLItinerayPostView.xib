@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TLItinerayPostView" customModule="TraveLibro" customModuleProvider="target">
+            <connections>
+                <outlet property="creatorImageView" destination="cYx-Dl-iNt" id="6l3-4N-WBU"/>
+                <outlet property="creatorNameLabel" destination="zWB-xe-XXh" id="99R-tn-VNT"/>
+                <outlet property="gradientView" destination="4XI-ic-imR" id="LUj-Fm-5h9"/>
+                <outlet property="itineraryCoverImageView" destination="2Z1-Z6-zWD" id="0aZ-RW-hbi"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="ezo-y6-cw5">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="500"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-default" translatesAutoresizingMaskIntoConstraints="NO" id="2Z1-Z6-zWD">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="500"/>
+                </imageView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cYx-Dl-iNt">
+                    <rect key="frame" x="8" y="8" width="35" height="35"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="cYx-Dl-iNt" secondAttribute="height" multiplier="1:1" id="51Q-nS-fB2"/>
+                        <constraint firstAttribute="width" constant="35" id="XVa-ne-PBe"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zWB-xe-XXh">
+                    <rect key="frame" x="51" y="25.5" width="316" height="0.0"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4XI-ic-imR">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="66"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="66" id="m1W-tn-zsx"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <constraints>
+                <constraint firstItem="2Z1-Z6-zWD" firstAttribute="top" secondItem="ezo-y6-cw5" secondAttribute="top" id="1bG-6M-rwJ"/>
+                <constraint firstItem="4XI-ic-imR" firstAttribute="top" secondItem="ezo-y6-cw5" secondAttribute="top" id="1xO-j8-nDw"/>
+                <constraint firstAttribute="bottom" secondItem="2Z1-Z6-zWD" secondAttribute="bottom" id="QeZ-hb-FRJ"/>
+                <constraint firstAttribute="trailing" secondItem="4XI-ic-imR" secondAttribute="trailing" id="ReI-BW-IQL"/>
+                <constraint firstAttribute="trailing" secondItem="2Z1-Z6-zWD" secondAttribute="trailing" id="Rib-c8-MuM"/>
+                <constraint firstItem="cYx-Dl-iNt" firstAttribute="top" secondItem="ezo-y6-cw5" secondAttribute="top" constant="8" id="S3N-Y0-cCe"/>
+                <constraint firstItem="zWB-xe-XXh" firstAttribute="centerY" secondItem="cYx-Dl-iNt" secondAttribute="centerY" id="UzQ-Kf-kTH"/>
+                <constraint firstItem="2Z1-Z6-zWD" firstAttribute="leading" secondItem="ezo-y6-cw5" secondAttribute="leading" id="aih-Ro-vx1"/>
+                <constraint firstItem="cYx-Dl-iNt" firstAttribute="leading" secondItem="ezo-y6-cw5" secondAttribute="leading" constant="8" id="kZB-jR-RAd"/>
+                <constraint firstItem="4XI-ic-imR" firstAttribute="leading" secondItem="ezo-y6-cw5" secondAttribute="leading" id="tNE-oJ-GXc"/>
+                <constraint firstItem="zWB-xe-XXh" firstAttribute="leading" secondItem="cYx-Dl-iNt" secondAttribute="trailing" constant="8" id="w9y-b9-t9N"/>
+                <constraint firstAttribute="trailing" secondItem="zWB-xe-XXh" secondAttribute="trailing" constant="8" id="yUs-9e-xFo"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="871.5" y="-386"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="logo-default" width="600" height="600"/>
+    </resources>
+</document>
