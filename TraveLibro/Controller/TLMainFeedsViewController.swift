@@ -321,5 +321,25 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
         let feedCell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         return feedCell
     }
+    
+    
+    //MARK: - 
+    //MARK: - Actions
+    
+    //MARK: - Header Action
+    
+    func toProfile(toUser: JSON) {
+        
+        if currentUser != nil {
+            selectedUser = toUser
+            let profile = storyboard?.instantiateViewController(withIdentifier: "TLProfileView") as! TLProfileViewController
+            profile.displayData = "search"
+            profile.currentSelectedUser = selectedUser
+            self.navigationController?.pushViewController(profile, animated: true)
+        }
+        else {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
+        }
+    }
 
 }

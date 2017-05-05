@@ -19,7 +19,7 @@ class ActivityProfileHeader: UIView {
     @IBOutlet weak var followButton: UIButton!
     @IBOutlet weak var localTime: UILabel!
     @IBOutlet weak var blurImageView: UIImageView!
-    var parentController: UIViewController!
+    var parentController: TLMainFeedsViewController!
     
     var ishidefollow:Bool = false
     var currentFeed:JSON = []
@@ -28,18 +28,6 @@ class ActivityProfileHeader: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
-//        transparentCardWhite(activityProView)
-        
-//        let darkBlur = UIBlurEffect(style: UIBlurEffectStyle.light)
-//        let blurView = UIVisualEffectView(effect: darkBlur)
-//        blurView.frame.size.height = self.frame.height + 50
-//        blurView.frame.size.width = self.frame.width + 50
-//        blurView.isUserInteractionEnabled = false
-//        blurImageView.addSubview(blurView)
-//        self.addSubview(blurView)
-//        self.sendSubview(toBack: blurImageView)
-
-        
         
         makeBuddiesTLProfilePicture(profilePic)
         clockLabel.text = String(format: "%C", faicon["calendar"]!)
@@ -70,23 +58,9 @@ class ActivityProfileHeader: UIView {
         self.addSubview(view)
         
     }
-
-    
-    func toProfile(_ sender: AnyObject) {
-        
-        if currentUser != nil {
-            selectedUser = currentFeed["user"]
-            let profile = storyboard.instantiateViewController(withIdentifier: "TLProfileView") as! TLProfileViewController
-            profile.displayData = "search"
-            profile.currentSelectedUser = selectedUser
-            parentController.navigationController?.pushViewController(profile, animated: true)
-        }
-        else {
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
-        }
-    }
     
     func fillProfileHeader(feed:JSON, pageType: viewType?, cellType: feedCellType?) {
+        
         currentFeed = feed
         
         self.removePreviousGesture()
@@ -95,7 +69,7 @@ class ActivityProfileHeader: UIView {
         self.sendSubview(toBack: self.userName)
         
         self.isUserInteractionEnabled = true
-        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(self.toProfile(_:)))
+        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(self.handleProfileTap(_:)))
         self.addGestureRecognizer(tapGestureRecognizer)
         
         self.followButton.isHidden = true
@@ -161,7 +135,6 @@ class ActivityProfileHeader: UIView {
     }
     
     func fillProfileHeaderForLocalPost(post: Post) {
-//        currentFeed = feed
         
         self.followButton.isHidden = true
         
@@ -238,4 +211,13 @@ class ActivityProfileHeader: UIView {
         }
     }
 
+    func handleProfileTap(_ sender: AnyObject) {
+        
+        if currentUser != nil {
+            parentController.toProfile(toUser: currentFeed["user"])
+        }
+        else {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
+        }
+    }
 }

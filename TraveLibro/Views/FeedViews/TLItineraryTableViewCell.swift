@@ -26,7 +26,7 @@ class TLItineraryTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    init(style: UITableViewCellStyle, reuseIdentifier: String, feedData: JSON, helper: UIViewController){
+    init(style: UITableViewCellStyle, reuseIdentifier: String, feedData: JSON, helper: TLMainFeedsViewController){
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         createView(feedData: feedData, helper: helper)        
@@ -52,7 +52,7 @@ class TLItineraryTableViewCell: UITableViewCell {
     
     //MARK: - Create View
     
-    func createView(feedData: JSON?, helper: UIViewController?) {
+    func createView(feedData: JSON?, helper: TLMainFeedsViewController?) {
         
         FProfileHeader = ActivityProfileHeader(frame: CGRect(x: 0, y: 0, width: screenWidth, height: FEEDS_HEADER_HEIGHT))
         self.contentView.addSubview(FProfileHeader)
@@ -75,7 +75,7 @@ class TLItineraryTableViewCell: UITableViewCell {
         }
     }    
     
-    func setData(feedData: JSON, helper: UIViewController, pageType: viewType?) {        
+    func setData(feedData: JSON, helper: TLMainFeedsViewController, pageType: viewType?) {        
         
         print("\n FeedData : \(feedData) \n\n")
         
