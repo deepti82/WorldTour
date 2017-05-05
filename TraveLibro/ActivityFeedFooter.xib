@@ -47,7 +47,7 @@
                                         <constraint firstAttribute="width" secondItem="6xd-vA-ZIM" secondAttribute="height" multiplier="1:1" id="WLr-Sn-Xng"/>
                                     </constraints>
                                     <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
-                                    <state key="normal" title="Button" image="7988F5D5-945C-4A5D-B500-CC0299C8B0EF"/>
+                                    <state key="normal" title="Button" image="8E6BED4A-5977-4758-B6FB-DD669F93866D"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="velocity">
                                             <real key="value" value="2"/>
@@ -59,25 +59,16 @@
                                             <real key="value" value="6"/>
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
-                                    <connections>
-                                        <action selector="sendLikes:" destination="-1" eventType="touchUpInside" id="Bqo-P9-2pY"/>
-                                    </connections>
                                 </button>
                                 <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G5z-LP-d5S" customClass="SpringButton" customModule="Spring">
                                     <rect key="frame" x="40" y="0.0" width="40" height="40"/>
                                     <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
                                     <state key="normal" title="Button" image="comments"/>
-                                    <connections>
-                                        <action selector="sendComments:" destination="-1" eventType="touchUpInside" id="G4Z-F1-jHA"/>
-                                    </connections>
                                 </button>
                                 <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lFc-eg-kBq">
                                     <rect key="frame" x="80" y="0.0" width="40" height="40"/>
                                     <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
                                     <state key="normal" title="Button" image="shareButton"/>
-                                    <connections>
-                                        <action selector="sharingTap:" destination="-1" eventType="touchUpInside" id="ItP-UL-Lne"/>
-                                    </connections>
                                 </button>
                             </subviews>
                         </stackView>
@@ -90,9 +81,6 @@
                             <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                             <inset key="imageEdgeInsets" minX="2" minY="2" maxX="2" maxY="2"/>
                             <state key="normal" image="options_icon"/>
-                            <connections>
-                                <action selector="optionClick:" destination="-1" eventType="touchUpInside" id="XDP-DK-gKa"/>
-                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -134,9 +122,6 @@
                             <state key="normal" title="0 Like">
                                 <color key="titleColor" red="0.17254901960784313" green="0.21568627450980393" blue="0.3411764705882353" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
-                            <connections>
-                                <action selector="likeCountTapped:" destination="-1" eventType="touchUpInside" id="cCr-vV-OVt"/>
-                            </connections>
                         </button>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="speech_icon" translatesAutoresizingMaskIntoConstraints="NO" id="ulR-lL-uAt">
                             <rect key="frame" x="73" y="13" width="15" height="15"/>
@@ -151,9 +136,6 @@
                             <state key="normal" title="0 Comment">
                                 <color key="titleColor" red="0.17254901959999999" green="0.2156862745" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
-                            <connections>
-                                <action selector="commentCountTabbed:" destination="-1" eventType="touchUpInside" id="H4U-B7-63Z"/>
-                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -191,7 +173,7 @@
         </view>
     </objects>
     <resources>
-        <image name="7988F5D5-945C-4A5D-B500-CC0299C8B0EF" width="128" height="128">
+        <image name="8E6BED4A-5977-4758-B6FB-DD669F93866D" width="128" height="128">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw

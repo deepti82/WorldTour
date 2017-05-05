@@ -80,56 +80,126 @@ class ActivityProfileHeader: UIView {
         
         if((currentUser != nil) && feed["user"]["_id"].stringValue == currentUser["_id"].stringValue) {
             followButton.isHidden = true
-        }        
+        }
         
-        if pageType == viewType.VIEW_TYPE_POPULAR_JOURNEY {
-            userName.text = feed["journeyCreator"]["name"].stringValue
-            profilePic.hnk_setImageFromURL(getImageURL(feed["journeyCreator"]["profilePicture"].stringValue, width: SMALL_PHOTO_WIDTH))
-        }
-        else if pageType == viewType.VIEW_TYPE_ACTIVITY &&
-            cellType == feedCellType.CELL_OTG_TYPE {
-            userName.text = feed["journeyCreator"]["name"].stringValue
-            profilePic.hnk_setImageFromURL(getImageURL(feed["journeyCreator"]["profilePicture"].stringValue, width: SMALL_PHOTO_WIDTH))
-        }
-        else if pageType == viewType.VIEW_TYPE_ACTIVITY &&
-            cellType == feedCellType.CELL_POST_TYPE {
-            userName.text = feed["postCreator"]["name"].stringValue
-            profilePic.hnk_setImageFromURL(getImageURL(feed["postCreator"]["profilePicture"].stringValue, width: SMALL_PHOTO_WIDTH))
-        }
-        else if pageType == viewType.VIEW_TYPE_ACTIVITY &&
-            cellType == feedCellType.CELL_ITINERARY_TYPE {
-            userName.text = feed["creator"]["name"].stringValue
-            profilePic.hnk_setImageFromURL(getImageURL(feed["creator"]["profilePicture"].stringValue, width: SMALL_PHOTO_WIDTH))            
-        }
-        else {
-            userName.text = feed["user"]["name"].stringValue
-            profilePic.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(feed["user"]["profilePicture"])", width: SMALL_PHOTO_WIDTH))            
-        }        
+        if pageType == viewType.VIEW_TYPE_ACTIVITY {
+            
+            localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["timestamp"].stringValue, isDate: true)
+            localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["timestamp"].stringValue, isDate: false)
+            
+            switch feed["type"].stringValue {
+            case "on-the-go-journey":
+                fallthrough
+            case "ended-journey":
+                userName.text = feed["user"]["name"].stringValue
+                profilePic.hnk_setImageFromURL(getImageURL(feed["user"]["profilePicture"].stringValue, width: SMALL_PHOTO_WIDTH))
+                break
                 
-        if feed["timestamp"].stringValue != "" {
-            localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd-MM-yyyy", date: feed["timestamp"].stringValue, isDate: true)
-            localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["timestamp"].stringValue, isDate: false)            
-        }
-        else {
-            localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd-MM-yyyy", date: feed["UTCModified"].stringValue, isDate: true)
-            localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["UTCModified"].stringValue, isDate: false)
+                
+            case "quick-itinerary":
+                fallthrough
+            case "detail-itinerary":
+                userName.text = feed["creator"]["name"].stringValue
+                profilePic.hnk_setImageFromURL(getImageURL(feed["creator"]["profilePicture"].stringValue, width: SMALL_PHOTO_WIDTH))
+                break
+                
+            default:
+                userName.text = feed["postCreator"]["name"].stringValue
+                profilePic.hnk_setImageFromURL(getImageURL(feed["postCreator"]["profilePicture"].stringValue, width: SMALL_PHOTO_WIDTH))
+            }
         }
         
-        if feed["type"].stringValue == "on-the-go-journey"{
+        else if pageType == viewType.VIEW_TYPE_OTG {
+            // This Header is not used for OTG.... So Ignore this case
+        }
+        
+        else if pageType == viewType.VIEW_TYPE_MY_LIFE {
+            
+            switch feed["type"].stringValue {
+            case "on-the-go-journey":
+                fallthrough
+            case "ended-journey":
+                userName.text = feed["user"]["name"].stringValue
+                profilePic.hnk_setImageFromURL(getImageURL(feed["user"]["profilePicture"].stringValue, width: SMALL_PHOTO_WIDTH))
+                localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["startTime"].stringValue, isDate: true)
+                localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["startTime"].stringValue, isDate: false)
+                break
+                
+                
+            case "quick-itinerary":
+                fallthrough
+            case "detail-itinerary":
+                userName.text = feed["creator"]["name"].stringValue
+                profilePic.hnk_setImageFromURL(getImageURL(feed["creator"]["profilePicture"].stringValue, width: SMALL_PHOTO_WIDTH))
+                localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["startTime"].stringValue, isDate: true)
+                localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["startTime"].stringValue, isDate: false)
+                break
+                
+            default:
+                userName.text = feed["postCreator"]["name"].stringValue
+                profilePic.hnk_setImageFromURL(getImageURL(feed["postCreator"]["profilePicture"].stringValue, width: SMALL_PHOTO_WIDTH))
+                localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["UTCModified"].stringValue, isDate: true)
+                localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["UTCModified"].stringValue, isDate: false)
+            }
+        }
+        
+        else if pageType == viewType.VIEW_TYPE_LOCAL_LIFE {
+            
+            switch feed["type"].stringValue {
+            case "on-the-go-journey":
+                fallthrough
+            case "ended-journey":
+                userName.text = feed["user"]["name"].stringValue
+                profilePic.hnk_setImageFromURL(getImageURL(feed["user"]["profilePicture"].stringValue, width: SMALL_PHOTO_WIDTH))
+                localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["UTCModified"].stringValue, isDate: true)
+                localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["UTCModified"].stringValue, isDate: false)
+                break
+                
+                
+            case "quick-itinerary":
+                fallthrough
+            case "detail-itinerary":
+                userName.text = feed["creator"]["name"].stringValue
+                profilePic.hnk_setImageFromURL(getImageURL(feed["creator"]["profilePicture"].stringValue, width: SMALL_PHOTO_WIDTH))
+                localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["UTCModified"].stringValue, isDate: true)
+                localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["UTCModified"].stringValue, isDate: false)
+                break
+                
+            default:
+                userName.text = feed["postCreator"]["name"].stringValue
+                profilePic.hnk_setImageFromURL(getImageURL(feed["postCreator"]["profilePicture"].stringValue, width: SMALL_PHOTO_WIDTH))
+                localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["UTCModified"].stringValue, isDate: true)
+                localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["UTCModified"].stringValue, isDate: false)
+            }
+            
+        }
+        
+        else if pageType == viewType.VIEW_TYPE_POPULAR_JOURNEY ||
+            pageType == viewType.VIEW_TYPE_POPULAR_ITINERARY {
+            
             localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["startTime"].stringValue, isDate: true)
             localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["startTime"].stringValue, isDate: false)
-        }else if feed["type"].stringValue == "ended-journey"{
-            localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["endTime"].stringValue, isDate: true)
-            localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["endTime"].stringValue, isDate: false)
-        }else if feed["type"].stringValue == "quick-itinerary"{
-            localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["createdAt"].stringValue, isDate: true)
-            localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["createdAt"].stringValue, isDate: false)
-        }else if feed["type"].stringValue == "detail-itinerary"{
-            localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["updatedAt"].stringValue, isDate: true)
-            localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["updatedAt"].stringValue, isDate: false)
-        }else {
-            localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["UTCModified"].stringValue, isDate: true)
-            localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["UTCModified"].stringValue, isDate: false)            
+            
+            switch feed["type"].stringValue {
+            case "on-the-go-journey":
+                fallthrough
+            case "ended-journey":
+                userName.text = feed["user"]["name"].stringValue
+                profilePic.hnk_setImageFromURL(getImageURL(feed["user"]["profilePicture"].stringValue, width: SMALL_PHOTO_WIDTH))
+                break
+                
+                
+            case "quick-itinerary":
+                fallthrough
+            case "detail-itinerary":
+                userName.text = feed["creator"]["name"].stringValue
+                profilePic.hnk_setImageFromURL(getImageURL(feed["creator"]["profilePicture"].stringValue, width: SMALL_PHOTO_WIDTH))
+                break
+                
+            default:
+                userName.text = feed["postCreator"]["name"].stringValue
+                profilePic.hnk_setImageFromURL(getImageURL(feed["postCreator"]["profilePicture"].stringValue, width: SMALL_PHOTO_WIDTH))
+            }
         }
         
     }

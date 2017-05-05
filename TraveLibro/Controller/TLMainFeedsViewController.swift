@@ -142,7 +142,7 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
         case .VIEW_TYPE_OTG:
             break
             
-        }   
+        }
     }
     
     func getActivityFeedsData(pageNumber: Int) {
@@ -285,6 +285,8 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
             }
             
             feedCell?.setData(feedData: cellData, helper: self, pageType: pageType)
+            feedCell?.FFooterView.likeCountButton.tag = indexPath.row
+            feedCell?.FFooterView.commentCountButton.tag = indexPath.row
             return feedCell!
             
         
@@ -296,6 +298,8 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
             }
             
             feedCell?.setData(feedData: cellData, helper: self, pageType: pageType)
+            feedCell?.FFooterView.likeCountButton.tag = indexPath.row
+            feedCell?.FFooterView.commentCountButton.tag = indexPath.row
             return feedCell!
             
         
@@ -309,6 +313,8 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
             }
             
             feedCell?.setData(feedData: cellData, helper: self, pageType: pageType)
+            feedCell?.FFooterView.likeCountButton.tag = indexPath.row
+            feedCell?.FFooterView.commentCountButton.tag = indexPath.row
             return feedCell!
             
             
@@ -340,6 +346,29 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
         else {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
         }
+    }
+    
+    
+    //MARK: - Footer Action
+    
+    func showLike(sender: UIButton) {
+        let selectedPost = feedsDataArray[sender.tag]
+        if currentUser != nil {
+            let feedVC = storyboard?.instantiateViewController(withIdentifier: "likeTable") as! LikeUserViewController
+            feedVC.postId = selectedPost["_id"].stringValue
+            feedVC.type = selectedPost["type"].stringValue
+            feedVC.title = selectedPost["name"].stringValue
+            self.navigationController?.pushViewController(feedVC, animated: true)
+        }
+        else {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
+        }
+    }
+    
+    func showCommentView(sender: UIButton) {
+        
+        let selectedPost = feedsDataArray[sender.tag]
+        
     }
 
 }
