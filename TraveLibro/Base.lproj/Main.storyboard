@@ -3104,11 +3104,7 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CCU-j2-b3f">
-<<<<<<< HEAD
-                                        <rect key="frame" x="40" y="60" width="269" height="39"/>
-=======
                                         <rect key="frame" x="41" y="60" width="269" height="39"/>
->>>>>>> origin/level-3-
                                         <constraints>
                                             <constraint firstAttribute="height" constant="39" id="bPM-Ja-pVU"/>
                                             <constraint firstAttribute="width" constant="269" id="wrG-pz-ioZ"/>
@@ -5094,11 +5090,7 @@
                                                 <rect key="frame" x="161" y="0.0" width="49" height="30"/>
                                                 <subviews>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wjB-Dd-ihB">
-<<<<<<< HEAD
-                                                        <rect key="frame" x="0.0" y="0.0" width="48.5" height="30"/>
-=======
                                                         <rect key="frame" x="1" y="0.0" width="49" height="30"/>
->>>>>>> origin/level-3-
                                                         <color key="tintColor" red="1" green="0.4039215686" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <color key="textColor" red="0.17254901959999999" green="0.2156862745" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
                                                         <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
@@ -11609,11 +11601,7 @@
                                         </connections>
                                     </stackView>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="etL-Pz-bP1">
-<<<<<<< HEAD
-                                        <rect key="frame" x="27" y="254.5" width="321" height="0.0"/>
-=======
                                         <rect key="frame" x="27" y="255.5" width="321" height="0.0"/>
->>>>>>> origin/level-3-
                                         <constraints>
                                             <constraint firstAttribute="height" priority="250" id="P0P-Cg-fIG"/>
                                         </constraints>
