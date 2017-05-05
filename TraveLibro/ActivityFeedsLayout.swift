@@ -61,7 +61,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
         
         self.addSubview(profileHeader)
         
-        profileHeader.fillProfileHeader(feed:feed)
+        profileHeader.fillProfileHeader(feed:feed, pageType: viewType.VIEW_TYPE_ACTIVITY, cellType: feedCellType.CELL_OTG_TYPE)
         
         
         if feed["type"].stringValue == "on-the-go-journey"{
@@ -321,7 +321,8 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             self.videoContainer.videoHolder.addSubview(self.player.view)
             self.addSubview(self.videoContainer)
             
-        } 
+        }
+        
         else if(feed["photos"].count > 0) {
             self.mainPhoto = UIImageView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.width))
             self.addSubview(self.mainPhoto)

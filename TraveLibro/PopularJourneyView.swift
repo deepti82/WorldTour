@@ -47,9 +47,9 @@ class PopularJourneyView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
-        makeTLProfilePictureBorderWhiteCorner(flag1)
-        makeTLProfilePictureBorderWhiteCorner(flag2)
-        makeTLProfilePictureBorderWhiteCorner(flag3)
+        makeFlagBorderWhiteCorner(flag1)
+        makeFlagBorderWhiteCorner(flag2)
+        makeFlagBorderWhiteCorner(flag3)
        makeBuddiesTLProfilePicture(journeyCreatorImage)
         calendarLabel.text = String(format: "%C", faicon["clock"]!)
         clockLabel.text = String(format: "%C", faicon["calendar"]!)

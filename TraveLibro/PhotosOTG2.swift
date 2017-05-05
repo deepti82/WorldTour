@@ -220,7 +220,7 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
         self.addSubview(profileHeader)
         profileHeader.ishidefollow = true
         profileHeader.followButton.isHidden = true
-        profileHeader.fillProfileHeader(feed:feed)
+        profileHeader.fillProfileHeader(feed:feed, pageType: viewType.VIEW_TYPE_OTG, cellType: feedCellType.CELL_POST_TYPE)
         
         
         if feed["type"].stringValue == "on-the-go-journey"{

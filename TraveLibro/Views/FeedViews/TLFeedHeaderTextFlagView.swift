@@ -22,7 +22,7 @@ class TLFeedHeaderTextFlagView: UIView {
         loadViewFromNib ()
         
         for flagImageView in flagImageArray {
-            makeTLProfilePictureBorderWhiteCorner(flagImageView)
+            makeFlagBorderWhiteCorner(flagImageView)
         }
     }
     

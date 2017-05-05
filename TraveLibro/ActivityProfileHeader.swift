@@ -86,7 +86,7 @@ class ActivityProfileHeader: UIView {
         }
     }
     
-    func fillProfileHeader(feed:JSON) {
+    func fillProfileHeader(feed:JSON, pageType: viewType?, cellType: feedCellType?) {
         currentFeed = feed
         
         self.removePreviousGesture()
@@ -106,10 +106,32 @@ class ActivityProfileHeader: UIView {
         
         if((currentUser != nil) && feed["user"]["_id"].stringValue == currentUser["_id"].stringValue) {
             followButton.isHidden = true
-        }
+        }        
         
-        userName.text = feed["user"]["name"].stringValue
-        profilePic.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(feed["user"]["profilePicture"])", width: SMALL_PHOTO_WIDTH))        
+        if pageType == viewType.VIEW_TYPE_POPULAR_JOURNEY {
+            userName.text = feed["journeyCreator"]["name"].stringValue
+            profilePic.hnk_setImageFromURL(getImageURL(feed["journeyCreator"]["profilePicture"].stringValue, width: SMALL_PHOTO_WIDTH))
+        }
+        else if pageType == viewType.VIEW_TYPE_ACTIVITY &&
+            cellType == feedCellType.CELL_OTG_TYPE {
+            userName.text = feed["journeyCreator"]["name"].stringValue
+            profilePic.hnk_setImageFromURL(getImageURL(feed["journeyCreator"]["profilePicture"].stringValue, width: SMALL_PHOTO_WIDTH))
+        }
+        else if pageType == viewType.VIEW_TYPE_ACTIVITY &&
+            cellType == feedCellType.CELL_POST_TYPE {
+            userName.text = feed["postCreator"]["name"].stringValue
+            profilePic.hnk_setImageFromURL(getImageURL(feed["postCreator"]["profilePicture"].stringValue, width: SMALL_PHOTO_WIDTH))
+        }
+        else if pageType == viewType.VIEW_TYPE_ACTIVITY &&
+            cellType == feedCellType.CELL_ITINERARY_TYPE {
+            userName.text = feed["creator"]["name"].stringValue
+            profilePic.hnk_setImageFromURL(getImageURL(feed["creator"]["profilePicture"].stringValue, width: SMALL_PHOTO_WIDTH))            
+        }
+        else {
+            userName.text = feed["user"]["name"].stringValue
+            profilePic.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(feed["user"]["profilePicture"])", width: SMALL_PHOTO_WIDTH))            
+        }        
+                
         if feed["timestamp"].stringValue != "" {
             localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd-MM-yyyy", date: feed["timestamp"].stringValue, isDate: true)
             localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["timestamp"].stringValue, isDate: false)            
@@ -129,8 +151,8 @@ class ActivityProfileHeader: UIView {
             localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["createdAt"].stringValue, isDate: true)
             localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["createdAt"].stringValue, isDate: false)
         }else if feed["type"].stringValue == "detail-itinerary"{
-            localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["startDate"].stringValue, isDate: true)
-            localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["startTime"].stringValue, isDate: false)
+            localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["updatedAt"].stringValue, isDate: true)
+            localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["updatedAt"].stringValue, isDate: false)
         }else {
             localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["UTCModified"].stringValue, isDate: true)
             localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["UTCModified"].stringValue, isDate: false)            

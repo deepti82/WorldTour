@@ -14,22 +14,32 @@ enum viewType {
     case VIEW_TYPE_LOCAL_LIFE
     case VIEW_TYPE_POPULAR_JOURNEY
     case VIEW_TYPE_POPULAR_ITINERARY
+    case VIEW_TYPE_OTG
 }
 
 enum feedCellType {
     case CELL_OTG_TYPE
-    case CELL_OTG_ENDED_TYPE
-    case CELL_QUICK_ITINERARY_TYPE
-    case CELL_DETAIL_ITINERARY_TYPE
+    case CELL_POST_TYPE
+    case CELL_ITINERARY_TYPE    
     case CELL_TRAVEL_LIFE_TYPE
     case CELL_LOCAL_LIFE_TYPE
+}
+
+enum feedPostCellType {
+    case POST_ONLY_THOUGHT_TYPE
+    case POST_ONLY_CHECKIN_TYPE
+    case POST_ONLY_IMAGE_TYPE
+    case POST_ONLY_VIDEO_TYPE
+    case POST_THOUGHT_CHECKIN_TYPE
+    case POST_THOUGHT_IMAGE_TYPE
+    case POST_THOUGHT_VIDEO_TYPE
 }
 
 
 class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var feedsTableView: UITableView!
-    var mainFooter: FooterViewNew!
+    var mainFooter: FooterViewNew?
     
     var pageType: viewType = viewType.VIEW_TYPE_ACTIVITY
     
@@ -57,7 +67,7 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.mainFooter.frame = CGRect(x: 0, y: self.view.frame.height - MAIN_FOOTER_HEIGHT, width: self.view.frame.width, height: MAIN_FOOTER_HEIGHT)        
+        self.mainFooter?.frame = CGRect(x: 0, y: self.view.frame.height - MAIN_FOOTER_HEIGHT, width: self.view.frame.width, height: MAIN_FOOTER_HEIGHT)        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -81,18 +91,26 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
             setNavigationBarItemText("Activity Feed")
             
             self.mainFooter = FooterViewNew(frame: CGRect.zero)
-            self.mainFooter.layer.zPosition = 5
-            self.view.addSubview(self.mainFooter)
+            self.mainFooter?.layer.zPosition = 5
+            self.view.addSubview(self.mainFooter!)
             
-            self.mainFooter.setHighlightStateForView(tag: 0, color: mainOrangeColor)
+            self.mainFooter?.setHighlightStateForView(tag: 0, color: mainOrangeColor)
         }
         
         else if pageType == viewType.VIEW_TYPE_POPULAR_JOURNEY {
             setNavigationBarItemText("Popular Journeys")
             
             self.mainFooter = FooterViewNew(frame: CGRect.zero)
-            self.mainFooter.layer.zPosition = 5
-            self.view.addSubview(self.mainFooter)
+            self.mainFooter?.layer.zPosition = 5
+            self.view.addSubview(self.mainFooter!)
+        }
+        
+        else if pageType == viewType.VIEW_TYPE_POPULAR_ITINERARY {
+            setNavigationBarItemText("Popular Itineraries")
+            
+            self.mainFooter = FooterViewNew(frame: CGRect.zero)
+            self.mainFooter?.layer.zPosition = 5
+            self.view.addSubview(self.mainFooter!)
         }
     }
     
@@ -118,6 +136,10 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
             break
             
         case .VIEW_TYPE_POPULAR_ITINERARY:
+            self.getPopularItineriesData(pageNumber: currentPageNumber)
+            break
+            
+        case .VIEW_TYPE_OTG:
             break
             
         }   
@@ -172,6 +194,24 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
         
     }
     
+    func getPopularItineriesData(pageNumber: Int) {
+        
+        if pageType == viewType.VIEW_TYPE_POPULAR_ITINERARY {            
+            request.getPopularItinerary(userId: user.getExistingUser(), pagenumber: pageNumber, completion: { (response) in
+                DispatchQueue.main.async(execute: { 
+                    if pageNumber == 1 {
+                        self.feedsDataArray = []
+                    }
+                    if !response["data"].arrayValue.isEmpty {
+                        self.feedsDataArray.append(contentsOf: response["data"].arrayValue)                    
+                    }
+                    
+                    self.reloadTableData()
+                })
+            })
+        }
+    }
+    
     
     //MARK: - Reload Table
     
@@ -199,10 +239,26 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
         case "on-the-go-journey":
             fallthrough
         case "ended-journey":
-            let displatTextString = getTextHeader(feed: cellData)
+            let displatTextString = getTextHeader(feed: cellData, pageType: pageType)
             var textHeight = (heightOfAttributedText(attributedString: displatTextString, width: screenWidth) + 10)            
             textHeight = ((cellData["countryVisited"].arrayValue).isEmpty) ? textHeight : max(textHeight, 36)
             height = height + FEEDS_HEADER_HEIGHT + textHeight + screenWidth*0.9 + (shouldShowFooterCountView(feed: cellData) ? 90 : 50)
+            break
+            
+            
+        case "travel-life":
+            height = height + FEEDS_HEADER_HEIGHT + screenWidth*0.9 + (shouldShowFooterCountView(feed: cellData) ? 90 : 50)
+            break
+            
+            
+        case "quick-itinerary":
+            fallthrough
+        case "detail-itinerary":
+            let displatTextString = getTextHeader(feed: cellData, pageType: pageType)
+            var textHeight = (heightOfAttributedText(attributedString: displatTextString, width: screenWidth) + 10)            
+            textHeight = ((cellData["countryVisited"].arrayValue).isEmpty) ? textHeight : max(textHeight, 36)
+            height = height + ((pageType == viewType.VIEW_TYPE_ACTIVITY) ? FEEDS_HEADER_HEIGHT : 0) + textHeight + screenWidth*0.9 + (shouldShowFooterCountView(feed: cellData) ? 90 : 50)
+            break
             
         default:
             
@@ -230,6 +286,32 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
             
             feedCell?.setData(feedData: cellData, helper: self, pageType: pageType)
             return feedCell!
+            
+        
+        case "travel-life":
+            var feedCell = tableView.dequeueReusableCell(withIdentifier: "TravelLocalCell", for: indexPath) as? TLTravelLocalLifeTableViewCell
+            
+            if feedCell == nil {
+                feedCell = TLTravelLocalLifeTableViewCell.init(style: .default, reuseIdentifier: "TravelLocalCell", feedData: cellData, helper: self)
+            }
+            
+            feedCell?.setData(feedData: cellData, helper: self, pageType: pageType)
+            return feedCell!
+            
+        
+        case "quick-itinerary":
+            fallthrough
+        case "detail-itinerary":
+            var feedCell = tableView.dequeueReusableCell(withIdentifier: "ItineraryCell", for: indexPath) as? TLItineraryTableViewCell
+            
+            if feedCell == nil {
+                feedCell = TLItineraryTableViewCell.init(style: .default, reuseIdentifier: "ItineraryCell", feedData: cellData, helper: self)
+            }
+            
+            feedCell?.setData(feedData: cellData, helper: self, pageType: pageType)
+            return feedCell!
+            
+            
             
         default:
             print("\n default case : \(cellData["type"].stringValue)")

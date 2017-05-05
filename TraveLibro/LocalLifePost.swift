@@ -220,7 +220,7 @@ class LocalLifePost: VerticalLayout, PlayerDelegate {
         
         profileHeader = ActivityProfileHeader(frame: CGRect(x: 0, y: 20, width: self.frame.width, height: 69))
         self.addSubview(profileHeader)
-        profileHeader.fillProfileHeader(feed:feed)
+        profileHeader.fillProfileHeader(feed:feed, pageType: viewType.VIEW_TYPE_LOCAL_LIFE, cellType: feedCellType.CELL_LOCAL_LIFE_TYPE)
         
         
     
