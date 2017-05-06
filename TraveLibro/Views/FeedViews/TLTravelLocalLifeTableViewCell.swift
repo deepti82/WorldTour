@@ -10,7 +10,7 @@ import UIKit
 import Player
 
 
-class TLTravelLocalLifeTableViewCell: UITableViewCell, PlayerDelegate, TLFooterDelegate {
+class TLTravelLocalLifeTableViewCell: UITableViewCell, PlayerDelegate {
 
     var FBackground = NotificationBackground()
     var FProfileHeader: ActivityProfileHeader!
@@ -93,11 +93,11 @@ class TLTravelLocalLifeTableViewCell: UITableViewCell, PlayerDelegate, TLFooterD
         self.contentView.sendSubview(toBack: FBackground)
         
         if feedData != nil {
-            setData(feedData: feedData!, helper: helper!, pageType: nil)            
+            setData(feedData: feedData!, helper: helper!, pageType: nil, delegate: nil)            
         }
     }    
     
-    func setData(feedData: JSON, helper: UIViewController, pageType: viewType?) {
+    func setData(feedData: JSON, helper: UIViewController, pageType: viewType?, delegate: TLFooterDelegate?) {
         
         totalHeight = CGFloat(0)
         
@@ -130,7 +130,7 @@ class TLTravelLocalLifeTableViewCell: UITableViewCell, PlayerDelegate, TLFooterD
         }
         
         FFooterViewBasic.parentController = helper
-        FFooterViewBasic.fillFeedFooter(feed: feedData, pageType: pageType, delegate: self)
+        FFooterViewBasic.fillFeedFooter(feed: feedData, pageType: pageType, delegate: delegate)
         
         if shouldShowFooterCountView(feed: feedData) {
             FFooterViewBasic.lowerViewHeightConstraint.constant = FEED_FOOTER_LOWER_VIEW_HEIGHT
@@ -306,10 +306,4 @@ class TLTravelLocalLifeTableViewCell: UITableViewCell, PlayerDelegate, TLFooterD
         globalNavigationController.pushViewController(singlePhotoController, animated: true)
     }
     
-    
-    //MARK: - Delegate Actions
-    
-    func footerOptionButtonClicked(sender: UIButton) {
-        print("\n Option button clicked")
-    }
 }

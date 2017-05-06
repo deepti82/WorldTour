@@ -94,10 +94,11 @@ class ActivityFeedFooterBasic: UIView {
     
     }
     
-    func fillFeedFooter(feed: JSON, pageType: viewType?, delegate: TLFooterDelegate) {
+    func fillFeedFooter(feed: JSON, pageType: viewType?, delegate: TLFooterDelegate?) {
         
         self.postTop = feed
         self.pageType = pageType!
+        self.delegate = delegate
         
         if currentUser != nil {
             if (isSelfUser(otherUserID: postTop["user"]["_id"].stringValue) && self.pageType == viewType.VIEW_TYPE_MY_LIFE) {
@@ -407,6 +408,7 @@ class ActivityFeedFooterBasic: UIView {
         }
     }
     
+    
     //MARK: - Share
     
     @IBAction func sharingTap(_ sender: Any) {
@@ -510,25 +512,19 @@ class ActivityFeedFooterBasic: UIView {
     
     @IBAction func optionClick(_ sender: UIButton) {
         
-        delegate?.footerOptionButtonClicked(sender: sender)       
+        delegate?.footerOptionButtonClicked(sender: sender)
         
-        
-//        print(user.getExistingUser())
-//        print(postTop)
         var shouldPresent = true
+        
         let actionSheetControllerIOS8: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         if isSelfUser(otherUserID: postTop["user"]["_id"].stringValue) {
             
             if(self.type == "MyLifeFeeds" && isSelfUser(otherUserID: currentUser["_id"].stringValue)) {
                 let EditCheckIn: UIAlertAction = UIAlertAction(title: "Edit Activity", style: .default)
-                {action -> Void in
-                    //            self.isEdit = true
-                    //                globalNewTLViewController.showEditActivity(Post())
+                {action -> Void in                   
                     globalMyLifeViewController.showEditActivity(self.postTop)
-                    //print("inside edit check in \(self.addView), \(self.newScroll.isHidden)")
                 }
-                //                actionSheetControllerIOS8.addAction(EditCheckIn)
                 
                 let EditDnt: UIAlertAction = UIAlertAction(title: "Change Date & Time", style: .default)
                 { action -> Void in
@@ -553,15 +549,12 @@ class ActivityFeedFooterBasic: UIView {
                     }))
                     showPopover(optionsController: alert, sender: sender, vc: globalMyLifeViewController)
                     
-                    //                    globalMyLifeViewController.present(alert, animated: true, completion: nil)
-                    
                 }
                 actionSheetControllerIOS8.addAction(DeletePost)
                 let share: UIAlertAction = UIAlertAction(title: "Add Photos/Videos", style: .default)
                 { action -> Void in
                     globalMyLifeViewController.showEditAddActivity(self.postTop)
                 }
-                //                actionSheetControllerIOS8.addAction(share)
                 
                 let cancel: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel)
                 { action -> Void in
@@ -587,10 +580,7 @@ class ActivityFeedFooterBasic: UIView {
                             
                             
                         }))
-                        showPopover(optionsController: alert, sender: sender, vc: globalMyLifeViewController)
-                        
-                        //                        globalMyLifeViewController.present(alert, animated: true, completion: nil)
-                        
+                        showPopover(optionsController: alert, sender: sender, vc: globalMyLifeViewController)                                                
                     }
                     actionSheetControllerIOS8.addAction(DeletePost)
                     
@@ -601,25 +591,16 @@ class ActivityFeedFooterBasic: UIView {
                     alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
                     showPopover(optionsController: alert, sender: sender, vc: globalNavigationController)
                     
-                    //                    globalNavigationController.present(alert, animated: true, completion: nil)
                 }
                 
                 let reportActionButton1: UIAlertAction = UIAlertAction(title: "Report", style: .default) {action -> Void in
                     let alert = UIAlertController(title: "Report", message: "Reported Successfully", preferredStyle: UIAlertControllerStyle.alert)
                     alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-                    showPopover(optionsController: alert, sender: sender, vc: globalNavigationController)
-                    
-                    //                    globalNavigationController.present(alert, animated: true, completion: nil)
+                    showPopover(optionsController: alert, sender: sender, vc: globalNavigationController)                    
                 }
                 
                 if isSelfUser(otherUserID: currentUser["_id"].stringValue) {
                     shouldPresent = false
-                    //                    actionSheetControllerIOS8.addAction(reportActionButton)
-                    //                    let cancel: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel)
-                    //                    { action -> Void in
-                    //                        
-                    //                    }
-                    //                    actionSheetControllerIOS8.addAction(cancel)
                     
                 }else{
                     actionSheetControllerIOS8.addAction(reportActionButton1)
@@ -654,10 +635,7 @@ class ActivityFeedFooterBasic: UIView {
                             
                             
                         }))
-                        showPopover(optionsController: alert, sender: sender, vc: globalMyLifeViewController)
-                        
-                        //                    globalMyLifeViewController.present(alert, animated: true, completion: nil)
-                        
+                        showPopover(optionsController: alert, sender: sender, vc: globalMyLifeViewController)                        
                     }
                     actionSheetControllerIOS8.addAction(DeletePost)
                 }
@@ -668,16 +646,12 @@ class ActivityFeedFooterBasic: UIView {
                 let alert = UIAlertController(title: "Report", message: "Reported Successfully", preferredStyle: UIAlertControllerStyle.alert)
                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
                 showPopover(optionsController: alert, sender: sender, vc: globalNavigationController)
-                
-                //                globalNavigationController.present(alert, animated: true, completion: nil)
             }
             
             let reportActionButton: UIAlertAction = UIAlertAction(title: "Hide", style: .default) {action -> Void in
                 let alert = UIAlertController(title: "Hide", message: "Hided successfuly", preferredStyle: UIAlertControllerStyle.alert)
                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
                 showPopover(optionsController: alert, sender: sender, vc: globalNavigationController)
-                
-                //                globalNavigationController.present(alert, animated: true, completion: nil)
             }
             
             if self.type == "popular"{
@@ -704,9 +678,8 @@ class ActivityFeedFooterBasic: UIView {
         
         if shouldPresent {
             showPopover(optionsController: actionSheetControllerIOS8, sender: sender, vc: globalNavigationController)
-            
-            //            globalNavigationController.topViewController?.present(actionSheetControllerIOS8, animated: true, completion: nil)
         }
+        
     }
     
     

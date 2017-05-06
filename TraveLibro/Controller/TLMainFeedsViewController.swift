@@ -36,7 +36,7 @@ enum feedPostCellType {
 }
 
 
-class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, TLFooterDelegate {
 
     @IBOutlet weak var feedsTableView: UITableView!
     var mainFooter: FooterViewNew?
@@ -284,9 +284,10 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
                 feedCell = TLOTGJourneyTableViewCell.init(style: .default, reuseIdentifier: "OTGCell", feedData: cellData, helper: self)
             }
             
-            feedCell?.setData(feedData: cellData, helper: self, pageType: pageType)
+            feedCell?.setData(feedData: cellData, helper: self, pageType: pageType, delegate: self)
             feedCell?.FFooterViewBasic.likeCountButton.tag = indexPath.row
             feedCell?.FFooterViewBasic.commentCountButton.tag = indexPath.row
+            feedCell?.FFooterViewBasic.optionButton.tag = indexPath.row
             return feedCell!
             
         
@@ -299,9 +300,10 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
                 feedCell = TLTravelLocalLifeTableViewCell.init(style: .default, reuseIdentifier: "TravelLocalCell", feedData: cellData, helper: self)
             }
             
-            feedCell?.setData(feedData: cellData, helper: self, pageType: pageType)
+            feedCell?.setData(feedData: cellData, helper: self, pageType: pageType, delegate: self)
             feedCell?.FFooterViewBasic.likeCountButton.tag = indexPath.row
             feedCell?.FFooterViewBasic.commentCountButton.tag = indexPath.row
+            feedCell?.FFooterViewBasic.optionButton.tag = indexPath.row
             return feedCell!
             
         
@@ -314,9 +316,10 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
                 feedCell = TLItineraryTableViewCell.init(style: .default, reuseIdentifier: "ItineraryCell", feedData: cellData, helper: self)
             }
             
-            feedCell?.setData(feedData: cellData, helper: self, pageType: pageType)
+            feedCell?.setData(feedData: cellData, helper: self, pageType: pageType, delegate: self)
             feedCell?.FFooterViewBasic.likeCountButton.tag = indexPath.row
             feedCell?.FFooterViewBasic.commentCountButton.tag = indexPath.row
+            feedCell?.FFooterViewBasic.optionButton.tag = indexPath.row
             return feedCell!
             
             
@@ -329,5 +332,14 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
         let feedCell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         return feedCell
     }
-
+    
+    
+    //MARK: - Delegate Actions
+    
+    func footerOptionButtonClicked(sender: UIButton) {
+        print("\n Option button clicked: index: \(sender.tag)")
+        
+        let selectedCellData = self.feedsDataArray[sender.tag]
+        print("\n\n ***** \n SelectedCellData: \(selectedCellData) \n*****\n\n")
+    }
 }

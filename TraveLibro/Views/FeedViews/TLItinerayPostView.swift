@@ -65,6 +65,7 @@ class TLItinerayPostView: UIView {
                 }
             }
         }
+        
         if pageType == viewType.VIEW_TYPE_ACTIVITY {
             self.creatorImageView.isHidden = true
             self.creatorNameLabel.isHidden = true

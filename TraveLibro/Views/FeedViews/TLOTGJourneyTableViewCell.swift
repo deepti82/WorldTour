@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TLOTGJourneyTableViewCell: UITableViewCell, TLFooterDelegate {
+class TLOTGJourneyTableViewCell: UITableViewCell {
 
     var FBackground = NotificationBackground()
     var FProfileHeader: ActivityProfileHeader!
@@ -71,11 +71,11 @@ class TLOTGJourneyTableViewCell: UITableViewCell, TLFooterDelegate {
         self.contentView.sendSubview(toBack: FBackground)
         
         if feedData != nil {
-            setData(feedData: feedData!, helper: helper!, pageType: nil)            
+            setData(feedData: feedData!, helper: helper!, pageType: nil, delegate: nil)            
         }
     }    
     
-    func setData(feedData: JSON, helper: UIViewController, pageType: viewType?) {        
+    func setData(feedData: JSON, helper: UIViewController, pageType: viewType?, delegate: TLFooterDelegate?) {        
         
         totalHeight = CGFloat(0)
         
@@ -108,7 +108,7 @@ class TLOTGJourneyTableViewCell: UITableViewCell, TLFooterDelegate {
         
         
         FFooterViewBasic.parentController = helper
-        FFooterViewBasic.fillFeedFooter(feed: feedData, pageType: pageType, delegate: self)
+        FFooterViewBasic.fillFeedFooter(feed: feedData, pageType: pageType, delegate: delegate!)
         if shouldShowFooterCountView(feed: feedData) {
             FFooterViewBasic.lowerViewHeightConstraint.constant = FEED_FOOTER_LOWER_VIEW_HEIGHT
             FFooterViewBasic.frame = CGRect(x: 0, y: totalHeight, width: screenWidth, height: FEED_FOOTER_HEIGHT)
@@ -121,13 +121,6 @@ class TLOTGJourneyTableViewCell: UITableViewCell, TLFooterDelegate {
         }
         
         FBackground.frame = CGRect(x: 0, y: 0, width: screenWidth, height: totalHeight)
-    }
-    
-    
-    //MARK: - Delegate Actions
-    
-    func footerOptionButtonClicked(sender: UIButton) {
-        print("\n Option button clicked")
     }
 
 }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TLItineraryTableViewCell: UITableViewCell, TLFooterDelegate {
+class TLItineraryTableViewCell: UITableViewCell {
 
     var FProfileHeader: ActivityProfileHeader!
     var FBackground = NotificationBackground()    
@@ -71,11 +71,11 @@ class TLItineraryTableViewCell: UITableViewCell, TLFooterDelegate {
         self.contentView.sendSubview(toBack: FBackground)
         
         if feedData != nil {
-            setData(feedData: feedData!, helper: helper!, pageType: nil)            
+            setData(feedData: feedData!, helper: helper!, pageType: nil, delegate: nil)            
         }
     }    
     
-    func setData(feedData: JSON, helper: TLMainFeedsViewController, pageType: viewType?) {        
+    func setData(feedData: JSON, helper: TLMainFeedsViewController, pageType: viewType?, delegate: TLFooterDelegate?) {        
         
         print("\n FeedData : \(feedData) \n\n")
         
@@ -110,7 +110,7 @@ class TLItineraryTableViewCell: UITableViewCell, TLFooterDelegate {
         
         
         FFooterViewBasic.parentController = helper
-        FFooterViewBasic.fillFeedFooter(feed: feedData, pageType: pageType, delegate: self)
+        FFooterViewBasic.fillFeedFooter(feed: feedData, pageType: pageType, delegate: delegate)
         if shouldShowFooterCountView(feed: feedData) {
             FFooterViewBasic.lowerViewHeightConstraint.constant = FEED_FOOTER_LOWER_VIEW_HEIGHT
             FFooterViewBasic.frame = CGRect(x: 0, y: totalHeight, width: screenWidth, height: FEED_FOOTER_HEIGHT)
@@ -123,13 +123,6 @@ class TLItineraryTableViewCell: UITableViewCell, TLFooterDelegate {
         }
         
         FBackground.frame = CGRect(x: 0, y: 0, width: screenWidth, height: totalHeight)
-    }
-    
-    
-    //MARK: - Delegate Actions
-    
-    func footerOptionButtonClicked(sender: UIButton) {
-        print("\n Option button clicked")
     }
 
 }
