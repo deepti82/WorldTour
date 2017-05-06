@@ -285,8 +285,8 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
             }
             
             feedCell?.setData(feedData: cellData, helper: self, pageType: pageType)
-            feedCell?.FFooterView.likeCountButton.tag = indexPath.row
-            feedCell?.FFooterView.commentCountButton.tag = indexPath.row
+            feedCell?.FFooterViewBasic.likeCountButton.tag = indexPath.row
+            feedCell?.FFooterViewBasic.commentCountButton.tag = indexPath.row
             return feedCell!
             
         
@@ -315,8 +315,8 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
             }
             
             feedCell?.setData(feedData: cellData, helper: self, pageType: pageType)
-            feedCell?.FFooterView.likeCountButton.tag = indexPath.row
-            feedCell?.FFooterView.commentCountButton.tag = indexPath.row
+            feedCell?.FFooterViewBasic.likeCountButton.tag = indexPath.row
+            feedCell?.FFooterViewBasic.commentCountButton.tag = indexPath.row
             return feedCell!
             
             

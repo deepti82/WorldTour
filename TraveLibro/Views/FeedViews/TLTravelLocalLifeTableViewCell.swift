@@ -306,7 +306,9 @@ class TLTravelLocalLifeTableViewCell: UITableViewCell, PlayerDelegate, TLFooterD
         globalNavigationController.pushViewController(singlePhotoController, animated: true)
     }
     
-    //Delegate Actions
+    
+    //MARK: - Delegate Actions
+    
     func footerOptionButtonClicked(sender: UIButton) {
         print("\n Option button clicked")
     }
