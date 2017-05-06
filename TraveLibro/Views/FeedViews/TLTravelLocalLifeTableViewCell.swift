@@ -7,15 +7,20 @@
 //
 
 import UIKit
+import Player
 
-class TLTravelLocalLifeTableViewCell: UITableViewCell {
+
+class TLTravelLocalLifeTableViewCell: UITableViewCell, PlayerDelegate, TLFooterDelegate {
 
     var FBackground = NotificationBackground()
     var FProfileHeader: ActivityProfileHeader!
-    var FMImageView: UIImageView?
-    var FMCollectionView: UICollectionView?
-    var FMTextView: UITextView?
-    var FFooterView: ActivityFeedFooter!
+    var FMTextView: TLFeedHeaderTextFlagView?
+    var FMCenterView:PhotosOTGView?
+    var FMVideoContainer:VideoView?
+    var FMMainPhoto:UIImageView?
+    var FMHeaderTag: ActivityHeaderTag?
+    var FMPlayer:Player?
+    var FFooterViewBasic: ActivityFeedFooterBasic!
     
     var totalHeight = CGFloat(0)
     
@@ -27,7 +32,7 @@ class TLTravelLocalLifeTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    init(style: UITableViewCellStyle, reuseIdentifier: String, feedData: JSON, helper: TLMainFeedsViewController){
+    init(style: UITableViewCellStyle, reuseIdentifier: String, feedData: JSON, helper: UIViewController){
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         createView(feedData: feedData, helper: helper)        
@@ -41,25 +46,47 @@ class TLTravelLocalLifeTableViewCell: UITableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         
-        self.FMImageView?.removeFromSuperview()
-        self.FMTextView?.removeFromSuperview()
-        self.FMCollectionView?.removeFromSuperview()
+        if FMCenterView != nil {
+            FMCenterView?.removeFromSuperview()
+            FMCenterView = nil
+        }
         
-        self.FMImageView = nil
-        self.FMTextView = nil
-        self.FMCollectionView = nil
+        if FMVideoContainer != nil {
+            FMVideoContainer?.removeFromSuperview()
+            FMVideoContainer = nil
+        }
+        
+        if FMMainPhoto != nil {
+            FMMainPhoto?.removeFromSuperview()
+            FMMainPhoto = nil
+        }
+        
+        if FMHeaderTag != nil {
+            FMHeaderTag?.removeFromSuperview()
+            FMHeaderTag = nil
+        }
+        
+        if FMPlayer != nil {
+            FMPlayer?.view?.removeFromSuperview()
+            FMPlayer = nil
+        }
+        
+        FFooterViewBasic.lowerViewHeightConstraint.constant = 0
+        FFooterViewBasic.frame = CGRect.zero        
     }
-    
     
     //MARK: - Create View
     
-    func createView(feedData: JSON?, helper: TLMainFeedsViewController?) {
+    func createView(feedData: JSON?, helper: UIViewController?) {
         
         FProfileHeader = ActivityProfileHeader(frame: CGRect(x: 0, y: 0, width: screenWidth, height: FEEDS_HEADER_HEIGHT))
         self.contentView.addSubview(FProfileHeader)
         
-        FFooterView = ActivityFeedFooter(frame: CGRect.zero)
-        self.contentView.addSubview(FFooterView)
+        FMTextView = TLFeedHeaderTextFlagView(frame: CGRect.zero)
+        self.contentView.addSubview(FMTextView!)
+        
+        FFooterViewBasic = ActivityFeedFooterBasic(frame: CGRect.zero)
+        self.contentView.addSubview(FFooterViewBasic)
         
         FBackground = NotificationBackground(frame: CGRect.zero)
         self.contentView.addSubview(FBackground)
@@ -70,205 +97,153 @@ class TLTravelLocalLifeTableViewCell: UITableViewCell {
         }
     }    
     
-    func setData(feedData: JSON, helper: TLMainFeedsViewController, pageType: viewType?) {        
-        
-        print("\n CellData: \(feedData)")
+    func setData(feedData: JSON, helper: UIViewController, pageType: viewType?) {
         
         totalHeight = CGFloat(0)
         
-        FProfileHeader.frame = CGRect(x: 0, y: 0, width: screenWidth, height: FEEDS_HEADER_HEIGHT)        
+        FProfileHeader.frame = CGRect(x: 0, y: totalHeight, width: screenWidth, height: FEEDS_HEADER_HEIGHT)        
         FProfileHeader.parentController = helper
         FProfileHeader.fillProfileHeader(feed: feedData, pageType: pageType, cellType: feedCellType.CELL_POST_TYPE)
         totalHeight += FEEDS_HEADER_HEIGHT
         
-        self.setMiddleView(feedData: feedData, helper: helper, pageType: pageType)
+        FMTextView?.setFlag(feed: feedData)
+        FMTextView?.displayText = getTextHeader(feed: feedData, pageType: pageType!)        
+        FMTextView?.setText(text: (FMTextView?.displayText)!)
+        if FMTextView?.displayText.string != "" {
+            let textHeight = (heightOfAttributedText(attributedString: (FMTextView?.displayText)!, width: screenWidth) + 10)
+            FMTextView?.frame = CGRect(x: 0, y: totalHeight, width: screenWidth, height: textHeight)
+            FMTextView?.headerTextView.frame = CGRect(x: 8, y: 0, width: screenWidth-(FMTextView?.flagStackView.frame.size.width)!-13, height: textHeight)
+            FMTextView?.headerTextView.center = CGPoint(x: (FMTextView?.headerTextView.center.x)!, y: (FMTextView?.flagStackView.center.y)!)
+            totalHeight += textHeight            
+        }
+        let prevHeight = totalHeight
         
-        FFooterView.parentController = helper
-        FFooterView.fillFeedFooter(feed: feedData, pageType: pageType)
+        self.videosAndPhotosLayout(feed: feedData)
+        
+        if prevHeight == totalHeight {
+            //Only text Header
+            FMHeaderTag = ActivityHeaderTag(frame: CGRect(x: 0, y: totalHeight + 30, width: screenWidth, height: 50))
+            FMHeaderTag?.tagParent.backgroundColor = UIColor.clear            
+            FMHeaderTag?.colorTag(feed: feedData)
+            self.contentView.addSubview(FMHeaderTag!)
+            totalHeight += 80
+        }
+        
+        FFooterViewBasic.parentController = helper
+        FFooterViewBasic.fillFeedFooter(feed: feedData, pageType: pageType, delegate: self)
+        
         if shouldShowFooterCountView(feed: feedData) {
-            FFooterView.lowerViewHeightConstraint.constant = 40
-            FFooterView.frame = CGRect(x: 0, y: totalHeight, width: screenWidth, height: 90)
-            totalHeight += 90
+            FFooterViewBasic.lowerViewHeightConstraint.constant = FEED_FOOTER_LOWER_VIEW_HEIGHT
+            FFooterViewBasic.frame = CGRect(x: 0, y: totalHeight, width: screenWidth, height: FEED_FOOTER_HEIGHT)
+            totalHeight += FEED_FOOTER_HEIGHT
         }
         else {
-            FFooterView.lowerViewHeightConstraint.constant = 0
-            FFooterView.frame = CGRect(x: 0, y: totalHeight, width: screenWidth, height: 50)
-            totalHeight += 50
+            FFooterViewBasic.lowerViewHeightConstraint.constant = 0
+            FFooterViewBasic.frame = CGRect(x: 0, y: totalHeight, width: screenWidth, height: (FEED_FOOTER_HEIGHT-FEED_FOOTER_LOWER_VIEW_HEIGHT))
+            totalHeight += (FEED_FOOTER_HEIGHT-FEED_FOOTER_LOWER_VIEW_HEIGHT)
         }
         
         FBackground.frame = CGRect(x: 0, y: 0, width: screenWidth, height: totalHeight)
     }
     
-    private func setMiddleView(feedData: JSON, helper: UIViewController, pageType: viewType?) {
+    func videosAndPhotosLayout(feed:JSON) {
         
-        if feedData["thoughts"].stringValue != "" ||
-            feedData["imageUrl"].stringValue != "" {
-            
-            if FMTextView == nil {
-                FMTextView = UITextView()
-                FMTextView?.isScrollEnabled = false
-                FMTextView?.isEditable = false
-                FMTextView?.backgroundColor = UIColor.clear
-                self.contentView.addSubview(FMTextView!)
-            }
-            FMTextView?.attributedText = getThought(feedData)
-            FMTextView?.textAlignment = .left
-            let textHeight = (heightOfAttributedText(attributedString: FMTextView?.attributedText.mutableCopy() as! NSMutableAttributedString, width: screenWidth)) + 15
-            FMTextView?.frame = CGRect(x: 0, y: totalHeight, width: screenWidth, height: textHeight)
-            totalHeight += textHeight
-            
-            if feedData["imageUrl"].stringValue != "" {
-                if FMImageView == nil {
-                    FMImageView = UIImageView(frame: CGRect(x: 0, y: totalHeight, width: screenWidth, height: screenWidth*0.9))
-                    FMImageView?.contentMode = .scaleAspectFill
-                    FMImageView?.clipsToBounds = true
-                    FMImageView?.image = UIImage(named: "logo-default")
-                    self.contentView.addSubview(FMImageView!)
-                }
-                FMImageView?.hnk_setImageFromURL(URL(string: feedData["imageUrl"].stringValue)!)
-                totalHeight += screenWidth*0.9
-            }
-        }
-        
-    }
-    
-   /* func videosAndPhotosLayout(feed:JSON) {
-        self.feeds = feed
         //Image generation only
         if(feed["videos"].count > 0) {
-            self.videoContainer = VideoView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.width))
+            self.FMVideoContainer = VideoView(frame: CGRect(x: 0, y: totalHeight, width: screenWidth, height: screenWidth*0.9))
             
-            self.videoContainer.isUserInteractionEnabled = true
+            self.FMVideoContainer?.isUserInteractionEnabled = true
             let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(self.openSingleVideo(_:)))
-            self.videoContainer.addGestureRecognizer(tapGestureRecognizer)
-            self.videoContainer.tag = 0
+            self.FMVideoContainer?.addGestureRecognizer(tapGestureRecognizer)
+            self.FMVideoContainer?.tag = 0
             
-            self.player = Player()
-            self.player.delegate = self
-            self.player.view.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.width)
-            self.player.view.clipsToBounds = true
-            self.player.playbackLoops = true
-            self.player.muted = true
-            self.player.fillMode = "AVLayerVideoGravityResizeAspectFill"
-            self.player.playbackFreezesAtEnd = true
-            self.videoContainer.player = self.player
-            self.videoContainer.bringSubview(toFront: videoContainer.playBtn)
+            self.FMPlayer = Player()
+            self.FMPlayer?.delegate = self
+            self.FMPlayer?.view.frame = CGRect(x: 0, y: totalHeight, width: screenWidth, height: screenWidth*0.9)
+            self.FMPlayer?.view.clipsToBounds = true
+            self.FMPlayer?.playbackLoops = true
+            self.FMPlayer?.muted = true
+            self.FMPlayer?.fillMode = "AVLayerVideoGravityResizeAspectFill"
+            self.FMPlayer?.playbackFreezesAtEnd = true
+            self.FMVideoContainer?.player = self.FMPlayer
+            self.FMVideoContainer?.bringSubview(toFront: (FMVideoContainer?.playBtn)!)
             
             
-            var videoUrl = URL(string:self.feeds["videos"][0]["name"].stringValue)
+            var videoUrl = URL(string:feed["videos"][0]["name"].stringValue)
             if(videoUrl == nil) {
-                videoUrl = URL(string:self.feeds["videos"][0]["localUrl"].stringValue)
+                videoUrl = URL(string:feed["videos"][0]["localUrl"].stringValue)
             }
             
-            getThumbnailFromVideoURL(url: videoUrl!, onView: self.videoContainer.videoHolder)
+            getThumbnailFromVideoURL(url: videoUrl!, onView: (self.FMVideoContainer?.videoHolder)!)
             
-            if feeds["type"].stringValue == "travel-life" {
-                videoContainer.tagText.text = "Travel Life"
-                videoContainer.tagView.backgroundColor = mainOrangeColor
-                videoContainer.playBtn.tintColor = mainOrangeColor
+            if feed["type"].stringValue == "travel-life" {
+                FMVideoContainer?.tagText.text = "Travel Life"
+                FMVideoContainer?.tagView.backgroundColor = mainOrangeColor
+                FMVideoContainer?.playBtn.tintColor = mainOrangeColor
             }
             else{
-                videoContainer.tagText.text = "  Local Life"
-                videoContainer.tagText.textColor = UIColor(hex: "#303557")
-                videoContainer.tagView.backgroundColor = endJourneyColor
-                videoContainer.playBtn.tintColor = endJourneyColor
+                FMVideoContainer?.tagText.text = "  Local Life"
+                FMVideoContainer?.tagText.textColor = UIColor(hex: "#303557")
+                FMVideoContainer?.tagView.backgroundColor = endJourneyColor
+                FMVideoContainer?.playBtn.tintColor = endJourneyColor
             }
-            self.videoContainer.videoHolder.addSubview(self.player.view)
-            self.addSubview(self.videoContainer)
+            self.FMVideoContainer?.videoHolder.addSubview((self.FMPlayer?.view)!)
+            self.contentView.addSubview(self.FMVideoContainer!)
+            totalHeight += screenWidth*0.9
             
-        } 
+        }
+            
         else if(feed["photos"].count > 0) {
-            self.mainPhoto = UIImageView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.width))
-            self.addSubview(self.mainPhoto)
-            self.mainPhoto.contentMode = UIViewContentMode.scaleAspectFill
-            self.mainPhoto.clipsToBounds = true
-            self.mainPhoto.image = UIImage(named: "logo-default")
+            self.FMMainPhoto = UIImageView(frame: CGRect(x: 0, y: totalHeight, width: screenWidth, height: screenWidth*0.9))
+            self.FMMainPhoto?.contentMode = UIViewContentMode.scaleAspectFill
+            self.FMMainPhoto?.clipsToBounds = true
+            self.FMMainPhoto?.image = UIImage(named: "logo-default")
             
-            let headerTag = ActivityHeaderTag(frame: CGRect(x: 0, y: 30, width: screenWidth, height: 30))
-            headerTag.tagParent.backgroundColor = UIColor.clear
-            headerTag.colorTag(feed: feed)
-            headerTag.tagLine.isHidden = true
+            FMHeaderTag = ActivityHeaderTag(frame: CGRect(x: 0, y: 30, width: screenWidth, height: 30))
+            FMHeaderTag?.tagParent.backgroundColor = UIColor.clear
+            FMHeaderTag?.colorTag(feed: feed)
+            self.FMMainPhoto?.addSubview(FMHeaderTag!)
             
-            self.mainPhoto.addSubview(headerTag)
-            //            if headerTag.tagText.text == "Travel Life"{
-            //                profileHeader.category.imageView?.tintColor = UIColor.white
-            //            } else {
-            //                profileHeader.category.imageView?.tintColor = UIColor(hex: "#303557")
-            //            }
-            
-            
-            
-            self.addSubview(mainPhoto)
+            self.contentView.addSubview(self.FMMainPhoto!)
+            totalHeight += screenWidth*0.9
             
             let imgStr = getImageURL(feed["photos"][0]["name"].stringValue, width: 0)
             
             cache.fetch(URL: imgStr).onSuccess({ (data) in
-                self.mainPhoto.image = UIImage(data: data as Data)
+                self.FMMainPhoto?.image = UIImage(data: data as Data)
                 
-                let image = self.mainPhoto.image
-                
-                let widthInPixels =  image?.cgImage?.width
-                let heightInPixels =  image?.cgImage?.height
-                
-                if((heightInPixels) != nil) {
-                    let finalHeight =  CGFloat(heightInPixels!) / CGFloat(widthInPixels!) * self.frame.width;
-                    
-                    
-                    let maxheight = screenHeight - ( 60 + 113 )
-                    //                    if(finalHeight > maxheight) {
-                    //                        self.mainPhoto.frame.size.height = maxheight
-                    //                    } else {
-                    //                        self.mainPhoto.frame.size.height = finalHeight
-                    //                    }
-                }
-                
-                self.mainPhoto.frame.size.width = self.frame.width
                 if feed["photos"][0]["name"].stringValue == "" {
-                    self.mainPhoto.image = UIImage(named: "logo-default")
+                    self.FMMainPhoto?.image = UIImage(named: "logo-default")
                 }else{
-                    self.mainPhoto.hnk_setImageFromURL(imgStr)
+                    self.FMMainPhoto?.hnk_setImageFromURL(imgStr)
                 }
-                self.mainPhoto.isUserInteractionEnabled = true
+                self.FMMainPhoto?.isUserInteractionEnabled = true
                 let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(PhotosOTG2.openSinglePhoto(_:)))
-                self.mainPhoto.addGestureRecognizer(tapGestureRecognizer)
-                self.mainPhoto.tag = 0
+                self.FMMainPhoto?.addGestureRecognizer(tapGestureRecognizer)
+                self.FMMainPhoto?.tag = 0
                 
                 self.layoutSubviews()
-                if(self.activityFeed != nil) {
-                    self.activityFeed.addHeightToLayout()
-                }
-                
             })
         }
             
         else{
             if feed["imageUrl"] != nil {
-                self.mainPhoto = UIImageView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.width))
-                self.addSubview(self.mainPhoto)
-                
-                self.mainPhoto.contentMode = UIViewContentMode.scaleAspectFill
-                self.mainPhoto.clipsToBounds = true
-                
+                self.FMMainPhoto = UIImageView(frame: CGRect(x: 0, y: totalHeight, width: screenWidth, height: screenWidth*0.9))
+                self.FMMainPhoto?.contentMode = UIViewContentMode.scaleAspectFill
+                self.FMMainPhoto?.clipsToBounds = true
+                self.FMMainPhoto?.image = UIImage(named: "logo-default")
+                self.contentView.addSubview(self.FMMainPhoto!)
+                totalHeight += screenWidth*0.9
                 
                 if feed["thoughts"] == nil || feed["thoughts"].stringValue == "" || feed["imageUrl"] != nil{
-                    let headerTag = ActivityHeaderTag(frame: CGRect(x: 0, y: 30, width: screenWidth, height: 28))
-                    headerTag.tagParent.backgroundColor = UIColor.clear
-                    headerTag.tagLine.isHidden = true
-                    headerTag.colorTag(feed: feed)
+                    FMHeaderTag = ActivityHeaderTag(frame: CGRect(x: 0, y: 30, width: screenWidth, height: 28))
+                    FMHeaderTag?.tagParent.backgroundColor = UIColor.clear
+                    FMHeaderTag?.colorTag(feed: feed)
                     
-                    self.mainPhoto.addSubview(headerTag)
-                    //                    if headerTag.tagText.text == "Travel Life"{
-                    //                        profileHeader.category.imageView?.tintColor = UIColor.white
-                    //                    } else {
-                    //                        profileHeader.category.imageView?.tintColor = UIColor(hex: "#303557")
-                    //                    }
-                    
-                    
-                    
+                    self.FMMainPhoto?.addSubview(FMHeaderTag!)
                 }
                 
-                mainPhoto.hnk_setImageFromURL(URL(string: feed["imageUrl"].stringValue)!)
-                
+                FMMainPhoto?.hnk_setImageFromURL(URL(string: feed["imageUrl"].stringValue)!)
             }
         }
         
@@ -280,12 +255,59 @@ class TLTravelLocalLifeTableViewCell: UITableViewCell {
         }
         //Center Generation Only
         if(feed["photos"].count > showImageIndexStart) {
-            centerView = PhotosOTGView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 91 ))
+            FMCenterView = PhotosOTGView(frame: CGRect(x: 0, y: totalHeight, width: self.frame.width, height: 90))
             addPhotoToLayout(feed,startIndex:showImageIndexStart)
-            self.addSubview(centerView)
-            //            centerView.centerLineView.isHidden = true
+            self.contentView.addSubview(FMCenterView!)
+            totalHeight += 90
         }
         //End of Center
-    }*/
-
+    }
+    
+    func addPhotoToLayout(_ post: JSON, startIndex: Int) {
+        FMCenterView?.horizontalScrollForPhotos.removeAll()
+        for i in startIndex ..< post["photos"].count {
+            let photosButton = UIImageView(frame: CGRect(x: 10, y: 5, width: 87, height: 87))
+            photosButton.image = UIImage(named: "logo-default")
+            photosButton.contentMode = UIViewContentMode.scaleAspectFill
+            
+            photosButton.frame.size.height = 82
+            photosButton.frame.size.width = 82
+            let urlStr = getImageURL(post["photos"][i]["name"].stringValue, width: 300)
+            photosButton.hnk_setImageFromURL(urlStr)
+            let tapGestureRecognizer = UITapGestureRecognizer(target:self, action: #selector(ActivityFeedsLayout.openSinglePhoto(_:)))
+            photosButton.isUserInteractionEnabled = true
+            photosButton.addGestureRecognizer(tapGestureRecognizer)
+            //photosButton.layer.cornerRadius = 5.0
+            photosButton.tag = i
+            photosButton.clipsToBounds = true
+            FMCenterView?.horizontalScrollForPhotos.addSubview(photosButton)
+        }
+        FMCenterView?.horizontalScrollForPhotos.layoutSubviews()
+        FMCenterView?.morePhotosView.contentSize = CGSize(width: (FMCenterView?.horizontalScrollForPhotos.frame.width)!, height: (FMCenterView?.horizontalScrollForPhotos.frame.height)!)
+    }
+    
+    
+    //MARK: - Actions
+    
+    func openSinglePhoto(_ sender: AnyObject) {
+        let singlePhotoController = storyboard?.instantiateViewController(withIdentifier: "singlePhoto") as! SinglePhotoViewController
+        singlePhotoController.fetchType = photoVCType.FROM_ACTIVITY
+        singlePhotoController.index = sender.view.tag
+//        singlePhotoController.postId = feeds["_id"].stringValue
+        globalNavigationController.pushViewController(singlePhotoController, animated: true)
+    } 
+    
+    func openSingleVideo(_ sender: AnyObject) {
+        let singlePhotoController = storyboard?.instantiateViewController(withIdentifier: "singlePhoto") as! SinglePhotoViewController
+        singlePhotoController.fetchType = photoVCType.FROM_ACTIVITY
+        singlePhotoController.index = sender.view.tag
+        singlePhotoController.type = "Video"
+//        singlePhotoController.postId = feeds["_id"].stringValue
+        globalNavigationController.pushViewController(singlePhotoController, animated: true)
+    }
+    
+    //Delegate Actions
+    func footerOptionButtonClicked(sender: UIButton) {
+        print("\n Option button clicked")
+    }
 }

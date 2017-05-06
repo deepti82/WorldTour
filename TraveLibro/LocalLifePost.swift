@@ -10,7 +10,7 @@ import UIKit
 import Player
 import Spring
 
-class LocalLifePost: VerticalLayout, PlayerDelegate {
+class LocalLifePost: VerticalLayout, PlayerDelegate, TLFooterDelegate {
     
     
     var feed: JSON!
@@ -185,7 +185,7 @@ class LocalLifePost: VerticalLayout, PlayerDelegate {
         footerView.type = "LocalLife"
         footerView.setCommentCount(footerView.postTop["commentCount"].intValue)
         footerView.setLikeCount(footerView.postTop["likeCount"].intValue)
-        footerView.setView(feed:feed)
+        footerView.fillFeedFooter(feed: feed, pageType: viewType.VIEW_TYPE_LOCAL_LIFE, delegate: self)
         footerView.setLikeSelected(feed["likeDone"].boolValue)
 
         self.addSubview(footerView)
@@ -357,6 +357,11 @@ class LocalLifePost: VerticalLayout, PlayerDelegate {
         }
         return str
         
+    }
+    
+    //Delegate Actions
+    func footerOptionButtonClicked(sender: UIButton) {
+        print("\n Option button clicked")
     }
     
     

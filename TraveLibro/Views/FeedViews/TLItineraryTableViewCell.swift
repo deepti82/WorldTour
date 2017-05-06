@@ -112,14 +112,14 @@ class TLItineraryTableViewCell: UITableViewCell {
         FFooterView.parentController = helper
         FFooterView.fillFeedFooter(feed: feedData, pageType: pageType)
         if shouldShowFooterCountView(feed: feedData) {
-            FFooterView.lowerViewHeightConstraint.constant = 40
-            FFooterView.frame = CGRect(x: 0, y: totalHeight, width: screenWidth, height: 90)
-            totalHeight += 90
+            FFooterView.lowerViewHeightConstraint.constant = FEED_FOOTER_LOWER_VIEW_HEIGHT
+            FFooterView.frame = CGRect(x: 0, y: totalHeight, width: screenWidth, height: FEED_FOOTER_HEIGHT)
+            totalHeight += FEED_FOOTER_HEIGHT
         }
         else {
             FFooterView.lowerViewHeightConstraint.constant = 0
-            FFooterView.frame = CGRect(x: 0, y: totalHeight, width: screenWidth, height: 50)
-            totalHeight += 50
+            FFooterView.frame = CGRect(x: 0, y: totalHeight, width: screenWidth, height: (FEED_FOOTER_HEIGHT-FEED_FOOTER_LOWER_VIEW_HEIGHT))
+            totalHeight += (FEED_FOOTER_HEIGHT-FEED_FOOTER_LOWER_VIEW_HEIGHT)
         }
         
         FBackground.frame = CGRect(x: 0, y: 0, width: screenWidth, height: totalHeight)

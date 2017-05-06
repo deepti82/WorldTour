@@ -19,7 +19,7 @@ class ActivityProfileHeader: UIView {
     @IBOutlet weak var followButton: UIButton!
     @IBOutlet weak var localTime: UILabel!
     @IBOutlet weak var blurImageView: UIImageView!
-    var parentController: TLMainFeedsViewController!
+    var parentController: UIViewController!
     
     var ishidefollow:Bool = false
     var currentFeed:JSON = []
@@ -284,7 +284,11 @@ class ActivityProfileHeader: UIView {
     func handleProfileTap(_ sender: AnyObject) {
         
         if currentUser != nil {
-            parentController.toProfile(toUser: currentFeed["user"])
+            selectedUser = currentFeed["user"]
+            let profile = storyboard?.instantiateViewController(withIdentifier: "TLProfileView") as! TLProfileViewController
+            profile.displayData = "search"
+            profile.currentSelectedUser = selectedUser
+            parentController.navigationController?.pushViewController(profile, animated: true)
         }
         else {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)

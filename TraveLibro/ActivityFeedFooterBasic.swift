@@ -2,31 +2,36 @@ import UIKit
 import Spring
 import AVFoundation
 
+protocol TLFooterDelegate {
+    func footerOptionButtonClicked(sender: UIButton)
+}
+
 class ActivityFeedFooterBasic: UIView {
     
-    @IBOutlet weak var lineView1: UIView!
-    @IBOutlet weak var localLifeTravelImage: UIImageView!
-    @IBOutlet weak var footerColorView: UIView!
     var postTop:JSON!
+    var pageType: viewType!
+    var parentController: UIViewController!
     
+    private var delegate: TLFooterDelegate?
     
-    @IBOutlet weak var followBtn: UIButton!    
+    @IBOutlet weak var upperView: UIView!    
     @IBOutlet var starImageArray: [UIImageView]!
     @IBOutlet weak var ratingStack: UIStackView!
     @IBOutlet weak var rateThisButton: UIButton!
     @IBOutlet weak var likeButton: SpringButton!
     @IBOutlet weak var commentButton: SpringButton!
-    @IBOutlet weak var lineView: UIView!
     @IBOutlet weak var shareButton: UIButton!
     @IBOutlet weak var optionButton: UIButton!
+    
+    @IBOutlet weak var bottomView: UIView!    
     @IBOutlet weak var likeHeart: UILabel!
     @IBOutlet weak var commentIcon: UIImageView!    
     @IBOutlet weak var likeCountButton: UIButton!
     @IBOutlet weak var commentCountButton: UIButton!
-    @IBOutlet weak var bottomView: UIView!
     
     @IBOutlet weak var leadingToRatingStackConstraint: NSLayoutConstraint!    
     @IBOutlet weak var leadingToRateThisConstraint: NSLayoutConstraint!
+    @IBOutlet weak var lowerViewHeightConstraint: NSLayoutConstraint!
     
     var topLayout:VerticalLayout!
     var backgroundReview: UIView!
@@ -44,9 +49,6 @@ class ActivityFeedFooterBasic: UIView {
     var photoPostId = ""
     let border = CALayer()
     let border1 = CALayer()
-    
-    var photoCount = 0
-    var videoCount = 0
     
     //MARK: - Lifecycle
     
@@ -69,12 +71,7 @@ class ActivityFeedFooterBasic: UIView {
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view)
-        //        transparentCardWhite(footerColorView)
         
-        self.followBtn.isHidden = true
-       
-        let tapout = UITapGestureRecognizer(target: self, action: #selector(ActivityFeedFooterBasic.checkMyRating(_:)))
-        ratingStack.addGestureRecognizer(tapout)
         likeButton.tintColor = mainBlueColor
         commentButton.tintColor = mainBlueColor
         shareButton.tintColor = mainBlueColor
@@ -97,33 +94,31 @@ class ActivityFeedFooterBasic: UIView {
     
     }
     
-    func setView(feed:JSON) {
+    func fillFeedFooter(feed: JSON, pageType: viewType?, delegate: TLFooterDelegate) {
         
-        postTop = feed
-        
-        if feed["photos"] != nil {
-            photoCount = feed["photos"].count
-        }
-        if feed["videos"] != nil {
-            videoCount = feed["videos"].count
-        }
-        let cnt = photoCount + videoCount
-        if cnt > 1 {
-            lineView.isHidden = false
-        }else{
-            lineView.isHidden = true
-        }
+        self.postTop = feed
+        self.pageType = pageType!
         
         if currentUser != nil {
-            optionButton.isHidden = false
-            rateThisButton.isHidden = false
-        }else{
-            optionButton.isHidden = true
-            rateThisButton.isHidden = true
+            if (isSelfUser(otherUserID: postTop["user"]["_id"].stringValue) && self.pageType == viewType.VIEW_TYPE_MY_LIFE) {
+                optionButton.isHidden = true
+            }
+            else {
+                optionButton.isHidden = false
+            }
         }
+        else {
+            optionButton.isHidden = true
+        }
+        
+        self.setLikeCount(postTop["likeCount"].intValue)
+        self.setCommentCount(postTop["commentCount"].intValue)
+        self.setLikeSelected(postTop["likeDone"].boolValue)
         
         rateThisButton.isUserInteractionEnabled = true
         ratingStack.isUserInteractionEnabled = true
+        ratingStack.isHidden = false
+        rateThisButton.isHidden = false
         
         if feed["review"][0] != nil && feed["review"].count > 0 {
             ratingStack.isHidden = false
@@ -133,8 +128,7 @@ class ActivityFeedFooterBasic: UIView {
                 rateThisButton.isUserInteractionEnabled = false
             }
         }
-        else{
-            
+        else {            
             if feed["checkIn"] != nil && feed["checkIn"]["category"].stringValue != "" {
                 ratingStack.isHidden = true
                 if canRate() {
@@ -144,16 +138,14 @@ class ActivityFeedFooterBasic: UIView {
                     rateThisButton.setTitle("", for: .normal)
                     rateThisButton.isUserInteractionEnabled = false
                 }
-                
-                
-            }else{
+            }
+            else{
                 ratingStack.isHidden = true
                 rateThisButton.isHidden = true
             }
         }
         
-        
-        if (isSelfUser(otherUserID: postTop["user"]["_id"].stringValue) && self.type != "MyLifeFeeds") {
+        if (isSelfUser(otherUserID: postTop["user"]["_id"].stringValue) && self.pageType != viewType.VIEW_TYPE_MY_LIFE) {
             optionButton.isHidden = true
             leadingToRatingStackConstraint.constant = CGFloat(-30)
             leadingToRateThisConstraint.constant = CGFloat(-30)
@@ -163,8 +155,38 @@ class ActivityFeedFooterBasic: UIView {
             leadingToRatingStackConstraint.constant = CGFloat(8)
             leadingToRateThisConstraint.constant = CGFloat(8)
         }
+        
+        self.removeTargetActions()
+        
+        self.addTargetActions()
     }
     
+    func removeTargetActions() {
+        self.likeButton.removeTarget(self, action: #selector(self.sendLikes(_:)), for: .touchUpInside)
+        self.commentButton.removeTarget(self, action: #selector(self.sendComments(_:)), for: .touchUpInside)
+        self.likeCountButton.removeTarget(self, action: #selector(self.likeCountTabbed(_:)), for: .touchUpInside)
+        self.commentCountButton.removeTarget(self, action: #selector(self.commentCountTabbed(_:)), for: .touchUpInside)
+        self.shareButton.removeTarget(self, action: #selector(self.sharingTap(_:)), for: .touchUpInside)
+        self.optionButton.removeTarget(self, action: #selector(self.optionClick(_:)), for: .touchUpInside)
+        self.rateThisButton.removeTarget(self, action: #selector(self.rateThisClicked(_:)), for: .touchUpInside)
+        
+        for recognizer in self.ratingStack.gestureRecognizers ?? [] {
+            self.removeGestureRecognizer(recognizer)
+        }
+    }
+    
+    func addTargetActions() {
+        self.likeButton.addTarget(self, action: #selector(self.sendLikes(_:)), for: .touchUpInside)        
+        self.commentButton.addTarget(self, action: #selector(self.sendComments(_:)), for: .touchUpInside)
+        self.likeCountButton.addTarget(self, action: #selector(self.likeCountTabbed(_:)), for: .touchUpInside)
+        self.commentCountButton.addTarget(self, action: #selector(self.commentCountTabbed(_:)), for: .touchUpInside)
+        self.shareButton.addTarget(self, action: #selector(self.sharingTap(_:)), for: .touchUpInside)
+        self.optionButton.addTarget(self, action: #selector(self.optionClick(_:)), for: .touchUpInside)
+        self.rateThisButton.addTarget(self, action: #selector(self.rateThisClicked(_:)), for: .touchUpInside)
+        
+        let tapout = UITapGestureRecognizer(target: self, action: #selector(self.openRating))
+        ratingStack.addGestureRecognizer(tapout)
+    }
     
     //MARK: - Like
     
@@ -281,7 +303,7 @@ class ActivityFeedFooterBasic: UIView {
             feedVC.postId = postTop["_id"].stringValue
             feedVC.type = postTop["type"].stringValue
             feedVC.title = postTop["name"].stringValue
-            globalNavigationController.pushViewController(feedVC, animated: true)
+            parentController.navigationController?.pushViewController(feedVC, animated: true)
         }
         else {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
@@ -300,7 +322,6 @@ class ActivityFeedFooterBasic: UIView {
                 self.likeCountButton.setTitle("\(counts) Likes", for: .normal)
             }
         }
-        self.checkHideView()
     }
     
     
@@ -341,8 +362,8 @@ class ActivityFeedFooterBasic: UIView {
                 }else{
                     comment.type = "Photo"
                 }
-                globalNavigationController?.setNavigationBarHidden(false, animated: false)
-                globalNavigationController?.pushViewController(comment, animated: true)
+                parentController.navigationController?.setNavigationBarHidden(false, animated: false)
+                parentController.navigationController?.pushViewController(comment, animated: true)
             }
             else{
                 let comment = storyboard?.instantiateViewController(withIdentifier: "CommentsVC") as! CommentsViewController
@@ -359,8 +380,8 @@ class ActivityFeedFooterBasic: UIView {
                 default:
                     comment.type = "photo"
                 }
-                globalNavigationController?.setNavigationBarHidden(false, animated: false)
-                globalNavigationController?.pushViewController(comment, animated: true)
+                parentController.navigationController?.setNavigationBarHidden(false, animated: false)
+                parentController.navigationController?.pushViewController(comment, animated: true)
             }
             
         }
@@ -384,13 +405,12 @@ class ActivityFeedFooterBasic: UIView {
                 
             }
         }
-        self.checkHideView()
     }
     
     //MARK: - Share
     
     @IBAction func sharingTap(_ sender: Any) {
-        sharingUrl(url:  postTop["sharingUrl"].stringValue, onView: globalNavigationController.topViewController!)
+        sharingUrl(url:  postTop["sharingUrl"].stringValue, onView: parentController)
     }
     
     
@@ -403,13 +423,10 @@ class ActivityFeedFooterBasic: UIView {
     func openRating() {
         let tapout = UITapGestureRecognizer(target: self, action: #selector(ActivityFeedFooterBasic.reviewTapOut(_:)))
         
-        backgroundReview = UIView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: (globalNavigationController.topViewController?.view.frame.size.height)!))
+        backgroundReview = UIView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: (parentController.view.frame.size.height)))
         backgroundReview.addGestureRecognizer(tapout)
         backgroundReview.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.4)
-        globalNavigationController.topViewController?.view.addSubview(backgroundReview)
-        //        globalNavigationController.topViewController?.view.bringSubview(toFront: backgroundReview)
-        
-        
+        parentController.view.addSubview(backgroundReview)
         
         rating = AddRating(frame: CGRect(x: 0, y: 0, width: width - 40, height: 335))
         rating.activityJson = postTop
@@ -445,8 +462,6 @@ class ActivityFeedFooterBasic: UIView {
             }
         }
         
-        
-        
         rating.center = backgroundReview.center
         rating.layer.cornerRadius = 5
         rating.clipsToBounds = true
@@ -461,21 +476,13 @@ class ActivityFeedFooterBasic: UIView {
             rating.postReview.setTitle("Close", for: .normal)
         }       
         
-        globalNavigationController.topViewController?.view.addSubview(rating)
-    }
-    
-    func checkMyRating(_ sender: UITapGestureRecognizer) {
-        print("check i im the creator")        
-        //if user.getExistingUser() == currentUser["_id"].stringValue {
-           openRating()
-        //}
+        parentController.view.addSubview(rating)
     }
     
     func reviewTapOut(_ sender: UITapGestureRecognizer) {
         print("in footer tap out")
         backgroundReview.removeFromSuperview()
         rating.removeFromSuperview()
-        
     }
     
     func afterRating(starCnt:Int, review:String) {        
@@ -502,6 +509,10 @@ class ActivityFeedFooterBasic: UIView {
     //MARK: - Options
     
     @IBAction func optionClick(_ sender: UIButton) {
+        
+        delegate?.footerOptionButtonClicked(sender: sender)       
+        
+        
 //        print(user.getExistingUser())
 //        print(postTop)
         var shouldPresent = true
@@ -711,7 +722,7 @@ class ActivityFeedFooterBasic: UIView {
     }
     
     func canRate() -> Bool {
-        if (self.type == "MyLifeFeeds") {
+        if (self.pageType == viewType.VIEW_TYPE_MY_LIFE) {
             if isSelfUser(otherUserID: currentUser["_id"].stringValue) {
                 return true
             }
@@ -726,70 +737,6 @@ class ActivityFeedFooterBasic: UIView {
             else {
                 return false
             }
-        }
-//        else if (self.type == "LocalLife"){
-//            if isSelfUser(otherUserID: postTop["postCreator"]["_id"].stringValue) {
-//                return true
-//            }
-//            else {
-//                return false
-//            }
-//        }
-//        else {
-//            if ((isSelfUser(otherUserID: postTop["user"]["_id"].stringValue)) || isBuddy()){
-//                return true
-//            }
-//            else {
-//                return false
-//            }
-//        }
-    }
-    
-    func checkHideView() {
-        if(self.commentCounts == 0  && self.likeCount == 0) {
-            self.frame.size.height = 51;
-            
-            border1.removeFromSuperlayer()
-            border.isHidden = false
-            let width = CGFloat(2)
-            
-            border.frame = CGRect(x: 0, y: self.frame.size.height - width, width:  self.frame.size.width, height: self.frame.size.height)
-            border.borderColor = UIColor(colorLiteralRed: 0/255, green: 0/255, blue: 0/255, alpha: 0.5).cgColor
-            border.borderWidth = width
-            self.layer.addSublayer(border)
-            self.layer.masksToBounds = true
-            
-        } else {
-            self.frame.size.height = 90;
-            
-            border.removeFromSuperlayer()
-            border1.isHidden = false
-            let width = CGFloat(2)
-            border1.frame = CGRect(x: 0, y: self.frame.size.height - width, width:  self.frame.size.width, height: self.frame.size.height)
-            border1.borderColor = UIColor(colorLiteralRed: 0/255, green: 0/255, blue: 0/255, alpha: 0.5).cgColor
-            border1.borderWidth = width
-            self.layer.addSublayer(border1)
-            
-            self.layer.masksToBounds = true
-            
-        }
-        let path = UIBezierPath(roundedRect:self.bounds,
-                                byRoundingCorners:[.bottomRight, .bottomLeft],
-                                cornerRadii: CGSize(width: 10, height:  10))
-        
-        let maskLayer = CAShapeLayer()
-        
-        maskLayer.path = path.cgPath
-        self.layer.mask = maskLayer
-        topLayout.layoutSubviews()
-        if(self.type == "LocalLife") {
-            globalLocalLifeInside.addHeightToLayout()
-        } else if(self.type == "ActivityFeeds") {
-            globalActivityFeedsController.addHeightToLayout()
-        } else if(self.type == "TripPhotos") {
-            globalListPhotosViewController.addHeightToLayout()
-        } else if(self.type == "MyLifeFeeds") {
-            globalMyLifeContainerViewController.addHeightToLayout()
         }
     }
     

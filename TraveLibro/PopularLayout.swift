@@ -10,7 +10,7 @@ import UIKit
 import Player
 import Spring
 
-class PopularLayout: VerticalLayout, PlayerDelegate {
+class PopularLayout: VerticalLayout, PlayerDelegate, TLFooterDelegate {
     
     
     //    var feed: JSON!
@@ -102,9 +102,7 @@ class PopularLayout: VerticalLayout, PlayerDelegate {
             
             let headerTag = ActivityHeaderTag(frame: CGRect(x: 0, y: 30, width: screenWidth, height: 30))
             headerTag.tagParent.backgroundColor = UIColor.clear
-            headerTag.colorTag(feed: feed)
-            headerTag.tagLine.isHidden = true
-            
+            headerTag.colorTag(feed: feed)            
             self.mainPhoto.addSubview(headerTag)
             //            if headerTag.tagText.text == "Travel Life"{
             //                profileHeader.category.imageView?.tintColor = UIColor.white
@@ -167,7 +165,6 @@ class PopularLayout: VerticalLayout, PlayerDelegate {
                 if feed["thoughts"] == nil || feed["thoughts"].stringValue == "" {
                     let headerTag = ActivityHeaderTag(frame: CGRect(x: 0, y: 30, width: screenWidth, height: 28))
                     headerTag.tagParent.backgroundColor = UIColor.clear
-                    headerTag.tagLine.isHidden = true
                     headerTag.colorTag(feed: feed)
                     
                     self.mainPhoto.addSubview(headerTag)
@@ -218,15 +215,10 @@ class PopularLayout: VerticalLayout, PlayerDelegate {
         footerView = ActivityFeedFooterBasic(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 65))
         footerView.topLayout = self
         footerView.type = "popular"
-        footerView.footerType = feed["type"].stringValue
-        if (feed["type"].stringValue == "detail-itinerary") || feed["type"].stringValue == "quick-itinerary"{
-            footerView.followBtn.isHidden = false
-            setFollowButtonTitle(button: footerView.followBtn, followType: feed["following"].intValue, otherUserID: (feed["itineraryBy"].stringValue.lowercased() == "admin") ? "admin" : feed["_id"].stringValue)
-            footerView.followBtn.addTarget(self, action: #selector(PopularLayout.followBtnClicked(_:)), for: .touchUpInside)
-        }
+        footerView.footerType = feed["type"].stringValue        
         footerView.setCommentCount(feed["commentCount"].intValue)
         footerView.setLikeCount(feed["likeCount"].intValue)
-        footerView.setView(feed:feed)
+        footerView.fillFeedFooter(feed: feed, pageType: viewType.VIEW_TYPE_POPULAR_JOURNEY, delegate: self)
         footerView.setLikeSelected(feed["likeDone"].boolValue)
 
         self.addSubview(footerView)
@@ -542,45 +534,9 @@ class PopularLayout: VerticalLayout, PlayerDelegate {
         
     }
     
-    @IBAction func followBtnClicked(_ sender: UIButton) {
-        
-        if currentUser != nil {
-            if footerView.followBtn.titleLabel?.text == "Follow" {
-                request.followUser(currentUser["_id"].string!, followUserId: feeds["user"]["_id"].stringValue, completion: {(response) in
-                    
-                    DispatchQueue.main.async(execute: {
-                        
-                        if response.error != nil {
-                            print("error: \(response.error!.localizedDescription)")
-                        }
-                        else if response["value"].bool! {
-                            setFollowButtonTitle(button: self.footerView.followBtn, followType: response["data"]["responseValue"].intValue, otherUserID: "")
-                        }
-                        else {
-                            print("error: \(response["error"])")
-                        }
-                    })
-                })
-            }
-            else if footerView.followBtn.titleLabel?.text == "Following" {
-                request.unfollow(currentUser["_id"].string!, unFollowId: feeds["user"]["_id"].stringValue, completion: {(response) in
-                    DispatchQueue.main.async(execute: {
-                        if response.error != nil {
-                            print("error: \(response.error!.localizedDescription)")
-                        }
-                        else if response["value"].bool! {
-                            setFollowButtonTitle(button: self.footerView.followBtn, followType: response["data"]["responseValue"].intValue, otherUserID: "")
-                        }
-                        else {
-                            print("error: \(response["error"])")
-                        }
-                    })
-                })
-            }
-        }
-        else {
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
-        }
+    //Delegate Actions
+    func footerOptionButtonClicked(sender: UIButton) {
+        print("\n Option button clicked")
     }
     
 }

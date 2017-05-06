@@ -53,8 +53,6 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.automaticallyAdjustsScrollViewInsets = false
-        
         getDarkBackGround(self)
         
         feedsTableView.tableFooterView = UIView()
@@ -242,12 +240,14 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
             let displatTextString = getTextHeader(feed: cellData, pageType: pageType)
             var textHeight = (heightOfAttributedText(attributedString: displatTextString, width: screenWidth) + 10)            
             textHeight = ((cellData["countryVisited"].arrayValue).isEmpty) ? textHeight : max(textHeight, 36)
-            height = height + FEEDS_HEADER_HEIGHT + textHeight + screenWidth*0.9 + (shouldShowFooterCountView(feed: cellData) ? 90 : 50)
+            height = height + FEEDS_HEADER_HEIGHT + textHeight + screenWidth*0.9 + (shouldShowFooterCountView(feed: cellData) ? FEED_FOOTER_HEIGHT : (FEED_FOOTER_HEIGHT-FEED_FOOTER_LOWER_VIEW_HEIGHT))
             break
             
             
         case "travel-life":
-            height = height + FEEDS_HEADER_HEIGHT + screenWidth*0.9 + (shouldShowFooterCountView(feed: cellData) ? 90 : 50)
+            fallthrough
+        case "local-life":
+            height = height + FEEDS_HEADER_HEIGHT + getHeightForMiddleViewPostType(feed: cellData) + (shouldShowFooterCountView(feed: cellData) ? FEED_FOOTER_HEIGHT : (FEED_FOOTER_HEIGHT-FEED_FOOTER_LOWER_VIEW_HEIGHT))                        
             break
             
             
@@ -257,7 +257,7 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
             let displatTextString = getTextHeader(feed: cellData, pageType: pageType)
             var textHeight = (heightOfAttributedText(attributedString: displatTextString, width: screenWidth) + 10)            
             textHeight = ((cellData["countryVisited"].arrayValue).isEmpty) ? textHeight : max(textHeight, 36)
-            height = height + ((pageType == viewType.VIEW_TYPE_ACTIVITY) ? FEEDS_HEADER_HEIGHT : 0) + textHeight + screenWidth*0.9 + (shouldShowFooterCountView(feed: cellData) ? 90 : 50)
+            height = height + ((pageType == viewType.VIEW_TYPE_ACTIVITY) ? FEEDS_HEADER_HEIGHT : 0) + textHeight + screenWidth*0.9 + (shouldShowFooterCountView(feed: cellData) ? FEED_FOOTER_HEIGHT : (FEED_FOOTER_HEIGHT-FEED_FOOTER_LOWER_VIEW_HEIGHT))
             break
             
         default:
@@ -291,6 +291,8 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
             
         
         case "travel-life":
+            fallthrough
+        case "local-life":
             var feedCell = tableView.dequeueReusableCell(withIdentifier: "TravelLocalCell", for: indexPath) as? TLTravelLocalLifeTableViewCell
             
             if feedCell == nil {
@@ -298,8 +300,8 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
             }
             
             feedCell?.setData(feedData: cellData, helper: self, pageType: pageType)
-            feedCell?.FFooterView.likeCountButton.tag = indexPath.row
-            feedCell?.FFooterView.commentCountButton.tag = indexPath.row
+            feedCell?.FFooterViewBasic.likeCountButton.tag = indexPath.row
+            feedCell?.FFooterViewBasic.commentCountButton.tag = indexPath.row
             return feedCell!
             
         
@@ -326,49 +328,6 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
                         
         let feedCell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         return feedCell
-    }
-    
-    
-    //MARK: - 
-    //MARK: - Actions
-    
-    //MARK: - Header Action
-    
-    func toProfile(toUser: JSON) {
-        
-        if currentUser != nil {
-            selectedUser = toUser
-            let profile = storyboard?.instantiateViewController(withIdentifier: "TLProfileView") as! TLProfileViewController
-            profile.displayData = "search"
-            profile.currentSelectedUser = selectedUser
-            self.navigationController?.pushViewController(profile, animated: true)
-        }
-        else {
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
-        }
-    }
-    
-    
-    //MARK: - Footer Action
-    
-    func showLike(sender: UIButton) {
-        let selectedPost = feedsDataArray[sender.tag]
-        if currentUser != nil {
-            let feedVC = storyboard?.instantiateViewController(withIdentifier: "likeTable") as! LikeUserViewController
-            feedVC.postId = selectedPost["_id"].stringValue
-            feedVC.type = selectedPost["type"].stringValue
-            feedVC.title = selectedPost["name"].stringValue
-            self.navigationController?.pushViewController(feedVC, animated: true)
-        }
-        else {
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
-        }
-    }
-    
-    func showCommentView(sender: UIButton) {
-        
-        let selectedPost = feedsDataArray[sender.tag]
-        
     }
 
 }

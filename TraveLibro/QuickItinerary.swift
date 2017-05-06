@@ -186,11 +186,10 @@ public class QuickItinerary {
             print("There is an error");
         }
     }
-    func goToActivity() {
-        
-        let tlVC = storyboard!.instantiateViewController(withIdentifier: "activityFeeds") as! ActivityFeedsController
-        tlVC.displayData = "activity"
-        
-        globalNavigationController.pushViewController(tlVC, animated: false)
+    
+    func goToActivity() {        
+        let vc = storyboard!.instantiateViewController(withIdentifier: "TLMainFeedsView") as! TLMainFeedsViewController
+        vc.pageType = viewType.VIEW_TYPE_ACTIVITY        
+        globalNavigationController.pushViewController(vc, animated: false)
     }
 }

@@ -10,7 +10,7 @@ import UIKit
 import Player
 import Spring
 
-class MyLifeActivityFeedsLayout: VerticalLayout, PlayerDelegate {
+class MyLifeActivityFeedsLayout: VerticalLayout, PlayerDelegate, TLFooterDelegate {
     
     
     //    var feed: JSON!
@@ -211,7 +211,7 @@ class MyLifeActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             }
             footerView.setCommentCount(feed["commentCount"].intValue)
             footerView.setLikeCount(feed["likeCount"].intValue)
-            footerView.setView(feed:feed)
+            footerView.fillFeedFooter(feed: feed, pageType: viewType.VIEW_TYPE_MY_LIFE, delegate: self)
             footerView.setLikeSelected(feed["likeDone"].boolValue)
 
             self.addSubview(footerView)
@@ -250,8 +250,7 @@ class MyLifeActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             if !feed["status"].boolValue {
                 let headerTag = ActivityHeaderTag(frame: CGRect(x: 0, y: 90, width: screenWidth, height: 30))
                 headerTag.tagParent.backgroundColor = UIColor.clear
-                headerTag.colorTag(feed: feed)
-                headerTag.tagLine.isHidden = true
+                headerTag.colorTag(feed: feed)                
                 self.activityQuickItinerary.addSubview(headerTag)
             }
             
@@ -521,6 +520,11 @@ class MyLifeActivityFeedsLayout: VerticalLayout, PlayerDelegate {
         }
         return str
         
+    }
+    
+    //Delegate Actions
+    func footerOptionButtonClicked(sender: UIButton) {
+        print("\n Option button clicked")
     }
     
     

@@ -26,7 +26,7 @@ class TLOTGJourneyTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    init(style: UITableViewCellStyle, reuseIdentifier: String, feedData: JSON, helper: TLMainFeedsViewController){
+    init(style: UITableViewCellStyle, reuseIdentifier: String, feedData: JSON, helper: UIViewController){
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         createView(feedData: feedData, helper: helper)        
@@ -52,7 +52,7 @@ class TLOTGJourneyTableViewCell: UITableViewCell {
     
     //MARK: - Create View
     
-    func createView(feedData: JSON?, helper: TLMainFeedsViewController?) {
+    func createView(feedData: JSON?, helper: UIViewController?) {
         
         FProfileHeader = ActivityProfileHeader(frame: CGRect(x: 0, y: 0, width: screenWidth, height: FEEDS_HEADER_HEIGHT))
         self.contentView.addSubview(FProfileHeader)
@@ -75,7 +75,7 @@ class TLOTGJourneyTableViewCell: UITableViewCell {
         }
     }    
     
-    func setData(feedData: JSON, helper: TLMainFeedsViewController, pageType: viewType?) {        
+    func setData(feedData: JSON, helper: UIViewController, pageType: viewType?) {        
         
         totalHeight = CGFloat(0)
         
@@ -110,14 +110,14 @@ class TLOTGJourneyTableViewCell: UITableViewCell {
         FFooterView.parentController = helper
         FFooterView.fillFeedFooter(feed: feedData, pageType: pageType)
         if shouldShowFooterCountView(feed: feedData) {
-            FFooterView.lowerViewHeightConstraint.constant = 40
-            FFooterView.frame = CGRect(x: 0, y: totalHeight, width: screenWidth, height: 90)
-            totalHeight += 90
+            FFooterView.lowerViewHeightConstraint.constant = FEED_FOOTER_LOWER_VIEW_HEIGHT
+            FFooterView.frame = CGRect(x: 0, y: totalHeight, width: screenWidth, height: FEED_FOOTER_HEIGHT)
+            totalHeight += FEED_FOOTER_HEIGHT
         }
         else {
             FFooterView.lowerViewHeightConstraint.constant = 0
-            FFooterView.frame = CGRect(x: 0, y: totalHeight, width: screenWidth, height: 50)
-            totalHeight += 50
+            FFooterView.frame = CGRect(x: 0, y: totalHeight, width: screenWidth, height: (FEED_FOOTER_HEIGHT-FEED_FOOTER_LOWER_VIEW_HEIGHT))
+            totalHeight += (FEED_FOOTER_HEIGHT-FEED_FOOTER_LOWER_VIEW_HEIGHT)
         }
         
         FBackground.frame = CGRect(x: 0, y: 0, width: screenWidth, height: totalHeight)

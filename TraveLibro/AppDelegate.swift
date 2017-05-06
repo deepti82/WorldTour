@@ -129,6 +129,8 @@ let TIME_HEIGHT = CGFloat(27)
 
 //Feeds Constant
 let FEEDS_HEADER_HEIGHT = CGFloat(71)
+let FEED_FOOTER_HEIGHT = CGFloat(80)
+let FEED_FOOTER_LOWER_VIEW_HEIGHT = CGFloat(35)
 
 
 //Font
