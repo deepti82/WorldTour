@@ -45,6 +45,8 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
     
     var feedsDataArray: [JSON] = []
     var currentPageNumber = 1
+    var hasMorePages = true
+    var isLoading = false
     
     let separatorOffset = CGFloat(15.0)    
     
@@ -71,6 +73,13 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
     override func viewDidAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         globalNavigationController = self.navigationController
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.hideHeaderAndFooter(false)        
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        self.mainFooter?.setFooterDefaultState()
     }
     
     override func didReceiveMemoryWarning() {
@@ -116,6 +125,8 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
     //MARK: - Fetch Data
     
     func getDataMain() {
+        
+        print("\n\n Will fetch data for : \(currentPageNumber)")
         
         switch pageType {
             
@@ -166,6 +177,9 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
                     if !response["data"].arrayValue.isEmpty {
                         self.feedsDataArray.append(contentsOf: response["data"].arrayValue)                    
                     }
+                    else {
+                        self.hasMorePages = false
+                    }
                     
                     self.reloadTableData()                    
                 })
@@ -181,8 +195,12 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
                     if pageNumber == 1 {
                         self.feedsDataArray = []
                     }
+                    
                     if !response["data"].arrayValue.isEmpty {
                         self.feedsDataArray.append(contentsOf: response["data"].arrayValue)                    
+                    }
+                    else {
+                        self.hasMorePages = false
                     }
                     
                     self.reloadTableData()
@@ -200,8 +218,12 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
                     if pageNumber == 1 {
                         self.feedsDataArray = []
                     }
+                    
                     if !response["data"].arrayValue.isEmpty {
                         self.feedsDataArray.append(contentsOf: response["data"].arrayValue)                    
+                    }
+                    else {
+                        self.hasMorePages = false
                     }
                     
                     self.reloadTableData()
@@ -214,6 +236,7 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
     //MARK: - Reload Table
     
     func reloadTableData() {
+        self.isLoading = false
         self.feedsTableView.reloadData()
     }
     
@@ -333,6 +356,83 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
         return feedCell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        print("\n Row selected at index : \(indexPath.row)")
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let cellData = self.feedsDataArray[indexPath.row]
+        
+        switch cellData["type"].stringValue {
+            
+        case "on-the-go-journey":
+            fallthrough
+        case "ended-journey":
+            self.showDetailedJourney(feed: cellData)
+            break
+            
+            
+        case "travel-life":
+            fallthrough
+        case "local-life":
+            break
+            
+            
+        case "quick-itinerary":
+            self.showQuickItinerary(feed: cellData)
+            break
+            
+        case "detail-itinerary":
+            self.showDetailedItinerary(feed: cellData)
+            break
+            
+        default:
+            print("\n default case : \(cellData["type"].stringValue)")
+        }
+        
+    }
+    
+    
+    //MARK: - Navigate to otherVC
+    
+    func showDetailedJourney(feed: JSON) {        
+        if currentUser != nil {
+            let controller = storyboard?.instantiateViewController(withIdentifier: "newTL") as! NewTLViewController
+            controller.fromOutSide = feed["_id"].stringValue
+            controller.fromType = feed["type"].stringValue
+            self.navigationController?.pushViewController(controller, animated: false)
+        }
+        else {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
+        }
+    }
+    
+    func showQuickItinerary(feed: JSON) {
+        if currentUser != nil {
+            selectedQuickI = feed["_id"].stringValue
+            let profile = storyboard?.instantiateViewController(withIdentifier: "previewQ") as! QuickItineraryPreviewViewController
+            self.navigationController?.pushViewController(profile, animated: true)
+        }
+        else {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
+        }
+    }
+    
+    func showDetailedItinerary(feed: JSON) {
+        if currentUser != nil {
+            let controller = storyboard?.instantiateViewController(withIdentifier: "EachItineraryViewController") as! EachItineraryViewController
+            controller.fromOutSide = feed["_id"].stringValue
+            self.navigationController?.setNavigationBarHidden(false, animated: false)
+            self.navigationController?.pushViewController(controller, animated: true)
+        }
+        else {
+            if (feed["itineraryBy"].stringValue.lowercased() != "admin") {
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)                
+            }
+        }
+    }
+    
     
     //MARK: - Delegate Actions
     
@@ -341,5 +441,44 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
         
         let selectedCellData = self.feedsDataArray[sender.tag]
         print("\n\n ***** \n SelectedCellData: \(selectedCellData) \n*****\n\n")
+        
+    }
+    
+    
+    //MARK: - Scrolling Delegates
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.panGestureRecognizer.translation(in: scrollView).y < 0 {
+            self.hideHeaderAndFooter(true);
+        }
+        else{
+            self.hideHeaderAndFooter(false);
+        }
+    }
+    
+    //for adding more content when scrolled to end of table
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        let currentOffset = scrollView.contentOffset.y
+        let maximumOffset = scrollView.contentSize.height - scrollView.frame.size.height
+        
+        if (maximumOffset-currentOffset) <= 0 {
+            if hasMorePages && !isLoading {                
+                print("\n table scolled to end, fetch more content...")
+                self.isLoading = true
+                currentPageNumber += 1
+                self.getDataMain()
+            }
+        }
+    }
+    
+    private func hideHeaderAndFooter(_ isShow:Bool) {
+        if(isShow) {
+            self.navigationController?.setNavigationBarHidden(true, animated: true)
+            self.mainFooter?.frame.origin.y = self.view.frame.height + MAIN_FOOTER_HEIGHT
+        }
+        else {
+            self.navigationController?.setNavigationBarHidden(false, animated: true)
+            self.mainFooter?.frame.origin.y = self.view.frame.height - MAIN_FOOTER_HEIGHT
+        }
     }
 }
