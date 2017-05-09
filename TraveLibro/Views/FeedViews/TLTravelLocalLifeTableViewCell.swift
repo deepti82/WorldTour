@@ -21,6 +21,9 @@ class TLTravelLocalLifeTableViewCell: UITableViewCell, PlayerDelegate {
     var FMHeaderTag: ActivityHeaderTag?
     var FMPlayer:Player?
     var FFooterViewBasic: ActivityFeedFooterBasic!
+    var parentController: UIViewController!
+    
+    var feeds: JSON!
     
     var totalHeight = CGFloat(0)
     
@@ -99,15 +102,18 @@ class TLTravelLocalLifeTableViewCell: UITableViewCell, PlayerDelegate {
     
     func setData(feedData: JSON, helper: UIViewController, pageType: viewType?, delegate: TLFooterDelegate?) {
         
+        self.feeds = feedData
+        self.parentController = helper
+        
         totalHeight = CGFloat(0)
         
-        FProfileHeader.frame = CGRect(x: 0, y: totalHeight, width: screenWidth, height: FEEDS_HEADER_HEIGHT)        
-        FProfileHeader.parentController = helper
-        FProfileHeader.fillProfileHeader(feed: feedData, pageType: pageType, cellType: feedCellType.CELL_POST_TYPE)
+        FProfileHeader.frame = CGRect(x: 0, y: totalHeight, width: screenWidth, height: FEEDS_HEADER_HEIGHT)
+        FProfileHeader.parentController = self.parentController
+        FProfileHeader.fillProfileHeader(feed: self.feeds, pageType: pageType, cellType: feedCellType.CELL_POST_TYPE)
         totalHeight += FEEDS_HEADER_HEIGHT
         
-        FMTextView?.setFlag(feed: feedData)
-        FMTextView?.displayText = getTextHeader(feed: feedData, pageType: pageType!)        
+        FMTextView?.setFlag(feed: self.feeds)
+        FMTextView?.displayText = getTextHeader(feed: self.feeds, pageType: pageType!)        
         FMTextView?.setText(text: (FMTextView?.displayText)!)
         if FMTextView?.displayText.string != "" {
             let textHeight = (heightOfAttributedText(attributedString: (FMTextView?.displayText)!, width: screenWidth) + 10)
@@ -118,21 +124,21 @@ class TLTravelLocalLifeTableViewCell: UITableViewCell, PlayerDelegate {
         }
         let prevHeight = totalHeight
         
-        self.videosAndPhotosLayout(feed: feedData)
+        self.videosAndPhotosLayout(feed: self.feeds)
         
         if prevHeight == totalHeight {
             //Only text Header
             FMHeaderTag = ActivityHeaderTag(frame: CGRect(x: 0, y: totalHeight + 30, width: screenWidth, height: 50))
             FMHeaderTag?.tagParent.backgroundColor = UIColor.clear            
-            FMHeaderTag?.colorTag(feed: feedData)
+            FMHeaderTag?.colorTag(feed: self.feeds)
             self.contentView.addSubview(FMHeaderTag!)
             totalHeight += 80
         }
         
         FFooterViewBasic.parentController = helper
-        FFooterViewBasic.fillFeedFooter(feed: feedData, pageType: pageType, delegate: delegate)
+        FFooterViewBasic.fillFeedFooter(feed: self.feeds, pageType: pageType, delegate: delegate)
         
-        if shouldShowFooterCountView(feed: feedData) {
+        if shouldShowFooterCountView(feed: self.feeds) {
             FFooterViewBasic.lowerViewHeightConstraint.constant = FEED_FOOTER_LOWER_VIEW_HEIGHT
             FFooterViewBasic.frame = CGRect(x: 0, y: totalHeight, width: screenWidth, height: FEED_FOOTER_HEIGHT)
             totalHeight += FEED_FOOTER_HEIGHT
@@ -174,7 +180,7 @@ class TLTravelLocalLifeTableViewCell: UITableViewCell, PlayerDelegate {
                 videoUrl = URL(string:feed["videos"][0]["localUrl"].stringValue)
             }
             
-            getThumbnailFromVideoURL(url: videoUrl!, onView: (self.FMVideoContainer?.videoHolder)!)
+            self.FMVideoContainer?.videoHolder.hnk_setImageFromURL(getImageURL(feed["videos"][0]["thumbnail"].stringValue, width: 0))
             
             if feed["type"].stringValue == "travel-life" {
                 FMVideoContainer?.tagText.text = "Travel Life"
@@ -218,7 +224,7 @@ class TLTravelLocalLifeTableViewCell: UITableViewCell, PlayerDelegate {
                     self.FMMainPhoto?.hnk_setImageFromURL(imgStr)
                 }
                 self.FMMainPhoto?.isUserInteractionEnabled = true
-                let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(PhotosOTG2.openSinglePhoto(_:)))
+                let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(self.openSinglePhoto(_:)))
                 self.FMMainPhoto?.addGestureRecognizer(tapGestureRecognizer)
                 self.FMMainPhoto?.tag = 0
                 
@@ -274,7 +280,7 @@ class TLTravelLocalLifeTableViewCell: UITableViewCell, PlayerDelegate {
             photosButton.frame.size.width = 82
             let urlStr = getImageURL(post["photos"][i]["name"].stringValue, width: 300)
             photosButton.hnk_setImageFromURL(urlStr)
-            let tapGestureRecognizer = UITapGestureRecognizer(target:self, action: #selector(ActivityFeedsLayout.openSinglePhoto(_:)))
+            let tapGestureRecognizer = UITapGestureRecognizer(target:self, action: #selector(self.openSinglePhoto(_:)))
             photosButton.isUserInteractionEnabled = true
             photosButton.addGestureRecognizer(tapGestureRecognizer)
             //photosButton.layer.cornerRadius = 5.0
@@ -293,8 +299,8 @@ class TLTravelLocalLifeTableViewCell: UITableViewCell, PlayerDelegate {
         let singlePhotoController = storyboard?.instantiateViewController(withIdentifier: "singlePhoto") as! SinglePhotoViewController
         singlePhotoController.fetchType = photoVCType.FROM_ACTIVITY
         singlePhotoController.index = sender.view.tag
-//        singlePhotoController.postId = feeds["_id"].stringValue
-        globalNavigationController.pushViewController(singlePhotoController, animated: true)
+        singlePhotoController.postId = self.feeds["_id"].stringValue
+        parentController.navigationController?.pushViewController(singlePhotoController, animated: true)
     } 
     
     func openSingleVideo(_ sender: AnyObject) {
@@ -302,8 +308,8 @@ class TLTravelLocalLifeTableViewCell: UITableViewCell, PlayerDelegate {
         singlePhotoController.fetchType = photoVCType.FROM_ACTIVITY
         singlePhotoController.index = sender.view.tag
         singlePhotoController.type = "Video"
-//        singlePhotoController.postId = feeds["_id"].stringValue
-        globalNavigationController.pushViewController(singlePhotoController, animated: true)
+        singlePhotoController.postId = self.feeds["_id"].stringValue
+        parentController.navigationController?.pushViewController(singlePhotoController, animated: true)
     }
     
 }
