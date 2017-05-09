@@ -25,6 +25,7 @@ class TLTravelLocalLifeTableViewCell: UITableViewCell, PlayerDelegate {
     
     var feeds: JSON!
     
+    var willPlay = false
     var totalHeight = CGFloat(0)
     
     override func awakeFromNib() {
@@ -152,7 +153,7 @@ class TLTravelLocalLifeTableViewCell: UITableViewCell, PlayerDelegate {
         FBackground.frame = CGRect(x: 0, y: 0, width: screenWidth, height: totalHeight)
     }
     
-    func videosAndPhotosLayout(feed:JSON) {
+    private func videosAndPhotosLayout(feed:JSON) {
         
         //Image generation only
         if(feed["videos"].count > 0) {
@@ -165,20 +166,14 @@ class TLTravelLocalLifeTableViewCell: UITableViewCell, PlayerDelegate {
             
             self.FMPlayer = Player()
             self.FMPlayer?.delegate = self
-            self.FMPlayer?.view.frame = CGRect(x: 0, y: totalHeight, width: screenWidth, height: screenWidth*0.9)
+            self.FMPlayer?.view.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenWidth*0.9)
             self.FMPlayer?.view.clipsToBounds = true
             self.FMPlayer?.playbackLoops = true
             self.FMPlayer?.muted = true
             self.FMPlayer?.fillMode = "AVLayerVideoGravityResizeAspectFill"
             self.FMPlayer?.playbackFreezesAtEnd = true
             self.FMVideoContainer?.player = self.FMPlayer
-            self.FMVideoContainer?.bringSubview(toFront: (FMVideoContainer?.playBtn)!)
-            
-            
-            var videoUrl = URL(string:feed["videos"][0]["name"].stringValue)
-            if(videoUrl == nil) {
-                videoUrl = URL(string:feed["videos"][0]["localUrl"].stringValue)
-            }
+            self.FMVideoContainer?.bringSubview(toFront: (FMVideoContainer?.playBtn)!)            
             
             self.FMVideoContainer?.videoHolder.hnk_setImageFromURL(getImageURL(feed["videos"][0]["thumbnail"].stringValue, width: 0))
             
@@ -290,6 +285,65 @@ class TLTravelLocalLifeTableViewCell: UITableViewCell, PlayerDelegate {
         }
         FMCenterView?.horizontalScrollForPhotos.layoutSubviews()
         FMCenterView?.morePhotosView.contentSize = CGSize(width: (FMCenterView?.horizontalScrollForPhotos.frame.width)!, height: (FMCenterView?.horizontalScrollForPhotos.frame.height)!)
+    }
+    
+    
+    //MARK:- Video Playing
+    
+    func videoToPlay(scrollView: UIScrollView)  {
+        if self.FMVideoContainer != nil {
+            if isVideoViewInRangeToPlay(scrollView: scrollView) {
+                if !self.willPlay {
+                    self.FMVideoContainer?.showLoadingIndicator(color: (feeds["type"].stringValue == "travel-life" ? mainOrangeColor : endJourneyColor))
+                }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
+                    self.FMVideoContainer?.stopLoadingIndicator()
+                    if self.FMVideoContainer != nil {
+                        if self.isVideoViewInRangeToPlay(scrollView: scrollView) {
+                            if !self.willPlay {
+                                //                        self.videoContainer.playBtn.isHidden = true                        
+                                self.willPlay = true
+                                var videoUrl = URL(string:self.feeds["videos"][0]["name"].stringValue)
+                                if(videoUrl == nil) {
+                                    videoUrl = URL(string:self.feeds["videos"][0]["localUrl"].stringValue)
+                                }
+                                self.FMPlayer?.setUrl(videoUrl!)
+                                self.FMPlayer?.playFromBeginning()
+                            }
+                        }
+                        else {
+                            self.FMPlayer?.stop()
+                            self.willPlay = false
+                            //                    self.videoContainer.playBtn.isHidden = false
+                            self.FMVideoContainer?.stopLoadingIndicator()
+                        }
+                    }
+                })
+            }
+            else {
+                self.FMPlayer?.stop()
+                self.willPlay = false
+                //            self.videoContainer.playBtn.isHidden = false
+                self.FMVideoContainer?.stopLoadingIndicator()
+            }
+        }        
+    }
+    
+    private func isVideoViewInRangeToPlay(scrollView: UIScrollView) -> Bool {
+        let min = self.frame.origin.y + (self.FMVideoContainer?.frame.origin.y)!
+        let max = min + (self.FMVideoContainer?.frame.size.height)!
+        let scrollMin = scrollView.contentOffset.y
+        let scrollMax = scrollMin + scrollView.frame.height
+        
+        if (scrollMin < min && scrollMax > max ) {
+            return true
+        }
+        
+        return false
+    }
+    
+    func playerReady(_ player: Player) {
+        //videoToPlay()
     }
     
     

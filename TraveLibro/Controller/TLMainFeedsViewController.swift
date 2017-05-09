@@ -39,6 +39,9 @@ enum feedPostCellType {
 class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, TLFooterDelegate {
 
     @IBOutlet weak var feedsTableView: UITableView!
+    
+    private let TL_VISIBLE_CELL_TAG = 6789
+    
     var mainFooter: FooterViewNew?
     
     var pageType: viewType = viewType.VIEW_TYPE_ACTIVITY
@@ -327,6 +330,7 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
             feedCell?.FFooterViewBasic.likeCountButton.tag = indexPath.row
             feedCell?.FFooterViewBasic.commentCountButton.tag = indexPath.row
             feedCell?.FFooterViewBasic.optionButton.tag = indexPath.row
+            feedCell?.tag = TL_VISIBLE_CELL_TAG
             return feedCell!
             
         
@@ -461,6 +465,13 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
         let currentOffset = scrollView.contentOffset.y
         let maximumOffset = scrollView.contentSize.height - scrollView.frame.size.height
         
+        for visibleCell in feedsTableView.visibleCells {
+            if visibleCell.tag == TL_VISIBLE_CELL_TAG {
+                let requiredCell = visibleCell as! TLTravelLocalLifeTableViewCell
+                requiredCell.videoToPlay(scrollView: scrollView)
+            }
+        }
+        
         if (maximumOffset-currentOffset) <= 0 {
             if hasMorePages && !isLoading {                
                 print("\n table scolled to end, fetch more content...")
@@ -469,6 +480,7 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
                 self.getDataMain()
             }
         }
+        
     }
     
     private func hideHeaderAndFooter(_ isShow:Bool) {
