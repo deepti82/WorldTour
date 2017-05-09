@@ -4,6 +4,7 @@ import AVFoundation
 
 protocol TLFooterBasicDelegate {
     func footerLikeCommentCountUpdated(likeDone: Bool, likeCount: Int, commentCount: Int, tag: Int)
+    func footerRatingUpdated(rating: JSON, tag: Int)
 }
 
 class ActivityFeedFooterBasic: UIView {
@@ -518,6 +519,10 @@ class ActivityFeedFooterBasic: UIView {
             ratingStack.isHidden = false
             rateThisButton.isHidden = true
         }
+    }
+    
+    func updateRating() {        
+        self.delegate?.footerRatingUpdated(rating: newRating, tag: self.tag)
     }
     
     

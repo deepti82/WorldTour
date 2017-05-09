@@ -434,18 +434,14 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
     //MARK: - Delegate Actions
     
     func footerLikeCommentCountUpdated(likeDone: Bool, likeCount: Int, commentCount: Int, tag: Int) {
-        print("\n *********************** \n footerLikeCommentCountUpdated called likeCount: \(likeCount) & commentCount: \(commentCount) \n ")
-        var cellData = feedsDataArray[tag]
-        print("\n Count is updating for tag : \(tag) \n cellData : \(cellData) \n *********************** \n")
+        var cellData = feedsDataArray[tag]        
         cellData["likeCount"] = JSON(String(likeCount))
         cellData["commentCount"] = JSON(String(commentCount))
-        cellData["likeDone"] = JSON(Bool(likeDone))
-        print("\n updated cellData : \(cellData)")
+        cellData["likeDone"] = JSON(Bool(likeDone))        
         feedsDataArray[tag] = cellData
         
         if likeDone {
-            UIView.animate(withDuration: 1, delay: 0, options: [.curveEaseOut, .beginFromCurrentState], animations: { 
-                
+            UIView.animate(withDuration: 1, delay: 0, options: [.curveEaseOut, .beginFromCurrentState], animations: {                
             }) { (true) in
                 self.feedsTableView.reloadRows(at: [IndexPath(row: tag, section: 0)], with: .none)
             }
@@ -455,6 +451,16 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
         }               
     }
     
+    func footerRatingUpdated(rating: JSON, tag: Int) {        
+        var currentJson = feedsDataArray[tag]            
+        currentJson["review"][0] = ["rating":"\(rating["rating"].stringValue)","review":rating["review"].stringValue]            
+        if (currentJson["review"].isEmpty){
+            currentJson["review"] = [["rating":"\(rating["rating"].stringValue)","review":rating["review"].stringValue]]
+        }
+        feedsDataArray[tag] = currentJson
+        
+        self.feedsTableView.reloadRows(at: [IndexPath(row: tag, section: 0)], with: .none)
+    }    
     
     
     

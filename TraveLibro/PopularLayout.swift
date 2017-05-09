@@ -539,4 +539,8 @@ class PopularLayout: VerticalLayout, PlayerDelegate, TLFooterBasicDelegate {
         print("\n *********************** \n footerLikeCommentCountUpdated called likeCount: \(likeCount) & commentCount: \(commentCount) \n ")        
     }
     
+    func footerRatingUpdated(rating: JSON, tag: Int) {
+        print("\n *********************** \n footerLikeCommentCountUpdated called rating: \(rating) \n ")
+    }
+    
 }
