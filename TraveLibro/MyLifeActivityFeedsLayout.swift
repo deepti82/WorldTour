@@ -10,7 +10,7 @@ import UIKit
 import Player
 import Spring
 
-class MyLifeActivityFeedsLayout: VerticalLayout, PlayerDelegate, TLFooterDelegate {
+class MyLifeActivityFeedsLayout: VerticalLayout, PlayerDelegate, TLFooterBasicDelegate {
     
     
     //    var feed: JSON!
@@ -523,8 +523,8 @@ class MyLifeActivityFeedsLayout: VerticalLayout, PlayerDelegate, TLFooterDelegat
     }
     
     //Delegate Actions
-    func footerOptionButtonClicked(sender: UIButton) {
-        print("\n Option button clicked")
+    func footerLikeCommentCountUpdated(likeDone: Bool, likeCount: Int, commentCount: Int, tag: Int) {
+        print("\n *********************** \n footerLikeCommentCountUpdated called likeCount: \(likeCount) & commentCount: \(commentCount) \n ")        
     }
     
     

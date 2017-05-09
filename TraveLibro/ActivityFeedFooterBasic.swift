@@ -2,8 +2,8 @@ import UIKit
 import Spring
 import AVFoundation
 
-protocol TLFooterDelegate {
-    func footerOptionButtonClicked(sender: UIButton)
+protocol TLFooterBasicDelegate {
+    func footerLikeCommentCountUpdated(likeDone: Bool, likeCount: Int, commentCount: Int, tag: Int)
 }
 
 class ActivityFeedFooterBasic: UIView {
@@ -12,7 +12,7 @@ class ActivityFeedFooterBasic: UIView {
     var pageType: viewType!
     var parentController: UIViewController!
     
-    private var delegate: TLFooterDelegate?
+    private var delegate: TLFooterBasicDelegate?
     
     @IBOutlet weak var upperView: UIView!    
     @IBOutlet var starImageArray: [UIImageView]!
@@ -44,7 +44,7 @@ class ActivityFeedFooterBasic: UIView {
     var footerType = ""
     var dropView: DropShadow2!
     var likeCount:Int = 0
-    var commentCounts:Int = 0
+    var commentCount:Int = 0
     var photoId = ""
     var photoPostId = ""
     let border = CALayer()
@@ -94,11 +94,15 @@ class ActivityFeedFooterBasic: UIView {
     
     }
     
-    func fillFeedFooter(feed: JSON, pageType: viewType?, delegate: TLFooterDelegate?) {
+    func fillFeedFooter(feed: JSON, pageType: viewType?, delegate: TLFooterBasicDelegate?) {
         
         self.postTop = feed
         self.pageType = pageType!
         self.delegate = delegate
+        
+        self.likeCountButton.tag = self.tag
+        self.commentCountButton.tag = self.tag
+        self.optionButton.tag = self.tag
         
         if currentUser != nil {
             if (isSelfUser(otherUserID: postTop["user"]["_id"].stringValue) && self.pageType == viewType.VIEW_TYPE_MY_LIFE) {
@@ -253,12 +257,15 @@ class ActivityFeedFooterBasic: UIView {
     }
     
     func updateLikeSuccess(sender : UIButton) {
+        var hasLiked = true
         if sender.tag == 1 {
+            hasLiked = true
             self.setLikeSelected(true)
             self.likeCount = self.likeCount + 1
             self.setLikeCount(self.likeCount)
         }
         else {
+            hasLiked = false
             self.setLikeSelected(false)
             if self.likeCount <= 0 {
                 self.likeCount = 0
@@ -267,10 +274,13 @@ class ActivityFeedFooterBasic: UIView {
             }
             self.setLikeCount(self.likeCount)
         }
+        self.delegate?.footerLikeCommentCountUpdated(likeDone: hasLiked, likeCount: self.likeCount, commentCount: self.commentCount, tag: self.tag)
     }
     
     func updateLikeFailure(sender : UIButton) {
+        var hasLiked = true
         if sender.tag == 1 {
+            hasLiked = false
             self.setLikeSelected(false)
             if self.likeCount <= 0 {
                 self.likeCount = 0
@@ -280,10 +290,12 @@ class ActivityFeedFooterBasic: UIView {
             self.setLikeCount(self.likeCount)
         }
         else {
+            hasLiked = true
             self.setLikeSelected(true)
             self.likeCount = self.likeCount + 1
             self.setLikeCount(self.likeCount)            
         }
+        self.delegate?.footerLikeCommentCountUpdated(likeDone: hasLiked, likeCount: self.likeCount, commentCount: self.commentCount, tag: self.tag)
     }
     
     func setLikeSelected (_ isSelected:Bool) {
@@ -394,7 +406,7 @@ class ActivityFeedFooterBasic: UIView {
     func setCommentCount(_ post_commentCount:Int!) {
         
         if(post_commentCount != nil) {
-            self.commentCounts = post_commentCount
+            self.commentCount = post_commentCount
             if(post_commentCount == 0) {
                 self.commentCountButton.setTitle("0 Comment", for: .normal)
             } else if(post_commentCount == 1) {
@@ -402,12 +414,13 @@ class ActivityFeedFooterBasic: UIView {
             } else if(post_commentCount > 1) {
                 let counts = String(post_commentCount)
                 self.commentCountButton.setTitle("\(counts) Comments", for: .normal)
-                
-                
             }
         }
     }
     
+    func updateCommentCountSuccess(post_commentCount: Int) {
+        self.delegate?.footerLikeCommentCountUpdated(likeDone: false, likeCount: self.likeCount, commentCount: self.commentCount, tag: self.tag)
+    }
     
     //MARK: - Share
     
@@ -511,8 +524,6 @@ class ActivityFeedFooterBasic: UIView {
     //MARK: - Options
     
     @IBAction func optionClick(_ sender: UIButton) {
-        
-        delegate?.footerOptionButtonClicked(sender: sender)
         
         var shouldPresent = true
         

@@ -75,7 +75,7 @@ class TLOTGJourneyTableViewCell: UITableViewCell {
         }
     }    
     
-    func setData(feedData: JSON, helper: UIViewController, pageType: viewType?, delegate: TLFooterDelegate?) {        
+    func setData(feedData: JSON, helper: UIViewController, pageType: viewType?, delegate: TLFooterBasicDelegate?) {        
         
         totalHeight = CGFloat(0)
         

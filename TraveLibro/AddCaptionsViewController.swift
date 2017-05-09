@@ -143,7 +143,7 @@ class AddCaptionsViewController: UIViewController, UITextFieldDelegate, ToolStac
             }
         }
         
-        navigationController?.popViewController(animated: true)
+        _ = navigationController?.popViewController(animated: true)
         self.dismiss(animated: true) { 
             
         }

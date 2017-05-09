@@ -10,7 +10,7 @@ import UIKit
 import Player
 import Spring
 
-class LocalLifePost: VerticalLayout, PlayerDelegate, TLFooterDelegate {
+class LocalLifePost: VerticalLayout, PlayerDelegate, TLFooterBasicDelegate {
     
     
     var feed: JSON!
@@ -360,9 +360,8 @@ class LocalLifePost: VerticalLayout, PlayerDelegate, TLFooterDelegate {
     }
     
     //Delegate Actions
-    func footerOptionButtonClicked(sender: UIButton) {
-        print("\n Option button clicked")
-    }
-    
+    func footerLikeCommentCountUpdated(likeDone: Bool, likeCount: Int, commentCount: Int, tag: Int) {
+        print("\n *********************** \n footerLikeCommentCountUpdated called likeCount: \(likeCount) & commentCount: \(commentCount) \n ")        
+    }    
     
 }

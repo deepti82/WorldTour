@@ -75,7 +75,7 @@ class TLItineraryTableViewCell: UITableViewCell {
         }
     }    
     
-    func setData(feedData: JSON, helper: TLMainFeedsViewController, pageType: viewType?, delegate: TLFooterDelegate?) {
+    func setData(feedData: JSON, helper: TLMainFeedsViewController, pageType: viewType?, delegate: TLFooterBasicDelegate?) {
         
         totalHeight = CGFloat(0)
         

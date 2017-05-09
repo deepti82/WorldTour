@@ -90,7 +90,7 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func goBack(_ sender:AnyObject) {
-        self.navigationController!.popViewController(animated: true)
+        _ = self.navigationController!.popViewController(animated: true)
     }
     
     override func viewDidLoad() {
@@ -473,6 +473,7 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
                 footerViewFooter.setCommentCount(comments.count)
             }
             if(footerViewBasic != nil) {
+                footerViewBasic.updateCommentCountSuccess(post_commentCount: comments.count)
                 footerViewBasic.setCommentCount(comments.count)
             }
             return comments.count
