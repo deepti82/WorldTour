@@ -473,8 +473,8 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
                 footerViewFooter.setCommentCount(comments.count)
             }
             if(footerViewBasic != nil) {
-                footerViewBasic.updateCommentCountSuccess(post_commentCount: comments.count)
                 footerViewBasic.setCommentCount(comments.count)
+                footerViewBasic.updateCommentCountSuccess(post_commentCount: comments.count)                
             }
             return comments.count
         }
