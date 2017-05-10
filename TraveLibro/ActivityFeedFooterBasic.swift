@@ -105,66 +105,82 @@ class ActivityFeedFooterBasic: UIView {
         self.commentCountButton.tag = self.tag
         self.optionButton.tag = self.tag
         
-        if currentUser != nil {
-            if (isSelfUser(otherUserID: postTop["user"]["_id"].stringValue) && self.pageType == viewType.VIEW_TYPE_MY_LIFE) {
-                optionButton.isHidden = true
-            }
-            else {
-                optionButton.isHidden = false
-            }
+        if isLocalFeed(feed: self.postTop) {
+            fillFeedFooterForLocalFeed(feed: feed, pageType: pageType, delegate: delegate)
         }
         else {
-            optionButton.isHidden = true
-        }
-        
-        self.setLikeCount(postTop["likeCount"].intValue)
-        self.setCommentCount(postTop["commentCount"].intValue)
-        self.setLikeSelected(postTop["likeDone"].boolValue)
-        
-        rateThisButton.isUserInteractionEnabled = true
-        ratingStack.isUserInteractionEnabled = true
-        ratingStack.isHidden = false
-        rateThisButton.isHidden = false
-        
-        if feed["review"][0] != nil && feed["review"].count > 0 {
-            ratingStack.isHidden = false
-            rateThisButton.isHidden = true            
-            afterRating(starCnt: feed["review"][0]["rating"].intValue, review: feed["review"][0]["review"].stringValue)
-            if !isSelfUser(otherUserID: postTop["user"]["_id"].stringValue) {
-                rateThisButton.isUserInteractionEnabled = false
-            }
-        }
-        else {            
-            if feed["checkIn"] != nil && feed["checkIn"]["category"].stringValue != "" {
-                ratingStack.isHidden = true
-                if canRate() {
-                    rateThisButton.setTitle("Rate this now", for: .normal)
+            if currentUser != nil {
+                if (isSelfUser(otherUserID: postTop["user"]["_id"].stringValue) && self.pageType == viewType.VIEW_TYPE_MY_LIFE) {
+                    optionButton.isHidden = true
                 }
                 else {
-                    rateThisButton.setTitle("", for: .normal)
+                    optionButton.isHidden = false
+                }
+            }
+            else {
+                optionButton.isHidden = true
+            }
+            
+            self.setLikeCount(postTop["likeCount"].intValue)
+            self.setCommentCount(postTop["commentCount"].intValue)
+            self.setLikeSelected(postTop["likeDone"].boolValue)
+            
+            rateThisButton.isUserInteractionEnabled = true
+            ratingStack.isUserInteractionEnabled = true
+            ratingStack.isHidden = false
+            rateThisButton.isHidden = false
+            
+            if feed["review"][0] != nil && feed["review"].count > 0 {
+                ratingStack.isHidden = false
+                rateThisButton.isHidden = true            
+                afterRating(starCnt: feed["review"][0]["rating"].intValue, review: feed["review"][0]["review"].stringValue)
+                if !isSelfUser(otherUserID: postTop["user"]["_id"].stringValue) {
                     rateThisButton.isUserInteractionEnabled = false
                 }
             }
-            else{
-                ratingStack.isHidden = true
-                rateThisButton.isHidden = true
+            else {            
+                if feed["checkIn"] != nil && feed["checkIn"]["lat"].stringValue != "" {
+                    ratingStack.isHidden = true
+                    if canRate() {
+                        rateThisButton.setTitle("Rate this now", for: .normal)
+                    }
+                    else {
+                        rateThisButton.setTitle("", for: .normal)
+                        rateThisButton.isUserInteractionEnabled = false
+                    }
+                }
+                else{
+                    ratingStack.isHidden = true
+                    rateThisButton.isHidden = true
+                }
             }
+            
+            if (isSelfUser(otherUserID: postTop["user"]["_id"].stringValue) && self.pageType != viewType.VIEW_TYPE_MY_LIFE) {
+                optionButton.isHidden = true
+                leadingToRatingStackConstraint.constant = CGFloat(-30)
+                leadingToRateThisConstraint.constant = CGFloat(-30)
+            }
+            else {
+                optionButton.isHidden = false
+                leadingToRatingStackConstraint.constant = CGFloat(8)
+                leadingToRateThisConstraint.constant = CGFloat(8)
+            }
+            
+            self.removeTargetActions()
+            
+            self.addTargetActions()
         }
+    }
+    
+    func fillFeedFooterForLocalFeed(feed: JSON, pageType: viewType?, delegate: TLFooterBasicDelegate?) {
         
-        if (isSelfUser(otherUserID: postTop["user"]["_id"].stringValue) && self.pageType != viewType.VIEW_TYPE_MY_LIFE) {
-            optionButton.isHidden = true
-            leadingToRatingStackConstraint.constant = CGFloat(-30)
-            leadingToRateThisConstraint.constant = CGFloat(-30)
-        }
-        else {
-            optionButton.isHidden = false
-            leadingToRatingStackConstraint.constant = CGFloat(8)
-            leadingToRateThisConstraint.constant = CGFloat(8)
-        }
+        self.optionButton.isHidden = true
+        ratingStack.isHidden = true
+        rateThisButton.isHidden = true
+        
+        self.setLikeSelected(false)
         
         self.removeTargetActions()
-        
-        self.addTargetActions()
     }
     
     func removeTargetActions() {

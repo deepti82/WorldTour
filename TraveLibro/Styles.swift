@@ -936,6 +936,14 @@ func getDigitWithCommaStandards(originalDigitStr : String) -> String {
     return ""
 }
 
+func isLocalFeed(feed: JSON) -> Bool {
+    if feed["user"].dictionaryValue.isEmpty {
+        return true
+    }
+    return false
+}
+
+
 //MARK: - Invite
 
 func inviteToAppClicked(sender: UIView, onView:UIViewController) {

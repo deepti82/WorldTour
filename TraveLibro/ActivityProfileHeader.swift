@@ -62,143 +62,166 @@ class ActivityProfileHeader: UIView {
         
         currentFeed = feed
         
-        self.removePreviousGesture()
-        
-        self.sendSubview(toBack: self.profilePic)
-        self.sendSubview(toBack: self.userName)
-        
-        self.isUserInteractionEnabled = true
-        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(self.handleProfileTap(_:)))
-        self.addGestureRecognizer(tapGestureRecognizer)
-        
-        setFollowButtonTitle(button: followButton, followType: feed["following"].intValue, otherUserID: (feed["_id"] != nil ? feed["_id"].stringValue : "admin"))
-        
-        
-        if(pageType == viewType.VIEW_TYPE_ACTIVITY ||
-            (currentUser != nil) && feed["user"]["_id"].stringValue == currentUser["_id"].stringValue) {
-            followButton.isHidden = true
+        if isLocalFeed(feed: currentFeed) {
+            fillProfileHeaderLocalFeed(feed: feed, pageType: pageType, cellType: cellType)
         }
+        else {
         
-        if pageType == viewType.VIEW_TYPE_ACTIVITY {
+            self.removePreviousGesture()
             
-            localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["timestamp"].stringValue, isDate: true)
-            localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["timestamp"].stringValue, isDate: false)
+            self.sendSubview(toBack: self.profilePic)
+            self.sendSubview(toBack: self.userName)
             
-            switch feed["type"].stringValue {
-            case "on-the-go-journey":
-                fallthrough
-            case "ended-journey":
-                userName.text = feed["user"]["name"].stringValue
-                profilePic.hnk_setImageFromURL(getImageURL(feed["user"]["profilePicture"].stringValue, width: SMALL_PHOTO_WIDTH))
-                break
-                
-                
-            case "quick-itinerary":
-                fallthrough
-            case "detail-itinerary":
-                userName.text = feed["creator"]["name"].stringValue
-                profilePic.hnk_setImageFromURL(getImageURL(feed["creator"]["profilePicture"].stringValue, width: SMALL_PHOTO_WIDTH))
-                break
-                
-            default:
-                userName.text = feed["postCreator"]["name"].stringValue
-                profilePic.hnk_setImageFromURL(getImageURL(feed["postCreator"]["profilePicture"].stringValue, width: SMALL_PHOTO_WIDTH))
+            self.isUserInteractionEnabled = true
+            let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(self.handleProfileTap(_:)))
+            self.addGestureRecognizer(tapGestureRecognizer)
+            
+            setFollowButtonTitle(button: followButton, followType: feed["following"].intValue, otherUserID: (feed["_id"] != nil ? feed["_id"].stringValue : "admin"))
+            
+            
+            if(pageType == viewType.VIEW_TYPE_ACTIVITY ||
+                (currentUser != nil) && feed["user"]["_id"].stringValue == currentUser["_id"].stringValue) {
+                followButton.isHidden = true
             }
-        }
-        
-        else if pageType == viewType.VIEW_TYPE_OTG {
-            // This Header is not used for OTG.... So Ignore this case
-        }
-        
-        else if pageType == viewType.VIEW_TYPE_MY_LIFE {
             
-            switch feed["type"].stringValue {
-            case "on-the-go-journey":
-                fallthrough
-            case "ended-journey":
-                userName.text = feed["user"]["name"].stringValue
-                profilePic.hnk_setImageFromURL(getImageURL(feed["user"]["profilePicture"].stringValue, width: SMALL_PHOTO_WIDTH))
+            if pageType == viewType.VIEW_TYPE_ACTIVITY {
+                
+                localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["timestamp"].stringValue, isDate: true)
+                localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["timestamp"].stringValue, isDate: false)
+                
+                switch feed["type"].stringValue {
+                case "on-the-go-journey":
+                    fallthrough
+                case "ended-journey":
+                    userName.text = feed["user"]["name"].stringValue
+                    profilePic.hnk_setImageFromURL(getImageURL(feed["user"]["profilePicture"].stringValue, width: SMALL_PHOTO_WIDTH))
+                    break
+                    
+                    
+                case "quick-itinerary":
+                    fallthrough
+                case "detail-itinerary":
+                    userName.text = feed["creator"]["name"].stringValue
+                    profilePic.hnk_setImageFromURL(getImageURL(feed["creator"]["profilePicture"].stringValue, width: SMALL_PHOTO_WIDTH))
+                    break
+                    
+                default:
+                    userName.text = feed["postCreator"]["name"].stringValue
+                    profilePic.hnk_setImageFromURL(getImageURL(feed["postCreator"]["profilePicture"].stringValue, width: SMALL_PHOTO_WIDTH))
+                }
+            }
+            
+            else if pageType == viewType.VIEW_TYPE_OTG {
+                // This Header is not used for OTG.... So Ignore this case
+            }
+            
+            else if pageType == viewType.VIEW_TYPE_MY_LIFE {
+                
+                switch feed["type"].stringValue {
+                case "on-the-go-journey":
+                    fallthrough
+                case "ended-journey":
+                    userName.text = feed["user"]["name"].stringValue
+                    profilePic.hnk_setImageFromURL(getImageURL(feed["user"]["profilePicture"].stringValue, width: SMALL_PHOTO_WIDTH))
+                    localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["startTime"].stringValue, isDate: true)
+                    localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["startTime"].stringValue, isDate: false)
+                    break
+                    
+                    
+                case "quick-itinerary":
+                    fallthrough
+                case "detail-itinerary":
+                    userName.text = feed["creator"]["name"].stringValue
+                    profilePic.hnk_setImageFromURL(getImageURL(feed["creator"]["profilePicture"].stringValue, width: SMALL_PHOTO_WIDTH))
+                    localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["startTime"].stringValue, isDate: true)
+                    localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["startTime"].stringValue, isDate: false)
+                    break
+                    
+                default:
+                    userName.text = feed["postCreator"]["name"].stringValue
+                    profilePic.hnk_setImageFromURL(getImageURL(feed["postCreator"]["profilePicture"].stringValue, width: SMALL_PHOTO_WIDTH))
+                    localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["UTCModified"].stringValue, isDate: true)
+                    localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["UTCModified"].stringValue, isDate: false)
+                }
+            }
+            
+            else if pageType == viewType.VIEW_TYPE_LOCAL_LIFE {
+                
+                switch feed["type"].stringValue {
+                case "on-the-go-journey":
+                    fallthrough
+                case "ended-journey":
+                    userName.text = feed["user"]["name"].stringValue
+                    profilePic.hnk_setImageFromURL(getImageURL(feed["user"]["profilePicture"].stringValue, width: SMALL_PHOTO_WIDTH))
+                    localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["UTCModified"].stringValue, isDate: true)
+                    localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["UTCModified"].stringValue, isDate: false)
+                    break
+                    
+                    
+                case "quick-itinerary":
+                    fallthrough
+                case "detail-itinerary":
+                    userName.text = feed["creator"]["name"].stringValue
+                    profilePic.hnk_setImageFromURL(getImageURL(feed["creator"]["profilePicture"].stringValue, width: SMALL_PHOTO_WIDTH))
+                    localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["UTCModified"].stringValue, isDate: true)
+                    localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["UTCModified"].stringValue, isDate: false)
+                    break
+                    
+                default:
+                    userName.text = feed["postCreator"]["name"].stringValue
+                    profilePic.hnk_setImageFromURL(getImageURL(feed["postCreator"]["profilePicture"].stringValue, width: SMALL_PHOTO_WIDTH))
+                    localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["UTCModified"].stringValue, isDate: true)
+                    localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["UTCModified"].stringValue, isDate: false)
+                }
+                
+            }
+            
+            else if pageType == viewType.VIEW_TYPE_POPULAR_JOURNEY ||
+                pageType == viewType.VIEW_TYPE_POPULAR_ITINERARY {
+                
                 localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["startTime"].stringValue, isDate: true)
                 localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["startTime"].stringValue, isDate: false)
-                break
                 
-                
-            case "quick-itinerary":
-                fallthrough
-            case "detail-itinerary":
-                userName.text = feed["creator"]["name"].stringValue
-                profilePic.hnk_setImageFromURL(getImageURL(feed["creator"]["profilePicture"].stringValue, width: SMALL_PHOTO_WIDTH))
-                localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["startTime"].stringValue, isDate: true)
-                localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["startTime"].stringValue, isDate: false)
-                break
-                
-            default:
-                userName.text = feed["postCreator"]["name"].stringValue
-                profilePic.hnk_setImageFromURL(getImageURL(feed["postCreator"]["profilePicture"].stringValue, width: SMALL_PHOTO_WIDTH))
-                localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["UTCModified"].stringValue, isDate: true)
-                localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["UTCModified"].stringValue, isDate: false)
-            }
-        }
-        
-        else if pageType == viewType.VIEW_TYPE_LOCAL_LIFE {
-            
-            switch feed["type"].stringValue {
-            case "on-the-go-journey":
-                fallthrough
-            case "ended-journey":
-                userName.text = feed["user"]["name"].stringValue
-                profilePic.hnk_setImageFromURL(getImageURL(feed["user"]["profilePicture"].stringValue, width: SMALL_PHOTO_WIDTH))
-                localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["UTCModified"].stringValue, isDate: true)
-                localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["UTCModified"].stringValue, isDate: false)
-                break
-                
-                
-            case "quick-itinerary":
-                fallthrough
-            case "detail-itinerary":
-                userName.text = feed["creator"]["name"].stringValue
-                profilePic.hnk_setImageFromURL(getImageURL(feed["creator"]["profilePicture"].stringValue, width: SMALL_PHOTO_WIDTH))
-                localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["UTCModified"].stringValue, isDate: true)
-                localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["UTCModified"].stringValue, isDate: false)
-                break
-                
-            default:
-                userName.text = feed["postCreator"]["name"].stringValue
-                profilePic.hnk_setImageFromURL(getImageURL(feed["postCreator"]["profilePicture"].stringValue, width: SMALL_PHOTO_WIDTH))
-                localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["UTCModified"].stringValue, isDate: true)
-                localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["UTCModified"].stringValue, isDate: false)
+                switch feed["type"].stringValue {
+                case "on-the-go-journey":
+                    fallthrough
+                case "ended-journey":
+                    userName.text = feed["user"]["name"].stringValue
+                    profilePic.hnk_setImageFromURL(getImageURL(feed["user"]["profilePicture"].stringValue, width: SMALL_PHOTO_WIDTH))
+                    break
+                    
+                    
+                case "quick-itinerary":
+                    fallthrough
+                case "detail-itinerary":
+                    userName.text = feed["creator"]["name"].stringValue
+                    profilePic.hnk_setImageFromURL(getImageURL(feed["creator"]["profilePicture"].stringValue, width: SMALL_PHOTO_WIDTH))
+                    break
+                    
+                default:
+                    userName.text = feed["postCreator"]["name"].stringValue
+                    profilePic.hnk_setImageFromURL(getImageURL(feed["postCreator"]["profilePicture"].stringValue, width: SMALL_PHOTO_WIDTH))
+                }
             }
             
         }
+    }
+    
+    func fillProfileHeaderLocalFeed(feed:JSON, pageType: viewType?, cellType: feedCellType?) {
         
-        else if pageType == viewType.VIEW_TYPE_POPULAR_JOURNEY ||
-            pageType == viewType.VIEW_TYPE_POPULAR_ITINERARY {
-            
-            localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["startTime"].stringValue, isDate: true)
-            localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["startTime"].stringValue, isDate: false)
-            
-            switch feed["type"].stringValue {
-            case "on-the-go-journey":
-                fallthrough
-            case "ended-journey":
-                userName.text = feed["user"]["name"].stringValue
-                profilePic.hnk_setImageFromURL(getImageURL(feed["user"]["profilePicture"].stringValue, width: SMALL_PHOTO_WIDTH))
-                break
-                
-                
-            case "quick-itinerary":
-                fallthrough
-            case "detail-itinerary":
-                userName.text = feed["creator"]["name"].stringValue
-                profilePic.hnk_setImageFromURL(getImageURL(feed["creator"]["profilePicture"].stringValue, width: SMALL_PHOTO_WIDTH))
-                break
-                
-            default:
-                userName.text = feed["postCreator"]["name"].stringValue
-                profilePic.hnk_setImageFromURL(getImageURL(feed["postCreator"]["profilePicture"].stringValue, width: SMALL_PHOTO_WIDTH))
-            }
+        self.followButton.isHidden = true
+        
+        userName.text = currentUser["name"].stringValue
+        profilePic.hnk_setImageFromURL(getImageURL(currentUser["profilePicture"].stringValue, width: SMALL_PHOTO_WIDTH))
+        
+        if feed["date"].stringValue != "" {
+            localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd-MM-yyyy", date: feed["date"].stringValue, isDate: true)
+            localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["date"].stringValue, isDate: false)
         }
-        
+        else {
+            localDate.text = ""
+            localTime.text = ""
+        }
     }
     
     func fillProfileHeaderForLocalPost(post: Post) {
