@@ -14,6 +14,7 @@ class TLFeedHeaderTextFlagView: UIView {
     @IBOutlet weak var headerTextView: UITextView!
     @IBOutlet weak var flagStackView: UIStackView!    
     @IBOutlet var flagImageArray: [UIImageView]!    
+    @IBOutlet weak var stackHeightConstraint: NSLayoutConstraint!
     
     var displayText = getRegularString(string: "", size: TL_REGULAR_FONT_SIZE)
     
@@ -51,6 +52,9 @@ class TLFeedHeaderTextFlagView: UIView {
         }
         
         if !((feed["countryVisited"].arrayValue).isEmpty) {
+            
+            stackHeightConstraint.constant = 30
+            
             for i in 0..<feed["countryVisited"].arrayValue.count {
                 if i < flagImageArray.count {
                     if flagImageArray[i].frame.size.height > 0 {
@@ -62,6 +66,9 @@ class TLFeedHeaderTextFlagView: UIView {
                     }
                 }
             }
+        }
+        else {
+            stackHeightConstraint.constant = 0
         }
     }
 

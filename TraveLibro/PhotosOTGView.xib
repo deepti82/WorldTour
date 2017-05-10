@@ -21,18 +21,6 @@
             <subviews>
                 <view opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="eqh-AU-2QQ">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="96"/>
-                    <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dja-Ex-H97">
-                            <rect key="frame" x="8" y="93" width="359" height="0.5"/>
-                            <color key="backgroundColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="calibratedRGB"/>
-                        </view>
-                    </subviews>
-                    <constraints>
-                        <constraint firstItem="Dja-Ex-H97" firstAttribute="top" secondItem="eqh-AU-2QQ" secondAttribute="top" constant="93" id="3EU-nk-WiV"/>
-                        <constraint firstItem="Dja-Ex-H97" firstAttribute="leading" secondItem="eqh-AU-2QQ" secondAttribute="leading" constant="8" id="9Ti-0d-KX4"/>
-                        <constraint firstAttribute="bottom" secondItem="Dja-Ex-H97" secondAttribute="bottom" constant="2" id="Q19-LM-24t"/>
-                        <constraint firstAttribute="trailing" secondItem="Dja-Ex-H97" secondAttribute="trailing" constant="8" id="jHz-9p-gbf"/>
-                    </constraints>
                 </view>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aYL-sn-6xk">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="88"/>

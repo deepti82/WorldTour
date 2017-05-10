@@ -112,7 +112,10 @@ class ActivityProfileHeader: UIView {
             }
             
             else if pageType == viewType.VIEW_TYPE_OTG {
-                // This Header is not used for OTG.... So Ignore this case
+                userName.text = feed["postCreator"]["name"].stringValue
+                profilePic.hnk_setImageFromURL(getImageURL(feed["postCreator"]["profilePicture"].stringValue, width: SMALL_PHOTO_WIDTH))
+                localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["UTCModified"].stringValue, isDate: true)
+                localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["UTCModified"].stringValue, isDate: false)
             }
             
             else if pageType == viewType.VIEW_TYPE_MY_LIFE {

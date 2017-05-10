@@ -13,6 +13,7 @@
             <connections>
                 <outlet property="flagStackView" destination="l7k-73-hI4" id="3MP-g6-DQs"/>
                 <outlet property="headerTextView" destination="7lA-Jr-ieA" id="fyF-ey-NXm"/>
+                <outlet property="stackHeightConstraint" destination="6SG-Ez-67d" id="nTb-3E-1cc"/>
                 <outletCollection property="flagImageArray" destination="QbI-pq-5Et" collectionClass="NSMutableArray" id="yuh-x4-XIa"/>
                 <outletCollection property="flagImageArray" destination="3q0-gX-U9S" collectionClass="NSMutableArray" id="myZ-5h-hGR"/>
                 <outletCollection property="flagImageArray" destination="Idz-BL-lov" collectionClass="NSMutableArray" id="fti-Ma-iWM"/>

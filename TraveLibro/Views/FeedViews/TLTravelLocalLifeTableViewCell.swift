@@ -123,7 +123,7 @@ class TLTravelLocalLifeTableViewCell: UITableViewCell, PlayerDelegate {
         FMTextView?.displayText = getTextHeader(feed: self.feeds, pageType: pageType!)        
         FMTextView?.setText(text: (FMTextView?.displayText)!)
         if FMTextView?.displayText.string != "" {
-            let textHeight = (heightOfAttributedText(attributedString: (FMTextView?.displayText)!, width: screenWidth) + 10)
+            let textHeight = (heightOfAttributedText(attributedString: (FMTextView?.displayText)!, width: (screenWidth-21)) + 10)
             FMTextView?.frame = CGRect(x: 0, y: totalHeight, width: screenWidth, height: textHeight)
             FMTextView?.headerTextView.frame = CGRect(x: 8, y: 0, width: screenWidth-(FMTextView?.flagStackView.frame.size.width)!-13, height: textHeight)
             FMTextView?.headerTextView.center = CGPoint(x: (FMTextView?.headerTextView.center.x)!, y: (FMTextView?.flagStackView.center.y)!)
@@ -289,7 +289,7 @@ class TLTravelLocalLifeTableViewCell: UITableViewCell, PlayerDelegate {
             
             photosButton.frame.size.height = 82
             photosButton.frame.size.width = 82
-            let urlStr = getImageURL(post["photos"][i]["name"].stringValue, width: SMALL_PHOTO_WIDTH)
+            let urlStr = getImageURL(post["photos"][i]["name"].stringValue, width: BIG_PHOTO_WIDTH)
             photosButton.hnk_setImageFromURL(urlStr)
             let tapGestureRecognizer = UITapGestureRecognizer(target:self, action: #selector(self.openSinglePhoto(_:)))
             photosButton.isUserInteractionEnabled = true

@@ -93,7 +93,7 @@ class TLOTGJourneyTableViewCell: UITableViewCell {
         FTextHeader.displayText = getTextHeader(feed: feedData, pageType: pageType!)        
         FTextHeader.setText(text: FTextHeader.displayText)
         
-        var textHeight = (heightOfAttributedText(attributedString: FTextHeader.displayText, width: screenWidth) + 10)
+        var textHeight = (heightOfAttributedText(attributedString: FTextHeader.displayText, width: (screenWidth-21)) + 10)
         textHeight = ((feedData["countryVisited"].arrayValue).isEmpty) ? textHeight : max(textHeight, 36)        
         FTextHeader.frame = CGRect(x: 0, y: totalHeight, width: screenWidth, height: textHeight)
         FTextHeader.headerTextView.frame = CGRect(x: 8, y: 0, width: screenWidth-(FTextHeader.flagStackView.frame.size.width)-13, height: textHeight)       

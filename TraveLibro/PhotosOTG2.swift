@@ -75,7 +75,8 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
             
             
             
-        } else if(post.imageArr.count > 0) {
+        } 
+        else if(post.imageArr.count > 0) {
             self.mainPhoto = UIImageView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.width))
             self.addSubview(self.mainPhoto)
             self.mainPhoto.contentMode = UIViewContentMode.scaleAspectFill
@@ -83,8 +84,7 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
             self.mainPhoto.image = UIImage(named: "logo-default")
             self.addSubview(mainPhoto)
             let heightForBlur = 10;
-            var thumbStr = "";
-            transparentCardWhiteImage(mainPhoto)
+            var thumbStr = "";            
             if(!post.post_isOffline) {
                 thumbStr = "&width=\(heightForBlur)"
             }
@@ -122,7 +122,8 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
                 self.layoutSubviews()
                 globalNewTLViewController.addHeightToLayout(height: 50)
             })
-        } else if(post.post_locationImage != nil && post.post_locationImage != "") {
+        }
+        else if(post.post_locationImage != nil && post.post_locationImage != "") {
             self.mainPhoto = UIImageView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.width))
             self.mainPhoto.contentMode = UIViewContentMode.scaleAspectFill
             self.mainPhoto.image = UIImage(named: "logo-default")
@@ -137,7 +138,8 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
         }
         //Center Generation Only
         if(post.imageArr.count > showImageIndexStart) {
-            centerView = PhotosOTGView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 96 ))
+            centerView = PhotosOTGView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 90 ))
+            centerView.backgroundColor = UIColor(white: 1, alpha: 0.8)
             addPhotoToLayout(post,startIndex:showImageIndexStart)
             self.addSubview(centerView)
         }
@@ -215,7 +217,9 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
     
     func headerLayout(feed:JSON) {
         headerLine = DottedLine(frame: CGRect(x: 0, y: 2, width: self.frame.width, height: 38))
-        profileHeader = ActivityProfileHeader(frame: CGRect(x: 0, y: 2, width: self.frame.width, height: 69))
+        
+        profileHeader = ActivityProfileHeader(frame: CGRect(x: 0, y: 2, width: self.frame.width, height: FEEDS_HEADER_HEIGHT))
+        profileHeader.backgroundColor = UIColor(white: 1, alpha: 0.8)
         self.addSubview(headerLine)
         self.addSubview(profileHeader)
         profileHeader.followButton.isHidden = true
@@ -283,8 +287,8 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
     
     func headerLayoutForLocalPost(post: Post) {
         
-        profileHeader = ActivityProfileHeader(frame: CGRect(x: 0, y: 20, width: self.frame.width, height: 69))
-        
+        profileHeader = ActivityProfileHeader(frame: CGRect(x: 0, y: 20, width: self.frame.width, height: FEEDS_HEADER_HEIGHT))
+        profileHeader.backgroundColor = UIColor(white: 1, alpha: 0.8)
         self.addSubview(profileHeader)
         profileHeader.followButton.isHidden = true
         profileHeader.fillProfileHeaderForLocalPost(post: post)
@@ -346,7 +350,7 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
     func addPhotoToLayout(_ post: Post, startIndex: Int) {
         centerView.horizontalScrollForPhotos.removeAll()
         for i in startIndex ..< post.imageArr.count {
-            let photosButton = UIImageView(frame: CGRect(x: 6, y: 5, width: 87, height: 87))
+            let photosButton = UIImageView(frame: CGRect(x: 5, y: 5, width: 80, height: 80))
             photosButton.image = UIImage(named: "logo-default")
             photosButton.contentMode = UIViewContentMode.scaleAspectFill
             if(post.post_isOffline) {
@@ -354,7 +358,7 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
             } else {
                 photosButton.frame.size.height = 82
                 photosButton.frame.size.width = 82
-                let urlStr = post.imageArr[i].imageUrl.absoluteString + "&width=100"
+                let urlStr = post.imageArr[i].imageUrl.absoluteString + "&width=500"
                 photosButton.hnk_setImageFromURL(URL(string:urlStr)!)
                 if(!post.post_isOffline) {
                     let tapGestureRecognizer = UITapGestureRecognizer(target:self, action: #selector(PhotosOTG2.openSinglePhoto(_:)))

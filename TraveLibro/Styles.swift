@@ -1130,7 +1130,7 @@ func getHeightForMiddleViewPostType(feed:JSON) -> CGFloat{
     let displayString = getTextHeader(feed: feed, pageType: viewType.VIEW_TYPE_ACTIVITY)       
     
     if displayString.string != "" {
-        let textHeight = (heightOfAttributedText(attributedString: displayString, width: screenWidth) + 10)
+        let textHeight = (heightOfAttributedText(attributedString: displayString, width: (screenWidth-21)) + 10)
         middleViewHeight += textHeight            
     }
     
