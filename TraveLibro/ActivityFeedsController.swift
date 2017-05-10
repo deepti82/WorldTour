@@ -229,7 +229,7 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
                             self.uploadingView.uploadText.text = "Uploading to My Life."
                         }
                         
-                        self.uploadingView.backgroundColor = endJourneyColor
+                        self.uploadingView.backgroundView.backgroundColor = endJourneyColor
                         
                         self.layout.addSubview(checkIn)
                         self.layout.addSubview(self.uploadingView)
@@ -260,7 +260,7 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
                         checkIn.activityFeed = self
                         
                         self.uploadingView = UploadingToCloud(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 23))
-                        self.uploadingView.backView.backgroundColor = endJourneyColor
+                        self.uploadingView.backgroundView.backgroundColor = endJourneyColor
                         self.uploadingView.uploadText.textColor = mainBlueColor
                         self.layout.addSubview(checkIn)
                         self.layout.addSubview(self.uploadingView)

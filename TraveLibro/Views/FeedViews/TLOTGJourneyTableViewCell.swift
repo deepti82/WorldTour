@@ -15,6 +15,7 @@ class TLOTGJourneyTableViewCell: UITableViewCell {
     var FTextHeader: TLFeedHeaderTextFlagView!
     var FMiddleView: ActivityFeedImageView!
     var FFooterViewBasic: ActivityFeedFooterBasic!
+    var FUploadingView: UploadingToCloud?
     
     var totalHeight = CGFloat(0)
     
@@ -65,6 +66,9 @@ class TLOTGJourneyTableViewCell: UITableViewCell {
         
         FFooterViewBasic = ActivityFeedFooterBasic(frame: CGRect.zero)
         self.contentView.addSubview(FFooterViewBasic)
+        
+        FUploadingView = UploadingToCloud(frame: CGRect.zero)
+        self.contentView.addSubview(FUploadingView!)
         
         FBackground = NotificationBackground(frame: CGRect.zero)
         self.contentView.addSubview(FBackground)
@@ -118,6 +122,17 @@ class TLOTGJourneyTableViewCell: UITableViewCell {
             FFooterViewBasic.lowerViewHeightConstraint.constant = 0
             FFooterViewBasic.frame = CGRect(x: 0, y: totalHeight, width: screenWidth, height: (FEED_FOOTER_HEIGHT-FEED_FOOTER_LOWER_VIEW_HEIGHT))
             totalHeight += (FEED_FOOTER_HEIGHT-FEED_FOOTER_LOWER_VIEW_HEIGHT)
+        }
+        
+        
+        if isLocalFeed(feed: feedData) {
+            FUploadingView?.frame = CGRect(x: 0, y: totalHeight, width: screenWidth, height: FEED_UPLOADING_VIEW_HEIGHT)
+            FUploadingView?.fillUploadingStrip(feed: feedData)
+            totalHeight += FEED_UPLOADING_VIEW_HEIGHT
+        }
+        else {
+            FUploadingView?.frame = CGRect.zero
+            FUploadingView?.uploadText.text = ""
         }
         
         FBackground.frame = CGRect(x: 0, y: 0, width: screenWidth, height: totalHeight)

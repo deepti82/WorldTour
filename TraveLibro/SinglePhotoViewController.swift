@@ -842,7 +842,7 @@ class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDele
         else {
             var currentJson = photos[index]        
             if currentJson != nil {
-                currentImageView.hnk_setImageFromURL(getImageURL((currentJson["name"].stringValue), width: 0))            
+                currentImageView.hnk_setImageFromURL(getImageURL((currentJson["name"].stringValue), width: VERY_BIG_PHOTO_WIDTH))                
             }
         }
         return currentImageView

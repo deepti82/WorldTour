@@ -45,6 +45,8 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
     var mainFooter: FooterViewNew?
     
     var pageType: viewType = viewType.VIEW_TYPE_ACTIVITY
+    var currentLocation = ["lat":"0.0", "long":"0.0"]
+    var currentCategory = ""
     
     var feedsDataArray: [JSON] = []
     var currentPageNumber = 1
@@ -58,6 +60,9 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        feedsDataArray = []
+        self.reloadTableData()
+        
         getDarkBackGround(self)
         
         feedsTableView.tableFooterView = UIView()
@@ -68,8 +73,7 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
+        super.viewWillAppear(animated)        
         self.mainFooter?.frame = CGRect(x: 0, y: self.view.frame.height - MAIN_FOOTER_HEIGHT, width: self.view.frame.width, height: MAIN_FOOTER_HEIGHT)        
     }
     
@@ -122,6 +126,31 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
             self.mainFooter?.layer.zPosition = 5
             self.view.addSubview(self.mainFooter!)
         }
+        
+        else if pageType == viewType.VIEW_TYPE_LOCAL_LIFE {
+            
+            self.mainFooter = FooterViewNew(frame: CGRect.zero)
+            self.mainFooter?.layer.zPosition = 5
+            self.view.addSubview(self.mainFooter!)
+            
+            self.mainFooter?.setHighlightStateForView(tag: 3, color: mainGreenColor)
+            
+            let leftButton = UIButton()
+            leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+            leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
+            leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
+            
+            let rightButton = UIButton()
+            rightButton.frame = CGRect(x: 0, y: 10, width: 15, height: 20)
+            rightButton.setImage(UIImage(named: "nearMe"), for: UIControlState())
+            rightButton.imageView?.contentMode = .scaleAspectFit
+            rightButton.imageView?.clipsToBounds = true
+            rightButton.addTarget(self, action: #selector(self.showNearMe(_:)), for: .touchUpInside)
+            
+            self.title = currentCategory
+            
+            self.customNavigationBar(left: leftButton, right: rightButton)
+        }
     }
     
     
@@ -134,6 +163,10 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
         switch pageType {
             
         case .VIEW_TYPE_ACTIVITY:
+            
+//            let i = PostImage()
+//            i.uploadPhotos()
+            
             self.getActivityFeedsData(pageNumber: currentPageNumber)
             break
             
@@ -141,6 +174,7 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
             break
             
         case .VIEW_TYPE_LOCAL_LIFE:
+            self.getLocalLifePostsData(pageNumber: currentPageNumber)
             break
             
         case .VIEW_TYPE_POPULAR_JOURNEY:
@@ -161,8 +195,7 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
         
         if pageType == viewType.VIEW_TYPE_ACTIVITY {
             
-            request.getActivityFeeds(currentUser["_id"].stringValue, pageNumber: pageNumber, completion: { (response, localPostResponse, localQuickItineraryResponse, isFromCache) in
-                
+            request.getActivityFeeds(currentUser["_id"].stringValue, pageNumber: pageNumber, completion: { (response, localPostResponse, localQuickItineraryResponse, isFromCache) in                
                 DispatchQueue.main.async(execute: {
                     
                     if pageNumber == 1 {
@@ -185,6 +218,29 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
                     }
                     
                     self.reloadTableData()                    
+                })
+            })
+        }
+    }
+    
+    func getLocalLifePostsData(pageNumber: Int) {
+        
+        if pageType == viewType.VIEW_TYPE_LOCAL_LIFE {
+            
+            request.getLocalLife(lat: currentLocation["lat"]!, lng: currentLocation["long"]!, page: pageNumber, category: currentCategory, completion: { (response) in
+                DispatchQueue.main.async(execute: { 
+                    if pageNumber == 1 {
+                        self.feedsDataArray = []
+                    }
+                    
+                    if !response["data"].arrayValue.isEmpty {
+                        self.feedsDataArray.append(contentsOf: response["data"].arrayValue)                    
+                    }
+                    else {
+                        self.hasMorePages = false
+                    }
+                    
+                    self.reloadTableData()
                 })
             })
         }
@@ -236,6 +292,16 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     
+    //MARK: - Notification
+    
+    func NCnote(_ notification: Notification) {
+        print("\n Notification received")
+        if currentUser != nil{
+            currentPageNumber = 1
+            self.getDataMain()
+        }
+    }
+    
     //MARK: - Reload Table
     
     func reloadTableData() {
@@ -266,14 +332,14 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
             let displatTextString = getTextHeader(feed: cellData, pageType: pageType)
             var textHeight = (heightOfAttributedText(attributedString: displatTextString, width: screenWidth) + 10)            
             textHeight = ((cellData["countryVisited"].arrayValue).isEmpty) ? textHeight : max(textHeight, 36)
-            height = height + FEEDS_HEADER_HEIGHT + textHeight + screenWidth*0.9 + (shouldShowFooterCountView(feed: cellData) ? FEED_FOOTER_HEIGHT : (FEED_FOOTER_HEIGHT-FEED_FOOTER_LOWER_VIEW_HEIGHT))
+            height = height + FEEDS_HEADER_HEIGHT + textHeight + screenWidth*0.9 + (shouldShowFooterCountView(feed: cellData) ? FEED_FOOTER_HEIGHT : (FEED_FOOTER_HEIGHT-FEED_FOOTER_LOWER_VIEW_HEIGHT)) + (isLocalFeed(feed: cellData) ? FEED_UPLOADING_VIEW_HEIGHT : 0)
             break
             
             
         case "travel-life":
             fallthrough
         case "local-life":
-            height = height + FEEDS_HEADER_HEIGHT + getHeightForMiddleViewPostType(feed: cellData) + (shouldShowFooterCountView(feed: cellData) ? FEED_FOOTER_HEIGHT : (FEED_FOOTER_HEIGHT-FEED_FOOTER_LOWER_VIEW_HEIGHT))                        
+            height = height + FEEDS_HEADER_HEIGHT + getHeightForMiddleViewPostType(feed: cellData) + (shouldShowFooterCountView(feed: cellData) ? FEED_FOOTER_HEIGHT : (FEED_FOOTER_HEIGHT-FEED_FOOTER_LOWER_VIEW_HEIGHT)) + (isLocalFeed(feed: cellData) ? FEED_UPLOADING_VIEW_HEIGHT : 0)                        
             break
             
             
@@ -283,7 +349,7 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
             let displatTextString = getTextHeader(feed: cellData, pageType: pageType)
             var textHeight = (heightOfAttributedText(attributedString: displatTextString, width: screenWidth) + 10)            
             textHeight = ((cellData["countryVisited"].arrayValue).isEmpty) ? textHeight : max(textHeight, 36)
-            height = height + ((pageType == viewType.VIEW_TYPE_ACTIVITY) ? FEEDS_HEADER_HEIGHT : 0) + textHeight + screenWidth*0.9 + (shouldShowFooterCountView(feed: cellData) ? FEED_FOOTER_HEIGHT : (FEED_FOOTER_HEIGHT-FEED_FOOTER_LOWER_VIEW_HEIGHT))
+            height = height + ((pageType == viewType.VIEW_TYPE_ACTIVITY) ? FEEDS_HEADER_HEIGHT : 0) + textHeight + screenWidth*0.9 + (shouldShowFooterCountView(feed: cellData) ? FEED_FOOTER_HEIGHT : (FEED_FOOTER_HEIGHT-FEED_FOOTER_LOWER_VIEW_HEIGHT)) + (isLocalFeed(feed: cellData) ? FEED_UPLOADING_VIEW_HEIGHT : 0)
             break
             
         default:
@@ -428,6 +494,13 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)                
             }
         }
+    }
+    
+    func showNearMe(_ sender:AnyObject) {
+        let nearMeListController = storyboard?.instantiateViewController(withIdentifier: "nearMeListVC") as! NearMeListViewController
+        nearMeListController.fromLocal = true
+        nearMeListController.nearMeType = self.currentCategory
+        self.navigationController?.pushViewController(nearMeListController, animated: true)
     }
     
     

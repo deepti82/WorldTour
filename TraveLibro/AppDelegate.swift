@@ -50,6 +50,7 @@ let FontAwesomeFont = UIFont(name: "FontAwesome", size: 14)
 let NAVIGATION_FONT = UIFont(name: "Avenir-Roman", size: 18)
 
 let MAIN_FOOTER_HEIGHT = CGFloat(60)
+let VERY_BIG_PHOTO_WIDTH = 1000
 let BIG_PHOTO_WIDTH = 500
 let SMALL_PHOTO_WIDTH = 100
 
@@ -131,6 +132,7 @@ let TIME_HEIGHT = CGFloat(27)
 let FEEDS_HEADER_HEIGHT = CGFloat(71)
 let FEED_FOOTER_HEIGHT = CGFloat(80)
 let FEED_FOOTER_LOWER_VIEW_HEIGHT = CGFloat(35)
+let FEED_UPLOADING_VIEW_HEIGHT = CGFloat(25)
 
 
 //Font
