@@ -177,6 +177,7 @@ class FooterViewNew: UIView {
                     let vc = storyboard?.instantiateViewController(withIdentifier: "myLife") as! MyLifeViewController
                     vc.isFromFooter = true
                     self.setVC(newViewController: vc)
+                    
                 }
             })
         }

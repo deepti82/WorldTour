@@ -63,16 +63,16 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         getDarkBackGround(self)
         globalMyLifeController = self
         
-        if isFromFooter {
-            setNavigationBarItem()
-            
-            self.mainFooter = FooterViewNew(frame: CGRect.zero)
-            self.mainFooter.layer.zPosition = 5
-            self.view.addSubview(self.mainFooter)
-            
-            arrowDownButton.isHidden = true
-        }
-        else {
+//        if isFromFooter {
+//            setNavigationBarItem()
+//            
+//            self.mainFooter = FooterViewNew(frame: CGRect.zero)
+//            self.mainFooter.layer.zPosition = 5
+//            self.view.addSubview(self.mainFooter)
+//            
+//            arrowDownButton.isHidden = true
+//        }
+//        else {
             let leftButton = UIButton()
             leftButton.titleLabel?.font = UIFont(name: "FontAwesome", size: 14)        
             let arrow = String(format: "%C", faicon["arrow-down"]!)
@@ -84,7 +84,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
             arrowDownButton.setTitle(arrow, for: UIControlState())
             arrowDownButton.addTarget(self, action: #selector(MyLifeViewController.exitMyLife(_:)), for: .touchUpInside)
             arrowDownButton.isHidden = false
-        }
+//        }
         
         if currentUser != nil {            
             profileName.text = selectedUser.isEmpty ? currentUser["name"].string! : selectedUser["name"].string!
@@ -162,18 +162,18 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if isFromFooter {
-            self.mainFooter.frame = CGRect(x: 0, y: self.view.frame.height - MAIN_FOOTER_HEIGHT, width: self.view.frame.width, height: MAIN_FOOTER_HEIGHT)
-            self.mainFooter.setHighlightStateForView(tag: 2, color: mainOrangeColor)
-            globalNavigationController = self.navigationController
-        }
+//        if isFromFooter {
+//            self.mainFooter.frame = CGRect(x: 0, y: self.view.frame.height - MAIN_FOOTER_HEIGHT, width: self.view.frame.width, height: MAIN_FOOTER_HEIGHT)
+//            self.mainFooter.setHighlightStateForView(tag: 2, color: mainOrangeColor)
+//            globalNavigationController = self.navigationController
+//        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         
         super.viewWillDisappear(animated)
         if isFromFooter {
-        self.mainFooter.setFooterDefaultState()
+//        self.mainFooter.setFooterDefaultState()
         }
     }
     
@@ -195,8 +195,31 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     
     func exitMyLife(_ sender: AnyObject ) {
         if !isFromFooter {
-            _ = self.navigationController?.popViewController(animated: false)            
+            _ = self.navigationController?.popViewController(animated: false)
+        }else{
+            
+            
+//            UIView.animate(withDuration: 0.55,
+//                           delay: 0.55,
+//                           options: UIViewAnimationOptions.curveEaseIn,
+//                           animations: { () -> Void in
+//                            UIView.setAnimationCurve(UIViewAnimationCurve.easeInOut)
+//                                        _ = self.navigationController?.popViewController(animated: true)
+//                                        UIView.setAnimationTransition(.curlDown, for: self.navigationController!.view!, cache: false)
+//
+//            }, completion: { (finished) -> Void in
+                selectedPeople = currentUser["_id"].stringValue
+                selectedUser = currentUser
+                let profile = self.storyboard!.instantiateViewController(withIdentifier: "TLProfileView") as! TLProfileViewController
+                profile.displayData = ""
+                profile.currentSelectedUser = selectedUser
+                self.navigationController!.pushViewController(profile, animated: true)
+
+//            })
+            
+            
         }
+        
         
         
 //        UIView.animate(withDuration: 0.75, animations: { () -> Void in
