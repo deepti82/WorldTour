@@ -267,7 +267,7 @@ class TLTravelLocalLifeTableViewCell: UITableViewCell, PlayerDelegate {
     func addPhotoToLayout(_ post: JSON, startIndex: Int) {
         FMCenterView?.horizontalScrollForPhotos.removeAll()
         for i in startIndex ..< post["photos"].count {
-            let photosButton = UIImageView(frame: CGRect(x: 10, y: 5, width: 87, height: 87))
+            let photosButton = UIImageView(frame: CGRect(x: 5, y: 5, width: 80, height: 80))
             photosButton.image = UIImage(named: "logo-default")
             photosButton.contentMode = UIViewContentMode.scaleAspectFill
             
