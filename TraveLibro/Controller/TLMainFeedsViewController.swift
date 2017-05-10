@@ -45,6 +45,8 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
     var mainFooter: FooterViewNew?
     
     var pageType: viewType = viewType.VIEW_TYPE_ACTIVITY
+    var currentLocation = ["lat":"0.0", "long":"0.0"]
+    var currentCategory = ""
     
     var feedsDataArray: [JSON] = []
     var currentPageNumber = 1
@@ -57,6 +59,9 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        feedsDataArray = []
+        self.reloadTableData()
         
         getDarkBackGround(self)
         
@@ -121,6 +126,31 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
             self.mainFooter?.layer.zPosition = 5
             self.view.addSubview(self.mainFooter!)
         }
+        
+        else if pageType == viewType.VIEW_TYPE_LOCAL_LIFE {
+            
+            self.mainFooter = FooterViewNew(frame: CGRect.zero)
+            self.mainFooter?.layer.zPosition = 5
+            self.view.addSubview(self.mainFooter!)
+            
+            self.mainFooter?.setHighlightStateForView(tag: 3, color: mainGreenColor)
+            
+            let leftButton = UIButton()
+            leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+            leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
+            leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
+            
+            let rightButton = UIButton()
+            rightButton.frame = CGRect(x: 0, y: 10, width: 15, height: 20)
+            rightButton.setImage(UIImage(named: "nearMe"), for: UIControlState())
+            rightButton.imageView?.contentMode = .scaleAspectFit
+            rightButton.imageView?.clipsToBounds = true
+            rightButton.addTarget(self, action: #selector(self.showNearMe(_:)), for: .touchUpInside)
+            
+            self.title = currentCategory
+            
+            self.customNavigationBar(left: leftButton, right: rightButton)
+        }
     }
     
     
@@ -144,6 +174,7 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
             break
             
         case .VIEW_TYPE_LOCAL_LIFE:
+            self.getLocalLifePostsData(pageNumber: currentPageNumber)
             break
             
         case .VIEW_TYPE_POPULAR_JOURNEY:
@@ -164,8 +195,7 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
         
         if pageType == viewType.VIEW_TYPE_ACTIVITY {
             
-            request.getActivityFeeds(currentUser["_id"].stringValue, pageNumber: pageNumber, completion: { (response, localPostResponse, localQuickItineraryResponse, isFromCache) in
-                
+            request.getActivityFeeds(currentUser["_id"].stringValue, pageNumber: pageNumber, completion: { (response, localPostResponse, localQuickItineraryResponse, isFromCache) in                
                 DispatchQueue.main.async(execute: {
                     
                     if pageNumber == 1 {
@@ -188,6 +218,29 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
                     }
                     
                     self.reloadTableData()                    
+                })
+            })
+        }
+    }
+    
+    func getLocalLifePostsData(pageNumber: Int) {
+        
+        if pageType == viewType.VIEW_TYPE_LOCAL_LIFE {
+            
+            request.getLocalLife(lat: currentLocation["lat"]!, lng: currentLocation["long"]!, page: pageNumber, category: currentCategory, completion: { (response) in
+                DispatchQueue.main.async(execute: { 
+                    if pageNumber == 1 {
+                        self.feedsDataArray = []
+                    }
+                    
+                    if !response["data"].arrayValue.isEmpty {
+                        self.feedsDataArray.append(contentsOf: response["data"].arrayValue)                    
+                    }
+                    else {
+                        self.hasMorePages = false
+                    }
+                    
+                    self.reloadTableData()
                 })
             })
         }
@@ -441,6 +494,13 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)                
             }
         }
+    }
+    
+    func showNearMe(_ sender:AnyObject) {
+        let nearMeListController = storyboard?.instantiateViewController(withIdentifier: "nearMeListVC") as! NearMeListViewController
+        nearMeListController.fromLocal = true
+        nearMeListController.nearMeType = self.currentCategory
+        self.navigationController?.pushViewController(nearMeListController, animated: true)
     }
     
     

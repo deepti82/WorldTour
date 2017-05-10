@@ -611,12 +611,15 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
             }else {
                 nearMeListController.nearMeType = category
             }
-            let localLifeListController = storyboard?.instantiateViewController(withIdentifier: "localLifePosts") as! LocalLifePostsViewController
-            localLifeListController.nearMeType = category
+            let localFeedsController = storyboard?.instantiateViewController(withIdentifier: "TLMainFeedsView") as! TLMainFeedsViewController
+            localFeedsController.currentLocation = ["lat":String(userLocation.latitude), "long":String(userLocation.longitude)]
+            localFeedsController.currentCategory = category
+            localFeedsController.pageType = viewType.VIEW_TYPE_LOCAL_LIFE
+            
             let numCat = self.json[category].intValue
             switch(numCat) {
             case 1:
-                self.navigationController?.pushViewController(localLifeListController, animated: true)
+                self.navigationController?.pushViewController(localFeedsController, animated: true)
             case 2:
                 self.navigationController?.pushViewController(nearMeListController, animated: true)
             case 3:
