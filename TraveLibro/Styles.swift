@@ -776,7 +776,7 @@ func heightForView(text:String, font:UIFont, width:CGFloat) -> CGFloat{
 
 func heightOfAttributedText(attributedString: NSMutableAttributedString, width: CGFloat) -> CGFloat {
     let rect = attributedString.boundingRect(with: CGSize(width: width, height: 10000), options: .usesLineFragmentOrigin, context: nil)
-    return rect.size.height
+    return (rect.size.height + 10 )     //10 is offset
 }
 
 func getWidthOfText(text:String, font:UIFont) -> CGFloat{
@@ -1115,35 +1115,47 @@ func shouldShowFooterCountView(feed: JSON) -> Bool{
 
 //MARK: Check PostCell Type
 
-func getPostCellType(feedData: JSON) -> feedPostCellType {
+func getHeightForMiddleViewPostType(feed:JSON) -> CGFloat{
     
+    var middleViewHeight = CGFloat(0)
     
-    var containsThoughts = false
-    var containsImage = false
-    var containsVideo = false
-    var containsCheckIn = false
+    let displayString = getTextHeader(feed: feed, pageType: viewType.VIEW_TYPE_ACTIVITY)       
     
-    if feedData["thoughts"].stringValue != "" {
-        containsThoughts = true
+    if displayString.string != "" {
+        let textHeight = (heightOfAttributedText(attributedString: displayString, width: screenWidth) + 10)
+        middleViewHeight += textHeight            
     }
     
-    if feedData["imageUrl"].stringValue != "" {
-        containsCheckIn = true
+    let prevHeight = middleViewHeight
+    
+    if(feed["videos"].count > 0) {
+        middleViewHeight += screenWidth*0.9
+    }
+        
+    else if(feed["photos"].count > 0) {        
+        middleViewHeight += screenWidth*0.9
+    }
+        
+    else{
+        if feed["imageUrl"] != nil {            
+            middleViewHeight += screenWidth*0.9
+        }
     }
     
-    if feedData["videos"].count > 0 {
-        containsVideo = true
+    var showImageIndexStart = 1
+    if(feed["videos"].count > 0) {
+        showImageIndexStart = 0
     }
     
-    if feedData["photos"].count > 1 {
-        containsImage = true
+    if(feed["photos"].count > showImageIndexStart) {
+        middleViewHeight += 90
     }
     
-    if containsThoughts && containsCheckIn {
-        return feedPostCellType.POST_THOUGHT_CHECKIN_TYPE
+    if prevHeight == middleViewHeight {
+        middleViewHeight += 80
     }
     
+    return middleViewHeight
     
-    return feedPostCellType.POST_ONLY_THOUGHT_TYPE    
 }
 

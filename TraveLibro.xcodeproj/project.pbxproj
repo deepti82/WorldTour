@@ -1165,7 +1165,6 @@
 				84FF89411E52DFF600FDE8F0 /* Search */,
 				840599861E3CDB65004E0696 /* DropShadow2 */,
 				840599811E3CDA14004E0696 /* DropShadow1 */,
-				3638F9E11E2C221700B2EA04 /* VideoView */,
 				842D7A4E1E1E598300FEDCD1 /* NearMeOptionButton */,
 				841E43A51E1D1C46000D2E6B /* UploadingCloud */,
 				842484FD1E13BE8C00083115 /* PhotosOTGCenter */,
@@ -1340,15 +1339,6 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		3638F9E11E2C221700B2EA04 /* VideoView */ = {
-			isa = PBXGroup;
-			children = (
-				3638F9E21E2C224800B2EA04 /* VideoView.xib */,
-				3638F9E41E2C226200B2EA04 /* VideoView.swift */,
-			);
-			name = VideoView;
-			sourceTree = "<group>";
-		};
 		3ABFD8DC1DA8C76D00A51034 /* ChangeCity */ = {
 			isa = PBXGroup;
 			children = (
@@ -1506,6 +1496,8 @@
 		44F2FAC71EB860A4003BB3EA /* MiddleLayout */ = {
 			isa = PBXGroup;
 			children = (
+				3638F9E21E2C224800B2EA04 /* VideoView.xib */,
+				3638F9E41E2C226200B2EA04 /* VideoView.swift */,
 				845C43261E2F8A4100800F51 /* ActivityFeedImageView.xib */,
 				845C43281E2F8A6700800F51 /* ActivityFeedImageView.swift */,
 				8453CF411E30AFAF00C41F82 /* ActivityFeedQuickItinerary.xib */,

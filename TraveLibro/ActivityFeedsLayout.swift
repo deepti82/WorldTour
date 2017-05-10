@@ -10,7 +10,7 @@ import UIKit
 import Player
 import Spring
 
-class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
+class ActivityFeedsLayout: VerticalLayout, PlayerDelegate, TLFooterBasicDelegate {
     
     
     //    var feed: JSON!
@@ -206,17 +206,17 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
                 
                 //            footerView.postTop = feed
                 footerView.topLayout = self
-                footerView.localLifeTravelImage.isHidden = true
                 footerView.type = "ActivityFeeds"
                 
                 footerView.setCommentCount(feed["commentCount"].intValue)
                 footerView.setLikeCount(feed["likeCount"].intValue)
-                footerView.setView(feed:feed)
+                footerView.fillFeedFooter(feed: feed, pageType: viewType.VIEW_TYPE_ACTIVITY, delegate: self)
                 footerView.setLikeSelected(feed["likeDone"].boolValue)
                 
                 self.addSubview(footerView)
                 
-            }else{
+            }
+            else{
                 footerViewReview = ActivityFeedFooter(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 65))
                 footerViewReview.postTop = feed
                 footerViewReview.topLayout = self
@@ -244,7 +244,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             
             footerView.setCommentCount(feed["commentCount"].intValue)
             footerView.setLikeCount(feed["likeCount"].intValue)
-            footerView.setView(feed:feed)
+            footerView.fillFeedFooter(feed: feed, pageType: viewType.VIEW_TYPE_ACTIVITY, delegate: self)
             footerView.setLikeSelected(feed["likeDone"].boolValue)
             self.addSubview(footerView)
             //            dropView = DropShadow2(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 2))
@@ -254,28 +254,6 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
         
     }
     
-    func addPhotoToLayout(_ post: JSON, startIndex: Int) {
-        centerView.horizontalScrollForPhotos.removeAll()
-        for i in startIndex ..< post["photos"].count {
-            let photosButton = UIImageView(frame: CGRect(x: 10, y: 5, width: 87, height: 87))
-            photosButton.image = UIImage(named: "logo-default")
-            photosButton.contentMode = UIViewContentMode.scaleAspectFill
-            
-            photosButton.frame.size.height = 82
-            photosButton.frame.size.width = 82
-            let urlStr = getImageURL(post["photos"][i]["name"].stringValue, width: 300)
-            photosButton.hnk_setImageFromURL(urlStr)
-            let tapGestureRecognizer = UITapGestureRecognizer(target:self, action: #selector(ActivityFeedsLayout.openSinglePhoto(_:)))
-            photosButton.isUserInteractionEnabled = true
-            photosButton.addGestureRecognizer(tapGestureRecognizer)
-            //photosButton.layer.cornerRadius = 5.0
-            photosButton.tag = i
-            photosButton.clipsToBounds = true
-            centerView.horizontalScrollForPhotos.addSubview(photosButton)
-        }
-        centerView.horizontalScrollForPhotos.layoutSubviews()
-        centerView.morePhotosView.contentSize = CGSize(width: centerView.horizontalScrollForPhotos.frame.width, height: centerView.horizontalScrollForPhotos.frame.height)
-    }
     
     func videosAndPhotosLayout(feed:JSON) {
         self.feeds = feed
@@ -333,7 +311,6 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             let headerTag = ActivityHeaderTag(frame: CGRect(x: 0, y: 30, width: screenWidth, height: 30))
             headerTag.tagParent.backgroundColor = UIColor.clear
             headerTag.colorTag(feed: feed)
-            headerTag.tagLine.isHidden = true
             
             self.mainPhoto.addSubview(headerTag)
             //            if headerTag.tagText.text == "Travel Life"{
@@ -399,7 +376,6 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
                 if feed["thoughts"] == nil || feed["thoughts"].stringValue == "" || feed["imageUrl"] != nil{
                     let headerTag = ActivityHeaderTag(frame: CGRect(x: 0, y: 30, width: screenWidth, height: 28))
                     headerTag.tagParent.backgroundColor = UIColor.clear
-                    headerTag.tagLine.isHidden = true
                     headerTag.colorTag(feed: feed)
                     
                     self.mainPhoto.addSubview(headerTag)
@@ -432,6 +408,29 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             //            centerView.centerLineView.isHidden = true
         }
         //End of Center
+    }
+    
+    func addPhotoToLayout(_ post: JSON, startIndex: Int) {
+        centerView.horizontalScrollForPhotos.removeAll()
+        for i in startIndex ..< post["photos"].count {
+            let photosButton = UIImageView(frame: CGRect(x: 10, y: 5, width: 87, height: 87))
+            photosButton.image = UIImage(named: "logo-default")
+            photosButton.contentMode = UIViewContentMode.scaleAspectFill
+            
+            photosButton.frame.size.height = 82
+            photosButton.frame.size.width = 82
+            let urlStr = getImageURL(post["photos"][i]["name"].stringValue, width: 300)
+            photosButton.hnk_setImageFromURL(urlStr)
+            let tapGestureRecognizer = UITapGestureRecognizer(target:self, action: #selector(ActivityFeedsLayout.openSinglePhoto(_:)))
+            photosButton.isUserInteractionEnabled = true
+            photosButton.addGestureRecognizer(tapGestureRecognizer)
+            //photosButton.layer.cornerRadius = 5.0
+            photosButton.tag = i
+            photosButton.clipsToBounds = true
+            centerView.horizontalScrollForPhotos.addSubview(photosButton)
+        }
+        centerView.horizontalScrollForPhotos.layoutSubviews()
+        centerView.morePhotosView.contentSize = CGSize(width: centerView.horizontalScrollForPhotos.frame.width, height: centerView.horizontalScrollForPhotos.frame.height)
     }
     
     
@@ -631,6 +630,16 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
         }
         return str
         
+    }
+    
+    
+    //Delegate Actions
+    func footerLikeCommentCountUpdated(likeDone: Bool, likeCount: Int, commentCount: Int, tag: Int) {
+        print("\n *********************** \n footerLikeCommentCountUpdated called likeCount: \(likeCount) & commentCount: \(commentCount) \n ")        
+    }
+    
+    func footerRatingUpdated(rating: JSON, tag: Int) {
+        print("\n *********************** \n footerLikeCommentCountUpdated called rating: \(rating) \n ")
     }
     
     

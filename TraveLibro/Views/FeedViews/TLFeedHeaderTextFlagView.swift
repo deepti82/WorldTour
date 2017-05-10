@@ -52,12 +52,14 @@ class TLFeedHeaderTextFlagView: UIView {
         
         if !((feed["countryVisited"].arrayValue).isEmpty) {
             for i in 0..<feed["countryVisited"].arrayValue.count {
-                if flagImageArray[i].frame.size.height > 0 {
-                    flagImageArray[i].hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(feed["countryVisited"][i]["country"]["flag"])", width: SMALL_PHOTO_WIDTH))
-                    flagImageArray[i].layer.borderColor = UIColor.white.cgColor
-                }
-                else {
-                    print("In else")
+                if i < flagImageArray.count {
+                    if flagImageArray[i].frame.size.height > 0 {
+                        flagImageArray[i].hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(feed["countryVisited"][i]["country"]["flag"])", width: SMALL_PHOTO_WIDTH))
+                        flagImageArray[i].layer.borderColor = UIColor.white.cgColor
+                    }
+                    else {
+                        print("In else")
+                    }
                 }
             }
         }

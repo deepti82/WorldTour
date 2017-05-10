@@ -17,7 +17,7 @@ class ActivityFeedFooter: UIView {
    
     var postTop: JSON!
     var pageType: viewType!
-    var parentController: TLMainFeedsViewController!
+    var parentController: UIViewController!
     
     @IBOutlet weak var upperView: UIView!
     @IBOutlet weak var likeButton: SpringButton!
@@ -113,6 +113,7 @@ class ActivityFeedFooter: UIView {
         self.commentButton.removeTarget(self, action: #selector(self.sendComments(_:)), for: .touchUpInside)
         self.likeCountButton.removeTarget(self, action: #selector(self.likeCountTapped(_:)), for: .touchUpInside)
         self.commentCountButton.removeTarget(self, action: #selector(self.commentCountTabbed(_:)), for: .touchUpInside)
+        self.shareButton.removeTarget(self, action: #selector(self.sharingTap(_:)), for: .touchUpInside)
         self.optionButton.removeTarget(self, action: #selector(self.optionClick(_:)), for: .touchUpInside)
     }
     
@@ -121,6 +122,7 @@ class ActivityFeedFooter: UIView {
         self.commentButton.addTarget(self, action: #selector(self.sendComments(_:)), for: .touchUpInside)
         self.likeCountButton.addTarget(self, action: #selector(self.likeCountTapped(_:)), for: .touchUpInside)
         self.commentCountButton.addTarget(self, action: #selector(self.commentCountTabbed(_:)), for: .touchUpInside)
+        self.shareButton.addTarget(self, action: #selector(self.sharingTap(_:)), for: .touchUpInside)
         self.optionButton.addTarget(self, action: #selector(self.optionClick(_:)), for: .touchUpInside)
     }
     
@@ -140,7 +142,11 @@ class ActivityFeedFooter: UIView {
     
     @IBAction func likeCountTapped(_ sender: UIButton) {
         if currentUser != nil {
-            parentController.showLike(sender: sender)
+            let feedVC = storyboard?.instantiateViewController(withIdentifier: "likeTable") as! LikeUserViewController
+            feedVC.postId = postTop["_id"].stringValue
+            feedVC.type = postTop["type"].stringValue
+            feedVC.title = postTop["name"].stringValue
+            parentController.navigationController?.pushViewController(feedVC, animated: true)
         }
         else {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
@@ -246,7 +252,6 @@ class ActivityFeedFooter: UIView {
             self.likeButton.tag = 0            
         }
     }
-    
     
     //MARK: - Comment
     

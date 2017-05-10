@@ -36,15 +36,20 @@ enum feedPostCellType {
 }
 
 
-class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, TLFooterBasicDelegate {
 
     @IBOutlet weak var feedsTableView: UITableView!
+    
+    private let TL_VISIBLE_CELL_TAG = 6789
+    
     var mainFooter: FooterViewNew?
     
     var pageType: viewType = viewType.VIEW_TYPE_ACTIVITY
     
     var feedsDataArray: [JSON] = []
     var currentPageNumber = 1
+    var hasMorePages = true
+    var isLoading = false
     
     let separatorOffset = CGFloat(15.0)    
     
@@ -52,8 +57,6 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.automaticallyAdjustsScrollViewInsets = false
         
         getDarkBackGround(self)
         
@@ -73,6 +76,13 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
     override func viewDidAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         globalNavigationController = self.navigationController
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.hideHeaderAndFooter(false)        
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        self.mainFooter?.setFooterDefaultState()
     }
     
     override func didReceiveMemoryWarning() {
@@ -118,6 +128,8 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
     //MARK: - Fetch Data
     
     func getDataMain() {
+        
+        print("\n\n Will fetch data for : \(currentPageNumber)")
         
         switch pageType {
             
@@ -168,6 +180,9 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
                     if !response["data"].arrayValue.isEmpty {
                         self.feedsDataArray.append(contentsOf: response["data"].arrayValue)                    
                     }
+                    else {
+                        self.hasMorePages = false
+                    }
                     
                     self.reloadTableData()                    
                 })
@@ -183,8 +198,12 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
                     if pageNumber == 1 {
                         self.feedsDataArray = []
                     }
+                    
                     if !response["data"].arrayValue.isEmpty {
                         self.feedsDataArray.append(contentsOf: response["data"].arrayValue)                    
+                    }
+                    else {
+                        self.hasMorePages = false
                     }
                     
                     self.reloadTableData()
@@ -202,8 +221,12 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
                     if pageNumber == 1 {
                         self.feedsDataArray = []
                     }
+                    
                     if !response["data"].arrayValue.isEmpty {
                         self.feedsDataArray.append(contentsOf: response["data"].arrayValue)                    
+                    }
+                    else {
+                        self.hasMorePages = false
                     }
                     
                     self.reloadTableData()
@@ -216,6 +239,7 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
     //MARK: - Reload Table
     
     func reloadTableData() {
+        self.isLoading = false
         self.feedsTableView.reloadData()
     }
     
@@ -242,12 +266,14 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
             let displatTextString = getTextHeader(feed: cellData, pageType: pageType)
             var textHeight = (heightOfAttributedText(attributedString: displatTextString, width: screenWidth) + 10)            
             textHeight = ((cellData["countryVisited"].arrayValue).isEmpty) ? textHeight : max(textHeight, 36)
-            height = height + FEEDS_HEADER_HEIGHT + textHeight + screenWidth*0.9 + (shouldShowFooterCountView(feed: cellData) ? 90 : 50)
+            height = height + FEEDS_HEADER_HEIGHT + textHeight + screenWidth*0.9 + (shouldShowFooterCountView(feed: cellData) ? FEED_FOOTER_HEIGHT : (FEED_FOOTER_HEIGHT-FEED_FOOTER_LOWER_VIEW_HEIGHT))
             break
             
             
         case "travel-life":
-            height = height + FEEDS_HEADER_HEIGHT + screenWidth*0.9 + (shouldShowFooterCountView(feed: cellData) ? 90 : 50)
+            fallthrough
+        case "local-life":
+            height = height + FEEDS_HEADER_HEIGHT + getHeightForMiddleViewPostType(feed: cellData) + (shouldShowFooterCountView(feed: cellData) ? FEED_FOOTER_HEIGHT : (FEED_FOOTER_HEIGHT-FEED_FOOTER_LOWER_VIEW_HEIGHT))                        
             break
             
             
@@ -257,7 +283,7 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
             let displatTextString = getTextHeader(feed: cellData, pageType: pageType)
             var textHeight = (heightOfAttributedText(attributedString: displatTextString, width: screenWidth) + 10)            
             textHeight = ((cellData["countryVisited"].arrayValue).isEmpty) ? textHeight : max(textHeight, 36)
-            height = height + ((pageType == viewType.VIEW_TYPE_ACTIVITY) ? FEEDS_HEADER_HEIGHT : 0) + textHeight + screenWidth*0.9 + (shouldShowFooterCountView(feed: cellData) ? 90 : 50)
+            height = height + ((pageType == viewType.VIEW_TYPE_ACTIVITY) ? FEEDS_HEADER_HEIGHT : 0) + textHeight + screenWidth*0.9 + (shouldShowFooterCountView(feed: cellData) ? FEED_FOOTER_HEIGHT : (FEED_FOOTER_HEIGHT-FEED_FOOTER_LOWER_VIEW_HEIGHT))
             break
             
         default:
@@ -284,22 +310,23 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
                 feedCell = TLOTGJourneyTableViewCell.init(style: .default, reuseIdentifier: "OTGCell", feedData: cellData, helper: self)
             }
             
-            feedCell?.setData(feedData: cellData, helper: self, pageType: pageType)
-            feedCell?.FFooterView.likeCountButton.tag = indexPath.row
-            feedCell?.FFooterView.commentCountButton.tag = indexPath.row
+            feedCell?.setData(feedData: cellData, helper: self, pageType: pageType, delegate: self)
+            feedCell?.FFooterViewBasic.tag = indexPath.row
             return feedCell!
             
         
         case "travel-life":
+            fallthrough
+        case "local-life":
             var feedCell = tableView.dequeueReusableCell(withIdentifier: "TravelLocalCell", for: indexPath) as? TLTravelLocalLifeTableViewCell
             
             if feedCell == nil {
                 feedCell = TLTravelLocalLifeTableViewCell.init(style: .default, reuseIdentifier: "TravelLocalCell", feedData: cellData, helper: self)
             }
             
-            feedCell?.setData(feedData: cellData, helper: self, pageType: pageType)
-            feedCell?.FFooterView.likeCountButton.tag = indexPath.row
-            feedCell?.FFooterView.commentCountButton.tag = indexPath.row
+            feedCell?.setData(feedData: cellData, helper: self, pageType: pageType, delegate: self)
+            feedCell?.FFooterViewBasic.tag = indexPath.row
+            feedCell?.tag = TL_VISIBLE_CELL_TAG
             return feedCell!
             
         
@@ -312,11 +339,9 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
                 feedCell = TLItineraryTableViewCell.init(style: .default, reuseIdentifier: "ItineraryCell", feedData: cellData, helper: self)
             }
             
-            feedCell?.setData(feedData: cellData, helper: self, pageType: pageType)
-            feedCell?.FFooterView.likeCountButton.tag = indexPath.row
-            feedCell?.FFooterView.commentCountButton.tag = indexPath.row
-            return feedCell!
-            
+            feedCell?.setData(feedData: cellData, helper: self, pageType: pageType, delegate: self)
+            feedCell?.FFooterViewBasic.tag = indexPath.row            
+            return feedCell!            
             
             
         default:
@@ -328,19 +353,62 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
         return feedCell
     }
     
-    
-    //MARK: - 
-    //MARK: - Actions
-    
-    //MARK: - Header Action
-    
-    func toProfile(toUser: JSON) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        print("\n Row selected at index : \(indexPath.row)")
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let cellData = self.feedsDataArray[indexPath.row]
+        
+        switch cellData["type"].stringValue {
+            
+        case "on-the-go-journey":
+            fallthrough
+        case "ended-journey":
+            self.showDetailedJourney(feed: cellData)
+            break
+            
+            
+        case "travel-life":
+            fallthrough
+        case "local-life":
+            break
+            
+            
+        case "quick-itinerary":
+            self.showQuickItinerary(feed: cellData)
+            break
+            
+        case "detail-itinerary":
+            self.showDetailedItinerary(feed: cellData)
+            break
+            
+        default:
+            print("\n default case : \(cellData["type"].stringValue)")
+        }
+        
+    }
+    
+    
+    //MARK: - Navigate to otherVC
+    
+    func showDetailedJourney(feed: JSON) {        
         if currentUser != nil {
-            selectedUser = toUser
-            let profile = storyboard?.instantiateViewController(withIdentifier: "TLProfileView") as! TLProfileViewController
-            profile.displayData = "search"
-            profile.currentSelectedUser = selectedUser
+            let controller = storyboard?.instantiateViewController(withIdentifier: "newTL") as! NewTLViewController
+            controller.fromOutSide = feed["_id"].stringValue
+            controller.fromType = feed["type"].stringValue
+            self.navigationController?.pushViewController(controller, animated: false)
+        }
+        else {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
+        }
+    }
+    
+    func showQuickItinerary(feed: JSON) {
+        if currentUser != nil {
+            selectedQuickI = feed["_id"].stringValue
+            let profile = storyboard?.instantiateViewController(withIdentifier: "previewQ") as! QuickItineraryPreviewViewController
             self.navigationController?.pushViewController(profile, animated: true)
         }
         else {
@@ -348,27 +416,96 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
         }
     }
     
-    
-    //MARK: - Footer Action
-    
-    func showLike(sender: UIButton) {
-        let selectedPost = feedsDataArray[sender.tag]
+    func showDetailedItinerary(feed: JSON) {
         if currentUser != nil {
-            let feedVC = storyboard?.instantiateViewController(withIdentifier: "likeTable") as! LikeUserViewController
-            feedVC.postId = selectedPost["_id"].stringValue
-            feedVC.type = selectedPost["type"].stringValue
-            feedVC.title = selectedPost["name"].stringValue
-            self.navigationController?.pushViewController(feedVC, animated: true)
+            let controller = storyboard?.instantiateViewController(withIdentifier: "EachItineraryViewController") as! EachItineraryViewController
+            controller.fromOutSide = feed["_id"].stringValue
+            self.navigationController?.setNavigationBarHidden(false, animated: false)
+            self.navigationController?.pushViewController(controller, animated: true)
         }
         else {
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
+            if (feed["itineraryBy"].stringValue.lowercased() != "admin") {
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)                
+            }
         }
     }
     
-    func showCommentView(sender: UIButton) {
+    
+    //MARK: - Delegate Actions
+    
+    func footerLikeCommentCountUpdated(likeDone: Bool, likeCount: Int, commentCount: Int, tag: Int) {
+        var cellData = feedsDataArray[tag]        
+        cellData["likeCount"] = JSON(String(likeCount))
+        cellData["commentCount"] = JSON(String(commentCount))
+        cellData["likeDone"] = JSON(Bool(likeDone))        
+        feedsDataArray[tag] = cellData
         
-        let selectedPost = feedsDataArray[sender.tag]
+        if likeDone {
+            UIView.animate(withDuration: 1, delay: 0, options: [.curveEaseOut, .beginFromCurrentState], animations: {                
+            }) { (true) in
+                self.feedsTableView.reloadRows(at: [IndexPath(row: tag, section: 0)], with: .none)
+            }
+        }
+        else { 
+            self.feedsTableView.reloadRows(at: [IndexPath(row: tag, section: 0)], with: .none)
+        }               
+    }
+    
+    func footerRatingUpdated(rating: JSON, tag: Int) {        
+        var currentJson = feedsDataArray[tag]            
+        currentJson["review"][0] = ["rating":"\(rating["rating"].stringValue)","review":rating["review"].stringValue]            
+        if (currentJson["review"].isEmpty){
+            currentJson["review"] = [["rating":"\(rating["rating"].stringValue)","review":rating["review"].stringValue]]
+        }
+        feedsDataArray[tag] = currentJson
+        
+        self.feedsTableView.reloadRows(at: [IndexPath(row: tag, section: 0)], with: .none)
+    }    
+    
+    
+    
+    //MARK: - Scrolling Delegates
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.panGestureRecognizer.translation(in: scrollView).y < 0 {
+            self.hideHeaderAndFooter(true);
+        }
+        else{
+            self.hideHeaderAndFooter(false);
+        }
+    }
+    
+    //for adding more content when scrolled to end of table
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        let currentOffset = scrollView.contentOffset.y
+        let maximumOffset = scrollView.contentSize.height - scrollView.frame.size.height
+        
+        for visibleCell in feedsTableView.visibleCells {
+            if visibleCell.tag == TL_VISIBLE_CELL_TAG {
+                let requiredCell = visibleCell as! TLTravelLocalLifeTableViewCell
+                requiredCell.videoToPlay(scrollView: scrollView)
+            }
+        }
+        
+        if (maximumOffset-currentOffset) <= 0 {
+            if hasMorePages && !isLoading {                
+                print("\n table scolled to end, fetch more content...")
+                self.isLoading = true
+                currentPageNumber += 1
+                self.getDataMain()
+            }
+        }
         
     }
-
+    
+    private func hideHeaderAndFooter(_ isShow:Bool) {
+        if(isShow) {
+            self.navigationController?.setNavigationBarHidden(true, animated: true)
+            self.mainFooter?.frame.origin.y = self.view.frame.height + MAIN_FOOTER_HEIGHT
+        }
+        else {
+            self.navigationController?.setNavigationBarHidden(false, animated: true)
+            self.mainFooter?.frame.origin.y = self.view.frame.height - MAIN_FOOTER_HEIGHT
+        }
+    }
 }

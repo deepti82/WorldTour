@@ -19,9 +19,8 @@ class ActivityProfileHeader: UIView {
     @IBOutlet weak var followButton: UIButton!
     @IBOutlet weak var localTime: UILabel!
     @IBOutlet weak var blurImageView: UIImageView!
-    var parentController: TLMainFeedsViewController!
+    var parentController: UIViewController!
     
-    var ishidefollow:Bool = false
     var currentFeed:JSON = []
     let imageArr: [String] = ["restaurantsandbars", "leaftrans", "sightstrans", "museumstrans", "zootrans", "shopping", "religious", "cinematrans", "hotels", "planetrans", "health_beauty", "rentals", "entertainment", "essential", "emergency", "othersdottrans"]
     
@@ -72,13 +71,11 @@ class ActivityProfileHeader: UIView {
         let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(self.handleProfileTap(_:)))
         self.addGestureRecognizer(tapGestureRecognizer)
         
-        self.followButton.isHidden = true
+        setFollowButtonTitle(button: followButton, followType: feed["following"].intValue, otherUserID: (feed["_id"] != nil ? feed["_id"].stringValue : "admin"))
         
-        if !ishidefollow {
-            setFollowButtonTitle(button: followButton, followType: feed["following"].intValue, otherUserID: (feed["_id"] != nil ? feed["_id"].stringValue : "admin"))
-        }
         
-        if((currentUser != nil) && feed["user"]["_id"].stringValue == currentUser["_id"].stringValue) {
+        if(pageType == viewType.VIEW_TYPE_ACTIVITY ||
+            (currentUser != nil) && feed["user"]["_id"].stringValue == currentUser["_id"].stringValue) {
             followButton.isHidden = true
         }
         
@@ -284,7 +281,11 @@ class ActivityProfileHeader: UIView {
     func handleProfileTap(_ sender: AnyObject) {
         
         if currentUser != nil {
-            parentController.toProfile(toUser: currentFeed["user"])
+            selectedUser = currentFeed["user"]
+            let profile = storyboard?.instantiateViewController(withIdentifier: "TLProfileView") as! TLProfileViewController
+            profile.displayData = "search"
+            profile.currentSelectedUser = selectedUser
+            parentController.navigationController?.pushViewController(profile, animated: true)
         }
         else {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)

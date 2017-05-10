@@ -218,7 +218,6 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
         profileHeader = ActivityProfileHeader(frame: CGRect(x: 0, y: 2, width: self.frame.width, height: 69))
         self.addSubview(headerLine)
         self.addSubview(profileHeader)
-        profileHeader.ishidefollow = true
         profileHeader.followButton.isHidden = true
         profileHeader.fillProfileHeader(feed:feed, pageType: viewType.VIEW_TYPE_OTG, cellType: feedCellType.CELL_POST_TYPE)
         
@@ -287,7 +286,6 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
         profileHeader = ActivityProfileHeader(frame: CGRect(x: 0, y: 20, width: self.frame.width, height: 69))
         
         self.addSubview(profileHeader)
-        profileHeader.ishidefollow = true
         profileHeader.followButton.isHidden = true
         profileHeader.fillProfileHeaderForLocalPost(post: post)
         

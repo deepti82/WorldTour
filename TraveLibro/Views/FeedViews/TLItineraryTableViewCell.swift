@@ -14,7 +14,7 @@ class TLItineraryTableViewCell: UITableViewCell {
     var FBackground = NotificationBackground()    
     var FTextHeader: TLFeedHeaderTextFlagView!
     var FMiddleView: TLItinerayPostView!
-    var FFooterView: ActivityFeedFooter!
+    var FFooterViewBasic: ActivityFeedFooterBasic!
     
     var totalHeight = CGFloat(0)
     
@@ -63,21 +63,19 @@ class TLItineraryTableViewCell: UITableViewCell {
         FMiddleView = TLItinerayPostView(frame: CGRect.zero)
         self.contentView.addSubview(FMiddleView)
         
-        FFooterView = ActivityFeedFooter(frame: CGRect.zero)
-        self.contentView.addSubview(FFooterView)
+        FFooterViewBasic = ActivityFeedFooterBasic(frame: CGRect.zero)
+        self.contentView.addSubview(FFooterViewBasic)
         
         FBackground = NotificationBackground(frame: CGRect.zero)
         self.contentView.addSubview(FBackground)
         self.contentView.sendSubview(toBack: FBackground)
         
         if feedData != nil {
-            setData(feedData: feedData!, helper: helper!, pageType: nil)            
+            setData(feedData: feedData!, helper: helper!, pageType: nil, delegate: nil)            
         }
     }    
     
-    func setData(feedData: JSON, helper: TLMainFeedsViewController, pageType: viewType?) {        
-        
-        print("\n FeedData : \(feedData) \n\n")
+    func setData(feedData: JSON, helper: TLMainFeedsViewController, pageType: viewType?, delegate: TLFooterBasicDelegate?) {
         
         totalHeight = CGFloat(0)
         
@@ -109,17 +107,17 @@ class TLItineraryTableViewCell: UITableViewCell {
         totalHeight += screenWidth*0.9
         
         
-        FFooterView.parentController = helper
-        FFooterView.fillFeedFooter(feed: feedData, pageType: pageType)
+        FFooterViewBasic.parentController = helper
+        FFooterViewBasic.fillFeedFooter(feed: feedData, pageType: pageType, delegate: delegate)
         if shouldShowFooterCountView(feed: feedData) {
-            FFooterView.lowerViewHeightConstraint.constant = 40
-            FFooterView.frame = CGRect(x: 0, y: totalHeight, width: screenWidth, height: 90)
-            totalHeight += 90
+            FFooterViewBasic.lowerViewHeightConstraint.constant = FEED_FOOTER_LOWER_VIEW_HEIGHT
+            FFooterViewBasic.frame = CGRect(x: 0, y: totalHeight, width: screenWidth, height: FEED_FOOTER_HEIGHT)
+            totalHeight += FEED_FOOTER_HEIGHT
         }
         else {
-            FFooterView.lowerViewHeightConstraint.constant = 0
-            FFooterView.frame = CGRect(x: 0, y: totalHeight, width: screenWidth, height: 50)
-            totalHeight += 50
+            FFooterViewBasic.lowerViewHeightConstraint.constant = 0
+            FFooterViewBasic.frame = CGRect(x: 0, y: totalHeight, width: screenWidth, height: (FEED_FOOTER_HEIGHT-FEED_FOOTER_LOWER_VIEW_HEIGHT))
+            totalHeight += (FEED_FOOTER_HEIGHT-FEED_FOOTER_LOWER_VIEW_HEIGHT)
         }
         
         FBackground.frame = CGRect(x: 0, y: 0, width: screenWidth, height: totalHeight)

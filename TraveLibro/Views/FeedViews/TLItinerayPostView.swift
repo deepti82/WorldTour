@@ -27,7 +27,7 @@ class TLItinerayPostView: UIView {
         let blackColour = UIColor.black.withAlphaComponent(0.8).cgColor as CGColor
         let transparent = UIColor.clear.cgColor as CGColor
         gradient.frame = gradientView.bounds
-        gradient.frame.size.width = gradientView.frame.width + 100
+        gradient.frame.size.width = screenWidth
         gradient.colors = [blackColour, transparent]
         gradient.locations = [0.0, 0.75]
         self.gradientView.layer.addSublayer(gradient)
@@ -65,6 +65,7 @@ class TLItinerayPostView: UIView {
                 }
             }
         }
+        
         if pageType == viewType.VIEW_TYPE_ACTIVITY {
             self.creatorImageView.isHidden = true
             self.creatorNameLabel.isHidden = true
