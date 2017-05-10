@@ -317,6 +317,7 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
 //        }
     }
     func tagMoreBuddies(_ sender: UIButton) {
+        print(typeOfAddActivtiy)
         self.resignThoughtsTexViewKeyboard()
         if(self.typeOfAddActivtiy != "EditActivity") {
             buddiesStatus = true
@@ -327,6 +328,7 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
         
         let next = storyboard?.instantiateViewController(withIdentifier: "addBuddies") as! AddBuddiesViewController
         next.whichView = "AddActivity"
+        next.typeOfAddActivity = self.typeOfAddActivtiy
         
         if !addedBuddies.isEmpty {
             next.addedFriends = addedBuddies
