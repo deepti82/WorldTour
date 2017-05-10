@@ -9,9 +9,10 @@
 import UIKit
 
 class UploadingToCloud: UIView {
-
-    @IBOutlet weak var backView: UIView!
+    
+    @IBOutlet weak var backgroundView: UIView!
     @IBOutlet weak var uploadText: UILabel!
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
@@ -31,5 +32,19 @@ class UploadingToCloud: UIView {
         self.addSubview(view)
     }
     
-
+    func fillUploadingStrip(feed: JSON) {
+        
+        print("\n\n fillUploadingStrip : \(feed) \n\n\n")
+        
+        self.uploadText.text = "Uploading To Cloud..."
+        
+        if feed["type"].stringValue == "travel-life" {
+            self.backgroundView.backgroundColor = mainOrangeColor            
+            self.uploadText.textColor = UIColor.white
+        }
+        else if feed["type"].stringValue == "local-life" {
+            self.backgroundView.backgroundColor = endJourneyColor
+            self.uploadText.textColor = mainBlueColor
+        }
+    }
 }

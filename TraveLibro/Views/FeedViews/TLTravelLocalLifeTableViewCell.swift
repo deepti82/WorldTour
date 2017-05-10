@@ -21,6 +21,8 @@ class TLTravelLocalLifeTableViewCell: UITableViewCell, PlayerDelegate {
     var FMHeaderTag: ActivityHeaderTag?
     var FMPlayer:Player?
     var FFooterViewBasic: ActivityFeedFooterBasic!
+    var FUploadingView: UploadingToCloud?
+    
     var parentController: UIViewController!
     
     var feeds: JSON!
@@ -76,7 +78,8 @@ class TLTravelLocalLifeTableViewCell: UITableViewCell, PlayerDelegate {
         }
         
         FFooterViewBasic.lowerViewHeightConstraint.constant = 0
-        FFooterViewBasic.frame = CGRect.zero        
+        FFooterViewBasic.frame = CGRect.zero       
+        
     }
     
     //MARK: - Create View
@@ -91,6 +94,9 @@ class TLTravelLocalLifeTableViewCell: UITableViewCell, PlayerDelegate {
         
         FFooterViewBasic = ActivityFeedFooterBasic(frame: CGRect.zero)
         self.contentView.addSubview(FFooterViewBasic)
+        
+        FUploadingView = UploadingToCloud(frame: CGRect.zero)
+        self.contentView.addSubview(FUploadingView!)
         
         FBackground = NotificationBackground(frame: CGRect.zero)
         self.contentView.addSubview(FBackground)
@@ -150,6 +156,16 @@ class TLTravelLocalLifeTableViewCell: UITableViewCell, PlayerDelegate {
             totalHeight += (FEED_FOOTER_HEIGHT-FEED_FOOTER_LOWER_VIEW_HEIGHT)
         }
         
+        if isLocalFeed(feed: feedData) {
+            FUploadingView?.frame = CGRect(x: 0, y: totalHeight, width: screenWidth, height: FEED_UPLOADING_VIEW_HEIGHT)
+            FUploadingView?.fillUploadingStrip(feed: feedData)
+            totalHeight += FEED_UPLOADING_VIEW_HEIGHT
+        }
+        else {
+            FUploadingView?.frame = CGRect.zero
+            FUploadingView?.uploadText.text = ""
+        }
+        
         FBackground.frame = CGRect(x: 0, y: 0, width: screenWidth, height: totalHeight)
     }
     
@@ -175,7 +191,7 @@ class TLTravelLocalLifeTableViewCell: UITableViewCell, PlayerDelegate {
             self.FMVideoContainer?.player = self.FMPlayer
             self.FMVideoContainer?.bringSubview(toFront: (FMVideoContainer?.playBtn)!)            
             
-            self.FMVideoContainer?.videoHolder.hnk_setImageFromURL(getImageURL(feed["videos"][0]["thumbnail"].stringValue, width: 0))
+            self.FMVideoContainer?.videoHolder.hnk_setImageFromURL(getImageURL(feed["videos"][0]["thumbnail"].stringValue, width: BIG_PHOTO_WIDTH))
             
             if feed["type"].stringValue == "travel-life" {
                 FMVideoContainer?.tagText.text = "Travel Life"
@@ -208,7 +224,7 @@ class TLTravelLocalLifeTableViewCell: UITableViewCell, PlayerDelegate {
             self.contentView.addSubview(self.FMMainPhoto!)
             totalHeight += screenWidth*0.9
             
-            let imgStr = getImageURL(feed["photos"][0]["name"].stringValue, width: 0)
+            let imgStr = getImageURL(feed["photos"][0]["name"].stringValue, width: BIG_PHOTO_WIDTH)
             
             cache.fetch(URL: imgStr).onSuccess({ (data) in
                 self.FMMainPhoto?.image = UIImage(data: data as Data)
@@ -244,7 +260,7 @@ class TLTravelLocalLifeTableViewCell: UITableViewCell, PlayerDelegate {
                     self.FMMainPhoto?.addSubview(FMHeaderTag!)
                 }
                 
-                FMMainPhoto?.hnk_setImageFromURL(URL(string: feed["imageUrl"].stringValue)!)
+                FMMainPhoto?.hnk_setImageFromURL(getImageURL(feed["imageUrl"].stringValue, width: BIG_PHOTO_WIDTH))
             }
         }
         
@@ -273,7 +289,7 @@ class TLTravelLocalLifeTableViewCell: UITableViewCell, PlayerDelegate {
             
             photosButton.frame.size.height = 82
             photosButton.frame.size.width = 82
-            let urlStr = getImageURL(post["photos"][i]["name"].stringValue, width: 300)
+            let urlStr = getImageURL(post["photos"][i]["name"].stringValue, width: SMALL_PHOTO_WIDTH)
             photosButton.hnk_setImageFromURL(urlStr)
             let tapGestureRecognizer = UITapGestureRecognizer(target:self, action: #selector(self.openSinglePhoto(_:)))
             photosButton.isUserInteractionEnabled = true

@@ -68,8 +68,7 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
+        super.viewWillAppear(animated)        
         self.mainFooter?.frame = CGRect(x: 0, y: self.view.frame.height - MAIN_FOOTER_HEIGHT, width: self.view.frame.width, height: MAIN_FOOTER_HEIGHT)        
     }
     
@@ -134,6 +133,10 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
         switch pageType {
             
         case .VIEW_TYPE_ACTIVITY:
+            
+//            let i = PostImage()
+//            i.uploadPhotos()
+            
             self.getActivityFeedsData(pageNumber: currentPageNumber)
             break
             
@@ -236,6 +239,16 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     
+    //MARK: - Notification
+    
+    func NCnote(_ notification: Notification) {
+        print("\n Notification received")
+        if currentUser != nil{
+            currentPageNumber = 1
+            self.getDataMain()
+        }
+    }
+    
     //MARK: - Reload Table
     
     func reloadTableData() {
@@ -266,14 +279,14 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
             let displatTextString = getTextHeader(feed: cellData, pageType: pageType)
             var textHeight = (heightOfAttributedText(attributedString: displatTextString, width: screenWidth) + 10)            
             textHeight = ((cellData["countryVisited"].arrayValue).isEmpty) ? textHeight : max(textHeight, 36)
-            height = height + FEEDS_HEADER_HEIGHT + textHeight + screenWidth*0.9 + (shouldShowFooterCountView(feed: cellData) ? FEED_FOOTER_HEIGHT : (FEED_FOOTER_HEIGHT-FEED_FOOTER_LOWER_VIEW_HEIGHT))
+            height = height + FEEDS_HEADER_HEIGHT + textHeight + screenWidth*0.9 + (shouldShowFooterCountView(feed: cellData) ? FEED_FOOTER_HEIGHT : (FEED_FOOTER_HEIGHT-FEED_FOOTER_LOWER_VIEW_HEIGHT)) + (isLocalFeed(feed: cellData) ? FEED_UPLOADING_VIEW_HEIGHT : 0)
             break
             
             
         case "travel-life":
             fallthrough
         case "local-life":
-            height = height + FEEDS_HEADER_HEIGHT + getHeightForMiddleViewPostType(feed: cellData) + (shouldShowFooterCountView(feed: cellData) ? FEED_FOOTER_HEIGHT : (FEED_FOOTER_HEIGHT-FEED_FOOTER_LOWER_VIEW_HEIGHT))                        
+            height = height + FEEDS_HEADER_HEIGHT + getHeightForMiddleViewPostType(feed: cellData) + (shouldShowFooterCountView(feed: cellData) ? FEED_FOOTER_HEIGHT : (FEED_FOOTER_HEIGHT-FEED_FOOTER_LOWER_VIEW_HEIGHT)) + (isLocalFeed(feed: cellData) ? FEED_UPLOADING_VIEW_HEIGHT : 0)                        
             break
             
             
@@ -283,7 +296,7 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
             let displatTextString = getTextHeader(feed: cellData, pageType: pageType)
             var textHeight = (heightOfAttributedText(attributedString: displatTextString, width: screenWidth) + 10)            
             textHeight = ((cellData["countryVisited"].arrayValue).isEmpty) ? textHeight : max(textHeight, 36)
-            height = height + ((pageType == viewType.VIEW_TYPE_ACTIVITY) ? FEEDS_HEADER_HEIGHT : 0) + textHeight + screenWidth*0.9 + (shouldShowFooterCountView(feed: cellData) ? FEED_FOOTER_HEIGHT : (FEED_FOOTER_HEIGHT-FEED_FOOTER_LOWER_VIEW_HEIGHT))
+            height = height + ((pageType == viewType.VIEW_TYPE_ACTIVITY) ? FEEDS_HEADER_HEIGHT : 0) + textHeight + screenWidth*0.9 + (shouldShowFooterCountView(feed: cellData) ? FEED_FOOTER_HEIGHT : (FEED_FOOTER_HEIGHT-FEED_FOOTER_LOWER_VIEW_HEIGHT)) + (isLocalFeed(feed: cellData) ? FEED_UPLOADING_VIEW_HEIGHT : 0)
             break
             
         default:
