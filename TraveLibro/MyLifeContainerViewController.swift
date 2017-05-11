@@ -193,14 +193,14 @@ class MyLifeContainerViewController: UIViewController, UITableViewDelegate, UITa
             let displatTextString = getTextHeader(feed: cellData, pageType: pageType)
             var textHeight = (heightOfAttributedText(attributedString: displatTextString, width: (screenWidth-21)) + 10)            
             textHeight = ((cellData["countryVisited"].arrayValue).isEmpty) ? textHeight : max(textHeight, 36)
-            height = height + FEEDS_HEADER_HEIGHT + textHeight + screenWidth*0.9 + (shouldShowFooterCountView(feed: cellData) ? FEED_FOOTER_HEIGHT : (FEED_FOOTER_HEIGHT-FEED_FOOTER_LOWER_VIEW_HEIGHT)) + (isLocalFeed(feed: cellData) ? FEED_UPLOADING_VIEW_HEIGHT : 0)
+            height = height + ((pageType == viewType.VIEW_TYPE_MY_LIFE) ? 0 : FEEDS_HEADER_HEIGHT) + textHeight + screenWidth*0.9 + (shouldShowFooterCountView(feed: cellData) ? FEED_FOOTER_HEIGHT : (FEED_FOOTER_HEIGHT-FEED_FOOTER_LOWER_VIEW_HEIGHT)) + (isLocalFeed(feed: cellData) ? FEED_UPLOADING_VIEW_HEIGHT : 0)
             break
             
             
         case "travel-life":
             fallthrough
         case "local-life":
-            height = height + FEEDS_HEADER_HEIGHT + getHeightForMiddleViewPostType(feed: cellData) + (shouldShowFooterCountView(feed: cellData) ? FEED_FOOTER_HEIGHT : (FEED_FOOTER_HEIGHT-FEED_FOOTER_LOWER_VIEW_HEIGHT)) + (isLocalFeed(feed: cellData) ? FEED_UPLOADING_VIEW_HEIGHT : 0)                        
+            height = height + ((pageType == viewType.VIEW_TYPE_MY_LIFE) ? 0 : FEEDS_HEADER_HEIGHT) + getHeightForMiddleViewPostType(feed: cellData, pageType: viewType.VIEW_TYPE_MY_LIFE) + (shouldShowFooterCountView(feed: cellData) ? FEED_FOOTER_HEIGHT : (FEED_FOOTER_HEIGHT-FEED_FOOTER_LOWER_VIEW_HEIGHT)) + (isLocalFeed(feed: cellData) ? FEED_UPLOADING_VIEW_HEIGHT : 0)                        
             break
             
             
@@ -219,11 +219,6 @@ class MyLifeContainerViewController: UIViewController, UITableViewDelegate, UITa
         }
         
         return height
-    }
-    
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let cellData = self.feedsDataArray[indexPath.row]
-        self.timeTag.changeTime(feed: cellData)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -402,6 +397,23 @@ class MyLifeContainerViewController: UIViewController, UITableViewDelegate, UITa
         }
         else{
             globalMyLifeController.hideHeaderAndFooter(false);
+        }
+        
+        for visibleCell in myLifeFeedsTableView.visibleCells {
+            let cellStart = visibleCell.frame.origin.y - scrollView.contentOffset.y
+            let cellEnd = cellStart + visibleCell.frame.size.height
+            
+            if((cellStart < self.timeTag.frame.origin.y) && (cellEnd > (self.timeTag.frame.origin.y + self.timeTag.frame.size.height))) {
+                if visibleCell.isKind(of: TLOTGJourneyTableViewCell.self) {
+                    self.timeTag.changeTime(feed: (visibleCell as! TLOTGJourneyTableViewCell).feeds)                    
+                }
+                else if visibleCell.isKind(of: TLTravelLocalLifeTableViewCell.self) {
+                    self.timeTag.changeTime(feed: (visibleCell as! TLTravelLocalLifeTableViewCell).feeds)                    
+                }
+                else if visibleCell.isKind(of: TLItineraryTableViewCell.self) {
+                    self.timeTag.changeTime(feed: (visibleCell as! TLItineraryTableViewCell).feeds)                    
+                }
+            }
         }
     }
     

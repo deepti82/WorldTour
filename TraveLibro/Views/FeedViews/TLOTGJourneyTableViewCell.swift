@@ -19,6 +19,8 @@ class TLOTGJourneyTableViewCell: UITableViewCell {
     
     var totalHeight = CGFloat(0)
     
+    var feeds: JSON!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -81,13 +83,18 @@ class TLOTGJourneyTableViewCell: UITableViewCell {
     
     func setData(feedData: JSON, helper: UIViewController, pageType: viewType?, delegate: TLFooterBasicDelegate?) {        
         
+        self.feeds = feedData
         totalHeight = CGFloat(0)
         
-        FProfileHeader.frame = CGRect(x: 0, y: 0, width: screenWidth, height: FEEDS_HEADER_HEIGHT)        
-        FProfileHeader.parentController = helper
-        FProfileHeader.fillProfileHeader(feed: feedData, pageType: pageType, cellType: feedCellType.CELL_OTG_TYPE)
-        totalHeight += FEEDS_HEADER_HEIGHT
-        
+        if pageType == viewType.VIEW_TYPE_MY_LIFE {
+            FProfileHeader.frame = CGRect.zero            
+        }
+        else {
+            FProfileHeader.frame = CGRect(x: 0, y: 0, width: screenWidth, height: FEEDS_HEADER_HEIGHT)        
+            FProfileHeader.parentController = helper
+            FProfileHeader.fillProfileHeader(feed: feedData, pageType: pageType, cellType: feedCellType.CELL_OTG_TYPE)
+            totalHeight += FEEDS_HEADER_HEIGHT
+        }        
         
         FTextHeader.setFlag(feed: feedData)
         FTextHeader.displayText = getTextHeader(feed: feedData, pageType: pageType!)        

@@ -18,6 +18,7 @@ class TLItineraryTableViewCell: UITableViewCell {
     var FUploadingView: UploadingToCloud?
     
     var totalHeight = CGFloat(0)
+    var feeds: JSON!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -80,6 +81,8 @@ class TLItineraryTableViewCell: UITableViewCell {
     }    
     
     func setData(feedData: JSON, helper: UIViewController, pageType: viewType?, delegate: TLFooterBasicDelegate?) {
+        
+        self.feeds = feedData
         
         totalHeight = CGFloat(0)
         

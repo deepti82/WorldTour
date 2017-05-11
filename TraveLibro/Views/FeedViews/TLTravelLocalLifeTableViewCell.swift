@@ -25,10 +25,9 @@ class TLTravelLocalLifeTableViewCell: UITableViewCell, PlayerDelegate {
     
     var parentController: UIViewController!
     
-    var feeds: JSON!
-    
     var willPlay = false
     var totalHeight = CGFloat(0)
+    var feeds: JSON!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -114,20 +113,26 @@ class TLTravelLocalLifeTableViewCell: UITableViewCell, PlayerDelegate {
         
         totalHeight = CGFloat(0)
         
-        FProfileHeader.frame = CGRect(x: 0, y: totalHeight, width: screenWidth, height: FEEDS_HEADER_HEIGHT)
-        FProfileHeader.parentController = self.parentController
-        FProfileHeader.fillProfileHeader(feed: self.feeds, pageType: pageType, cellType: feedCellType.CELL_POST_TYPE)
-        totalHeight += FEEDS_HEADER_HEIGHT
+        if pageType == viewType.VIEW_TYPE_MY_LIFE {
+            FProfileHeader.frame = CGRect.zero            
+        }
+        else {
+            FProfileHeader.frame = CGRect(x: 0, y: 0, width: screenWidth, height: FEEDS_HEADER_HEIGHT)        
+            FProfileHeader.parentController = helper
+            FProfileHeader.fillProfileHeader(feed: feedData, pageType: pageType, cellType: feedCellType.CELL_OTG_TYPE)
+            totalHeight += FEEDS_HEADER_HEIGHT
+        }
+        
         
         FMTextView?.setFlag(feed: self.feeds)
         FMTextView?.displayText = getTextHeader(feed: self.feeds, pageType: pageType!)        
         FMTextView?.setText(text: (FMTextView?.displayText)!)
-        if FMTextView?.displayText.string != "" {
+        if FMTextView?.displayText.string != "" || pageType == viewType.VIEW_TYPE_MY_LIFE {
             let textHeight = (heightOfAttributedText(attributedString: (FMTextView?.displayText)!, width: (screenWidth-21)) + 10)
             FMTextView?.frame = CGRect(x: 0, y: totalHeight, width: screenWidth, height: textHeight)
             FMTextView?.headerTextView.frame = CGRect(x: 8, y: 0, width: screenWidth-(FMTextView?.flagStackView.frame.size.width)!-13, height: textHeight)
             FMTextView?.headerTextView.center = CGPoint(x: (FMTextView?.headerTextView.center.x)!, y: (FMTextView?.flagStackView.center.y)!)
-            totalHeight += textHeight            
+            totalHeight += textHeight
         }
         let prevHeight = totalHeight
         

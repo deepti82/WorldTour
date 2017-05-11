@@ -1123,13 +1123,13 @@ func shouldShowFooterCountView(feed: JSON) -> Bool{
 
 //MARK: Check PostCell Type
 
-func getHeightForMiddleViewPostType(feed:JSON) -> CGFloat{
+func getHeightForMiddleViewPostType(feed:JSON, pageType: viewType) -> CGFloat{
     
     var middleViewHeight = CGFloat(0)
     
     let displayString = getTextHeader(feed: feed, pageType: viewType.VIEW_TYPE_ACTIVITY)       
     
-    if displayString.string != "" {
+    if displayString.string != "" || pageType == viewType.VIEW_TYPE_MY_LIFE {
         let textHeight = (heightOfAttributedText(attributedString: displayString, width: (screenWidth-21)) + 10)
         middleViewHeight += textHeight            
     }

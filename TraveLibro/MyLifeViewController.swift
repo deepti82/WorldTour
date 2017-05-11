@@ -571,8 +571,24 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         self.inputview = UIView(frame: CGRect(x: 0, y: UIScreen.main.bounds.size.height - 240, width: self.view.frame.size.width, height: 240))
         self.inputview.backgroundColor = UIColor.white
         self.datePickerView = UIDatePicker(frame: CGRect(x: 0, y: 0, width: self.inputview.frame.size.width, height: 240))
-        self.datePickerView.datePickerMode = UIDatePickerMode.dateAndTime
-        self.datePickerView.date = dateFormatter.date(from: footer.postTop["UTCModified"].stringValue)!
+        self.datePickerView.datePickerMode = UIDatePickerMode.dateAndTime                
+        var showDate = dateFormatter.string(from: Date())        
+        switch footer.postTop["type"].stringValue {
+        case "on-the-go-journey":
+            fallthrough
+        case "ended-journey":
+            fallthrough
+        case "quick-itinerary":
+            fallthrough
+        case "detail-itinerary":
+            showDate = footer.postTop["updatedAt"].stringValue
+            break
+            
+        default:
+            showDate = footer.postTop["UTCModified"].stringValue
+        }        
+        
+        self.datePickerView.date = dateFormatter.date(from: showDate)!
         self.datePickerView.maximumDate = Date()
         
         self.backView = UIView(frame: CGRect(x: 0, y: UIScreen.main.bounds.size.height - 280, width: self.view.frame.size.width, height: 40))
