@@ -132,7 +132,7 @@ class MyLifeActivityFeedsLayout: VerticalLayout, PlayerDelegate, TLFooterBasicDe
                 
                 self.layoutSubviews()
                 if(self.activityFeed != nil) {
-                    self.activityFeed.addHeightToLayout()
+//                    self.activityFeed.addHeightToLayout()
                 }
                 
             })

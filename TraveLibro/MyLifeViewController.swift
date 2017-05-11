@@ -28,7 +28,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var tableContainer: UIView!
     
     var isFromFooter = false
-    var mainFooter: FooterViewNew!
+    var mainFooter: FooterViewNew?
     
     var whichTab: String = ""
     var type = "on-the-go-journey"
@@ -193,6 +193,10 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     
     //MARK: - Actions
     
+    func reloadContainerData() {
+        globalMyLifeContainerViewController.loadData(type: globalMyLifeContainerViewController.onTab, pageNumber: 1, fromVC: self)
+    }
+    
     func exitMyLife(_ sender: AnyObject ) {
         if !isFromFooter {
             _ = self.navigationController?.popViewController(animated: false)
@@ -250,16 +254,14 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         
         switch whatEmptyTab {
         case "Journeys":
-            showJourneys(UIButton.self)
+            showJourneys(nil)
         case "Moments":
-            showMoments(UIButton.self)
+            showMoments(nil)
         case "Reviews":
-            showReviews(UIButton.self)
+            showReviews(nil)
         default:
-            showJourneys(UIButton.self)
+            showJourneys(nil)
         }
-        
-        
     }
     
     
@@ -351,7 +353,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         switch whatEmptyTab {
         case "Journeys":
             globalMyLifeContainerViewController.isFromFooter = self.isFromFooter
-            globalMyLifeContainerViewController.loadData("all", pageNumber: 1);
+            globalMyLifeContainerViewController.loadData(type: "all", pageNumber: 1, fromVC: self)
         case "Moments":
             globalMyLifeMomentsViewController.page = 1
             globalMyLifeMomentsViewController.insideView = ""
@@ -373,7 +375,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         radioThree.image = UIImage(named: "radio_for_button")
         switch whatEmptyTab {
         case "Journeys":
-            globalMyLifeContainerViewController.loadData("travel-life", pageNumber: 1);
+            globalMyLifeContainerViewController.loadData(type: "travel-life", pageNumber: 1, fromVC: self)
         case "Moments":
             globalMyLifeMomentsViewController.page = 1
             globalMyLifeMomentsViewController.insideView = ""
@@ -396,7 +398,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         
         switch whatEmptyTab {
         case "Journeys":
-            globalMyLifeContainerViewController.loadData("local-life", pageNumber: 1);
+            globalMyLifeContainerViewController.loadData(type: "local-life", pageNumber: 1, fromVC: self)
         case "Moments":
             globalMyLifeMomentsViewController.page = 1
             globalMyLifeMomentsViewController.insideView = ""
@@ -754,17 +756,11 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     
     func hideHeaderAndFooter(_ isShow:Bool) {
         if isFromFooter {
-        if(isShow) {
-            
-            self.mainFooter.frame.origin.y = self.view.frame.height + MAIN_FOOTER_HEIGHT
-        } else {
-            
-            self.mainFooter.frame.origin.y = self.view.frame.height - MAIN_FOOTER_HEIGHT
-            
-        }
+            if(isShow) {
+                self.mainFooter?.frame.origin.y = self.view.frame.height + MAIN_FOOTER_HEIGHT
+            } else {
+                self.mainFooter?.frame.origin.y = self.view.frame.height - MAIN_FOOTER_HEIGHT
+            }
         }
     }
-
-    
-
 }

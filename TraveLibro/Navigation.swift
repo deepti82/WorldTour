@@ -1586,7 +1586,7 @@ class Navigation {
     }
     
     
-    func getMomentJourney(pageNumber: Int,type:String, urlSlug:String?, completion: @escaping ((JSON) -> Void)) {
+    func getMomentJourney(pageNumber: Int, type: String, urlSlug: String?, forTab: String, completion: @escaping ((JSON, String) -> Void)) {
         
                 
         do {
@@ -1620,7 +1620,7 @@ class Navigation {
                 do {
                     let result = try JSONSerialization.jsonObject(with: data!, options: []) as! [String:AnyObject]
                     print("response: \(JSON(result))")
-                    completion(JSON(result))
+                    completion(JSON(result), forTab)
                     
                 } catch {
                     print("Error: \(error)")

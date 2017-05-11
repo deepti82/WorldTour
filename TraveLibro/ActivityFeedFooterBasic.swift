@@ -552,15 +552,15 @@ class ActivityFeedFooterBasic: UIView {
         
         if isSelfUser(otherUserID: postTop["user"]["_id"].stringValue) {
             
-            if(self.type == "MyLifeFeeds" && isSelfUser(otherUserID: currentUser["_id"].stringValue)) {
+            if(self.pageType == viewType.VIEW_TYPE_MY_LIFE && isSelfUser(otherUserID: currentUser["_id"].stringValue)) {
                 let EditCheckIn: UIAlertAction = UIAlertAction(title: "Edit Activity", style: .default)
                 {action -> Void in                   
-                    globalMyLifeViewController.showEditActivity(self.postTop)
+                    (self.parentController as! MyLifeViewController).showEditActivity(self.postTop)
                 }
                 
                 let EditDnt: UIAlertAction = UIAlertAction(title: "Change Date & Time", style: .default)
                 { action -> Void in
-                    globalMyLifeViewController.changeDateAndTime(self)
+                    (self.parentController as! MyLifeViewController).changeDateAndTime(self)
                 }
                 actionSheetControllerIOS8.addAction(EditDnt)
                 
@@ -569,23 +569,23 @@ class ActivityFeedFooterBasic: UIView {
                     
                     let alert = UIAlertController(title: "", message: "Are you sure you want to delete this Activtiy", preferredStyle: UIAlertControllerStyle.alert)
                     alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil))
-                    alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.destructive, handler: { action in
-                        request.deletePost(self.postTop["_id"].string!, uniqueId: self.postTop["uniqueId"].string!, user:currentUser["_id"].stringValue, completion: {(response) in
-                            
-                            let a = globalMyLifeContainerViewController.onTab
-                            globalMyLifeContainerViewController.loadData(a, pageNumber: 1)
-                            
+                    alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.destructive, handler: { action in                        
+                        request.deletePost(self.postTop["_id"].string!, uniqueId: self.postTop["uniqueId"].string!, user:currentUser["_id"].stringValue, completion: {(response) in                            
+                            if response.error != nil {
+                                print("error: \(response.error!.localizedDescription)")
+                            }
+                            else if response["value"].bool! {
+                                (self.parentController as! MyLifeViewController).reloadContainerData()
+                            }
                         })
-                        
-                        
                     }))
-                    showPopover(optionsController: alert, sender: sender, vc: globalMyLifeViewController)
+                    showPopover(optionsController: alert, sender: sender, vc: self.parentController)
                     
                 }
                 actionSheetControllerIOS8.addAction(DeletePost)
                 let share: UIAlertAction = UIAlertAction(title: "Add Photos/Videos", style: .default)
                 { action -> Void in
-                    globalMyLifeViewController.showEditAddActivity(self.postTop)
+                    (self.parentController as! MyLifeViewController).showEditAddActivity(self.postTop)
                 }
                 
                 let cancel: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel)
@@ -604,15 +604,17 @@ class ActivityFeedFooterBasic: UIView {
                         alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil))
                         alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.destructive, handler: { action in
                             request.deletePost(self.postTop["_id"].string!, uniqueId: self.postTop["uniqueId"].string!, user:currentUser["_id"].stringValue, completion: {(response) in
-                                
-                                let a = globalMyLifeContainerViewController.onTab
-                                globalMyLifeContainerViewController.loadData(a, pageNumber: 1)
-                                
+                                if response.error != nil {
+                                    print("error: \(response.error!.localizedDescription)")
+                                }
+                                else if response["value"].bool! {
+                                    (self.parentController as! MyLifeViewController).reloadContainerData()
+                                }
                             })
                             
                             
                         }))
-                        showPopover(optionsController: alert, sender: sender, vc: globalMyLifeViewController)                                                
+                        showPopover(optionsController: alert, sender: sender, vc: self.parentController)                                                
                     }
                     actionSheetControllerIOS8.addAction(DeletePost)
                     
@@ -621,14 +623,14 @@ class ActivityFeedFooterBasic: UIView {
                 let reportActionButton: UIAlertAction = UIAlertAction(title: "Hide", style: .default) {action -> Void in
                     let alert = UIAlertController(title: "Hide", message: "Hided successfuly", preferredStyle: UIAlertControllerStyle.alert)
                     alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-                    showPopover(optionsController: alert, sender: sender, vc: globalNavigationController)
+                    showPopover(optionsController: alert, sender: sender, vc: self.parentController)
                     
                 }
                 
                 let reportActionButton1: UIAlertAction = UIAlertAction(title: "Report", style: .default) {action -> Void in
                     let alert = UIAlertController(title: "Report", message: "Reported Successfully", preferredStyle: UIAlertControllerStyle.alert)
                     alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-                    showPopover(optionsController: alert, sender: sender, vc: globalNavigationController)                    
+                    showPopover(optionsController: alert, sender: sender, vc: self.parentController)                    
                 }
                 
                 if isSelfUser(otherUserID: currentUser["_id"].stringValue) {
@@ -650,7 +652,7 @@ class ActivityFeedFooterBasic: UIView {
         }
         else{
             if isBuddy() {
-                if self.type == "MyLifeFeeds"{
+                if self.pageType == viewType.VIEW_TYPE_MY_LIFE {
                     let DeletePost: UIAlertAction = UIAlertAction(title: "Delete Activity", style: .default)
                     { action -> Void in
                         
@@ -658,16 +660,17 @@ class ActivityFeedFooterBasic: UIView {
                         alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil))
                         alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.destructive, handler: { action in
                             request.deletePost(self.postTop["_id"].string!, uniqueId: self.postTop["uniqueId"].string!, user:currentUser["_id"].stringValue, completion: {(response) in
-                                
-                                let a = globalMyLifeContainerViewController.onTab
-                                globalMyLifeContainerViewController.journeyLoader()
-                                globalMyLifeContainerViewController.loadData(a, pageNumber: 1)
-                                
+                                if response.error != nil {
+                                    print("error: \(response.error!.localizedDescription)")
+                                }
+                                else if response["value"].bool! {
+                                    (self.parentController as! MyLifeViewController).reloadContainerData()
+                                }                                
                             })
                             
                             
                         }))
-                        showPopover(optionsController: alert, sender: sender, vc: globalMyLifeViewController)                        
+                        showPopover(optionsController: alert, sender: sender, vc: self.parentController)                        
                     }
                     actionSheetControllerIOS8.addAction(DeletePost)
                 }
@@ -677,13 +680,13 @@ class ActivityFeedFooterBasic: UIView {
             let reportActionButton1: UIAlertAction = UIAlertAction(title: "Report", style: .default) {action -> Void in
                 let alert = UIAlertController(title: "Report", message: "Reported Successfully", preferredStyle: UIAlertControllerStyle.alert)
                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-                showPopover(optionsController: alert, sender: sender, vc: globalNavigationController)
+                showPopover(optionsController: alert, sender: sender, vc: self.parentController)
             }
             
             let reportActionButton: UIAlertAction = UIAlertAction(title: "Hide", style: .default) {action -> Void in
                 let alert = UIAlertController(title: "Hide", message: "Hided successfuly", preferredStyle: UIAlertControllerStyle.alert)
                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-                showPopover(optionsController: alert, sender: sender, vc: globalNavigationController)
+                showPopover(optionsController: alert, sender: sender, vc: self.parentController)
             }
             
             if self.type == "popular"{
@@ -709,7 +712,7 @@ class ActivityFeedFooterBasic: UIView {
         }
         
         if shouldPresent {
-            showPopover(optionsController: actionSheetControllerIOS8, sender: sender, vc: globalNavigationController)
+            showPopover(optionsController: actionSheetControllerIOS8, sender: sender, vc: self.parentController)
         }
         
     }
