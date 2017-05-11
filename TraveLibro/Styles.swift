@@ -368,11 +368,11 @@ func getThought (_ post:JSON) ->  NSMutableAttributedString {
     let buddy = post["buddies"].arrayValue;
     if(post["thoughts"].stringValue != "" && post["thoughts"].stringValue != "") {
 //        retText = post["thoughts"].stringValue
-        retText.append(getRegularString(string: post["thoughts"].stringValue, size: TL_REGULAR_FONT_SIZE))
+        retText.append(getRegularString(string: post["thoughts"].stringValue.trimmingCharacters(in: CharacterSet.whitespaces), size: TL_REGULAR_FONT_SIZE))
         if(location != nil && location != "") {
 //            retText = retText + " at " + location!
             retText.append(getRegularString(string: " at ", size: TL_REGULAR_FONT_SIZE))
-            retText.append(getBoldString(string: location!, size: TL_REGULAR_FONT_SIZE))
+            retText.append(getBoldString(string: location!.trimmingCharacters(in: CharacterSet.whitespaces), size: TL_REGULAR_FONT_SIZE))
             
             if(buddy.count == 1) {
 //                retText = retText + " with " + buddy[0]["name"].stringValue
@@ -421,7 +421,7 @@ func getThought (_ post:JSON) ->  NSMutableAttributedString {
         if(location != nil && location != "") {
 //            retText = "At " + location!
             retText.append(getRegularString(string: "At ", size: TL_REGULAR_FONT_SIZE))
-            retText.append(getBoldString(string: location!, size: TL_REGULAR_FONT_SIZE))
+            retText.append(getBoldString(string: location!.trimmingCharacters(in: CharacterSet.whitespaces), size: TL_REGULAR_FONT_SIZE))
 
             if(buddy.count == 1) {
 //                retText = retText + " with " + buddy[0]["name"].stringValue
@@ -484,11 +484,11 @@ func getThoughtForLocalPost (_ post: Post) ->  NSMutableAttributedString {
     
     if(post.post_thoughts != "" ) {
         //        retText = post["thoughts"].stringValue
-        retText.append(getRegularString(string: post.post_thoughts, size: TL_REGULAR_FONT_SIZE))
+        retText.append(getRegularString(string: post.post_thoughts.trimmingCharacters(in: CharacterSet.whitespaces), size: TL_REGULAR_FONT_SIZE))
         if(location != nil && location != "") {
             //            retText = retText + " at " + location!
             retText.append(getRegularString(string: " at ", size: TL_REGULAR_FONT_SIZE))
-            retText.append(getBoldString(string: location!, size: TL_REGULAR_FONT_SIZE))
+            retText.append(getBoldString(string: location!.trimmingCharacters(in: CharacterSet.whitespaces), size: TL_REGULAR_FONT_SIZE))
             
             if(buddy.count == 1) {
                 //                retText = retText + " with " + buddy[0]["name"].stringValue
@@ -537,7 +537,7 @@ func getThoughtForLocalPost (_ post: Post) ->  NSMutableAttributedString {
         if(location != nil && location != "") {
             //            retText = "At " + location!
             retText.append(getRegularString(string: "At ", size: TL_REGULAR_FONT_SIZE))
-            retText.append(getBoldString(string: location!, size: TL_REGULAR_FONT_SIZE))
+            retText.append(getBoldString(string: location!.trimmingCharacters(in: CharacterSet.whitespaces), size: TL_REGULAR_FONT_SIZE))
             
             if(buddy.count == 1) {
                 //                retText = retText + " with " + buddy[0]["name"].stringValue
