@@ -2198,7 +2198,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Categorise your location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zyU-r4-AaB">
                                 <rect key="frame" x="106" y="28" width="164" height="21"/>
                                 <fontDescription key="fontDescription" name="Avenir-LightOblique" family="Avenir" pointSize="15"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="gB3-RH-Re8">
@@ -2230,7 +2230,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sights &amp; Landmarks" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MD5-WO-o8h">
                                                     <rect key="frame" x="0.0" y="60" width="100" height="40"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
-                                                    <color key="textColor" red="0.13725490870000001" green="0.1764705926" blue="0.29019609089999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -11622,7 +11622,7 @@
                                         </variation>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z0I-Lp-FTe">
-                                        <rect key="frame" x="0.0" y="224.5" width="375" height="0.0"/>
+                                        <rect key="frame" x="0.0" y="225" width="375" height="0.0"/>
                                         <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="28"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -11634,7 +11634,7 @@
                                         </variation>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0jF-yc-ZLY">
-                                        <rect key="frame" x="0.0" y="227.5" width="375" height="0.0"/>
+                                        <rect key="frame" x="0.0" y="228" width="375" height="0.0"/>
                                         <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="14"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -11646,10 +11646,10 @@
                                         </variation>
                                     </label>
                                     <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" distribution="equalCentering" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="OWa-Af-WcU">
-                                        <rect key="frame" x="131" y="230.5" width="113" height="24"/>
+                                        <rect key="frame" x="131" y="231" width="113" height="24"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="more about me... " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JX6-oW-UaY">
-                                                <rect key="frame" x="0.0" y="4" width="97" height="16.5"/>
+                                                <rect key="frame" x="0.0" y="3" width="97" height="17"/>
                                                 <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
@@ -11673,20 +11673,20 @@
                                         </connections>
                                     </stackView>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="etL-Pz-bP1">
-                                        <rect key="frame" x="27" y="254.5" width="321" height="0.0"/>
+                                        <rect key="frame" x="27" y="255" width="321" height="0.0"/>
                                         <constraints>
                                             <constraint firstAttribute="height" priority="250" id="P0P-Cg-fIG"/>
                                         </constraints>
                                     </view>
                                     <imageView opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" image="badge1" translatesAutoresizingMaskIntoConstraints="NO" id="TCp-yu-KZi">
-                                        <rect key="frame" x="355" y="95.5" width="20" height="150"/>
+                                        <rect key="frame" x="355" y="96" width="20" height="150"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="150" id="faS-Rn-53T"/>
                                             <constraint firstAttribute="width" constant="20" id="ocF-gG-OGu"/>
                                         </constraints>
                                     </imageView>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="6SM-NB-TxB">
-                                        <rect key="frame" x="10" y="269.5" width="356" height="60"/>
+                                        <rect key="frame" x="10" y="270" width="356" height="60"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="60" id="rNU-Id-M3y"/>
@@ -11759,10 +11759,10 @@
                                         </cells>
                                     </collectionView>
                                     <view opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lus-Yg-Nh8">
-                                        <rect key="frame" x="99" y="353.5" width="178" height="49.5"/>
+                                        <rect key="frame" x="99" y="354" width="178" height="49"/>
                                         <subviews>
                                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t7C-dp-ZuK">
-                                                <rect key="frame" x="128.5" y="0.0" width="49.5" height="49.5"/>
+                                                <rect key="frame" x="129" y="0.0" width="49" height="49"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="t7C-dp-ZuK" secondAttribute="height" multiplier="1:1" id="ILB-uD-GSr"/>
                                                 </constraints>
@@ -11774,7 +11774,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VXc-PH-cdR">
-                                                <rect key="frame" x="0.0" y="0.0" width="128.5" height="49.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="129" height="49"/>
                                                 <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="14"/>
                                                 <state key="normal" title="   Explore My Life">
                                                     <color key="titleColor" red="0.98697105929999995" green="0.99956106259999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
