@@ -345,7 +345,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ziG-A0-iKR">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="10" width="600" height="590"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="OTGCell" id="AGa-MB-198" customClass="TLOTGJourneyTableViewCell" customModule="TraveLibro" customModuleProvider="target">
@@ -407,7 +407,7 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="ziG-A0-iKR" firstAttribute="top" secondItem="TDz-67-qLY" secondAttribute="top" id="SLQ-0I-jtA"/>
+                            <constraint firstItem="ziG-A0-iKR" firstAttribute="top" secondItem="TDz-67-qLY" secondAttribute="top" constant="10" id="SLQ-0I-jtA"/>
                             <constraint firstAttribute="trailing" secondItem="ziG-A0-iKR" secondAttribute="trailing" id="TSc-7K-eWn"/>
                             <constraint firstAttribute="bottom" secondItem="ziG-A0-iKR" secondAttribute="bottom" id="rBW-aP-Ao4"/>
                             <constraint firstItem="ziG-A0-iKR" firstAttribute="leading" secondItem="TDz-67-qLY" secondAttribute="leading" id="xBi-ms-HDf"/>
@@ -4106,7 +4106,7 @@
                                                         </state>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Adventure" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="70K-bz-SFN">
-                                                        <rect key="frame" x="0.0" y="56" width="135" height="23"/>
+                                                        <rect key="frame" x="0.0" y="56" width="135" height="22"/>
                                                         <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
@@ -4140,7 +4140,7 @@
                                                         </state>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Backpacking" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T4t-1R-Z3Q">
-                                                        <rect key="frame" x="0.0" y="56" width="135" height="23"/>
+                                                        <rect key="frame" x="0.0" y="56" width="135" height="22"/>
                                                         <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
@@ -4174,7 +4174,7 @@
                                                         </state>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Religious" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PSH-dT-bu9">
-                                                        <rect key="frame" x="0.0" y="56" width="134" height="23"/>
+                                                        <rect key="frame" x="0.0" y="56" width="134" height="22"/>
                                                         <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
@@ -4304,7 +4304,7 @@
                                                         </state>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Family" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2mQ-43-eQj">
-                                                        <rect key="frame" x="0.0" y="56" width="135" height="23"/>
+                                                        <rect key="frame" x="0.0" y="56" width="135" height="22"/>
                                                         <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
@@ -4338,7 +4338,7 @@
                                                         </state>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Friends" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QgM-Vw-B9Q">
-                                                        <rect key="frame" x="0.0" y="56" width="135" height="23"/>
+                                                        <rect key="frame" x="0.0" y="56" width="135" height="22"/>
                                                         <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
@@ -4372,7 +4372,7 @@
                                                         </state>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Better Half" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SX5-1L-yTl">
-                                                        <rect key="frame" x="0.0" y="56" width="134" height="23"/>
+                                                        <rect key="frame" x="0.0" y="56" width="134" height="22"/>
                                                         <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
@@ -4490,10 +4490,10 @@
                                         <rect key="frame" x="0.0" y="170" width="540" height="135"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="swM-zt-9tD">
-                                                <rect key="frame" x="136" y="31" width="135" height="74"/>
+                                                <rect key="frame" x="135" y="31" width="136" height="74"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0NB-Rw-XnP">
-                                                        <rect key="frame" x="27" y="0.0" width="80" height="52"/>
+                                                        <rect key="frame" x="26" y="0.0" width="82" height="52"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                         <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
@@ -4502,7 +4502,7 @@
                                                         </state>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Budget" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iam-ht-rQq">
-                                                        <rect key="frame" x="0.0" y="57" width="135" height="22"/>
+                                                        <rect key="frame" x="0.0" y="57" width="136" height="22"/>
                                                         <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
@@ -5384,7 +5384,7 @@
                                                         <rect key="frame" x="1" y="0.0" width="137" height="97"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kLD-2P-SYE">
-                                                                <rect key="frame" x="1" y="0.0" width="137" height="62"/>
+                                                                <rect key="frame" x="1" y="0.0" width="137" height="63"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="50" id="nfp-rL-0N3"/>
                                                                 </constraints>
@@ -5398,7 +5398,7 @@
                                                                 </variation>
                                                             </button>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Luxury" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="COh-cj-V4f">
-                                                                <rect key="frame" x="1" y="67" width="137" height="30"/>
+                                                                <rect key="frame" x="1" y="68" width="137" height="29"/>
                                                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
                                                                 <color key="textColor" red="0.17254901959999999" green="0.2156862745" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -5412,7 +5412,7 @@
                                                         <rect key="frame" x="158" y="0.0" width="137" height="97"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FUZ-5C-1yQ">
-                                                                <rect key="frame" x="0.0" y="0.0" width="137" height="62"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="137" height="63"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="50" id="YeH-FQ-Bqt"/>
                                                                 </constraints>
@@ -5427,7 +5427,7 @@
                                                                 </variation>
                                                             </button>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Religious" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hxg-wR-Xwa">
-                                                                <rect key="frame" x="0.0" y="67" width="137" height="30"/>
+                                                                <rect key="frame" x="0.0" y="68" width="137" height="29"/>
                                                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
                                                                 <color key="textColor" red="0.17254901959999999" green="0.2156862745" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -5441,7 +5441,7 @@
                                                         <rect key="frame" x="315" y="0.0" width="138" height="97"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sri-Z6-433">
-                                                                <rect key="frame" x="0.0" y="0.0" width="138" height="62"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="138" height="63"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="50" id="FXY-JZ-Oka"/>
                                                                 </constraints>
@@ -5455,7 +5455,7 @@
                                                                 </variation>
                                                             </button>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Friends" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vVG-dh-mtG">
-                                                                <rect key="frame" x="0.0" y="67" width="138" height="30"/>
+                                                                <rect key="frame" x="0.0" y="68" width="138" height="29"/>
                                                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
                                                                 <color key="textColor" red="0.17254901959999999" green="0.2156862745" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -11416,7 +11416,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jV0-NN-2Hf">
-                                <rect key="frame" x="0.0" y="-1" width="375" height="553"/>
+                                <rect key="frame" x="0.0" y="10" width="375" height="552"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="OTGCell" id="rSj-Bb-Ggw" customClass="TLOTGJourneyTableViewCell" customModule="TraveLibro" customModuleProvider="target">
@@ -11480,7 +11480,7 @@
                             <constraint firstItem="jV0-NN-2Hf" firstAttribute="width" secondItem="Kib-N7-Nib" secondAttribute="width" id="E2M-Zi-dcw"/>
                             <constraint firstItem="jV0-NN-2Hf" firstAttribute="centerX" secondItem="Kib-N7-Nib" secondAttribute="centerX" id="KhE-v9-JWR"/>
                             <constraint firstItem="jV0-NN-2Hf" firstAttribute="height" secondItem="Kib-N7-Nib" secondAttribute="height" id="bD4-bq-XGJ"/>
-                            <constraint firstItem="jV0-NN-2Hf" firstAttribute="centerY" secondItem="Kib-N7-Nib" secondAttribute="centerY" id="kFC-Xt-PLK"/>
+                            <constraint firstItem="jV0-NN-2Hf" firstAttribute="centerY" secondItem="Kib-N7-Nib" secondAttribute="centerY" constant="10" id="kFC-Xt-PLK"/>
                         </constraints>
                     </view>
                     <connections>
@@ -11690,7 +11690,7 @@
                                         </connections>
                                     </stackView>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="etL-Pz-bP1">
-                                        <rect key="frame" x="43" y="212" width="514" height="0.0"/>
+                                        <rect key="frame" x="44" y="212" width="513" height="0.0"/>
                                         <constraints>
                                             <constraint firstAttribute="height" priority="250" id="P0P-Cg-fIG"/>
                                         </constraints>
@@ -11703,7 +11703,7 @@
                                         </constraints>
                                     </imageView>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="6SM-NB-TxB">
-                                        <rect key="frame" x="16" y="227" width="569" height="60"/>
+                                        <rect key="frame" x="15" y="227" width="570" height="60"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="60" id="rNU-Id-M3y"/>

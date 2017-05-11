@@ -12,8 +12,7 @@ class MyLifeContainerViewController: UIViewController, UITableViewDelegate, UITa
     var emptyTravel : MyLifeJourneyTravel!
     var timeTag:TimestampTagViewOnScroll!
     var isViewed:Bool = true
-    var onTab:String = "all"
-    var loader = LoadingOverlay()
+    var onTab:String = "all"    
     var isFromFooter:Bool = true
     
     var pageType: viewType = viewType.VIEW_TYPE_MY_LIFE
@@ -24,6 +23,9 @@ class MyLifeContainerViewController: UIViewController, UITableViewDelegate, UITa
     
     private let TL_VISIBLE_CELL_TAG = 6789
     let separatorOffset = CGFloat(15.0)
+    
+    var loader = LoadingOverlay()
+    
     var parentController: MyLifeViewController!
     
     
@@ -106,7 +108,7 @@ class MyLifeContainerViewController: UIViewController, UITableViewDelegate, UITa
         
         currentPageNumber = 1
         hasMorePages = true
-        var isLoading = false
+        isLoading = false
         timeTag.isHidden = true
         
         self.feedsDataArray = []
@@ -114,7 +116,12 @@ class MyLifeContainerViewController: UIViewController, UITableViewDelegate, UITa
         
         if fromVC != nil {
             parentController = fromVC
-        }        
+        }
+        
+        if feedsDataArray.isEmpty && currentPageNumber == 1 {
+            loader.showOverlay(self.view)
+        }
+        
         self.getMyLifePostsData(pageNumber: currentPageNumber, type: type)
     }
     
@@ -148,7 +155,7 @@ class MyLifeContainerViewController: UIViewController, UITableViewDelegate, UITa
                     
                     self.reloadTableData()
                     
-                    if self.feedsDataArray.isEmpty {
+                    if self.feedsDataArray.isEmpty && pageNumber == 1 {
                         self.showNoData(show: true, type: type)
                     }
                     else {
@@ -166,8 +173,12 @@ class MyLifeContainerViewController: UIViewController, UITableViewDelegate, UITa
     //MARK: - Reload Table
     
     func reloadTableData() {
+        
+        loader.hideOverlayView()
+        
         self.isLoading = false
         self.myLifeFeedsTableView.reloadData()
+        
         if !self.feedsDataArray.isEmpty {
             timeTag.isHidden = false
             if currentPageNumber == 1 {

@@ -53,7 +53,10 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
     var hasMorePages = true
     var isLoading = false
     
-    let separatorOffset = CGFloat(15.0)    
+    let separatorOffset = CGFloat(15.0)
+    
+    var loader = LoadingOverlay()
+    
     
     //MARK: - LifeCycle
     
@@ -160,6 +163,10 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
         
         print("\n\n Will fetch data for : \(currentPageNumber)")
         
+        if feedsDataArray.isEmpty && currentPageNumber == 1 {
+            loader.showOverlay(self.view)
+        }
+        
         switch pageType {
             
         case .VIEW_TYPE_ACTIVITY:
@@ -213,11 +220,17 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
                     if !response["data"].arrayValue.isEmpty {
                         self.feedsDataArray.append(contentsOf: response["data"].arrayValue)                    
                     }
-                    else {
+                    else if !isFromCache {
                         self.hasMorePages = false
                     }
                     
-                    self.reloadTableData()                    
+                    self.reloadTableData()
+                    
+                    if !isFromCache {
+                        if self.feedsDataArray.isEmpty {
+                            self.showActivityFeedEmptyScreen()
+                        }
+                    }
                 })
             })
         }
@@ -302,9 +315,13 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
         }
     }
     
+    
     //MARK: - Reload Table
     
     func reloadTableData() {
+        
+        loader.hideOverlayView()
+        
         self.isLoading = false
         self.feedsTableView.reloadData()
     }
@@ -317,6 +334,7 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         if isLoading && hasMorePages {
             return (feedsDataArray.count+1)            
         }
@@ -609,4 +627,40 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
             self.mainFooter?.frame.origin.y = self.view.frame.height - MAIN_FOOTER_HEIGHT
         }
     }
+    
+    
+    //MARK: - Empty screen
+    
+    func removeEmptyScreen() {
+        for views in self.view.subviews {
+            if views.tag == 46 {
+                let expectedView = views
+                expectedView.removeFromSuperview()                
+            }
+        }
+    }
+    
+    func showActivityFeedEmptyScreen() {
+        
+        removeEmptyScreen()
+        
+        if pageType == viewType.VIEW_TYPE_ACTIVITY {
+            let noActivity = activityEmptyView(frame: CGRect(x: 0, y: 0, width: min(screenWidth*0.8, 256)  , height: 200))
+            noActivity.headerLabel.text = "Hi \(currentUser["name"].stringValue),"
+            noActivity.tag = 46
+            noActivity.center = CGPoint(x: screenWidth/2, y: screenHeight/2 - 50)
+            
+            noActivity.exploreView.isUserInteractionEnabled = true        
+            let tlTap = UITapGestureRecognizer(target: self, action: #selector(self.exploreNowClicked))
+            noActivity.exploreView.addGestureRecognizer(tlTap)
+            
+            self.view.addSubview(noActivity)
+        }
+    }
+    
+    func exploreNowClicked() {
+        print("\n Explore now clicked")
+        self.searchTapped(UIButton())
+    }
+    
 }
