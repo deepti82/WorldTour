@@ -72,6 +72,7 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
         getDarkBackGround(self)
         
         getUnreadNotificationCount()
+//        userBadgeImageView.imageresizeImage(image: userBadgeImageView.image!,newWidth: 50)
 
         self.userNameLabel.text = ""
         self.cityNameLabel.text = ""
@@ -141,6 +142,20 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     
     
     //MARK: - UI
+    
+    func resizeImage(image: UIImage, newWidth: CGFloat) -> UIImage? {
+        
+        let scale = newWidth / image.size.width
+        let newHeight = image.size.height * scale
+        UIGraphicsBeginImageContext(CGSize(width: newWidth, height: newHeight))
+        image.draw(in: CGRect(x: 0, y: 0, width: newWidth, height: newHeight))
+        
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage
+    }
+    
     
     func setNavigationBar() {
         
@@ -215,21 +230,21 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     }
     
     func setUserBadgeName(badge: String) {
-        
+        print(screenWidth/25)
         if currentUser["userBadgeName"].string == "newbie"{
-            self.userBadgeImageView.image = UIImage(named: "badge1")
+            self.userBadgeImageView.image = resizeImage(image: UIImage(named: "badge1")!, newWidth: screenWidth/25)
         }
         else if currentUser["userBadgeName"].string == "justGotWings"{
-            self.userBadgeImageView.image = UIImage(named: "badge2")
+            self.userBadgeImageView.image = resizeImage(image: UIImage(named: "badge2")!, newWidth: screenWidth/25)
         }
         else if currentUser["userBadgeName"].string == "globeTrotter"{
-            self.userBadgeImageView.image = UIImage(named: "badge3")
+            self.userBadgeImageView.image = resizeImage(image: UIImage(named: "badge3")!, newWidth: screenWidth/25)
         }
         else if currentUser["userBadgeName"].string == "wayfarer"{
-            self.userBadgeImageView.image = UIImage(named: "badge4")
+            self.userBadgeImageView.image = resizeImage(image: UIImage(named: "badge4")!, newWidth: screenWidth/25)
         } 
         else if currentUser["userBadgeName"].string == "nomad"{
-            self.userBadgeImageView.image = UIImage(named: "badge5")
+            self.userBadgeImageView.image = resizeImage(image: UIImage(named: "badge5")!, newWidth: screenWidth/25)
         }
     }
     
