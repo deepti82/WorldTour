@@ -2004,7 +2004,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         addNewView.removeFromSuperview()
         //        getScrollView(height, journey: JSON(""))
         
-        otgView = startOTGView(frame: CGRect(x: 0, y: 0, width: mainScroll.frame.width, height: screenHeight + 64))
+        otgView = startOTGView(frame: CGRect(x: 0, y: 0, width: mainScroll.frame.width, height: mainScroll.frame.height + 64))
         print("ooooooooo\(myJourney)")
         otgView.buddiesJson = self.addedBuddies
         
