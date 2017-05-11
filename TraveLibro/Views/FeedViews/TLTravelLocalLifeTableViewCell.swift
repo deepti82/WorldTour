@@ -136,7 +136,7 @@ class TLTravelLocalLifeTableViewCell: UITableViewCell, PlayerDelegate {
         }
         let prevHeight = totalHeight
         
-        self.videosAndPhotosLayout(feed: self.feeds)
+        self.videosAndPhotosLayout(feed: self.feeds, pageType: pageType)
         
         if prevHeight == totalHeight {
             //Only text Header
@@ -145,6 +145,12 @@ class TLTravelLocalLifeTableViewCell: UITableViewCell, PlayerDelegate {
             FMHeaderTag?.colorTag(feed: self.feeds)
             self.contentView.addSubview(FMHeaderTag!)
             totalHeight += 80
+        }
+        
+        FMHeaderTag?.isHidden = false
+        if pageType == viewType.VIEW_TYPE_MY_LIFE ||
+            pageType == viewType.VIEW_TYPE_LOCAL_LIFE {
+            FMHeaderTag?.isHidden = true
         }
         
         FFooterViewBasic.parentController = helper
@@ -174,7 +180,7 @@ class TLTravelLocalLifeTableViewCell: UITableViewCell, PlayerDelegate {
         FBackground.frame = CGRect(x: 0, y: 0, width: screenWidth, height: totalHeight)
     }
     
-    private func videosAndPhotosLayout(feed:JSON) {
+    private func videosAndPhotosLayout(feed: JSON, pageType: viewType?) {
         
         //Image generation only
         if(feed["videos"].count > 0) {
@@ -198,17 +204,24 @@ class TLTravelLocalLifeTableViewCell: UITableViewCell, PlayerDelegate {
             
             self.FMVideoContainer?.videoHolder.hnk_setImageFromURL(getImageURL(feed["videos"][0]["thumbnail"].stringValue, width: BIG_PHOTO_WIDTH))
             
-            if feed["type"].stringValue == "travel-life" {
-                FMVideoContainer?.tagText.text = "Travel Life"
-                FMVideoContainer?.tagView.backgroundColor = mainOrangeColor
-                FMVideoContainer?.playBtn.tintColor = mainOrangeColor
+            if pageType != viewType.VIEW_TYPE_MY_LIFE {
+                FMVideoContainer?.tagText.isHidden = false
+                if feed["type"].stringValue == "travel-life" {
+                    FMVideoContainer?.tagText.text = "Travel Life"
+                    FMVideoContainer?.tagView.backgroundColor = mainOrangeColor
+                    FMVideoContainer?.playBtn.tintColor = mainOrangeColor
+                }
+                else{
+                    FMVideoContainer?.tagText.text = "  Local Life"
+                    FMVideoContainer?.tagText.textColor = UIColor(hex: "#303557")
+                    FMVideoContainer?.tagView.backgroundColor = endJourneyColor
+                    FMVideoContainer?.playBtn.tintColor = endJourneyColor
+                }
             }
-            else{
-                FMVideoContainer?.tagText.text = "  Local Life"
-                FMVideoContainer?.tagText.textColor = UIColor(hex: "#303557")
-                FMVideoContainer?.tagView.backgroundColor = endJourneyColor
-                FMVideoContainer?.playBtn.tintColor = endJourneyColor
+            else {
+                FMVideoContainer?.tagText.isHidden = true
             }
+            
             self.FMVideoContainer?.videoHolder.addSubview((self.FMPlayer?.view)!)
             self.contentView.addSubview(self.FMVideoContainer!)
             totalHeight += screenWidth*0.9
@@ -221,10 +234,13 @@ class TLTravelLocalLifeTableViewCell: UITableViewCell, PlayerDelegate {
             self.FMMainPhoto?.clipsToBounds = true
             self.FMMainPhoto?.image = UIImage(named: "logo-default")
             
-            FMHeaderTag = ActivityHeaderTag(frame: CGRect(x: 0, y: 30, width: screenWidth, height: 30))
-            FMHeaderTag?.tagParent.backgroundColor = UIColor.clear
-            FMHeaderTag?.colorTag(feed: feed)
-            self.FMMainPhoto?.addSubview(FMHeaderTag!)
+            if pageType != viewType.VIEW_TYPE_MY_LIFE &&
+                pageType != viewType.VIEW_TYPE_LOCAL_LIFE{
+                FMHeaderTag = ActivityHeaderTag(frame: CGRect(x: 0, y: 30, width: screenWidth, height: 30))
+                FMHeaderTag?.tagParent.backgroundColor = UIColor.clear
+                FMHeaderTag?.colorTag(feed: feed)
+                self.FMMainPhoto?.addSubview(FMHeaderTag!)
+            }
             
             self.contentView.addSubview(self.FMMainPhoto!)
             totalHeight += screenWidth*0.9
@@ -257,7 +273,8 @@ class TLTravelLocalLifeTableViewCell: UITableViewCell, PlayerDelegate {
                 self.contentView.addSubview(self.FMMainPhoto!)
                 totalHeight += screenWidth*0.9
                 
-                if feed["thoughts"] == nil || feed["thoughts"].stringValue == "" || feed["imageUrl"] != nil{
+                if ((pageType != viewType.VIEW_TYPE_MY_LIFE && pageType != viewType.VIEW_TYPE_LOCAL_LIFE) &&
+                    (feed["thoughts"] == nil || feed["thoughts"].stringValue == "" || feed["imageUrl"] != nil)) {
                     FMHeaderTag = ActivityHeaderTag(frame: CGRect(x: 0, y: 30, width: screenWidth, height: 28))
                     FMHeaderTag?.tagParent.backgroundColor = UIColor.clear
                     FMHeaderTag?.colorTag(feed: feed)

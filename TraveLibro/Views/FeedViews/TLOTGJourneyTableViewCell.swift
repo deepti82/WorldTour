@@ -112,7 +112,8 @@ class TLOTGJourneyTableViewCell: UITableViewCell {
         FMiddleView.frame = CGRect(x: 0, y: totalHeight, width: screenWidth, height: screenWidth*0.9)
         FMiddleView.fillData(feed: feedData)
         FMiddleView.headerTagTextLabel.isHidden = false
-        if pageType == viewType.VIEW_TYPE_POPULAR_JOURNEY {
+        if pageType == viewType.VIEW_TYPE_POPULAR_JOURNEY ||
+            pageType == viewType.VIEW_TYPE_MY_LIFE {
             FMiddleView.headerTagTextLabel.isHidden = true
         }
         totalHeight += screenWidth*0.9

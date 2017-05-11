@@ -39,8 +39,9 @@ class MyLifeContainerViewController: UIViewController, UITableViewDelegate, UITa
         isEmptyProfile = false
         
         timeTag = TimestampTagViewOnScroll(frame: CGRect(x: 0, y: 100, width: screenWidth + 8, height: 40))
-        timeTag.alpha = 0.8
+        timeTag.alpha = 0.8        
         self.view.addSubview(timeTag)
+        timeTag.isHidden = true
     }
     
     override func didReceiveMemoryWarning() {
@@ -103,6 +104,7 @@ class MyLifeContainerViewController: UIViewController, UITableViewDelegate, UITa
     
     func loadData(type:String, pageNumber:Int, fromVC: MyLifeViewController?) {
         
+        timeTag.isHidden = true
         self.feedsDataArray = []
         self.reloadTableData()
         
@@ -162,6 +164,12 @@ class MyLifeContainerViewController: UIViewController, UITableViewDelegate, UITa
     func reloadTableData() {
         self.isLoading = false
         self.myLifeFeedsTableView.reloadData()
+        if !self.feedsDataArray.isEmpty {
+            timeTag.isHidden = false
+            if currentPageNumber == 1 {
+                self.scrollViewDidScroll(self.myLifeFeedsTableView)
+            }
+        }
     }
     
     func changeDateTag() {

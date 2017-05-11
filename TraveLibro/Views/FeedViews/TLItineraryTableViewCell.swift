@@ -78,7 +78,7 @@ class TLItineraryTableViewCell: UITableViewCell {
         if feedData != nil {
             setData(feedData: feedData!, helper: helper!, pageType: nil, delegate: nil)            
         }
-    }    
+    }
     
     func setData(feedData: JSON, helper: UIViewController, pageType: viewType?, delegate: TLFooterBasicDelegate?) {
         

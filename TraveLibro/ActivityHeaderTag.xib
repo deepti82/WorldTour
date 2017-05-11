@@ -46,7 +46,7 @@
                 <constraint firstItem="Upi-j7-zig" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="1" id="kx7-4b-yfQ"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="33.5" y="-202"/>
+            <point key="canvasLocation" x="-1321" y="-65"/>
         </view>
     </objects>
 </document>
