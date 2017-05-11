@@ -10,8 +10,8 @@ import UIKit
 
 class TLItineraryTableViewCell: UITableViewCell {
 
-    var FProfileHeader: ActivityProfileHeader!
-    var FBackground = NotificationBackground()    
+    var FBackground: NotificationBackground!
+    var FProfileHeader: ActivityProfileHeader!        
     var FTextHeader: TLFeedHeaderTextFlagView!
     var FMiddleView: TLItinerayPostView!
     var FFooterViewBasic: ActivityFeedFooterBasic!

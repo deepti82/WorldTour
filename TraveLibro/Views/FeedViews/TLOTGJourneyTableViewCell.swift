@@ -10,7 +10,7 @@ import UIKit
 
 class TLOTGJourneyTableViewCell: UITableViewCell {
 
-    var FBackground = NotificationBackground()
+    var FBackground: NotificationBackground!
     var FProfileHeader: ActivityProfileHeader!
     var FTextHeader: TLFeedHeaderTextFlagView!
     var FMiddleView: ActivityFeedImageView!

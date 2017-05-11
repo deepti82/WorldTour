@@ -102,16 +102,20 @@ class MyLifeContainerViewController: UIViewController, UITableViewDelegate, UITa
     
     //MARK: - Fetch Data
     
-    func loadData(type:String, pageNumber:Int, fromVC: MyLifeViewController?) {
+    func loadData(type:String, fromVC: MyLifeViewController?) {
         
+        currentPageNumber = 1
+        hasMorePages = true
+        var isLoading = false
         timeTag.isHidden = true
+        
         self.feedsDataArray = []
         self.reloadTableData()
         
         if fromVC != nil {
             parentController = fromVC
         }        
-        self.getMyLifePostsData(pageNumber: pageNumber, type: type)
+        self.getMyLifePostsData(pageNumber: currentPageNumber, type: type)
     }
     
     func getMyLifePostsData(pageNumber: Int, type: String){
@@ -186,105 +190,126 @@ class MyLifeContainerViewController: UIViewController, UITableViewDelegate, UITa
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if isLoading && hasMorePages {
+            return (feedsDataArray.count+1)            
+        }
         return feedsDataArray.count
     }    
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        var height = separatorOffset
         
-        let cellData = self.feedsDataArray[indexPath.row]        
-        switch cellData["type"].stringValue {
+        if (indexPath.row < feedsDataArray.count) {
+            var height = separatorOffset
             
-        case "on-the-go-journey":
-            fallthrough
-        case "ended-journey":
-            let displatTextString = getTextHeader(feed: cellData, pageType: pageType)
-            var textHeight = (heightOfAttributedText(attributedString: displatTextString, width: (screenWidth-21)) + 10)            
-            textHeight = ((cellData["countryVisited"].arrayValue).isEmpty) ? textHeight : max(textHeight, 36)
-            height = height + ((pageType == viewType.VIEW_TYPE_MY_LIFE) ? 0 : FEEDS_HEADER_HEIGHT) + textHeight + screenWidth*0.9 + (shouldShowFooterCountView(feed: cellData) ? FEED_FOOTER_HEIGHT : (FEED_FOOTER_HEIGHT-FEED_FOOTER_LOWER_VIEW_HEIGHT)) + (isLocalFeed(feed: cellData) ? FEED_UPLOADING_VIEW_HEIGHT : 0)
-            break
+            let cellData = self.feedsDataArray[indexPath.row]        
+            switch cellData["type"].stringValue {
+                
+            case "on-the-go-journey":
+                fallthrough
+            case "ended-journey":
+                let displatTextString = getTextHeader(feed: cellData, pageType: pageType)
+                var textHeight = (heightOfAttributedText(attributedString: displatTextString, width: (screenWidth-21)) + 10)            
+                textHeight = ((cellData["countryVisited"].arrayValue).isEmpty) ? textHeight : max(textHeight, 36)
+                height = height + ((pageType == viewType.VIEW_TYPE_MY_LIFE) ? 0 : FEEDS_HEADER_HEIGHT) + textHeight + screenWidth*0.9 + (shouldShowFooterCountView(feed: cellData) ? FEED_FOOTER_HEIGHT : (FEED_FOOTER_HEIGHT-FEED_FOOTER_LOWER_VIEW_HEIGHT)) + (isLocalFeed(feed: cellData) ? FEED_UPLOADING_VIEW_HEIGHT : 0)
+                break
+                
+                
+            case "travel-life":
+                fallthrough
+            case "local-life":
+                height = height + ((pageType == viewType.VIEW_TYPE_MY_LIFE) ? 0 : FEEDS_HEADER_HEIGHT) + getHeightForMiddleViewPostType(feed: cellData, pageType: viewType.VIEW_TYPE_MY_LIFE) + (shouldShowFooterCountView(feed: cellData) ? FEED_FOOTER_HEIGHT : (FEED_FOOTER_HEIGHT-FEED_FOOTER_LOWER_VIEW_HEIGHT)) + (isLocalFeed(feed: cellData) ? FEED_UPLOADING_VIEW_HEIGHT : 0)                        
+                break
+                
+                
+            case "quick-itinerary":
+                fallthrough
+            case "detail-itinerary":
+                let displatTextString = getTextHeader(feed: cellData, pageType: pageType)
+                var textHeight = (heightOfAttributedText(attributedString: displatTextString, width: (screenWidth-21)) + 10)            
+                textHeight = ((cellData["countryVisited"].arrayValue).isEmpty) ? textHeight : max(textHeight, 36)
+                height = height + ((pageType == viewType.VIEW_TYPE_ACTIVITY) ? FEEDS_HEADER_HEIGHT : 0) + textHeight + screenWidth*0.9 + (shouldShowFooterCountView(feed: cellData) ? FEED_FOOTER_HEIGHT : (FEED_FOOTER_HEIGHT-FEED_FOOTER_LOWER_VIEW_HEIGHT)) + (isLocalFeed(feed: cellData) ? FEED_UPLOADING_VIEW_HEIGHT : 0)
+                break
+                
+            default:
+                
+                print("\n default case : \(cellData["type"].stringValue)")
+            }
             
-            
-        case "travel-life":
-            fallthrough
-        case "local-life":
-            height = height + ((pageType == viewType.VIEW_TYPE_MY_LIFE) ? 0 : FEEDS_HEADER_HEIGHT) + getHeightForMiddleViewPostType(feed: cellData, pageType: viewType.VIEW_TYPE_MY_LIFE) + (shouldShowFooterCountView(feed: cellData) ? FEED_FOOTER_HEIGHT : (FEED_FOOTER_HEIGHT-FEED_FOOTER_LOWER_VIEW_HEIGHT)) + (isLocalFeed(feed: cellData) ? FEED_UPLOADING_VIEW_HEIGHT : 0)                        
-            break
-            
-            
-        case "quick-itinerary":
-            fallthrough
-        case "detail-itinerary":
-            let displatTextString = getTextHeader(feed: cellData, pageType: pageType)
-            var textHeight = (heightOfAttributedText(attributedString: displatTextString, width: (screenWidth-21)) + 10)            
-            textHeight = ((cellData["countryVisited"].arrayValue).isEmpty) ? textHeight : max(textHeight, 36)
-            height = height + ((pageType == viewType.VIEW_TYPE_ACTIVITY) ? FEEDS_HEADER_HEIGHT : 0) + textHeight + screenWidth*0.9 + (shouldShowFooterCountView(feed: cellData) ? FEED_FOOTER_HEIGHT : (FEED_FOOTER_HEIGHT-FEED_FOOTER_LOWER_VIEW_HEIGHT)) + (isLocalFeed(feed: cellData) ? FEED_UPLOADING_VIEW_HEIGHT : 0)
-            break
-            
-        default:
-            
-            print("\n default case : \(cellData["type"].stringValue)")
+            return height
         }
-        
-        return height
+        else {
+            return CGFloat(100)
+        }        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cellData = self.feedsDataArray[indexPath.row]
-        
-        switch cellData["type"].stringValue {
+        if (indexPath.row < feedsDataArray.count) {
+            let cellData = self.feedsDataArray[indexPath.row]
             
-        case "on-the-go-journey":
-            fallthrough
-        case "ended-journey":
-            var feedCell = tableView.dequeueReusableCell(withIdentifier: "OTGCell", for: indexPath) as? TLOTGJourneyTableViewCell
-            
-            if feedCell == nil {
-                feedCell = TLOTGJourneyTableViewCell.init(style: .default, reuseIdentifier: "OTGCell", feedData: cellData, helper: parentController)
+            switch cellData["type"].stringValue {
+                
+            case "on-the-go-journey":
+                fallthrough
+            case "ended-journey":
+                var feedCell = tableView.dequeueReusableCell(withIdentifier: "OTGCell", for: indexPath) as? TLOTGJourneyTableViewCell
+                
+                if feedCell == nil {
+                    feedCell = TLOTGJourneyTableViewCell.init(style: .default, reuseIdentifier: "OTGCell", feedData: cellData, helper: parentController)
+                }
+                
+                feedCell?.setData(feedData: cellData, helper: parentController, pageType: pageType, delegate: self)
+                feedCell?.FFooterViewBasic.tag = indexPath.row
+                return feedCell!
+                
+                
+            case "travel-life":
+                fallthrough
+            case "local-life":
+                var feedCell = tableView.dequeueReusableCell(withIdentifier: "TravelLocalCell", for: indexPath) as? TLTravelLocalLifeTableViewCell
+                
+                if feedCell == nil {
+                    feedCell = TLTravelLocalLifeTableViewCell.init(style: .default, reuseIdentifier: "TravelLocalCell", feedData: cellData, helper: parentController)
+                }
+                
+                feedCell?.setData(feedData: cellData, helper: parentController, pageType: pageType, delegate: self)
+                feedCell?.FFooterViewBasic.tag = indexPath.row
+                feedCell?.tag = TL_VISIBLE_CELL_TAG
+                return feedCell!
+                
+                
+            case "quick-itinerary":
+                fallthrough
+            case "detail-itinerary":
+                var feedCell = tableView.dequeueReusableCell(withIdentifier: "ItineraryCell", for: indexPath) as? TLItineraryTableViewCell
+                
+                if feedCell == nil {
+                    feedCell = TLItineraryTableViewCell.init(style: .default, reuseIdentifier: "ItineraryCell", feedData: cellData, helper: parentController)
+                }
+                
+                feedCell?.setData(feedData: cellData, helper: parentController, pageType: pageType, delegate: self)
+                feedCell?.FFooterViewBasic.tag = indexPath.row            
+                return feedCell!            
+                
+                
+            default:
+                print("\n default case : \(cellData["type"].stringValue)")
             }
             
-            feedCell?.setData(feedData: cellData, helper: parentController, pageType: pageType, delegate: self)
-            feedCell?.FFooterViewBasic.tag = indexPath.row
-            return feedCell!
             
-            
-        case "travel-life":
-            fallthrough
-        case "local-life":
-            var feedCell = tableView.dequeueReusableCell(withIdentifier: "TravelLocalCell", for: indexPath) as? TLTravelLocalLifeTableViewCell
-            
-            if feedCell == nil {
-                feedCell = TLTravelLocalLifeTableViewCell.init(style: .default, reuseIdentifier: "TravelLocalCell", feedData: cellData, helper: parentController)
-            }
-            
-            feedCell?.setData(feedData: cellData, helper: parentController, pageType: pageType, delegate: self)
-            feedCell?.FFooterViewBasic.tag = indexPath.row
-            feedCell?.tag = TL_VISIBLE_CELL_TAG
-            return feedCell!
-            
-            
-        case "quick-itinerary":
-            fallthrough
-        case "detail-itinerary":
-            var feedCell = tableView.dequeueReusableCell(withIdentifier: "ItineraryCell", for: indexPath) as? TLItineraryTableViewCell
-            
-            if feedCell == nil {
-                feedCell = TLItineraryTableViewCell.init(style: .default, reuseIdentifier: "ItineraryCell", feedData: cellData, helper: parentController)
-            }
-            
-            feedCell?.setData(feedData: cellData, helper: parentController, pageType: pageType, delegate: self)
-            feedCell?.FFooterViewBasic.tag = indexPath.row            
-            return feedCell!            
-            
-            
-        default:
-            print("\n default case : \(cellData["type"].stringValue)")
+            let feedCell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+            return feedCell
         }
-        
-        
-        let feedCell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        return feedCell
+        else {
+            var loadingCell = tableView.dequeueReusableCell(withIdentifier: "LoadingCell", for: indexPath) as? TLLoadingTableViewCell
+            
+            if loadingCell == nil {
+                loadingCell = TLLoadingTableViewCell.init(style: .default, reuseIdentifier: "LoadingCell", pageType: self.pageType)
+            }
+            
+            loadingCell?.setData(pageType: self.pageType)                        
+            return loadingCell!
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -293,35 +318,36 @@ class MyLifeContainerViewController: UIViewController, UITableViewDelegate, UITa
         
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let cellData = self.feedsDataArray[indexPath.row]
-        
-        switch cellData["type"].stringValue {
+        if (indexPath.row < feedsDataArray.count) {
+            let cellData = self.feedsDataArray[indexPath.row]
             
-        case "on-the-go-journey":
-            fallthrough
-        case "ended-journey":
-            self.showDetailedJourney(feed: cellData)
-            break
-            
-            
-        case "travel-life":
-            fallthrough
-        case "local-life":
-            break
-            
-            
-        case "quick-itinerary":
-            self.showQuickItinerary(feed: cellData)
-            break
-            
-        case "detail-itinerary":
-            self.showDetailedItinerary(feed: cellData)
-            break
-            
-        default:
-            print("\n default case : \(cellData["type"].stringValue)")
-        }
-        
+            switch cellData["type"].stringValue {
+                
+            case "on-the-go-journey":
+                fallthrough
+            case "ended-journey":
+                self.showDetailedJourney(feed: cellData)
+                break
+                
+                
+            case "travel-life":
+                fallthrough
+            case "local-life":
+                break
+                
+                
+            case "quick-itinerary":
+                self.showQuickItinerary(feed: cellData)
+                break
+                
+            case "detail-itinerary":
+                self.showDetailedItinerary(feed: cellData)
+                break
+                
+            default:
+                print("\n default case : \(cellData["type"].stringValue)")
+            }
+        }        
     }
     
     
@@ -441,8 +467,10 @@ class MyLifeContainerViewController: UIViewController, UITableViewDelegate, UITa
             if hasMorePages && !isLoading {                
                 print("\n table scolled to end, fetch more content...")
                 self.isLoading = true
+                self.myLifeFeedsTableView.reloadData()
+                
                 currentPageNumber += 1
-                self.loadData(type: onTab, pageNumber: currentPageNumber, fromVC: self.parentController)
+                self.getMyLifePostsData(pageNumber: currentPageNumber, type: self.onTab)                
             }
         }
         

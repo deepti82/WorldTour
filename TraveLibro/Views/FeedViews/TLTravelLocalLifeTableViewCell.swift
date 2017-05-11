@@ -12,7 +12,7 @@ import Player
 
 class TLTravelLocalLifeTableViewCell: UITableViewCell, PlayerDelegate {
 
-    var FBackground = NotificationBackground()
+    var FBackground: NotificationBackground!
     var FProfileHeader: ActivityProfileHeader!
     var FMTextView: TLFeedHeaderTextFlagView?
     var FMCenterView:PhotosOTGView?

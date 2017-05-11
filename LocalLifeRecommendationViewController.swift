@@ -344,7 +344,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
             }
         }
         var category = ""
-        if self.addView.categoryLabel.text! != nil {
+        if self.addView.categoryLabel.text != nil {
             category = self.addView.categoryLabel.text!
             if(category == "") {
                 category = ""
@@ -352,7 +352,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
         }
         
         var location = ""
-        if self.addView.addLocationButton.titleLabel?.text! != nil {
+        if self.addView.addLocationButton.titleLabel?.text != nil {
             location = (self.addView.addLocationButton.titleLabel?.text)!
             addView.locationTag.tintColor = UIColor(hex: "#11d3cb")
             if(location == "Add Location") {
@@ -362,7 +362,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
         }
         
         var thoughts = ""
-        if self.addView.thoughtsTextView.text! != nil {
+        if self.addView.thoughtsTextView.text != nil {
             thoughts = self.addView.thoughtsTextView.text!
 //             addView.finalThoughtTag.tintColor = UIColor(hex: "#11d3cb")
 //            addView.finalThoughtTag.isHidden = true

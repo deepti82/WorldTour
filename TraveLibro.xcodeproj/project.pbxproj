@@ -105,6 +105,7 @@
 		4437CE671E782A7C00AFA0EA /* Terms&Conditions.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4437CE661E782A7C00AFA0EA /* Terms&Conditions.pdf */; };
 		44434C511E7AD55600344C7C /* PrivacyPolicy.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 44434C501E7AD55500344C7C /* PrivacyPolicy.pdf */; };
 		44479DE31E864BAC0084669A /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44479DE21E864BAC0084669A /* Crashlytics.framework */; };
+		445970DE1EC4884C002DAF96 /* TLLoadingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445970DD1EC4884C002DAF96 /* TLLoadingTableViewCell.swift */; };
 		4468E53B1EAB1B9600DECD77 /* TLProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4468E53A1EAB1B9600DECD77 /* TLProfileViewController.swift */; };
 		446CEF561EA0D53200DD64EC /* NotificationWelcomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446CEF551EA0D53200DD64EC /* NotificationWelcomeCell.swift */; };
 		446E1F741EA64C9100C007B5 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 446E1F731EA64C9100C007B5 /* CoreLocation.framework */; };
@@ -633,6 +634,7 @@
 		4437CE661E782A7C00AFA0EA /* Terms&Conditions.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Terms&Conditions.pdf"; sourceTree = "<group>"; };
 		44434C501E7AD55500344C7C /* PrivacyPolicy.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = PrivacyPolicy.pdf; sourceTree = "<group>"; };
 		44479DE21E864BAC0084669A /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		445970DD1EC4884C002DAF96 /* TLLoadingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TLLoadingTableViewCell.swift; path = Views/FeedViews/TLLoadingTableViewCell.swift; sourceTree = "<group>"; };
 		4468E53A1EAB1B9600DECD77 /* TLProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TLProfileViewController.swift; path = Controller/TLProfileViewController.swift; sourceTree = "<group>"; };
 		446CEF551EA0D53200DD64EC /* NotificationWelcomeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationWelcomeCell.swift; path = Notification/NotificationWelcomeCell.swift; sourceTree = "<group>"; };
 		446E1F731EA64C9100C007B5 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -1544,6 +1546,7 @@
 			isa = PBXGroup;
 			children = (
 				44F2FAD01EB87EF3003BB3EA /* TLOTGJourneyTableViewCell.swift */,
+				445970DD1EC4884C002DAF96 /* TLLoadingTableViewCell.swift */,
 				44D620E91EBB19AC00326CB1 /* TLTravelLocalLifeTableViewCell.swift */,
 				440DE3F61EBB531B004FF2E5 /* TLItineraryTableViewCell.swift */,
 			);
@@ -3366,6 +3369,7 @@
 				C20939051D11655200CBA70F /* NavigationMainViewController.swift in Sources */,
 				36E3B8261E34B56200C597BA /* ActivityFeedFooterBasic.swift in Sources */,
 				C267302A1D27D30300F2C822 /* ChooseCityViewController.swift in Sources */,
+				445970DE1EC4884C002DAF96 /* TLLoadingTableViewCell.swift in Sources */,
 				C266AA171D4B75B300174612 /* AllJourneysViewController.swift in Sources */,
 				C2C41B891DE9951A0018D72B /* Structures.swift in Sources */,
 				C28A923F1D0E7E2E00CFEC7A /* HotelTypeSelect.swift in Sources */,

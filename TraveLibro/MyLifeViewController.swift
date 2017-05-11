@@ -194,7 +194,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     //MARK: - Actions
     
     func reloadContainerData() {
-        globalMyLifeContainerViewController.loadData(type: globalMyLifeContainerViewController.onTab, pageNumber: 1, fromVC: self)
+        globalMyLifeContainerViewController.loadData(type: globalMyLifeContainerViewController.onTab, fromVC: self)
     }
     
     func exitMyLife(_ sender: AnyObject ) {
@@ -353,7 +353,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         switch whatEmptyTab {
         case "Journeys":
             globalMyLifeContainerViewController.isFromFooter = self.isFromFooter
-            globalMyLifeContainerViewController.loadData(type: "all", pageNumber: 1, fromVC: self)
+            globalMyLifeContainerViewController.loadData(type: "all", fromVC: self)
         case "Moments":
             globalMyLifeMomentsViewController.page = 1
             globalMyLifeMomentsViewController.insideView = ""
@@ -375,7 +375,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         radioThree.image = UIImage(named: "radio_for_button")
         switch whatEmptyTab {
         case "Journeys":
-            globalMyLifeContainerViewController.loadData(type: "travel-life", pageNumber: 1, fromVC: self)
+            globalMyLifeContainerViewController.loadData(type: "travel-life", fromVC: self)
         case "Moments":
             globalMyLifeMomentsViewController.page = 1
             globalMyLifeMomentsViewController.insideView = ""
@@ -398,7 +398,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         
         switch whatEmptyTab {
         case "Journeys":
-            globalMyLifeContainerViewController.loadData(type: "local-life", pageNumber: 1, fromVC: self)
+            globalMyLifeContainerViewController.loadData(type: "local-life", fromVC: self)
         case "Moments":
             globalMyLifeMomentsViewController.page = 1
             globalMyLifeMomentsViewController.insideView = ""

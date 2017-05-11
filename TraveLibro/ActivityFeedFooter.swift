@@ -377,7 +377,7 @@ class ActivityFeedFooter: UIView {
                         request.deleteItinerary(id: self.postTop["_id"].stringValue, completion: {(response) in
                             
                             let a = globalMyLifeContainerViewController.onTab
-                            globalMyLifeContainerViewController.loadData(type: a, pageNumber: 1, fromVC: nil)
+                            globalMyLifeContainerViewController.loadData(type: a, fromVC: nil)
                             
                         })
                         
@@ -409,7 +409,7 @@ class ActivityFeedFooter: UIView {
                             request.deletePost(self.postTop["_id"].string!, uniqueId: self.postTop["uniqueId"].string!, user:currentUser["_id"].stringValue, completion: {(response) in
                                 
                                 let a = globalMyLifeContainerViewController.onTab
-                                globalMyLifeContainerViewController.loadData(type: a, pageNumber: 1, fromVC: nil)
+                                globalMyLifeContainerViewController.loadData(type: a, fromVC: nil)
                                 
                             })
                             
