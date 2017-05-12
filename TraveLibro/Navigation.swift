@@ -1399,7 +1399,24 @@ class Navigation {
         var params: JSON = ["name":title, "year":year, "month":month, "description":description, "duration":duration, "user":currentUser["_id"], "status":status]
         params["photos"] = JSON(photos)
         params["itineraryType"] = itineraryType
-        params["countryVisited"] = countryVisited
+        
+        print("CountryVisited : \(countryVisited)")
+        
+        var countryVisitedCopy = countryVisited
+                
+        for i in 0..<countryVisitedCopy.count {
+            var countryVisitedItem = (countryVisitedCopy.arrayValue)[i] 
+            let countryDict = countryVisitedItem["country"].dictionaryValue 
+            if !countryDict.isEmpty {
+                countryVisitedItem["country"] = JSON(countryVisitedItem["country"]["_id"].stringValue)
+                countryVisitedCopy[i] = countryVisitedItem
+            }
+        }
+        
+        print("\n countryVisitedCopy : \(countryVisitedCopy) \n")
+        
+        params["countryVisited"] = countryVisitedCopy
+        
         var url = URL(string: adminUrl + "itinerary/saveQuickItinerary")!
         if(editId != "editId" && editId != "" ) {
             params["_id"] = JSON(editId);
@@ -1542,6 +1559,7 @@ class Navigation {
                         
                         json  = JSON(data: response.data)
                         
+                        print("json : \(json)")
                         let ll = LocalLifePostModel()
                         let qi = QuickItinerary()
                         
@@ -1619,7 +1637,6 @@ class Navigation {
                 
                 do {
                     let result = try JSONSerialization.jsonObject(with: data!, options: []) as! [String:AnyObject]
-                    print("response: \(JSON(result))")
                     completion(JSON(result), forTab)
                     
                 } catch {
@@ -3314,7 +3331,7 @@ class Navigation {
         
         do {
             
-            let opt = try HTTP.POST(adminUrl + "post/getLocalPost", parameters: ["user": currentUser["_id"].stringValue,"lat":lat,"long":lng,"pagenumber":page,"category":category])
+            let opt = try HTTP.POST(adminUrl + "post/getLocalPost", parameters: ["user": user.getExistingUser(), "lat":lat,"long":lng,"pagenumber":page,"category":category])
             var json = JSON(1);
             opt.start {response in
                 if let err = response.error {

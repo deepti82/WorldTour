@@ -16,6 +16,9 @@ class MyLifeJourneyTravel: UIView {
     @IBOutlet weak var startJourneyText: UILabel!
     @IBOutlet weak var startDocumentText: UILabel!
     @IBOutlet weak var nextParaTop: NSLayoutConstraint!
+    
+    var parentController: UIViewController?
+    
     override init(frame: CGRect) {
         
         super.init(frame: frame)
@@ -38,7 +41,8 @@ class MyLifeJourneyTravel: UIView {
         
     }
     
-    func setView(){
+    func setView() {        
+        
         if isSelfUser(otherUserID: currentUser["_id"].stringValue) {
             startJourney.isHidden = false
             startDocument.isHidden = false
@@ -59,15 +63,15 @@ class MyLifeJourneyTravel: UIView {
         let vc = storyboard!.instantiateViewController(withIdentifier: "newTL") as! NewTLViewController
         vc.isJourney = false
         vc.insideView = "journey"
-        globalNavigationController?.setNavigationBarHidden(false, animated: true)
-        globalNavigationController?.pushViewController(vc, animated: true)
+        parentController?.navigationController?.setNavigationBarHidden(false, animated: true)
+        parentController?.navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func createItinerary(_ sender: UIButton) {
         
         let vc = storyboard?.instantiateViewController(withIdentifier: "qiPVC") as! QIViewController
-        globalNavigationController?.setNavigationBarHidden(false, animated: true)
-        globalNavigationController?.pushViewController(vc, animated: true)
+        parentController?.navigationController?.setNavigationBarHidden(false, animated: true)
+        parentController?.navigationController?.pushViewController(vc, animated: true)
         //        self.setVC(newViewController: vc)
     }
     

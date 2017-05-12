@@ -103,6 +103,12 @@ class ActivityProfileHeader: UIView {
                 case "detail-itinerary":
                     userName.text = feed["creator"]["name"].stringValue
                     profilePic.hnk_setImageFromURL(getImageURL(feed["creator"]["profilePicture"].stringValue, width: SMALL_PHOTO_WIDTH))
+                    
+                    if feed["timestamp"].stringValue == "" {
+                        localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["createdAt"].stringValue, isDate: true)
+                        localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["createdAt"].stringValue, isDate: false)                        
+                    }
+                    
                     break
                     
                 default:
@@ -222,8 +228,18 @@ class ActivityProfileHeader: UIView {
             localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["date"].stringValue, isDate: false)
         }
         else {
-            localDate.text = ""
-            localTime.text = ""
+            if feed["type"].stringValue == "quick-itinerary" {
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSZ"
+                let showDate = dateFormatter.string(from: Date())
+                
+                localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd-MM-yyyy", date: showDate, isDate: true)
+                localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: showDate, isDate: false)                
+            }
+            else {
+                localDate.text = ""
+                localTime.text = ""
+            }
         }
     }
     

@@ -99,6 +99,8 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
         }
         if show {
             empty = EmptyScreenView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height + 10))
+            empty.parentController = self
+
             switch reviewType {
             case "all":
                 empty.frame.size.height = CGFloat(cnfg.getHeight(ht: Double(self.view.frame.height + 10)))

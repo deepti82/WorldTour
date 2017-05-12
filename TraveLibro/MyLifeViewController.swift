@@ -557,7 +557,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
 
     // Change date and Time
     var currentPhotoFooter:ActivityFeedFooterBasic!
-    var currentPhotoFooter2:ActivityFeedFooter!
+    var currentPhotoFooter2:ActivityFeedFooterBasic!
     var inputview:UIView!
     var datePickerView:UIDatePicker!
     var dateSelected = ""
@@ -618,7 +618,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         self.view.addSubview(self.inputview)
     }
     
-    func changeDateAndTimeEndJourney(_ footer:ActivityFeedFooter) {
+    func changeDateAndTimeEndJourney(_ footer:ActivityFeedFooterBasic) {
         currentPhotoFooter2 = footer
         hideHeaderAndFooter(true)
         let dateFormatter = DateFormatter()

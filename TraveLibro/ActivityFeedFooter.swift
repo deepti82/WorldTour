@@ -357,8 +357,7 @@ class ActivityFeedFooter: UIView {
                 }
                 actionSheetControllerIOS8.addAction(cancel)
                 
-            }
-            
+            }            
             if(postTop["type"].stringValue == "quick-itinerary") {
                 let editActionButton: UIAlertAction = UIAlertAction(title: "Edit", style: .default)
                 {action -> Void in
@@ -463,7 +462,7 @@ class ActivityFeedFooter: UIView {
                     
                     let changeDateActionButton: UIAlertAction = UIAlertAction(title: "Change End Journey Date", style: .default)
                     {action -> Void in
-                        globalMyLifeViewController.changeDateAndTimeEndJourney(self)
+                       // globalMyLifeViewController.changeDateAndTimeEndJourney(self)
                     }
                     
                     if(self.postTop["endTime"].string != nil) {

@@ -8,6 +8,7 @@ class EmptyScreenView: UIView {
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var buttonText: UILabel!
     var whichView: String = ""
+    var parentController: UIViewController?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -27,6 +28,7 @@ class EmptyScreenView: UIView {
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view);
     }
+    
     func setColor(life:String, buttonLabel:String) {
         whichView = life
         if isSelfUser(otherUserID: currentUser["_id"].stringValue) {
@@ -43,21 +45,22 @@ class EmptyScreenView: UIView {
             addButton.setImage(UIImage(named:"tl"), for: .normal)
         }
     }
+    
     @IBAction func addButtonClicked(_ sender: UIButton) {
         if whichView == "locallife" {
             
             let vc = storyboard!.instantiateViewController(withIdentifier: "localLife") as! LocalLifeRecommendationViewController
             vc.isBack = true
-            globalNavigationController?.setNavigationBarHidden(false, animated: true)
-            globalNavigationController?.pushViewController(vc, animated: true)
+            parentController?.navigationController?.setNavigationBarHidden(false, animated: true)
+            parentController?.navigationController?.pushViewController(vc, animated: true)
 
 
         }else{
             let vc = storyboard!.instantiateViewController(withIdentifier: "newTL") as! NewTLViewController
             vc.isJourney = false
             vc.insideView = "journey"
-            globalNavigationController?.setNavigationBarHidden(false, animated: true)
-            globalNavigationController?.pushViewController(vc, animated: true)
+            parentController?.navigationController?.setNavigationBarHidden(false, animated: true)
+            parentController?.navigationController?.pushViewController(vc, animated: true)
 
         }
         

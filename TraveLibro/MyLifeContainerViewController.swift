@@ -25,6 +25,7 @@ class MyLifeContainerViewController: UIViewController, UITableViewDelegate, UITa
     let separatorOffset = CGFloat(15.0)
     
     var loader = LoadingOverlay()
+    let refreshControl = UIRefreshControl()
     
     var parentController: MyLifeViewController!
     
@@ -44,6 +45,9 @@ class MyLifeContainerViewController: UIViewController, UITableViewDelegate, UITa
         timeTag.alpha = 0.8        
         self.view.addSubview(timeTag)
         timeTag.isHidden = true
+        
+        refreshControl.tintColor = mainOrangeColor
+        self.myLifeFeedsTableView.addSubview(refreshControl)
     }
     
     override func didReceiveMemoryWarning() {
@@ -63,8 +67,11 @@ class MyLifeContainerViewController: UIViewController, UITableViewDelegate, UITa
         }
         if show {
             empty = EmptyScreenView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height + 10))
+            empty.parentController = self
+            
             emptyTravel = MyLifeJourneyTravel(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
             emptyTravel.center = self.view.center
+            emptyTravel.parentController = self
 
             switch type {
             case "all":
@@ -102,6 +109,24 @@ class MyLifeContainerViewController: UIViewController, UITableViewDelegate, UITa
     }
       
     
+    //MARK: - Refresh Control
+    
+    func pullToRefreshCalled() {
+        print("\n Pull to refresh called \n")
+        
+        refreshControl.endRefreshing()        
+        
+        if !isLoading {
+            currentPageNumber = 1
+            hasMorePages = true
+            isLoading = false
+            timeTag.isHidden = true
+            
+            self.getMyLifePostsData(pageNumber: currentPageNumber, type: onTab)
+        }
+    }
+    
+    
     //MARK: - Fetch Data
     
     func loadData(type:String, fromVC: MyLifeViewController?) {
@@ -126,6 +151,8 @@ class MyLifeContainerViewController: UIViewController, UITableViewDelegate, UITa
     }
     
     func getMyLifePostsData(pageNumber: Int, type: String){
+        
+        print("\n\n Will fetch data for : \(currentPageNumber)")
         
         onTab = type
         
@@ -483,27 +510,13 @@ class MyLifeContainerViewController: UIViewController, UITableViewDelegate, UITa
                 currentPageNumber += 1
                 self.getMyLifePostsData(pageNumber: currentPageNumber, type: self.onTab)                
             }
-        }
-        
+        }        
     }
     
-//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        
-//        
-//        
-//        for postView in layout.subviews {
-//            if(postView is MyLifeActivityFeedsLayout) {
-//                let photosOtg = postView as! MyLifeActivityFeedsLayout
-//                
-//                let min = photosOtg.frame.origin.y - self.TheScrollView.contentOffset.y
-//                let max = min + photosOtg.frame.size.height
-//                
-//                if((min < 100) && (max > 140))
-//                {
-//                    self.timeTag.changeTime(feed: photosOtg.feeds)
-//                }
-//            }
-//        }
-//        
-//    }
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        if(refreshControl.isRefreshing){
+            self.pullToRefreshCalled()
+        }
+    }
+    
 }

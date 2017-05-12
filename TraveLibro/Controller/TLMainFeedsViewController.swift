@@ -56,6 +56,7 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
     let separatorOffset = CGFloat(15.0)
     
     var loader = LoadingOverlay()
+    let refreshControl = UIRefreshControl()
     
     
     //MARK: - LifeCycle
@@ -77,7 +78,26 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)        
-        self.mainFooter?.frame = CGRect(x: 0, y: self.view.frame.height - MAIN_FOOTER_HEIGHT, width: self.view.frame.width, height: MAIN_FOOTER_HEIGHT)        
+        self.mainFooter?.frame = CGRect(x: 0, y: self.view.frame.height - MAIN_FOOTER_HEIGHT, width: self.view.frame.width, height: MAIN_FOOTER_HEIGHT)
+        
+        if pageType == viewType.VIEW_TYPE_ACTIVITY {
+            self.mainFooter?.setHighlightStateForView(tag: 0, color: mainOrangeColor)
+            
+            var isEmptyScreenPresent = false
+            for views in self.view.subviews {
+                if views.tag == 46 {
+                    isEmptyScreenPresent = true                
+                }
+            }
+            
+            if isEmptyScreenPresent && !isLoading {
+                getActivityFeedsData(pageNumber: 1)
+            }
+        }
+            
+        else if pageType == viewType.VIEW_TYPE_LOCAL_LIFE {            
+            self.mainFooter?.setHighlightStateForView(tag: 3, color: mainGreenColor)
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -102,6 +122,9 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
         
         feedsTableView.dataSource = self
         feedsTableView.delegate = self
+        
+        refreshControl.tintColor = mainOrangeColor
+        self.feedsTableView.addSubview(refreshControl)
         
         if pageType == viewType.VIEW_TYPE_ACTIVITY {
             
@@ -132,6 +155,8 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
         
         else if pageType == viewType.VIEW_TYPE_LOCAL_LIFE {
             
+            refreshControl.tintColor = mainGreenColor
+            
             self.mainFooter = FooterViewNew(frame: CGRect.zero)
             self.mainFooter?.layer.zPosition = 5
             self.view.addSubview(self.mainFooter!)
@@ -157,11 +182,31 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     
+    //MARK: - Refresh Control
+    
+    func pullToRefreshCalled() {
+        print("\n Pull to refresh called \n")
+        
+        refreshControl.endRefreshing()        
+        
+        if !isLoading {
+            currentPageNumber = 1
+            hasMorePages = true
+            isLoading = false
+            
+            self.getDataMain()
+        }
+    }
+    
+    
     //MARK: - Fetch Data
     
     func getDataMain() {
         
         print("\n\n Will fetch data for : \(currentPageNumber)")
+        
+        let i = PostImage()
+        i.uploadPhotos()
         
         if feedsDataArray.isEmpty && currentPageNumber == 1 {
             loader.showOverlay(self.view)
@@ -202,8 +247,10 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
         
         if pageType == viewType.VIEW_TYPE_ACTIVITY {
             
-            request.getActivityFeeds(currentUser["_id"].stringValue, pageNumber: pageNumber, completion: { (response, localPostResponse, localQuickItineraryResponse, isFromCache) in                
+            request.getActivityFeeds(user.getExistingUser(), pageNumber: pageNumber, completion: { (response, localPostResponse, localQuickItineraryResponse, isFromCache) in                
                 DispatchQueue.main.async(execute: {
+                    
+                    self.removeEmptyScreen()
                     
                     if pageNumber == 1 {
                         self.feedsDataArray = []
@@ -615,6 +662,12 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
             }
         }
         
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        if(refreshControl.isRefreshing){
+            self.pullToRefreshCalled()
+        }
     }
     
     private func hideHeaderAndFooter(_ isShow:Bool) {
