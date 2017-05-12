@@ -85,7 +85,8 @@ public class QuickItinerary {
                 var postID = post1[id]
                 
                 let id_temp = Int(post1[id])
-                var quickItinery:JSON = JSON(data: (String(post1[quickJson])?.data(using: .utf8))! )
+                var quickItineryL:JSON = JSON(data: (String(post1[quickJson])?.data(using: .utf8))! )
+                print("\n quickItinery in getAll : \(quickItineryL)")
                 let status_temp = Bool(post1[status])
                 
                 let actualId = Int(post1[id]) + 30000
@@ -98,9 +99,9 @@ public class QuickItinerary {
                 for img in p.imageArr {
                     photosJson.append(img.parseJson())
                 }
-                quickItinery["type"] = JSON("quick-itinerary");
-                quickItinery["photos"] = JSON(photosJson)
-                retVal.append(quickItinery)
+                quickItineryL["type"] = JSON("quick-itinerary");
+                quickItineryL["photos"] = JSON(photosJson)
+                retVal.append(quickItineryL)
 
             }
         }
