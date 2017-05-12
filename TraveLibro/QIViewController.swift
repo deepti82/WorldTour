@@ -63,6 +63,7 @@ class QIViewController: UIPageViewController, UIPageViewControllerDataSource, UI
                         quickOne.monthPickerView.text = self.editJson["month"].stringValue
                         quickTwo.itineraryTypes = self.editJson["itineraryType"]
                         quickItinery["countryVisited"] = self.editJson["countryVisited"]
+                        quickItinery["status"] = self.editJson["status"]
                         for (n,country) in quickItinery["countryVisited"] {
                             quickItinery["countryVisited"][Int(n)!]["name"] = country["country"]["name"]
                             for (i,_) in country["cityVisited"] {

@@ -8,16 +8,23 @@ class QuickIteneraryTwo: UIViewController {
     var eachButton: [String] = []
     
     @IBOutlet weak var firstStack: UIStackView!
-    var itineraryTypes:JSON!
+    var itineraryTypes:JSON?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 //        self.firstStack.spacing = firstStack.width
         let array = ["adventure", "business", "family", "budget", "backpacking", "romance", "friends", "religious", "luxury", "solo", "shopping", "festival"]
+        
+        if itineraryTypes != nil {
+            quickItinery["itineraryType"] = itineraryTypes!
+        }
+        
         if quickItinery["itineraryType"] == nil {
             quickItinery["itineraryType"] = JSON(eachButton)
         }
         for eachButton in typeButton {
+            eachButton.imageView?.contentMode = .scaleAspectFit
+            eachButton.clipsToBounds = true
             eachButton.addTarget(self, action: #selector(typeButtonPressed(_:)), for: .touchUpInside)
         }
         for button in typeButton {
@@ -25,13 +32,13 @@ class QuickIteneraryTwo: UIViewController {
             button.setTitle(array[index!], for: .application)
         }
         transparentCardWhite(blurBG)
-        if(self.itineraryTypes != nil) {
-            print(self.itineraryTypes);
-            let arr = self.itineraryTypes.array
+        
+        if(self.itineraryTypes != nil) {            
+            let arr = self.itineraryTypes?.arrayValue
             
             for eachButton in typeButton {
                 for text in arr! {
-                    if(text.stringValue == eachButton.titleLabel?.text) {
+                    if(text.stringValue.lowercased() == eachButton.titleLabel?.text?.lowercased()) {
                         self.typeButtonPressed(eachButton)                        
                     }
                 }
