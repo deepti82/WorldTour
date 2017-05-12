@@ -2897,7 +2897,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     //MARK: - Location Error Handler
     
     func showNetworkErrorAlert() {
-        let errorAlert = UIAlertController(title: "Error", message: "It seems that you are not connected with internet. Please check your internet connection ", preferredStyle: UIAlertControllerStyle.alert)
+        let errorAlert = UIAlertController(title: "Error", message: "Please check your internet connection and try again.", preferredStyle: UIAlertControllerStyle.alert)
         
         let cancelAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
         errorAlert.addAction(cancelAction)
