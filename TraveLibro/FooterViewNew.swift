@@ -174,8 +174,13 @@ class FooterViewNew: UIView {
             request.getUserFromCache(user.getExistingUser(), completion: { (response) in
                 DispatchQueue.main.async {
                     currentUser = response["data"]
-                    let vc = storyboard?.instantiateViewController(withIdentifier: "myLife") as! MyLifeViewController
-                    vc.isFromFooter = true
+                    
+                    selectedPeople = currentUser["_id"].stringValue
+                    selectedUser = currentUser
+                                        
+                    let vc = storyboard?.instantiateViewController(withIdentifier: "TLProfileView") as! TLProfileViewController
+                    vc.displayData = ""
+                    vc.currentSelectedUser = selectedUser
                     self.setVC(newViewController: vc)
                     
                 }

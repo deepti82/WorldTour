@@ -2008,7 +2008,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bp2-kh-x4G">
-                                        <rect key="frame" x="8" y="19.5" width="41" height="26"/>
+                                        <rect key="frame" x="8" y="19" width="41" height="26"/>
                                         <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="14"/>
                                         <state key="normal" title="Button">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -5123,7 +5123,7 @@
                                                 <rect key="frame" x="161.5" y="0.0" width="48.5" height="30"/>
                                                 <subviews>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wjB-Dd-ihB">
-                                                        <rect key="frame" x="0.5" y="0.0" width="48.5" height="30"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="48.5" height="30"/>
                                                         <color key="tintColor" red="1" green="0.4039215686" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <color key="textColor" red="0.17254901959999999" green="0.2156862745" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
                                                         <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
@@ -5846,7 +5846,7 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A Little More About This Trip..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YZC-QK-QEk">
-                                        <rect key="frame" x="33.5" y="18" width="233" height="22"/>
+                                        <rect key="frame" x="34" y="18" width="233" height="22"/>
                                         <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="16"/>
                                         <color key="textColor" red="0.17254901960784313" green="0.21568627450980393" blue="0.3411764705882353" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -6310,7 +6310,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qet-67-nrB">
-                                <rect key="frame" x="16" y="241.5" width="343" height="144"/>
+                                <rect key="frame" x="16" y="242" width="343" height="144"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Invite fellow travellers and friends to share your travel stories" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JQ5-cu-bQw">
                                         <rect key="frame" x="8" y="8" width="327" height="45"/>
@@ -10996,7 +10996,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="265"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Andrea Christina" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oFA-OT-pRD">
-                                                            <rect key="frame" x="94" y="95" width="188" height="33"/>
+                                                            <rect key="frame" x="94" y="87" width="188" height="33"/>
                                                             <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="24"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
@@ -11005,9 +11005,9 @@
                                                             </variation>
                                                         </label>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nomadblogger" translatesAutoresizingMaskIntoConstraints="NO" id="TIL-uy-4Ci">
-                                                            <rect key="frame" x="128" y="171" width="120" height="28"/>
+                                                            <rect key="frame" x="68" y="171" width="240" height="28"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="120" id="k3i-fy-xWD">
+                                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="k3i-fy-xWD">
                                                                     <variation key="heightClass=regular-widthClass=regular" constant="140"/>
                                                                 </constraint>
                                                             </constraints>
@@ -11203,7 +11203,7 @@
                                                             </constraints>
                                                         </stackView>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PAt-Za-yhV">
-                                                            <rect key="frame" x="150" y="133" width="75" height="36"/>
+                                                            <rect key="frame" x="150" y="125" width="75" height="36"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" priority="250" constant="120" id="Baj-Jn-J7N"/>
                                                             </constraints>
@@ -11220,8 +11220,8 @@
                                                     <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstItem="oFA-OT-pRD" firstAttribute="centerX" secondItem="lIF-sB-D6c" secondAttribute="centerX" id="0uu-N0-dej"/>
-                                                        <constraint firstItem="TIL-uy-4Ci" firstAttribute="top" secondItem="PAt-Za-yhV" secondAttribute="bottom" constant="2" id="7GW-9c-3zx">
-                                                            <variation key="heightClass=regular-widthClass=regular" constant="5"/>
+                                                        <constraint firstItem="TIL-uy-4Ci" firstAttribute="top" secondItem="PAt-Za-yhV" secondAttribute="bottom" constant="10" id="7GW-9c-3zx">
+                                                            <variation key="heightClass=regular-widthClass=regular" constant="15"/>
                                                         </constraint>
                                                         <constraint firstAttribute="bottom" secondItem="qLO-gC-em0" secondAttribute="bottom" constant="8" id="DnH-Xz-04g"/>
                                                         <constraint firstAttribute="trailing" secondItem="qLO-gC-em0" secondAttribute="trailing" id="MsD-oJ-jcn"/>
@@ -11693,7 +11693,7 @@
                                         </connections>
                                     </stackView>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="etL-Pz-bP1">
-                                        <rect key="frame" x="27.5" y="255.5" width="321" height="0.0"/>
+                                        <rect key="frame" x="27" y="255.5" width="321" height="0.0"/>
                                         <constraints>
                                             <constraint firstAttribute="height" priority="250" id="P0P-Cg-fIG"/>
                                         </constraints>

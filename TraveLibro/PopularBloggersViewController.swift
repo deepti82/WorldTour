@@ -189,7 +189,12 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
         cell.userName.text = cellData["name"].stringValue
 
         cell.photoCountLabel.text = cellData["photos_count"].stringValue
-        cell.videoCountLabel.text = cellData["videos_count"].stringValue
+        if cellData["videos_count"] != nil {
+            cell.videoCountLabel.text = cellData["videos_count"].stringValue
+        }else{
+            cell.videoCountLabel.text = "0"
+        }
+        
 
         cell.countryVisitedCountLabel.text = cellData["countriesVisited_count"].stringValue
         cell.journeyCountLabel.text = cellData["journeysCreated_count"].stringValue
@@ -199,12 +204,17 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
         print("iiiiiiii \(cellData["userBadgeName"].stringValue.lowercased())")
         
         switch cellData["userBadgeName"].stringValue.lowercased() {
-        case "justgotWings":
-            cell.userBadgeImage.image = resizeImage(image: UIImage(named:"\(cellData["userBadgeName"].stringValue.lowercased())blogger")!, newWidth: screenWidth/25)
+        case "justgotwings":
+            cell.userBadgeImage.image = resizeImage(image: UIImage(named:"\(cellData["userBadgeName"].stringValue.lowercased())blogger")!, newWidth: screenWidth/2)
         case "globetrotter":
-            cell.userBadgeImage.image = resizeImage(image: UIImage(named:"\(cellData["userBadgeName"].stringValue.lowercased())blogger")!, newWidth: screenWidth/25)
+            cell.userBadgeImage.image = resizeImage(image: UIImage(named:"\(cellData["userBadgeName"].stringValue.lowercased())blogger")!, newWidth: screenWidth/2)
+        case "wayfarer":
+            cell.userBadgeImage.image = resizeImage(image: UIImage(named:"\(cellData["userBadgeName"].stringValue.lowercased())blogger")!, newWidth: screenWidth/2.5)
+        case "nomad":
+            cell.userBadgeImage.image = resizeImage(image: UIImage(named:"\(cellData["userBadgeName"].stringValue.lowercased())blogger")!, newWidth: screenWidth/2.5)
+
         default:
-            cell.userBadgeImage.image = resizeImage(image: UIImage(named:"\(cellData["userBadgeName"].stringValue.lowercased())blogger")!, newWidth: screenWidth/35)
+            cell.userBadgeImage.image = resizeImage(image: UIImage(named:"\(cellData["userBadgeName"].stringValue.lowercased())blogger")!, newWidth: screenWidth/3)
         }
 
         if(currentUser != nil) {
