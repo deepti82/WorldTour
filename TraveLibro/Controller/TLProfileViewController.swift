@@ -515,11 +515,29 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
             self.MAM = MoreAboutMe(frame: CGRect(x: 0, y: 0, width: self.MAMTextView.frame.size.width, height: 140))
             self.MAM.mainTextView.textAlignment = .center
             self.MAM.backgroundColor = UIColor.clear
+//            self.MAM.transform = CGAffineTransform(translationX: 0, y: 0);
             self.MAMTextView.addSubview(self.MAM)
             
             self.MAMTextViewHeightConstraint.constant = 140
             self.MAMTextView.frame.size.height = 140
             self.mamStackView.tag = 1
+
+            UIView.animate(withDuration: 0.5){
+                self.view.layoutIfNeeded()
+            }
+//            UIView.animate(withDuration: 0.5, delay: 0.3, options: [.curveEaseOut], animations: {
+//                self.MAM = MoreAboutMe(frame: CGRect(x: 0, y: 0, width: self.MAMTextView.frame.size.width, height: 140))
+//                self.MAM.mainTextView.textAlignment = .center
+//                self.MAM.backgroundColor = UIColor.clear
+//                 self.MAM.transform = CGAffineTransform(translationX: 0, y: 0);
+//                self.MAMTextView.addSubview(self.MAM)
+//                
+//                self.MAMTextViewHeightConstraint.constant = 140
+//                self.MAMTextView.frame.size.height = 140
+//                self.mamStackView.tag = 1
+//            }, completion: nil)
+            
+            
         }
         else {
             if (MAM != nil){
@@ -529,10 +547,11 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
             self.MAMTextViewHeightConstraint.constant = 0
             self.MAMTextView.frame.size.height = 0
             self.mamStackView.tag = 0
+            UIView.animate(withDuration: 0.5){
+                self.view.layoutIfNeeded()
+            }
         }
-        
-        
-        
+    
     }
     
     func exploreMyLife(selectionTab: String) {

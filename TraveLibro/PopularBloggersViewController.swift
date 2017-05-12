@@ -71,6 +71,33 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
     
     //MARK: - Helpers
     
+    func resizeImage(image: UIImage, newWidth: CGFloat) -> UIImage? {
+        
+        let scale = newWidth / image.size.width
+        let newHeight = image.size.height * scale
+        UIGraphicsBeginImageContext(CGSize(width: newWidth, height: newHeight))
+        image.draw(in: CGRect(x: 0, y: 0, width: newWidth, height: newHeight))
+        
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage
+    }
+    
+    func resizeButton(image: UIImage, newWidth: CGFloat) -> UIImage? {
+        
+        let scale = newWidth / image.size.width
+        let newHeight = image.size.height * scale
+        UIGraphicsBeginImageContext(CGSize(width: newWidth, height: newHeight))
+        image.draw(in: CGRect(x: 0, y: 0, width: newWidth, height: newHeight))
+        
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage
+    }
+
+    
     func pullToRefreshCalled() {        
         pagenum = 1
         getPopulerUser(pageNum: pagenum)
@@ -173,11 +200,11 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
         
         switch cellData["userBadgeName"].stringValue.lowercased() {
         case "justgotWings":
-            cell.starWidth.constant = cell.starWidth.constant + 50
+            cell.userBadgeImage.image = resizeImage(image: UIImage(named:"\(cellData["userBadgeName"].stringValue.lowercased())blogger")!, newWidth: screenWidth/25)
         case "globetrotter":
-            cell.starWidth.constant = cell.starWidth.constant + 40
+            cell.userBadgeImage.image = resizeImage(image: UIImage(named:"\(cellData["userBadgeName"].stringValue.lowercased())blogger")!, newWidth: screenWidth/25)
         default:
-            cell.starWidth.constant = cell.starWidth.constant
+            cell.userBadgeImage.image = resizeImage(image: UIImage(named:"\(cellData["userBadgeName"].stringValue.lowercased())blogger")!, newWidth: screenWidth/35)
         }
 
         if(currentUser != nil) {
@@ -187,7 +214,6 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
         else {
             cell.followButton.setTitle("Follow", for: .normal)
         }
-        cell.followButton.sizeToFit()
 
         return cell
         

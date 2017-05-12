@@ -218,7 +218,7 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
     func headerLayout(feed:JSON) {
         headerLine = DottedLine(frame: CGRect(x: 0, y: 2, width: self.frame.width, height: 38))
         
-        profileHeader = ActivityProfileHeader(frame: CGRect(x: 0, y: 2, width: self.frame.width, height: FEEDS_HEADER_HEIGHT))
+        profileHeader = ActivityProfileHeader(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: FEEDS_HEADER_HEIGHT))
         profileHeader.backgroundColor = UIColor(white: 1, alpha: 0.8)
         self.addSubview(headerLine)
         self.addSubview(profileHeader)
