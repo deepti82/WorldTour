@@ -41,7 +41,7 @@ class MyLifeContainerViewController: UIViewController, UITableViewDelegate, UITa
         
         isEmptyProfile = false
         
-        timeTag = TimestampTagViewOnScroll(frame: CGRect(x: 0, y: 100, width: screenWidth + 8, height: 40))
+        timeTag = TimestampTagViewOnScroll(frame: CGRect(x: 0, y: 200, width: screenWidth + 8, height: 40))
         timeTag.alpha = 0.8        
         self.view.addSubview(timeTag)
         timeTag.isHidden = true

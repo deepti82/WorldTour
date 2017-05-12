@@ -34,8 +34,6 @@ class UploadingToCloud: UIView {
     
     func fillUploadingStrip(feed: JSON) {
         
-        print("\n\n fillUploadingStrip : \(feed) \n\n\n")
-        
         self.uploadText.text = "Uploading To Cloud..."
         
         if feed["type"].stringValue == "travel-life" {
@@ -46,5 +44,10 @@ class UploadingToCloud: UIView {
             self.backgroundView.backgroundColor = endJourneyColor
             self.uploadText.textColor = mainBlueColor
         }
+        else if feed["type"].stringValue == "quick-itinerary" && (isLocalFeed(feed: feed) && quickItinery["status"].boolValue == false) {
+            self.backgroundView.backgroundColor = mainOrangeColor
+            self.uploadText.textColor = UIColor.white
+            self.uploadText.text = "Uploading To My Life..."
+        } 
     }
 }

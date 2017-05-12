@@ -1088,7 +1088,7 @@ func getTextHeader(feed: JSON, pageType: viewType) -> NSMutableAttributedString 
             displayText = getRegularString(string: "\(feed["name"].stringValue) - (\(feed["duration"].stringValue) Days).", size: TL_REGULAR_FONT_SIZE)
             
         case "quick-itinerary":
-            displayText = getRegularString(string: "\(feed["name"].stringValue) - Quick Itinerary (\(feed["duration"].stringValue) Days).", size: TL_REGULAR_FONT_SIZE)
+            displayText = getRegularString(string: "\(feed[isLocalFeed(feed: feed) ? "title" : "name"].stringValue) - Quick Itinerary (\(feed["duration"].stringValue) Days).", size: TL_REGULAR_FONT_SIZE)
             
         case "detail-itinerary":
             if pageType != viewType.VIEW_TYPE_ACTIVITY {

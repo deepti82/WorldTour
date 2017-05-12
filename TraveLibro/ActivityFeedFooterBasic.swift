@@ -605,12 +605,17 @@ class ActivityFeedFooterBasic: UIView {
                         
                         let alert = UIAlertController(title: "", message: "Are you sure you want to delete this Itinerary.", preferredStyle: UIAlertControllerStyle.alert)
                         alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil))
-                        alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.destructive, handler: { action in
+                        alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.destructive, handler: { action in                            
                             request.deleteItinerary(id: self.postTop["_id"].stringValue, completion: {(response) in
-                                (self.parentController as! MyLifeViewController).reloadContainerData()                                
+                                DispatchQueue.main.async(execute: {
+                                    if response.error != nil {
+                                        print("error: \(response.error!.localizedDescription)")
+                                    }
+                                    else if response["value"].bool! {
+                                        (self.parentController as! MyLifeViewController).reloadContainerData()
+                                    }                                    
+                                })
                             })
-                            
-                            
                         }))
                         showPopover(optionsController: alert, sender: sender, vc: self.parentController)
                         
@@ -645,13 +650,15 @@ class ActivityFeedFooterBasic: UIView {
                         let alert = UIAlertController(title: "", message: "Are you sure you want to delete this Activtiy", preferredStyle: UIAlertControllerStyle.alert)
                         alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil))
                         alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.destructive, handler: { action in                        
-                            request.deletePost(self.postTop["_id"].string!, uniqueId: self.postTop["uniqueId"].string!, user:currentUser["_id"].stringValue, completion: {(response) in                            
-                                if response.error != nil {
-                                    print("error: \(response.error!.localizedDescription)")
-                                }
-                                else if response["value"].bool! {
-                                    (self.parentController as! MyLifeViewController).reloadContainerData()
-                                }
+                            request.deletePost(self.postTop["_id"].string!, uniqueId: self.postTop["uniqueId"].string!, user:currentUser["_id"].stringValue, completion: {(response) in
+                                DispatchQueue.main.async(execute: {
+                                    if response.error != nil {
+                                        print("error: \(response.error!.localizedDescription)")
+                                    }
+                                    else if response["value"].bool! {
+                                        (self.parentController as! MyLifeViewController).reloadContainerData()
+                                    }                                    
+                                })                               
                             })
                         }))
                         showPopover(optionsController: alert, sender: sender, vc: self.parentController)
@@ -706,7 +713,14 @@ class ActivityFeedFooterBasic: UIView {
                                 let textField = alert?.textFields![0] // Force unwrapping because we know it exists.
                                 print("Text field: \(textField?.text)")
                                 request.journeyChangeName((textField?.text)!, journeyId: self.postTop["_id"].stringValue, completion: { response  in
-                                    print(response);
+                                    DispatchQueue.main.async(execute: {
+                                        if response.error != nil {
+                                            print("error: \(response.error!.localizedDescription)")
+                                        }
+                                        else if response["value"].bool! {
+                                            (self.parentController as! MyLifeViewController).reloadContainerData()
+                                        }                                    
+                                    })
                                 })
                             }))
                             
@@ -784,15 +798,15 @@ class ActivityFeedFooterBasic: UIView {
                         alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil))
                         alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.destructive, handler: { action in
                             request.deletePost(self.postTop["_id"].string!, uniqueId: self.postTop["uniqueId"].string!, user:currentUser["_id"].stringValue, completion: {(response) in
-                                if response.error != nil {
-                                    print("error: \(response.error!.localizedDescription)")
-                                }
-                                else if response["value"].bool! {
-                                    (self.parentController as! MyLifeViewController).reloadContainerData()
-                                }
-                            })
-                            
-                            
+                                DispatchQueue.main.async(execute: {
+                                    if response.error != nil {
+                                        print("error: \(response.error!.localizedDescription)")
+                                    }
+                                    else if response["value"].bool! {
+                                        (self.parentController as! MyLifeViewController).reloadContainerData()
+                                    }                                    
+                                })                                
+                            })                            
                         }))
                         showPopover(optionsController: alert, sender: sender, vc: self.parentController)                                                
                     }
@@ -840,12 +854,14 @@ class ActivityFeedFooterBasic: UIView {
                         alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil))
                         alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.destructive, handler: { action in
                             request.deletePost(self.postTop["_id"].string!, uniqueId: self.postTop["uniqueId"].string!, user:currentUser["_id"].stringValue, completion: {(response) in
-                                if response.error != nil {
-                                    print("error: \(response.error!.localizedDescription)")
-                                }
-                                else if response["value"].bool! {
-                                    (self.parentController as! MyLifeViewController).reloadContainerData()
-                                }                                
+                                DispatchQueue.main.async(execute: {
+                                    if response.error != nil {
+                                        print("error: \(response.error!.localizedDescription)")
+                                    }
+                                    else if response["value"].bool! {
+                                        (self.parentController as! MyLifeViewController).reloadContainerData()
+                                    }                                    
+                                })                               
                             })
                             
                             

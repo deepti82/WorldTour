@@ -869,7 +869,7 @@ class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDele
                 if currentJson != nil {
                     if (currentJson?["type"].stringValue == "photo") {
                         self.fromPhotoFunction(data: currentJson! )
-                        bgImage.hnk_setImageFromURL(getImageURL((currentJson?["name"].stringValue)!, width: VERY_BIG_PHOTO_WIDTH))
+                        bgImage.hnk_setImageFromURL(getImageURL((currentJson?["name"].stringValue)!, width: SMALL_PHOTO_WIDTH))
                     }
                     else {
                         DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {

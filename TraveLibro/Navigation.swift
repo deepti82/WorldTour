@@ -1555,7 +1555,6 @@ class Navigation {
                         
                         json  = JSON(data: response.data)
                         
-                        print("json : \(json)")
                         let ll = LocalLifePostModel()
                         let qi = QuickItinerary()
                         

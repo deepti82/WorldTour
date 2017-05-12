@@ -51,6 +51,8 @@ public class QuickItinerary {
     }
     func save(_ quickItinerary:JSON,imageArr:[PostImage],statusVal:Bool,oldId:String) {
         print("save clicked")
+        quickItinery["status"] = JSON(statusVal)
+        
         let photoinsert = self.post.insert(
             self.quickJson <- quickItinerary.rawString()!,
             self.status <- statusVal,
@@ -125,7 +127,7 @@ public class QuickItinerary {
                 
                 let postID = post1[id]
                 
-                let quickItinery:JSON = JSON(data: (String(post1[quickJson])?.data(using: .utf8))! )
+                let quickItineryL:JSON = JSON(data: (String(post1[quickJson])?.data(using: .utf8))! )
                 let editid_temp = String(post1[editId])
                 let status_temp = Bool(post1[status])
                 
@@ -140,7 +142,7 @@ public class QuickItinerary {
                     photosJson.append(img.parseJson())
                 }
                 
-                request.postQuickitenary(title: quickItinery["title"].stringValue, year: quickItinery["year"].int!, month: quickItinery["month"].stringValue, duration:quickItinery["duration"].int!, description:quickItinery["description"].stringValue, itineraryType:quickItinery["itineraryType"], countryVisited:quickItinery["countryVisited"],photos:photosJson,status:status_temp,editId:editid_temp!,  completion: {(response) in
+                request.postQuickitenary(title: quickItineryL["title"].stringValue, year: quickItineryL["year"].int!, month: quickItineryL["month"].stringValue, duration:quickItineryL["duration"].int!, description:quickItineryL["description"].stringValue, itineraryType:quickItineryL["itineraryType"], countryVisited:quickItineryL["countryVisited"],photos:photosJson,status:status_temp,editId:editid_temp!,  completion: {(response) in
                     print(response)
                     if response.error != nil {
                         print("response: \(response.error?.localizedDescription)")
