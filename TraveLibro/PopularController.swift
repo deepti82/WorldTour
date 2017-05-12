@@ -54,7 +54,7 @@ class PopularController: UIViewController, UIScrollViewDelegate {
         self.view.addSubview(self.mainFooter)
         
         let i = PostImage()
-        i.uploadPhotos()
+        i.uploadPhotos(delegate: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {

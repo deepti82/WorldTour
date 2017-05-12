@@ -75,7 +75,7 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
                 self.getActivity(pageNumber: self.pageno)
                 
                 let i = PostImage()
-                i.uploadPhotos()
+                i.uploadPhotos(delegate: nil)
 //            })
 //        }
     }

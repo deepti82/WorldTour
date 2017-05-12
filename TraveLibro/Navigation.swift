@@ -1400,8 +1400,6 @@ class Navigation {
         params["photos"] = JSON(photos)
         params["itineraryType"] = itineraryType
         
-        print("CountryVisited : \(countryVisited)")
-        
         var countryVisitedCopy = countryVisited
                 
         for i in 0..<countryVisitedCopy.count {
@@ -1412,8 +1410,6 @@ class Navigation {
                 countryVisitedCopy[i] = countryVisitedItem
             }
         }
-        
-        print("\n countryVisitedCopy : \(countryVisitedCopy) \n")
         
         params["countryVisited"] = countryVisitedCopy
         

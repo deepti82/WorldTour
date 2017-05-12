@@ -139,6 +139,7 @@ public class QuickItinerary {
                 for img in p.imageArr {
                     photosJson.append(img.parseJson())
                 }
+                
                 request.postQuickitenary(title: quickItinery["title"].stringValue, year: quickItinery["year"].int!, month: quickItinery["month"].stringValue, duration:quickItinery["duration"].int!, description:quickItinery["description"].stringValue, itineraryType:quickItinery["itineraryType"], countryVisited:quickItinery["countryVisited"],photos:photosJson,status:status_temp,editId:editid_temp!,  completion: {(response) in
                     print(response)
                     if response.error != nil {
@@ -173,11 +174,8 @@ public class QuickItinerary {
                     }
                     
                 }
-                if globalActivityFeedsController != nil {
-                    
-                        globalActivityFeedsController.getActivity(pageNumber: 1)
-                    
-                    
+                if globalTLMainFeedsViewController != nil {                    
+                        globalTLMainFeedsViewController.getDataMain()
                 }
 //                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "UPLOAD_ITINERARY"), object: nil)
             }

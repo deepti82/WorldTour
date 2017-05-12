@@ -35,8 +35,9 @@ enum feedPostCellType {
     case POST_THOUGHT_VIDEO_TYPE
 }
 
+var globalTLMainFeedsViewController:TLMainFeedsViewController!
 
-class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, TLFooterBasicDelegate {
+class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, TLFooterBasicDelegate, TLUploadDelegate {
 
     @IBOutlet weak var feedsTableView: UITableView!
     
@@ -63,6 +64,11 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        globalTLMainFeedsViewController = self
+        
+        let i = PostImage()
+        i.uploadPhotos(delegate: self)
         
         feedsDataArray = []
         self.reloadTableData()
@@ -187,7 +193,9 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
     func pullToRefreshCalled() {
         print("\n Pull to refresh called \n")
         
-        refreshControl.endRefreshing()        
+        if refreshControl.isRefreshing {
+            refreshControl.endRefreshing()            
+        }
         
         if !isLoading {
             currentPageNumber = 1
@@ -204,9 +212,6 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
     func getDataMain() {
         
         print("\n\n Will fetch data for : \(currentPageNumber)")
-        
-        let i = PostImage()
-        i.uploadPhotos()
         
         if feedsDataArray.isEmpty && currentPageNumber == 1 {
             loader.showOverlay(self.view)
@@ -626,7 +631,9 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
         self.feedsTableView.reloadRows(at: [IndexPath(row: tag, section: 0)], with: .none)
     }    
     
-    
+    func postUploadedSuccessfully() {
+        self.pullToRefreshCalled()
+    }
     
     //MARK: - Scrolling Delegates
     

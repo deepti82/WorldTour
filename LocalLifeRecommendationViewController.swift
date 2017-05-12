@@ -40,7 +40,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
         globalActivityFeedsController = nil
         loader.hideOverlayView()
         let i = PostImage()
-        i.uploadPhotos()
+        i.uploadPhotos(delegate: nil)
         
         globalLocalLife = self
         getDarkBackGround(self)

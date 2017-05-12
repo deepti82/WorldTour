@@ -240,7 +240,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         hideAddActivity()
         
         let i = PostImage()
-        i.uploadPhotos()
+        i.uploadPhotos(delegate: nil)
         self.addView.postButton.isHidden = true
     }
     
@@ -386,7 +386,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
             self.addPostLayout(po)
             
             let i = PostImage()
-            i.uploadPhotos()
+            i.uploadPhotos(delegate: nil)
             self.addView.postButton.isHidden = true
         }
         
@@ -1111,7 +1111,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         mainScroll.clipsToBounds = true
         
         let i  = PostImage();
-        i.uploadPhotos()
+        i.uploadPhotos(delegate: nil)
         
         refreshControl.addTarget(self, action: #selector(NewTLViewController.refresh(_:)), for: .valueChanged)
         let attributes = [NSForegroundColorAttributeName: UIColor.white]
