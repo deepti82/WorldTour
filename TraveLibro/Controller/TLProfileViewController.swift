@@ -109,7 +109,9 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
         self.setNavigationBar()
         
         if !currentlyShowingUser.isEmpty {
-            selectedUser = currentlyShowingUser            
+            if !isSelfUser(otherUserID: currentlyShowingUser["_id"].stringValue) {
+                selectedUser = currentlyShowingUser                
+            }
         }        
         
         if self.isShowingSelf {
