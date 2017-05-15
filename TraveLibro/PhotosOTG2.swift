@@ -4,10 +4,10 @@ import Spring
 
 class PhotosOTG2: VerticalLayout,PlayerDelegate {
     var postTop:Post!
-    var endJourneyView: EndJourneyMyLife!
-    var endJourneyCard: EndJourneyView!
+    var endJourneyView: EndJourneyMyLife!    
     var lines: OnlyLine!
-    var header:PhotosOTGHeader!
+    var profileHeader:ActivityProfileHeader!
+    var textHeader:ActivityTextHeader!
     var centerView:PhotosOTGView!
     var footerView:PhotoOTGFooter!
     var mainPhoto:UIImageView!
@@ -17,6 +17,7 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
     var player:Player!
     var scrollView:UIScrollView!
     var rateButton:RatingCheckIn!
+    var headerLine:DottedLine!
     var dropView: DropShadow1!
     var journeyUser: String = ""
     var willPlay = false
@@ -27,51 +28,16 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
         self.clipsToBounds = true
         //header generation only
         
-        header = PhotosOTGHeader(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 102 ))
+        postTop = post
         
-        self.addSubview(header)
-        
-        header.postDp.layer.zPosition = 5
-        header.calendarLabel.layer.zPosition = 5
-        header.clockLabel.layer.zPosition = 5
-        header.dateLabel.layer.zPosition = 5
-        header.whatPostIcon.layer.zPosition = 5
-        header.timeLabel.layer.zPosition = 5
-        header.photosTitle.layer.zPosition = 5
-        self.postTop = post;
-        post.getThought()
-        header.photosTitle.attributedText = post.finalThought
-        print(header.photosTitle.attributedText!)
-        print(post.finalThought)
-        post.getTypeOfPost()
-        
-        if(post.postCreator != nil) {
-            header.postDp.hnk_setImageFromURL(URL(string:"\(adminUrl)upload/readFile?file=\(post.postCreator["profilePicture"])&width=100")!)
+        if (postTop.jsonPost != nil) {
+            headerLayout(feed: postTop.jsonPost)
         }
         else {
-            header.postDp.hnk_setImageFromURL(URL(string:"\(adminUrl)upload/readFile?file=\(currentUser["profilePicture"])&width=100")!)
-        }
-        
-        header.makeTLProfilePicture(header.postDp)
-        
-        header.dateLabel.text = post.post_dateDay
-        header.timeLabel.text = post.post_dateTime
-        
-        if((post.typeOfPost) != nil) {
-            switch(post.typeOfPost) {
-            case "Location":
-                header.whatPostIcon.setImage(UIImage(named: "location_icon"), for: .normal)
-            case "Image":
-                header.whatPostIcon.setImage(UIImage(named: "camera_icon"), for: .normal)
-            case "Videos":
-                header.whatPostIcon.setImage(UIImage(named: "video"), for: .normal)
-            case "Thoughts":
-                header.whatPostIcon.setImage(UIImage(named: "pen_icon"), for: .normal)
-            default:
-                break
+            if isSelfUser(otherUserID: postTop.post_userId) {
+                headerLayoutForLocalPost(post: postTop)                
             }
         }
-        // End of Header
         
         //Image generation only
         if(post.videoArr.count > 0) {
@@ -109,7 +75,8 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
             
             
             
-        } else if(post.imageArr.count > 0) {
+        } 
+        else if(post.imageArr.count > 0) {
             self.mainPhoto = UIImageView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.width))
             self.addSubview(self.mainPhoto)
             self.mainPhoto.contentMode = UIViewContentMode.scaleAspectFill
@@ -117,8 +84,7 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
             self.mainPhoto.image = UIImage(named: "logo-default")
             self.addSubview(mainPhoto)
             let heightForBlur = 10;
-            var thumbStr = "";
-            transparentCardWhiteImage(mainPhoto)
+            var thumbStr = "";            
             if(!post.post_isOffline) {
                 thumbStr = "&width=\(heightForBlur)"
             }
@@ -156,7 +122,8 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
                 self.layoutSubviews()
                 globalNewTLViewController.addHeightToLayout(height: 50)
             })
-        } else if(post.post_locationImage != nil && post.post_locationImage != "") {
+        }
+        else if(post.post_locationImage != nil && post.post_locationImage != "") {
             self.mainPhoto = UIImageView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.width))
             self.mainPhoto.contentMode = UIViewContentMode.scaleAspectFill
             self.mainPhoto.image = UIImage(named: "logo-default")
@@ -171,7 +138,8 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
         }
         //Center Generation Only
         if(post.imageArr.count > showImageIndexStart) {
-            centerView = PhotosOTGView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 96 ))
+            centerView = PhotosOTGView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 90 ))
+            centerView.backgroundColor = UIColor(white: 1, alpha: 0.8)
             addPhotoToLayout(post,startIndex:showImageIndexStart)
             self.addSubview(centerView)
         }
@@ -246,6 +214,128 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
         self.layoutSubviews()
     }
     
+    
+    func headerLayout(feed:JSON) {
+        headerLine = DottedLine(frame: CGRect(x: 0, y: 2, width: self.frame.width, height: 38))
+        
+        profileHeader = ActivityProfileHeader(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: FEEDS_HEADER_HEIGHT))
+        profileHeader.backgroundColor = UIColor(white: 1, alpha: 0.8)
+        self.addSubview(headerLine)
+        self.addSubview(profileHeader)
+        profileHeader.followButton.isHidden = true
+        profileHeader.fillProfileHeader(feed:feed, pageType: viewType.VIEW_TYPE_OTG, cellType: feedCellType.CELL_POST_TYPE)
+        
+        
+        if feed["type"].stringValue == "on-the-go-journey"{
+            profileHeader.localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["startTime"].stringValue, isDate: true)
+            profileHeader.localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["startTime"].stringValue, isDate: false)
+        }else if feed["type"].stringValue == "ended-journey"{
+            profileHeader.localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["endTime"].stringValue, isDate: true)
+            profileHeader.localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["endTime"].stringValue, isDate: false)
+        }else if feed["type"].stringValue == "quick-itinerary"{
+            profileHeader.localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["createdAt"].stringValue, isDate: true)
+            profileHeader.localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["createdAt"].stringValue, isDate: false)
+        }else if feed["type"].stringValue == "detail-itinerary"{
+            profileHeader.localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["startDate"].stringValue, isDate: true)
+            profileHeader.localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["startTime"].stringValue, isDate: false)
+        }else {
+            profileHeader.localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["UTCModified"].stringValue, isDate: true)
+            profileHeader.localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["UTCModified"].stringValue, isDate: false)
+            
+        }
+        
+        if feed["thoughts"].stringValue != "" {
+            
+            //  START ACTIVITY TEXT HEADER
+            textHeader = ActivityTextHeader(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 0))
+            textHeader.headerText.attributedText = getThought(feed)
+            textHeader.headerText.sizeToFit()
+            textHeader.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: textHeader.headerText.frame.height + 1.5)
+            self.addSubview(textHeader)
+            
+            
+        } else {
+            // For header text
+            textHeader = ActivityTextHeader(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 70))
+            switch feed["type"].stringValue {
+            case "on-the-go-journey":
+                setText(text: "Has started a Journey.")
+                
+            case "ended-journey":
+                setText(text: "Has ended this Journey.")
+                
+            case "quick-itinerary":
+                setText(text: "Has uploaded a new Itinerary.")
+                
+            case "detail-itinerary":
+                setText(text: "Has uploaded a new Itinerary.")
+            default:
+                textHeader.headerText.attributedText = getThought(feed)
+            }
+            textHeader.headerText.sizeToFit()
+            textHeader.sizeToFit()
+            textHeader.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: textHeader.headerText.frame.height + 1.5)
+            if(textHeader.headerText.text != "") {
+                
+                self.addSubview(textHeader)
+            }
+            
+            
+        }
+        
+    }
+    
+    func headerLayoutForLocalPost(post: Post) {
+        
+        profileHeader = ActivityProfileHeader(frame: CGRect(x: 0, y: 20, width: self.frame.width, height: FEEDS_HEADER_HEIGHT))
+        profileHeader.backgroundColor = UIColor(white: 1, alpha: 0.8)
+        self.addSubview(profileHeader)
+        profileHeader.followButton.isHidden = true
+        profileHeader.fillProfileHeaderForLocalPost(post: post)
+        
+        if post.post_thoughts != "" {
+            //  START ACTIVITY TEXT HEADER
+            textHeader = ActivityTextHeader(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 0))
+            textHeader.headerText.attributedText = getThoughtForLocalPost(post)
+            textHeader.headerText.sizeToFit()
+            textHeader.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: textHeader.headerText.frame.height + 1.5)
+            self.addSubview(textHeader)
+        }
+        else {
+            // For header text
+            textHeader = ActivityTextHeader(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 70))            
+            switch post.post_type {
+            case "on-the-go-journey":
+                setText(text: "Has started a Journey.")
+                
+            case "ended-journey":
+                setText(text: "Has ended this Journey.")
+                
+            case "quick-itinerary":
+                setText(text: "Has uploaded a new Itinerary.")
+                
+            case "detail-itinerary":
+                setText(text: "Has uploaded a new Itinerary.")
+            default:
+                textHeader.headerText.attributedText = getThoughtForLocalPost(post)
+            }
+            textHeader.headerText.sizeToFit()
+            textHeader.sizeToFit()
+            textHeader.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: textHeader.headerText.frame.height + 1.5)
+            if(textHeader.headerText.text != "") {
+                
+                self.addSubview(textHeader)
+            }
+        }
+        
+    }
+    
+    
+    func setText(text: String) {
+        textHeader.headerText.text = text
+        //        self.addSubview(textHeader)
+    }
+    
     func openSingleVideo(_ sender: AnyObject) {
         let singlePhotoController = storyboard?.instantiateViewController(withIdentifier: "singlePhoto") as! SinglePhotoViewController
 //        singlePhotoController.mainImage?.image = sender.image
@@ -260,7 +350,7 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
     func addPhotoToLayout(_ post: Post, startIndex: Int) {
         centerView.horizontalScrollForPhotos.removeAll()
         for i in startIndex ..< post.imageArr.count {
-            let photosButton = UIImageView(frame: CGRect(x: 6, y: 5, width: 87, height: 87))
+            let photosButton = UIImageView(frame: CGRect(x: 5, y: 5, width: 80, height: 80))
             photosButton.image = UIImage(named: "logo-default")
             photosButton.contentMode = UIViewContentMode.scaleAspectFill
             if(post.post_isOffline) {
@@ -268,7 +358,7 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
             } else {
                 photosButton.frame.size.height = 82
                 photosButton.frame.size.width = 82
-                let urlStr = post.imageArr[i].imageUrl.absoluteString + "&width=100"
+                let urlStr = post.imageArr[i].imageUrl.absoluteString + "&width=500"
                 photosButton.hnk_setImageFromURL(URL(string:urlStr)!)
                 if(!post.post_isOffline) {
                     let tapGestureRecognizer = UITapGestureRecognizer(target:self, action: #selector(PhotosOTG2.openSinglePhoto(_:)))

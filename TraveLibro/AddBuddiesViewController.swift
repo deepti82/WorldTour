@@ -20,6 +20,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
     var friendsCount:UIButton!
     
     var whichView = "LL"
+    var typeOfAddActivity = ""
     var addedFriends: [JSON] = []
     var frezzFriends: [JSON] = []
     var addedFriendsImages: [String] = []
@@ -33,7 +34,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
     
     @IBAction func saveButtonTapped(_ sender: UIButton) {
         sender.isEnabled = false
-        self.navigationController?.popViewController(animated: true)
+        _ = self.navigationController?.popViewController(animated: true)
         switch(whichView) {
         case "AddActivity":
             globalAddActivityNew.buddyAdded(addedFriends);
@@ -55,6 +56,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(whichView)
         getDarkBackGroundBlue(self)
         addedBuddies.shadowColor = UIColor.black
         addedBuddies.shadowOffset = CGSize(width: 2, height: 2)
@@ -76,10 +78,13 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
             frezzFriends = addedFriends
             addedFriends = []
         }
-        
-        if whichView == "NewTLMiddle" {
+        if typeOfAddActivity == "CreateLocalLife" {
+            addedBuddies.text = "Tagged Buddies"
+        }else{
             addedBuddies.text = "Trip Buddies"
+
         }
+        
         
         allFriends.textColor = UIColor.white
         self.title = "Add Buddies"

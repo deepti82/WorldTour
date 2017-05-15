@@ -10,7 +10,7 @@ import UIKit
 import Photos
 import  BSImagePicker
 
-class QuickIteneraryFive: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+class QuickIteneraryFive: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
     @IBOutlet weak var photosAddMore: UIButton!
     @IBOutlet weak var photosGalleryFirstView: UIView!
@@ -62,6 +62,19 @@ class QuickIteneraryFive: UIViewController, UICollectionViewDataSource, UICollec
         
         return self.imageArr.count
     }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        if shouldShowBigImage(position: indexPath.row) {
+            return CGSize(width: (collectionView.frame.size.width), height: collectionView.frame.size.width * 0.7)
+        }
+        
+        return CGSize(width: (collectionView.frame.size.width/3 - 2), height: (collectionView.frame.size.width/3 - 2))
+        
+    }
+
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photosFromGallery", for: indexPath)

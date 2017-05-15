@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -21,25 +20,25 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hi, " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZOU-vp-H3m">
-                    <rect key="frame" x="5" y="5" width="363" height="25"/>
-                    <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="18"/>
+                    <rect key="frame" x="5" y="5" width="363" height="28"/>
+                    <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="20"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DRAW INSPIRATION FROM OTHERS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Wn-Qy-w4e">
-                    <rect key="frame" x="5" y="33" width="363" height="17"/>
-                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
+                    <rect key="frame" x="5" y="36" width="363" height="20"/>
+                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Currently you are not following anybody. Search interesting people to follow their journeys and activities." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ewi-MM-bng">
-                    <rect key="frame" x="15" y="58" width="343" height="33"/>
-                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
+                    <rect key="frame" x="8" y="64" width="357" height="38.5"/>
+                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ILV-rY-we1">
-                    <rect key="frame" x="103" y="99" width="168" height="40"/>
+                    <rect key="frame" x="97" y="110.5" width="180" height="40"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="search_toolbar" translatesAutoresizingMaskIntoConstraints="NO" id="YpU-Hb-Vjv">
                             <rect key="frame" x="30" y="5" width="30" height="30"/>
@@ -49,8 +48,8 @@
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Explore Now!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jAG-Uc-2gk">
-                            <rect key="frame" x="62" y="5" width="86" height="30"/>
-                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
+                            <rect key="frame" x="62" y="5" width="98" height="30"/>
+                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
@@ -72,10 +71,10 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="4Wn-Qy-w4e" secondAttribute="trailing" constant="5" id="1xk-QE-Qd0"/>
-                <constraint firstAttribute="trailing" secondItem="Ewi-MM-bng" secondAttribute="trailing" constant="15" id="52O-Ws-2br"/>
+                <constraint firstAttribute="trailing" secondItem="Ewi-MM-bng" secondAttribute="trailing" constant="8" id="52O-Ws-2br"/>
                 <constraint firstItem="ZOU-vp-H3m" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="5" id="8Qo-Ae-V8B"/>
                 <constraint firstItem="ZOU-vp-H3m" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="Hj5-xK-jQj"/>
-                <constraint firstItem="Ewi-MM-bng" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="K3E-Dz-rUC"/>
+                <constraint firstItem="Ewi-MM-bng" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="K3E-Dz-rUC"/>
                 <constraint firstAttribute="trailing" secondItem="ZOU-vp-H3m" secondAttribute="trailing" constant="5" id="SQd-TB-bSr"/>
                 <constraint firstItem="4Wn-Qy-w4e" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="5" id="Udj-Wg-dbS"/>
                 <constraint firstItem="Ewi-MM-bng" firstAttribute="top" secondItem="4Wn-Qy-w4e" secondAttribute="bottom" constant="8" id="Wlf-k4-Qaq"/>

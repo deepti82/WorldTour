@@ -614,7 +614,7 @@ class EndJourneyViewController: UIViewController {
             
         }
         else {
-            self.navigationController?.popViewController(animated: true)
+           _ = self.navigationController?.popViewController(animated: true)
         }
     }
     
@@ -624,9 +624,8 @@ class EndJourneyViewController: UIViewController {
     
     func goBack() {
         
-        let tlVC = self.storyboard!.instantiateViewController(withIdentifier: "activityFeeds") as! ActivityFeedsController
-        tlVC.displayData = "activity"
-        
+        let tlVC = self.storyboard!.instantiateViewController(withIdentifier: "TLMainFeedsView") as! TLMainFeedsViewController
+        tlVC.pageType = viewType.VIEW_TYPE_ACTIVITY
         self.navigationController?.pushViewController(tlVC, animated: false)
     }
     

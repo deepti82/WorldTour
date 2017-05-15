@@ -47,8 +47,7 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
         activityScroll.addSubview(layout)
         
         self.mainFooter = FooterViewNew(frame: CGRect.zero)
-        self.mainFooter.layer.zPosition = 5
-        self.mainFooter.setHighlightStateForView(tag: 0, color: mainOrangeColor)        
+        self.mainFooter.layer.zPosition = 5                
         
 //        let darkBlur = UIBlurEffect(style: UIBlurEffectStyle.light)
 //                                    let blurView = UIVisualEffectView(effect: darkBlur)
@@ -76,7 +75,7 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
                 self.getActivity(pageNumber: self.pageno)
                 
                 let i = PostImage()
-                i.uploadPhotos()
+                i.uploadPhotos(delegate: nil)
 //            })
 //        }
     }
@@ -87,6 +86,7 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
         globalActivityFeedsController = self
         
         self.mainFooter.frame = CGRect(x: 0, y: self.view.frame.height - MAIN_FOOTER_HEIGHT, width: self.view.frame.width, height: MAIN_FOOTER_HEIGHT)
+        self.mainFooter.setHighlightStateForView(tag: 0, color: mainOrangeColor)
         
         var isEmptyScreenPresent = false
         for views in self.view.subviews {
@@ -112,7 +112,7 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
         hideHeaderAndFooter(false)
         displayData = "activity"
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        print()
+        self.mainFooter.setFooterDefaultState()
         
 //        globalActivityFeedsController = nil
     }
@@ -229,7 +229,7 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
                             self.uploadingView.uploadText.text = "Uploading to My Life."
                         }
                         
-                        self.uploadingView.backgroundColor = endJourneyColor
+                        self.uploadingView.backgroundView.backgroundColor = endJourneyColor
                         
                         self.layout.addSubview(checkIn)
                         self.layout.addSubview(self.uploadingView)
@@ -260,7 +260,7 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
                         checkIn.activityFeed = self
                         
                         self.uploadingView = UploadingToCloud(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 23))
-                        self.uploadingView.backView.backgroundColor = endJourneyColor
+                        self.uploadingView.backgroundView.backgroundColor = endJourneyColor
                         self.uploadingView.uploadText.textColor = mainBlueColor
                         self.layout.addSubview(checkIn)
                         self.layout.addSubview(self.uploadingView)
@@ -336,8 +336,6 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
                     }
                 })
             })
-            
-            
         }
         else if displayData == "popular" {
             let userr = User()
@@ -512,7 +510,7 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
         
         removeEmptyScreen()
         
-        let noActivity = activityEmptyView(frame: CGRect(x: 0, y: 0, width: min(screenWidth*0.8, 256)  , height: 160))
+        let noActivity = activityEmptyView(frame: CGRect(x: 0, y: 0, width: min(screenWidth*0.8, 256)  , height: 200))
         noActivity.headerLabel.text = "Hi \(currentUser["name"].stringValue),"
         noActivity.tag = 46
         noActivity.center = CGPoint(x: screenWidth/2, y: screenHeight/2 - 50)

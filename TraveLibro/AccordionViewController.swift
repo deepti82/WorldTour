@@ -84,34 +84,44 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
         leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
         leftButton.addTarget(self, action: #selector(self.goBack(_:)), for: .touchUpInside)
-        let rightButton = UIView()
-        self.title = text
+        let rightButton = UIView()        
+        setNavigationBarItemText(text)
         self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Avenir-Medium", size: 18)!]
         
         self.customNavigationBar(left: leftButton, right: rightButton)
     }
+    
+    let cnfg = Config()
     
     func showNoData(show:Bool) {
         if empty != nil {
             self.empty.removeFromSuperview()
         }
         if show {
-            empty = EmptyScreenView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 250))
+            empty = EmptyScreenView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height + 10))
+            empty.parentController = self
+
             switch reviewType {
             case "all":
-                empty.frame.size.height = 250.0
-                empty.viewHeading.text = "Relive Y​our Storyline"
-                empty.viewBody.text = "Rate the places, restaurants, cuisines, theatres, parks, museums, and more, when you check-in. Jot down your thoughts and feelings about them."
+                empty.frame.size.height = CGFloat(cnfg.getHeight(ht: Double(self.view.frame.height + 10)))
+                empty.viewHeading.text = "Relive Y​our Experiences"
+                empty.viewBody.text = "Rate the hotels, restaurants, theatres, parks, museums, and more, when you check-in and review your experiences there."
+                empty.setColor(life: "", buttonLabel: "Start a New Journey")
+
                 break
             case "travel-life":
-                empty.frame.size.height = 350.0
+                empty.frame.size.height = CGFloat(cnfg.getHeight(ht: Double(self.view.frame.height + 10)))
                 empty.viewHeading.text = "The World I​s Your Oyster"
                 empty.viewBody.text = "A five star or a four star? What does that historical monument qualify for? Rate it and write a review. Help others with your rating and review."
+                empty.setColor(life: "", buttonLabel: "Add a Travel Journey")
+
                 break
             case "local-life":
-                empty.frame.size.height = 275.0
+                empty.frame.size.height = CGFloat(cnfg.getHeight(ht: Double(self.view.frame.height + 10)))
                 empty.viewHeading.text = "A Touch Of Your Daily Dose"
                 empty.viewBody.text = "Now how about rating and writing a super review for that newly-opened restaurant in your town? Wherever you go, click on a star and pen down your experiences."
+                empty.setColor(life: "locallife", buttonLabel: "Add your first Local Activity")
+
                 break
             default:
                 break

@@ -51,7 +51,7 @@ class TripSummaryPhotosViewController: UIViewController {
         if fromView == "endJourney" {
             self.customNavigationBar(left: leftButton, right: nil)
         }else{
-            self.customNavigationBar(left: leftButton, right: rightButton)
+            self.customNavigationBar(left: leftButton, right: nil)
         }
         
     }

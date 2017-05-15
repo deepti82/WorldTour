@@ -10,10 +10,20 @@ import UIKit
 
 class MyLifeJourneyTravel: UIView {
 
+    
+    @IBOutlet weak var startJourney: UIButton!
+    @IBOutlet weak var startDocument: UIButton!
+    @IBOutlet weak var startJourneyText: UILabel!
+    @IBOutlet weak var startDocumentText: UILabel!
+    @IBOutlet weak var nextParaTop: NSLayoutConstraint!
+    
+    var parentController: UIViewController?
+    
     override init(frame: CGRect) {
         
         super.init(frame: frame)
         loadViewFromNib ()
+        
         
     }
     required init?(coder aDecoder: NSCoder) {
@@ -30,5 +40,48 @@ class MyLifeJourneyTravel: UIView {
         self.addSubview(view)
         
     }
+    
+    func setView() {        
+        
+        if isSelfUser(otherUserID: currentUser["_id"].stringValue) {
+            startJourney.isHidden = false
+            startDocument.isHidden = false
+            startDocumentText.isHidden = false
+            startJourneyText.isHidden = false
+            
+        }else{
+//            nextParaTop.constant = 8
+            self.startJourney.isHidden = true
+            self.startDocument.isHidden = true
+            self.startDocumentText.isHidden = true
+            self.startJourneyText.isHidden = true
+        }
 
+    }
+    
+    @IBAction func createJourney(_ sender: UIButton) {
+        let vc = storyboard!.instantiateViewController(withIdentifier: "newTL") as! NewTLViewController
+        vc.isJourney = false
+        vc.insideView = "journey"
+        parentController?.navigationController?.setNavigationBarHidden(false, animated: true)
+        parentController?.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @IBAction func createItinerary(_ sender: UIButton) {
+        
+        let vc = storyboard?.instantiateViewController(withIdentifier: "qiPVC") as! QIViewController
+        parentController?.navigationController?.setNavigationBarHidden(false, animated: true)
+        parentController?.navigationController?.pushViewController(vc, animated: true)
+        //        self.setVC(newViewController: vc)
+    }
+    
+    func setVC(newViewController : UIViewController) {
+        
+        let nvc = UINavigationController(rootViewController: newViewController)
+        leftViewController.mainViewController = nvc
+        leftViewController.slideMenuController()?.changeMainViewController(leftViewController.mainViewController, close: true)
+        
+        UIViewController().customiseNavigation()
+        nvc.delegate = UIApplication.shared.delegate as! UINavigationControllerDelegate?
+    }
 }

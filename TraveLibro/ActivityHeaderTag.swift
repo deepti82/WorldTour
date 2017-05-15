@@ -12,7 +12,6 @@ class ActivityHeaderTag: UIView {
 
     @IBOutlet weak var tagView: UIView!
     @IBOutlet weak var tagText: UILabel!
-    @IBOutlet weak var tagLine: UIView!
     @IBOutlet var tagParent: UIView!
     override init(frame: CGRect) {
         

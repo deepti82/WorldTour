@@ -54,7 +54,7 @@ public class PostEditPhotosVideos {
             for post in try db.prepare(query) {
                 check = true
                 let str = String(post[uniqueId_db])
-                var params:JSON = [ "uniqueId" : str,"type": "addPhotosVideos","user": currentUser["_id"].stringValue]
+                var params:JSON = [ "uniqueId" : str!, "type": "addPhotosVideos","user": currentUser["_id"].stringValue]
                 let actualId = Int(post[id_db]) + 10000
                 
                 let i = PostImage();
@@ -67,7 +67,7 @@ public class PostEditPhotosVideos {
                 }
                 
                 params["photosArr"] = JSON(photosJson)
-                var buddyStr = String(post[buddyDb])
+                let buddyStr = String(post[buddyDb])
 
                 if let data = buddyStr?.data(using: String.Encoding.utf8) {
                     params["buddies"] = JSON(data:data)

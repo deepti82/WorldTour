@@ -54,13 +54,13 @@ class SearchTableViewController: UIViewController, UITableViewDelegate, UITableV
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if selectedStatus != "people" {
             selectedHash = allData[indexPath.row]["title"].stringValue
-            let tlVC = storyboard!.instantiateViewController(withIdentifier: "activityFeeds") as! ActivityFeedsController
-            tlVC.displayData = "hashtags"
-            globalNavigationController?.pushViewController(tlVC, animated: false)
+            let vc = storyboard!.instantiateViewController(withIdentifier: "TLMainFeedsView") as! TLMainFeedsViewController
+            vc.pageType = viewType.VIEW_TYPE_ACTIVITY
+            globalNavigationController?.pushViewController(vc, animated: false)
         }else{
             selectedPeople = allData[indexPath.row]["_id"].stringValue
             selectedUser = allData[indexPath.row]
-            let profile = self.storyboard!.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
+            let profile = self.storyboard!.instantiateViewController(withIdentifier: "TLProfileView") as! TLProfileViewController
             profile.displayData = "search"
             profile.currentSelectedUser = selectedUser
             self.navigationController!.pushViewController(profile, animated: true)

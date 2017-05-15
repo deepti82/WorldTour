@@ -118,9 +118,8 @@ class FooterViewNew: UIView {
                 DispatchQueue.main.async {
                     popularView = "activity"
                     currentUser = response["data"]
-                    let vc = storyboard!.instantiateViewController(withIdentifier: "activityFeeds") as! ActivityFeedsController
-                    vc.displayData = "activity"
-                    popularView = "activity"
+                    let vc = storyboard!.instantiateViewController(withIdentifier: "TLMainFeedsView") as! TLMainFeedsViewController
+                    vc.pageType = viewType.VIEW_TYPE_ACTIVITY
                     self.setVC(newViewController: vc)
                 }
             })
@@ -175,9 +174,15 @@ class FooterViewNew: UIView {
             request.getUserFromCache(user.getExistingUser(), completion: { (response) in
                 DispatchQueue.main.async {
                     currentUser = response["data"]
-                    let vc = storyboard?.instantiateViewController(withIdentifier: "myLife") as! MyLifeViewController
-                    vc.isFromFooter = true
+                    
+                    selectedPeople = currentUser["_id"].stringValue
+                    selectedUser = currentUser
+                                        
+                    let vc = storyboard?.instantiateViewController(withIdentifier: "TLProfileView") as! TLProfileViewController
+                    vc.displayData = ""
+                    vc.currentSelectedUser = selectedUser
                     self.setVC(newViewController: vc)
+                    
                 }
             })
         }

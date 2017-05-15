@@ -317,6 +317,7 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
 //        }
     }
     func tagMoreBuddies(_ sender: UIButton) {
+        print(typeOfAddActivtiy)
         self.resignThoughtsTexViewKeyboard()
         if(self.typeOfAddActivtiy != "EditActivity") {
             buddiesStatus = true
@@ -327,9 +328,9 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
         
         let next = storyboard?.instantiateViewController(withIdentifier: "addBuddies") as! AddBuddiesViewController
         next.whichView = "AddActivity"
+        next.typeOfAddActivity = self.typeOfAddActivtiy
         
-        print(addedBuddies);
-        if addedBuddies != nil {
+        if !addedBuddies.isEmpty {
             next.addedFriends = addedBuddies
         }
         if(self.typeOfAddActivtiy == "AddPhotosVideos") {
@@ -385,7 +386,16 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
             self.cameraViewController = CameraViewController(configuration:configuration)
 //            timeLabel.text = self.cameraViewController.recordingTimeLabel.text
             self.cameraViewController.completionBlock = self.completionVideoBlock
-            showPopover(optionsController: optionMenu, sender: sender, vc: globalNavigationController)
+            
+            if let popover = self.cameraViewController.popoverPresentationController{
+                popover.sourceView = self.videosButton
+                popover.sourceRect = sender.bounds
+            }
+            globalNavigationController.present(self.cameraViewController, animated: true, completion: nil)
+
+            
+            
+//            showPopover(optionsController: optionMenu, sender: sender, vc: globalNavigationController)
 
 //            globalNavigationController.topViewController?.present(self.cameraViewController, animated: true, completion: nil)
         })
@@ -411,7 +421,7 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
             imagePickerController.videoQuality = UIImagePickerControllerQualityType.type640x480
             
             if(self.typeOfAddActivtiy == "CreateLocalLife") {
-                imagePickerController.delegate = globalLocalLife as! (UIImagePickerControllerDelegate & UINavigationControllerDelegate)?
+                imagePickerController.delegate = globalLocalLife as(UIImagePickerControllerDelegate & UINavigationControllerDelegate)?
                 self.finalImageTag.tintColor = UIColor(hex: "#11d3cb")
                 self.videoTagFinal.tintColor = UIColor(hex: "#11d3cb")
             } else {
@@ -419,7 +429,13 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
             }
 //            showPopover(optionsController: imagePickerController, sender: sender, vc: globalNavigationController)
 
-            globalNavigationController.topViewController?.present(imagePickerController, animated: true, completion: nil)
+            if let popover = imagePickerController.popoverPresentationController{
+                popover.sourceView = self.videosButton
+                popover.sourceRect = sender.bounds
+            }
+            globalNavigationController.present(imagePickerController, animated: true, completion: nil)
+            
+//            globalNavigationController.topViewController?.present(imagePickerController, animated: true, completion: nil)
         })
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: {
@@ -693,7 +709,17 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
             }
             
             imagePickerController.sourceType = .camera
-            showPopover(optionsController: optionMenu, sender: self.photosButton, vc: globalNavigationController)
+            
+            
+            if let popover = imagePickerController.popoverPresentationController{
+                popover.sourceView = self.photosButton
+                popover.sourceRect = sender.bounds
+            }
+            globalNavigationController.present(imagePickerController, animated: true, completion: nil)
+            
+            
+            
+//            showPopover(optionsController: , sender: self.photosButton, vc: globalNavigationController)
 //            globalNavigationController?.topViewController?.present(imagePickerController, animated: true, completion: nil)
             
         })

@@ -34,9 +34,9 @@ class ActivityFeedQuickItinerary: UIView {
 //        quickBadge.clipsToBounds = true
 //        quickBadge.layer.cornerRadius = 10
         transparentCardWhite(activityFeedQuickView)
-        makeTLProfilePictureBorderWhiteCorner(activityQuickFlagOne)
-        makeTLProfilePictureBorderWhiteCorner(activityQuickFlagTwo)
-        makeTLProfilePictureBorderWhiteCorner(activityFeedQuickThree)
+        makeFlagBorderWhiteCorner(activityQuickFlagOne)
+        makeFlagBorderWhiteCorner(activityQuickFlagTwo)
+        makeFlagBorderWhiteCorner(activityFeedQuickThree)
         
         let rectShape = CAShapeLayer()
         rectShape.bounds = self.quickBadge.frame

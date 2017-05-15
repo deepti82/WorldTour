@@ -664,11 +664,11 @@ class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDele
 //                            if !self.carouselView.isHidden {
 //                                self.carouselView.isHidden = false
 //                                self.carouselView.currentItemIndex = self.index
-//                                self.carouselView.reloadData()
+//                                self.reloadCarouselView()
 //                                self.carouselView.scrollToItem(at: self.index, animated: true)
 //                            }
 //                            else{
-//                                self.carouselView.reloadData()
+//                                self.reloadCarouselView()
 //                            }
                         }
                         else {                            
@@ -701,7 +701,7 @@ class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDele
                     carouselView.isHidden = false
                 }
                 carouselView.currentItemIndex = index
-                carouselView.reloadData()
+                self.reloadCarouselView()
                 carouselView.scrollToItem(at: index, animated: true)
             }
         }
@@ -760,11 +760,11 @@ class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDele
                         if self.carouselView.isHidden {
                             self.carouselView.isHidden = false
                             self.carouselView.currentItemIndex = self.index
-                            self.carouselView.reloadData()
+                            self.reloadCarouselView()
                             self.carouselView.scrollToItem(at: self.index, animated: true)
                         }
                         else{
-                            self.carouselView.reloadData()
+                            self.reloadCarouselView()
                         }
                     }
                     else {
@@ -791,6 +791,27 @@ class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDele
         leftSwipe(nil)
     }
     
+    
+    //MARK: - Reload Carousel View
+    
+    func reloadCarouselView() {
+        print("\n currentItemIndex : \(self.carouselView.currentItemIndex)")
+        if self.carouselView.currentItemIndex >= 0 {
+            let dummyImgeView = UIImageView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight))
+            
+            if fetchType == photoVCType.FROM_QUICK_ITINERARY_LOCAL {
+                dummyImgeView.image = globalPostImage[carouselView.currentItemIndex].image
+            }
+            else {
+                var currentJson = photos[carouselView.currentItemIndex]        
+                if currentJson != nil {
+                    dummyImgeView.hnk_setImageFromURL(getImageURL((currentJson["name"].stringValue), width: VERY_BIG_PHOTO_WIDTH))
+                }
+            }            
+        }
+                    
+        self.carouselView.reloadData()
+    }
     
     //MARK: - Carousel Datasource and Delegates
     
@@ -842,7 +863,7 @@ class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDele
         else {
             var currentJson = photos[index]        
             if currentJson != nil {
-                currentImageView.hnk_setImageFromURL(getImageURL((currentJson["name"].stringValue), width: 0))            
+                currentImageView.hnk_setImageFromURL(getImageURL((currentJson["name"].stringValue), width: VERY_BIG_PHOTO_WIDTH))
             }
         }
         return currentImageView
@@ -869,7 +890,7 @@ class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDele
                 if currentJson != nil {
                     if (currentJson?["type"].stringValue == "photo") {
                         self.fromPhotoFunction(data: currentJson! )
-                        bgImage.hnk_setImageFromURL(getImageURL((currentJson?["name"].stringValue)!, width: Int(carousel.frame.size.width*0.8)))
+                        bgImage.hnk_setImageFromURL(getImageURL((currentJson?["name"].stringValue)!, width: SMALL_PHOTO_WIDTH))
                     }
                     else {
                         DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {

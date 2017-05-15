@@ -364,7 +364,7 @@ class LocalLifePostsViewController: UIViewController, UIScrollViewDelegate, CLLo
     
     func loadLocalLife() {
         loadingStatus = false
-        request.getLocalLife(lat: String(locValue.latitude), lng: String(locValue.longitude),page:pagenumber,category:nearMeType, completion: { (response) in
+        request.getLocalLife(lat: String(locValue.latitude), lng: String(locValue.longitude), page:pagenumber, category:nearMeType, completion: { (response) in
             DispatchQueue.main.async(execute: {
                 if (response.error != nil) {
                     print("error: \(response.error?.localizedDescription)")

@@ -54,7 +54,7 @@ class PopularController: UIViewController, UIScrollViewDelegate {
         self.view.addSubview(self.mainFooter)
         
         let i = PostImage()
-        i.uploadPhotos()
+        i.uploadPhotos(delegate: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -141,6 +141,8 @@ class PopularController: UIViewController, UIScrollViewDelegate {
                     if !(request["data"].isEmpty) {
                         self.loadStatus = true
                         for post in request["data"].array! {
+                            print("\n CellData :: type : \(post["type"].stringValue)")
+                            
                             self.feeds.arrayObject?.append(post)
                             let checkIn = PopularLayout(width: self.view.frame.width)
                             checkIn.feeds = post

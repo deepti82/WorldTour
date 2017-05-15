@@ -304,6 +304,8 @@ extension NewTLViewController {
             let changeCityView = ChangeCity(frame: CGRect(x: 0, y: 0, width: width - 120, height: 155))
             changeCityView.center.x = width/2
             changeCityView.cityButton.setTitle(post["location"].string!, for: .normal)
+            changeCityView.dateLabel.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM,yyyy", date: post["UTCModified"].stringValue, isDate: true)
+            changeCityView.timeLabel.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: post["UTCModified"].stringValue, isDate: false)
             layout.addSubview(changeCityView)
             addHeightToLayout(height: changeCityView.frame.height)
         }
@@ -438,7 +440,7 @@ extension NewTLViewController {
     }
     
     func showJourneyOngoing(journey: JSON) {
-        print("in ongoing journey \(isJourneyOngoing)")
+        print("in ongoing journey \(isJourneyOngoing) ----- \(insideView)")
         
         if !isJourneyOngoing {
             height = self.view.frame.height/2

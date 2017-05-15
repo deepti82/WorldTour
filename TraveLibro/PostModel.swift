@@ -434,7 +434,14 @@ public class Post {
                     vidoesJson.append(vid.parseJson())
                 }
                 
-                let checkInJson:JSON = ["location":p.post_location,"category":p.post_category,"city":p.post_city,"country":p.post_country,"lat":p.post_latitude,"long":p.post_longitude]
+                var ctgry = ""
+                if p.post_category == "" {
+                    ctgry = "Others"
+                }else{
+                    ctgry = p.post_category
+                }
+                
+                let checkInJson:JSON = ["location":p.post_location,"category":ctgry,"city":p.post_city,"country":p.post_country,"lat":p.post_latitude,"long":p.post_longitude]
                 
                 var params:JSON = ["type":"travel-life", "thoughts":p.post_thoughts,"user": p.post_userId,"journey":p.post_journeyId,"date":p.post_date]
                 

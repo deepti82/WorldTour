@@ -18,6 +18,15 @@ import Google
 
 import UserNotificationsUI
 
+
+enum layerEdge {
+    case TOP
+    case BOTTOM
+    case LEFT
+    case RIGHT
+}
+
+
 let cache = Shared.dataCache
 
 
@@ -41,6 +50,7 @@ let FontAwesomeFont = UIFont(name: "FontAwesome", size: 14)
 let NAVIGATION_FONT = UIFont(name: "Avenir-Roman", size: 18)
 
 let MAIN_FOOTER_HEIGHT = CGFloat(60)
+let VERY_BIG_PHOTO_WIDTH = 800
 let BIG_PHOTO_WIDTH = 500
 let SMALL_PHOTO_WIDTH = 100
 
@@ -100,12 +110,15 @@ var jouurneyToShow:JSON = []
 var ATL:String = ""
 
 var leftViewController: SideNavigationMenuViewController!
+var shouldShowTransperentNavBar = false
 
 
 let screenSize = UIScreen.main.bounds
 let screenWidth = screenSize.width
 let screenHeight = screenSize.height
 
+
+//Notification Constants
 let HEADER_HEIGHT = CGFloat(55)
 let FOOTER_HEIGHT = CGFloat(20)
 let IMAGE_HEIGHT = min((screenWidth * 0.20), 65)
@@ -113,6 +126,18 @@ let TITLE_HEIGHT = 80
 let BUTTON_HEIGHT = CGFloat(28)
 let DETAILS_HEIGHT = CGFloat(50)
 let TIME_HEIGHT = CGFloat(27)
+
+
+//Feeds Constant
+let FEEDS_HEADER_HEIGHT = CGFloat(71)
+let FEED_FOOTER_HEIGHT = CGFloat(80)
+let FEED_FOOTER_LOWER_VIEW_HEIGHT = CGFloat(35)
+let FEED_UPLOADING_VIEW_HEIGHT = CGFloat(25)
+
+
+//Font
+let TL_REGULAR_FONT_SIZE = 12
+
 
 let categoryImages = ["restaurant_checkin", "nature_checkin", "landmarks_checkin", "museums_landmarks", "adventure_icon", "aqua_checkin", "shopping", "beach_checkin", "cinema_checkin", "hotels-1", "planetrans", "reg", "othersdottrans", "city_icon", "health_beauty", "emergency", "essential", "entertainment"]
 
@@ -153,14 +178,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
         
         leftViewController = storyboard.instantiateViewController(withIdentifier: "sideMenu") as! SideNavigationMenuViewController
         
-        let mainViewController = storyboard.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
+//        let mainViewController = storyboard.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
+        
+        
+        
+        let mainViewController = storyboard.instantiateViewController(withIdentifier: "TLProfileView") as! TLProfileViewController
         
 //        let signInVC = storyboard.instantiateViewController(withIdentifier: "SignUpOne") as! SignInViewController
         
         let nationality = storyboard.instantiateViewController(withIdentifier: "nationalityNew") as!AddNationalityNewViewController
         
-        let PJController = storyboard!.instantiateViewController(withIdentifier: "popular") as! PopularController
-        PJController.displayData = "popular"
+        let PJController = storyboard!.instantiateViewController(withIdentifier: "TLMainFeedsView") as! TLMainFeedsViewController
+        PJController.pageType = viewType.VIEW_TYPE_POPULAR_JOURNEY
         
         leftViewController.mainViewController = nvc
         
@@ -198,23 +227,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
     
     
         
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {        
         
-        createMenuView()
-        
+        createMenuView()        
         
         googleAnalytics()
-        
-        
         
         enableCrashReporting()
         
         _ = AppDelegate.getDatabase()
         
-        UNUserNotificationCenter.current().requestAuthorization(options: [.badge, .alert, .sound]) { (granted, error) in
-            if granted{
-                application.registerForRemoteNotifications()
+        if #available(iOS 10.0, *) {
+            UNUserNotificationCenter.current().requestAuthorization(options: [.badge, .alert, .sound]) { (granted, error) in
+                if granted{
+                    application.registerForRemoteNotifications()
+                }
             }
+        } else {
+            // Fallback on earlier versions
         }
         
         UINavigationBar.appearance().backgroundColor = mainBlueColor
@@ -360,6 +390,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
         print("\n error :\(error.localizedDescription)")
     }
+    
+    func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.portrait
+    }
 
     //MARK: - Navigation Delegate
     
@@ -394,6 +428,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
     func enableCrashReporting() {
         Fabric.with([Crashlytics.self])
     }
+    
     func googleAnalytics() {
         // Configure tracker from GoogleService-Info.plist.
 //        var configureError: NSError?
@@ -407,6 +442,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
 //        gai.trackUncaughtExceptions = true  // report uncaught exceptions
 //        gai.logger.logLevel = GAILogLevel.verbose  // remove before app release
     }
+    
 }
 
 //MARK: - Other Functions

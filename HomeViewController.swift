@@ -14,23 +14,8 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
     
     var activityController: UIViewController!
     
-//    func homeTap (sender: UITapGestureRecognizer? = nil) {
-//        
-//        let myProfileController = storyboard!.instantiateViewControllerWithIdentifier("ProfileVC") as! ProfileViewController
-//        self.activityController = UINavigationController(rootViewController: myProfileController)
-//        self.slideMenuController()?.changeMainViewController(self.activityController, close: true)
-//        
-//    }
-    
     override func viewWillAppear(_ animated: Bool) {
-        
-//        if doRemove {
-//            
-//            let profileVC = storyboard?.instantiateViewControllerWithIdentifier("ProfileVC") as! ProfileViewController
-//            self.navigationController?.showViewController(profileVC, sender: nil)
-//            
-//        }
-        
+        super.viewWillAppear(animated)
     }
     
     override func viewDidLoad() {

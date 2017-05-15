@@ -82,7 +82,7 @@ class SearchElement: UIView {
         }else if index == "user" {
             selectedPeople = feeds["_id"].stringValue
             selectedUser = feeds
-            let profile = storyboard.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
+            let profile = storyboard.instantiateViewController(withIdentifier: "TLProfileView") as! TLProfileViewController
             profile.displayData = "search"
             profile.currentSelectedUser = selectedUser
             globalNavigationController.pushViewController(profile, animated: true)

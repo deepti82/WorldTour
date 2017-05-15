@@ -28,7 +28,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var tableContainer: UIView!
     
     var isFromFooter = false
-    var mainFooter: FooterViewNew!
+    var mainFooter: FooterViewNew?
     
     var whichTab: String = ""
     var type = "on-the-go-journey"
@@ -63,18 +63,16 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         getDarkBackGround(self)
         globalMyLifeController = self
         
-        if isFromFooter {
-            setNavigationBarItem()
-            
-            self.mainFooter = FooterViewNew(frame: CGRect.zero)
-            self.mainFooter.layer.zPosition = 5
-            self.view.addSubview(self.mainFooter)
-            
-            self.mainFooter.setHighlightStateForView(tag: 2, color: mainOrangeColor)
-            
-            arrowDownButton.isHidden = true
-        }
-        else {
+//        if isFromFooter {
+//            setNavigationBarItem()
+//            
+//            self.mainFooter = FooterViewNew(frame: CGRect.zero)
+//            self.mainFooter.layer.zPosition = 5
+//            self.view.addSubview(self.mainFooter)
+//            
+//            arrowDownButton.isHidden = true
+//        }
+//        else {
             let leftButton = UIButton()
             leftButton.titleLabel?.font = UIFont(name: "FontAwesome", size: 14)        
             let arrow = String(format: "%C", faicon["arrow-down"]!)
@@ -86,12 +84,18 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
             arrowDownButton.setTitle(arrow, for: UIControlState())
             arrowDownButton.addTarget(self, action: #selector(MyLifeViewController.exitMyLife(_:)), for: .touchUpInside)
             arrowDownButton.isHidden = false
-        }
+//        }
         
         if currentUser != nil {            
             profileName.text = selectedUser.isEmpty ? currentUser["name"].string! : selectedUser["name"].string!
         }
-        self.title = selectedUser.isEmpty ? currentUser["name"].string! : selectedUser["name"].string!
+        
+        if isFromFooter {
+            self.title = currentUser["name"].stringValue
+        }
+        else {
+            self.title = selectedUser.isEmpty ? currentUser["name"].string! : selectedUser["name"].string!
+        }
         
         isEmptyProfile = true
         
@@ -158,9 +162,18 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+//        if isFromFooter {
+//            self.mainFooter.frame = CGRect(x: 0, y: self.view.frame.height - MAIN_FOOTER_HEIGHT, width: self.view.frame.width, height: MAIN_FOOTER_HEIGHT)
+//            self.mainFooter.setHighlightStateForView(tag: 2, color: mainOrangeColor)
+//            globalNavigationController = self.navigationController
+//        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        
+        super.viewWillDisappear(animated)
         if isFromFooter {
-            self.mainFooter.frame = CGRect(x: 0, y: self.view.frame.height - MAIN_FOOTER_HEIGHT, width: self.view.frame.width, height: MAIN_FOOTER_HEIGHT)
-            globalNavigationController = self.navigationController
+//        self.mainFooter.setFooterDefaultState()
         }
     }
     
@@ -180,10 +193,37 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     
     //MARK: - Actions
     
+    func reloadContainerData() {
+        globalMyLifeContainerViewController.loadData(type: globalMyLifeContainerViewController.onTab, fromVC: self)
+    }
+    
     func exitMyLife(_ sender: AnyObject ) {
         if !isFromFooter {
-            _ = self.navigationController?.popViewController(animated: false)            
+            _ = self.navigationController?.popViewController(animated: false)
+        }else{
+            
+            
+//            UIView.animate(withDuration: 0.55,
+//                           delay: 0.55,
+//                           options: UIViewAnimationOptions.curveEaseIn,
+//                           animations: { () -> Void in
+//                            UIView.setAnimationCurve(UIViewAnimationCurve.easeInOut)
+//                                        _ = self.navigationController?.popViewController(animated: true)
+//                                        UIView.setAnimationTransition(.curlDown, for: self.navigationController!.view!, cache: false)
+//
+//            }, completion: { (finished) -> Void in
+                selectedPeople = currentUser["_id"].stringValue
+                selectedUser = currentUser
+                let profile = self.storyboard!.instantiateViewController(withIdentifier: "TLProfileView") as! TLProfileViewController
+                profile.displayData = ""
+                profile.currentSelectedUser = selectedUser
+                self.navigationController!.pushViewController(profile, animated: true)
+
+//            })
+            
+            
         }
+        
         
         
 //        UIView.animate(withDuration: 0.75, animations: { () -> Void in
@@ -214,16 +254,14 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         
         switch whatEmptyTab {
         case "Journeys":
-            showJourneys(UIButton.self)
+            showJourneys(nil)
         case "Moments":
-            showMoments(UIButton.self)
+            showMoments(nil)
         case "Reviews":
-            showReviews(UIButton.self)
+            showReviews(nil)
         default:
-            showJourneys(UIButton.self)
+            showJourneys(nil)
         }
-        
-        
     }
     
     
@@ -314,8 +352,8 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         radioThree.image = UIImage(named: "radio_for_button")
         switch whatEmptyTab {
         case "Journeys":
-           
-            globalMyLifeContainerViewController.loadData("all", pageNumber: 1);
+            globalMyLifeContainerViewController.isFromFooter = self.isFromFooter
+            globalMyLifeContainerViewController.loadData(type: "all", fromVC: self)
         case "Moments":
             globalMyLifeMomentsViewController.page = 1
             globalMyLifeMomentsViewController.insideView = ""
@@ -337,7 +375,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         radioThree.image = UIImage(named: "radio_for_button")
         switch whatEmptyTab {
         case "Journeys":
-            globalMyLifeContainerViewController.loadData("travel-life", pageNumber: 1);
+            globalMyLifeContainerViewController.loadData(type: "travel-life", fromVC: self)
         case "Moments":
             globalMyLifeMomentsViewController.page = 1
             globalMyLifeMomentsViewController.insideView = ""
@@ -360,7 +398,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         
         switch whatEmptyTab {
         case "Journeys":
-            globalMyLifeContainerViewController.loadData("local-life", pageNumber: 1);
+            globalMyLifeContainerViewController.loadData(type: "local-life", fromVC: self)
         case "Moments":
             globalMyLifeMomentsViewController.page = 1
             globalMyLifeMomentsViewController.insideView = ""
@@ -519,7 +557,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
 
     // Change date and Time
     var currentPhotoFooter:ActivityFeedFooterBasic!
-    var currentPhotoFooter2:ActivityFeedFooter!
+    var currentPhotoFooter2:ActivityFeedFooterBasic!
     var inputview:UIView!
     var datePickerView:UIDatePicker!
     var dateSelected = ""
@@ -527,17 +565,36 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     
     func changeDateAndTime(_ footer:ActivityFeedFooterBasic) {
         currentPhotoFooter = footer
+        hideHeaderAndFooter(true)
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSZ"
-        self.inputview = UIView(frame: CGRect(x: 0, y: UIScreen.main.bounds.size.height - 200, width: self.view.frame.size.width, height: 240))
+        self.inputview = UIView(frame: CGRect(x: 0, y: UIScreen.main.bounds.size.height - 240, width: self.view.frame.size.width, height: 240))
         self.inputview.backgroundColor = UIColor.white
-        self.datePickerView = UIDatePicker(frame: CGRect(x: 0, y: 0, width: self.inputview.frame.size.width, height: 200))
-        self.datePickerView.datePickerMode = UIDatePickerMode.dateAndTime
-        self.datePickerView.date = dateFormatter.date(from: footer.postTop["UTCModified"].stringValue)!
+        self.datePickerView = UIDatePicker(frame: CGRect(x: 0, y: 0, width: self.inputview.frame.size.width, height: 240))
+        self.datePickerView.datePickerMode = UIDatePickerMode.dateAndTime                
+        var showDate = dateFormatter.string(from: Date())        
+        switch footer.postTop["type"].stringValue {
+        case "on-the-go-journey":
+            fallthrough
+        case "ended-journey":
+            fallthrough
+        case "quick-itinerary":
+            fallthrough
+        case "detail-itinerary":
+            showDate = footer.postTop["updatedAt"].stringValue
+            break
+            
+        default:
+            showDate = footer.postTop["UTCModified"].stringValue
+        }        
+        
+        self.datePickerView.date = dateFormatter.date(from: showDate)!
         self.datePickerView.maximumDate = Date()
-        self.backView = UIView(frame: CGRect(x: 0, y: UIScreen.main.bounds.size.height - 240, width: self.view.frame.size.width, height: 40))
+        
+        self.backView = UIView(frame: CGRect(x: 0, y: UIScreen.main.bounds.size.height - 280, width: self.view.frame.size.width, height: 40))
         self.backView.backgroundColor = UIColor(hex: "#272b49")
         self.inputview.addSubview(self.datePickerView) // add date picker to UIView
+        
         let doneButton = UIButton(frame: CGRect(x: UIScreen.main.bounds.size.width - 100, y: 0, width: 100, height: 40))
         doneButton.setTitle("Save", for: .normal)
         doneButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14.0)
@@ -561,8 +618,9 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         self.view.addSubview(self.inputview)
     }
     
-    func changeDateAndTimeEndJourney(_ footer:ActivityFeedFooter) {
+    func changeDateAndTimeEndJourney(_ footer:ActivityFeedFooterBasic) {
         currentPhotoFooter2 = footer
+        hideHeaderAndFooter(true)
         let dateFormatter = DateFormatter()
         print(footer.postTop);
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSZ"
@@ -602,6 +660,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     func cancelButton(_ sender: UIButton){
         self.inputview.removeFromSuperview() // To resign the inputView on clicking done.
         self.backView.removeFromSuperview()
+        hideHeaderAndFooter(false)
     }
 
     func handleDatePicker(_ sender: UIDatePicker) {
@@ -620,22 +679,27 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         }
         self.inputview.removeFromSuperview() // To resign the inputView on clicking done.
         self.backView.removeFromSuperview()
+        hideHeaderAndFooter(false)
     }
 
 
     func doneButton(_ sender: UIButton){
+        
         request.changeDateTimeLocal(currentPhotoFooter.postTop["_id"].stringValue, date: "\(dateSelected) \(timeSelected)", completion: {(response) in
+            print(response)
+            globalMyLifeContainerViewController.changeDateTag()
 //            self.getJourney()
         })
         self.inputview.removeFromSuperview() // To resign the inputView on clicking done.
         self.backView.removeFromSuperview()
+        hideHeaderAndFooter(false)
     }
 
     
     // Add PhotosVideo
     
     func showEditAddActivity(_ postJson:JSON) {
-        var post = Post();
+        let post = Post();
         post.jsonToPost(postJson)
         print(postJson);
         var darkBlur: UIBlurEffect!
@@ -706,5 +770,13 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         self.newScroll.addSubview(self.addView)
     }
     
-
+    func hideHeaderAndFooter(_ isShow:Bool) {
+        if isFromFooter {
+            if(isShow) {
+                self.mainFooter?.frame.origin.y = self.view.frame.height + MAIN_FOOTER_HEIGHT
+            } else {
+                self.mainFooter?.frame.origin.y = self.view.frame.height - MAIN_FOOTER_HEIGHT
+            }
+        }
+    }
 }

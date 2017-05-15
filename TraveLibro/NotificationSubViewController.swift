@@ -53,8 +53,6 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
 //        refreshControl.addTarget(self, action: #selector(NotificationSubViewController.pullToRefreshCalled), for: UIControlEvents.valueChanged)
         refreshControl.tintColor = lightOrangeColor
         notifyTableView.addSubview(refreshControl)
-
-        mainFooter.setHighlightStateForView(tag: 4, color: mainOrangeColor)
         
         request.checkNotificationCache(user.getExistingUser()) { (response) in
             if response.count == 0 {
@@ -69,6 +67,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         super.viewWillAppear(animated)
         NotificationCenter.default.addObserver(self, selector: #selector(customRemoteNotificationReceived(notification:)), name: NSNotification.Name(rawValue: "REMOTE_NOTIFICATION_RECEIVED"), object: nil)
         self.mainFooter.frame = CGRect(x: 0, y: self.view.frame.height - MAIN_FOOTER_HEIGHT, width: self.view.frame.width, height: MAIN_FOOTER_HEIGHT)
+        mainFooter.setHighlightStateForView(tag: 4, color: mainOrangeColor)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -81,6 +80,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         super.viewWillDisappear(animated)
         NotificationCenter.default.removeObserver(self)
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        mainFooter.setFooterDefaultState()
     }
     
     override func didReceiveMemoryWarning() {
@@ -747,9 +747,9 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
     }
     
     func gotoActivityFeed() {
-        let tlVC = storyboard!.instantiateViewController(withIdentifier: "activityFeeds") as! ActivityFeedsController
-        tlVC.displayData = "activity"
-        globalNavigationController?.pushViewController(tlVC, animated: false)
+        let vc = storyboard!.instantiateViewController(withIdentifier: "TLMainFeedsView") as! TLMainFeedsViewController
+        vc.pageType = viewType.VIEW_TYPE_ACTIVITY        
+        globalNavigationController?.pushViewController(vc, animated: false)
     }
     
     func gotoDetailItinerary(itineraryID: String) {

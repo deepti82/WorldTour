@@ -29,6 +29,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
     var mainFooter: FooterViewNew!
     var textFieldYPos = CGFloat(0)
     var difference = CGFloat(0)
+    var isBack:Bool = false
   
     @IBOutlet weak var thisScroll: UIScrollView!
     @IBOutlet weak var plusButton: UIButton!
@@ -39,7 +40,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
         globalActivityFeedsController = nil
         loader.hideOverlayView()
         let i = PostImage()
-        i.uploadPhotos()
+        i.uploadPhotos(delegate: nil)
         
         globalLocalLife = self
         getDarkBackGround(self)
@@ -174,7 +175,6 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
         layout.addSubview(myView5)
         
         self.mainFooter = FooterViewNew(frame: CGRect.zero)
-        mainFooter.setHighlightStateForView(tag: 3, color: mainGreenColor)
 
         self.view.addSubview(mainFooter)
         
@@ -187,6 +187,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)        
         self.mainFooter.frame = CGRect(x: 0, y: self.view.frame.height - MAIN_FOOTER_HEIGHT, width: self.view.frame.width, height: MAIN_FOOTER_HEIGHT)
+        mainFooter.setHighlightStateForView(tag: 3, color: mainGreenColor)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -197,6 +198,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         hideHeaderAndFooter(false)
+        mainFooter.setFooterDefaultState()
     }
     
     func addHeightToLayout() {
@@ -342,7 +344,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
             }
         }
         var category = ""
-        if self.addView.categoryLabel.text! != nil {
+        if self.addView.categoryLabel.text != nil {
             category = self.addView.categoryLabel.text!
             if(category == "") {
                 category = ""
@@ -350,7 +352,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
         }
         
         var location = ""
-        if self.addView.addLocationButton.titleLabel?.text! != nil {
+        if self.addView.addLocationButton.titleLabel?.text != nil {
             location = (self.addView.addLocationButton.titleLabel?.text)!
             addView.locationTag.tintColor = UIColor(hex: "#11d3cb")
             if(location == "Add Location") {
@@ -360,7 +362,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
         }
         
         var thoughts = ""
-        if self.addView.thoughtsTextView.text! != nil {
+        if self.addView.thoughtsTextView.text != nil {
             thoughts = self.addView.thoughtsTextView.text!
 //             addView.finalThoughtTag.tintColor = UIColor(hex: "#11d3cb")
 //            addView.finalThoughtTag.isHidden = true
@@ -381,10 +383,9 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
     }
     
     func goToActivity() {
-        let tlVC = self.storyboard!.instantiateViewController(withIdentifier: "activityFeeds") as! ActivityFeedsController
-        tlVC.displayData = "activity"
-        
-        self.navigationController?.pushViewController(tlVC, animated: false)
+        let vc = storyboard!.instantiateViewController(withIdentifier: "TLMainFeedsView") as! TLMainFeedsViewController
+        vc.pageType = viewType.VIEW_TYPE_ACTIVITY
+        self.navigationController?.pushViewController(vc, animated: false)
     }
     
     func hideAddActivity() {
@@ -408,7 +409,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
             self.addView.photosAdded(assets: imgA)
         } else {
             picker.dismiss(animated: true, completion: {})
-            self.addView.addVideoToBlock(video: info["UIImagePickerControllerMediaURL"] as! URL)
+            self.addView.addVideoToBlock(video: info["UIImagePickerControllerMediaURL"] as? URL)
         }
 
     }
@@ -418,11 +419,21 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
         self.title = "Activity Feed"
         self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Avenir-Medium", size: 18)!]
         let leftButton = UIButton()
+        
+        if isBack {
+            leftButton.frame = CGRect(x: -10, y: 0, width: 30, height: 30)
+            leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
+            leftButton.imageView?.image = leftButton.imageView?.image!.withRenderingMode(.alwaysTemplate)
+            leftButton.imageView?.tintColor = UIColor.white
+            leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
+        }else{
+        
         leftButton.frame = CGRect(x: -10, y: 0, width: 30, height: 30)
         leftButton.setImage(UIImage(named: "menu_left_icon"), for: UIControlState())
         leftButton.imageView?.image = leftButton.imageView?.image!.withRenderingMode(.alwaysTemplate)
         leftButton.imageView?.tintColor = UIColor.white
         leftButton.addTarget(self, action: #selector(self.openSideMenu(_:)), for: .touchUpInside)
+        }
         
         
         let rightButton = UIButton()
@@ -600,12 +611,15 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
             }else {
                 nearMeListController.nearMeType = category
             }
-            let localLifeListController = storyboard?.instantiateViewController(withIdentifier: "localLifePosts") as! LocalLifePostsViewController
-            localLifeListController.nearMeType = category
+            let localFeedsController = storyboard?.instantiateViewController(withIdentifier: "TLMainFeedsView") as! TLMainFeedsViewController
+            localFeedsController.currentLocation = ["lat":String(userLocation.latitude), "long":String(userLocation.longitude)]
+            localFeedsController.currentCategory = category
+            localFeedsController.pageType = viewType.VIEW_TYPE_LOCAL_LIFE
+            
             let numCat = self.json[category].intValue
             switch(numCat) {
             case 1:
-                self.navigationController?.pushViewController(localLifeListController, animated: true)
+                self.navigationController?.pushViewController(localFeedsController, animated: true)
             case 2:
                 self.navigationController?.pushViewController(nearMeListController, animated: true)
             case 3:

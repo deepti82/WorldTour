@@ -32,12 +32,12 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     var infoView: TripInfoOTG!
     var addPosts: AddPostsOTGView!
     var addNewView = NewQuickItinerary()
-    var buttons1 = Buttons2()
     var changeText = AddBuddiesViewController()
     var endJourneyView: EndJourneyMyLife!
     var textFieldYPos = CGFloat(0)
     var difference = CGFloat(0)
     var loader = LoadingOverlay()
+    var insideView:String = "both"
     
     @IBOutlet weak var infoButton: UIButton!
     @IBOutlet weak var toolbarView: UIView!
@@ -78,6 +78,13 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         self.navigationController?.pushViewController(getBuddies, animated: true)
     }
     
+    override var shouldAutorotate: Bool {
+        return false
+    }
+    
+//    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+//        return UIInterfaceOrientationMask.Portrait
+//    }
     
     @IBAction func endJourneyTapped(_ sender: UIButton) {
         let end = storyboard!.instantiateViewController(withIdentifier: "endJourney") as! EndJourneyViewController
@@ -90,7 +97,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     @IBAction func infoCircle(_ sender: AnyObject) {
         getInfoCount()
     }
-    
     
     
     var newScroll: UIScrollView!
@@ -234,7 +240,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         hideAddActivity()
         
         let i = PostImage()
-        i.uploadPhotos()
+        i.uploadPhotos(delegate: nil)
         self.addView.postButton.isHidden = true
     }
     
@@ -380,7 +386,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
             self.addPostLayout(po)
             
             let i = PostImage()
-            i.uploadPhotos()
+            i.uploadPhotos(delegate: nil)
             self.addView.postButton.isHidden = true
         }
         
@@ -718,11 +724,14 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         request.getJourney(currentUser["_id"].string!, completion: {(response) in
             DispatchQueue.main.async(execute: {
                 self.loader.hideOverlayView()
+                print(response)
                 if response.error != nil {
+                    
                     print("error: \(response.error!.localizedDescription)")
                 }
                 else if response["value"].bool! {
                     whichJourney = ""
+                    self.cancelButton(nil)
                     self.layout.removeAll()
                     self.prevPosts = []
                     self.isInitialLoad = true;
@@ -741,8 +750,18 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
                     self.journeyID = self.myJourney["_id"].stringValue
                     self.journeyName = self.myJourney["name"].stringValue
                     self.isInitialLoad = false
+                    
                     self.showJourneyOngoing(journey: response["data"])
                     self.setTopNavigation(text: "On The Go");
+                }else{
+                    self.cancelButton(nil)
+                    self.layout.removeAll()
+                    if self.insideView == "journey" {
+                        self.checkForLocation(nil)
+                        
+                    }else if self.insideView == "itinerary" {
+                        self.newItinerary(nil)
+                    }
                 }
             })
             
@@ -766,6 +785,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
                         whichJourney = "otg"
                     }
                     jouurneyToShow = response["data"]
+                    self.cancelButton(nil)
                     self.layout.removeAll()
                     self.prevPosts = []
                     self.isInitialLoad = true;
@@ -783,7 +803,15 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
                     self.journeyID = self.myJourney["_id"].stringValue
                     self.journeyName = self.myJourney["name"].stringValue
                     self.isInitialLoad = false
-                    self.showJourneyOngoing(journey: response["data"])
+                    if self.insideView == "journey" {
+                        self.checkForLocation(nil)
+                        
+                    }else if self.insideView == "itinerary" {
+//                        self.newItinerary(nil)
+                    }
+                    else{
+                        self.showJourneyOngoing(journey: response["data"])
+                    }
                     self.setTopNavigation(text: "\(response["data"]["name"].stringValue)");
                 }
             })
@@ -800,6 +828,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         }
         
         for post in posts {
+            
             if post["type"].string! == "join" {
                 if !self.prevPosts.contains(post) {
                     self.BuddyJoinInLayout(post)
@@ -1043,11 +1072,14 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         
         self.title = text
         if  fromOutSide == "" {
-            
+            if insideView == "journey" {
+                self.customNavigationBar(left: outButton, right: nil)
+            }else{
             if (myJourney != nil) {
                 self.customNavigationBar(left: leftButton, right: rightButton)
             }else{
                 self.customNavigationBar(left: leftButton, right: nil)
+            }
             }
 
         }else{
@@ -1079,7 +1111,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         mainScroll.clipsToBounds = true
         
         let i  = PostImage();
-        i.uploadPhotos()
+        i.uploadPhotos(delegate: nil)
         
         refreshControl.addTarget(self, action: #selector(NewTLViewController.refresh(_:)), for: .valueChanged)
         let attributes = [NSForegroundColorAttributeName: UIColor.white]
@@ -1099,7 +1131,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         NotificationCenter.default.addObserver(self, selector: #selector(NewTLViewController.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
         
-        self.addPostsButton = UIButton(frame: CGRect(x: self.view.frame.width - 80, y: self.view.frame.height - 200, width: 65, height: 65))
+        self.addPostsButton = UIButton(frame: CGRect(x: self.view.frame.width - 80, y: self.view.frame.height - 135, width: 65, height: 65))
 //        self.addPostsButton.layer.cornerRadius = 30
         let origImage = UIImage(named: "darkgreycircle");
         let tintedImage = origImage?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
@@ -1129,18 +1161,10 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
 //        addPostsButton.isHidden = true
         
         if fromOutSide == "" {
-            getJourney()
-            self.mainFooter.setHighlightStateForView(tag: 1, color: mainOrangeColor)
+            getJourney()            
         }else{
             addPostsButton.isHidden = true
             getOneJourney()
-        }
-
-        
-        if fromOutSide != "" {
-            addPostsButton.isHidden = true
-        } else {
-            addPostsButton.isHidden = false
         }
         
         self.view.bringSubview(toFront: infoButton)
@@ -1153,6 +1177,14 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if fromOutSide == "" {           
+            self.mainFooter.setHighlightStateForView(tag: 1, color: mainOrangeColor)
+        }
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         globalNavigationController = self.navigationController
@@ -1162,6 +1194,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         super.viewWillDisappear(animated)
         hideHeaderAndFooter(false)
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        self.mainFooter.setFooterDefaultState()
     }
     
     override func didReceiveMemoryWarning() {
@@ -1171,8 +1204,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     func success(_ sender: UIButton){
         let nearMe = storyboard?.instantiateViewController(withIdentifier: "nearMeVC") as! NearMeViewController
         self.navigationController?.setNavigationBarHidden(false, animated: true)
-        self.navigationController?.pushViewController(nearMe, animated: true)
-        buttons1.isHidden = true
+        self.navigationController?.pushViewController(nearMe, animated: true)        
         buttons.isHidden = true
         
         
@@ -1190,15 +1222,15 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
                 if(self.toolbarView != nil ){
                     self.toolbarView.animation.makeOpacity(0.0).animate(0.5)
                 }
-                if(self.addPostsButton != nil) {
+//                if(self.addPostsButton != nil) {
                     UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut, animations: {
-                        self.addPostsButton.frame.origin.y = self.view.frame.height + 10
+                        self.addPostsButton.frame.origin.y = self.view.frame.height - self.addPostsButton.frame.size.height - 10
                         self.mainFooter.frame.origin.y = self.view.frame.height + MAIN_FOOTER_HEIGHT
                     }, completion: nil)
-                }
+//                }
             } else {
+                self.navigationController?.setNavigationBarHidden(false, animated: true)
                 if(self.toolbarView != nil ){
-                    self.navigationController?.setNavigationBarHidden(false, animated: true)
                     self.toolbarView.animation.makeOpacity(1.0).animate(0.5)
                 }
                 UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut, animations: {
@@ -1233,31 +1265,20 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    
-    func gotoProfile(_ sender: UIButton) {
-        
-        if isJourneyOngoing {
-            
-            let profile = self.storyboard!.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
-            self.navigationController?.setNavigationBarHidden(false, animated: true)
-            self.navigationController!.pushViewController(profile, animated: false)
-            buttons1.isHidden = true
-            buttons.isHidden = true
-            
-            
-        }
-        else {
-            
-            self.popVC(sender)
-            buttons1.isHidden = true
-            buttons.isHidden = true
-            
-        }
-        
-    }
+//    func gotoProfile(_ sender: UIButton) {
+//        
+//        if isJourneyOngoing {
+//            let profile = self.storyboard!.instantiateViewController(withIdentifier: "TLProfileView") as! TLProfileViewController
+//            self.navigationController?.setNavigationBarHidden(false, animated: true)
+//            self.navigationController!.pushViewController(profile, animated: false)
+//            buttons.isHidden = true
+//        }
+//        else {
+//            self.popVC(sender)
+//            buttons.isHidden = true
+//        }
+//        
+//    }
     
     var isRefreshing = false
     
@@ -1839,10 +1860,15 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         self.backView.removeFromSuperview()
     }
     
-    func cancelButton(_ sender: UIButton){
+    func cancelButton(_ sender: UIButton?){
         self.hideHeaderAndFooter(false)
-        self.inputview.removeFromSuperview() // To resign the inputView on clicking done.
-        self.backView.removeFromSuperview()
+        print("\n InputView : \(self.inputView)")
+        print("\n InputView : \(self.datePickerView)")
+        
+        if self.datePickerView != nil {
+            self.inputview.removeFromSuperview() // To resign the inputView on clicking done.
+            self.backView.removeFromSuperview()            
+        }
     }
     
     func sendComments(_ sender: UIButton) {
@@ -1962,17 +1988,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         })
     }
     
-    func toProfile(_ sender: AnyObject) {
-        print("clickedddd")
-//        print(self.buddiesJson)
-        //        print("clicked \(currentFeed)")
-        //        selectedPeople = currentFeed["user"]["_id"].stringValue
-        //        let profile = storyboard.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
-        //        profile.displayData = "search"
-        //        globalNavigationController.pushViewController(profile, animated: true)
-    }
-    
-    
     //MARK:- First View Actions
     
     func checkForLocation(_ sender: UIButton?) {
@@ -1993,8 +2008,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         print("ooooooooo\(myJourney)")
         otgView.buddiesJson = self.addedBuddies
         
-        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(self.toProfile(_:)))
-        otgView.dpFriendOne.addGestureRecognizer(tapGestureRecognizer)
+//        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(self.toProfile(_:)))
+//        otgView.dpFriendOne.addGestureRecognizer(tapGestureRecognizer)
         
         if myJourney != nil {
             if myJourney["user"]["_id"].stringValue != user.getExistingUser() {
@@ -2051,7 +2066,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         
     }
     
-    func newItinerary(_ sender: UIButton) {
+    func newItinerary(_ sender: UIButton?) {
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         let itineraryVC = storyboard?.instantiateViewController(withIdentifier: "qiPVC") as! QIViewController
         self.navigationController?.pushViewController(itineraryVC, animated: true)
@@ -2616,10 +2631,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     
     //    var uploadedPhotos: [String] = []
     
-    func uploadMultiplePhotos(_ assets: [URL], localIds: [Int]) {
-        
-        var photosCount = 0
-        
+    func uploadMultiplePhotos(_ assets: [URL], localIds: [Int]) {        
         
         request.uploadPhotos(tempAssets[0], localDbId: localIds[0], completion: {(response) in
             
@@ -2885,7 +2897,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     //MARK: - Location Error Handler
     
     func showNetworkErrorAlert() {
-        let errorAlert = UIAlertController(title: "Error", message: "It seems that you are not connected with internet. Please check your internet connection ", preferredStyle: UIAlertControllerStyle.alert)
+        let errorAlert = UIAlertController(title: "Error", message: "Please check your internet connection and try again.", preferredStyle: UIAlertControllerStyle.alert)
         
         let cancelAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
         errorAlert.addAction(cancelAction)

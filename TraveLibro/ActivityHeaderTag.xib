@@ -4,14 +4,12 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ActivityHeaderTag" customModule="TraveLibro" customModuleProvider="target">
             <connections>
-                <outlet property="tagLine" destination="bB4-zI-Ydl" id="6uc-1k-qWZ"/>
                 <outlet property="tagParent" destination="iN0-l3-epB" id="ivg-y4-zpL"/>
                 <outlet property="tagText" destination="RWr-fe-azF" id="3Of-K4-DDl"/>
                 <outlet property="tagView" destination="Upi-j7-zig" id="qjN-Pc-SeX"/>
@@ -41,30 +39,14 @@
                         <constraint firstAttribute="height" constant="28" id="rKP-6o-5gG"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bB4-zI-Ydl">
-                    <rect key="frame" x="8" y="29" width="359" height="1"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="1" id="Qbb-BC-29c"/>
-                    </constraints>
-                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="Upi-j7-zig" secondAttribute="trailing" constant="-11" id="6Bi-cq-7Lr"/>
-                <constraint firstItem="bB4-zI-Ydl" firstAttribute="top" secondItem="Upi-j7-zig" secondAttribute="bottom" id="6hs-TM-3sY"/>
-                <constraint firstItem="bB4-zI-Ydl" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="LtI-j3-rGQ"/>
-                <constraint firstAttribute="bottom" secondItem="bB4-zI-Ydl" secondAttribute="bottom" id="iz1-us-yeI"/>
-                <constraint firstAttribute="trailing" secondItem="bB4-zI-Ydl" secondAttribute="trailing" constant="8" id="jnR-5j-KfV"/>
                 <constraint firstItem="Upi-j7-zig" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="1" id="kx7-4b-yfQ"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <variation key="default">
-                <mask key="subviews">
-                    <exclude reference="bB4-zI-Ydl"/>
-                </mask>
-            </variation>
-            <point key="canvasLocation" x="33.5" y="-202"/>
+            <point key="canvasLocation" x="-1321" y="-65"/>
         </view>
     </objects>
 </document>

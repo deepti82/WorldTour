@@ -29,6 +29,7 @@ class TimestampTagViewOnScroll: UIView {
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view);
     }
+    
     func changeTime(feed:JSON) {
         switch(feed["type"].stringValue) {
             case "local-life":

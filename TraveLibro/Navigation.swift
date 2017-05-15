@@ -18,6 +18,7 @@ class Navigation {
 
     
     func saveUser(_ firstName: String, lastName: String, email: String, mobile: String, fbId: String, googleId: String, twitterId: String, instaId: String, nationality: String, profilePicture: String, gender: String, dob: String, completion: @escaping ((JSON) -> Void)) {
+        print("\n gender in saveUser : \(gender)")
         
         var json1 = JSON(1);        
         OneSignal.idsAvailable({(_ userId, _ pushToken) in
@@ -193,10 +194,10 @@ class Navigation {
         if urlSlug != nil {
             params["urlSlug"] = urlSlug!
         }
-        var urlString = adminUrl + "user/getOne"
+        let urlString = adminUrl + "user/getOne"
         self.cache.fetch(key: urlString+id).onSuccess { data in
             print(data);
-            var json = JSON(data: data)
+            let json = JSON(data: data)
             completion(json)
         }.onFailure { (err) in
                 do {
@@ -1322,9 +1323,7 @@ class Navigation {
                     print("Error -> \(error)")
                     return
                 }
-                do {
-                    print(data);
-                    print(response);
+                do {                    
                     let result = try JSONSerialization.jsonObject(with: data!, options: []) as! [String:AnyObject]
                     print("response: \(JSON(result))")
                     completion(JSON(result))
@@ -1356,8 +1355,6 @@ class Navigation {
                     return
                 }
                 do {
-                    print(data);
-                    print(response);
                     let result = try JSONSerialization.jsonObject(with: data!, options: []) as! [String:AnyObject]
                     print("response: \(JSON(result))")
                     completion(JSON(result))
@@ -1402,7 +1399,20 @@ class Navigation {
         var params: JSON = ["name":title, "year":year, "month":month, "description":description, "duration":duration, "user":currentUser["_id"], "status":status]
         params["photos"] = JSON(photos)
         params["itineraryType"] = itineraryType
-        params["countryVisited"] = countryVisited
+        
+        var countryVisitedCopy = countryVisited
+                
+        for i in 0..<countryVisitedCopy.count {
+            var countryVisitedItem = (countryVisitedCopy.arrayValue)[i] 
+            let countryDict = countryVisitedItem["country"].dictionaryValue 
+            if !countryDict.isEmpty {
+                countryVisitedItem["country"] = JSON(countryVisitedItem["country"]["_id"].stringValue)
+                countryVisitedCopy[i] = countryVisitedItem
+            }
+        }
+        
+        params["countryVisited"] = countryVisitedCopy
+        
         var url = URL(string: adminUrl + "itinerary/saveQuickItinerary")!
         if(editId != "editId" && editId != "" ) {
             params["_id"] = JSON(editId);
@@ -1461,7 +1471,7 @@ class Navigation {
                 }
             }
         } catch let error {
-            print("got an error creating the request")
+            print("got an error creating the request:: \(error)")
         }
     }
     
@@ -1589,7 +1599,7 @@ class Navigation {
     }
     
     
-    func getMomentJourney(pageNumber: Int,type:String, urlSlug:String?, completion: @escaping ((JSON) -> Void)) {
+    func getMomentJourney(pageNumber: Int, type: String, urlSlug: String?, forTab: String, completion: @escaping ((JSON, String) -> Void)) {
         
                 
         do {
@@ -1622,8 +1632,7 @@ class Navigation {
                 
                 do {
                     let result = try JSONSerialization.jsonObject(with: data!, options: []) as! [String:AnyObject]
-                    print("response: \(JSON(result))")
-                    completion(JSON(result))
+                    completion(JSON(result), forTab)
                     
                 } catch {
                     print("Error: \(error)")
@@ -3317,7 +3326,7 @@ class Navigation {
         
         do {
             
-            let opt = try HTTP.POST(adminUrl + "post/getLocalPost", parameters: ["user": currentUser["_id"].stringValue,"lat":lat,"long":lng,"pagenumber":page,"category":category])
+            let opt = try HTTP.POST(adminUrl + "post/getLocalPost", parameters: ["user": user.getExistingUser(), "lat":lat,"long":lng,"pagenumber":page,"category":category])
             var json = JSON(1);
             opt.start {response in
                 if let err = response.error {
@@ -3709,7 +3718,7 @@ class Navigation {
         do {
             var params: JSON
             
-            if userId == nil {
+            if userId == "" {
                 params = ["pagenumber": pagenumber]
             }else{
                 params = ["user": userId, "pagenumber": pagenumber]

@@ -1,6 +1,5 @@
 import UIKit
 import SABlurImageView
-var initialLogin = true
 
 class SideNavigationMenuViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -12,11 +11,9 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
     var homeController:UIViewController!
     var popJourneysController:UIViewController!
     var exploreDestinationsController:UIViewController!
-    var popBloggersController:UIViewController!
-    var blogsController:UIViewController!
+    var popBloggersController:UIViewController!    
     var inviteFriendsController:UIViewController!
-    var rateUsController:UIViewController!
-    var feedbackController:UIViewController!
+    var rateUsController:UIViewController!    
     var settingsViewController: UIViewController!
     var localLifeController: UIViewController!
     var myProfileViewController: UIViewController!
@@ -91,20 +88,16 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         let homeController = storyboard!.instantiateViewController(withIdentifier: "Home") as! HomeViewController
         self.homeController = UINavigationController(rootViewController: homeController)
         
-        let PJController = storyboard!.instantiateViewController(withIdentifier: "popular") as! PopularController
-        PJController.displayData = "popular"
+        let PJController = storyboard!.instantiateViewController(withIdentifier: "TLMainFeedsView") as! TLMainFeedsViewController
+        PJController.pageType = viewType.VIEW_TYPE_POPULAR_JOURNEY
         self.popJourneysController = UINavigationController(rootViewController: PJController)
         
-        let EDController = storyboard!.instantiateViewController(withIdentifier: "popular") as! PopularController
-        
-        EDController.displayData = "popitinerary"
+        let EDController = storyboard!.instantiateViewController(withIdentifier: "TLMainFeedsView") as! TLMainFeedsViewController
+        EDController.pageType = viewType.VIEW_TYPE_POPULAR_ITINERARY
         self.exploreDestinationsController = UINavigationController(rootViewController: EDController)
         
         let PBController = storyboard!.instantiateViewController(withIdentifier: "popularBloggers") as! PopularBloggersViewController
         self.popBloggersController = UINavigationController(rootViewController: PBController)
-        
-        let BlogsController = storyboard!.instantiateViewController(withIdentifier: "blogsList") as! BlogsListViewController
-        self.blogsController = UINavigationController(rootViewController: BlogsController)
         
         let inviteController = storyboard!.instantiateViewController(withIdentifier: "inviteFriends") as! InviteFriendsViewController
         self.inviteFriendsController = UINavigationController(rootViewController: inviteController)
@@ -112,13 +105,10 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         let rateUsController = storyboard!.instantiateViewController(withIdentifier: "Home") as! HomeViewController
         self.rateUsController = UINavigationController(rootViewController: rateUsController)
         
-        let FBController = storyboard!.instantiateViewController(withIdentifier: "FeedbackVC") as! FeedbackViewController
-        self.feedbackController = UINavigationController(rootViewController: FBController)
-        
         let localLifeController = storyboard!.instantiateViewController(withIdentifier: "localLife") as! LocalLifeRecommendationViewController
         self.localLifeController = UINavigationController(rootViewController: localLifeController)
         
-        let myProfileController = storyboard!.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
+        let myProfileController = storyboard!.instantiateViewController(withIdentifier: "TLProfileView") as! TLProfileViewController
         self.myProfileViewController = UINavigationController(rootViewController: myProfileController)
         
         let signoutView = self.storyboard?.instantiateViewController(withIdentifier: "SignUpOne") as! SignInViewController
@@ -298,12 +288,12 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         
         switch((indexPath as NSIndexPath).row)
         {
-        case 0:
-            popularView = "popular"
+        case 0:            
             self.slideMenuController()?.changeMainViewController(self.popJourneysController, close: true)
-        case 1:
-            popularView = "popitinerary"
+            
+        case 1:            
             self.slideMenuController()?.changeMainViewController(self.exploreDestinationsController, close: true)
+            
         case 2:
             self.slideMenuController()?.changeMainViewController(self.popBloggersController, close: true)        
         case 3:
@@ -372,8 +362,12 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         loader.showOverlay(self.view)
         let appID = "1056641759"
         let urlStr = "itms-apps://itunes.apple.com/app/travelibro/id" + appID
-        UIApplication.shared.open((NSURL(string: urlStr) as! URL), options: [:]) { (done) in
-            loader.hideOverlayView()
+        if #available(iOS 10.0, *) {
+            UIApplication.shared.open((NSURL(string: urlStr) as! URL), options: [:]) { (done) in
+                loader.hideOverlayView()
+            }
+        } else {
+            // Fallback on earlier versions
         }
     }
     

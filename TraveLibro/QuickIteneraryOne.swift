@@ -17,6 +17,7 @@ class QuickIteneraryOne: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     @IBOutlet weak var quickOneView: UIView!
     @IBOutlet weak var tripTitleView: UIView!
     
+    @IBOutlet weak var monthText: UILabel!
     @IBOutlet weak var yearView: UIView!
     @IBOutlet weak var monthView: UIView!
     @IBOutlet weak var durationTextField: UITextField!
@@ -52,15 +53,15 @@ class QuickIteneraryOne: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         quickItinery = ["title": "", "year": "", "month": "", "duration": ""]
         tripTitle.autocapitalizationType = .words
         durationTextField.delegate = self
+        print("8888888888888\(screenWidth/5)")
+        monthText.font = monthText.font?.withSize(screenWidth/5)
         pickerView.dataSource = self
         pickerView.delegate = self
         pickerView.frame = CGRect(x: 0, y: 260, width: view.frame.width, height: 200)
         yearPickerView.inputView = pickerView
         monthPickerView.inputView = pickerView
         let calendar = NSCalendar.current
-        let dateFormatterMonth = DateFormatter()
         let dateFormatter = DateFormatter()
-        let components = calendar.dateComponents([.month , .year], from: date as Date)
         dateFormatter.dateFormat = "yyyy"
         quickItinery["title"] = JSON(tripTitle.text!)
         quickItinery["month"] = JSON(monthPickerView.text!)
@@ -70,10 +71,12 @@ class QuickIteneraryOne: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         self.durationTextField.delegate = self
         self.tripTitle.delegate = self
         self.commonSetup()
-        for i in 0..<35{
+        for _ in 0..<35{
             yearsPicker.append(currentYear)
             currentYear -= 1
         }
+        
+        self.monthText.sizeToFit()
 
         // Do any additional setup after loading the view.
         print("jjjjjjjj  \(tripTitleView.frame.width)")
@@ -235,7 +238,7 @@ class QuickIteneraryOne: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     }
 
     
-    func textFieldShouldReturn(textField: UITextField!) -> Bool {
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
         self.view.endEditing(true);
         return false;
     }

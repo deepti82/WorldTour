@@ -10,7 +10,7 @@ import UIKit
 import Player
 import Spring
 
-class MyLifeActivityFeedsLayout: VerticalLayout, PlayerDelegate {
+class MyLifeActivityFeedsLayout: VerticalLayout, PlayerDelegate, TLFooterBasicDelegate {
     
     
     //    var feed: JSON!
@@ -132,7 +132,7 @@ class MyLifeActivityFeedsLayout: VerticalLayout, PlayerDelegate {
                 
                 self.layoutSubviews()
                 if(self.activityFeed != nil) {
-                    self.activityFeed.addHeightToLayout()
+//                    self.activityFeed.addHeightToLayout()
                 }
                 
             })
@@ -192,8 +192,6 @@ class MyLifeActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             footerViewReview.type = "MyLifeFeeds"
             footerViewReview.setView(feed: feed)
             footerViewReview.setCommentCount(footerViewReview.postTop["commentCount"].intValue)
-            footerViewReview.setLikeCount(footerViewReview.postTop["likeCount"].intValue)
-            footerViewReview.setReviewCount(count: footerViewReview.postTop["userReviewCount"].intValue)
             footerViewReview.setLikeSelected(feed["likeDone"].boolValue)
 
             //footerViewReview.reviewButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ActivityFeedsLayout.rateButtonTapped(_:))))
@@ -213,7 +211,7 @@ class MyLifeActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             }
             footerView.setCommentCount(feed["commentCount"].intValue)
             footerView.setLikeCount(feed["likeCount"].intValue)
-            footerView.setView(feed:feed)
+            footerView.fillFeedFooter(feed: feed, pageType: viewType.VIEW_TYPE_MY_LIFE, delegate: self)
             footerView.setLikeSelected(feed["likeDone"].boolValue)
 
             self.addSubview(footerView)
@@ -237,7 +235,7 @@ class MyLifeActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             activityFeedImage.addGestureRecognizer(tapRecognizer)
 
             activityFeedImage.clipsToBounds = true
-            activityFeedImage.OnTheGOText.isHidden = true
+            activityFeedImage.headerTagTextLabel.isHidden = true
             self.addSubview(activityFeedImage)
         case "quick-itinerary":
             activityQuickItinerary = ActivityFeedQuickItinerary(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.width))
@@ -252,8 +250,7 @@ class MyLifeActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             if !feed["status"].boolValue {
                 let headerTag = ActivityHeaderTag(frame: CGRect(x: 0, y: 90, width: screenWidth, height: 30))
                 headerTag.tagParent.backgroundColor = UIColor.clear
-                headerTag.colorTag(feed: feed)
-                headerTag.tagLine.isHidden = true
+                headerTag.colorTag(feed: feed)                
                 self.activityQuickItinerary.addSubview(headerTag)
             }
             
@@ -366,16 +363,6 @@ class MyLifeActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             self.addSubview(textHeader)
 //
         }
-        
-        switch feed["type"].stringValue {
-        case "local-life":
-            self.textHeader.kindOfJourneyMyLife.tintColor = mainGreenColor
-        case "travel-life":
-            self.textHeader.kindOfJourneyMyLife.tintColor = mainOrangeColor
-        default:
-            self.textHeader.kindOfJourneyMyLife.isHidden = true
-        }
-        
     }
     
     func setText(text: String) {
@@ -533,6 +520,15 @@ class MyLifeActivityFeedsLayout: VerticalLayout, PlayerDelegate {
         }
         return str
         
+    }
+    
+    //Delegate Actions
+    func footerLikeCommentCountUpdated(likeDone: Bool, likeCount: Int, commentCount: Int, tag: Int) {
+        print("\n *********************** \n footerLikeCommentCountUpdated called likeCount: \(likeCount) & commentCount: \(commentCount) \n ")        
+    }
+    
+    func footerRatingUpdated(rating: JSON, tag: Int) {
+        print("\n *********************** \n footerLikeCommentCountUpdated called rating: \(rating) \n ")
     }
     
     

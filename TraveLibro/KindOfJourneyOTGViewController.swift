@@ -29,9 +29,11 @@ class KindOfJourneyOTGViewController: UIViewController {
     @IBOutlet var groupTwoCategoryButtons: [UIButton]!
     @IBOutlet var groupOneCategoryButtons: [UIButton]!
     @IBOutlet weak var doneButton: UIButton!
+    @IBOutlet weak var businessLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//        businessLabel.sizeToFit()
         
         for labels in kindOfJourneyLabels{
             labels.shadowColor = UIColor.black
@@ -53,6 +55,8 @@ class KindOfJourneyOTGViewController: UIViewController {
         doneButton.layer.cornerRadius = 5
         
         for button in groupOneCategoryButtons {
+//            print(<#T##items: Any...##Any#>)
+            print(button.currentImage as Any)
             for cat in selectedCategories {
                 if cat.1.stringValue == (button.titleLabel?.text)! {
                     backVC.journeyCategories.append(button.titleLabel!.text!)
@@ -81,6 +85,8 @@ class KindOfJourneyOTGViewController: UIViewController {
             
         }
         
+        
+
         for button in groupThreeCategoryButtons {
             
             for cat in selectedCategories {
@@ -94,7 +100,7 @@ class KindOfJourneyOTGViewController: UIViewController {
             button.imageView?.tintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 1)
             
         }
-        
+
         
     }
     

@@ -51,6 +51,8 @@ public class QuickItinerary {
     }
     func save(_ quickItinerary:JSON,imageArr:[PostImage],statusVal:Bool,oldId:String) {
         print("save clicked")
+        quickItinery["status"] = JSON(statusVal)
+        
         let photoinsert = self.post.insert(
             self.quickJson <- quickItinerary.rawString()!,
             self.status <- statusVal,
@@ -83,7 +85,8 @@ public class QuickItinerary {
                 var postID = post1[id]
                 
                 let id_temp = Int(post1[id])
-                var quickItinery:JSON = JSON(data: (String(post1[quickJson])?.data(using: .utf8))! )
+                var quickItineryL:JSON = JSON(data: (String(post1[quickJson])?.data(using: .utf8))! )
+                print("\n quickItinery in getAll : \(quickItineryL)")
                 let status_temp = Bool(post1[status])
                 
                 let actualId = Int(post1[id]) + 30000
@@ -96,9 +99,9 @@ public class QuickItinerary {
                 for img in p.imageArr {
                     photosJson.append(img.parseJson())
                 }
-                quickItinery["type"] = JSON("quick-itinerary");
-                quickItinery["photos"] = JSON(photosJson)
-                retVal.append(quickItinery)
+                quickItineryL["type"] = JSON("quick-itinerary");
+                quickItineryL["photos"] = JSON(photosJson)
+                retVal.append(quickItineryL)
 
             }
         }
@@ -123,10 +126,9 @@ public class QuickItinerary {
                 check = true
                 let p = LocalLifePostModel();
                 
-                var postID = post1[id]
+                let postID = post1[id]
                 
-                let id_temp = Int(post1[id])
-                let quickItinery:JSON = JSON(data: (String(post1[quickJson])?.data(using: .utf8))! )
+                let quickItineryL:JSON = JSON(data: (String(post1[quickJson])?.data(using: .utf8))! )
                 let editid_temp = String(post1[editId])
                 let status_temp = Bool(post1[status])
                 
@@ -140,7 +142,8 @@ public class QuickItinerary {
                 for img in p.imageArr {
                     photosJson.append(img.parseJson())
                 }
-                request.postQuickitenary(title: quickItinery["title"].stringValue, year: quickItinery["year"].int!, month: quickItinery["month"].stringValue, duration:quickItinery["duration"].int!, description:quickItinery["description"].stringValue, itineraryType:quickItinery["itineraryType"], countryVisited:quickItinery["countryVisited"],photos:photosJson,status:status_temp,editId:editid_temp!,  completion: {(response) in
+                
+                request.postQuickitenary(title: quickItineryL["title"].stringValue, year: quickItineryL["year"].int!, month: quickItineryL["month"].stringValue, duration:quickItineryL["duration"].int!, description:quickItineryL["description"].stringValue, itineraryType:quickItineryL["itineraryType"], countryVisited:quickItineryL["countryVisited"],photos:photosJson,status:status_temp,editId:editid_temp!,  completion: {(response) in
                     print(response)
                     if response.error != nil {
                         print("response: \(response.error?.localizedDescription)")
@@ -174,11 +177,8 @@ public class QuickItinerary {
                     }
                     
                 }
-                if globalActivityFeedsController != nil {
-                    
-                        globalActivityFeedsController.getActivity(pageNumber: 1)
-                    
-                    
+                if globalTLMainFeedsViewController != nil {                    
+                        globalTLMainFeedsViewController.getDataMain()
                 }
 //                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "UPLOAD_ITINERARY"), object: nil)
             }
@@ -187,11 +187,10 @@ public class QuickItinerary {
             print("There is an error");
         }
     }
-    func goToActivity() {
-        
-        let tlVC = storyboard!.instantiateViewController(withIdentifier: "activityFeeds") as! ActivityFeedsController
-        tlVC.displayData = "activity"
-        
-        globalNavigationController.pushViewController(tlVC, animated: false)
+    
+    func goToActivity() {        
+        let vc = storyboard!.instantiateViewController(withIdentifier: "TLMainFeedsView") as! TLMainFeedsViewController
+        vc.pageType = viewType.VIEW_TYPE_ACTIVITY        
+        globalNavigationController.pushViewController(vc, animated: false)
     }
 }

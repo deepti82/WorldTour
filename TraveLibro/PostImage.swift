@@ -9,7 +9,14 @@ import Haneke
 // LocalLife - "20000"
 // QuickItinerary - "30000"
 
+protocol TLUploadDelegate {
+    func postUploadedSuccessfully()
+}
+
 public class PostImage {
+    
+    private var delegate: TLUploadDelegate?
+    
     var imageUrl: URL!
     var image:UIImage!
     var caption = ""
@@ -119,7 +126,11 @@ public class PostImage {
         return allImages
     }
     
-    func uploadPhotos() {
+    func uploadPhotos(delegate: TLUploadDelegate?) {
+        if delegate != nil {
+            self.delegate = delegate
+        }
+        
         do {
             var check = false;
             let query = photos.select(id,post,captions,localUrl,url)
@@ -142,7 +153,7 @@ public class PostImage {
                             
                         }
                         if(check) {
-                            self.uploadPhotos()
+                            self.uploadPhotos(delegate: self.delegate)
                         }
                     }
                     else {

@@ -2,31 +2,37 @@ import UIKit
 import Spring
 import AVFoundation
 
+protocol TLFooterBasicDelegate {
+    func footerLikeCommentCountUpdated(likeDone: Bool, likeCount: Int, commentCount: Int, tag: Int)
+    func footerRatingUpdated(rating: JSON, tag: Int)
+}
+
 class ActivityFeedFooterBasic: UIView {
     
-    @IBOutlet weak var lineView1: UIView!
-    @IBOutlet weak var localLifeTravelImage: UIImageView!
-    @IBOutlet weak var footerColorView: UIView!
     var postTop:JSON!
+    var pageType: viewType!
+    var parentController: UIViewController!
     
+    private var delegate: TLFooterBasicDelegate?
     
-    @IBOutlet weak var followBtn: UIButton!    
+    @IBOutlet weak var upperView: UIView!    
     @IBOutlet var starImageArray: [UIImageView]!
     @IBOutlet weak var ratingStack: UIStackView!
     @IBOutlet weak var rateThisButton: UIButton!
     @IBOutlet weak var likeButton: SpringButton!
     @IBOutlet weak var commentButton: SpringButton!
-    @IBOutlet weak var lineView: UIView!
     @IBOutlet weak var shareButton: UIButton!
     @IBOutlet weak var optionButton: UIButton!
+    
+    @IBOutlet weak var bottomView: UIView!    
     @IBOutlet weak var likeHeart: UILabel!
     @IBOutlet weak var commentIcon: UIImageView!    
     @IBOutlet weak var likeCountButton: UIButton!
     @IBOutlet weak var commentCountButton: UIButton!
-    @IBOutlet weak var bottomView: UIView!
     
     @IBOutlet weak var leadingToRatingStackConstraint: NSLayoutConstraint!    
     @IBOutlet weak var leadingToRateThisConstraint: NSLayoutConstraint!
+    @IBOutlet weak var lowerViewHeightConstraint: NSLayoutConstraint!
     
     var topLayout:VerticalLayout!
     var backgroundReview: UIView!
@@ -39,14 +45,11 @@ class ActivityFeedFooterBasic: UIView {
     var footerType = ""
     var dropView: DropShadow2!
     var likeCount:Int = 0
-    var commentCounts:Int = 0
+    var commentCount:Int = 0
     var photoId = ""
     var photoPostId = ""
     let border = CALayer()
     let border1 = CALayer()
-    
-    var photoCount = 0
-    var videoCount = 0
     
     //MARK: - Lifecycle
     
@@ -69,12 +72,7 @@ class ActivityFeedFooterBasic: UIView {
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view)
-        //        transparentCardWhite(footerColorView)
         
-        self.followBtn.isHidden = true
-       
-        let tapout = UITapGestureRecognizer(target: self, action: #selector(ActivityFeedFooterBasic.checkMyRating(_:)))
-        ratingStack.addGestureRecognizer(tapout)
         likeButton.tintColor = mainBlueColor
         commentButton.tintColor = mainBlueColor
         shareButton.tintColor = mainBlueColor
@@ -97,74 +95,120 @@ class ActivityFeedFooterBasic: UIView {
     
     }
     
-    func setView(feed:JSON) {
+    func fillFeedFooter(feed: JSON, pageType: viewType?, delegate: TLFooterBasicDelegate?) {
         
-        postTop = feed
+        self.postTop = feed
+        self.pageType = pageType!
+        self.delegate = delegate
         
-        if feed["photos"] != nil {
-            photoCount = feed["photos"].count
-        }
-        if feed["videos"] != nil {
-            videoCount = feed["videos"].count
-        }
-        let cnt = photoCount + videoCount
-        if cnt > 1 {
-            lineView.isHidden = false
-        }else{
-            lineView.isHidden = true
-        }
+        self.likeCountButton.tag = self.tag
+        self.commentCountButton.tag = self.tag
+        self.optionButton.tag = self.tag
         
-        if currentUser != nil {
-            optionButton.isHidden = false
-            rateThisButton.isHidden = false
-        }else{
-            optionButton.isHidden = true
-            rateThisButton.isHidden = true
-        }
-        
-        rateThisButton.isUserInteractionEnabled = true
-        ratingStack.isUserInteractionEnabled = true
-        
-        if feed["review"][0] != nil && feed["review"].count > 0 {
-            ratingStack.isHidden = false
-            rateThisButton.isHidden = true            
-            afterRating(starCnt: feed["review"][0]["rating"].intValue, review: feed["review"][0]["review"].stringValue)
-            if !isSelfUser(otherUserID: postTop["user"]["_id"].stringValue) {
-                rateThisButton.isUserInteractionEnabled = false
-            }
-        }
-        else{
-            
-            if feed["checkIn"] != nil && feed["checkIn"]["category"].stringValue != "" {
-                ratingStack.isHidden = true
-                if canRate() {
-                    rateThisButton.setTitle("Rate this now", for: .normal)
-                }
-                else {
-                    rateThisButton.setTitle("", for: .normal)
-                    rateThisButton.isUserInteractionEnabled = false
-                }
-                
-                
-            }else{
-                ratingStack.isHidden = true
-                rateThisButton.isHidden = true
-            }
-        }
-        
-        
-        if (isSelfUser(otherUserID: postTop["user"]["_id"].stringValue) && self.type != "MyLifeFeeds") {
-            optionButton.isHidden = true
-            leadingToRatingStackConstraint.constant = CGFloat(-30)
-            leadingToRateThisConstraint.constant = CGFloat(-30)
+        if isLocalFeed(feed: self.postTop) {
+            fillFeedFooterForLocalFeed(feed: feed, pageType: pageType, delegate: delegate)
         }
         else {
-            optionButton.isHidden = false
-            leadingToRatingStackConstraint.constant = CGFloat(8)
-            leadingToRateThisConstraint.constant = CGFloat(8)
+            if currentUser != nil {
+                if (isSelfUser(otherUserID: postTop["user"]["_id"].stringValue) && self.pageType == viewType.VIEW_TYPE_MY_LIFE) {
+                    optionButton.isHidden = true
+                }
+                else {
+                    optionButton.isHidden = false
+                }
+            }
+            else {
+                optionButton.isHidden = true
+            }
+            
+            self.setLikeCount(postTop["likeCount"].intValue)
+            self.setCommentCount(postTop["commentCount"].intValue)
+            self.setLikeSelected(postTop["likeDone"].boolValue)
+            
+            rateThisButton.isUserInteractionEnabled = true
+            ratingStack.isUserInteractionEnabled = true
+            ratingStack.isHidden = false
+            rateThisButton.isHidden = false
+            
+            if feed["review"][0] != nil && feed["review"].count > 0 {
+                ratingStack.isHidden = false
+                rateThisButton.isHidden = true            
+                afterRating(starCnt: feed["review"][0]["rating"].intValue, review: feed["review"][0]["review"].stringValue)
+                if !isSelfUser(otherUserID: postTop["user"]["_id"].stringValue) {
+                    rateThisButton.isUserInteractionEnabled = false
+                }
+            }
+            else {            
+                if feed["checkIn"] != nil && feed["checkIn"]["lat"].stringValue != "" {
+                    ratingStack.isHidden = true
+                    if canRate() {
+                        rateThisButton.setTitle("Rate this now", for: .normal)
+                    }
+                    else {
+                        rateThisButton.setTitle("", for: .normal)
+                        rateThisButton.isUserInteractionEnabled = false
+                    }
+                }
+                else{
+                    ratingStack.isHidden = true
+                    rateThisButton.isHidden = true
+                }
+            }
+            
+            if (isSelfUser(otherUserID: postTop["user"]["_id"].stringValue) && self.pageType != viewType.VIEW_TYPE_MY_LIFE) {
+                optionButton.isHidden = true
+                leadingToRatingStackConstraint.constant = CGFloat(-30)
+                leadingToRateThisConstraint.constant = CGFloat(-30)
+            }
+            else {
+                optionButton.isHidden = false
+                leadingToRatingStackConstraint.constant = CGFloat(8)
+                leadingToRateThisConstraint.constant = CGFloat(8)
+            }
+            
+            self.removeTargetActions()
+            
+            self.addTargetActions()
         }
     }
     
+    func fillFeedFooterForLocalFeed(feed: JSON, pageType: viewType?, delegate: TLFooterBasicDelegate?) {
+        
+        self.optionButton.isHidden = true
+        ratingStack.isHidden = true
+        rateThisButton.isHidden = true
+        
+        self.setLikeSelected(false)
+        
+        self.removeTargetActions()
+    }
+    
+    func removeTargetActions() {
+        self.likeButton.removeTarget(self, action: #selector(self.sendLikes(_:)), for: .touchUpInside)
+        self.commentButton.removeTarget(self, action: #selector(self.sendComments(_:)), for: .touchUpInside)
+        self.likeCountButton.removeTarget(self, action: #selector(self.likeCountTabbed(_:)), for: .touchUpInside)
+        self.commentCountButton.removeTarget(self, action: #selector(self.commentCountTabbed(_:)), for: .touchUpInside)
+        self.shareButton.removeTarget(self, action: #selector(self.sharingTap(_:)), for: .touchUpInside)
+        self.optionButton.removeTarget(self, action: #selector(self.optionClick(_:)), for: .touchUpInside)
+        self.rateThisButton.removeTarget(self, action: #selector(self.rateThisClicked(_:)), for: .touchUpInside)
+        
+        for recognizer in self.ratingStack.gestureRecognizers ?? [] {
+            self.removeGestureRecognizer(recognizer)
+        }
+    }
+    
+    func addTargetActions() {
+        self.likeButton.addTarget(self, action: #selector(self.sendLikes(_:)), for: .touchUpInside)        
+        self.commentButton.addTarget(self, action: #selector(self.sendComments(_:)), for: .touchUpInside)
+        self.likeCountButton.addTarget(self, action: #selector(self.likeCountTabbed(_:)), for: .touchUpInside)
+        self.commentCountButton.addTarget(self, action: #selector(self.commentCountTabbed(_:)), for: .touchUpInside)
+        self.shareButton.addTarget(self, action: #selector(self.sharingTap(_:)), for: .touchUpInside)
+        self.optionButton.addTarget(self, action: #selector(self.optionClick(_:)), for: .touchUpInside)
+        self.rateThisButton.addTarget(self, action: #selector(self.rateThisClicked(_:)), for: .touchUpInside)
+        
+        let tapout = UITapGestureRecognizer(target: self, action: #selector(self.openRating))
+        ratingStack.addGestureRecognizer(tapout)
+    }
     
     //MARK: - Like
     
@@ -230,12 +274,15 @@ class ActivityFeedFooterBasic: UIView {
     }
     
     func updateLikeSuccess(sender : UIButton) {
+        var hasLiked = true
         if sender.tag == 1 {
+            hasLiked = true
             self.setLikeSelected(true)
             self.likeCount = self.likeCount + 1
             self.setLikeCount(self.likeCount)
         }
         else {
+            hasLiked = false
             self.setLikeSelected(false)
             if self.likeCount <= 0 {
                 self.likeCount = 0
@@ -244,10 +291,13 @@ class ActivityFeedFooterBasic: UIView {
             }
             self.setLikeCount(self.likeCount)
         }
+        self.delegate?.footerLikeCommentCountUpdated(likeDone: hasLiked, likeCount: self.likeCount, commentCount: self.commentCount, tag: self.tag)
     }
     
     func updateLikeFailure(sender : UIButton) {
+        var hasLiked = true
         if sender.tag == 1 {
+            hasLiked = false
             self.setLikeSelected(false)
             if self.likeCount <= 0 {
                 self.likeCount = 0
@@ -257,10 +307,12 @@ class ActivityFeedFooterBasic: UIView {
             self.setLikeCount(self.likeCount)
         }
         else {
+            hasLiked = true
             self.setLikeSelected(true)
             self.likeCount = self.likeCount + 1
             self.setLikeCount(self.likeCount)            
         }
+        self.delegate?.footerLikeCommentCountUpdated(likeDone: hasLiked, likeCount: self.likeCount, commentCount: self.commentCount, tag: self.tag)
     }
     
     func setLikeSelected (_ isSelected:Bool) {
@@ -281,7 +333,7 @@ class ActivityFeedFooterBasic: UIView {
             feedVC.postId = postTop["_id"].stringValue
             feedVC.type = postTop["type"].stringValue
             feedVC.title = postTop["name"].stringValue
-            globalNavigationController.pushViewController(feedVC, animated: true)
+            parentController.navigationController?.pushViewController(feedVC, animated: true)
         }
         else {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
@@ -300,7 +352,6 @@ class ActivityFeedFooterBasic: UIView {
                 self.likeCountButton.setTitle("\(counts) Likes", for: .normal)
             }
         }
-        self.checkHideView()
     }
     
     
@@ -341,8 +392,8 @@ class ActivityFeedFooterBasic: UIView {
                 }else{
                     comment.type = "Photo"
                 }
-                globalNavigationController?.setNavigationBarHidden(false, animated: false)
-                globalNavigationController?.pushViewController(comment, animated: true)
+                parentController.navigationController?.setNavigationBarHidden(false, animated: false)
+                parentController.navigationController?.pushViewController(comment, animated: true)
             }
             else{
                 let comment = storyboard?.instantiateViewController(withIdentifier: "CommentsVC") as! CommentsViewController
@@ -359,8 +410,8 @@ class ActivityFeedFooterBasic: UIView {
                 default:
                     comment.type = "photo"
                 }
-                globalNavigationController?.setNavigationBarHidden(false, animated: false)
-                globalNavigationController?.pushViewController(comment, animated: true)
+                parentController.navigationController?.setNavigationBarHidden(false, animated: false)
+                parentController.navigationController?.pushViewController(comment, animated: true)
             }
             
         }
@@ -372,7 +423,7 @@ class ActivityFeedFooterBasic: UIView {
     func setCommentCount(_ post_commentCount:Int!) {
         
         if(post_commentCount != nil) {
-            self.commentCounts = post_commentCount
+            self.commentCount = post_commentCount
             if(post_commentCount == 0) {
                 self.commentCountButton.setTitle("0 Comment", for: .normal)
             } else if(post_commentCount == 1) {
@@ -380,17 +431,18 @@ class ActivityFeedFooterBasic: UIView {
             } else if(post_commentCount > 1) {
                 let counts = String(post_commentCount)
                 self.commentCountButton.setTitle("\(counts) Comments", for: .normal)
-                
-                
             }
         }
-        self.checkHideView()
+    }
+    
+    func updateCommentCountSuccess(post_commentCount: Int) {
+        self.delegate?.footerLikeCommentCountUpdated(likeDone: false, likeCount: self.likeCount, commentCount: self.commentCount, tag: self.tag)
     }
     
     //MARK: - Share
     
     @IBAction func sharingTap(_ sender: Any) {
-        sharingUrl(url:  postTop["sharingUrl"].stringValue, onView: globalNavigationController.topViewController!)
+        sharingUrl(url:  postTop["sharingUrl"].stringValue, onView: parentController)
     }
     
     
@@ -403,13 +455,10 @@ class ActivityFeedFooterBasic: UIView {
     func openRating() {
         let tapout = UITapGestureRecognizer(target: self, action: #selector(ActivityFeedFooterBasic.reviewTapOut(_:)))
         
-        backgroundReview = UIView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: (globalNavigationController.topViewController?.view.frame.size.height)!))
+        backgroundReview = UIView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: (parentController.view.frame.size.height)))
         backgroundReview.addGestureRecognizer(tapout)
         backgroundReview.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.4)
-        globalNavigationController.topViewController?.view.addSubview(backgroundReview)
-        //        globalNavigationController.topViewController?.view.bringSubview(toFront: backgroundReview)
-        
-        
+        parentController.view.addSubview(backgroundReview)
         
         rating = AddRating(frame: CGRect(x: 0, y: 0, width: width - 40, height: 335))
         rating.activityJson = postTop
@@ -445,8 +494,6 @@ class ActivityFeedFooterBasic: UIView {
             }
         }
         
-        
-        
         rating.center = backgroundReview.center
         rating.layer.cornerRadius = 5
         rating.clipsToBounds = true
@@ -461,21 +508,13 @@ class ActivityFeedFooterBasic: UIView {
             rating.postReview.setTitle("Close", for: .normal)
         }       
         
-        globalNavigationController.topViewController?.view.addSubview(rating)
-    }
-    
-    func checkMyRating(_ sender: UITapGestureRecognizer) {
-        print("check i im the creator")        
-        //if user.getExistingUser() == currentUser["_id"].stringValue {
-           openRating()
-        //}
+        parentController.view.addSubview(rating)
     }
     
     func reviewTapOut(_ sender: UITapGestureRecognizer) {
         print("in footer tap out")
         backgroundReview.removeFromSuperview()
         rating.removeFromSuperview()
-        
     }
     
     func afterRating(starCnt:Int, review:String) {        
@@ -498,65 +537,256 @@ class ActivityFeedFooterBasic: UIView {
         }
     }
     
+    func updateRating() {        
+        self.delegate?.footerRatingUpdated(rating: newRating, tag: self.tag)
+    }
+    
     
     //MARK: - Options
     
     @IBAction func optionClick(_ sender: UIButton) {
-//        print(user.getExistingUser())
-//        print(postTop)
+        
         var shouldPresent = true
+        
         let actionSheetControllerIOS8: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         if isSelfUser(otherUserID: postTop["user"]["_id"].stringValue) {
             
-            if(self.type == "MyLifeFeeds" && isSelfUser(otherUserID: currentUser["_id"].stringValue)) {
-                let EditCheckIn: UIAlertAction = UIAlertAction(title: "Edit Activity", style: .default)
-                {action -> Void in
-                    //            self.isEdit = true
-                    //                globalNewTLViewController.showEditActivity(Post())
-                    globalMyLifeViewController.showEditActivity(self.postTop)
-                    //print("inside edit check in \(self.addView), \(self.newScroll.isHidden)")
-                }
-                //                actionSheetControllerIOS8.addAction(EditCheckIn)
+            if(self.pageType == viewType.VIEW_TYPE_MY_LIFE && isSelfUser(otherUserID: currentUser["_id"].stringValue)) {                
                 
-                let EditDnt: UIAlertAction = UIAlertAction(title: "Change Date & Time", style: .default)
-                { action -> Void in
-                    globalMyLifeViewController.changeDateAndTime(self)
-                }
-                actionSheetControllerIOS8.addAction(EditDnt)
-                
-                let DeletePost: UIAlertAction = UIAlertAction(title: "Delete Activity", style: .default)
-                { action -> Void in
+                if(postTop["type"].stringValue == "detail-itinerary") {
+                    if isSelfUser(otherUserID: currentUser["_id"].stringValue) {
+                        
+                        let editActionButton: UIAlertAction = UIAlertAction(title: "Edit", style: .default)
+                        {action -> Void in
+                            let alert = UIAlertController(title: "Edit Itinerary", message: "You can only edit your Itinerary on Web.", preferredStyle: UIAlertControllerStyle.alert)
+                            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                            self.parentController.present(alert,animated: true, completion: nil)                            
+                        }
+                        actionSheetControllerIOS8.addAction(editActionButton)
+                        
+                        //                let changeCoverActionButton: UIAlertAction = UIAlertAction(title: "Change Cover Photo", style: .default)
+                        //                {action -> Void in
+                        //                }
+                        //                actionSheetControllerIOS8.addAction(changeCoverActionButton)
+                        
+                        //                let deleteActionButton: UIAlertAction = UIAlertAction(title: "Delete", style: .destructive)
+                        //                {action -> Void in
+                        //                }
+                        //                actionSheetControllerIOS8.addAction(deleteActionButton)
+                    }else{
+                        let reportActionButton: UIAlertAction = UIAlertAction(title: "Report", style: .default)
+                        {action -> Void in
+                            let alert = UIAlertController(title: "Report", message: "Reported Successfully.", preferredStyle: UIAlertControllerStyle.alert)
+                            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                            showPopover(optionsController: alert, sender: sender, vc: self.parentController)
+                        }
+                        actionSheetControllerIOS8.addAction(reportActionButton)
+                    }
                     
-                    let alert = UIAlertController(title: "", message: "Are you sure you want to delete this Activtiy", preferredStyle: UIAlertControllerStyle.alert)
-                    alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil))
-                    alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.destructive, handler: { action in
-                        request.deletePost(self.postTop["_id"].string!, uniqueId: self.postTop["uniqueId"].string!, user:currentUser["_id"].stringValue, completion: {(response) in
-                            
-                            let a = globalMyLifeContainerViewController.onTab
-                            globalMyLifeContainerViewController.loadData(a, pageNumber: 1)
-                            
-                        })
+                    let cancel: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel)
+                    { action -> Void in
+                        
+                    }
+                    actionSheetControllerIOS8.addAction(cancel)
+                    
+                }            
+                if(postTop["type"].stringValue == "quick-itinerary") {
+                    let editActionButton: UIAlertAction = UIAlertAction(title: "Edit", style: .default)
+                    {action -> Void in
+                        let itineraryVC = storyboard?.instantiateViewController(withIdentifier: "qiPVC") as! QIViewController
+                        itineraryVC.editID = self.postTop["_id"].stringValue
+                        self.parentController?.navigationController?.pushViewController(itineraryVC, animated: true)
+                    }
+                    actionSheetControllerIOS8.addAction(editActionButton)
+                    
+                    let deleteActionButton: UIAlertAction = UIAlertAction(title: "Delete", style: .destructive)
+                    {action -> Void in
+                        
+                        let alert = UIAlertController(title: "", message: "Are you sure you want to delete this Itinerary.", preferredStyle: UIAlertControllerStyle.alert)
+                        alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil))
+                        alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.destructive, handler: { action in                            
+                            request.deleteItinerary(id: self.postTop["_id"].stringValue, completion: {(response) in
+                                DispatchQueue.main.async(execute: {
+                                    if response.error != nil {
+                                        print("error: \(response.error!.localizedDescription)")
+                                    }
+                                    else if response["value"].bool! {
+                                        (self.parentController as! MyLifeViewController).reloadContainerData()
+                                    }                                    
+                                })
+                            })
+                        }))
+                        showPopover(optionsController: alert, sender: sender, vc: self.parentController)
+                        
+                        //                        globalMyLifeViewController.present(alert, animated: true, completion: nil)
                         
                         
-                    }))
-                    showPopover(optionsController: alert, sender: sender, vc: globalMyLifeViewController)
+                    }
+                    actionSheetControllerIOS8.addAction(deleteActionButton)
                     
-                    //                    globalMyLifeViewController.present(alert, animated: true, completion: nil)
+                    let cancel: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel)
+                    { action -> Void in
+                        
+                    }
+                    actionSheetControllerIOS8.addAction(cancel)
+                }
+                if postTop["type"].stringValue == "travel-life" || postTop["type"].stringValue == "local-life" {
+                   
+                    let EditCheckIn: UIAlertAction = UIAlertAction(title: "Edit Activity", style: .default)
+                    {action -> Void in                   
+                        (self.parentController as! MyLifeViewController).showEditActivity(self.postTop)
+                    }
+                    
+                    let EditDnt: UIAlertAction = UIAlertAction(title: "Change Date & Time", style: .default)
+                    { action -> Void in
+                        (self.parentController as! MyLifeViewController).changeDateAndTime(self)
+                    }
+                    actionSheetControllerIOS8.addAction(EditDnt)
+                    
+                    let DeletePost: UIAlertAction = UIAlertAction(title: "Delete Activity", style: .default)
+                    { action -> Void in
+                        
+                        let alert = UIAlertController(title: "", message: "Are you sure you want to delete this Activtiy", preferredStyle: UIAlertControllerStyle.alert)
+                        alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil))
+                        alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.destructive, handler: { action in                        
+                            request.deletePost(self.postTop["_id"].string!, uniqueId: self.postTop["uniqueId"].string!, user:currentUser["_id"].stringValue, completion: {(response) in
+                                DispatchQueue.main.async(execute: {
+                                    if response.error != nil {
+                                        print("error: \(response.error!.localizedDescription)")
+                                    }
+                                    else if response["value"].bool! {
+                                        (self.parentController as! MyLifeViewController).reloadContainerData()
+                                    }                                    
+                                })                               
+                            })
+                        }))
+                        showPopover(optionsController: alert, sender: sender, vc: self.parentController)
+                        
+                    }
+                    actionSheetControllerIOS8.addAction(DeletePost)
+                    
+                    let share: UIAlertAction = UIAlertAction(title: "Add Photos/Videos", style: .default)
+                    { action -> Void in
+                        (self.parentController as! MyLifeViewController).showEditAddActivity(self.postTop)
+                    }
+                    
+                    let cancel: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel)
+                    { action -> Void in
+                        
+                    }
+                    actionSheetControllerIOS8.addAction(cancel)
+
+                    
+//                    if isBuddy() && self.pageType == viewType.VIEW_TYPE_MY_LIFE && isSelfUser(otherUserID: currentUser["_id"].stringValue){
+//                        
+//                        let DeletePost: UIAlertAction = UIAlertAction(title: "Delete Activity", style: .default)
+//                        { action -> Void in
+//                            
+//                            let alert = UIAlertController(title: "", message: "Are you sure you want to delete this Activtiy", preferredStyle: UIAlertControllerStyle.alert)
+//                            alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil))
+//                            alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.destructive, handler: { action in
+//                                request.deletePost(self.postTop["_id"].string!, uniqueId: self.postTop["uniqueId"].string!, user:currentUser["_id"].stringValue, completion: {(response) in                                    
+//                                    (self.parentController as! MyLifeViewController).reloadContainerData()                                    
+//                                })                                
+//                            }))
+//                            showPopover(optionsController: alert, sender: sender, vc: self.parentController)                            
+//                        }
+//                        actionSheetControllerIOS8.addAction(DeletePost)                        
+//                    }
+                }
+                if(postTop["type"].stringValue == "ended-journey" || postTop["type"].stringValue == "on-the-go-journey") {
+                    if isSelfUser(otherUserID: currentUser["_id"].stringValue) {
+                        
+                        let changeNameActionButton: UIAlertAction = UIAlertAction(title: "Change Journey Name", style: .default)
+                        {action -> Void in
+                            
+                            //1. Create the alert controller.
+                            let alert = UIAlertController(title: "", message: "Change Journey Name", preferredStyle: .alert)
+                            //2. Add the text field. You can configure it however you need.
+                            alert.addTextField { (textField) in
+                                textField.text = self.postTop["name"].stringValue
+                            }
+                            
+                            // 3. Grab the value from the text field, and print it when the user clicks OK.
+                            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
+                                let textField = alert?.textFields![0] // Force unwrapping because we know it exists.
+                                print("Text field: \(textField?.text)")
+                                request.journeyChangeName((textField?.text)!, journeyId: self.postTop["_id"].stringValue, completion: { response  in
+                                    DispatchQueue.main.async(execute: {
+                                        if response.error != nil {
+                                            print("error: \(response.error!.localizedDescription)")
+                                        }
+                                        else if response["value"].bool! {
+                                            (self.parentController as! MyLifeViewController).reloadContainerData()
+                                        }                                    
+                                    })
+                                })
+                            }))
+                            
+                            let cancel: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel)
+                            { action -> Void in
+                                
+                            }
+                            alert.addAction(cancel)
+                            
+                            // 4. Present the alert.
+                            showPopover(optionsController: alert, sender: sender, vc: self.parentController)
+                            
+                            //                        globalMyLifeContainerViewController.present(alert, animated: true, completion: nil)
+                            
+                        }
+                        actionSheetControllerIOS8.addAction(changeNameActionButton)
+                        
+                        let changeDateActionButton: UIAlertAction = UIAlertAction(title: "Change End Journey Date", style: .default)
+                        {action -> Void in
+                            (self.parentController as! MyLifeViewController).changeDateAndTimeEndJourney(self)
+                        }
+                        
+                        if(self.postTop["endTime"].string != nil) {
+                            actionSheetControllerIOS8.addAction(changeDateActionButton)
+                        }
+                        
+                        let crateCountriesActionButton: UIAlertAction = UIAlertAction(title: "Rate Countries", style: .default)
+                        {action -> Void in
+                            let end = storyboard!.instantiateViewController(withIdentifier: "endJourney") as! EndJourneyViewController
+                            end.journeyId = self.postTop["_id"].stringValue
+                            end.type = "MyLife"
+                            self.parentController?.navigationController?.pushViewController(end, animated: true)
+                        }
+                        actionSheetControllerIOS8.addAction(crateCountriesActionButton)
+                        
+                        let changeCoverCountriesActionButton: UIAlertAction = UIAlertAction(title: "Change Cover Photo", style: .default)
+                        {action -> Void in
+                            let end = storyboard!.instantiateViewController(withIdentifier: "endJourney") as! EndJourneyViewController
+                            end.journeyId = self.postTop["_id"].stringValue
+                            end.type = "MyLife"
+                            self.parentController?.navigationController?.pushViewController(end, animated: true)
+                        }
+                        actionSheetControllerIOS8.addAction(changeCoverCountriesActionButton)
+                    }else{
+                        let reportActionButton: UIAlertAction = UIAlertAction(title: "Report", style: .default)
+                        {action -> Void in
+                            let alert = UIAlertController(title: "Report", message: "Reported Successfully.", preferredStyle: UIAlertControllerStyle.alert)
+                            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                            showPopover(optionsController: alert, sender: sender, vc: self.parentController)
+                        }
+                        actionSheetControllerIOS8.addAction(reportActionButton)
+                    }
+                    
+                    
+                    let cancel: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel)
+                    { action -> Void in
+                        
+                    }
+                    actionSheetControllerIOS8.addAction(cancel)
+                    
+                    //                let changeCoverCountriesActionButton: UIAlertAction = UIAlertAction(title: "Delete Journey", style: .destructive)
+                    //                {action -> Void in
+                    //                }
+                    //                actionSheetControllerIOS8.addAction(changeCoverCountriesActionButton)
                     
                 }
-                actionSheetControllerIOS8.addAction(DeletePost)
-                let share: UIAlertAction = UIAlertAction(title: "Add Photos/Videos", style: .default)
-                { action -> Void in
-                    globalMyLifeViewController.showEditAddActivity(self.postTop)
-                }
-                //                actionSheetControllerIOS8.addAction(share)
-                
-                let cancel: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel)
-                { action -> Void in
-                    
-                }
-                actionSheetControllerIOS8.addAction(cancel)
                 
             } 
             else {
@@ -568,18 +798,17 @@ class ActivityFeedFooterBasic: UIView {
                         alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil))
                         alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.destructive, handler: { action in
                             request.deletePost(self.postTop["_id"].string!, uniqueId: self.postTop["uniqueId"].string!, user:currentUser["_id"].stringValue, completion: {(response) in
-                                
-                                let a = globalMyLifeContainerViewController.onTab
-                                globalMyLifeContainerViewController.loadData(a, pageNumber: 1)
-                                
-                            })
-                            
-                            
+                                DispatchQueue.main.async(execute: {
+                                    if response.error != nil {
+                                        print("error: \(response.error!.localizedDescription)")
+                                    }
+                                    else if response["value"].bool! {
+                                        (self.parentController as! MyLifeViewController).reloadContainerData()
+                                    }                                    
+                                })                                
+                            })                            
                         }))
-                        showPopover(optionsController: alert, sender: sender, vc: globalMyLifeViewController)
-                        
-                        //                        globalMyLifeViewController.present(alert, animated: true, completion: nil)
-                        
+                        showPopover(optionsController: alert, sender: sender, vc: self.parentController)                                                
                     }
                     actionSheetControllerIOS8.addAction(DeletePost)
                     
@@ -588,27 +817,18 @@ class ActivityFeedFooterBasic: UIView {
                 let reportActionButton: UIAlertAction = UIAlertAction(title: "Hide", style: .default) {action -> Void in
                     let alert = UIAlertController(title: "Hide", message: "Hided successfuly", preferredStyle: UIAlertControllerStyle.alert)
                     alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-                    showPopover(optionsController: alert, sender: sender, vc: globalNavigationController)
+                    showPopover(optionsController: alert, sender: sender, vc: self.parentController)
                     
-                    //                    globalNavigationController.present(alert, animated: true, completion: nil)
                 }
                 
                 let reportActionButton1: UIAlertAction = UIAlertAction(title: "Report", style: .default) {action -> Void in
                     let alert = UIAlertController(title: "Report", message: "Reported Successfully", preferredStyle: UIAlertControllerStyle.alert)
                     alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-                    showPopover(optionsController: alert, sender: sender, vc: globalNavigationController)
-                    
-                    //                    globalNavigationController.present(alert, animated: true, completion: nil)
+                    showPopover(optionsController: alert, sender: sender, vc: self.parentController)                    
                 }
                 
                 if isSelfUser(otherUserID: currentUser["_id"].stringValue) {
                     shouldPresent = false
-                    //                    actionSheetControllerIOS8.addAction(reportActionButton)
-                    //                    let cancel: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel)
-                    //                    { action -> Void in
-                    //                        
-                    //                    }
-                    //                    actionSheetControllerIOS8.addAction(cancel)
                     
                 }else{
                     actionSheetControllerIOS8.addAction(reportActionButton1)
@@ -626,7 +846,7 @@ class ActivityFeedFooterBasic: UIView {
         }
         else{
             if isBuddy() {
-                if self.type == "MyLifeFeeds"{
+                if self.pageType == viewType.VIEW_TYPE_MY_LIFE {
                     let DeletePost: UIAlertAction = UIAlertAction(title: "Delete Activity", style: .default)
                     { action -> Void in
                         
@@ -634,19 +854,19 @@ class ActivityFeedFooterBasic: UIView {
                         alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil))
                         alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.destructive, handler: { action in
                             request.deletePost(self.postTop["_id"].string!, uniqueId: self.postTop["uniqueId"].string!, user:currentUser["_id"].stringValue, completion: {(response) in
-                                
-                                let a = globalMyLifeContainerViewController.onTab
-                                globalMyLifeContainerViewController.journeyLoader()
-                                globalMyLifeContainerViewController.loadData(a, pageNumber: 1)
-                                
+                                DispatchQueue.main.async(execute: {
+                                    if response.error != nil {
+                                        print("error: \(response.error!.localizedDescription)")
+                                    }
+                                    else if response["value"].bool! {
+                                        (self.parentController as! MyLifeViewController).reloadContainerData()
+                                    }                                    
+                                })                               
                             })
                             
                             
                         }))
-                        showPopover(optionsController: alert, sender: sender, vc: globalMyLifeViewController)
-                        
-                        //                    globalMyLifeViewController.present(alert, animated: true, completion: nil)
-                        
+                        showPopover(optionsController: alert, sender: sender, vc: self.parentController)                        
                     }
                     actionSheetControllerIOS8.addAction(DeletePost)
                 }
@@ -656,17 +876,13 @@ class ActivityFeedFooterBasic: UIView {
             let reportActionButton1: UIAlertAction = UIAlertAction(title: "Report", style: .default) {action -> Void in
                 let alert = UIAlertController(title: "Report", message: "Reported Successfully", preferredStyle: UIAlertControllerStyle.alert)
                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-                showPopover(optionsController: alert, sender: sender, vc: globalNavigationController)
-                
-                //                globalNavigationController.present(alert, animated: true, completion: nil)
+                showPopover(optionsController: alert, sender: sender, vc: self.parentController)
             }
             
             let reportActionButton: UIAlertAction = UIAlertAction(title: "Hide", style: .default) {action -> Void in
                 let alert = UIAlertController(title: "Hide", message: "Hided successfuly", preferredStyle: UIAlertControllerStyle.alert)
                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-                showPopover(optionsController: alert, sender: sender, vc: globalNavigationController)
-                
-                //                globalNavigationController.present(alert, animated: true, completion: nil)
+                showPopover(optionsController: alert, sender: sender, vc: self.parentController)
             }
             
             if self.type == "popular"{
@@ -692,10 +908,9 @@ class ActivityFeedFooterBasic: UIView {
         }
         
         if shouldPresent {
-            showPopover(optionsController: actionSheetControllerIOS8, sender: sender, vc: globalNavigationController)
-            
-            //            globalNavigationController.topViewController?.present(actionSheetControllerIOS8, animated: true, completion: nil)
+            showPopover(optionsController: actionSheetControllerIOS8, sender: sender, vc: self.parentController)
         }
+        
     }
     
     
@@ -711,7 +926,7 @@ class ActivityFeedFooterBasic: UIView {
     }
     
     func canRate() -> Bool {
-        if (self.type == "MyLifeFeeds") {
+        if (self.pageType == viewType.VIEW_TYPE_MY_LIFE) {
             if isSelfUser(otherUserID: currentUser["_id"].stringValue) {
                 return true
             }
@@ -726,70 +941,6 @@ class ActivityFeedFooterBasic: UIView {
             else {
                 return false
             }
-        }
-//        else if (self.type == "LocalLife"){
-//            if isSelfUser(otherUserID: postTop["postCreator"]["_id"].stringValue) {
-//                return true
-//            }
-//            else {
-//                return false
-//            }
-//        }
-//        else {
-//            if ((isSelfUser(otherUserID: postTop["user"]["_id"].stringValue)) || isBuddy()){
-//                return true
-//            }
-//            else {
-//                return false
-//            }
-//        }
-    }
-    
-    func checkHideView() {
-        if(self.commentCounts == 0  && self.likeCount == 0) {
-            self.frame.size.height = 51;
-            
-            border1.removeFromSuperlayer()
-            border.isHidden = false
-            let width = CGFloat(2)
-            
-            border.frame = CGRect(x: 0, y: self.frame.size.height - width, width:  self.frame.size.width, height: self.frame.size.height)
-            border.borderColor = UIColor(colorLiteralRed: 0/255, green: 0/255, blue: 0/255, alpha: 0.5).cgColor
-            border.borderWidth = width
-            self.layer.addSublayer(border)
-            self.layer.masksToBounds = true
-            
-        } else {
-            self.frame.size.height = 90;
-            
-            border.removeFromSuperlayer()
-            border1.isHidden = false
-            let width = CGFloat(2)
-            border1.frame = CGRect(x: 0, y: self.frame.size.height - width, width:  self.frame.size.width, height: self.frame.size.height)
-            border1.borderColor = UIColor(colorLiteralRed: 0/255, green: 0/255, blue: 0/255, alpha: 0.5).cgColor
-            border1.borderWidth = width
-            self.layer.addSublayer(border1)
-            
-            self.layer.masksToBounds = true
-            
-        }
-        let path = UIBezierPath(roundedRect:self.bounds,
-                                byRoundingCorners:[.bottomRight, .bottomLeft],
-                                cornerRadii: CGSize(width: 10, height:  10))
-        
-        let maskLayer = CAShapeLayer()
-        
-        maskLayer.path = path.cgPath
-        self.layer.mask = maskLayer
-        topLayout.layoutSubviews()
-        if(self.type == "LocalLife") {
-            globalLocalLifeInside.addHeightToLayout()
-        } else if(self.type == "ActivityFeeds") {
-            globalActivityFeedsController.addHeightToLayout()
-        } else if(self.type == "TripPhotos") {
-            globalListPhotosViewController.addHeightToLayout()
-        } else if(self.type == "MyLifeFeeds") {
-            globalMyLifeContainerViewController.addHeightToLayout()
         }
     }
     

@@ -245,7 +245,7 @@ class QuickItineraryPreviewViewController: UIViewController {
             //                    quickItinery = []
             //                    let tstr = Toast(text: "Itenary saved successfully.")
             //                    tstr.show()
-            //                    let next = self.storyboard?.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
+            //                    let next = self.storyboard?.instantiateViewController(withIdentifier: "TLProfileView") as! TLProfileViewController
             //                    self.navigationController?.pushViewController(next, animated: true)
             //                    print("nothing")
             //                }
@@ -285,10 +285,9 @@ class QuickItineraryPreviewViewController: UIViewController {
     }
     
     func goToActivity() {
-        let tlVC = self.storyboard!.instantiateViewController(withIdentifier: "activityFeeds") as! ActivityFeedsController
-        tlVC.displayData = "activity"
-        
-        self.navigationController?.pushViewController(tlVC, animated: false)
+        let vc = storyboard!.instantiateViewController(withIdentifier: "TLMainFeedsView") as! TLMainFeedsViewController
+        vc.pageType = viewType.VIEW_TYPE_ACTIVITY
+        self.navigationController?.pushViewController(vc, animated: false)
     }
     
 }

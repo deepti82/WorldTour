@@ -130,12 +130,6 @@ class TripPhotoLayout: VerticalLayout, PlayerDelegate {
                     self.tripListView.addHeightToLayout()                    
                 }                
             })
-        
-        
-        var showImageIndexStart = 1
-        if(feed["videos"].count > 0) {
-            showImageIndexStart = 0
-        }
         }
     }
     
@@ -163,10 +157,7 @@ class TripPhotoLayout: VerticalLayout, PlayerDelegate {
             footerView.setLikeCount(footerView.postTop["likeCount"].intValue)
         
             footerView.optionButton.isHidden = true
-            footerView.rateThisButton.isHidden = true
-            footerView.ratingStack.isHidden = true
-            footerView.localLifeTravelImage.isHidden = true
-            
+            footerView.rateThisButton.isHidden = true            
             self.addSubview(footerView)
     }
     

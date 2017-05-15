@@ -184,7 +184,7 @@ class TripSummaryPhotoGridViewController: UICollectionViewController, ToolStackC
             let toolStackController = ToolStackController(photoEditViewController: photoEditViewController)            
             toolStackController.delegate = self            
             toolStackController.navigationItem.title = "Editor"
-            toolStackController.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: photoEditViewController, action: #selector(PhotoEditViewController.save(_:)))
+//            toolStackController.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: photoEditViewController, action: #selector(PhotoEditViewController.save(_:)))
             let nvc = UINavigationController(rootViewController: toolStackController)
             nvc.navigationBar.isTranslucent = false
             nvc.navigationBar.barStyle = .black

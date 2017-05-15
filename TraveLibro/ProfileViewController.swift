@@ -43,12 +43,12 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     @IBOutlet weak var placeLabel: UILabel!
     @IBOutlet weak var profilePicture: UIImageView!
     
-    var toggle = false
-    var initialEntrance = false
+    var toggle = false    
     var user = User()
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var MAMButton: UIButton!
+    
     @IBAction func MAMTapped(_ sender: AnyObject?) {
         
         if(!selectedUser.isEmpty && (currentUser["status"].stringValue == "private" && (currentUser["following"].intValue != 1))){}
@@ -152,7 +152,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         profileUsername.layer.zPosition = 500000
         MAMatterView.layer.zPosition = 500000
         livesInStack.layer.zPosition = 500000
-        initialLogin = false
+        
         self.navigationController?.isNavigationBarHidden = false
         getDarkBackGround(self)
         profilePicture.contentMode = .scaleAspectFit
@@ -429,56 +429,6 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
             }
         });
        
-    }
-    
-    func openNotifications(_ sender: UITapGestureRecognizer) {
-        
-        for vc in self.navigationController!.viewControllers {
-            
-            if vc.isKind(of: NewTLViewController.self) {
-                
-                
-            }
-            
-        }
-        
-        let vc = storyboard?.instantiateViewController(withIdentifier: "notifySub") as! NotificationSubViewController        
-        self.navigationController?.pushViewController(vc, animated: false)
-        
-        
-    }
-    
-    func gotoOTG(_ sender: UITapGestureRecognizer) {
-        
-                
-        var isThere = 0
-        let vcs = self.navigationController!.viewControllers
-        
-        for vc in vcs {
-            if vc.isKind(of: NewTLViewController.self) {
-                self.navigationController!.popToViewController(vc, animated: false)
-                isThere = 1
-            }
-        }
-
-        if isThere == 0 {
-            let tlVC = self.storyboard!.instantiateViewController(withIdentifier: "newTL") as! NewTLViewController
-            tlVC.isJourney = false
-            if(currentUser["journeyId"].stringValue == "-1") {
-                isJourneyOngoing = false
-                tlVC.showJourneyOngoing(journey: JSON(""))
-//                self.navigationController?.navigationBar.isHidden = true
-            }
-            self.navigationController?.pushViewController(tlVC, animated: false) 
-        }
-    }
-    func gotoFeed(_ sender: UITapGestureRecognizer) {
-        
-        let tlVC = self.storyboard!.instantiateViewController(withIdentifier: "activityFeeds") as! ActivityFeedsController
-        tlVC.displayData = "activity"
-
-            self.navigationController?.pushViewController(tlVC, animated: false)
-    
     }
     
     func MAMStacKTap(_ sender: UITapGestureRecognizer) {

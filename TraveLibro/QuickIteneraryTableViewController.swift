@@ -97,7 +97,7 @@ class QuickIteneraryTableViewController: UITableViewController, UISearchBarDeleg
         print(selectedCountry)
         self.countriesSearchResults = []
         for country in self.countriesArr {
-            var str = String(country["name"].stringValue)
+            let str = String(country["name"].stringValue)
             if(str?.localizedCaseInsensitiveContains(search))! {
                 self.countriesSearchResults.append(country)
             }

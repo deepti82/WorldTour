@@ -143,7 +143,7 @@ class AddCaptionsViewController: UIViewController, UITextFieldDelegate, ToolStac
             }
         }
         
-        navigationController?.popViewController(animated: true)
+        _ = navigationController?.popViewController(animated: true)
         self.dismiss(animated: true) { 
             
         }
@@ -367,6 +367,7 @@ class AddCaptionsViewController: UIViewController, UITextFieldDelegate, ToolStac
         }
     }
     
+    @available(iOS 10.0, *)
     func textFieldDidEndEditing(_ textField: UITextField, reason: UITextFieldDidEndEditingReason) {
         if(type != "videoCaption") {
             imageArr[currentImageIndex].caption = captionTextView.text!

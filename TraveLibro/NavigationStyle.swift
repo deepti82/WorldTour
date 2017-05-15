@@ -12,8 +12,7 @@ extension UIViewController {
     
     func gotoNationalityPage() {
         
-        if currentUser["alreadyLoggedIn"].bool! {
-            profileVC.initialEntrance = true
+        if currentUser["alreadyLoggedIn"].bool! {            
             self.slideMenuController()?.changeMainViewController(profileVC, close: true)
             navigation.pushViewController(profileVC, animated: true)
         } else {
@@ -69,20 +68,6 @@ extension UIViewController {
         customNavigationBar(left: left, right: right)
         
         self.title = text
-        
-//        let leftBarButton = UIBarButtonItem()
-//        leftBarButton.customView = left
-//        self.navigationItem.leftBarButtonItem = leftBarButton
-//        
-//        if (right != nil) {
-//            let rightBarButton = UIBarButtonItem()
-//            rightBarButton.customView = right as? UIView
-//            self.navigationItem.rightBarButtonItem = rightBarButton
-//        }        
-//        
-//        self.slideMenuController()?.removeLeftGestures()
-//        self.slideMenuController()?.removeRightGestures()
-        
     }
     
     func setOnlyRightNavigationButton(_ button: UIButton) {
@@ -99,6 +84,16 @@ extension UIViewController {
         self.slideMenuController()?.addLeftGestures()
         //        self.slideMenuController()?.addRightGestures()
         
+    }
+    
+    func setTransperentNavigationBar() {
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
+        
+        self.navigationController?.navigationBar.barStyle = .default
+        self.navigationController?.navigationBar.barTintColor = UIColor.clear
+        self.navigationController?.toolbar.barTintColor = UIColor.clear
     }
     
     func nextController(_ sender: UIBarButtonItem) -> () {
@@ -121,6 +116,7 @@ extension UIViewController {
         self.navigationController!.popViewController(animated: true)
     }
     
+    
     //MARK: - Remove NavigationItems
     
     func removeNavigationBarItem() {
@@ -135,16 +131,25 @@ extension UIViewController {
     
     func customiseNavigation() {
         
-        self.navigationController?.navigationBar.barStyle = .black        
+        self.navigationController?.navigationBar.barStyle = .black
+        self.navigationController?.navigationBar.setBackgroundImage(nil, for: UIBarMetrics.default)
+        self.navigationController?.navigationBar.shadowImage = nil
+        self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: NAVIGATION_FONT!, NSForegroundColorAttributeName: UIColor.white]        
         self.navigationController?.navigationBar.tintColor = UIColor.white
-        self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName : NAVIGATION_FONT!]
         self.navigationController?.navigationBar.barTintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 0.1)
         self.navigationController?.toolbar.barTintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 0.1)
-        
         self.navigationController?.navigationBar.isTranslucent = false
         
+        if shouldShowTransperentNavBar {
+            self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+            self.navigationController?.navigationBar.shadowImage = UIImage()
+            self.navigationController?.navigationBar.isTranslucent = true
+            self.navigationController?.navigationBar.barStyle = .default
+            self.navigationController?.navigationBar.backgroundColor = UIColor(red: 0.0, green: 0.3, blue: 0.5, alpha: 0)
+            self.navigationController?.navigationBar.barTintColor = UIColor.clear
+            self.navigationController?.toolbar.barTintColor = UIColor.clear
+        }
     }
-    
     
     func removegestures() {
         

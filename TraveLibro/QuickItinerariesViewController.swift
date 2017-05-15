@@ -7,9 +7,8 @@
 //
 
 import UIKit
-import iCarousel
 
-class QuickItinerariesViewController: UIViewController, UITextFieldDelegate , iCarouselDelegate, iCarouselDataSource{
+class QuickItinerariesViewController: UIViewController, UITextFieldDelegate {
     var whichView: String!
     var pageIndex = 0
     var onDateSelected: ((_ month: Int, _ year: Int) -> Void)?
@@ -19,7 +18,6 @@ class QuickItinerariesViewController: UIViewController, UITextFieldDelegate , iC
     var two = QuickItineraryTwo()
     var three = QuickIteneraryThree()
      var viewControllers1 = [UIViewController]()
-    @IBOutlet var carouselView: iCarousel!
     func searchCountry(search:String) {
         
     }
@@ -34,9 +32,9 @@ class QuickItinerariesViewController: UIViewController, UITextFieldDelegate , iC
     }
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         
-        carouselView.type = .coverFlow
         let quickOne: QuickIteneraryOne = (storyboard?.instantiateViewController(withIdentifier: "quickOne")) as! QuickIteneraryOne
         let quickTwo: QuickIteneraryTwo = (storyboard?.instantiateViewController(withIdentifier: "quickTwo")) as! QuickIteneraryTwo
         let quickThree: QuickIteneraryThree = (storyboard?.instantiateViewController(withIdentifier: "quickThree")) as! QuickIteneraryThree
@@ -163,24 +161,4 @@ class QuickItinerariesViewController: UIViewController, UITextFieldDelegate , iC
 //    }
 //
 
-    func numberOfItems(in carousel: iCarousel) -> Int {
-       return viewControllers1.count
-    }
-    
-    func carousel(_ carousel: iCarousel, viewForItemAt index: Int, reusing view: UIView?) -> UIView {
-        let one = QuickItineraryOne(frame: CGRect(x: 0, y: 0, width: self.view.frame.width - 40, height: 300))
-      let   two = QuickItineraryTwo(frame: CGRect(x: 0, y: 0, width: self.view.frame.width - 40, height: 450))
-
-        return one
-        
-    }
-    
-    
-    func carousel(_ carousel: iCarousel, valueFor option: iCarouselOption, withDefault value: CGFloat) -> CGFloat {
-        if option == iCarouselOption.spacing {
-            return 1.1
-        }
-            return value
-        
-    }
 }
