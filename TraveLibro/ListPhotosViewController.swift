@@ -9,9 +9,6 @@
 import UIKit
 import Spring
 
-var globalListPhotosViewController:ListPhotosViewController!
-
-
 class ListPhotosViewController: UIViewController {
     
     var layout: VerticalLayout!
@@ -21,26 +18,24 @@ class ListPhotosViewController: UIViewController {
     var journeyCreationDate = ""
     var type = ""
     var loader = LoadingOverlay()
+    
+    
+    //MARK: - LifeCycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("..................")
-        print(self.parent)
+        
         getBackGround(self)
         getJourneyPhotos()
-        globalListPhotosViewController = self
         layout = VerticalLayout(width: self.view.frame.width)
-        
-//        let profileImage = UIImageView(frame: CGRect(x: 0, y: 85, width: 100, height: 100))
-//        profileImage.center.x = self.view.frame.width/2
-//        profileImage.hnk_setImageFromURL(getImageURL(currentUser["profilePicture"].stringValue, width: 100))
-//        makeTLProfilePicture(profileImage)
-//        layout.addSubview(profileImage)
         
         scroll = UIScrollView(frame: self.view.frame)
         self.view.addSubview(scroll)
         scroll.addSubview(layout)
-        //        scroll.showsVerticalScrollIndicator = false
-        
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
     }
     
     func getJourneyPhotos() {
@@ -182,9 +177,6 @@ class ListPhotosViewController: UIViewController {
         
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+    
     
 }

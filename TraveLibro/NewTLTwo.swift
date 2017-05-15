@@ -630,6 +630,7 @@ extension NewTLViewController {
         }
         
     }
+    
     func scrollToBottom() {
         let bottomOffset = CGPoint(x: 0, y: mainScroll.contentSize.height - mainScroll.bounds.size.height)
         mainScroll.setContentOffset(bottomOffset, animated: true)
@@ -736,8 +737,6 @@ extension NewTLViewController {
         let vc = storyboard?.instantiateViewController(withIdentifier: "eachCityPagerStripVC") as! EachCityPagerViewController
         vc.city = latestCity
         self.navigationController?.pushViewController(vc, animated: true)
-        
-        
     }
     
     func gotoHotels(_ sender: UIButton) {

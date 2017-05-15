@@ -59,7 +59,8 @@ class TripSummaryPhotosViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
+    }    
+    
     func setTopNavigation(_ text: String) {
         let leftButton = UIButton()
         leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
@@ -74,8 +75,6 @@ class TripSummaryPhotosViewController: UIViewController {
     func goBack(_ sender:AnyObject) {
         self.navigationController!.popViewController(animated: true)
     }
-
-    
     
     func changeView(_ sender: UIButton) {
         

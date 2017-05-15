@@ -52,27 +52,37 @@ class TLTravelLocalLifeTableViewCell: UITableViewCell, PlayerDelegate {
         super.prepareForReuse()
         
         if FMCenterView != nil {
-            FMCenterView?.removeFromSuperview()
-            FMCenterView = nil
+            FMCenterView?.frame = CGRect.zero
         }
         
         if FMVideoContainer != nil {
-            FMVideoContainer?.removeFromSuperview()
-            FMVideoContainer = nil
+            FMVideoContainer?.frame = CGRect.zero
         }
         
         if FMMainPhoto != nil {
-            FMMainPhoto?.removeFromSuperview()
-            FMMainPhoto = nil
+            for subview in (FMMainPhoto?.subviews)! {
+                if subview.tag == 123 {
+                    subview.removeFromSuperview()
+                }
+                else if subview.tag == 1234 {
+                    subview.removeFromSuperview()
+                }
+            }
+            FMMainPhoto?.frame = CGRect.zero
         }
         
         if FMHeaderTag != nil {
+            FMHeaderTag?.resetActivityHeaderTag()
+            FMHeaderTag?.frame = CGRect.zero
+            
             FMHeaderTag?.removeFromSuperview()
-            FMHeaderTag = nil
+            FMHeaderTag = nil            
         }
         
         if FMPlayer != nil {
-            FMPlayer?.view?.removeFromSuperview()
+            FMPlayer?.view.frame = CGRect.zero
+            
+            FMPlayer?.view.removeFromSuperview()
             FMPlayer = nil
         }
         
@@ -110,6 +120,10 @@ class TLTravelLocalLifeTableViewCell: UITableViewCell, PlayerDelegate {
         
         self.feeds = feedData
         self.parentController = helper
+        
+        FMHeaderTag?.frame = CGRect.zero
+        FMHeaderTag?.removeFromSuperview()
+        FMHeaderTag = nil
         
         totalHeight = CGFloat(0)
         
@@ -184,21 +198,32 @@ class TLTravelLocalLifeTableViewCell: UITableViewCell, PlayerDelegate {
         
         //Image generation only
         if(feed["videos"].count > 0) {
-            self.FMVideoContainer = VideoView(frame: CGRect(x: 0, y: totalHeight, width: screenWidth, height: screenWidth*0.9))
             
-            self.FMVideoContainer?.isUserInteractionEnabled = true
-            let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(self.openSingleVideo(_:)))
-            self.FMVideoContainer?.addGestureRecognizer(tapGestureRecognizer)
+            if self.FMVideoContainer == nil {
+                self.FMVideoContainer = VideoView(frame: CGRect(x: 0, y: totalHeight, width: screenWidth, height: screenWidth*0.9))
+                self.FMVideoContainer?.isUserInteractionEnabled = true
+                let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(self.openSingleVideo(_:)))
+                self.FMVideoContainer?.addGestureRecognizer(tapGestureRecognizer)
+                self.contentView.addSubview(self.FMVideoContainer!)
+            }
+            else {
+                self.FMVideoContainer?.frame = CGRect(x: 0, y: totalHeight, width: screenWidth, height: screenWidth*0.9)
+            }
+            
             self.FMVideoContainer?.tag = 0
             
-            self.FMPlayer = Player()
-            self.FMPlayer?.delegate = self
-            self.FMPlayer?.view.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenWidth*0.9)
-            self.FMPlayer?.view.clipsToBounds = true
-            self.FMPlayer?.playbackLoops = true
-            self.FMPlayer?.muted = true
-            self.FMPlayer?.fillMode = "AVLayerVideoGravityResizeAspectFill"
-            self.FMPlayer?.playbackFreezesAtEnd = true
+            if self.FMPlayer == nil {
+                self.FMPlayer = Player()
+                self.FMPlayer?.delegate = self
+                self.FMPlayer?.view.clipsToBounds = true
+                self.FMPlayer?.playbackLoops = true
+                self.FMPlayer?.muted = true
+                self.FMPlayer?.fillMode = "AVLayerVideoGravityResizeAspectFill"
+                self.FMPlayer?.playbackFreezesAtEnd = true
+                self.FMVideoContainer?.videoHolder.addSubview((self.FMPlayer?.view)!)
+            }
+            
+            self.FMPlayer?.view.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenWidth*0.9)            
             self.FMVideoContainer?.player = self.FMPlayer
             self.FMVideoContainer?.bringSubview(toFront: (FMVideoContainer?.playBtn)!)            
             
@@ -206,43 +231,69 @@ class TLTravelLocalLifeTableViewCell: UITableViewCell, PlayerDelegate {
             
             if pageType != viewType.VIEW_TYPE_MY_LIFE {
                 FMVideoContainer?.tagText.isHidden = false
-                if feed["type"].stringValue == "travel-life" {
-                    FMVideoContainer?.tagText.text = "Travel Life"
-                    FMVideoContainer?.tagView.backgroundColor = mainOrangeColor
-                    FMVideoContainer?.playBtn.tintColor = mainOrangeColor
-                }
-                else{
-                    FMVideoContainer?.tagText.text = "  Local Life"
-                    FMVideoContainer?.tagText.textColor = UIColor(hex: "#303557")
-                    FMVideoContainer?.tagView.backgroundColor = endJourneyColor
-                    FMVideoContainer?.playBtn.tintColor = endJourneyColor
+                if (!(__CGSizeEqualToSize((self.FMVideoContainer?.frame.size)!, CGSize(width: 0, height: 0)))) {
+                    if pageType != viewType.VIEW_TYPE_MY_LIFE &&
+                        pageType != viewType.VIEW_TYPE_LOCAL_LIFE {
+                        
+                        if feed["type"].stringValue == "travel-life" {
+                            FMVideoContainer?.tagText.text = "Travel Life"
+                            FMVideoContainer?.tagView.backgroundColor = mainOrangeColor
+                            FMVideoContainer?.playBtn.tintColor = mainOrangeColor
+                        }
+                        else{
+                            FMVideoContainer?.tagText.text = "  Local Life"
+                            FMVideoContainer?.tagText.textColor = UIColor(hex: "#303557")
+                            FMVideoContainer?.tagView.backgroundColor = endJourneyColor
+                            FMVideoContainer?.playBtn.tintColor = endJourneyColor
+                        }
+                    }
+                    else {
+                        FMVideoContainer?.tagText.text = ""
+                        FMVideoContainer?.tagText.textColor = UIColor.clear
+                        FMVideoContainer?.tagView.backgroundColor = UIColor.clear
+                        FMVideoContainer?.playBtn.tintColor = UIColor.clear
+                    }
                 }
             }
             else {
                 FMVideoContainer?.tagText.isHidden = true
             }
             
-            self.FMVideoContainer?.videoHolder.addSubview((self.FMPlayer?.view)!)
-            self.contentView.addSubview(self.FMVideoContainer!)
             totalHeight += screenWidth*0.9
-            
         }
             
         else if(feed["photos"].count > 0) {
-            self.FMMainPhoto = UIImageView(frame: CGRect(x: 0, y: totalHeight, width: screenWidth, height: screenWidth*0.9))
-            self.FMMainPhoto?.contentMode = UIViewContentMode.scaleAspectFill
-            self.FMMainPhoto?.clipsToBounds = true
+            
+            if self.FMMainPhoto == nil {
+                self.FMMainPhoto = UIImageView(frame: CGRect(x: 0, y: totalHeight, width: screenWidth, height: screenWidth*0.9))
+                self.FMMainPhoto?.contentMode = UIViewContentMode.scaleAspectFill
+                self.FMMainPhoto?.clipsToBounds = true
+                let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(self.openSinglePhoto(_:)))
+                self.FMMainPhoto?.addGestureRecognizer(tapGestureRecognizer)
+                self.contentView.addSubview(self.FMMainPhoto!)
+            }
+            else {
+                self.FMMainPhoto?.frame = CGRect(x: 0, y: totalHeight, width: screenWidth, height: screenWidth*0.9)
+            }
+            
             self.FMMainPhoto?.image = UIImage(named: "logo-default")
             
             if pageType != viewType.VIEW_TYPE_MY_LIFE &&
-                pageType != viewType.VIEW_TYPE_LOCAL_LIFE{
-                FMHeaderTag = ActivityHeaderTag(frame: CGRect(x: 0, y: 30, width: screenWidth, height: 30))
+                pageType != viewType.VIEW_TYPE_LOCAL_LIFE {
+                
+                if self.FMHeaderTag == nil {
+                    FMHeaderTag = ActivityHeaderTag(frame: CGRect(x: 0, y: 30, width: screenWidth, height: 30))
+                    FMHeaderTag?.tag = 1234
+                    self.FMMainPhoto?.addSubview(FMHeaderTag!)
+                }
+                else {
+                    FMHeaderTag?.frame = CGRect(x: 0, y: 30, width: screenWidth, height: 30)
+                }
+                
                 FMHeaderTag?.tagParent.backgroundColor = UIColor.clear
                 FMHeaderTag?.colorTag(feed: feed)
-                self.FMMainPhoto?.addSubview(FMHeaderTag!)
             }
             
-            self.contentView.addSubview(self.FMMainPhoto!)
             totalHeight += screenWidth*0.9
             
             let imgStr = getImageURL(feed["photos"][0]["name"].stringValue, width: BIG_PHOTO_WIDTH)
@@ -255,9 +306,7 @@ class TLTravelLocalLifeTableViewCell: UITableViewCell, PlayerDelegate {
                 }else{
                     self.FMMainPhoto?.hnk_setImageFromURL(imgStr)
                 }
-                self.FMMainPhoto?.isUserInteractionEnabled = true
-                let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(self.openSinglePhoto(_:)))
-                self.FMMainPhoto?.addGestureRecognizer(tapGestureRecognizer)
+                self.FMMainPhoto?.isUserInteractionEnabled = true                
                 self.FMMainPhoto?.tag = 0
                 
                 self.layoutSubviews()
@@ -266,22 +315,34 @@ class TLTravelLocalLifeTableViewCell: UITableViewCell, PlayerDelegate {
             
         else{
             if feed["imageUrl"] != nil {
-                self.FMMainPhoto = UIImageView(frame: CGRect(x: 0, y: totalHeight, width: screenWidth, height: screenWidth*0.9))
-                self.FMMainPhoto?.contentMode = UIViewContentMode.scaleAspectFill
-                self.FMMainPhoto?.clipsToBounds = true
+                
+                if self.FMMainPhoto == nil {
+                    self.FMMainPhoto = UIImageView(frame: CGRect(x: 0, y: totalHeight, width: screenWidth, height: screenWidth*0.9))
+                    self.FMMainPhoto?.contentMode = UIViewContentMode.scaleAspectFill
+                    self.FMMainPhoto?.clipsToBounds = true                    
+                    self.contentView.addSubview(self.FMMainPhoto!)
+                }
+                else {
+                    self.FMMainPhoto?.frame = CGRect(x: 0, y: totalHeight, width: screenWidth, height: screenWidth*0.9)
+                }
+                
                 self.FMMainPhoto?.image = UIImage(named: "logo-default")
-                self.contentView.addSubview(self.FMMainPhoto!)
                 totalHeight += screenWidth*0.9
                 
                 if ((pageType != viewType.VIEW_TYPE_MY_LIFE && pageType != viewType.VIEW_TYPE_LOCAL_LIFE) &&
                     (feed["thoughts"] == nil || feed["thoughts"].stringValue == "" || feed["imageUrl"] != nil)) {
-                    FMHeaderTag = ActivityHeaderTag(frame: CGRect(x: 0, y: 30, width: screenWidth, height: 28))
+                    
+                    if self.FMHeaderTag == nil {
+                        FMHeaderTag = ActivityHeaderTag(frame: CGRect(x: 0, y: 30, width: screenWidth, height: 28))
+                        FMHeaderTag?.tag = 123
+                        self.FMMainPhoto?.addSubview(FMHeaderTag!)
+                    }
+                    else {
+                        FMHeaderTag?.frame = CGRect(x: 0, y: 30, width: screenWidth, height: 28)
+                    }
                     FMHeaderTag?.tagParent.backgroundColor = UIColor.clear
                     FMHeaderTag?.colorTag(feed: feed)
-                    
-                    self.FMMainPhoto?.addSubview(FMHeaderTag!)
                 }
-                
                 FMMainPhoto?.hnk_setImageFromURL(getImageURL(feed["imageUrl"].stringValue, width: BIG_PHOTO_WIDTH))
             }
         }
@@ -292,11 +353,17 @@ class TLTravelLocalLifeTableViewCell: UITableViewCell, PlayerDelegate {
         if(feed["videos"].count > 0) {
             showImageIndexStart = 0
         }
+        
         //Center Generation Only
         if(feed["photos"].count > showImageIndexStart) {
-            FMCenterView = PhotosOTGView(frame: CGRect(x: 0, y: totalHeight, width: self.frame.width, height: 90))
+            if self.FMCenterView == nil {
+                FMCenterView = PhotosOTGView(frame: CGRect(x: 0, y: totalHeight, width: self.frame.width, height: 90))
+                self.contentView.addSubview(FMCenterView!)
+            }
+            else {
+                FMCenterView?.frame = CGRect(x: 0, y: totalHeight, width: self.frame.width, height: 90)
+            }            
             addPhotoToLayout(feed,startIndex:showImageIndexStart)
-            self.contentView.addSubview(FMCenterView!)
             totalHeight += 90
         }
         //End of Center
@@ -332,11 +399,13 @@ class TLTravelLocalLifeTableViewCell: UITableViewCell, PlayerDelegate {
         if self.FMVideoContainer != nil {
             if isVideoViewInRangeToPlay(scrollView: scrollView) {
                 if !self.willPlay {
-                    self.FMVideoContainer?.showLoadingIndicator(color: (feeds["type"].stringValue == "travel-life" ? mainOrangeColor : endJourneyColor))
+                    if (!(__CGSizeEqualToSize((self.FMVideoContainer?.frame.size)!, CGSize(width: 0, height: 0)))) {
+                        self.FMVideoContainer?.showLoadingIndicator(color: (feeds["type"].stringValue == "travel-life" ? mainOrangeColor : endJourneyColor))
+                    }
                 }
                 DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
                     self.FMVideoContainer?.stopLoadingIndicator()
-                    if self.FMVideoContainer != nil {
+                    if (!(__CGSizeEqualToSize((self.FMVideoContainer?.frame.size)!, CGSize(width: 0, height: 0)))){
                         if self.isVideoViewInRangeToPlay(scrollView: scrollView) {
                             if !self.willPlay {
                                 //                        self.videoContainer.playBtn.isHidden = true                        
@@ -352,8 +421,9 @@ class TLTravelLocalLifeTableViewCell: UITableViewCell, PlayerDelegate {
                         else {
                             self.FMPlayer?.stop()
                             self.willPlay = false
-                            //                    self.videoContainer.playBtn.isHidden = false
-                            self.FMVideoContainer?.stopLoadingIndicator()
+                            if (!(__CGSizeEqualToSize((self.FMVideoContainer?.frame.size)!, CGSize(width: 0, height: 0)))) {
+                                self.FMVideoContainer?.stopLoadingIndicator()
+                            }
                         }
                     }
                 })
@@ -361,8 +431,9 @@ class TLTravelLocalLifeTableViewCell: UITableViewCell, PlayerDelegate {
             else {
                 self.FMPlayer?.stop()
                 self.willPlay = false
-                //            self.videoContainer.playBtn.isHidden = false
-                self.FMVideoContainer?.stopLoadingIndicator()
+                if (!(__CGSizeEqualToSize((self.FMVideoContainer?.frame.size)!, CGSize(width: 0, height: 0)))) {
+                    self.FMVideoContainer?.stopLoadingIndicator()
+                }
             }
         }        
     }

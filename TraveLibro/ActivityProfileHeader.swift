@@ -62,6 +62,8 @@ class ActivityProfileHeader: UIView {
         
         currentFeed = feed
         
+        profilePic.image = UIImage(named: "logo-default")
+        
         if isLocalFeed(feed: currentFeed) {
             fillProfileHeaderLocalFeed(feed: feed, pageType: pageType, cellType: cellType)
         }
