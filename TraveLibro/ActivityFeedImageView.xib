@@ -45,21 +45,21 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="8ah-sX-fVp">
-                    <rect key="frame" x="8" y="349" width="166" height="50"/>
+                    <rect key="frame" x="8" y="357" width="142" height="42"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="36Y-jI-EKv">
-                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="36Y-jI-EKv">
+                            <rect key="frame" x="0.0" y="0.0" width="42" height="42"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="camera_icon" translatesAutoresizingMaskIntoConstraints="NO" id="IZb-gh-o4j">
-                                    <rect key="frame" x="15" y="5" width="20" height="20"/>
+                                    <rect key="frame" x="13" y="5" width="16" height="16"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="20" id="7LC-eh-UQC"/>
+                                        <constraint firstAttribute="width" constant="16" id="7LC-eh-UQC"/>
                                         <constraint firstAttribute="width" secondItem="IZb-gh-o4j" secondAttribute="height" multiplier="1:1" id="CJf-L8-TlI"/>
                                     </constraints>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pEN-N9-ZyG">
-                                    <rect key="frame" x="0.0" y="27" width="50" height="20"/>
-                                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
+                                    <rect key="frame" x="0.0" y="23" width="42" height="16"/>
+                                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
@@ -70,54 +70,51 @@
                                 <constraint firstItem="pEN-N9-ZyG" firstAttribute="top" secondItem="IZb-gh-o4j" secondAttribute="bottom" constant="2" id="SJp-nu-NVs"/>
                                 <constraint firstAttribute="bottom" secondItem="pEN-N9-ZyG" secondAttribute="bottom" constant="3" id="XSX-QP-iC7"/>
                                 <constraint firstAttribute="width" secondItem="36Y-jI-EKv" secondAttribute="height" multiplier="1:1" id="ZvX-ri-7ab"/>
-                                <constraint firstAttribute="height" constant="50" id="dC3-se-HCS"/>
                                 <constraint firstAttribute="trailing" secondItem="pEN-N9-ZyG" secondAttribute="trailing" id="rpI-Gh-usP"/>
                                 <constraint firstItem="pEN-N9-ZyG" firstAttribute="leading" secondItem="36Y-jI-EKv" secondAttribute="leading" id="sYV-1z-f3x"/>
                                 <constraint firstItem="IZb-gh-o4j" firstAttribute="top" secondItem="36Y-jI-EKv" secondAttribute="top" constant="5" id="tHG-bx-YAF"/>
                             </constraints>
                         </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="poI-Qh-E2a">
-                            <rect key="frame" x="58" y="0.0" width="50" height="50"/>
+                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="poI-Qh-E2a">
+                            <rect key="frame" x="50" y="0.0" width="42" height="42"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="video" translatesAutoresizingMaskIntoConstraints="NO" id="sg2-iE-4cc">
-                                    <rect key="frame" x="15" y="5" width="20" height="20"/>
+                                    <rect key="frame" x="15" y="5" width="16" height="16"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="20" id="3Ru-2Y-k2V"/>
+                                        <constraint firstAttribute="width" constant="16" id="3Ru-2Y-k2V"/>
                                         <constraint firstAttribute="width" secondItem="sg2-iE-4cc" secondAttribute="height" multiplier="1:1" id="TBe-e4-hsU"/>
                                     </constraints>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sTb-WM-LkF">
-                                    <rect key="frame" x="0.0" y="27" width="50" height="20"/>
-                                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
+                                    <rect key="frame" x="0.0" y="23" width="42" height="16"/>
+                                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="50" id="1oT-gv-6wh"/>
                                 <constraint firstItem="sTb-WM-LkF" firstAttribute="top" secondItem="sg2-iE-4cc" secondAttribute="bottom" constant="2" id="HSu-mf-7tC"/>
                                 <constraint firstItem="sg2-iE-4cc" firstAttribute="top" secondItem="poI-Qh-E2a" secondAttribute="top" constant="5" id="Lwy-o5-4cU"/>
                                 <constraint firstItem="sTb-WM-LkF" firstAttribute="leading" secondItem="poI-Qh-E2a" secondAttribute="leading" id="MBq-gF-NKC"/>
                                 <constraint firstAttribute="trailing" secondItem="sTb-WM-LkF" secondAttribute="trailing" id="UOF-6Z-PRY"/>
                                 <constraint firstAttribute="bottom" secondItem="sTb-WM-LkF" secondAttribute="bottom" constant="3" id="Yfx-j0-MVk"/>
-                                <constraint firstItem="sg2-iE-4cc" firstAttribute="centerX" secondItem="poI-Qh-E2a" secondAttribute="centerX" id="fCQ-Zi-zeT"/>
-                                <constraint firstAttribute="width" secondItem="poI-Qh-E2a" secondAttribute="height" multiplier="1:1" id="z2K-BW-8WL"/>
+                                <constraint firstItem="sg2-iE-4cc" firstAttribute="centerX" secondItem="poI-Qh-E2a" secondAttribute="centerX" constant="2" id="fCQ-Zi-zeT"/>
                             </constraints>
                         </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tUe-3O-D8K">
-                            <rect key="frame" x="116" y="0.0" width="50" height="50"/>
+                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tUe-3O-D8K">
+                            <rect key="frame" x="100" y="0.0" width="42" height="42"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="location_icon" translatesAutoresizingMaskIntoConstraints="NO" id="eEG-YF-1nQ">
-                                    <rect key="frame" x="15" y="5" width="20" height="20"/>
+                                    <rect key="frame" x="13" y="5" width="16" height="16"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="20" id="WDd-ck-prS"/>
+                                        <constraint firstAttribute="width" constant="16" id="WDd-ck-prS"/>
                                         <constraint firstAttribute="width" secondItem="eEG-YF-1nQ" secondAttribute="height" multiplier="1:1" id="gdM-XS-FVt"/>
                                     </constraints>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zsr-65-Ln3">
-                                    <rect key="frame" x="0.0" y="27" width="50" height="20"/>
-                                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
+                                    <rect key="frame" x="0.0" y="23" width="42" height="16"/>
+                                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
@@ -131,12 +128,11 @@
                                 <constraint firstAttribute="bottom" secondItem="zsr-65-Ln3" secondAttribute="bottom" constant="3" id="Tmd-lR-bKQ"/>
                                 <constraint firstItem="zsr-65-Ln3" firstAttribute="leading" secondItem="tUe-3O-D8K" secondAttribute="leading" id="UkL-eC-S4R"/>
                                 <constraint firstItem="eEG-YF-1nQ" firstAttribute="top" secondItem="tUe-3O-D8K" secondAttribute="top" constant="5" id="f0L-mj-LUe"/>
-                                <constraint firstAttribute="height" constant="50" id="pfq-WY-LVi"/>
                             </constraints>
                         </view>
                     </subviews>
                     <constraints>
-                        <constraint firstAttribute="height" constant="50" id="L77-H8-DQA"/>
+                        <constraint firstAttribute="height" constant="42" id="L77-H8-DQA"/>
                         <constraint firstItem="poI-Qh-E2a" firstAttribute="width" secondItem="poI-Qh-E2a" secondAttribute="height" multiplier="1:1" id="aln-cd-aOW"/>
                     </constraints>
                 </stackView>
