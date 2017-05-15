@@ -1092,14 +1092,17 @@ func getTextHeader(feed: JSON, pageType: viewType) -> NSMutableAttributedString 
             displayText = getRegularString(string: "\(feed["name"].stringValue) - (\(feed["duration"].stringValue) Days).", size: TL_REGULAR_FONT_SIZE)
             
         case "quick-itinerary":
-            displayText = getRegularString(string: "\(feed[isLocalFeed(feed: feed) ? "title" : "name"].stringValue) - Quick Itinerary (\(feed["duration"].stringValue) Days).", size: TL_REGULAR_FONT_SIZE)
+            displayText = getBoldString(string: feed[isLocalFeed(feed: feed) ? "title" : "name"].stringValue, size: TL_REGULAR_FONT_SIZE)
+            displayText.append(getRegularString(string: " - Quick Itinerary (\(feed["duration"].stringValue) Days).", size: TL_REGULAR_FONT_SIZE))
             
         case "detail-itinerary":
             if pageType != viewType.VIEW_TYPE_ACTIVITY {
-                displayText = getRegularString(string: "\(feed["name"].stringValue) (\(feed["duration"].stringValue) Days).", size: TL_REGULAR_FONT_SIZE)                
+                displayText = getBoldString(string: feed["name"].stringValue, size: TL_REGULAR_FONT_SIZE)
+                displayText.append(getRegularString(string: " (\(feed["duration"].stringValue) Days).", size: TL_REGULAR_FONT_SIZE))
             }
             else {
-                displayText = getRegularString(string: "\(feed["name"].stringValue) - Itinerary (\(feed["duration"].stringValue) Days).", size: TL_REGULAR_FONT_SIZE)
+                displayText = getBoldString(string: feed["name"].stringValue, size: TL_REGULAR_FONT_SIZE)
+                displayText.append(getRegularString(string: " - Itinerary (\(feed["duration"].stringValue) Days).", size: TL_REGULAR_FONT_SIZE))
             }
             
             
