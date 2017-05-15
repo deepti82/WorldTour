@@ -871,6 +871,10 @@ func shouldShowBigImage(position: Int) -> Bool {
     }
 }
 
+//func resizeText(label:UILabel, width:Double, divider:Double) -> UIFont {
+//    <#function body#>
+//}
+
 func setFollowButtonTitle(button:UIButton, followType: Int, otherUserID: String) {
     
     if otherUserID == "admin" || isSelfUser(otherUserID: otherUserID) {

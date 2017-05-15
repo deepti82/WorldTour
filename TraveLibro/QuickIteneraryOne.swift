@@ -53,6 +53,8 @@ class QuickIteneraryOne: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         quickItinery = ["title": "", "year": "", "month": "", "duration": ""]
         tripTitle.autocapitalizationType = .words
         durationTextField.delegate = self
+        print("8888888888888\(screenWidth/5)")
+        monthText.font = monthText.font?.withSize(screenWidth/5)
         pickerView.dataSource = self
         pickerView.delegate = self
         pickerView.frame = CGRect(x: 0, y: 260, width: view.frame.width, height: 200)
