@@ -7,7 +7,7 @@ class QuickIteneraryTwo: UIViewController {
     @IBOutlet weak var businessAnimation: SpringButton!
     var eachButton: [String] = []
     
-    @IBOutlet weak var adventure: UILabel!
+    @IBOutlet var allLabel: [UILabel]!
     @IBOutlet weak var firstStack: UIStackView!
     var itineraryTypes:JSON?
     
@@ -16,17 +16,6 @@ class QuickIteneraryTwo: UIViewController {
 //        self.firstStack.spacing = firstStack.width
         let array = ["adventure", "business", "family", "budget", "backpacking", "romance", "friends", "religious", "luxury", "solo", "shopping", "festival"]
         
-        print("999999\(screenWidth/5)")
-        
-        
-        let currentFontName = adventure.font.fontName
-        if let calculatedFont = UIFont(name: currentFontName, size: 5) {
-            adventure.font = calculatedFont
-        }
-        
-//        adventure.font = UIFont.sizeth(ofSize: 5)
-        adventure.sizeToFit()
-        
         if itineraryTypes != nil {
             quickItinery["itineraryType"] = itineraryTypes!
         }
@@ -34,6 +23,8 @@ class QuickIteneraryTwo: UIViewController {
         if quickItinery["itineraryType"] == nil {
             quickItinery["itineraryType"] = JSON(eachButton)
         }
+       
+        
         for eachButton in typeButton {
 //            eachButton.imageView?.contentMode = .scaleAspectFit
 //            eachButton.clipsToBounds = true
@@ -58,7 +49,10 @@ class QuickIteneraryTwo: UIViewController {
         }
     }
     override func viewDidAppear(_ animated: Bool) {
-        print(quickItinery)
+        print("0000000000\(screenWidth)000\(screenWidth/35)")
+        for lbl in allLabel {
+            lbl.font = lbl.font.withSize(screenWidth/35)
+        }
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

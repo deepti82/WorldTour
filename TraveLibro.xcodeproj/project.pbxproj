@@ -450,6 +450,8 @@
 		FC0B9AA11E23BE2E005D9206 /* TextBoxContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0B9AA01E23BE2E005D9206 /* TextBoxContainer.swift */; };
 		FC13D1CE1E603073008FC77D /* SearchElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC13D1CD1E603073008FC77D /* SearchElement.swift */; };
 		FC13D1D01E60309D008FC77D /* SearchElement.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC13D1CF1E60309D008FC77D /* SearchElement.xib */; };
+		FC19E86E1EC9B860004630A9 /* BoxLineView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC19E86D1EC9B85F004630A9 /* BoxLineView.xib */; };
+		FC19E8701EC9B9B8004630A9 /* BoxLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC19E86F1EC9B9B8004630A9 /* BoxLineView.swift */; };
 		FC259C291E79014D00AF815A /* MainSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC259C281E79014D00AF815A /* MainSearchViewController.swift */; };
 		FC49DCFA1DE6D04D00B0DEF3 /* ImgLyKitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC49DCF91DE6D04D00B0DEF3 /* ImgLyKitViewController.swift */; };
 		FC6317DF1EB30D6A000C0C05 /* DottedLine.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC6317DE1EB30D69000C0C05 /* DottedLine.xib */; };
@@ -981,6 +983,8 @@
 		FC0B9AA01E23BE2E005D9206 /* TextBoxContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextBoxContainer.swift; sourceTree = "<group>"; };
 		FC13D1CD1E603073008FC77D /* SearchElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchElement.swift; sourceTree = "<group>"; };
 		FC13D1CF1E60309D008FC77D /* SearchElement.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchElement.xib; sourceTree = "<group>"; };
+		FC19E86D1EC9B85F004630A9 /* BoxLineView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BoxLineView.xib; sourceTree = "<group>"; };
+		FC19E86F1EC9B9B8004630A9 /* BoxLineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoxLineView.swift; sourceTree = "<group>"; };
 		FC259C281E79014D00AF815A /* MainSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainSearchViewController.swift; sourceTree = "<group>"; };
 		FC49DCF91DE6D04D00B0DEF3 /* ImgLyKitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImgLyKitViewController.swift; sourceTree = "<group>"; };
 		FC6317DE1EB30D69000C0C05 /* DottedLine.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DottedLine.xib; sourceTree = "<group>"; };
@@ -1285,6 +1289,7 @@
 				FCA5E93A1E7D4E77009ADEF7 /* PopularLayout */,
 				FC7E4B031E9E5D280066C454 /* MyLifeJourneyTravel */,
 				FC6317E21EB30ED6000C0C05 /* DottedLine */,
+				FC19E8711EC9B9E0004630A9 /* BoxLineView */,
 			);
 			name = UIViews;
 			sourceTree = "<group>";
@@ -2651,6 +2656,15 @@
 			name = SearchElement;
 			sourceTree = "<group>";
 		};
+		FC19E8711EC9B9E0004630A9 /* BoxLineView */ = {
+			isa = PBXGroup;
+			children = (
+				FC19E86D1EC9B85F004630A9 /* BoxLineView.xib */,
+				FC19E86F1EC9B9B8004630A9 /* BoxLineView.swift */,
+			);
+			name = BoxLineView;
+			sourceTree = "<group>";
+		};
 		FC6317E21EB30ED6000C0C05 /* DottedLine */ = {
 			isa = PBXGroup;
 			children = (
@@ -3018,6 +3032,7 @@
 				FCE877F51E308F70005EE913 /* ActivityTextHeader.xib in Resources */,
 				1A944E471CCB8C8B007EB5BD /* JourneyTitleView.xib in Resources */,
 				C2E8F2D51D897D890034CEC6 /* AddActivityNew.xib in Resources */,
+				FC19E86E1EC9B860004630A9 /* BoxLineView.xib in Resources */,
 				C23EB1CF1CFEC731005B5CE8 /* PhotoBar.xib in Resources */,
 				3ABFD8DE1DA8CA2500A51034 /* ChangeCity.xib in Resources */,
 				C23B34DB1D7AF3DA00EBBF25 /* ProfilePicFancy.xib in Resources */,
@@ -3282,6 +3297,7 @@
 				C263E3A91D1EAA4600D274FE /* FooterNavigation.swift in Sources */,
 				C26907841CF8275500F827E6 /* LocationTextField.swift in Sources */,
 				C28A92511D0EBF5900CFEC7A /* FilterCheckboxesViewController.swift in Sources */,
+				FC19E8701EC9B9B8004630A9 /* BoxLineView.swift in Sources */,
 				3A9F8C7B1DE2BDC1007F3CF0 /* NearMeDetailViewController.swift in Sources */,
 				C2A36D011DF92A090091AD56 /* QuickItineraryPreview.swift in Sources */,
 				44081CF81E55EEC5006EA74C /* NotificationFollowCell.swift in Sources */,

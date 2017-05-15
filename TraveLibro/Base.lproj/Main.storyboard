@@ -5079,7 +5079,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="4Zi-Hd-VXQ">
                                         <rect key="frame" x="45" y="127" width="210" height="30"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Month" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qzt-ek-G8g">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Month" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="qzt-ek-G8g">
                                                 <rect key="frame" x="0.0" y="0.0" width="49" height="30"/>
                                                 <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
                                                 <color key="textColor" red="0.17254901960784313" green="0.21568627450980393" blue="0.3411764705882353" alpha="1" colorSpace="calibratedRGB"/>
@@ -5625,7 +5625,6 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="adventure" destination="8of-bd-CNa" id="P5V-TF-l2N"/>
                         <outlet property="blurBG" destination="VcS-O5-acH" id="1j1-hh-9fL"/>
                         <outlet property="firstStack" destination="Utx-4p-bqZ" id="CfB-Vf-b6D"/>
                         <outletCollection property="typeButton" destination="yYu-Nx-JwN" collectionClass="NSMutableArray" id="I5t-AH-KEl"/>
@@ -5640,6 +5639,18 @@
                         <outletCollection property="typeButton" destination="fIa-zP-QQw" collectionClass="NSMutableArray" id="KCb-3i-VIB"/>
                         <outletCollection property="typeButton" destination="lZZ-ip-IS3" collectionClass="NSMutableArray" id="tXn-8h-hUh"/>
                         <outletCollection property="typeButton" destination="bPQ-DT-TUV" collectionClass="NSMutableArray" id="rjX-aw-cFz"/>
+                        <outletCollection property="allLabel" destination="8of-bd-CNa" collectionClass="NSMutableArray" id="H5f-IK-8iU"/>
+                        <outletCollection property="allLabel" destination="KfL-Lh-cdc" collectionClass="NSMutableArray" id="stV-p2-KdG"/>
+                        <outletCollection property="allLabel" destination="S0r-EX-mVf" collectionClass="NSMutableArray" id="vqx-EK-yjn"/>
+                        <outletCollection property="allLabel" destination="m8M-xY-sqM" collectionClass="NSMutableArray" id="fPL-8U-kub"/>
+                        <outletCollection property="allLabel" destination="lqU-pt-hN8" collectionClass="NSMutableArray" id="qts-NL-sZV"/>
+                        <outletCollection property="allLabel" destination="iKs-1p-X7M" collectionClass="NSMutableArray" id="HYa-0s-9eu"/>
+                        <outletCollection property="allLabel" destination="COh-cj-V4f" collectionClass="NSMutableArray" id="lVe-N2-0gz"/>
+                        <outletCollection property="allLabel" destination="Hxg-wR-Xwa" collectionClass="NSMutableArray" id="57k-zy-fKb"/>
+                        <outletCollection property="allLabel" destination="vVG-dh-mtG" collectionClass="NSMutableArray" id="NfA-4E-3UK"/>
+                        <outletCollection property="allLabel" destination="4Ip-23-vKA" collectionClass="NSMutableArray" id="Tl1-mr-hlx"/>
+                        <outletCollection property="allLabel" destination="nbM-3F-04U" collectionClass="NSMutableArray" id="E14-LS-frC"/>
+                        <outletCollection property="allLabel" destination="YSZ-Op-CuC" collectionClass="NSMutableArray" id="KZY-NA-mgl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qDz-PP-JEb" userLabel="First Responder" sceneMemberID="firstResponder"/>
