@@ -113,6 +113,7 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
     var eachButtonText = ""
     var buttonCollection: [UIButton] = []
     var horizontal: HorizontalLayout!
+    var internetStrip: UploadingToCloud!
     var horizontalScrollForPhotos: HorizontalLayout!
     
     override init(frame: CGRect) {
@@ -126,6 +127,14 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
         
 
         makeFAButton("edit", button: editCategory)
+        
+        internetStrip = UploadingToCloud(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 20))
+        internetStrip.uploadText.text = "Enter manually, No Internet Connection."
+        if !isConnectedToNetwork() {
+            self.addSubview(internetStrip)
+        }
+        
+        
         editCategory.imageView?.tintColor = lightGreyColor
         horizontal = HorizontalLayout(height: locationHorizontalScroll.frame.height)
         horizontalScrollForPhotos = HorizontalLayout(height: photoScroll.frame.height)
@@ -144,6 +153,8 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
         
 //        thoughtsTextView.delegate = self
         thoughtsTextView.returnKeyType = .done
+        
+        
         
         postButton.layer.cornerRadius = 5.0
         postButton.layer.borderColor = UIColor.white.cgColor

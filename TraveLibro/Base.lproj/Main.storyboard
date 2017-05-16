@@ -3031,6 +3031,27 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5yJ-SZ-At1">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="9eb-i0-LtZ">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <visualEffectView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1KK-I3-Yvd">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" id="wVl-KJ-QD2">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            </view>
+                                            <vibrancyEffect>
+                                                <blurEffect style="light"/>
+                                            </vibrancyEffect>
+                                        </visualEffectView>
+                                    </subviews>
+                                </view>
+                                <blurEffect style="dark"/>
+                            </visualEffectView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceHorizontal="YES" pagingEnabled="YES" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rPU-q0-TQ4">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="539"/>
                             </scrollView>
@@ -3038,10 +3059,14 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="Csk-03-8Ta" firstAttribute="top" secondItem="5yJ-SZ-At1" secondAttribute="bottom" id="XbX-sd-544"/>
+                            <constraint firstItem="5yJ-SZ-At1" firstAttribute="top" secondItem="UsD-Sz-4jy" secondAttribute="bottom" id="f84-l9-Izs"/>
                             <constraint firstAttribute="trailing" secondItem="rPU-q0-TQ4" secondAttribute="trailing" id="f8G-Ml-NMm"/>
+                            <constraint firstAttribute="trailing" secondItem="5yJ-SZ-At1" secondAttribute="trailing" id="fQN-jf-kTB"/>
                             <constraint firstItem="rPU-q0-TQ4" firstAttribute="leading" secondItem="zuT-3G-ai1" secondAttribute="leading" id="i5S-be-1bf"/>
                             <constraint firstItem="Csk-03-8Ta" firstAttribute="top" secondItem="rPU-q0-TQ4" secondAttribute="bottom" constant="128" id="miv-a2-CBJ"/>
                             <constraint firstItem="rPU-q0-TQ4" firstAttribute="top" secondItem="zuT-3G-ai1" secondAttribute="top" id="pwJ-ZZ-PRO"/>
+                            <constraint firstItem="5yJ-SZ-At1" firstAttribute="leading" secondItem="zuT-3G-ai1" secondAttribute="leading" id="s1a-50-k9y"/>
                         </constraints>
                     </view>
                     <connections>
