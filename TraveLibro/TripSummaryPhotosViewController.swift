@@ -56,10 +56,10 @@ class TripSummaryPhotosViewController: UIViewController, UITableViewDataSource, 
         self.getJourneyContent()
         
         if currentContentType == contentType.TL_CONTENT_VIDEO_TYPE {
-            showNavigationIn(img:"list",text: "Videos")
+            showNavigationIn(text: "Videos")
         }
         else{
-            showNavigationIn(img:"list",text: "Photos")
+            showNavigationIn(text: "Photos")
         }
         
         changeView(toView: currentContentViewType)
@@ -173,9 +173,10 @@ class TripSummaryPhotosViewController: UIViewController, UITableViewDataSource, 
     
     //MARK: - Navigation
     
-    func showNavigationIn(img: String, text: String) {
+    func showNavigationIn(text: String) {
+        let navImageIconName = ((currentContentViewType == contentViewType.TL_LIST_VIEW) ? "grid" : "list")
         let rightButton = UIButton()
-        rightButton.setImage(UIImage(named: img), for: UIControlState())
+        rightButton.setImage(UIImage(named: navImageIconName), for: UIControlState())
         rightButton.addTarget(self, action: #selector(self.toggleViews(_:)), for: .touchUpInside)
         rightButton.frame = CGRect(x: 0, y: 8, width: 20, height: 20)
         self.title = text
@@ -215,19 +216,19 @@ class TripSummaryPhotosViewController: UIViewController, UITableViewDataSource, 
         if !(contentCollectionView.isHidden) {
             currentContentViewType = contentViewType.TL_LIST_VIEW
             if currentContentType == contentType.TL_CONTENT_VIDEO_TYPE {
-                showNavigationIn(img:"list",text: "Videos (\(noPhoto))")
+                showNavigationIn(text: "Videos (\(noPhoto))")
             }
             else{
-                showNavigationIn(img:"list",text: "Photos (\(noPhoto))")
+                showNavigationIn(text: "Photos (\(noPhoto))")
             }
         }
         else {
             currentContentViewType = contentViewType.TL_GRID_VIEW
             if currentContentType == contentType.TL_CONTENT_VIDEO_TYPE {
-                showNavigationIn(img:"list",text: "Videos (\(noPhoto))")
+                showNavigationIn(text: "Videos (\(noPhoto))")
             }
             else{
-                showNavigationIn(img:"list",text: "Photos (\(noPhoto))")
+                showNavigationIn(text: "Photos (\(noPhoto))")
             }
         }
         
@@ -288,15 +289,16 @@ class TripSummaryPhotosViewController: UIViewController, UITableViewDataSource, 
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! contentCollectionViewCell
         cell.contentImageView.image = UIImage(named: "logo-default")
-            if currentContentType == contentType.TL_CONTENT_IMAGE_TYPE {
-                cell.contentImageView.hnk_setImageFromURL(getImageURL(contentDataArray[indexPath.row]["name"].stringValue, width: BIG_PHOTO_WIDTH))
-                cell.contentPlayImageView.isHidden = true
-            }
-            else{
-                cell.contentImageView.hnk_setImageFromURL(getImageURL(contentDataArray[indexPath.row]["thumbnail"].stringValue, width: BIG_PHOTO_WIDTH))
-                cell.contentPlayImageView.isHidden = false
-            }
         
+        if currentContentType == contentType.TL_CONTENT_IMAGE_TYPE {
+            cell.contentImageView.hnk_setImageFromURL(getImageURL(contentDataArray[indexPath.row]["name"].stringValue, width: BIG_PHOTO_WIDTH))
+            cell.contentPlayImageView.isHidden = true
+        }
+        else{
+            cell.contentImageView.hnk_setImageFromURL(getImageURL(contentDataArray[indexPath.row]["thumbnail"].stringValue, width: BIG_PHOTO_WIDTH))
+            cell.contentPlayImageView.isHidden = false
+        }        
+
         return cell
     }
     

@@ -81,6 +81,7 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
             self.mainPhoto = UIImageView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.width))            
             self.mainPhoto?.contentMode = UIViewContentMode.scaleAspectFill
             self.mainPhoto?.clipsToBounds = true
+            self.mainPhoto?.tag = 0
             self.mainPhoto?.image = UIImage(named: "logo-default")
             self.addSubview(mainPhoto!)
             let heightForBlur = 10;
@@ -124,11 +125,16 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
                 globalNewTLViewController.addHeightToLayout(height: 50)
             })*/
         }
+            
         else if(post.post_locationImage != nil && post.post_locationImage != "") {
             self.mainPhoto = UIImageView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.width))
+            self.mainPhoto?.tag = 0
             self.mainPhoto?.contentMode = UIViewContentMode.scaleAspectFill
             self.mainPhoto?.image = UIImage(named: "logo-default")
-            self.mainPhoto?.hnk_setImageFromURL(URL(string:post.post_locationImage)!)
+//            self.mainPhoto?.hnk_setImageFromURL(URL(string:post.post_locationImage)!, placeholder: UIImage(named: "logo-default"), format: nil, failure: nil, success: { (img) in
+//                self.mainPhoto?.image = img
+//                self.mainPhoto?.tag = 1
+//            })
             self.addSubview(mainPhoto!)
         }
         
@@ -250,9 +256,8 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
             
             //  START ACTIVITY TEXT HEADER
             textHeader = ActivityTextHeader(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 0))
-            textHeader.headerText.attributedText = getThought(feed)
-            textHeader.headerText.sizeToFit()
-            textHeader.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: textHeader.headerText.frame.height + 1.5)
+            textHeader.headerText.attributedText = getThought(feed)            
+            textHeader.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: heightOfAttributedText(attributedString: textHeader.headerText.attributedText.mutableCopy() as! NSMutableAttributedString, width: self.frame.width))
             self.addSubview(textHeader)
             
             
@@ -274,9 +279,7 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
             default:
                 textHeader.headerText.attributedText = getThought(feed)
             }
-            textHeader.headerText.sizeToFit()
-            textHeader.sizeToFit()
-            textHeader.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: textHeader.headerText.frame.height + 1.5)
+            textHeader.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: heightOfAttributedText(attributedString: textHeader.headerText.attributedText.mutableCopy() as! NSMutableAttributedString, width: self.frame.width))
             if(textHeader.headerText.text != "") {
                 
                 self.addSubview(textHeader)
@@ -299,9 +302,8 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
         if post.post_thoughts != "" {
             //  START ACTIVITY TEXT HEADER
             textHeader = ActivityTextHeader(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 0))
-            textHeader.headerText.attributedText = getThoughtForLocalPost(post)
-            textHeader.headerText.sizeToFit()
-            textHeader.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: textHeader.headerText.frame.height + 1.5)
+            textHeader.headerText.attributedText = getThoughtForLocalPost(post)            
+            textHeader.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: heightOfAttributedText(attributedString: textHeader.headerText.attributedText.mutableCopy() as! NSMutableAttributedString, width: self.frame.width))
             self.addSubview(textHeader)
         }
         else {
@@ -321,10 +323,8 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
                 setText(text: "Has uploaded a new Itinerary.")
             default:
                 textHeader.headerText.attributedText = getThoughtForLocalPost(post)
-            }
-            textHeader.headerText.sizeToFit()
-            textHeader.sizeToFit()
-            textHeader.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: textHeader.headerText.frame.height + 1.5)
+            }            
+            textHeader.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: heightOfAttributedText(attributedString: textHeader.headerText.attributedText.mutableCopy() as! NSMutableAttributedString, width: self.frame.width))
             if(textHeader.headerText.text != "") {
                 
                 self.addSubview(textHeader)
@@ -452,71 +452,89 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
         
         if isMainPhotoViewInRangeToLoad() {
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {                
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: { 
+                
                 if self.isMainPhotoViewInRangeToLoad() {
-                    if self.postTop.imageArr.count > 0 {
-                        self.mainPhoto?.hnk_setImageFromURL(self.postTop.imageArr[0].imageUrl)
-                    }
-                }
-            })
-        }
-        
-        if isCenterViewInRangeToLoad() {
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {                
-                if self.isCenterViewInRangeToLoad() {
                     
-                    var showImageIndexStart = 1
-                    if(self.postTop.videoArr.count > 0) {
-                        showImageIndexStart = 0
-                    }
-                    for i in showImageIndexStart ..< self.postTop.imageArr.count {
+                    if self.postTop.imageArr.count > 0 {
                         
-                        let photosButton = (self.centerView?.horizontalScrollForPhotos.viewWithTag(i) as! UIImageView)
-                        
-                        photosButton.image = UIImage(named: "logo-default")
-                        if(self.postTop.post_isOffline) {
-                            photosButton.image = self.postTop.imageArr[i].image
-                        } else {
-                            photosButton.hnk_setImageFromURL(URL(string:(self.postTop.imageArr[i].imageUrl.absoluteString + "&width=500"))!)
+                        if self.mainPhoto?.tag == 0 {
+                            print("\n Loading started for mainPhoto :  \(self.postTop.imageArr[0].imageUrl)")
+                            self.mainPhoto?.hnk_setImageFromURL(self.postTop.imageArr[0].imageUrl, placeholder: UIImage(named: "logo-default"), format: nil, failure: nil, success: { (img) in
+                                self.mainPhoto?.image = img
+                                self.mainPhoto?.tag = 1
+                            })
+                            
+                            var showImageIndexStart = 1
+                            if(self.postTop.videoArr.count > 0) {
+                                showImageIndexStart = 0
+                            }
+                            for i in showImageIndexStart ..< self.postTop.imageArr.count {
+                                
+                                let photosButton = (self.centerView?.horizontalScrollForPhotos.viewWithTag(i) as! UIImageView)
+                                
+                                photosButton.image = UIImage(named: "logo-default")
+                                if(self.postTop.post_isOffline) {
+                                    photosButton.image = self.postTop.imageArr[i].image
+                                } else {
+                                    photosButton.hnk_setImageFromURL(URL(string:(self.postTop.imageArr[i].imageUrl.absoluteString + "&width=500"))!)
+                                }
+                            }
+                            
                         }
                     }
+                        
+                    else if (self.postTop.post_locationImage != nil && self.postTop.post_locationImage != "") {
+                        if self.mainPhoto?.tag == 0 {
+                            self.mainPhoto?.hnk_setImageFromURL(URL(string:self.postTop.post_locationImage)!, placeholder: UIImage(named: "logo-default"), format: nil, failure: nil, success: { (img) in
+                                self.mainPhoto?.image = img
+                                self.mainPhoto?.tag = 1
+                            })
+                        }
+                    }                    
                 }
             })
+            
         }
-        
     }
     
     func isMainPhotoViewInRangeToLoad() -> Bool {
+//        print("MainPhono : start \(self.mainPhoto?.frame.origin.y)  End: \((self.mainPhoto?.frame.origin.y)!+(self.mainPhoto?.frame.size.height)!) ")
+//        print("MainPhono : start \(self.mainPhoto?.bounds.origin.y)  End: \((self.mainPhoto?.bounds.origin.y)!+(self.mainPhoto?.bounds.size.height)!) ")
+//        print("ScrollView : start \(self.scrollView.contentOffset.y)  End: \((self.scrollView.contentOffset.y)+(self.scrollView.frame.height))\n\n ")
         if self.mainPhoto != nil {
+//            let viewRect = self.mainPhoto?.frame
+//            let mainRect = CGRect(origin: scrollView.contentOffset, size: scrollView.contentSize)
+//            
+//            if (viewRect?.intersects(mainRect))! {
+//                return true
+//            }
+            
             let min = self.frame.origin.y + (self.mainPhoto?.frame.origin.y)!
             let max = min + (self.mainPhoto?.frame.size.height)!
-            let scrollMin = self.scrollView.contentOffset.y
-            let scrollMax = scrollMin + self.scrollView.frame.height
+            let scrollMin = 2*(self.scrollView.contentOffset.y)
+            let scrollMax = 2*(scrollMin + self.scrollView.frame.height)
             
-            if (scrollMin < min && scrollMax > max ) {
-                print("\n isMainPhotoViewInRangeToLoad :\n min:\(min)\n max:\(max)\n scrollMin:\(scrollMin)\n scrollMax:\(scrollMax)")
+            
+            if (max > scrollMin && min < scrollMax) {
                 return true
-            }        
-            return false
+            }
         }
+        
         return false
     }
     
-    func isCenterViewInRangeToLoad() -> Bool {
-        if self.centerView != nil {
-            let min = self.frame.origin.y + (self.centerView?.frame.origin.y)!
-            let max = min + (self.centerView?.frame.size.height)!
-            let scrollMin = self.scrollView.contentOffset.y
-            let scrollMax = scrollMin + self.scrollView.frame.height
-            
-            if (scrollMin < min && scrollMax > max ) {
-                print("\n isCenterViewInRangeToLoad :\n min:\(min)\n max:\(max)\n scrollMin:\(scrollMin)\n scrollMax:\(scrollMax)")
-                return true
-            }        
-            return false            
-        }
-        return false
-    }
+//    func isCenterViewInRangeToLoad() -> Bool {
+//        if self.centerView != nil {
+//            let viewRect = self.centerView?.frame
+//            let mainRect = self.scrollView.frame            
+//            
+//            if (mainRect.intersects(viewRect!)) {
+//                return true
+//            }
+//        }
+//        
+//        return false
+//    }
 
 }

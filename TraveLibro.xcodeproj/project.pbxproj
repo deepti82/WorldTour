@@ -259,7 +259,6 @@
 		C2504E7F1CF3376100A84D78 /* PopularJourneyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2504E7E1CF3376100A84D78 /* PopularJourneyView.swift */; };
 		C25207321D094FAB008F0E51 /* SearchFieldView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C25207311D094FAB008F0E51 /* SearchFieldView.xib */; };
 		C25207341D095442008F0E51 /* SearchFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25207331D095442008F0E51 /* SearchFieldView.swift */; };
-		C25207371D096F27008F0E51 /* ExploreDestinationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25207361D096F27008F0E51 /* ExploreDestinationsViewController.swift */; };
 		C25207391D09A4F7008F0E51 /* FeaturedCitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25207381D09A4F7008F0E51 /* FeaturedCitiesViewController.swift */; };
 		C25297261DF00E92007A8571 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25297251DF00E92007A8571 /* Extensions.swift */; };
 		C25443501CD7391900C2C6CD /* OnTheGoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C254434F1CD7391900C2C6CD /* OnTheGoViewController.swift */; };
@@ -792,7 +791,6 @@
 		C2504E7E1CF3376100A84D78 /* PopularJourneyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopularJourneyView.swift; sourceTree = "<group>"; };
 		C25207311D094FAB008F0E51 /* SearchFieldView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchFieldView.xib; sourceTree = "<group>"; };
 		C25207331D095442008F0E51 /* SearchFieldView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchFieldView.swift; sourceTree = "<group>"; };
-		C25207361D096F27008F0E51 /* ExploreDestinationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExploreDestinationsViewController.swift; sourceTree = "<group>"; };
 		C25207381D09A4F7008F0E51 /* FeaturedCitiesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedCitiesViewController.swift; sourceTree = "<group>"; };
 		C25297251DF00E92007A8571 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		C254434F1CD7391900C2C6CD /* OnTheGoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnTheGoViewController.swift; sourceTree = "<group>"; };
@@ -2065,7 +2063,6 @@
 				C24F84DD1D001456002EA203 /* EditSettingsViewController.swift */,
 				C24F84F31D0052B9002EA203 /* EmptyPagesViewController.swift */,
 				C270C4131DA8F68E009EA9DA /* EndJourneyViewController.swift */,
-				C25207361D096F27008F0E51 /* ExploreDestinationsViewController.swift */,
 				C248704E1D0C25B9003CB0DD /* ExploreHotelsViewController.swift */,
 				C2E697B61D3E541500E76F1E /* FCMainViewController.swift */,
 				C2E697B21D3E500600E76F1E /* FeaturedCitiesNewTwoViewController.swift */,
@@ -3449,7 +3446,6 @@
 				C20352371CEF433500A20BB2 /* SideNavigationMenuViewController.swift in Sources */,
 				367B90F51DC23ADF00D76F13 /* ActiveBuilder.swift in Sources */,
 				FC49DCFA1DE6D04D00B0DEF3 /* ImgLyKitViewController.swift in Sources */,
-				C25207371D096F27008F0E51 /* ExploreDestinationsViewController.swift in Sources */,
 				C28521BA1D365FDF001EF251 /* PagerTabViewController.swift in Sources */,
 				44B672121EB9B8D000F5561A /* TLFeedHeaderTextFlagView.swift in Sources */,
 				C24F84F91D00555C002EA203 /* NoCountriesVisited.swift in Sources */,

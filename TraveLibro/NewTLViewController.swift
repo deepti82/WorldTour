@@ -1250,13 +1250,21 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
                 if (photosOtg.videoContainer != nil) {
                     photosOtg.videoToPlay()
                 }
-                
+            }
+        }
+        
+    }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        print("scrollViewDidEndDragging")
+        for postView in layout.subviews {
+            if(postView is PhotosOTG2) {
+                let photosOtg = postView as! PhotosOTG2                
                 if photosOtg.mainPhoto != nil {
                     photosOtg.loadImagesOnlayout()
                 }
             }
         }
-        
     }
     
 //    func gotoProfile(_ sender: UIButton) {
