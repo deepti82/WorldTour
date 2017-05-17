@@ -93,8 +93,6 @@ class TripSummaryPhotoGridViewController: UICollectionViewController, ToolStackC
         return 1
     }
     
-        
-    
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if type == "photos" {
             return myPhotos.count

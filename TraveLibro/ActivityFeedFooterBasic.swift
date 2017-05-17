@@ -41,6 +41,8 @@ class ActivityFeedFooterBasic: UIView {
     let like =  Bundle.main.path(forResource: "tiny1", ofType: "mp3")!
     var audioPlayer = AVAudioPlayer()
 
+    var currentContentType : contentType = contentType.TL_CONTENT_IMAGE_TYPE
+    
     var type="ActivityFeeds"
     var footerType = ""
     var dropView: DropShadow2!
@@ -105,22 +107,10 @@ class ActivityFeedFooterBasic: UIView {
         self.commentCountButton.tag = self.tag
         self.optionButton.tag = self.tag
         
-        if isLocalFeed(feed: self.postTop) {
+        if ((self.pageType != viewType.VIEW_TYPE_OTG_CONTENTS) && (isLocalFeed(feed: self.postTop))) {
             fillFeedFooterForLocalFeed(feed: feed, pageType: pageType, delegate: delegate)
         }
-        else {
-            if currentUser != nil {
-                if (isSelfUser(otherUserID: postTop["user"]["_id"].stringValue) && self.pageType == viewType.VIEW_TYPE_MY_LIFE) {
-                    optionButton.isHidden = true
-                }
-                else {
-                    optionButton.isHidden = false
-                }
-            }
-            else {
-                optionButton.isHidden = true
-            }
-            
+        else {            
             self.setLikeCount(postTop["likeCount"].intValue)
             self.setCommentCount(postTop["commentCount"].intValue)
             self.setLikeSelected(postTop["likeDone"].boolValue)
@@ -164,6 +154,10 @@ class ActivityFeedFooterBasic: UIView {
                 optionButton.isHidden = false
                 leadingToRatingStackConstraint.constant = CGFloat(8)
                 leadingToRateThisConstraint.constant = CGFloat(8)
+            }
+            
+            if (self.pageType == viewType.VIEW_TYPE_OTG_CONTENTS) {
+                optionButton.isHidden = true
             }
             
             self.removeTargetActions()
@@ -330,8 +324,8 @@ class ActivityFeedFooterBasic: UIView {
         print("in footer tap out \(postTop)")
         if currentUser != nil {
             let feedVC = storyboard!.instantiateViewController(withIdentifier: "likeTable") as! LikeUserViewController
-            feedVC.postId = postTop["_id"].stringValue
-            feedVC.type = postTop["type"].stringValue
+            feedVC.postId = postTop["_id"].stringValue            
+            feedVC.type = (self.pageType == viewType.VIEW_TYPE_OTG_CONTENTS) ? "photo" : postTop["type"].stringValue
             feedVC.title = postTop["name"].stringValue
             parentController.navigationController?.pushViewController(feedVC, animated: true)
         }

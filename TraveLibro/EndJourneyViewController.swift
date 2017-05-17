@@ -49,8 +49,8 @@ class EndJourneyViewController: UIViewController {
             photoVC.fromView = "endJourney"
             self.navigationController?.setNavigationBarHidden(false, animated: true)
             self.navigationController?.pushViewController(photoVC, animated: true)
-            photoVC.whichView = "photos"
-            photoVC.journey = journey["_id"].string!
+            photoVC.currentContentType = contentType.TL_CONTENT_IMAGE_TYPE
+            photoVC.journeyID = journey["_id"].string!
             photoVC.creationDate = journey["startTime"].string!
             
         }

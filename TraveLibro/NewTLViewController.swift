@@ -888,8 +888,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
             self.navigationController?.setNavigationBarHidden(false, animated: true)
             self.navigationController?.pushViewController(photoVC, animated: true)
             photoVC.noPhoto = sender.tag
-            photoVC.whichView = "photos"
-            photoVC.journey = myJourney["_id"].string!
+            photoVC.currentContentType = contentType.TL_CONTENT_IMAGE_TYPE
+            photoVC.journeyID = myJourney["_id"].string!
             photoVC.creationDate = myJourney["startTime"].string!
             //        infoView.animation.makeOpacity(0.0).animate(0.5)
             infoView.isHidden = true
@@ -908,8 +908,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
             self.navigationController?.setNavigationBarHidden(false, animated: true)
             self.navigationController?.pushViewController(photoVC, animated: true)
             photoVC.noPhoto = sender.tag
-            photoVC.whichView = "videos"
-            photoVC.journey = myJourney["_id"].string!
+            photoVC.currentContentType = contentType.TL_CONTENT_VIDEO_TYPE
+            photoVC.journeyID = myJourney["_id"].string!
             photoVC.creationDate = myJourney["startTime"].string!
             //        infoView.animation.makeOpacity(0.0).animate(0.5)
             infoView.isHidden = true
@@ -1247,10 +1247,12 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         for postView in layout.subviews {
             if(postView is PhotosOTG2) {
                 let photosOtg = postView as! PhotosOTG2
-                if(photosOtg.videoContainer != nil) {
-                    
+                if (photosOtg.videoContainer != nil) {
                     photosOtg.videoToPlay()
-                    
+                }
+                
+                if photosOtg.mainPhoto != nil {
+                    photosOtg.loadImagesOnlayout()
                 }
             }
         }

@@ -855,7 +855,7 @@ class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDele
             currentImageView.tag = 999
         }
         
-        currentImageView.image = UIImage(named: "logo-default")
+        currentImageView.image = UIImage()
         
         if fetchType == photoVCType.FROM_QUICK_ITINERARY_LOCAL {
             currentImageView.image = globalPostImage[index].image

@@ -10,16 +10,19 @@ import UIKit
 
 class TripPhotoHeader: UIView {
 
+    @IBOutlet weak var backBoxView: UIView!
     @IBOutlet weak var cornerRadiusView: UIView!
     @IBOutlet weak var noOfDay: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var timeNow: UILabel!
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
-
-
+        
+        backBoxView.layer.cornerRadius = backBoxView.frame.size.width/2
     }
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
@@ -27,7 +30,7 @@ class TripPhotoHeader: UIView {
     func fillProfileHeader(feed:JSON) {
 
         
-        timeNow.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "HH:mm", date: feed["createdAt"].string!, isDate: false)
+        timeNow.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["createdAt"].string!, isDate: false)
 
     }
     
@@ -41,21 +44,10 @@ class TripPhotoHeader: UIView {
         self.addSubview(view)
         timeLabel.text = String(format: "%C", faicon["clock"]!)
         
-//        let path = UIBezierPath(roundedRect:cornerRadiusView.bounds,
-//                                byRoundingCorners:[.topRight, .topLeft],
-//                                cornerRadii: CGSize(width: 10, height:  10))
-//        
-//        let maskLayer = CAShapeLayer()
-//        
-//        maskLayer.path = path.cgPath
-//        self.layer.mask = maskLayer
-        
         let rectShape = CAShapeLayer()
         rectShape.bounds = cornerRadiusView.frame
         rectShape.position = cornerRadiusView.center
         rectShape.path = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: [.topRight , .topLeft], cornerRadii: CGSize(width: 5, height: 5)).cgPath
-        
-//        self.cornerRadiusView.layer.backgroundColor = UIColor.green.cgColor
         cornerRadiusView.layer.mask = rectShape
         cornerRadiusView.layer.masksToBounds = true
         

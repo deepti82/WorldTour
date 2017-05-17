@@ -15,6 +15,7 @@ enum viewType {
     case VIEW_TYPE_POPULAR_JOURNEY
     case VIEW_TYPE_POPULAR_ITINERARY
     case VIEW_TYPE_OTG
+    case VIEW_TYPE_OTG_CONTENTS
 }
 
 enum feedCellType {
@@ -42,6 +43,7 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
     @IBOutlet weak var feedsTableView: UITableView!
     
     private let TL_VISIBLE_CELL_TAG = 6789
+    private let separatorOffset = CGFloat(15.0)
     
     var mainFooter: FooterViewNew?
     
@@ -53,8 +55,6 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
     var currentPageNumber = 1
     var hasMorePages = true
     var isLoading = false
-    
-    let separatorOffset = CGFloat(15.0)
     
     var loader = LoadingOverlay()
     let refreshControl = UIRefreshControl()
@@ -245,6 +245,9 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
         case .VIEW_TYPE_OTG:
             break
             
+        case .VIEW_TYPE_OTG_CONTENTS:
+            break
+            
         }
     }
     
@@ -379,7 +382,7 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     
-    //MARK: - TableView Datasource and Delegates
+    //MARK: - TableView DataSource and Delegates
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1

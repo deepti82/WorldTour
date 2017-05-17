@@ -8,9 +8,9 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
     var lines: OnlyLine!
     var profileHeader:ActivityProfileHeader!
     var textHeader:ActivityTextHeader!
-    var centerView:PhotosOTGView!
+    var centerView:PhotosOTGView?
     var footerView:PhotoOTGFooter!
-    var mainPhoto:UIImageView!
+    var mainPhoto:UIImageView?
     var videoContainer:VideoView!
     var uploadingView:UploadingToCloud!
     var newTl:NewTLViewController!
@@ -21,6 +21,7 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
     var dropView: DropShadow1!
     var journeyUser: String = ""
     var willPlay = false
+    var mainPhotoImageURL: URL?
     
     func generatePost(_ post:Post) {
         
@@ -77,12 +78,11 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
             
         } 
         else if(post.imageArr.count > 0) {
-            self.mainPhoto = UIImageView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.width))
-            self.addSubview(self.mainPhoto)
-            self.mainPhoto.contentMode = UIViewContentMode.scaleAspectFill
-            self.mainPhoto.clipsToBounds = true
-            self.mainPhoto.image = UIImage(named: "logo-default")
-            self.addSubview(mainPhoto)
+            self.mainPhoto = UIImageView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.width))            
+            self.mainPhoto?.contentMode = UIViewContentMode.scaleAspectFill
+            self.mainPhoto?.clipsToBounds = true
+            self.mainPhoto?.image = UIImage(named: "logo-default")
+            self.addSubview(mainPhoto!)
             let heightForBlur = 10;
             var thumbStr = "";            
             if(!post.post_isOffline) {
@@ -90,10 +90,10 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
             }
             let imgStr = post.imageArr[0].imageUrl.absoluteString + thumbStr
 
-            cache.fetch(URL: URL(string:imgStr)!).onSuccess({ (data) in
-                self.mainPhoto.image = UIImage(data: data as Data)
+            /*cache.fetch(URL: URL(string:imgStr)!).onSuccess({ (data) in
+                self.mainPhoto?.image = UIImage(data: data as Data)
                 
-                let image = self.mainPhoto.image
+                let image = self.mainPhoto?.image
                 
                 let widthInPixels =  image?.cgImage?.width
                 let heightInPixels =  image?.cgImage?.height
@@ -104,31 +104,32 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
                     
                     let maxheight = screenHeight - ( 60 + 113 )
                     if(finalHeight > maxheight) {
-                        self.mainPhoto.frame.size.height = maxheight
+                        self.mainPhoto?.frame.size.height = maxheight
                     } else {
-                        self.mainPhoto.frame.size.height = finalHeight
+                        self.mainPhoto?.frame.size.height = finalHeight
                     }
                 }
                 
-                self.mainPhoto.frame.size.width = self.frame.width
-                self.mainPhoto.hnk_setImageFromURL(post.imageArr[0].imageUrl)
+                self.mainPhoto?.frame.size.width = self.frame.width
+                self.mainPhotoImageURL = post.imageArr[0].imageUrl
+//                self.mainPhoto.hnk_setImageFromURL(post.imageArr[0].imageUrl)
                 if(!post.post_isOffline) {
-                    self.mainPhoto.isUserInteractionEnabled = true
+                    self.mainPhoto?.isUserInteractionEnabled = true
                     let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(PhotosOTG2.openSinglePhoto(_:)))
-                    self.mainPhoto.addGestureRecognizer(tapGestureRecognizer)
-                    self.mainPhoto.tag = 0
+                    self.mainPhoto?.addGestureRecognizer(tapGestureRecognizer)
+                    self.mainPhoto?.tag = 0
                 }
                 
                 self.layoutSubviews()
                 globalNewTLViewController.addHeightToLayout(height: 50)
-            })
+            })*/
         }
         else if(post.post_locationImage != nil && post.post_locationImage != "") {
             self.mainPhoto = UIImageView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.width))
-            self.mainPhoto.contentMode = UIViewContentMode.scaleAspectFill
-            self.mainPhoto.image = UIImage(named: "logo-default")
-            self.mainPhoto.hnk_setImageFromURL(URL(string:post.post_locationImage)!)
-            self.addSubview(mainPhoto)
+            self.mainPhoto?.contentMode = UIViewContentMode.scaleAspectFill
+            self.mainPhoto?.image = UIImage(named: "logo-default")
+            self.mainPhoto?.hnk_setImageFromURL(URL(string:post.post_locationImage)!)
+            self.addSubview(mainPhoto!)
         }
         
         //End of Image
@@ -139,9 +140,9 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
         //Center Generation Only
         if(post.imageArr.count > showImageIndexStart) {
             centerView = PhotosOTGView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 90 ))
-            centerView.backgroundColor = UIColor(white: 1, alpha: 0.8)
+            centerView?.backgroundColor = UIColor(white: 1, alpha: 0.8)
             addPhotoToLayout(post,startIndex:showImageIndexStart)
-            self.addSubview(centerView)
+            self.addSubview(centerView!)
         }
         //End of Center
         
@@ -219,6 +220,7 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
         headerLine = DottedLine(frame: CGRect(x: 0, y: 2, width: self.frame.width, height: 38))
         
         profileHeader = ActivityProfileHeader(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: FEEDS_HEADER_HEIGHT))
+        profileHeader.parentController = globalNewTLViewController
         profileHeader.backgroundColor = UIColor(white: 1, alpha: 0.8)
         self.addSubview(headerLine)
         self.addSubview(profileHeader)
@@ -288,6 +290,7 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
     func headerLayoutForLocalPost(post: Post) {
         
         profileHeader = ActivityProfileHeader(frame: CGRect(x: 0, y: 20, width: self.frame.width, height: FEEDS_HEADER_HEIGHT))
+        profileHeader.parentController = globalNewTLViewController
         profileHeader.backgroundColor = UIColor(white: 1, alpha: 0.8)
         self.addSubview(profileHeader)
         profileHeader.followButton.isHidden = true
@@ -348,7 +351,7 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
 
     
     func addPhotoToLayout(_ post: Post, startIndex: Int) {
-        centerView.horizontalScrollForPhotos.removeAll()
+        centerView?.horizontalScrollForPhotos.removeAll()
         for i in startIndex ..< post.imageArr.count {
             let photosButton = UIImageView(frame: CGRect(x: 5, y: 5, width: 80, height: 80))
             photosButton.image = UIImage(named: "logo-default")
@@ -359,7 +362,7 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
                 photosButton.frame.size.height = 82
                 photosButton.frame.size.width = 82
                 let urlStr = post.imageArr[i].imageUrl.absoluteString + "&width=500"
-                photosButton.hnk_setImageFromURL(URL(string:urlStr)!)
+//                photosButton.hnk_setImageFromURL(URL(string:urlStr)!)
                 if(!post.post_isOffline) {
                     let tapGestureRecognizer = UITapGestureRecognizer(target:self, action: #selector(PhotosOTG2.openSinglePhoto(_:)))
                     photosButton.isUserInteractionEnabled = true
@@ -369,10 +372,10 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
             //photosButton.layer.cornerRadius = 5.0
             photosButton.tag = i
             photosButton.clipsToBounds = true
-            centerView.horizontalScrollForPhotos.addSubview(photosButton)
+            centerView?.horizontalScrollForPhotos.addSubview(photosButton)
         }
-        centerView.horizontalScrollForPhotos.layoutSubviews()
-        centerView.morePhotosView.contentSize = CGSize(width: centerView.horizontalScrollForPhotos.frame.width, height: centerView.horizontalScrollForPhotos.frame.height)
+        centerView?.horizontalScrollForPhotos.layoutSubviews()
+        centerView?.morePhotosView.contentSize = CGSize(width: (centerView?.horizontalScrollForPhotos.frame.width)!, height: (centerView?.horizontalScrollForPhotos.frame.height)!)
     }
     
     func openSinglePhoto(_ sender: AnyObject) {
@@ -384,6 +387,8 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
     
     }
     
+    
+    //MARK: - Loading Video
     
     func videoToPlay ()  {
         
@@ -438,6 +443,80 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
     
     func playerReady(_ player: Player) {
 //        videoToPlay()
-    }    
+    }
+    
+    
+    //MARK: - Loading Images
+    
+    func loadImagesOnlayout ()  {
+        
+        if isMainPhotoViewInRangeToLoad() {
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {                
+                if self.isMainPhotoViewInRangeToLoad() {
+                    if self.postTop.imageArr.count > 0 {
+                        self.mainPhoto?.hnk_setImageFromURL(self.postTop.imageArr[0].imageUrl)
+                    }
+                }
+            })
+        }
+        
+        if isCenterViewInRangeToLoad() {
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {                
+                if self.isCenterViewInRangeToLoad() {
+                    
+                    var showImageIndexStart = 1
+                    if(self.postTop.videoArr.count > 0) {
+                        showImageIndexStart = 0
+                    }
+                    for i in showImageIndexStart ..< self.postTop.imageArr.count {
+                        
+                        let photosButton = (self.centerView?.horizontalScrollForPhotos.viewWithTag(i) as! UIImageView)
+                        
+                        photosButton.image = UIImage(named: "logo-default")
+                        if(self.postTop.post_isOffline) {
+                            photosButton.image = self.postTop.imageArr[i].image
+                        } else {
+                            photosButton.hnk_setImageFromURL(URL(string:(self.postTop.imageArr[i].imageUrl.absoluteString + "&width=500"))!)
+                        }
+                    }
+                }
+            })
+        }
+        
+    }
+    
+    func isMainPhotoViewInRangeToLoad() -> Bool {
+        if self.mainPhoto != nil {
+            let min = self.frame.origin.y + (self.mainPhoto?.frame.origin.y)!
+            let max = min + (self.mainPhoto?.frame.size.height)!
+            let scrollMin = self.scrollView.contentOffset.y
+            let scrollMax = scrollMin + self.scrollView.frame.height
+            
+            if (scrollMin < min && scrollMax > max ) {
+                print("\n isMainPhotoViewInRangeToLoad :\n min:\(min)\n max:\(max)\n scrollMin:\(scrollMin)\n scrollMax:\(scrollMax)")
+                return true
+            }        
+            return false
+        }
+        return false
+    }
+    
+    func isCenterViewInRangeToLoad() -> Bool {
+        if self.centerView != nil {
+            let min = self.frame.origin.y + (self.centerView?.frame.origin.y)!
+            let max = min + (self.centerView?.frame.size.height)!
+            let scrollMin = self.scrollView.contentOffset.y
+            let scrollMax = scrollMin + self.scrollView.frame.height
+            
+            if (scrollMin < min && scrollMax > max ) {
+                print("\n isCenterViewInRangeToLoad :\n min:\(min)\n max:\(max)\n scrollMin:\(scrollMin)\n scrollMax:\(scrollMax)")
+                return true
+            }        
+            return false            
+        }
+        return false
+    }
 
 }
