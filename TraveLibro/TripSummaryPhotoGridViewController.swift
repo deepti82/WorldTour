@@ -135,7 +135,7 @@ class TripSummaryPhotoGridViewController: UICollectionViewController, ToolStackC
         
         
         if type == "photos" {
-            cell.photo.hnk_setImageFromURL(getImageURL(myPhotos[indexPath.row]["name"].stringValue, width: 10))
+            cell.photo.hnk_setImageFromURL(getImageURL(myPhotos[indexPath.row]["name"].stringValue, width: BLUR_PHOTO_WIDTH))
             cell.photo.hnk_setImageFromURL(getImageURL(myPhotos[indexPath.row]["name"].stringValue, width: 500))
 
         }else{

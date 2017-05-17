@@ -56,7 +56,11 @@ class QuickPhotosCollectionViewController: UIViewController, UICollectionViewDel
 //            return CGSize(width: (collectionView.frame.size.width), height: collectionView.frame.size.width * 0.7)
 //        }
         
-        return CGSize(width: (collectionView.frame.size.width/3 - 2), height: (collectionView.frame.size.width/3 - 2))       
+        let wdth = (screenWidth - 10)/2
+        
+        return CGSize(width: wdth, height: (wdth / 80) * 100)
+        
+//        return CGSize(width: (collectionView.frame.size.width/3 - 2), height: (collectionView.frame.size.width/3 - 2))       
     }
     
     func collectionView(_ collectionView: UICollectionView,
@@ -84,6 +88,7 @@ class QuickPhotosCollectionViewController: UIViewController, UICollectionViewDel
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "QCell", for: indexPath) as! quickCell
         if selectedQuickI != "" {
+            cell.qPhoto.hnk_setImageFromURL(getImageURL(selectedQuick[indexPath.row]["name"].stringValue, width: BLUR_PHOTO_WIDTH))
             cell.qPhoto.hnk_setImageFromURL(getImageURL(selectedQuick[indexPath.row]["name"].stringValue, width: BIG_PHOTO_WIDTH))
 
         }else{

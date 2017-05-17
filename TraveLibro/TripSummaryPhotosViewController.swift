@@ -293,14 +293,14 @@ class TripSummaryPhotosViewController: UIViewController, UITableViewDataSource, 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! contentCollectionViewCell
-        cell.contentImageView.image = UIImage(named: "logo-default")
+//        cell.contentImageView.image = UIImage(named: "logo-default")
             if currentContentType == contentType.TL_CONTENT_IMAGE_TYPE {
-                cell.contentImageView.hnk_setImageFromURL(getImageURL(contentDataArray[indexPath.row]["name"].stringValue, width: 10))
+                cell.contentImageView.hnk_setImageFromURL(getImageURL(contentDataArray[indexPath.row]["name"].stringValue, width: BLUR_PHOTO_WIDTH))
                 cell.contentImageView.hnk_setImageFromURL(getImageURL(contentDataArray[indexPath.row]["name"].stringValue, width: BIG_PHOTO_WIDTH))
                 cell.contentPlayImageView.isHidden = true
             }
             else{
-                cell.contentImageView.hnk_setImageFromURL(getImageURL(contentDataArray[indexPath.row]["thumbnail"].stringValue, width: 10))
+                cell.contentImageView.hnk_setImageFromURL(getImageURL(contentDataArray[indexPath.row]["thumbnail"].stringValue, width: BLUR_PHOTO_WIDTH))
                 cell.contentImageView.hnk_setImageFromURL(getImageURL(contentDataArray[indexPath.row]["thumbnail"].stringValue, width: BIG_PHOTO_WIDTH))
                 cell.contentPlayImageView.isHidden = false
             }
