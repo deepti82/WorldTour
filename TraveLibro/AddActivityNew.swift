@@ -128,11 +128,7 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
 
         makeFAButton("edit", button: editCategory)
         
-        internetStrip = UploadingToCloud(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 20))
-        internetStrip.uploadText.text = "Enter manually, No Internet Connection."
-        if !isConnectedToNetwork() {
-            self.addSubview(internetStrip)
-        }
+        
         
         
         editCategory.imageView?.tintColor = lightGreyColor
@@ -153,7 +149,9 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
         
 //        thoughtsTextView.delegate = self
         thoughtsTextView.returnKeyType = .done
-        
+        if !isConnectedToNetwork() {
+            redStrip("Enter manually, No Internet Connection.")
+        }
         
         
         postButton.layer.cornerRadius = 5.0
@@ -177,7 +175,14 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
 //         penGreen.isHidden = true
     }
     
-    
+    func redStrip(_ msg:String){
+        if (internetStrip != nil) {
+            internetStrip.removeFromSuperview()
+        }
+        internetStrip = UploadingToCloud(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 20))
+        internetStrip.uploadText.text = msg
+            self.addSubview(internetStrip)
+    }
     
     func buddyAdded(_ json:[JSON]) {
         addedBuddies = json;
@@ -576,6 +581,8 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
                     }
                 })
             })
+        }else{
+            redStrip("Enter manually, Enable to locate.")
         }
     }
     
@@ -637,6 +644,7 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
         self.locationTag.tintColor = lightOrangeColor
         }
         self.cancelLocationButton.isHidden = false
+        
         if(placeId != nil) {
             request.getPlaceId(placeId, completion: { response in
                 DispatchQueue.main.async(execute: {

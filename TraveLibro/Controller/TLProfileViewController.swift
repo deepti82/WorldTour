@@ -514,12 +514,14 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
         if stackView.tag == 0 {
             self.MAM = MoreAboutMe(frame: CGRect(x: 0, y: 0, width: self.MAMTextView.frame.size.width, height: 90))
             self.MAM.mainTextView.textAlignment = .center
+            self.MAM.mainTextView.sizeToFit()
+            print("uuuuuuuu\(MAM.mainTextView.frame.height)")
             self.MAM.backgroundColor = UIColor.clear
 //            self.MAM.transform = CGAffineTransform(translationX: 0, y: 0);
             self.MAMTextView.addSubview(self.MAM)
             
-            self.MAMTextViewHeightConstraint.constant = 90
-            self.MAMTextView.frame.size.height = 90
+            self.MAMTextViewHeightConstraint.constant = MAM.mainTextView.frame.height + 30
+            self.MAMTextView.frame.size.height = MAM.mainTextView.frame.height + 30
             self.mamStackView.tag = 1
 
             UIView.animate(withDuration: 0.5){

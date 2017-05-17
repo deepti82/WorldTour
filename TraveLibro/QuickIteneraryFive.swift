@@ -67,9 +67,9 @@ class QuickIteneraryFive: UIViewController, UICollectionViewDataSource, UICollec
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        if shouldShowBigImage(position: indexPath.row) {
-            return CGSize(width: (collectionView.frame.size.width), height: collectionView.frame.size.width * 0.7)
-        }
+//        if shouldShowBigImage(position: indexPath.row) {
+//            return CGSize(width: (collectionView.frame.size.width), height: collectionView.frame.size.width * 0.7)
+//        }
         
         return CGSize(width: (collectionView.frame.size.width/3 - 2), height: (collectionView.frame.size.width/3 - 2))
         

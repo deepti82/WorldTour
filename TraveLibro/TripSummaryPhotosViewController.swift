@@ -265,9 +265,9 @@ class TripSummaryPhotosViewController: UIViewController, UITableViewDataSource, 
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if shouldShowBigImage(position: indexPath.row) {
-            return CGSize(width: (collectionView.frame.size.width), height: collectionView.frame.size.width * 0.7)
-        }
+//        if shouldShowBigImage(position: indexPath.row) {
+//            return CGSize(width: (collectionView.frame.size.width), height: collectionView.frame.size.width * 0.7)
+//        }
         
         return CGSize(width: (collectionView.frame.size.width/3 - 1.5), height: (collectionView.frame.size.width/3 - 1.5))       
     }
@@ -288,15 +288,15 @@ class TripSummaryPhotosViewController: UIViewController, UITableViewDataSource, 
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! contentCollectionViewCell
         cell.contentImageView.image = UIImage(named: "logo-default")
+            if currentContentType == contentType.TL_CONTENT_IMAGE_TYPE {
+                cell.contentImageView.hnk_setImageFromURL(getImageURL(contentDataArray[indexPath.row]["name"].stringValue, width: BIG_PHOTO_WIDTH))
+                cell.contentPlayImageView.isHidden = true
+            }
+            else{
+                cell.contentImageView.hnk_setImageFromURL(getImageURL(contentDataArray[indexPath.row]["thumbnail"].stringValue, width: BIG_PHOTO_WIDTH))
+                cell.contentPlayImageView.isHidden = false
+            }
         
-        if currentContentType == contentType.TL_CONTENT_IMAGE_TYPE {
-            cell.contentImageView.hnk_setImageFromURL(getImageURL(contentDataArray[indexPath.row]["name"].stringValue, width: BIG_PHOTO_WIDTH))
-            cell.contentPlayImageView.isHidden = true
-        }
-        else{
-            cell.contentImageView.hnk_setImageFromURL(getImageURL(contentDataArray[indexPath.row]["thumbnail"].stringValue, width: BIG_PHOTO_WIDTH))
-            cell.contentPlayImageView.isHidden = false
-        }
         return cell
     }
     
@@ -397,6 +397,8 @@ class TripSummaryPhotosViewController: UIViewController, UITableViewDataSource, 
             return CGFloat(100)
         }
     }
+    
+    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         

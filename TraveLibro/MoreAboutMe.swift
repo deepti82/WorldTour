@@ -28,7 +28,7 @@ class MoreAboutMe: UIView {
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view);
-        
+        mainTextView.text = ""
         if currentUser != nil {
             reloadTravelPrefeces()            
         }
@@ -160,7 +160,7 @@ class MoreAboutMe: UIView {
                 mainTextView.attributedText = getRegularStringWithColor(string: "-", size: fontSize, color: color)
             }
             
-            mainTextView.textAlignment = .left
+            mainTextView.textAlignment = .center
         
         }
         

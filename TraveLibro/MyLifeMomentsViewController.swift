@@ -364,11 +364,13 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
         
         
         if insideView == "Monthly" {
-            if shouldShowBigImage(position: indexPath.row) {
-                return CGSize(width: screenWidth - 10, height: (screenWidth - 10) * 0.7)
-            }
+//            if shouldShowBigImage(position: indexPath.row) {
+//                return CGSize(width: screenWidth - 10, height: (screenWidth - 10) * 0.7)
+//            }
             
-            return CGSize(width: (screenWidth - 16)/3, height: (screenWidth - 16)/3)
+            let wdth = (screenWidth - 10)/2
+            
+            return CGSize(width: wdth, height: (wdth / 80) * 100)
         }
         else{
             switch momentType {
@@ -432,7 +434,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MomentsLargeImageCell", for: indexPath) as! photosTwoCollectionViewCell
             cell.photoBig.image = UIImage(named: "logo-default")
             if allData[indexPath.row]["name"].stringValue != "" {
-                cell.photoBig.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["name"].stringValue, width: 0))
+                cell.photoBig.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["name"].stringValue, width: 500))
                 
             }else{
                 cell.photoBig.image = UIImage(named: "logo-default")

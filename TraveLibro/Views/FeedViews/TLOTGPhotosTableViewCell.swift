@@ -50,6 +50,8 @@ class TLOTGPhotosTableViewCell: UITableViewCell {
     }
     
     
+    
+    
     //MARK: - Create View
     
     func createView(feedData: JSON?, contentType: contentType?, helper: UIViewController?) {

@@ -1062,7 +1062,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         //        rightButton.layer.borderColor = UIColor.white.cgColor
         //        rightButton.layer.cornerRadius = rightButton.frame.width / 2
         
-        self.title = text
+        self.title = "On The Go"
         if  fromOutSide == "" {
             if insideView == "journey" {
                 self.customNavigationBar(left: outButton, right: nil)
