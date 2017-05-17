@@ -712,6 +712,7 @@ class ActivityFeedFooterBasic: UIView {
                             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
                                 let textField = alert?.textFields![0] // Force unwrapping because we know it exists.
                                 print("Text field: \(textField?.text)")
+                                if textField?.text != "" {
                                 request.journeyChangeName((textField?.text)!, journeyId: self.postTop["_id"].stringValue, completion: { response  in
                                     DispatchQueue.main.async(execute: {
                                         if response.error != nil {
@@ -722,6 +723,11 @@ class ActivityFeedFooterBasic: UIView {
                                         }                                    
                                     })
                                 })
+                                }else{
+                                    let alert = UIAlertController(title: "", message: "Journey name can not be empty.", preferredStyle: UIAlertControllerStyle.alert)
+                                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                                    showPopover(optionsController: alert, sender: sender, vc: self.parentController)
+                                }
                             }))
                             
                             let cancel: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel)
