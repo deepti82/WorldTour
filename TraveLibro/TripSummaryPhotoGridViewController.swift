@@ -109,7 +109,11 @@ class TripSummaryPhotoGridViewController: UICollectionViewController, ToolStackC
 //            return CGSize(width: (collectionView.frame.size.width - 3), height: (collectionView.frame.size.width - 3) * 0.7)
 //        }
         
-        return CGSize(width: (collectionView.frame.size.width/3 - 3), height: (collectionView.frame.size.width/3 - 3))       
+        let wdth = (screenWidth - 10)/2
+        
+        return CGSize(width: wdth, height: (wdth / 80) * 100)
+        
+//        return CGSize(width: (collectionView.frame.size.width/3 - 3), height: (collectionView.frame.size.width/3 - 3))       
     }
     
     func collectionView(_ collectionView: UICollectionView,
@@ -127,10 +131,11 @@ class TripSummaryPhotoGridViewController: UICollectionViewController, ToolStackC
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! gridCollectionViewCell
-        cell.photo.image = UIImage(named: "logo-default")
+//        cell.photo.image = UIImage(named: "logo-default")
         
         
         if type == "photos" {
+            cell.photo.hnk_setImageFromURL(getImageURL(myPhotos[indexPath.row]["name"].stringValue, width: 10))
             cell.photo.hnk_setImageFromURL(getImageURL(myPhotos[indexPath.row]["name"].stringValue, width: 500))
 
         }else{
