@@ -10325,11 +10325,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="eWQ-pV-dQt">
-<<<<<<< HEAD
                                 <rect key="frame" x="5" y="5" width="365" height="657"/>
-=======
-                                <rect key="frame" x="1" y="1" width="373" height="665"/>
->>>>>>> origin/level-3-
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="eiw-zC-k2Z">
                                     <size key="itemSize" width="50" height="50"/>
@@ -10339,11 +10335,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="612-FH-tBc" customClass="contentCollectionViewCell" customModule="TraveLibro" customModuleProvider="target">
-<<<<<<< HEAD
                                         <rect key="frame" x="83" y="0.0" width="200" height="200"/>
-=======
-                                        <rect key="frame" x="86.5" y="0.0" width="200" height="200"/>
->>>>>>> origin/level-3-
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
@@ -10421,16 +10413,9 @@
                             <constraint firstItem="Ebi-lP-Vs0" firstAttribute="centerX" secondItem="GY3-K4-74F" secondAttribute="centerX" id="8KD-Oo-ba8"/>
                             <constraint firstItem="5j2-gx-oYC" firstAttribute="top" secondItem="eWQ-pV-dQt" secondAttribute="bottom" constant="5" id="8Un-rX-fZw"/>
                             <constraint firstItem="Ebi-lP-Vs0" firstAttribute="centerY" secondItem="GY3-K4-74F" secondAttribute="centerY" id="8am-v2-plP"/>
-<<<<<<< HEAD
                             <constraint firstItem="eWQ-pV-dQt" firstAttribute="top" secondItem="GY3-K4-74F" secondAttribute="top" constant="5" id="QIA-wX-onf"/>
                             <constraint firstItem="Ebi-lP-Vs0" firstAttribute="height" secondItem="GY3-K4-74F" secondAttribute="height" id="Sts-pO-oAO"/>
                             <constraint firstItem="Ebi-lP-Vs0" firstAttribute="width" secondItem="GY3-K4-74F" secondAttribute="width" id="hJP-wK-rO8"/>
-=======
-                            <constraint firstItem="eWQ-pV-dQt" firstAttribute="height" secondItem="GY3-K4-74F" secondAttribute="height" constant="-2" id="DKn-4H-eJ8"/>
-                            <constraint firstItem="Ebi-lP-Vs0" firstAttribute="height" secondItem="GY3-K4-74F" secondAttribute="height" id="Sts-pO-oAO"/>
-                            <constraint firstItem="Ebi-lP-Vs0" firstAttribute="width" secondItem="GY3-K4-74F" secondAttribute="width" id="hJP-wK-rO8"/>
-                            <constraint firstItem="eWQ-pV-dQt" firstAttribute="width" secondItem="GY3-K4-74F" secondAttribute="width" constant="-2" id="kDd-0L-geK"/>
->>>>>>> origin/level-3-
                             <constraint firstItem="eWQ-pV-dQt" firstAttribute="centerY" secondItem="GY3-K4-74F" secondAttribute="centerY" id="uZ9-Ez-xWp"/>
                             <constraint firstItem="eWQ-pV-dQt" firstAttribute="leading" secondItem="GY3-K4-74F" secondAttribute="leading" constant="5" id="ugb-EJ-7iu"/>
                             <constraint firstItem="eWQ-pV-dQt" firstAttribute="centerX" secondItem="GY3-K4-74F" secondAttribute="centerX" id="xYL-wY-uWn"/>

@@ -238,15 +238,11 @@ class TripSummaryPhotosViewController: UIViewController, UITableViewDataSource, 
 //        }
 //        return CGSize(width: (collectionView.frame.size.width/3 - 1.5), height: (collectionView.frame.size.width/3 - 1.5))
         
-<<<<<<< HEAD
         let wdth = (screenWidth - 15)/2
         
         return CGSize(width: wdth, height: (wdth / 80) * 100)
-
-=======
->>>>>>> origin/level-3-
         
-        return CGSize(width: ((screenWidth-4)/2), height: (((screenWidth-4)/2) * 1.35))
+//        return CGSize(width: ((screenWidth-4)/2), height: (((screenWidth-4)/2) * 1.35))
     }
     
     func collectionView(_ collectionView: UICollectionView,
