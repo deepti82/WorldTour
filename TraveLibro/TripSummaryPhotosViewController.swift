@@ -231,42 +231,42 @@ class TripSummaryPhotosViewController: UIViewController, UITableViewDataSource, 
 //        if shouldShowBigImage(position: indexPath.row) {
 //            return CGSize(width: (collectionView.frame.size.width), height: collectionView.frame.size.width * 0.7)
 //        }
+//        return CGSize(width: (collectionView.frame.size.width/3 - 1.5), height: (collectionView.frame.size.width/3 - 1.5))
         
-        let wdth = (screenWidth - 10)/2
         
-        return CGSize(width: wdth, height: (wdth / 80) * 100)
-
-        
-//        return CGSize(width: (collectionView.frame.size.width/3 - 1.5), height: (collectionView.frame.size.width/3 - 1.5))       
+        return CGSize(width: ((screenWidth-4)/2), height: (((screenWidth-4)/2) * 1.35))
     }
     
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 1
+        return 2
     }
     
     func collectionView(_ collectionView: UICollectionView, layout
         collectionViewLayout: UICollectionViewLayout,
                         minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 1
+        return 2
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! contentCollectionViewCell
-//        cell.contentImageView.image = UIImage(named: "logo-default")
-            if currentContentType == contentType.TL_CONTENT_IMAGE_TYPE {
-                cell.contentImageView.hnk_setImageFromURL(getImageURL(contentDataArray[indexPath.row]["name"].stringValue, width: BLUR_PHOTO_WIDTH))
-                cell.contentImageView.hnk_setImageFromURL(getImageURL(contentDataArray[indexPath.row]["name"].stringValue, width: BIG_PHOTO_WIDTH))
-                cell.contentPlayImageView.isHidden = true
-            }
-            else{
-                cell.contentImageView.hnk_setImageFromURL(getImageURL(contentDataArray[indexPath.row]["thumbnail"].stringValue, width: BLUR_PHOTO_WIDTH))
-                cell.contentImageView.hnk_setImageFromURL(getImageURL(contentDataArray[indexPath.row]["thumbnail"].stringValue, width: BIG_PHOTO_WIDTH))
-                cell.contentPlayImageView.isHidden = false
-            }
-
+        if currentContentType == contentType.TL_CONTENT_IMAGE_TYPE {
+            cell.contentImageView.hnk_setImageFromURL(getImageURL(self.contentDataArray[indexPath.row]["name"].stringValue, width: BLUR_PHOTO_WIDTH), placeholder: UIImage(named:"logo-default"), format: nil, failure: nil, success: { (image) in
+                cell.contentImageView.image = image
+                cell.contentImageView.hnk_setImageFromURL(getImageURL(self.contentDataArray[indexPath.row]["name"].stringValue, width: BIG_PHOTO_WIDTH))
+            })
+            cell.contentPlayImageView.isHidden = true
+        }
+        else{
+            cell.contentImageView.hnk_setImageFromURL(getImageURL(self.contentDataArray[indexPath.row]["thumbnail"].stringValue, width: BLUR_PHOTO_WIDTH), placeholder: UIImage(named:"logo-default"), format: nil, failure: nil, success: { (image) in
+                cell.contentImageView.image = image
+                cell.contentImageView.hnk_setImageFromURL(getImageURL(self.contentDataArray[indexPath.row]["thumbnail"].stringValue, width: BIG_PHOTO_WIDTH))
+            })
+            cell.contentPlayImageView.isHidden = false
+        }
+        
         return cell
     }
     
