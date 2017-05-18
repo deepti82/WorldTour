@@ -267,6 +267,13 @@ class TLTravelLocalLifeTableViewCell: UITableViewCell, PlayerDelegate {
                 FMVideoContainer?.tagText.isHidden = true
             }
             
+            if pageType == viewType.VIEW_TYPE_MY_LIFE && pageType == viewType.VIEW_TYPE_LOCAL_LIFE {
+                FMVideoContainer?.tagText.text = ""
+                FMVideoContainer?.tagText.textColor = UIColor.clear
+                FMVideoContainer?.tagView.backgroundColor = UIColor.clear
+                FMVideoContainer?.playBtn.tintColor = UIColor.clear
+            }
+            
             totalHeight += screenWidth*0.9
         }
             
