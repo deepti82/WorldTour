@@ -276,8 +276,6 @@ class TLTravelLocalLifeTableViewCell: UITableViewCell, PlayerDelegate {
                 self.FMMainPhoto?.frame = CGRect(x: 0, y: totalHeight, width: screenWidth, height: screenWidth*0.9)
             }
             
-            self.FMMainPhoto?.image = UIImage(named: "logo-default")
-            
             if pageType != viewType.VIEW_TYPE_MY_LIFE &&
                 pageType != viewType.VIEW_TYPE_LOCAL_LIFE {
                 
@@ -296,20 +294,9 @@ class TLTravelLocalLifeTableViewCell: UITableViewCell, PlayerDelegate {
             
             totalHeight += screenWidth*0.9
             
-            let imgStr = getImageURL(feed["photos"][0]["name"].stringValue, width: BIG_PHOTO_WIDTH)
-            
-            cache.fetch(URL: imgStr).onSuccess({ (data) in
-                self.FMMainPhoto?.image = UIImage(data: data as Data)
-                
-                if feed["photos"][0]["name"].stringValue == "" {
-                    self.FMMainPhoto?.image = UIImage(named: "logo-default")
-                }else{
-                    self.FMMainPhoto?.hnk_setImageFromURL(imgStr)
-                }
-                self.FMMainPhoto?.isUserInteractionEnabled = true                
-                self.FMMainPhoto?.tag = 0
-                
-                self.layoutSubviews()
+            self.FMMainPhoto?.hnk_setImageFromURL(getImageURL(feed["photos"][0]["name"].stringValue, width: BLUR_PHOTO_WIDTH), placeholder: UIImage(named:"logo-default"), format: nil, failure: nil, success: { (image) in
+                self.FMMainPhoto?.image = image
+                self.FMMainPhoto?.hnk_setImageFromURL(getImageURL(feed["photos"][0]["name"].stringValue, width: BIG_PHOTO_WIDTH))
             })
         }
             
@@ -325,8 +312,6 @@ class TLTravelLocalLifeTableViewCell: UITableViewCell, PlayerDelegate {
                 else {
                     self.FMMainPhoto?.frame = CGRect(x: 0, y: totalHeight, width: screenWidth, height: screenWidth*0.9)
                 }
-                
-                self.FMMainPhoto?.image = UIImage(named: "logo-default")
                 totalHeight += screenWidth*0.9
                 
                 if ((pageType != viewType.VIEW_TYPE_MY_LIFE && pageType != viewType.VIEW_TYPE_LOCAL_LIFE) &&
@@ -343,7 +328,10 @@ class TLTravelLocalLifeTableViewCell: UITableViewCell, PlayerDelegate {
                     FMHeaderTag?.tagParent.backgroundColor = UIColor.clear
                     FMHeaderTag?.colorTag(feed: feed)
                 }
-                FMMainPhoto?.hnk_setImageFromURL(getImageURL(feed["imageUrl"].stringValue, width: BIG_PHOTO_WIDTH))
+                self.FMMainPhoto?.hnk_setImageFromURL(getImageURL(feed["imageUrl"].stringValue, width: BLUR_PHOTO_WIDTH), placeholder: UIImage(named:"logo-default"), format: nil, failure: nil, success: { (image) in
+                    self.FMMainPhoto?.image = image
+                    self.FMMainPhoto?.hnk_setImageFromURL(getImageURL(feed["imageUrl"].stringValue, width: BIG_PHOTO_WIDTH))
+                })
             }
         }
         

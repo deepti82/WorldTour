@@ -56,10 +56,10 @@ class TripSummaryPhotosViewController: UIViewController, UITableViewDataSource, 
         self.getJourneyContent()
         
         if currentContentType == contentType.TL_CONTENT_VIDEO_TYPE {
-            showNavigationIn(text: "Videos")
+            showNavigationIn(text: "Videos (\(noPhoto))")
         }
         else{
-            showNavigationIn(text: "Photos")
+            showNavigationIn(text: "Photos (\(noPhoto))")
         }
         
         changeView(toView: currentContentViewType)
@@ -99,44 +99,6 @@ class TripSummaryPhotosViewController: UIViewController, UITableViewDataSource, 
                     
                     self.reloadContent()
                     
-//                    if self.type == "photos" {
-//                        if response["data"]["photos"] != nil {
-//                            self.photos = response["data"]["photos"].array!
-//                            //                    self.makeLayout()
-//                            for post in response["data"]["photos"].array! {
-//                                //                            self.feeds.arrayObject?.append(post)
-//                                let checkIn = TripPhotoLayout(width: self.view.frame.width)
-//                                checkIn.scrollView = self.scroll
-//                                checkIn.createProfileHeader(feed: post, type: self.type)
-//                                checkIn.tripListView = self
-//                                self.layout.addSubview(checkIn)
-//                                self.addHeightToLayout()
-//                                
-//                            }
-//                            
-//                            self.addHeightToLayout()
-//                        }
-//                    }
-//                    else{
-//                        if response["data"]["videos"] != nil {
-//                            self.photos = response["data"]["videos"].array!
-//                            //                    self.makeLayout()
-//                            for post in response["data"]["videos"].array! {
-//                                //                            self.feeds.arrayObject?.append(post)
-//                                let checkIn = TripPhotoLayout(width: self.view.frame.width)
-//                                checkIn.scrollView = self.scroll
-//                                checkIn.createProfileHeader(feed: post, type: self.type)
-//                                checkIn.tripListView = self
-//                                checkIn.type = self.type
-//                                self.layout.addSubview(checkIn)
-//                                self.addHeightToLayout()
-//                                
-//                            }
-//                            
-//                            self.addHeightToLayout()
-//                        }
-//                    }
-                    
                 }
                 else {
                     
@@ -153,9 +115,7 @@ class TripSummaryPhotosViewController: UIViewController, UITableViewDataSource, 
     
     //MARK: - Reload
     
-    func reloadContent() {
-        print("\n contentTableView: \(contentTableView.isScrollEnabled) ")
-        print("\n contentCollectionView: \(contentCollectionView.isScrollEnabled) ")
+    func reloadContent() {        
         if (!contentTableView.isHidden) {
             contentTableView.reloadData()
             if contentDataArray.isNotEmpty {
@@ -174,12 +134,19 @@ class TripSummaryPhotosViewController: UIViewController, UITableViewDataSource, 
     //MARK: - Navigation
     
     func showNavigationIn(text: String) {
+        
+        if fromView == "endJourney" {
+            self.title = "Photos"
+        }
+        else {
+            self.title = text
+        }
+        
         let navImageIconName = ((currentContentViewType == contentViewType.TL_LIST_VIEW) ? "grid" : "list")
         let rightButton = UIButton()
         rightButton.setImage(UIImage(named: navImageIconName), for: UIControlState())
         rightButton.addTarget(self, action: #selector(self.toggleViews(_:)), for: .touchUpInside)
-        rightButton.frame = CGRect(x: 0, y: 8, width: 20, height: 20)
-        self.title = text
+        rightButton.frame = CGRect(x: 0, y: 8, width: 20, height: 20)        
         self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Avenir-Medium", size: 18)!]
         
         let leftButton = UIButton()
@@ -269,71 +236,76 @@ class TripSummaryPhotosViewController: UIViewController, UITableViewDataSource, 
 //        if shouldShowBigImage(position: indexPath.row) {
 //            return CGSize(width: (collectionView.frame.size.width), height: collectionView.frame.size.width * 0.7)
 //        }
+//        return CGSize(width: (collectionView.frame.size.width/3 - 1.5), height: (collectionView.frame.size.width/3 - 1.5))
         
+<<<<<<< HEAD
         let wdth = (screenWidth - 15)/2
         
         return CGSize(width: wdth, height: (wdth / 80) * 100)
 
+=======
+>>>>>>> origin/level-3-
         
-//        return CGSize(width: (collectionView.frame.size.width/3 - 1.5), height: (collectionView.frame.size.width/3 - 1.5))       
+        return CGSize(width: ((screenWidth-4)/2), height: (((screenWidth-4)/2) * 1.35))
     }
     
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 1
+        return 2
     }
     
     func collectionView(_ collectionView: UICollectionView, layout
         collectionViewLayout: UICollectionViewLayout,
                         minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 1
+        return 2
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! contentCollectionViewCell
-//        cell.contentImageView.image = UIImage(named: "logo-default")
-            if currentContentType == contentType.TL_CONTENT_IMAGE_TYPE {
-                cell.contentImageView.hnk_setImageFromURL(getImageURL(contentDataArray[indexPath.row]["name"].stringValue, width: BLUR_PHOTO_WIDTH))
-                cell.contentImageView.hnk_setImageFromURL(getImageURL(contentDataArray[indexPath.row]["name"].stringValue, width: BIG_PHOTO_WIDTH))
-                cell.contentPlayImageView.isHidden = true
-            }
-            else{
-                cell.contentImageView.hnk_setImageFromURL(getImageURL(contentDataArray[indexPath.row]["thumbnail"].stringValue, width: BLUR_PHOTO_WIDTH))
-                cell.contentImageView.hnk_setImageFromURL(getImageURL(contentDataArray[indexPath.row]["thumbnail"].stringValue, width: BIG_PHOTO_WIDTH))
-                cell.contentPlayImageView.isHidden = false
-            }
-
+        if currentContentType == contentType.TL_CONTENT_IMAGE_TYPE {
+            cell.contentImageView.hnk_setImageFromURL(getImageURL(self.contentDataArray[indexPath.row]["name"].stringValue, width: BLUR_PHOTO_WIDTH), placeholder: UIImage(named:"logo-default"), format: nil, failure: nil, success: { (image) in
+                cell.contentImageView.image = image
+                cell.contentImageView.hnk_setImageFromURL(getImageURL(self.contentDataArray[indexPath.row]["name"].stringValue, width: BIG_PHOTO_WIDTH))
+            })
+            cell.contentPlayImageView.isHidden = true
+        }
+        else{
+            cell.contentImageView.hnk_setImageFromURL(getImageURL(self.contentDataArray[indexPath.row]["thumbnail"].stringValue, width: BLUR_PHOTO_WIDTH), placeholder: UIImage(named:"logo-default"), format: nil, failure: nil, success: { (image) in
+                cell.contentImageView.image = image
+                cell.contentImageView.hnk_setImageFromURL(getImageURL(self.contentDataArray[indexPath.row]["thumbnail"].stringValue, width: BIG_PHOTO_WIDTH))
+            })
+            cell.contentPlayImageView.isHidden = false
+        }
+        
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("one image clicked")
-        print(fromView)
+        
+        print("Cell select at index : \(indexPath.row)")
         
         if fromView == "endJourney" {
-//            let cell = collectionView.cellForItem(at: indexPath) as! gridCollectionViewCell
-//            
-//            let conf = Configuration(builder: { (builder) in
-//                builder.configurePhotoEditorViewController({ (photoOptionBuilder) in
-//                    
-//                    photoOptionBuilder.actionButtonConfigurationClosure = { cell, action in
-//                        cell.tintColor = UIColor.white 
-//                    }                    
-//                })
-//            })
-//            
-//            let photoEditViewController = PhotoEditViewController(photo: cell.photo.image!, configuration: conf)
-//            let toolStackController = ToolStackController(photoEditViewController: photoEditViewController)            
-//            toolStackController.delegate = self            
-//            toolStackController.navigationItem.title = "Editor"
-//            //            toolStackController.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: photoEditViewController, action: #selector(PhotoEditViewController.save(_:)))
-//            let nvc = UINavigationController(rootViewController: toolStackController)
-//            nvc.navigationBar.isTranslucent = false
-//            nvc.navigationBar.barStyle = .black
-//            self.present(nvc, animated: true, completion: nil)
-//            
+            let cell = collectionView.cellForItem(at: indexPath) as! contentCollectionViewCell
+            
+            let conf = Configuration(builder: { (builder) in
+                builder.configurePhotoEditorViewController({ (photoOptionBuilder) in                    
+                    photoOptionBuilder.actionButtonConfigurationClosure = { cell, action in
+                        cell.tintColor = UIColor.white 
+                    }                    
+                })
+            })
+            
+            let photoEditViewController = PhotoEditViewController(photo: cell.contentImageView.image!, configuration: conf)
+            let toolStackController = ToolStackController(photoEditViewController: photoEditViewController)            
+            toolStackController.delegate = self            
+            toolStackController.navigationItem.title = "Editor"
+            //            toolStackController.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: photoEditViewController, action: #selector(PhotoEditViewController.save(_:)))
+            let nvc = UINavigationController(rootViewController: toolStackController)
+            nvc.navigationBar.isTranslucent = false
+            nvc.navigationBar.barStyle = .black
+            self.present(nvc, animated: true, completion: nil)            
         }
             
         else if currentContentType == contentType.TL_CONTENT_IMAGE_TYPE {            

@@ -50,18 +50,27 @@ class TLItinerayPostView: UIView {
     
     func fillData(feed:JSON, pageType: viewType) {
         
-        itineraryCoverImageView.image = UIImage(named: "logo-default")
+//        itineraryCoverImageView.image = UIImage(named: "logo-default")
         
         if feed["coverPhoto"] != nil && feed["coverPhoto"] != "" {
-            self.itineraryCoverImageView.hnk_setImageFromURL(getImageURL(feed["coverPhoto"].stringValue, width: BIG_PHOTO_WIDTH))
+            itineraryCoverImageView.hnk_setImageFromURL(getImageURL(feed["coverPhoto"].stringValue, width: BLUR_PHOTO_WIDTH), placeholder: UIImage(named:"logo-default"), format: nil, failure: nil, success: { (image) in
+                self.itineraryCoverImageView.image = image
+                self.itineraryCoverImageView.hnk_setImageFromURL(getImageURL(feed["coverPhoto"].stringValue, width: BIG_PHOTO_WIDTH))
+            })
         }
         else {
             if feed["photos"] != nil && feed["photos"] != "" {
-                self.itineraryCoverImageView.hnk_setImageFromURL(getImageURL(feed["photos"][0]["name"].stringValue, width: BIG_PHOTO_WIDTH))
+                itineraryCoverImageView.hnk_setImageFromURL(getImageURL(feed["photos"][0]["name"].stringValue, width: BLUR_PHOTO_WIDTH), placeholder: UIImage(named:"logo-default"), format: nil, failure: nil, success: { (image) in
+                    self.itineraryCoverImageView.image = image
+                    self.itineraryCoverImageView.hnk_setImageFromURL(getImageURL(feed["photos"][0]["name"].stringValue, width: BIG_PHOTO_WIDTH))
+                })
             }
             else {
                 if feed["startLocationPic"] != nil && feed["startLocationPic"] != "" {
-                    self.itineraryCoverImageView.hnk_setImageFromURL(getImageURL(feed["startLocationPic"].stringValue, width: BIG_PHOTO_WIDTH))
+                    itineraryCoverImageView.hnk_setImageFromURL(getImageURL(feed["startLocationPic"].stringValue, width: BLUR_PHOTO_WIDTH), placeholder: UIImage(named:"logo-default"), format: nil, failure: nil, success: { (image) in
+                        self.itineraryCoverImageView.image = image
+                        self.itineraryCoverImageView.hnk_setImageFromURL(getImageURL(feed["startLocationPic"].stringValue, width: BIG_PHOTO_WIDTH))
+                    })
                 }
             }
         }

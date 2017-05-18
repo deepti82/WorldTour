@@ -47,12 +47,17 @@ class ActivityFeedImageView: UIView {
     
     func fillData(feed:JSON) {
         
-        mainImageView.image = UIImage(named: "logo-default")
-        
         if feed["coverPhoto"] != nil && feed["coverPhoto"] != "" {
-            mainImageView.hnk_setImageFromURL(getImageURL(feed["coverPhoto"].stringValue, width: 0))
-        }else if feed["startLocationPic"] != nil && feed["startLocationPic"] != "" {
-            mainImageView.hnk_setImageFromURL(getImageURL(feed["startLocationPic"].stringValue, width: 0))
+            mainImageView.hnk_setImageFromURL(getImageURL(feed["coverPhoto"].stringValue, width: BLUR_PHOTO_WIDTH), placeholder: UIImage(named:"logo-default"), format: nil, failure: nil, success: { (image) in
+                self.mainImageView.image = image
+                self.mainImageView.hnk_setImageFromURL(getImageURL(feed["coverPhoto"].stringValue, width: BIG_PHOTO_WIDTH))
+            })
+        }
+        else if feed["startLocationPic"] != nil && feed["startLocationPic"] != "" {
+            mainImageView.hnk_setImageFromURL(getImageURL(feed["startLocationPic"].stringValue, width: BLUR_PHOTO_WIDTH), placeholder: UIImage(named:"logo-default"), format: nil, failure: nil, success: { (image) in
+                self.mainImageView.image = image
+                self.mainImageView.hnk_setImageFromURL(getImageURL(feed["startLocationPic"].stringValue, width: BIG_PHOTO_WIDTH))
+            })
         }
         
         cameraCountLabel.text = feed["photoCount"].stringValue        

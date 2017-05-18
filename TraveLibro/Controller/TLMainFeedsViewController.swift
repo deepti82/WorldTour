@@ -104,6 +104,11 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
         else if pageType == viewType.VIEW_TYPE_LOCAL_LIFE {            
             self.mainFooter?.setHighlightStateForView(tag: 3, color: mainGreenColor)
         }
+        
+        if self.feedsDataArray.isNotEmpty {
+            self.feedsTableView.reloadData()
+            self.feedsTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -136,6 +141,8 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
             
             setNavigationBarItemText("Activity Feed")
             
+            self.setSearchAndMenuButton()
+            
             self.mainFooter = FooterViewNew(frame: CGRect.zero)
             self.mainFooter?.layer.zPosition = 5
             self.view.addSubview(self.mainFooter!)
@@ -146,6 +153,8 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
         else if pageType == viewType.VIEW_TYPE_POPULAR_JOURNEY {
             setNavigationBarItemText("Popular Journeys")
             
+            self.setSearchAndMenuButton()
+            
             self.mainFooter = FooterViewNew(frame: CGRect.zero)
             self.mainFooter?.layer.zPosition = 5
             self.view.addSubview(self.mainFooter!)
@@ -153,6 +162,8 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
         
         else if pageType == viewType.VIEW_TYPE_POPULAR_ITINERARY {
             setNavigationBarItemText("Popular Itineraries")
+            
+            self.setSearchAndMenuButton()
             
             self.mainFooter = FooterViewNew(frame: CGRect.zero)
             self.mainFooter?.layer.zPosition = 5
@@ -185,6 +196,24 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
             
             self.customNavigationBar(left: leftButton, right: rightButton)
         }
+    }
+    
+    func setSearchAndMenuButton() {
+        
+        let rightButton = UIButton()
+        rightButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        rightButton.addTarget(self, action: #selector(self.searchTapped(_:)), for: .touchUpInside)
+        rightButton.setImage(UIImage(named: "search_toolbar"), for: .normal)            
+        let rightBarButtonItem = UIBarButtonItem(customView: rightButton)
+        self.navigationItem.rightBarButtonItem = rightBarButtonItem
+        
+        
+        let leftButton = UIButton()
+        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        leftButton.addTarget(self, action: #selector(UIViewController.toggleLeft), for: .touchUpInside)
+        leftButton.setImage(UIImage(named: "menu_left_icon"), for: .normal)            
+        let leftBarButtonItem = UIBarButtonItem(customView: leftButton)
+        self.navigationItem.leftBarButtonItem = leftBarButtonItem
     }
     
     

@@ -91,7 +91,7 @@ class TLOTGPhotosTableViewCell: UITableViewCell {
         
         totalHeight = CGFloat(0)
         
-        FMiddleImageView?.image = UIImage(named:"logo-default")
+//        FMiddleImageView?.image = UIImage(named:"logo-default")
         
         FProfileHeader.frame = CGRect(x: 0, y: 0, width: screenWidth, height: FEEDS_HEADER_HEIGHT)
         FProfileHeader.fillProfileHeader(feed:self.feeds)
@@ -101,12 +101,18 @@ class TLOTGPhotosTableViewCell: UITableViewCell {
         FMiddleImageView?.frame = CGRect(x: 0, y: totalHeight, width: screenWidth, height: screenWidth*0.9)
         
         if currentContentType == contentType.TL_CONTENT_IMAGE_TYPE {
-            FMiddleImageView?.hnk_setImageFromURL(getImageURL(self.feeds["name"].stringValue, width: BIG_PHOTO_WIDTH))
+            FMiddleImageView.hnk_setImageFromURL(getImageURL(self.feeds["name"].stringValue, width: BLUR_PHOTO_WIDTH), placeholder: UIImage(named:"logo-default"), format: nil, failure: nil, success: { (image) in
+                self.FMiddleImageView.image = image
+                self.FMiddleImageView.hnk_setImageFromURL(getImageURL(self.feeds["name"].stringValue, width: BIG_PHOTO_WIDTH))
+            })
             FMiddlePlayButton.frame = CGRect.zero
             FMiddlePlayButton.isHidden = true
         }
         else {
-            FMiddleImageView?.hnk_setImageFromURL(getImageURL(self.feeds["thumbnail"].stringValue, width: BIG_PHOTO_WIDTH))
+            FMiddleImageView.hnk_setImageFromURL(getImageURL(self.feeds["thumbnail"].stringValue, width: BLUR_PHOTO_WIDTH), placeholder: UIImage(named:"logo-default"), format: nil, failure: nil, success: { (image) in
+                self.FMiddleImageView.image = image
+                self.FMiddleImageView.hnk_setImageFromURL(getImageURL(self.feeds["thumbnail"].stringValue, width: BIG_PHOTO_WIDTH))
+            })            
             FMiddlePlayButton.isHidden = false
             FMiddlePlayButton.frame = CGRect(x: 0, y: 0, width: FMiddleImageView.frame.size.width*0.2, height: FMiddleImageView.frame.size.width*0.15)
             FMiddlePlayButton.center = FMiddleImageView.center
