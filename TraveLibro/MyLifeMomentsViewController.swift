@@ -368,9 +368,8 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
 //                return CGSize(width: screenWidth - 10, height: (screenWidth - 10) * 0.7)
 //            }
             
-            let wdth = (screenWidth - 10)/2
-            
-            return CGSize(width: wdth, height: (wdth / 80) * 100)
+            return CGSize(width: ((screenWidth-4)/2), height: (((screenWidth-4)/2) * 1.35))
+
         }
         else{
             switch momentType {
@@ -402,13 +401,13 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 1
+        return 2
     }
     
     func collectionView(_ collectionView: UICollectionView, layout
         collectionViewLayout: UICollectionViewLayout,
                         minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 1
+        return 2
     }
     
     func getShortCountry(country: String) -> String {
@@ -432,10 +431,12 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
         
         if insideView == "Monthly" {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MomentsLargeImageCell", for: indexPath) as! photosTwoCollectionViewCell
-//            cell.photoBig.image = UIImage(named: "logo-default")
             if allData[indexPath.row]["name"].stringValue != "" {
-                cell.photoBig.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["name"].stringValue, width: BLUR_PHOTO_WIDTH))
-                cell.photoBig.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["name"].stringValue, width: 500))
+                
+                cell.photoBig.hnk_setImageFromURL(getImageURL(self.allData[indexPath.row]["name"].stringValue, width: BLUR_PHOTO_WIDTH), placeholder: UIImage(named:"logo-default"), format: nil, failure: nil, success: { (image) in
+                    cell.photoBig.image = image
+                    cell.photoBig.hnk_setImageFromURL(getImageURL(self.allData[indexPath.row]["name"].stringValue, width: BIG_PHOTO_WIDTH))
+                })
                 
             }else{
                 cell.photoBig.image = UIImage(named: "logo-default")

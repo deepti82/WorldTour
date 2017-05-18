@@ -57,23 +57,19 @@ class QuickPhotosCollectionViewController: UIViewController, UICollectionViewDel
 //            return CGSize(width: (collectionView.frame.size.width), height: collectionView.frame.size.width * 0.7)
 //        }
         
-        let wdth = (screenWidth - 10)/2
-        
-        return CGSize(width: wdth, height: (wdth / 80) * 100)
-        
-//        return CGSize(width: (collectionView.frame.size.width/3 - 2), height: (collectionView.frame.size.width/3 - 2))       
+        return CGSize(width: ((screenWidth-4)/2), height: (((screenWidth-4)/2) * 1.35))
     }
     
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 1
+        return 2
     }
     
     func collectionView(_ collectionView: UICollectionView, layout
         collectionViewLayout: UICollectionViewLayout,
                         minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 1
+        return 2
     }
 
 
@@ -89,9 +85,12 @@ class QuickPhotosCollectionViewController: UIViewController, UICollectionViewDel
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "QCell", for: indexPath) as! quickCell
         if selectedQuickI != "" {
-            cell.qPhoto.hnk_setImageFromURL(getImageURL(selectedQuick[indexPath.row]["name"].stringValue, width: BLUR_PHOTO_WIDTH))
-            cell.qPhoto.hnk_setImageFromURL(getImageURL(selectedQuick[indexPath.row]["name"].stringValue, width: BIG_PHOTO_WIDTH))
-
+            
+            cell.qPhoto.hnk_setImageFromURL(getImageURL(self.selectedQuick[indexPath.row]["name"].stringValue, width: BLUR_PHOTO_WIDTH), placeholder: UIImage(named:"logo-default"), format: nil, failure: nil, success: { (image) in
+                cell.qPhoto.image = image
+                cell.qPhoto.hnk_setImageFromURL(getImageURL(self.selectedQuick[indexPath.row]["name"].stringValue, width: BIG_PHOTO_WIDTH))
+            })
+            
         }else{
         
         cell.qPhoto.image = globalPostImage[indexPath.row].image
