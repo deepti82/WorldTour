@@ -401,13 +401,21 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 2
+        if insideView == "Monthly" {
+            return 1
+        }else{
+            return 1
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout
         collectionViewLayout: UICollectionViewLayout,
                         minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 2
+        if insideView == "Monthly" {
+            return 1
+        }else{
+            return 1
+        }
     }
     
     func getShortCountry(country: String) -> String {
