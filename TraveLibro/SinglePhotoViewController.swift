@@ -19,8 +19,6 @@ class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDele
     var fetchType: photoVCType = photoVCType.FROM_ACTIVITY
     var carouselView: iCarousel!
     var defaultMute = true
-    var photoFooterReview: ActivityFeedFooter!
-    var currentImageView : UIImageView!
     var loader: LoadingOverlay = LoadingOverlay()
     var bgImage: UIImageView!
     let like =  Bundle.main.path(forResource: "tiny1", ofType: "mp3")!
@@ -348,7 +346,7 @@ class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDele
         let comment = storyboard?.instantiateViewController(withIdentifier: "photoComment") as! PhotoCommentViewController
         comment.postId = (fetchType == photoVCType.FROM_DETAIL_ITINERARY ? photos[carouselView.currentItemIndex]["itinerary"].stringValue : postId)
         comment.commentText = self.commentText
-        print("[[[[]]]] \(singlePhotoJSON)")
+        
         if singlePhotoJSON != nil {
             comment.otherId = singlePhotoJSON["name"].string!
             comment.photoId = singlePhotoJSON["_id"].string!
@@ -448,7 +446,6 @@ class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDele
                 currentIndexCopy = Int(currentIndexCopy) - 1
             } else {	
                 if !(carouselDict.allKeys.contains(value: photos[currentIndexCopy]["_id"].string!)) {
-                    print("In swipe left : \(carouselView.currentItemIndex) fetching : \(photos[currentIndexCopy]["_id"].string!)")
                     if photos[currentIndexCopy]["type"] == "photo" {
                         self.getSinglePhoto(photos[currentIndexCopy]["_id"].string!)                        
                     }
@@ -473,8 +470,7 @@ class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDele
             if currentIndexCopy < 0 {
                 currentIndexCopy = Int(carouselView.currentItemIndex) + 1
             } else {
-                if !(carouselDict.allKeys.contains(value: photos[currentIndexCopy]["_id"].string!)) {
-                    print("in swipe right : \(carouselView.currentItemIndex) fetching : \(photos[currentIndexCopy]["_id"].string!)")
+                if !(carouselDict.allKeys.contains(value: photos[currentIndexCopy]["_id"].string!)) {                    
                     if photos[currentIndexCopy]["type"] == "photo" {
                         self.getSinglePhoto(photos[currentIndexCopy]["_id"].string!)                        
                     }
@@ -500,10 +496,7 @@ class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDele
             }
             mainImage.isHidden = true
             audioButton.isHidden = true
-        }
-        
-        print("\n data : \(data)")
-        
+        }        
         if postId == "" {
         }
         else {
@@ -611,10 +604,8 @@ class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDele
         videoUrl = URL(string:data["name"].stringValue)
         self.player.setUrl(videoUrl!)
         
-        print("\n URL : \(videoUrl)")
         self.player.playFromBeginning()
         self.mainImage.addSubview(self.player.view)
-        print("self.mainImage \(self.mainImage) Hidden :\(self.mainImage.isHidden)")
     }
     
     //MARK: - Play
@@ -673,7 +664,6 @@ class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDele
                         }
                         else {                            
                             self.singlePhotoJSON = response["data"]
-                            print(data);
                             self.fromVideoFunction(data: data)
                         }
                     }
@@ -689,7 +679,6 @@ class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDele
     
     func getPost(_ postId: String) {
         
-        print("in print print....... \(postId) index \(self.currentIndex)")
         if postId == "" {
             loader.hideOverlayView()
             
@@ -795,21 +784,7 @@ class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDele
     //MARK: - Reload Carousel View
     
     func reloadCarouselView() {
-        print("\n currentItemIndex : \(self.carouselView.currentItemIndex)")
-        if self.carouselView.currentItemIndex >= 0 {
-            let dummyImgeView = UIImageView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight))
-            
-            if fetchType == photoVCType.FROM_QUICK_ITINERARY_LOCAL {
-                dummyImgeView.image = globalPostImage[carouselView.currentItemIndex].image
-            }
-            else {
-                var currentJson = photos[carouselView.currentItemIndex]        
-                if currentJson != nil {
-                    dummyImgeView.hnk_setImageFromURL(getImageURL((currentJson["name"].stringValue), width: VERY_BIG_PHOTO_WIDTH))
-                }
-            }            
-        }
-                    
+        print("\n currentItemIndex : \(self.carouselView.currentItemIndex)")                    
         self.carouselView.reloadData()
     }
     
@@ -833,29 +808,28 @@ class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDele
     }
     
     func carousel(_ carousel: iCarousel, viewForItemAt index: Int, reusing view: UIView?) -> UIView {
+ 
+        var parentView = view
         
-        var shouldCreateView = false
-        
-        if view != nil {
-            if(view?.tag == 999){
-                currentImageView = view as! UIImageView
-            }
-            else{
-                shouldCreateView = true
+        var currentImageView : UIImageView!
+        if parentView != nil {
+            for imgView in (parentView?.subviews)! {
+                if imgView.tag == 10 {
+                    currentImageView = (imgView as! UIImageView)
+                }
             }
         }
-        else {
-            shouldCreateView = true
-        }
-        
-        if shouldCreateView {
-            currentImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: carousel.frame.size.width*0.95, height: carousel.frame.size.height*0.95))
+        else {            
+            parentView = UIView()
+            currentImageView = UIImageView()
             currentImageView.contentMode = .scaleAspectFit
             currentImageView.backgroundColor = UIColor.clear
-            currentImageView.tag = 999
+            currentImageView.tag = 10
+            parentView?.addSubview(currentImageView)
         }
         
-        currentImageView.image = UIImage()
+        parentView?.frame = CGRect(x: 0, y: 0, width: carousel.frame.size.width*0.95, height: carousel.frame.size.height*0.95)
+        currentImageView.frame = CGRect(x: 0, y: 0, width: (parentView?.frame.size.width)!, height: (parentView?.frame.size.height)!)
         
         if fetchType == photoVCType.FROM_QUICK_ITINERARY_LOCAL {
             currentImageView.image = globalPostImage[index].image
@@ -863,10 +837,14 @@ class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDele
         else {
             var currentJson = photos[index]        
             if currentJson != nil {
-                currentImageView.hnk_setImageFromURL(getImageURL((currentJson["name"].stringValue), width: VERY_BIG_PHOTO_WIDTH))
+                currentImageView.hnk_setImageFromURL(getImageURL((currentJson["name"].stringValue), width: BLUR_PHOTO_WIDTH), placeholder: UIImage(named:"logo-default"), format: nil, failure: nil, success: { (image) in
+                    currentImageView.image = image
+                    currentImageView.hnk_setImageFromURL(getImageURL((currentJson["name"].stringValue), width: VERY_BIG_PHOTO_WIDTH))                    
+                })
             }
-        }
-        return currentImageView
+        }        
+        
+        return parentView!
     }   
     
     func carouselCurrentItemIndexDidChange(_ carousel: iCarousel) {
@@ -876,9 +854,26 @@ class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDele
         }
         
         if carousel.currentItemIndex != -1 {
-            print("\n ")
+            
+            let currentView = carousel.currentItemView
+            
+            var currentImageView : UIImageView?
+            if currentView != nil {
+                for imgView in (currentView?.subviews)! {
+                    if imgView.tag == 10 {
+                        currentImageView = (imgView as! UIImageView)
+                    }
+                }
+            }
+            
+            print("\n currentImageView : \(currentImageView?.frame)")
+            
             if fetchType == photoVCType.FROM_QUICK_ITINERARY_LOCAL {
+                currentImageView?.image = globalPostImage[carousel.currentItemIndex].image
                 bgImage.image = globalPostImage[carousel.currentItemIndex].image
+                if self.index == carousel.currentItemIndex {
+                    currentImageView?.image = globalPostImage[carousel.currentItemIndex].image
+                }
             }
             else {
                 let key = photos[carousel.currentItemIndex]["_id"].string!
@@ -889,8 +884,13 @@ class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDele
                 
                 if currentJson != nil {
                     if (currentJson?["type"].stringValue == "photo") {
+                        currentImageView?.hnk_setImageFromURL(getImageURL((currentJson?["name"].stringValue)!, width: BLUR_PHOTO_WIDTH), placeholder: UIImage(named:"logo-default"), format: nil, failure: nil, success: { (image) in
+                            currentImageView?.image = image
+                            currentImageView?.hnk_setImageFromURL(getImageURL((currentJson?["name"].stringValue)!, width: VERY_BIG_PHOTO_WIDTH))
+                        })
+                        
                         self.fromPhotoFunction(data: currentJson! )
-                        bgImage.hnk_setImageFromURL(getImageURL((currentJson?["name"].stringValue)!, width: SMALL_PHOTO_WIDTH))
+                        bgImage.hnk_setImageFromURL(getImageURL((currentJson?["name"].stringValue)!, width: BLUR_PHOTO_WIDTH))
                     }
                     else {
                         DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
@@ -900,7 +900,11 @@ class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDele
                 }
                 else{
                     print("\n current JSON is nil")
+                    
+                    print("\n Photos : \(photos)")
+                    print("\n key : \(key)")
                     print("\n Carousal : \(carouselDict)")
+                    
                 }
             }
             self.loadMore()

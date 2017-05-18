@@ -90,10 +90,12 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         
         let PJController = storyboard!.instantiateViewController(withIdentifier: "TLMainFeedsView") as! TLMainFeedsViewController
         PJController.pageType = viewType.VIEW_TYPE_POPULAR_JOURNEY
+        PJController.shouldLoadFromStart = true
         self.popJourneysController = UINavigationController(rootViewController: PJController)
         
         let EDController = storyboard!.instantiateViewController(withIdentifier: "TLMainFeedsView") as! TLMainFeedsViewController
         EDController.pageType = viewType.VIEW_TYPE_POPULAR_ITINERARY
+        PJController.shouldLoadFromStart = true
         self.exploreDestinationsController = UINavigationController(rootViewController: EDController)
         
         let PBController = storyboard!.instantiateViewController(withIdentifier: "popularBloggers") as! PopularBloggersViewController

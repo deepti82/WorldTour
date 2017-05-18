@@ -114,7 +114,7 @@ class TLTravelLocalLifeTableViewCell: UITableViewCell, PlayerDelegate {
         if feedData != nil {
             setData(feedData: feedData!, helper: helper!, pageType: nil, delegate: nil)            
         }
-    }    
+    }
     
     func setData(feedData: JSON, helper: UIViewController, pageType: viewType?, delegate: TLFooterBasicDelegate?) {
         
@@ -194,7 +194,15 @@ class TLTravelLocalLifeTableViewCell: UITableViewCell, PlayerDelegate {
         FBackground.frame = CGRect(x: 0, y: 0, width: screenWidth, height: totalHeight)
     }
     
+    private func removePreviousGestureFromPhotoView() {
+        for recognizer in self.FMMainPhoto?.gestureRecognizers ?? [] {
+            self.removeGestureRecognizer(recognizer)
+        }
+    }
+    
     private func videosAndPhotosLayout(feed: JSON, pageType: viewType?) {
+        
+        self.removePreviousGestureFromPhotoView()
         
         //Image generation only
         if(feed["videos"].count > 0) {
@@ -267,14 +275,16 @@ class TLTravelLocalLifeTableViewCell: UITableViewCell, PlayerDelegate {
             if self.FMMainPhoto == nil {
                 self.FMMainPhoto = UIImageView(frame: CGRect(x: 0, y: totalHeight, width: screenWidth, height: screenWidth*0.9))
                 self.FMMainPhoto?.contentMode = UIViewContentMode.scaleAspectFill
-                self.FMMainPhoto?.clipsToBounds = true
-                let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(self.openSinglePhoto(_:)))
-                self.FMMainPhoto?.addGestureRecognizer(tapGestureRecognizer)
+                self.FMMainPhoto?.clipsToBounds = true                
                 self.contentView.addSubview(self.FMMainPhoto!)
             }
             else {
                 self.FMMainPhoto?.frame = CGRect(x: 0, y: totalHeight, width: screenWidth, height: screenWidth*0.9)
             }
+            
+            let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(self.openSinglePhoto(_:)))
+            self.FMMainPhoto?.isUserInteractionEnabled = true
+            self.FMMainPhoto?.addGestureRecognizer(tapGestureRecognizer)
             
             if pageType != viewType.VIEW_TYPE_MY_LIFE &&
                 pageType != viewType.VIEW_TYPE_LOCAL_LIFE {

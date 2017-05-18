@@ -46,6 +46,7 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
     private let separatorOffset = CGFloat(15.0)
     
     var mainFooter: FooterViewNew?
+    var shouldLoadFromStart = false
     
     var pageType: viewType = viewType.VIEW_TYPE_ACTIVITY
     var currentLocation = ["lat":"0.0", "long":"0.0"]
@@ -66,6 +67,8 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
         super.viewDidLoad()
         
         globalTLMainFeedsViewController = self
+        
+        shouldLoadFromStart = true
         
         let i = PostImage()
         i.uploadPhotos(delegate: self)
@@ -105,7 +108,7 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
             self.mainFooter?.setHighlightStateForView(tag: 3, color: mainGreenColor)
         }
         
-        if self.feedsDataArray.isNotEmpty {
+        if shouldLoadFromStart && self.feedsDataArray.isNotEmpty {
             self.feedsTableView.reloadData()
             self.feedsTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
         }
@@ -118,6 +121,7 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        self.shouldLoadFromStart = false
         self.hideHeaderAndFooter(false)        
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         self.mainFooter?.setFooterDefaultState()

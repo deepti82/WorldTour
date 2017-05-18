@@ -262,7 +262,7 @@ class ActivityProfileHeader: UIView {
         }
     }
     
-    func removePreviousGesture() {
+    private func removePreviousGesture() {
         for recognizer in self.gestureRecognizers ?? [] {
             self.removeGestureRecognizer(recognizer)
         }

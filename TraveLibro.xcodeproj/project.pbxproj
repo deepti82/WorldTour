@@ -226,8 +226,6 @@
 		C24909AD1D49D094007EB6B4 /* tripSummaryEach.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24909AC1D49D094007EB6B4 /* tripSummaryEach.xib */; };
 		C24909B11D49D616007EB6B4 /* tripSummaryEach.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24909B01D49D616007EB6B4 /* tripSummaryEach.swift */; };
 		C24909B41D49F74B007EB6B4 /* TripSummaryPhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24909B31D49F74B007EB6B4 /* TripSummaryPhotosViewController.swift */; };
-		C24909B61D4A061C007EB6B4 /* TripSummaryPhotoGridViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24909B51D4A061C007EB6B4 /* TripSummaryPhotoGridViewController.swift */; };
-		C24909B81D4A09E6007EB6B4 /* TripSummaryPhotoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24909B71D4A09E6007EB6B4 /* TripSummaryPhotoListViewController.swift */; };
 		C24909BA1D4A3852007EB6B4 /* AddPostsOTG.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24909B91D4A3852007EB6B4 /* AddPostsOTG.xib */; };
 		C24909BC1D4A3E41007EB6B4 /* AddPostsOTGView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24909BB1D4A3E41007EB6B4 /* AddPostsOTGView.swift */; };
 		C24B455A1D0ABDE4002EA009 /* Itineraries.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24B45591D0ABDE4002EA009 /* Itineraries.xib */; };
@@ -345,7 +343,6 @@
 		C28A92551D0ECD4300CFEC7A /* FilterBlogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28A92541D0ECD4300CFEC7A /* FilterBlogs.swift */; };
 		C29634EA1D06F01300E9DF71 /* SearchLocation.xib in Resources */ = {isa = PBXBuildFile; fileRef = C29634E91D06F01300E9DF71 /* SearchLocation.xib */; };
 		C29634EC1D06F3B400E9DF71 /* SearchLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29634EB1D06F3B400E9DF71 /* SearchLocation.swift */; };
-		C29767181D50D65200428269 /* ListPhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29767171D50D65200428269 /* ListPhotosViewController.swift */; };
 		C298717E1D6EBE8100F65429 /* AddCityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C298717D1D6EBE8100F65429 /* AddCityViewController.swift */; };
 		C29C33C31D7061DC00DC5B36 /* HelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29C33C21D7061DB00DC5B36 /* HelperFunctions.swift */; };
 		C29D2C111D1BE09600FA0602 /* FilterCityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29D2C101D1BE09600FA0602 /* FilterCityViewController.swift */; };
@@ -459,7 +456,6 @@
 		FC7E4AFE1E9E33720066C454 /* footerItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC7E4AFD1E9E33720066C454 /* footerItem.xib */; };
 		FC7E4B001E9E59CD0066C454 /* MyLifeJourneyTravel.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC7E4AFF1E9E59CD0066C454 /* MyLifeJourneyTravel.xib */; };
 		FC7E4B021E9E5D1E0066C454 /* MyLifeJourneyTravel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7E4B011E9E5D1E0066C454 /* MyLifeJourneyTravel.swift */; };
-		FC807AD11E3C9B3300609E9B /* TripPhotoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC807AD01E3C9B3300609E9B /* TripPhotoLayout.swift */; };
 		FC807AD41E3CA62600609E9B /* TripPhotoHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC807AD31E3CA62600609E9B /* TripPhotoHeader.xib */; };
 		FC807AD61E3CAB1700609E9B /* TripPhotoHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC807AD51E3CAB1700609E9B /* TripPhotoHeader.swift */; };
 		FC9484991E94E1E2000AB89F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FC9484981E94E1E1000AB89F /* GoogleService-Info.plist */; };
@@ -758,8 +754,6 @@
 		C24909AC1D49D094007EB6B4 /* tripSummaryEach.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = tripSummaryEach.xib; sourceTree = "<group>"; };
 		C24909B01D49D616007EB6B4 /* tripSummaryEach.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tripSummaryEach.swift; sourceTree = "<group>"; };
 		C24909B31D49F74B007EB6B4 /* TripSummaryPhotosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripSummaryPhotosViewController.swift; sourceTree = "<group>"; };
-		C24909B51D4A061C007EB6B4 /* TripSummaryPhotoGridViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripSummaryPhotoGridViewController.swift; sourceTree = "<group>"; };
-		C24909B71D4A09E6007EB6B4 /* TripSummaryPhotoListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripSummaryPhotoListViewController.swift; sourceTree = "<group>"; };
 		C24909B91D4A3852007EB6B4 /* AddPostsOTG.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddPostsOTG.xib; sourceTree = "<group>"; };
 		C24909BB1D4A3E41007EB6B4 /* AddPostsOTGView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPostsOTGView.swift; sourceTree = "<group>"; };
 		C24B45591D0ABDE4002EA009 /* Itineraries.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Itineraries.xib; sourceTree = "<group>"; };
@@ -877,7 +871,6 @@
 		C28A92541D0ECD4300CFEC7A /* FilterBlogs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FilterBlogs.swift; path = ../FilterBlogs.swift; sourceTree = "<group>"; };
 		C29634E91D06F01300E9DF71 /* SearchLocation.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SearchLocation.xib; path = ../SearchLocation.xib; sourceTree = "<group>"; };
 		C29634EB1D06F3B400E9DF71 /* SearchLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchLocation.swift; path = ../SearchLocation.swift; sourceTree = "<group>"; };
-		C29767171D50D65200428269 /* ListPhotosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListPhotosViewController.swift; sourceTree = "<group>"; };
 		C298717D1D6EBE8100F65429 /* AddCityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddCityViewController.swift; path = ../AddCityViewController.swift; sourceTree = "<group>"; };
 		C29C33C21D7061DB00DC5B36 /* HelperFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelperFunctions.swift; sourceTree = "<group>"; };
 		C29D2C101D1BE09600FA0602 /* FilterCityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterCityViewController.swift; sourceTree = "<group>"; };
@@ -992,7 +985,6 @@
 		FC7E4AFD1E9E33720066C454 /* footerItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = footerItem.xib; sourceTree = "<group>"; };
 		FC7E4AFF1E9E59CD0066C454 /* MyLifeJourneyTravel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyLifeJourneyTravel.xib; sourceTree = "<group>"; };
 		FC7E4B011E9E5D1E0066C454 /* MyLifeJourneyTravel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyLifeJourneyTravel.swift; sourceTree = "<group>"; };
-		FC807AD01E3C9B3300609E9B /* TripPhotoLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripPhotoLayout.swift; sourceTree = "<group>"; };
 		FC807AD31E3CA62600609E9B /* TripPhotoHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TripPhotoHeader.xib; sourceTree = "<group>"; };
 		FC807AD51E3CAB1700609E9B /* TripPhotoHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripPhotoHeader.swift; sourceTree = "<group>"; };
 		FC9484981E94E1E1000AB89F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -1280,7 +1272,6 @@
 				FCCA8F1C1E28B64100775985 /* TripSummaryCell */,
 				FCCA8F261E28C3AE00775985 /* TripSummaryFooter */,
 				FCCA8F211E28B98E00775985 /* TripSummaryMiddle */,
-				FC807AD21E3C9B4300609E9B /* TripPhotoLayout */,
 				FCB3D17C1E5D70520041B121 /* OnlyLine */,
 				FC13D1D11E6035F6008FC77D /* SearchElement */,
 				FCD52B611E79377000CD64C2 /* SearchJourneyElement */,
@@ -2076,7 +2067,6 @@
 				FC49DCF91DE6D04D00B0DEF3 /* ImgLyKitViewController.swift */,
 				C267302D1D27E93900F2C822 /* InviteFriendsViewController.swift */,
 				C25C27EE1D4735BE00C21F23 /* KindOfJourneyOTGViewController.swift */,
-				C29767171D50D65200428269 /* ListPhotosViewController.swift */,
 				C25BE1F21CFC06BB00C98DD3 /* LocalLifePostsViewController.swift */,
 				C23EB1DA1CFEE242005B5CE8 /* LocalLifeRecommendationViewController.swift */,
 				C2DCB36F1CE73650006E5CBD /* LocationCategoryViewController.swift */,
@@ -2122,8 +2112,6 @@
 				C25649991D48EE5E0046E36D /* SummarySubViewController.swift */,
 				C2C9659C1CE4AEB2007BDA34 /* ThoughtsViewController.swift */,
 				C2ABDBB81CEC8B7D00D7542E /* TrialViewController.swift */,
-				C24909B51D4A061C007EB6B4 /* TripSummaryPhotoGridViewController.swift */,
-				C24909B71D4A09E6007EB6B4 /* TripSummaryPhotoListViewController.swift */,
 				C24909B31D49F74B007EB6B4 /* TripSummaryPhotosViewController.swift */,
 				C24F84D91CFFFBF5002EA203 /* UserProfileSettingsViewController.swift */,
 				C2756C4C1D05884D0083CEBD /* VerifyEmailViewController.swift */,
@@ -2682,14 +2670,6 @@
 				FC7E4B011E9E5D1E0066C454 /* MyLifeJourneyTravel.swift */,
 			);
 			name = MyLifeJourneyTravel;
-			sourceTree = "<group>";
-		};
-		FC807AD21E3C9B4300609E9B /* TripPhotoLayout */ = {
-			isa = PBXGroup;
-			children = (
-				FC807AD01E3C9B3300609E9B /* TripPhotoLayout.swift */,
-			);
-			name = TripPhotoLayout;
 			sourceTree = "<group>";
 		};
 		FC9A0C1D1E0932F500BC3F7A /* CountrySummary */ = {
@@ -3263,7 +3243,6 @@
 				362DAD461E34972000329C9A /* LocalLifePost.swift in Sources */,
 				8453CF451E30AFE200C41F82 /* ActivityFeedQuickItinerary.swift in Sources */,
 				C263E3A51D1E5D0C00D274FE /* NewThoughtsView.swift in Sources */,
-				FC807AD11E3C9B3300609E9B /* TripPhotoLayout.swift in Sources */,
 				FC9A0C1C1E0932E300BC3F7A /* CountrySummary.swift in Sources */,
 				FCCFAAE11E7A813400F01DE6 /* PopularItinerary.swift in Sources */,
 				C2DCB36E1CE723C3006E5CBD /* RatingReviewViewController.swift in Sources */,
@@ -3321,7 +3300,6 @@
 				C24F85031D0064D7002EA203 /* TutorialCards.swift in Sources */,
 				C2A6E25B1CE9C27000D3F845 /* TimelineScroll.swift in Sources */,
 				FCCA8F201E28B96700775985 /* TripSummaryMiddle.swift in Sources */,
-				C24909B81D4A09E6007EB6B4 /* TripSummaryPhotoListViewController.swift in Sources */,
 				C2EA3A161CDB3B9900122941 /* TextField.swift in Sources */,
 				44F2FAC41EB85F66003BB3EA /* TLMainFeedsViewController.swift in Sources */,
 				FC6317E11EB30D88000C0C05 /* DottedLine.swift in Sources */,
@@ -3450,7 +3428,6 @@
 				44B672121EB9B8D000F5561A /* TLFeedHeaderTextFlagView.swift in Sources */,
 				C24F84F91D00555C002EA203 /* NoCountriesVisited.swift in Sources */,
 				845C43291E2F8A6700800F51 /* ActivityFeedImageView.swift in Sources */,
-				C24909B61D4A061C007EB6B4 /* TripSummaryPhotoGridViewController.swift in Sources */,
 				C2A27A5A1CEDE4FA00F74DD1 /* AddDisplayPic.swift in Sources */,
 				36200B9F1E30E0B700BFA227 /* LocalLifePostModel.swift in Sources */,
 				C25C27EF1D4735BE00C21F23 /* KindOfJourneyOTGViewController.swift in Sources */,
@@ -3474,7 +3451,6 @@
 				840E256F1E5EF423003220FE /* LoaderViewController.swift in Sources */,
 				3AEEB00B1CE7017E0085EEF5 /* Rating.swift in Sources */,
 				842019C41E5C8641001F97E3 /* EndJourneyMyLife.swift in Sources */,
-				C29767181D50D65200428269 /* ListPhotosViewController.swift in Sources */,
 				C24909B41D49F74B007EB6B4 /* TripSummaryPhotosViewController.swift in Sources */,
 				C21293101D2E830B002D5A4A /* MyLifeMomentsViewController.swift in Sources */,
 				C2276FF01D9906770052D942 /* EditCategoryViewController.swift in Sources */,
