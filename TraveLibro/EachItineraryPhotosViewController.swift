@@ -25,7 +25,8 @@ class EachItineraryPhotosViewController: UIViewController, UICollectionViewDataS
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        photosCollectionView.delegate = self        
+        photosCollectionView.delegate = self
+        getDarkBackGround(self)
         
         itineraryNameLabel.text = (selectedItinerary["name"].stringValue)
         
@@ -74,7 +75,7 @@ class EachItineraryPhotosViewController: UIViewController, UICollectionViewDataS
 //            return CGSize(width: (collectionView.frame.size.width), height: collectionView.frame.size.width * 0.7)
 //        }
         
-        let wdth = (screenWidth - 10)/2
+        let wdth = (screenWidth - 15)/2
         
         return CGSize(width: wdth, height: (wdth / 80) * 100)
         

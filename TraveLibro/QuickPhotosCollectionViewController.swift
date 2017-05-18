@@ -17,6 +17,7 @@ class QuickPhotosCollectionViewController: UIViewController, UICollectionViewDel
     var selectedQuick:JSON = []
     override func viewDidLoad() {
         super.viewDidLoad()
+        getDarkBackGround(self)
         quickCollectionView.delegate = self
         quickCollectionView.dataSource = self
         downButton.titleLabel?.font = UIFont(name: "FontAwesome", size: 14)

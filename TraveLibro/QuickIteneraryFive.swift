@@ -70,7 +70,7 @@ class QuickIteneraryFive: UIViewController, UICollectionViewDataSource, UICollec
 //        if shouldShowBigImage(position: indexPath.row) {
 //            return CGSize(width: (collectionView.frame.size.width), height: collectionView.frame.size.width * 0.7)
 //        }
-        let wdth = (screenWidth - 10)/2
+        let wdth = (photosCollection.frame.size.width - 10)/2
         
         return CGSize(width: wdth, height: (wdth / 80) * 100)
 
