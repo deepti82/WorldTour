@@ -135,7 +135,12 @@ class TripSummaryPhotosViewController: UIViewController, UITableViewDataSource, 
     
     func showNavigationIn(text: String) {
         
-        self.title = text
+        if fromView == "endJourney" {
+            self.title = "Photos"
+        }
+        else {
+            self.title = text
+        }
         
         let navImageIconName = ((currentContentViewType == contentViewType.TL_LIST_VIEW) ? "grid" : "list")
         let rightButton = UIButton()
@@ -271,31 +276,29 @@ class TripSummaryPhotosViewController: UIViewController, UITableViewDataSource, 
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("one image clicked")
-        print(fromView)
+        
+        print("Cell select at index : \(indexPath.row)")
         
         if fromView == "endJourney" {
-//            let cell = collectionView.cellForItem(at: indexPath) as! gridCollectionViewCell
-//            
-//            let conf = Configuration(builder: { (builder) in
-//                builder.configurePhotoEditorViewController({ (photoOptionBuilder) in
-//                    
-//                    photoOptionBuilder.actionButtonConfigurationClosure = { cell, action in
-//                        cell.tintColor = UIColor.white 
-//                    }                    
-//                })
-//            })
-//            
-//            let photoEditViewController = PhotoEditViewController(photo: cell.photo.image!, configuration: conf)
-//            let toolStackController = ToolStackController(photoEditViewController: photoEditViewController)            
-//            toolStackController.delegate = self            
-//            toolStackController.navigationItem.title = "Editor"
-//            //            toolStackController.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: photoEditViewController, action: #selector(PhotoEditViewController.save(_:)))
-//            let nvc = UINavigationController(rootViewController: toolStackController)
-//            nvc.navigationBar.isTranslucent = false
-//            nvc.navigationBar.barStyle = .black
-//            self.present(nvc, animated: true, completion: nil)
-//            
+            let cell = collectionView.cellForItem(at: indexPath) as! contentCollectionViewCell
+            
+            let conf = Configuration(builder: { (builder) in
+                builder.configurePhotoEditorViewController({ (photoOptionBuilder) in                    
+                    photoOptionBuilder.actionButtonConfigurationClosure = { cell, action in
+                        cell.tintColor = UIColor.white 
+                    }                    
+                })
+            })
+            
+            let photoEditViewController = PhotoEditViewController(photo: cell.contentImageView.image!, configuration: conf)
+            let toolStackController = ToolStackController(photoEditViewController: photoEditViewController)            
+            toolStackController.delegate = self            
+            toolStackController.navigationItem.title = "Editor"
+            //            toolStackController.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: photoEditViewController, action: #selector(PhotoEditViewController.save(_:)))
+            let nvc = UINavigationController(rootViewController: toolStackController)
+            nvc.navigationBar.isTranslucent = false
+            nvc.navigationBar.barStyle = .black
+            self.present(nvc, animated: true, completion: nil)            
         }
             
         else if currentContentType == contentType.TL_CONTENT_IMAGE_TYPE {            
