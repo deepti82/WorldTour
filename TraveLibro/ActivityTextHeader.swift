@@ -13,6 +13,7 @@ class ActivityTextHeader: UIView {
     @IBOutlet var textView: UIView!
     @IBOutlet weak var headerText: UITextView!
     
+    
     var displayText = getRegularString(string: "", size: TL_REGULAR_FONT_SIZE)
     
     override init(frame: CGRect) {
@@ -35,7 +36,6 @@ class ActivityTextHeader: UIView {
     
     func setText(text: NSMutableAttributedString) {
         self.headerText.attributedText = text
-        self.headerText.sizeToFit()
     }
     
 }

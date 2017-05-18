@@ -256,36 +256,16 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
         if feed["thoughts"].stringValue != "" {
             
             //  START ACTIVITY TEXT HEADER
-            textHeader = ActivityTextHeader(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 0))
-            textHeader.headerText.attributedText = getThought(feed)            
-            textHeader.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: heightOfAttributedText(attributedString: textHeader.headerText.attributedText.mutableCopy() as! NSMutableAttributedString, width: self.frame.width))
-            self.addSubview(textHeader)
-            
-            
-        } else {
-            // For header text
-            textHeader = ActivityTextHeader(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 70))
-            switch feed["type"].stringValue {
-            case "on-the-go-journey":
-                setText(text: "Has started a Journey.")
-                
-            case "ended-journey":
-                setText(text: "Has ended this Journey.")
-                
-            case "quick-itinerary":
-                setText(text: "Has uploaded a new Itinerary.")
-                
-            case "detail-itinerary":
-                setText(text: "Has uploaded a new Itinerary.")
-            default:
-                textHeader.headerText.attributedText = getThought(feed)
-            }
-            textHeader.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: heightOfAttributedText(attributedString: textHeader.headerText.attributedText.mutableCopy() as! NSMutableAttributedString, width: self.frame.width))
-            if(textHeader.headerText.text != "") {
-                
+            textHeader = ActivityTextHeader(frame: CGRect.zero)
+            textHeader.displayText = getThought(feed)
+            textHeader.setText(text: textHeader.displayText)
+            if textHeader.displayText.string != "" {
+                let textHeight = (heightOfAttributedText(attributedString: textHeader.displayText, width: (self.frame.width-25)) + 10)
+                textHeader.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: textHeight)
+                textHeader.headerText.frame = CGRect(x: 8, y: 0, width: self.frame.width-16, height: textHeight)
+                textHeader.headerText.center = textHeader.headerText.center
                 self.addSubview(textHeader)
             }
-            
             
         }
         
@@ -302,36 +282,18 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
         
         if post.post_thoughts != "" {
             //  START ACTIVITY TEXT HEADER
-            textHeader = ActivityTextHeader(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 0))
-            textHeader.headerText.attributedText = getThoughtForLocalPost(post)            
-            textHeader.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: heightOfAttributedText(attributedString: textHeader.headerText.attributedText.mutableCopy() as! NSMutableAttributedString, width: self.frame.width))
-            self.addSubview(textHeader)
-        }
-        else {
-            // For header text
-            textHeader = ActivityTextHeader(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 70))            
-            switch post.post_type {
-            case "on-the-go-journey":
-                setText(text: "Has started a Journey.")
-                
-            case "ended-journey":
-                setText(text: "Has ended this Journey.")
-                
-            case "quick-itinerary":
-                setText(text: "Has uploaded a new Itinerary.")
-                
-            case "detail-itinerary":
-                setText(text: "Has uploaded a new Itinerary.")
-            default:
-                textHeader.headerText.attributedText = getThoughtForLocalPost(post)
-            }            
-            textHeader.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: heightOfAttributedText(attributedString: textHeader.headerText.attributedText.mutableCopy() as! NSMutableAttributedString, width: self.frame.width))
-            if(textHeader.headerText.text != "") {
-                
+            
+            textHeader = ActivityTextHeader(frame: CGRect.zero)
+            textHeader.displayText = getThoughtForLocalPost(post)
+            textHeader.setText(text: textHeader.displayText)
+            if textHeader.displayText.string != "" {
+                let textHeight = (heightOfAttributedText(attributedString: textHeader.displayText, width: (self.frame.width-25)) + 10)
+                textHeader.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: textHeight)
+                textHeader.headerText.frame = CGRect(x: 8, y: 0, width: self.frame.width-16, height: textHeight)
+                textHeader.headerText.center = textHeader.headerText.center
                 self.addSubview(textHeader)
             }
         }
-        
     }
     
     
