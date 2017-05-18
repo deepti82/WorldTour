@@ -89,7 +89,14 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
             if(!post.post_isOffline) {
                 thumbStr = "&width=\(heightForBlur)"
             }
-            let imgStr = post.imageArr[0].imageUrl.absoluteString + thumbStr
+            
+            if(!post.post_isOffline) {
+                self.mainPhoto?.isUserInteractionEnabled = true
+                let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(PhotosOTG2.openSinglePhoto(_:)))
+                self.mainPhoto?.addGestureRecognizer(tapGestureRecognizer)
+                self.mainPhoto?.tag = 0
+            }            
+            self.mainPhoto?.hnk_setImageFromURL(getImageURL(post.imageArr[0].imageUrl.absoluteString, width: BLUR_PHOTO_WIDTH))
 
             /*cache.fetch(URL: URL(string:imgStr)!).onSuccess({ (data) in
                 self.mainPhoto?.image = UIImage(data: data as Data)
@@ -114,12 +121,6 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
                 self.mainPhoto?.frame.size.width = self.frame.width
                 self.mainPhotoImageURL = post.imageArr[0].imageUrl
 //                self.mainPhoto.hnk_setImageFromURL(post.imageArr[0].imageUrl)
-                if(!post.post_isOffline) {
-                    self.mainPhoto?.isUserInteractionEnabled = true
-                    let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(PhotosOTG2.openSinglePhoto(_:)))
-                    self.mainPhoto?.addGestureRecognizer(tapGestureRecognizer)
-                    self.mainPhoto?.tag = 0
-                }
                 
                 self.layoutSubviews()
                 globalNewTLViewController.addHeightToLayout(height: 50)

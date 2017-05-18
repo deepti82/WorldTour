@@ -56,10 +56,10 @@ class TripSummaryPhotosViewController: UIViewController, UITableViewDataSource, 
         self.getJourneyContent()
         
         if currentContentType == contentType.TL_CONTENT_VIDEO_TYPE {
-            showNavigationIn(text: "Videos")
+            showNavigationIn(text: "Videos (\(noPhoto))")
         }
         else{
-            showNavigationIn(text: "Photos")
+            showNavigationIn(text: "Photos (\(noPhoto))")
         }
         
         changeView(toView: currentContentViewType)
@@ -99,44 +99,6 @@ class TripSummaryPhotosViewController: UIViewController, UITableViewDataSource, 
                     
                     self.reloadContent()
                     
-//                    if self.type == "photos" {
-//                        if response["data"]["photos"] != nil {
-//                            self.photos = response["data"]["photos"].array!
-//                            //                    self.makeLayout()
-//                            for post in response["data"]["photos"].array! {
-//                                //                            self.feeds.arrayObject?.append(post)
-//                                let checkIn = TripPhotoLayout(width: self.view.frame.width)
-//                                checkIn.scrollView = self.scroll
-//                                checkIn.createProfileHeader(feed: post, type: self.type)
-//                                checkIn.tripListView = self
-//                                self.layout.addSubview(checkIn)
-//                                self.addHeightToLayout()
-//                                
-//                            }
-//                            
-//                            self.addHeightToLayout()
-//                        }
-//                    }
-//                    else{
-//                        if response["data"]["videos"] != nil {
-//                            self.photos = response["data"]["videos"].array!
-//                            //                    self.makeLayout()
-//                            for post in response["data"]["videos"].array! {
-//                                //                            self.feeds.arrayObject?.append(post)
-//                                let checkIn = TripPhotoLayout(width: self.view.frame.width)
-//                                checkIn.scrollView = self.scroll
-//                                checkIn.createProfileHeader(feed: post, type: self.type)
-//                                checkIn.tripListView = self
-//                                checkIn.type = self.type
-//                                self.layout.addSubview(checkIn)
-//                                self.addHeightToLayout()
-//                                
-//                            }
-//                            
-//                            self.addHeightToLayout()
-//                        }
-//                    }
-                    
                 }
                 else {
                     
@@ -153,9 +115,7 @@ class TripSummaryPhotosViewController: UIViewController, UITableViewDataSource, 
     
     //MARK: - Reload
     
-    func reloadContent() {
-        print("\n contentTableView: \(contentTableView.isScrollEnabled) ")
-        print("\n contentCollectionView: \(contentCollectionView.isScrollEnabled) ")
+    func reloadContent() {        
         if (!contentTableView.isHidden) {
             contentTableView.reloadData()
             if contentDataArray.isNotEmpty {
@@ -174,12 +134,14 @@ class TripSummaryPhotosViewController: UIViewController, UITableViewDataSource, 
     //MARK: - Navigation
     
     func showNavigationIn(text: String) {
+        
+        self.title = text
+        
         let navImageIconName = ((currentContentViewType == contentViewType.TL_LIST_VIEW) ? "grid" : "list")
         let rightButton = UIButton()
         rightButton.setImage(UIImage(named: navImageIconName), for: UIControlState())
         rightButton.addTarget(self, action: #selector(self.toggleViews(_:)), for: .touchUpInside)
-        rightButton.frame = CGRect(x: 0, y: 8, width: 20, height: 20)
-        self.title = text
+        rightButton.frame = CGRect(x: 0, y: 8, width: 20, height: 20)        
         self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Avenir-Medium", size: 18)!]
         
         let leftButton = UIButton()
