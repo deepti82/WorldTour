@@ -368,7 +368,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
 //                return CGSize(width: screenWidth - 10, height: (screenWidth - 10) * 0.7)
 //            }
             
-            return CGSize(width: ((screenWidth-4)/2), height: (((screenWidth-4)/2) * 1.35))
+            return CGSize(width: ((screenWidth - 10)/2), height: (((screenWidth-10)/2) * 1.35))
 
         }
         else{
@@ -402,7 +402,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
                         layout collectionViewLayout: UICollectionViewLayout,
                         minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         if insideView == "Monthly" {
-            return 1
+            return 2
         }else{
             return 1
         }
@@ -412,7 +412,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
         collectionViewLayout: UICollectionViewLayout,
                         minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         if insideView == "Monthly" {
-            return 1
+            return 2
         }else{
             return 1
         }
