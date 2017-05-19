@@ -837,8 +837,7 @@ class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDele
             }
             else {
                 var currentJson = photos[index]        
-                if currentJson != nil {                    
-                    currentImageView.sd_setImage(with: getImageURL((currentJson["name"].stringValue), width: BLUR_PHOTO_WIDTH), placeholderImage: UIImage(named: "logo-default"))
+                if currentJson != nil {
                     currentImageView.sd_setImage(with: getImageURL((currentJson["name"].stringValue), width: BIG_PHOTO_WIDTH), placeholderImage: UIImage(named: "logo-default"))
                 }
             }            
