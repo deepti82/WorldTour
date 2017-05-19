@@ -258,19 +258,15 @@ class TripSummaryPhotosViewController: UIViewController, UITableViewDataSource, 
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! contentCollectionViewCell
         if currentContentType == contentType.TL_CONTENT_IMAGE_TYPE {
             
-            cell.contentImageView.sd_setImage(with: (getImageURL(self.contentDataArray[indexPath.row]["name"].stringValue, width: BLUR_PHOTO_WIDTH)),
-                                              placeholderImage: UIImage(named: "logo-default"))
-            
             cell.contentImageView.sd_setImage(with: (getImageURL(self.contentDataArray[indexPath.row]["name"].stringValue, width: BIG_PHOTO_WIDTH)),
-                                              placeholderImage: UIImage(named: "logo-default"))
-
+                                                  placeholderImage: getPlaceholderImage())
+            
             cell.contentPlayImageView.isHidden = true
         }
         else{
-            cell.contentImageView.sd_setImage(with: (getImageURL(self.contentDataArray[indexPath.row]["thumbnail"].stringValue, width: BLUR_PHOTO_WIDTH)),
-                                              placeholderImage: UIImage(named: "logo-default"))
+            
             cell.contentImageView.sd_setImage(with: (getImageURL(self.contentDataArray[indexPath.row]["thumbnail"].stringValue, width: BIG_PHOTO_WIDTH)),
-                                              placeholderImage: UIImage(named: "logo-default"))
+                                              placeholderImage: getPlaceholderImage())
             cell.contentPlayImageView.isHidden = false
         }
         

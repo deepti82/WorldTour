@@ -73,10 +73,8 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
                 self.videoContainer.addGestureRecognizer(tapGestureRecognizer)
                 self.videoContainer.tag = 0
             }
-            
-            
-            
         } 
+            
         else if(post.imageArr.count > 0) {
             self.mainPhoto = UIImageView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.width))            
             self.mainPhoto?.contentMode = UIViewContentMode.scaleAspectFill
@@ -95,8 +93,11 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
                 self.mainPhoto?.tag = 0
                 let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(PhotosOTG2.openSinglePhoto(_:)))
                 self.mainPhoto?.addGestureRecognizer(tapGestureRecognizer)                
-            }            
+            }
             self.mainPhoto?.hnk_setImageFromURL(getImageURL(post.imageArr[0].imageUrl.absoluteString, width: BLUR_PHOTO_WIDTH))
+            
+            self.mainPhoto?.sd_setImage(with: getImageURL(post.imageArr[0].imageUrl.absoluteString, width: BIG_PHOTO_WIDTH),
+                                        placeholderImage: getPlaceholderImage())
 
             /*cache.fetch(URL: URL(string:imgStr)!).onSuccess({ (data) in
                 self.mainPhoto?.image = UIImage(data: data as Data)
@@ -132,10 +133,8 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
             self.mainPhoto?.tag = 0
             self.mainPhoto?.contentMode = UIViewContentMode.scaleAspectFill
             self.mainPhoto?.image = UIImage(named: "logo-default")
-//            self.mainPhoto?.hnk_setImageFromURL(URL(string:post.post_locationImage)!, placeholder: UIImage(named: "logo-default"), format: nil, failure: nil, success: { (img) in
-//                self.mainPhoto?.image = img
-//                self.mainPhoto?.tag = 1
-//            })
+            self.mainPhoto?.sd_setImage(with: (URL(string:self.postTop.post_locationImage)!), 
+                                        placeholderImage: getPlaceholderImage())
             self.addSubview(mainPhoto!)
         }
         
@@ -325,7 +324,8 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
                 photosButton.frame.size.height = 82
                 photosButton.frame.size.width = 82
                 let urlStr = post.imageArr[i].imageUrl.absoluteString + "&width=500"
-//                photosButton.hnk_setImageFromURL(URL(string:urlStr)!)
+                photosButton.sd_setImage(with: URL(string:urlStr)!,
+                                         placeholderImage: getPlaceholderImage())
                 if(!post.post_isOffline) {
                     let tapGestureRecognizer = UITapGestureRecognizer(target:self, action: #selector(PhotosOTG2.openSinglePhoto(_:)))
                     photosButton.isUserInteractionEnabled = true

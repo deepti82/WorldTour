@@ -816,6 +816,12 @@ func isLocalFeed(feed: JSON) -> Bool {
     return false
 }
 
+//MARK: - PlaceHolder Image
+
+func getPlaceholderImage() -> UIImage {
+    return UIImage(named: "logo-default")!
+}
+
 
 //MARK: - Invite
 

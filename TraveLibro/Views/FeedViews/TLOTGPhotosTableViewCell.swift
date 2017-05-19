@@ -99,18 +99,17 @@ class TLOTGPhotosTableViewCell: UITableViewCell {
         FMiddleImageView?.frame = CGRect(x: 0, y: totalHeight, width: screenWidth, height: screenWidth*0.9)
         
         if currentContentType == contentType.TL_CONTENT_IMAGE_TYPE {
-            FMiddleImageView.sd_setImage(with: getImageURL(self.feeds["name"].stringValue, width: BIG_PHOTO_WIDTH), placeholderImage: UIImage(named: "logo-default"))
+            FMiddleImageView.sd_setImage(with: getImageURL(self.feeds["name"].stringValue, width: BIG_PHOTO_WIDTH), placeholderImage: getPlaceholderImage())
             FMiddlePlayButton.frame = CGRect.zero
             FMiddlePlayButton.isHidden = true
         }
         else {
-            FMiddleImageView.sd_setImage(with: getImageURL(self.feeds["thumbnail"].stringValue, width: BIG_PHOTO_WIDTH), placeholderImage: UIImage(named: "logo-default"))
+            FMiddleImageView.sd_setImage(with: getImageURL(self.feeds["thumbnail"].stringValue, width: BIG_PHOTO_WIDTH), placeholderImage: getPlaceholderImage())
             FMiddlePlayButton.isHidden = false
             FMiddlePlayButton.frame = CGRect(x: 0, y: 0, width: FMiddleImageView.frame.size.width*0.2, height: FMiddleImageView.frame.size.width*0.15)
             FMiddlePlayButton.center = FMiddleImageView.center
         }
         totalHeight += screenWidth*0.9
-        
         
         FFooterViewBasic.parentController = helper
         FFooterViewBasic.fillFeedFooter(feed: feedData, pageType: viewType.VIEW_TYPE_OTG_CONTENTS, delegate: delegate!)

@@ -1255,31 +1255,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         
     }
     
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        for postView in layout.subviews {
-            if(postView is PhotosOTG2) {
-                let photosOtg = postView as! PhotosOTG2                
-                if photosOtg.mainPhoto != nil {
-                    photosOtg.loadImagesOnlayout()
-                }
-            }
-        }
-    }
-    
-//    func gotoProfile(_ sender: UIButton) {
-//        
-//        if isJourneyOngoing {
-//            let profile = self.storyboard!.instantiateViewController(withIdentifier: "TLProfileView") as! TLProfileViewController
-//            self.navigationController?.setNavigationBarHidden(false, animated: true)
-//            self.navigationController!.pushViewController(profile, animated: false)
-//            buttons.isHidden = true
-//        }
-//        else {
-//            self.popVC(sender)
-//            buttons.isHidden = true
-//        }
-//        
-//    }
     
     var isRefreshing = false
     
