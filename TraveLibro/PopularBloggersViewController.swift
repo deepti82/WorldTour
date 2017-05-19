@@ -183,16 +183,6 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
         cell.followButton.clipsToBounds = true
         
         
-        for rat in cell.starButton {
-            if rat.tag > 4 {
-                rat.imageView?.image = UIImage(named: "star_uncheck")
-            }else{
-                rat.imageView?.image = UIImage(named: "star_check")
-                
-                    rat.imageView?.tintColor = UIColor.white
-                }
-        }
-        
         
         let cellData = allUsers[indexPath.row]
         cell.userIcon.image = UIImage(named:"logo-default")
@@ -215,19 +205,73 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
 //        cell.userBadgeImage.image = UIImage(named:"\(cellData["userBadgeName"].stringValue.lowercased())blogger")
 //        print("iiiiiiii \(cellData["userBadgeName"].stringValue.lowercased())")
 //        
-//        switch cellData["userBadgeName"].stringValue.lowercased() {
-//        case "justgotwings":
-//            cell.userBadgeImage.image = resizeImage(image: UIImage(named:"\(cellData["userBadgeName"].stringValue.lowercased())blogger")!, newWidth: screenWidth/2)
-//        case "globetrotter":
-//            cell.userBadgeImage.image = resizeImage(image: UIImage(named:"\(cellData["userBadgeName"].stringValue.lowercased())blogger")!, newWidth: screenWidth/2)
-//        case "wayfarer":
-//            cell.userBadgeImage.image = resizeImage(image: UIImage(named:"\(cellData["userBadgeName"].stringValue.lowercased())blogger")!, newWidth: screenWidth/2.5)
-//        case "nomad":
-//            cell.userBadgeImage.image = resizeImage(image: UIImage(named:"\(cellData["userBadgeName"].stringValue.lowercased())blogger")!, newWidth: screenWidth/2.5)
-//
-//        default:
-//            cell.userBadgeImage.image = resizeImage(image: UIImage(named:"\(cellData["userBadgeName"].stringValue.lowercased())blogger")!, newWidth: screenWidth/3)
-//        }
+        switch cellData["userBadgeName"].stringValue.lowercased() {
+        case "justgotwings":
+            
+            for rat in cell.starButton {
+                if rat.tag > 2 {
+                    rat.imageView?.image = UIImage(named: "star_uncheck")
+                }else{
+                    rat.imageView?.image = UIImage(named: "star_check")
+                    
+                    rat.imageView?.tintColor = UIColor.white
+                }
+            }
+            cell.starName.text = "Just Got Wings - "
+            
+        case "globetrotter":
+            
+            for rat in cell.starButton {
+                if rat.tag > 3 {
+                    rat.imageView?.image = UIImage(named: "star_uncheck")
+                }else{
+                    rat.imageView?.image = UIImage(named: "star_check")
+                    
+                    rat.imageView?.tintColor = UIColor.white
+                }
+            }
+            cell.starName.text = "Globetrotter - "
+            
+        case "wayfarer":
+            
+            for rat in cell.starButton {
+                if rat.tag > 4 {
+                    rat.imageView?.image = UIImage(named: "star_uncheck")
+                }else{
+                    rat.imageView?.image = UIImage(named: "star_check")
+                    
+                    rat.imageView?.tintColor = UIColor.white
+                }
+            }
+            cell.starName.text = "Wayfarer - "
+            
+        case "nomad":
+            
+            for rat in cell.starButton {
+                if rat.tag > 5 {
+                    rat.imageView?.image = UIImage(named: "star_uncheck")
+                }else{
+                    rat.imageView?.image = UIImage(named: "star_check")
+                    
+                    rat.imageView?.tintColor = UIColor.white
+                }
+            }
+            cell.starName.text = "Nomad - "
+
+        default:
+            
+            for rat in cell.starButton {
+                if rat.tag > 1 {
+                    rat.imageView?.image = UIImage(named: "star_uncheck")
+                }else{
+                    rat.imageView?.image = UIImage(named: "star_check")
+                    
+                    rat.imageView?.tintColor = UIColor.white
+                }
+            }
+            cell.starName.text = "Newbie - "
+            
+        }
 
         if(currentUser != nil) {
             cell.followButton.tag = indexPath.row
@@ -240,6 +284,7 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
         return cell
         
     }
+   
 
     func setTopNavigation(_ text: String) {
         let leftButton = UIButton()
