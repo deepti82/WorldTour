@@ -218,56 +218,56 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
             
         case "postFirstTime":
             fallthrough
-        case "postTag":
-            fallthrough            
         case "postLike":
             fallthrough            
         case "postComment":
-            fallthrough            
-        case "photoComment":
             fallthrough
+        case "postMentionComment":
+            fallthrough
+        case "postTag":
+            fallthrough            
+        
         case "photoLike":
             fallthrough
-        case "journeyAccept":
-            fallthrough
-        case "journeyMentionComment":
+        case "photoComment":
+            fallthrough        
+                        
+        case "journeyLike":
             fallthrough
         case "journeyComment":
             fallthrough
-        case "journeyLike":
+        case "journeyMentionComment":
             fallthrough
-        case "itineraryMentionComment":
+        case "journeyRequest":
+            fallthrough
+        case "journeyAccept":
+            fallthrough
+        case "journeyReject":
+            fallthrough
+        case "journeyLeft":
+            fallthrough
+        
+        case "itineraryRequest":
             fallthrough
         case "itineraryLike":
             fallthrough
         case "itineraryComment":
             fallthrough
-        case "postMentionComment":
-            fallthrough       
-        case "journeyLeft":
-            fallthrough            
-        case "journeyRequest":
+        case "itineraryMentionComment":
             fallthrough
-        case "journeyComment":
-            fallthrough
-        case "journeyLike":
-            fallthrough
+            
         case "userFollowing":
             fallthrough
         case "userFollowingRequest":
             fallthrough
-        case "userBadge":
-            fallthrough
-        case "itineraryRequest":
-            fallthrough
         case "userFollowingResponse":
             fallthrough
-        case "journeyReject":                                
+            
+        case "userBadge":
             return currentCellHeight + 8
             
         case "userWelcome":
             return 180
-            
             
         default:
             return 230
@@ -288,30 +288,33 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         switch notificationType {
             
         case "postFirstTime":
-            fallthrough
-        case "postTag":
-            fallthrough            
+            fallthrough                    
         case "postLike":
             fallthrough            
         case "postComment":
-            fallthrough        
-        case "photoComment":
             fallthrough
+        case "postMentionComment":
+            fallthrough
+        case "postTag":
+            fallthrough
+        
         case "photoLike":
             fallthrough
-        case "journeyMentionComment":
+        case "photoComment":
+            fallthrough 
+        
+        case "journeyLike":
             fallthrough
         case "journeyComment":
             fallthrough
-        case "journeyLike":
+        case "journeyMentionComment":
             fallthrough
-        case "itineraryMentionComment":
-            fallthrough
+        
         case "itineraryLike":
             fallthrough
         case "itineraryComment":
             fallthrough
-        case "postMentionComment":
+        case "itineraryMentionComment":
             
             if cellNotificationData["data"]["thoughts"].stringValue != "" && canLoadCommentCell(data: cellNotificationData) {
                 
@@ -385,11 +388,11 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
             fallthrough
         case "journeyAccept":
             fallthrough
+        case "journeyReject":
+            fallthrough
         case "userFollowing":
             fallthrough
         case "userFollowingResponse":
-            fallthrough
-        case "journeyReject":
             var cell = tableView.dequeueReusableCell(withIdentifier: "acknolwdgeCell", for: indexPath) as? NotificationAcknolwdgementCell
             if cell == nil {
                 cell = NotificationAcknolwdgementCell.init(style: .default, reuseIdentifier: "acknolwdgeCell", notificationData: cellNotificationData, helper: self) 

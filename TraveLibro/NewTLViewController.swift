@@ -726,9 +726,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
                     self.cancelButton(nil)
                     self.layout.removeAll()
                     self.prevPosts = []
-                    self.isInitialLoad = true;
-//                    self.detectLocation()
-                    
+                    self.isInitialLoad = true                    
                     isJourneyOngoing = true
                     self.journeyStart = true
                     self.myJourney = response["data"]
@@ -745,7 +743,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
                     
                     self.showJourneyOngoing(journey: response["data"])
                     self.setTopNavigation(text: "On The Go");
-                }else{
+                }
+                else{
                     self.cancelButton(nil)
                     self.layout.removeAll()
                     if self.insideView == "journey" {
@@ -780,8 +779,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
                     self.cancelButton(nil)
                     self.layout.removeAll()
                     self.prevPosts = []
-                    self.isInitialLoad = true;
-//                    self.detectLocation()
+                    self.isInitialLoad = true
                     self.checkFetchedLocation()
                     self.latestCity = response["data"]["startLocation"].string!
                     if self.isRefreshing {
@@ -1967,7 +1965,9 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     //MARK:- First View Actions
     
     func checkForLocation(_ sender: UIButton?) {
-        self.detectLocation()
+        if fromOutSide == "" {
+            self.detectLocation()            
+        }
     }
     
     func newOtg(_ sender: UIButton?) {
@@ -2142,8 +2142,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         otgView.locationLabel.resignFirstResponder()
         self.title = "On The Go"
-        
-//        detectLocation()
         self.checkFetchedLocation()
         
         otgView.drawLineView3.isHidden = false
@@ -2239,7 +2237,9 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
                 })
             }
             else {
-                self.detectLocation()
+                if fromOutSide == "" {
+                    self.detectLocation()
+                }
             }
         }
     }

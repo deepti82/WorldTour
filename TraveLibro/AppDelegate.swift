@@ -54,6 +54,7 @@ let VERY_BIG_PHOTO_WIDTH = 800
 let BIG_PHOTO_WIDTH = 500
 let SMALL_PHOTO_WIDTH = 100
 let BLUR_PHOTO_WIDTH = 10
+let ORIGINAL_PHOTO_WIDTH = 0
 
 var existingUserGlobal = ""
 

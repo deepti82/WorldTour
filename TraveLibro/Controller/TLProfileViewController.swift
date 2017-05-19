@@ -287,7 +287,7 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
             
            // print("==========\(currentUser)")
             
-            self.userProfileImageView.hnk_setImageFromURL(getImageURL(currentlyShowingUser["profilePicture"].stringValue, width: 0))
+            self.userProfileImageView.sd_setImage(with: getImageURL(currentlyShowingUser["profilePicture"].stringValue, width: ORIGINAL_PHOTO_WIDTH))
             
             setUserName(username: currentlyShowingUser["name"].stringValue)
             
