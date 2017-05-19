@@ -173,15 +173,16 @@ class FooterViewNew: UIView {
             setHighlightStateForView(tag: 2, color: mainOrangeColor)
             request.getUserFromCache(user.getExistingUser(), completion: { (response) in
                 DispatchQueue.main.async {
-                    currentUser = response["data"]
                     
-                    selectedPeople = currentUser["_id"].stringValue
-                    selectedUser = currentUser
+                    currentUser = response["data"]
+                    selectedPeople = ""
+                    selectedUser = []
+                    leftViewController.profileTap(nil)
                                         
-                    let vc = storyboard?.instantiateViewController(withIdentifier: "TLProfileView") as! TLProfileViewController
-                    vc.displayData = ""
-                    vc.currentSelectedUser = selectedUser
-                    self.setVC(newViewController: vc)
+//                    let vc = storyboard?.instantiateViewController(withIdentifier: "TLProfileView") as! TLProfileViewController
+//                    vc.displayData = ""
+//                    vc.currentSelectedUser = selectedUser
+//                    self.setVC(newViewController: vc)
                     
                 }
             })

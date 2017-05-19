@@ -513,6 +513,8 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
         
         if stackView.tag == 0 {
             self.MAM = MoreAboutMe(frame: CGRect(x: 0, y: 0, width: self.MAMTextView.frame.size.width, height: 90))
+            self.MAM.forUser = currentlyShowingUser
+            self.MAM.reloadTravelPrefeces()
             self.MAM.mainTextView.textAlignment = .center
             self.MAM.mainTextView.sizeToFit()
             print("uuuuuuuu\(MAM.mainTextView.frame.height)")

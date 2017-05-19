@@ -169,8 +169,6 @@
 		C20352311CEEE1FD00A20BB2 /* SignupCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20352301CEEE1FD00A20BB2 /* SignupCardsViewController.swift */; };
 		C20352331CEEF25900A20BB2 /* DisplayCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20352321CEEF25900A20BB2 /* DisplayCardsViewController.swift */; };
 		C20352371CEF433500A20BB2 /* SideNavigationMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20352361CEF433500A20BB2 /* SideNavigationMenuViewController.swift */; };
-		C20938FC1D11298A00CBA70F /* MoreAboutMeScrollForProfile.xib in Resources */ = {isa = PBXBuildFile; fileRef = C20938FB1D11298A00CBA70F /* MoreAboutMeScrollForProfile.xib */; };
-		C20938FE1D112B5D00CBA70F /* MoreAboutMeScrollForProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20938FD1D112B5D00CBA70F /* MoreAboutMeScrollForProfile.swift */; };
 		C20939011D11557B00CBA70F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20939001D11557B00CBA70F /* HomeViewController.swift */; };
 		C20939051D11655200CBA70F /* NavigationMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20939041D11655200CBA70F /* NavigationMainViewController.swift */; };
 		C20939061D1180C100CBA70F /* DJB My Mood Ring Says Blah.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C2A5C1D21CF973120035EF0E /* DJB My Mood Ring Says Blah.ttf */; };
@@ -310,9 +308,7 @@
 		C276EDAA1D06CBB800906FEC /* EditDOB.xib in Resources */ = {isa = PBXBuildFile; fileRef = C276EDA91D06CBB800906FEC /* EditDOB.xib */; };
 		C276EDAC1D06CCBC00906FEC /* EditDOB.swift in Sources */ = {isa = PBXBuildFile; fileRef = C276EDAB1D06CCBC00906FEC /* EditDOB.swift */; };
 		C27C48091DB5ECDF00330ABF /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27C48081DB5ECDF00330ABF /* PostModel.swift */; };
-		C27F6BFD1CF037C60049F012 /* ProfileMainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C27F6BFC1CF037C60049F012 /* ProfileMainView.xib */; };
 		C27F6BFF1CF03DF90049F012 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27F6BFE1CF03DF90049F012 /* ProfileViewController.swift */; };
-		C27F6C011CF03E280049F012 /* ProfileMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27F6C001CF03E280049F012 /* ProfileMainView.swift */; };
 		C27F6C031CF06A130049F012 /* MomentsTab.xib in Resources */ = {isa = PBXBuildFile; fileRef = C27F6C021CF06A130049F012 /* MomentsTab.xib */; };
 		C27F6C051CF06AB10049F012 /* MomentsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27F6C041CF06AB10049F012 /* MomentsTab.swift */; };
 		C2803BC41CF41F99007A906E /* BlogView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2803BC31CF41F99007A906E /* BlogView.xib */; };
@@ -699,8 +695,6 @@
 		C20352301CEEE1FD00A20BB2 /* SignupCardsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupCardsViewController.swift; sourceTree = "<group>"; };
 		C20352321CEEF25900A20BB2 /* DisplayCardsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayCardsViewController.swift; sourceTree = "<group>"; };
 		C20352361CEF433500A20BB2 /* SideNavigationMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideNavigationMenuViewController.swift; sourceTree = "<group>"; };
-		C20938FB1D11298A00CBA70F /* MoreAboutMeScrollForProfile.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoreAboutMeScrollForProfile.xib; sourceTree = "<group>"; };
-		C20938FD1D112B5D00CBA70F /* MoreAboutMeScrollForProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreAboutMeScrollForProfile.swift; sourceTree = "<group>"; };
 		C20939001D11557B00CBA70F /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = ../HomeViewController.swift; sourceTree = "<group>"; };
 		C20939041D11655200CBA70F /* NavigationMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationMainViewController.swift; sourceTree = "<group>"; };
 		C20A18F31D224EF400760BF9 /* CheckInSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckInSearchViewController.swift; sourceTree = "<group>"; };
@@ -838,9 +832,7 @@
 		C276EDA91D06CBB800906FEC /* EditDOB.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EditDOB.xib; path = ../EditDOB.xib; sourceTree = "<group>"; };
 		C276EDAB1D06CCBC00906FEC /* EditDOB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditDOB.swift; path = ../EditDOB.swift; sourceTree = "<group>"; };
 		C27C48081DB5ECDF00330ABF /* PostModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
-		C27F6BFC1CF037C60049F012 /* ProfileMainView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileMainView.xib; sourceTree = "<group>"; };
 		C27F6BFE1CF03DF90049F012 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		C27F6C001CF03E280049F012 /* ProfileMainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileMainView.swift; sourceTree = "<group>"; };
 		C27F6C021CF06A130049F012 /* MomentsTab.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MomentsTab.xib; sourceTree = "<group>"; };
 		C27F6C041CF06AB10049F012 /* MomentsTab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MomentsTab.swift; sourceTree = "<group>"; };
 		C2803BC31CF41F99007A906E /* BlogView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BlogView.xib; sourceTree = "<group>"; };
@@ -1218,7 +1210,6 @@
 				C2A27A4A1CEDC8F700F74DD1 /* LogInView */,
 				C255C7C21CF305C2009E41AF /* MomentsTab */,
 				C24F84E31D002357002EA203 /* MoreAboutMe */,
-				C20938FF1D1139E100CBA70F /* MoreAboutMeScrollForProfile */,
 				C248704D1D0BF09C003CB0DD /* MoreAboutTrip */,
 				C2D594531CF4895F0007F50B /* MyLifeTabs */,
 				C263E3A31D1E5BE100D274FE /* NewProfilePosts */,
@@ -1234,7 +1225,6 @@
 				C2A6E26E1CE9E5DE00D3F845 /* PhotosOTG */,
 				C24B45661D0AF3D2002EA009 /* PopularAgents */,
 				C2504E801CF33A0200A84D78 /* PopularJourneyView */,
-				C255C7C31CF30604009E41AF /* ProfileMainView */,
 				C24DA9AD1D7E93CE001233F0 /* ProfilePicFancy */,
 				C2FA1E141D54883E0034DE97 /* QuickItineraryFive */,
 				C2FA1E151D5493B50034DE97 /* QuickItineraryFour */,
@@ -1678,15 +1668,6 @@
 				360C1A8E1E02A6F0009780B3 /* ConfigModel.swift */,
 			);
 			name = Models;
-			sourceTree = "<group>";
-		};
-		C20938FF1D1139E100CBA70F /* MoreAboutMeScrollForProfile */ = {
-			isa = PBXGroup;
-			children = (
-				C20938FB1D11298A00CBA70F /* MoreAboutMeScrollForProfile.xib */,
-				C20938FD1D112B5D00CBA70F /* MoreAboutMeScrollForProfile.swift */,
-			);
-			name = MoreAboutMeScrollForProfile;
 			sourceTree = "<group>";
 		};
 		C20A18FB1D229DC900760BF9 /* AddCheckIn */ = {
@@ -2136,15 +2117,6 @@
 				C27F6C041CF06AB10049F012 /* MomentsTab.swift */,
 			);
 			name = MomentsTab;
-			sourceTree = "<group>";
-		};
-		C255C7C31CF30604009E41AF /* ProfileMainView */ = {
-			isa = PBXGroup;
-			children = (
-				C27F6BFC1CF037C60049F012 /* ProfileMainView.xib */,
-				C27F6C001CF03E280049F012 /* ProfileMainView.swift */,
-			);
-			name = ProfileMainView;
 			sourceTree = "<group>";
 		};
 		C25649981D48E7080046E36D /* TripInfoOTG */ = {
@@ -3031,7 +3003,6 @@
 				8453CF3D1E30A12400C41F82 /* ActivityDetailItinerary.xib in Resources */,
 				C2A5C1D71CF9B09E0035EF0E /* TraveLifeVideoPost.xib in Resources */,
 				44B17E911E691D4700CA8F0C /* notificationTimeView.xib in Resources */,
-				C27F6BFD1CF037C60049F012 /* ProfileMainView.xib in Resources */,
 				368A56901E3CD6E600DC8A19 /* loader.gif in Resources */,
 				FCCA8F171E28AE7200775985 /* TripSummaryCell.xib in Resources */,
 				FC0B9A9A1E20BCC4005D9206 /* QuickCity.xib in Resources */,
@@ -3057,7 +3028,6 @@
 				840599831E3CDA60004E0696 /* DropShadow1.xib in Resources */,
 				44F2FACD1EB86BB6003BB3EA /* EndJourneyView.xib in Resources */,
 				C26695581D3CA2CD0068D9C7 /* TimestampTagViewOnScroll.xib in Resources */,
-				C20938FC1D11298A00CBA70F /* MoreAboutMeScrollForProfile.xib in Resources */,
 				C2A6E26B1CE9DF8D00D3F845 /* AddFriendOTG.xib in Resources */,
 				842D7A501E1E5D3E00FEDCD1 /* NearMeOptionButton.xib in Resources */,
 				C20A39961CE34AD0002EF1E6 /* FriendView.xib in Resources */,
@@ -3247,7 +3217,6 @@
 				FCCFAAE11E7A813400F01DE6 /* PopularItinerary.swift in Sources */,
 				C2DCB36E1CE723C3006E5CBD /* RatingReviewViewController.swift in Sources */,
 				845C432E1E2FCE4200800F51 /* ActivityFeedFooter.swift in Sources */,
-				C27F6C011CF03E280049F012 /* ProfileMainView.swift in Sources */,
 				1A944E3A1CCB5B88007EB5BD /* FooterView.swift in Sources */,
 				FCE877FC1E3093A4005EE913 /* ActivityHeaderTag.swift in Sources */,
 				843510E41DF7F88100C3D8EE /* QuickIteneraryFour.swift in Sources */,
@@ -3461,7 +3430,6 @@
 				3690AB731E1CFA8500642A6A /* PhotosOTG2.swift in Sources */,
 				C26B4DE91D13E48200213055 /* Layout.swift in Sources */,
 				C2A27A501CEDD5F300F74DD1 /* SignInPageViewController.swift in Sources */,
-				C20938FE1D112B5D00CBA70F /* MoreAboutMeScrollForProfile.swift in Sources */,
 				840599851E3CDB2B004E0696 /* DropShadow1.swift in Sources */,
 				C28A92451D0E83FD00CFEC7A /* FilterRestaurants.swift in Sources */,
 				C23EB1D11CFEC865005B5CE8 /* PhotoBar.swift in Sources */,

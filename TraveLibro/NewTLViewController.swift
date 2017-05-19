@@ -2081,7 +2081,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
             self.navigationController!.popViewController(animated: true)
         }
         else {
-            leftViewController.profileTap(UIButton())
+            leftViewController.profileTap(nil)
         }        
     }
     

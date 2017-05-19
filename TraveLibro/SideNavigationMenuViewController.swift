@@ -227,7 +227,7 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         profile.flag.isHidden = true
     }
     
-    @IBAction func profileTap(_ sender: AnyObject) {
+    @IBAction func profileTap(_ sender: AnyObject?) {
         if currentUser != nil {
             selectedUser = nil
             request.getUserFromCache(user.getExistingUser(), completion: { (response) in

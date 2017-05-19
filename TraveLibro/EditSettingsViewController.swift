@@ -50,6 +50,8 @@ class EditSettingsViewController: UIViewController, UIWebViewDelegate {
             self.view.addSubview(titleView)
             
             MAMtextView = MoreAboutMe(frame: CGRect(x: 0, y: 76, width: self.view.frame.width, height: 150))
+            MAMtextView.forUser = currentUser
+            MAMtextView.reloadTravelPrefeces()
             MAMtextView.backgroundColor = UIColor(white: 1, alpha: 0.8)
             self.view.addSubview(MAMtextView)
             break        
