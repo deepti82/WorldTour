@@ -831,20 +831,18 @@ class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDele
         parentView?.frame = CGRect(x: 0, y: 0, width: carousel.frame.size.width*0.95, height: carousel.frame.size.height*0.95)
         currentImageView.frame = CGRect(x: 0, y: 0, width: (parentView?.frame.size.width)!, height: (parentView?.frame.size.height)!)
         
-        if index == carousel.currentItemIndex {
+//        if index == carousel.currentItemIndex {
             if fetchType == photoVCType.FROM_QUICK_ITINERARY_LOCAL {
                 currentImageView.image = globalPostImage[index].image
             }
             else {
                 var currentJson = photos[index]        
-                if currentJson != nil {
-                    currentImageView.hnk_setImageFromURL(getImageURL((currentJson["name"].stringValue), width: BLUR_PHOTO_WIDTH), placeholder: UIImage(named:"logo-default"), format: nil, failure: nil, success: { (image) in
-                        currentImageView.image = image
-                        currentImageView.hnk_setImageFromURL(getImageURL((currentJson["name"].stringValue), width: VERY_BIG_PHOTO_WIDTH))                    
-                    })
+                if currentJson != nil {                    
+                    currentImageView.sd_setImage(with: getImageURL((currentJson["name"].stringValue), width: BLUR_PHOTO_WIDTH), placeholderImage: UIImage(named: "logo-default"))
+                    currentImageView.sd_setImage(with: getImageURL((currentJson["name"].stringValue), width: BIG_PHOTO_WIDTH), placeholderImage: UIImage(named: "logo-default"))
                 }
             }            
-        }
+//        }
         
         
         return parentView!
@@ -858,24 +856,22 @@ class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDele
         
         if carousel.currentItemIndex != -1 {
             
-            let currentView = carousel.currentItemView
-            
-            var currentImageView : UIImageView?
-            if currentView != nil {
-                for imgView in (currentView?.subviews)! {
-                    if imgView.tag == 10 {
-                        currentImageView = (imgView as! UIImageView)
-                    }
-                }
-            }
-            
-            print("\n currentImageView : \(currentImageView?.frame)")
+//            let currentView = carousel.currentItemView
+//            
+//            var currentImageView : UIImageView?
+//            if currentView != nil {
+//                for imgView in (currentView?.subviews)! {
+//                    if imgView.tag == 10 {
+//                        currentImageView = (imgView as! UIImageView)
+//                    }
+//                }
+//            }
             
             if fetchType == photoVCType.FROM_QUICK_ITINERARY_LOCAL {
-                currentImageView?.image = globalPostImage[carousel.currentItemIndex].image
+//                currentImageView?.image = globalPostImage[carousel.currentItemIndex].image
                 bgImage.image = globalPostImage[carousel.currentItemIndex].image
                 if self.index == carousel.currentItemIndex {
-                    currentImageView?.image = globalPostImage[carousel.currentItemIndex].image
+//                    currentImageView?.image = globalPostImage[carousel.currentItemIndex].image
                 }
             }
             else {
@@ -887,13 +883,8 @@ class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDele
                 
                 if currentJson != nil {
                     if (currentJson?["type"].stringValue == "photo") {
-                        currentImageView?.hnk_setImageFromURL(getImageURL((currentJson?["name"].stringValue)!, width: BLUR_PHOTO_WIDTH), placeholder: UIImage(named:"logo-default"), format: nil, failure: nil, success: { (image) in
-                            currentImageView?.image = image
-                            currentImageView?.hnk_setImageFromURL(getImageURL((currentJson?["name"].stringValue)!, width: VERY_BIG_PHOTO_WIDTH))
-                        })
-                        
                         self.fromPhotoFunction(data: currentJson! )
-                        bgImage.hnk_setImageFromURL(getImageURL((currentJson?["name"].stringValue)!, width: BLUR_PHOTO_WIDTH))
+                        bgImage.sd_setImage(with: getImageURL((currentJson?["name"].stringValue)!, width: BLUR_PHOTO_WIDTH), placeholderImage: UIImage(named: "logo-default"))
                     }
                     else {
                         DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {

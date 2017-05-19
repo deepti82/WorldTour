@@ -36,7 +36,7 @@ class LogInView: UIView {
         logInButton.layer.cornerRadius = 5
         
         for button in socialLoginButtons {
-            button.layer.cornerRadius = 5.0
+            button.layer.cornerRadius = 10.0
         }
         
     }

@@ -257,17 +257,20 @@ class TripSummaryPhotosViewController: UIViewController, UITableViewDataSource, 
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! contentCollectionViewCell
         if currentContentType == contentType.TL_CONTENT_IMAGE_TYPE {
-            cell.contentImageView.hnk_setImageFromURL(getImageURL(self.contentDataArray[indexPath.row]["name"].stringValue, width: BLUR_PHOTO_WIDTH), placeholder: UIImage(named:"logo-default"), format: nil, failure: nil, success: { (image) in
-                cell.contentImageView.image = image
-                cell.contentImageView.hnk_setImageFromURL(getImageURL(self.contentDataArray[indexPath.row]["name"].stringValue, width: BIG_PHOTO_WIDTH))
-            })
+            
+            cell.contentImageView.sd_setImage(with: (getImageURL(self.contentDataArray[indexPath.row]["name"].stringValue, width: BLUR_PHOTO_WIDTH)),
+                                              placeholderImage: UIImage(named: "logo-default"))
+            
+            cell.contentImageView.sd_setImage(with: (getImageURL(self.contentDataArray[indexPath.row]["name"].stringValue, width: BIG_PHOTO_WIDTH)),
+                                              placeholderImage: UIImage(named: "logo-default"))
+
             cell.contentPlayImageView.isHidden = true
         }
         else{
-            cell.contentImageView.hnk_setImageFromURL(getImageURL(self.contentDataArray[indexPath.row]["thumbnail"].stringValue, width: BLUR_PHOTO_WIDTH), placeholder: UIImage(named:"logo-default"), format: nil, failure: nil, success: { (image) in
-                cell.contentImageView.image = image
-                cell.contentImageView.hnk_setImageFromURL(getImageURL(self.contentDataArray[indexPath.row]["thumbnail"].stringValue, width: BIG_PHOTO_WIDTH))
-            })
+            cell.contentImageView.sd_setImage(with: (getImageURL(self.contentDataArray[indexPath.row]["thumbnail"].stringValue, width: BLUR_PHOTO_WIDTH)),
+                                              placeholderImage: UIImage(named: "logo-default"))
+            cell.contentImageView.sd_setImage(with: (getImageURL(self.contentDataArray[indexPath.row]["thumbnail"].stringValue, width: BIG_PHOTO_WIDTH)),
+                                              placeholderImage: UIImage(named: "logo-default"))
             cell.contentPlayImageView.isHidden = false
         }
         
