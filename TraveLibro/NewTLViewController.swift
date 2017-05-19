@@ -1256,7 +1256,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        print("scrollViewDidEndDragging")
         for postView in layout.subviews {
             if(postView is PhotosOTG2) {
                 let photosOtg = postView as! PhotosOTG2                

@@ -2851,7 +2851,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HEf-Pa-zSZ">
-                                        <rect key="frame" x="95" y="245" width="154" height="30"/>
+                                        <rect key="frame" x="94.5" y="245" width="154" height="30"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="more about me... " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m1F-gD-cCl">
                                                 <rect key="frame" x="0.0" y="0.0" width="124" height="30"/>
@@ -4853,7 +4853,7 @@
                                                 <rect key="frame" x="161.5" y="0.0" width="48.5" height="30"/>
                                                 <subviews>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wjB-Dd-ihB">
-                                                        <rect key="frame" x="0.0" y="0.0" width="48.5" height="30"/>
+                                                        <rect key="frame" x="0.5" y="0.0" width="48.5" height="30"/>
                                                         <color key="tintColor" red="1" green="0.4039215686" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <color key="textColor" red="0.17254901959999999" green="0.2156862745" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
                                                         <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
@@ -11518,7 +11518,7 @@
                                                                 <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="18"/>
                                                             </variation>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="countries Visited" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iry-6M-0Uj">
+                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="countries Visited" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iry-6M-0Uj">
                                                             <rect key="frame" x="0.0" y="33" width="92" height="35"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                             <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
@@ -11529,7 +11529,7 @@
                                                             </variation>
                                                         </label>
                                                         <view alpha="0.20000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="83Y-jK-J6d">
-                                                            <rect key="frame" x="92" y="8" width="1" height="64"/>
+                                                            <rect key="frame" x="96" y="8" width="1" height="64"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="1" id="HAD-m1-pBY"/>
@@ -11542,8 +11542,8 @@
                                                     <constraint firstItem="83Y-jK-J6d" firstAttribute="centerY" secondItem="xKY-l9-JGm" secondAttribute="centerY" id="29i-CF-Yoa"/>
                                                     <constraint firstAttribute="trailingMargin" secondItem="wND-n0-H68" secondAttribute="trailing" id="6dp-ck-SP6"/>
                                                     <constraint firstAttribute="trailingMargin" secondItem="iry-6M-0Uj" secondAttribute="trailing" id="9fg-Ab-rhu"/>
+                                                    <constraint firstAttribute="trailingMargin" secondItem="83Y-jK-J6d" secondAttribute="trailing" constant="-5" id="C7V-4E-mLt"/>
                                                     <constraint firstItem="wND-n0-H68" firstAttribute="top" secondItem="xKY-l9-JGm" secondAttribute="topMargin" constant="4" id="Ec4-Nr-AD9"/>
-                                                    <constraint firstAttribute="trailingMargin" secondItem="83Y-jK-J6d" secondAttribute="trailing" constant="-1" id="LQf-k9-pBf"/>
                                                     <constraint firstItem="wND-n0-H68" firstAttribute="leading" secondItem="xKY-l9-JGm" secondAttribute="leadingMargin" constant="-8" id="XFR-cU-qxN"/>
                                                     <constraint firstItem="iry-6M-0Uj" firstAttribute="top" secondItem="wND-n0-H68" secondAttribute="bottom" constant="1" id="e8V-5n-5ma"/>
                                                     <constraint firstAttribute="bottomMargin" secondItem="iry-6M-0Uj" secondAttribute="bottom" constant="4" id="nI0-Jw-5dK"/>

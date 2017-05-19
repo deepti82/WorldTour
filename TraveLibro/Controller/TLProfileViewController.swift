@@ -422,7 +422,7 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
         cell.separatorView.isHidden = false
         
         cell.countLabel.text = labels[indexPath.row]["count"]
-        cell.infoLabel.text = labels[indexPath.row]["text"]
+        cell.infoLabel.text = getTrimmedString(inputString: labels[indexPath.row]["text"]!)
 //        cell.infoLabel.sizeToFit()
 //        cell.infoLabel.center = CGPoint(x: cell.center.x, y: cell.infoLabel.center.y)
         

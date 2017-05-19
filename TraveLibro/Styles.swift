@@ -649,6 +649,11 @@ func getWidthOfText(text:String, font:UIFont) -> CGFloat{
     return size.width
 }
 
+func getTrimmedString(inputString: String) -> String {
+    let trimmedString = inputString.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+    return trimmedString
+}
+
 func getRegularStringWithColor(string: String, size: Int, color: UIColor) -> NSMutableAttributedString {
     return NSMutableAttributedString(string: string, 
                                      attributes: [NSFontAttributeName: UIFont(name: "Avenir-Medium", size: CGFloat(size))!, NSForegroundColorAttributeName: color])
