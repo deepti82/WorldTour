@@ -28,6 +28,8 @@ class TripSummaryPhotosViewController: UIViewController, UITableViewDataSource, 
     @IBOutlet weak var contentCollectionView: UICollectionView!    
     @IBOutlet weak var contentTableView: UITableView!
     
+    var loader = LoadingOverlay()
+    
     var contentDataArray: [JSON] = []
     var videoContainer:VideoView!
     var player:Player!
@@ -52,6 +54,8 @@ class TripSummaryPhotosViewController: UIViewController, UITableViewDataSource, 
         super.viewDidLoad()
         
         getDarkBackGround(self)
+        
+        loader.showOverlay(self.view)
         
         self.getJourneyContent()
         
@@ -81,7 +85,7 @@ class TripSummaryPhotosViewController: UIViewController, UITableViewDataSource, 
             
             DispatchQueue.main.async(execute: {
                 
-                print("\n\n Response : \(response)")
+                self.loader.hideOverlayView()
                 
                 if response.error != nil {
                     
@@ -115,7 +119,7 @@ class TripSummaryPhotosViewController: UIViewController, UITableViewDataSource, 
     
     //MARK: - Reload
     
-    func reloadContent() {        
+    func reloadContent() {
         if (!contentTableView.isHidden) {
             contentTableView.reloadData()
             if contentDataArray.isNotEmpty {
