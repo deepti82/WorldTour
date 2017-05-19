@@ -79,7 +79,8 @@ class QuickIteneraryFive: UIViewController, UICollectionViewDataSource, UICollec
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photosFromGallery", for: indexPath)
             as! photosSelection
         if(self.imageArr[indexPath.row].imageUrl != nil) {
-            cell.photosImage.hnk_setImageFromURL(self.imageArr[indexPath.row].imageUrl)
+            cell.photosImage.sd_setImage(with: self.imageArr[indexPath.row].imageUrl,
+                                         placeholderImage: getPlaceholderImage())
         } else {
             cell.photosImage.image = self.imageArr[indexPath.row].image
         }

@@ -441,10 +441,8 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MomentsLargeImageCell", for: indexPath) as! photosTwoCollectionViewCell
             if allData[indexPath.row]["name"].stringValue != "" {
                 
-                cell.photoBig.hnk_setImageFromURL(getImageURL(self.allData[indexPath.row]["name"].stringValue, width: BLUR_PHOTO_WIDTH), placeholder: UIImage(named:"logo-default"), format: nil, failure: nil, success: { (image) in
-                    cell.photoBig.image = image
-                    cell.photoBig.hnk_setImageFromURL(getImageURL(self.allData[indexPath.row]["name"].stringValue, width: BIG_PHOTO_WIDTH))
-                })
+                cell.photoBig.sd_setImage(with: getImageURL(self.allData[indexPath.row]["name"].stringValue, width: BIG_PHOTO_WIDTH),
+                                          placeholderImage: getPlaceholderImage())
                 
             }else{
                 cell.photoBig.image = UIImage(named: "logo-default")
@@ -455,30 +453,27 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
             
             switch momentType {
             case "all":
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath) as! photosCollectionViewCell
-                cell.photo.image = UIImage(named: "logo-default")
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath) as! photosCollectionViewCell                
                 if allData[indexPath.section]["data"][indexPath.row]["name"].stringValue != "" {
-                    cell.photo.hnk_setImageFromURL(getImageURL(allData[indexPath.section]["data"][indexPath.row]["name"].stringValue, width: 200))
+                    cell.photo.sd_setImage(with: getImageURL(allData[indexPath.section]["data"][indexPath.row]["name"].stringValue, width: SMALL_PHOTO_WIDTH),
+                                           placeholderImage: getPlaceholderImage())
                     
                 }else{
                     cell.photo.image = UIImage(named: "logo-default")
                 }
                 return cell
             case "Monthly", "SelectCover":
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MomentsLargeImageCell", for: indexPath) as! photosTwoCollectionViewCell
-                cell.photoBig.image = UIImage(named: "logo-default")
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MomentsLargeImageCell", for: indexPath) as! photosTwoCollectionViewCell                
                 cell.photoBig.backgroundColor = UIColor.white
-                
-                cell.photoBig.hnk_setImageFromURL(URL(string: "\(adminUrl)upload/readFile?file=\(self.images[(indexPath as NSIndexPath).item])&width=300")!)
+                cell.photoBig.sd_setImage(with: URL(string: "\(adminUrl)upload/readFile?file=\(self.images[(indexPath as NSIndexPath).item])&width=\(SMALL_PHOTO_WIDTH)")!,
+                                          placeholderImage: getPlaceholderImage())                
                 return cell
             case "local-life":
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "localLifeMomentsCell", for: indexPath) as! LocalLifeMomentsCollectionViewCell
-                cell.bgImage.image = UIImage(named: "logo-default")
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "localLifeMomentsCell", for: indexPath) as! LocalLifeMomentsCollectionViewCell                
                 cell.bgImage.layer.cornerRadius = 8
-
                 cell.bgImage.clipsToBounds = true
-//
-                cell.bgImage.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["data"][0]["name"].stringValue, width: 0))
+                cell.bgImage.sd_setImage(with: getImageURL(allData[indexPath.row]["data"][0]["name"].stringValue, width: VERY_BIG_PHOTO_WIDTH),
+                                         placeholderImage: getPlaceholderImage())                
                 cell.albumTitle.attributedText = createHeaderDate(currDate: allData[indexPath.row]["data"][0]["UTCModified"].stringValue, count: allData[indexPath.row]["count"].stringValue, new:false)
 
                 
@@ -489,14 +484,16 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
                 
                 cell.bgImage.layer.cornerRadius = 8
                 cell.bgImage.clipsToBounds = true
-                cell.bgImage.image = UIImage(named: "logo-default")
                 
                 if allData[indexPath.row]["coverPhoto"] != nil {
-                    cell.bgImage.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["coverPhoto"].stringValue, width: 300))
+                    cell.bgImage.sd_setImage(with: getImageURL(allData[indexPath.row]["coverPhoto"].stringValue, width: BIG_PHOTO_WIDTH),
+                                             placeholderImage: getPlaceholderImage())                   
                 }else if !allData[indexPath.row]["photos"].isEmpty {
-                    cell.bgImage.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["photos"]["name"].stringValue, width: 300))
+                    cell.bgImage.sd_setImage(with: getImageURL(allData[indexPath.row]["photos"]["name"].stringValue, width: BIG_PHOTO_WIDTH),
+                                             placeholderImage: getPlaceholderImage())
                 }else{
-                    cell.bgImage.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["startLocationPic"].stringValue, width: 300))
+                    cell.bgImage.sd_setImage(with: getImageURL(allData[indexPath.row]["startLocationPic"].stringValue, width: BIG_PHOTO_WIDTH),
+                                             placeholderImage: getPlaceholderImage())
                 }
                 
                 cell.albumTitle.text = allData[indexPath.row]["name"].stringValue + " (\(allData[indexPath.row]["mediaCount"].stringValue))"
@@ -505,25 +502,26 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
                     cell.albumDated.text = getDateFormat(allData[indexPath.row]["endTime"].stringValue, format: "MMMM, yyyy")
 
                 }else{
-                cell.albumDated.text = getDateFormat(allData[indexPath.row]["startTime"].stringValue, format: "MMMM, yyyy")
+                    cell.albumDated.text = getDateFormat(allData[indexPath.row]["startTime"].stringValue, format: "MMMM, yyyy")
                 }
                 
-                
-                
                 return cell
+                
             default:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "reviewsCell", for: indexPath) as! reviewsCollectionViewCell
                 if reviewType == "local-life" {
                     
                     cell.bgImage.image = UIImage(named: "Local_Life-2")
                     cell.placeName.text = getShortCountry(country: allData[indexPath.row]["name"].stringValue)
-                    cell.foregroundImage.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["cityCoverPhoto"].stringValue, width: 300))
+                    cell.foregroundImage.sd_setImage(with: getImageURL(allData[indexPath.row]["cityCoverPhoto"].stringValue, width: BIG_PHOTO_WIDTH),
+                                             placeholderImage: getPlaceholderImage())
                     
                 }
                 else {
                     cell.bgImage.image = UIImage(named: "Travel_Life-2")
                     cell.placeName.text = getShortCountry(country: allData[indexPath.row]["name"].stringValue)
-                    cell.foregroundImage.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["countryCoverPhoto"].stringValue, width: 300))
+                    cell.foregroundImage.sd_setImage(with: getImageURL(allData[indexPath.row]["countryCoverPhoto"].stringValue, width: BIG_PHOTO_WIDTH),
+                                                     placeholderImage: getPlaceholderImage())
                     cell.foregroundImage.clipsToBounds = true
                     cell.foregroundImage.contentMode = .scaleAspectFill
                     

@@ -98,10 +98,8 @@ class EachItineraryPhotosViewController: UIViewController, UICollectionViewDataS
         
         if selectedItinerary != "" {
             
-            cell.photo.hnk_setImageFromURL(getImageURL(self.photoJSON[indexPath.row]["name"].stringValue, width: BLUR_PHOTO_WIDTH), placeholder: UIImage(named:"logo-default"), format: nil, failure: nil, success: { (image) in
-                cell.photo.image = image
-                cell.photo.hnk_setImageFromURL(getImageURL(self.photoJSON[indexPath.row]["name"].stringValue, width: BIG_PHOTO_WIDTH))
-            })
+            cell.photo.sd_setImage(with: getImageURL(self.photoJSON[indexPath.row]["name"].stringValue, width: BIG_PHOTO_WIDTH), 
+                                   placeholderImage: getPlaceholderImage())
 
         }else{
             cell.photo.image = globalPostImage[indexPath.row].image
