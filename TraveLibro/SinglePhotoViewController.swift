@@ -831,18 +831,21 @@ class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDele
         parentView?.frame = CGRect(x: 0, y: 0, width: carousel.frame.size.width*0.95, height: carousel.frame.size.height*0.95)
         currentImageView.frame = CGRect(x: 0, y: 0, width: (parentView?.frame.size.width)!, height: (parentView?.frame.size.height)!)
         
-        if fetchType == photoVCType.FROM_QUICK_ITINERARY_LOCAL {
-            currentImageView.image = globalPostImage[index].image
-        }
-        else {
-            var currentJson = photos[index]        
-            if currentJson != nil {
-                currentImageView.hnk_setImageFromURL(getImageURL((currentJson["name"].stringValue), width: BLUR_PHOTO_WIDTH), placeholder: UIImage(named:"logo-default"), format: nil, failure: nil, success: { (image) in
-                    currentImageView.image = image
-                    currentImageView.hnk_setImageFromURL(getImageURL((currentJson["name"].stringValue), width: VERY_BIG_PHOTO_WIDTH))                    
-                })
+        if index == carousel.currentItemIndex {
+            if fetchType == photoVCType.FROM_QUICK_ITINERARY_LOCAL {
+                currentImageView.image = globalPostImage[index].image
             }
-        }        
+            else {
+                var currentJson = photos[index]        
+                if currentJson != nil {
+                    currentImageView.hnk_setImageFromURL(getImageURL((currentJson["name"].stringValue), width: BLUR_PHOTO_WIDTH), placeholder: UIImage(named:"logo-default"), format: nil, failure: nil, success: { (image) in
+                        currentImageView.image = image
+                        currentImageView.hnk_setImageFromURL(getImageURL((currentJson["name"].stringValue), width: VERY_BIG_PHOTO_WIDTH))                    
+                    })
+                }
+            }            
+        }
+        
         
         return parentView!
     }   

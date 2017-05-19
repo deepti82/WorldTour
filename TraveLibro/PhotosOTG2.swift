@@ -92,9 +92,9 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
             
             if(!post.post_isOffline) {
                 self.mainPhoto?.isUserInteractionEnabled = true
-                let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(PhotosOTG2.openSinglePhoto(_:)))
-                self.mainPhoto?.addGestureRecognizer(tapGestureRecognizer)
                 self.mainPhoto?.tag = 0
+                let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(PhotosOTG2.openSinglePhoto(_:)))
+                self.mainPhoto?.addGestureRecognizer(tapGestureRecognizer)                
             }            
             self.mainPhoto?.hnk_setImageFromURL(getImageURL(post.imageArr[0].imageUrl.absoluteString, width: BLUR_PHOTO_WIDTH))
 
@@ -341,10 +341,10 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
         centerView?.morePhotosView.contentSize = CGSize(width: (centerView?.horizontalScrollForPhotos.frame.width)!, height: (centerView?.horizontalScrollForPhotos.frame.height)!)
     }
     
-    func openSinglePhoto(_ sender: AnyObject) {
+    func openSinglePhoto(_ sender: UIGestureRecognizer?) {
         let singlePhotoController = storyboard?.instantiateViewController(withIdentifier: "singlePhoto") as! SinglePhotoViewController
 //        singlePhotoController.mainImage?.image = sender.image
-        singlePhotoController.index = sender.view.tag
+        singlePhotoController.index = (sender?.view?.tag == 0 || sender?.view?.tag == 1) ? ((sender?.view?.isEqual(self.mainPhoto))! ? 0 : 1) : sender?.view?.tag
         singlePhotoController.postId = postTop.post_ids
         globalNavigationController.pushViewController(singlePhotoController, animated: true)
     
@@ -475,8 +475,8 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
             
             let min = self.frame.origin.y + (self.mainPhoto?.frame.origin.y)!
             let max = min + (self.mainPhoto?.frame.size.height)!
-            let scrollMin = 2*(self.scrollView.contentOffset.y)
-            let scrollMax = 2*(scrollMin + self.scrollView.frame.height)
+            let scrollMin = 1.2*(self.scrollView.contentOffset.y)
+            let scrollMax = 1.2*(scrollMin + self.scrollView.frame.height)
             
             
             if (max > scrollMin && min < scrollMax) {

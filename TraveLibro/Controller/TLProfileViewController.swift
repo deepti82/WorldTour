@@ -134,7 +134,10 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         isProfileVCVisible = false
-        shouldShowTransperentNavBar = false
+        shouldShowTransperentNavBar = false        
+        if (self.mamStackView.tag == 1) {
+            self.toggleMAMTextView(stackView: self.mamStackView)
+        }
         self.customiseNavigation()
     }
 
