@@ -178,11 +178,23 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "popularCell") as! PopularBloggerTableViewCell
         cell.followButton.layer.cornerRadius = 5
-        cell.followButton.layer.borderColor = UIColor.white.cgColor
+        cell.followButton.layer.borderColor = mainOrangeColor.cgColor
         cell.followButton.layer.borderWidth = 1.5
         cell.followButton.clipsToBounds = true
         
-        let cellData = allUsers[indexPath.row]        
+        
+        for rat in cell.starButton {
+            if rat.tag > 4 {
+                rat.imageView?.image = UIImage(named: "star_uncheck")
+            }else{
+                rat.imageView?.image = UIImage(named: "star_check")
+                
+                    rat.imageView?.tintColor = UIColor.white
+                }
+        }
+        
+        
+        let cellData = allUsers[indexPath.row]
         cell.userIcon.image = UIImage(named:"logo-default")
         cell.userIcon.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(cellData["profilePicture"].stringValue)", width: SMALL_PHOTO_WIDTH))
 
@@ -200,22 +212,22 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
         cell.journeyCountLabel.text = cellData["journeysCreated_count"].stringValue
         cell.followerCountLabel.text = cellData["followers_count"].stringValue
 
-        cell.userBadgeImage.image = UIImage(named:"\(cellData["userBadgeName"].stringValue.lowercased())blogger")
-        print("iiiiiiii \(cellData["userBadgeName"].stringValue.lowercased())")
-        
-        switch cellData["userBadgeName"].stringValue.lowercased() {
-        case "justgotwings":
-            cell.userBadgeImage.image = resizeImage(image: UIImage(named:"\(cellData["userBadgeName"].stringValue.lowercased())blogger")!, newWidth: screenWidth/2)
-        case "globetrotter":
-            cell.userBadgeImage.image = resizeImage(image: UIImage(named:"\(cellData["userBadgeName"].stringValue.lowercased())blogger")!, newWidth: screenWidth/2)
-        case "wayfarer":
-            cell.userBadgeImage.image = resizeImage(image: UIImage(named:"\(cellData["userBadgeName"].stringValue.lowercased())blogger")!, newWidth: screenWidth/2.5)
-        case "nomad":
-            cell.userBadgeImage.image = resizeImage(image: UIImage(named:"\(cellData["userBadgeName"].stringValue.lowercased())blogger")!, newWidth: screenWidth/2.5)
-
-        default:
-            cell.userBadgeImage.image = resizeImage(image: UIImage(named:"\(cellData["userBadgeName"].stringValue.lowercased())blogger")!, newWidth: screenWidth/3)
-        }
+//        cell.userBadgeImage.image = UIImage(named:"\(cellData["userBadgeName"].stringValue.lowercased())blogger")
+//        print("iiiiiiii \(cellData["userBadgeName"].stringValue.lowercased())")
+//        
+//        switch cellData["userBadgeName"].stringValue.lowercased() {
+//        case "justgotwings":
+//            cell.userBadgeImage.image = resizeImage(image: UIImage(named:"\(cellData["userBadgeName"].stringValue.lowercased())blogger")!, newWidth: screenWidth/2)
+//        case "globetrotter":
+//            cell.userBadgeImage.image = resizeImage(image: UIImage(named:"\(cellData["userBadgeName"].stringValue.lowercased())blogger")!, newWidth: screenWidth/2)
+//        case "wayfarer":
+//            cell.userBadgeImage.image = resizeImage(image: UIImage(named:"\(cellData["userBadgeName"].stringValue.lowercased())blogger")!, newWidth: screenWidth/2.5)
+//        case "nomad":
+//            cell.userBadgeImage.image = resizeImage(image: UIImage(named:"\(cellData["userBadgeName"].stringValue.lowercased())blogger")!, newWidth: screenWidth/2.5)
+//
+//        default:
+//            cell.userBadgeImage.image = resizeImage(image: UIImage(named:"\(cellData["userBadgeName"].stringValue.lowercased())blogger")!, newWidth: screenWidth/3)
+//        }
 
         if(currentUser != nil) {
             cell.followButton.tag = indexPath.row
@@ -376,11 +388,13 @@ class PopularBloggerTableViewCell: UITableViewCell {
     @IBOutlet weak var starWidth: NSLayoutConstraint!
 //    @IBOutlet weak var bucketListCount: UILabel!
 //    
+    @IBOutlet weak var starName: UILabel!
+    @IBOutlet var starButton: [UIButton]!
     @IBOutlet weak var countryVisitedCountLabel: UILabel!
     @IBOutlet weak var followerCountLabel: UILabel!
     @IBOutlet weak var journeyCountLabel: UILabel!
 //
-    @IBOutlet weak var userBadgeImage: UIImageView!
+//    @IBOutlet weak var userBadgeImage: UIImageView!
 //
     @IBOutlet weak var followButton: UIButton!
 }
