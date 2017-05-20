@@ -81,7 +81,8 @@ class ActivityProfileHeader: UIView {
             setFollowButtonTitle(button: followButton, followType: feed["following"].intValue, otherUserID: (feed["_id"] != nil ? feed["_id"].stringValue : "admin"))
             
             
-            if(pageType == viewType.VIEW_TYPE_ACTIVITY ||
+            if (pageType == viewType.VIEW_TYPE_ACTIVITY ||
+                pageType == viewType.VIEW_TYPE_OTG ||
                 (currentUser != nil) && feed["user"]["_id"].stringValue == currentUser["_id"].stringValue) {
                 followButton.isHidden = true
             }

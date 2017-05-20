@@ -81,12 +81,7 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
             self.mainPhoto?.clipsToBounds = true
             self.mainPhoto?.tag = 0
             self.mainPhoto?.image = UIImage(named: "logo-default")
-            self.addSubview(mainPhoto!)
-            let heightForBlur = 10;
-            var thumbStr = "";            
-            if(!post.post_isOffline) {
-                thumbStr = "&width=\(heightForBlur)"
-            }
+            self.addSubview(mainPhoto!)            
             
             if(!post.post_isOffline) {
                 self.mainPhoto?.isUserInteractionEnabled = true
