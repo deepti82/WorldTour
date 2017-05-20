@@ -200,38 +200,10 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     func exitMyLife(_ sender: AnyObject ) {
         if !isFromFooter {
             _ = self.navigationController?.popViewController(animated: false)
-        }else{
-            
-            
-//            UIView.animate(withDuration: 0.55,
-//                           delay: 0.55,
-//                           options: UIViewAnimationOptions.curveEaseIn,
-//                           animations: { () -> Void in
-//                            UIView.setAnimationCurve(UIViewAnimationCurve.easeInOut)
-//                                        _ = self.navigationController?.popViewController(animated: true)
-//                                        UIView.setAnimationTransition(.curlDown, for: self.navigationController!.view!, cache: false)
-//
-//            }, completion: { (finished) -> Void in
-                selectedPeople = currentUser["_id"].stringValue
-                selectedUser = currentUser
-                let profile = self.storyboard!.instantiateViewController(withIdentifier: "TLProfileView") as! TLProfileViewController
-                profile.displayData = ""
-                profile.currentSelectedUser = selectedUser
-                self.navigationController!.pushViewController(profile, animated: true)
-
-//            })
-            
-            
         }
-        
-        
-        
-//        UIView.animate(withDuration: 0.75, animations: { () -> Void in
-//            UIView.setAnimationCurve(UIViewAnimationCurve.easeInOut)
-//            _ = self.navigationController?.popViewController(animated: true)
-//            UIView.setAnimationTransition(.curlDown, for: self.navigationController!.view!, cache: false)
-//            
-//        })
+        else{
+            leftViewController.profileTap(nil)
+        }
     }
     
     func setDefaults() {
