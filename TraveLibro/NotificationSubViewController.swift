@@ -444,8 +444,8 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         tableView.deselectRow(at: indexPath, animated: true)
         
         let cellNotificationData = notifications[indexPath.row]
-        print("\n Selected Notification of type : \(cellNotificationData["type"].stringValue)")
-        gotoActivityFeed()
+        print("\n\n ********************* \n\n Selected Notification of type : \(cellNotificationData["type"].stringValue) \n CellNotificationData: \(cellNotificationData)")
+        print("")
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {

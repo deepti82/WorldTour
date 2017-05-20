@@ -185,8 +185,9 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
         
         
         let cellData = allUsers[indexPath.row]
-        cell.userIcon.image = UIImage(named:"logo-default")
-        cell.userIcon.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(cellData["profilePicture"].stringValue)", width: SMALL_PHOTO_WIDTH))
+        
+        cell.userIcon.sd_setImage(with: getImageURL(cellData["profilePicture"].stringValue, width: BIG_PHOTO_WIDTH),
+                                  placeholderImage: getPlaceholderImage())
 
         cell.userName.text = cellData["name"].stringValue
 
