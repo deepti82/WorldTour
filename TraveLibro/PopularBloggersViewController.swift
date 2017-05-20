@@ -168,10 +168,7 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        print(screenHeight)
-        let tableh = screenHeight
-        let h = (tableh / 2) - 50
-        return h
+        return (screenWidth * 0.8)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -180,9 +177,7 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
         cell.followButton.layer.cornerRadius = 5
         cell.followButton.layer.borderColor = mainOrangeColor.cgColor
         cell.followButton.layer.borderWidth = 1.5
-        cell.followButton.clipsToBounds = true
-        
-        
+        cell.followButton.clipsToBounds = true        
         
         let cellData = allUsers[indexPath.row]
         
@@ -202,73 +197,51 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
         cell.countryVisitedCountLabel.text = cellData["countriesVisited_count"].stringValue
         cell.journeyCountLabel.text = cellData["journeysCreated_count"].stringValue
         cell.followerCountLabel.text = cellData["followers_count"].stringValue
-
-        switch cellData["userBadgeName"].stringValue.lowercased() {
-        case "justgotwings":
+        
+        var starCnt = 0
+        
+        switch cellData["userBadgeName"].stringValue {
             
+            case "newbie":
+                starCnt = 1
+                cell.starName.text = "Newbie - "
+                break
+            
+            case "justGotWings":
+                starCnt = 2
+                cell.starName.text = "Just Got Wings - "
+                break
+            
+            case "globeTrotter":
+                starCnt = 3
+                cell.starName.text = "Globetrotter - "
+                break
+            
+            case "wayfarer":
+                starCnt = 4
+                cell.starName.text = "Wayfarer - "
+                break
+                
+            case "nomad":
+                starCnt = 5
+                cell.starName.text = "Nomad - "
+                break
+            
+            default:
+                starCnt = 0
+                cell.starName.text = ""
+                break
+        }
+        
+        if starCnt != 0 {            
             for rat in cell.starButton {
-                if rat.tag > 2 {
-                    rat.imageView?.image = UIImage(named: "star_uncheck")
+                if rat.tag > starCnt {
+                    rat.image = UIImage(named: "star_uncheck")
                 }else{
-                    rat.imageView?.image = UIImage(named: "star_check")
-                    
-                    rat.imageView?.tintColor = UIColor.white
+                    rat.image = UIImage(named: "star_check")                    
+                    rat.tintColor = UIColor.white
                 }
             }
-            cell.starName.text = "Just Got Wings - "
-            
-        case "globetrotter":
-            
-            for rat in cell.starButton {
-                if rat.tag > 3 {
-                    rat.imageView?.image = UIImage(named: "star_uncheck")
-                }else{
-                    rat.imageView?.image = UIImage(named: "star_check")
-                    
-                    rat.imageView?.tintColor = UIColor.white
-                }
-            }
-            cell.starName.text = "Globetrotter - "
-            
-        case "wayfarer":
-            
-            for rat in cell.starButton {
-                if rat.tag > 4 {
-                    rat.imageView?.image = UIImage(named: "star_uncheck")
-                }else{
-                    rat.imageView?.image = UIImage(named: "star_check")
-                    
-                    rat.imageView?.tintColor = UIColor.white
-                }
-            }
-            cell.starName.text = "Wayfarer - "
-            
-        case "nomad":
-            
-            for rat in cell.starButton {
-                if rat.tag > 5 {
-                    rat.imageView?.image = UIImage(named: "star_uncheck")
-                }else{
-                    rat.imageView?.image = UIImage(named: "star_check")
-                    
-                    rat.imageView?.tintColor = UIColor.white
-                }
-            }
-            cell.starName.text = "Nomad - "
-
-        default:
-            
-            for rat in cell.starButton {
-                if rat.tag > 1 {
-                    rat.imageView?.image = UIImage(named: "star_uncheck")
-                }else{
-                    rat.imageView?.image = UIImage(named: "star_check")
-                    
-                    rat.imageView?.tintColor = UIColor.white
-                }
-            }
-            cell.starName.text = "Newbie - "
-            
         }
 
         if(currentUser != nil) {
@@ -432,7 +405,7 @@ class PopularBloggerTableViewCell: UITableViewCell {
 //    @IBOutlet weak var bucketListCount: UILabel!
 //    
     @IBOutlet weak var starName: UILabel!
-    @IBOutlet var starButton: [UIButton]!
+    @IBOutlet var starButton: [UIImageView]!
     @IBOutlet weak var countryVisitedCountLabel: UILabel!
     @IBOutlet weak var followerCountLabel: UILabel!
     @IBOutlet weak var journeyCountLabel: UILabel!
