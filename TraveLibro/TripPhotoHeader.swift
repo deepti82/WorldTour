@@ -28,7 +28,7 @@ class TripPhotoHeader: UIView {
     }
     
     func fillProfileHeader(feed:JSON, startTime: String) {
-        timeNow.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["createdAt"].string!, isDate: false)
+        timeNow.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["UTCModified"].string!, isDate: false)
         noOfDay.text = getDays(startTime, postDate: feed["createdAt"].stringValue)
 
     }

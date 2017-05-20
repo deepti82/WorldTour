@@ -45,13 +45,13 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="at" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gwa-1a-cvL">
-                            <rect key="frame" x="91" y="11" width="11" height="12"/>
+                            <rect key="frame" x="92" y="11" width="11" height="12"/>
                             <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="12"/>
                             <color key="textColor" red="0.43529412150000002" green="0.4431372583" blue="0.47450980539999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="01:20 PM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NzL-FT-O62">
-                            <rect key="frame" x="105" y="9" width="52" height="16.5"/>
+                            <rect key="frame" x="106" y="9" width="52" height="16.5"/>
                             <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
                             <color key="textColor" red="0.43529412150000002" green="0.4431372583" blue="0.47450980539999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
@@ -63,7 +63,7 @@
                         <constraint firstItem="NzL-FT-O62" firstAttribute="leading" secondItem="gwa-1a-cvL" secondAttribute="trailing" constant="3" id="D1f-Ms-vb7"/>
                         <constraint firstItem="YaP-pI-I9o" firstAttribute="centerY" secondItem="gwa-1a-cvL" secondAttribute="centerY" id="Jzc-Si-eCf"/>
                         <constraint firstAttribute="height" constant="33" id="N4i-Vd-FV3"/>
-                        <constraint firstItem="gwa-1a-cvL" firstAttribute="leading" secondItem="YaP-pI-I9o" secondAttribute="trailing" constant="3" id="TKf-sj-k8M"/>
+                        <constraint firstItem="gwa-1a-cvL" firstAttribute="leading" secondItem="YaP-pI-I9o" secondAttribute="trailing" constant="4" id="TKf-sj-k8M"/>
                         <constraint firstItem="YaP-pI-I9o" firstAttribute="centerY" secondItem="NzL-FT-O62" secondAttribute="centerY" id="m8B-Ue-qqX"/>
                     </constraints>
                 </view>
