@@ -133,7 +133,7 @@ class NotificationTitle: UIView {
             let travelType = data["data"]["type"].string
             if travelType != nil {
                 if travelType == "local-life" {
-                    str3 = " a Local Life Activity"
+                    str3 = " Local Life Activity"
                 }
                 else if travelType == "on_the_go" {
                     str3 = " an On The Go Activity"
