@@ -203,9 +203,6 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
         cell.journeyCountLabel.text = cellData["journeysCreated_count"].stringValue
         cell.followerCountLabel.text = cellData["followers_count"].stringValue
 
-//        cell.userBadgeImage.image = UIImage(named:"\(cellData["userBadgeName"].stringValue.lowercased())blogger")
-//        print("iiiiiiii \(cellData["userBadgeName"].stringValue.lowercased())")
-//        
         switch cellData["userBadgeName"].stringValue.lowercased() {
         case "justgotwings":
             
