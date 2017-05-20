@@ -1672,7 +1672,7 @@ class Navigation {
     }
 
     
-    func getMomentLife(_ user: String, pageNumber: Int, type: String, token: String, urlSlug: String?, completion: @escaping ((JSON) -> Void)) {
+    func getMomentLife(_ user: String, pageNumber: Int, type: String, token: String, urlSlug: String?, completion: @escaping ((JSON, String) -> Void)) {
         
         
         do {
@@ -1698,7 +1698,6 @@ class Navigation {
 
             }
             
-                        print(params)
             let jsonData = try params.rawData()
             
             // create post request
@@ -1719,8 +1718,7 @@ class Navigation {
                 
                 do {
                     let result = try JSONSerialization.jsonObject(with: data!, options: []) as! [String:AnyObject]
-                    print("response: \(JSON(result))")
-                    completion(JSON(result))
+                    completion(JSON(result), type)
                     
                 } catch {
                     print("Error: \(error)")

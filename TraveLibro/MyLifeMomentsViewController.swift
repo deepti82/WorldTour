@@ -185,69 +185,74 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
     
     func loadMomentLife(pageno:Int, type:String, token:String) {
         if pageno == 1 {
-        loader.showOverlay(mainView)
+            loader.showOverlay(mainView)
             allData = []
         }
         momentType = type
         self.loadStatus = false
-        request.getMomentLife(user.getExistingUser(), pageNumber: pageno, type: type, token: token, urlSlug: selectedUser["urlSlug"].stringValue, completion: {(request) in
+        request.getMomentLife(user.getExistingUser(), pageNumber: pageno, type: momentType, token: token, urlSlug: selectedUser["urlSlug"].stringValue, completion: {(request, responseFor) in
             
             DispatchQueue.main.async {
-                self.loader.hideOverlayView()
-                
-                if type == "travel-life"{
+                if responseFor == self.momentType{
                     
-                    if request["data"].count > 0 {
+                    self.loader.hideOverlayView()
+                    
+                    if type == "travel-life"{
+                        
+                        if request["data"].count > 0 {
+                            self.loadStatus = true
+                            if pageno == 1 {
+                                self.allData = request["data"].array!
+                            }else{
+                                for post in request["data"].array! {
+                                    self.allData.append(post)
+                                }
+                            }
+                            self.mainView.reloadData()
+                            self.page = self.page + 1
+                        }else{
+                            self.loadStatus = false
+                        }
+                        
+                    }
+                    else{
+                        
+                        //                    if self.lastToken != "-1" {
                         self.loadStatus = true
-                        if pageno == 1 {
-                            self.allData = request["data"].array!
+                        if token == "" {
+                            self.allData = []
+                            for post in request["data"].array! {
+                                if post["token"] != -1 {
+                                    self.allData.append(post)
+                                }
+                            }
                         }else{
                             for post in request["data"].array! {
-                                self.allData.append(post)
+                                if post["token"] != -1 {
+                                    self.allData.append(post)
+                                }
                             }
                         }
+                        self.lastToken = request["data"][request["data"].count - 1]["token"].stringValue
                         self.mainView.reloadData()
-                        self.page = self.page + 1
-                    }else{
-                        self.loadStatus = false
+                        //                    }else{
+                        //                        self.loadStatus = false
+                        //                    }
+                        
                     }
                     
-                }else{
-                    
-                    //                    if self.lastToken != "-1" {
-                    self.loadStatus = true
-                    if token == "" {
-                        self.allData = []
-                        for post in request["data"].array! {
-                            if post["token"] != -1 {
-                                self.allData.append(post)
-                            }
-                        }
-                    }else{
-                        for post in request["data"].array! {
-                            if post["token"] != -1 {
-                                self.allData.append(post)
-                            }
-                        }
+                    if self.allData.count == 0 {
+                        self.showNoData(show: true)
                     }
-                    self.lastToken = request["data"][request["data"].count - 1]["token"].stringValue
+                    else{
+                        self.mainView.isHidden = false
+                        self.showNoData(show: false)
+                    }
                     self.mainView.reloadData()
-                    //                    }else{
-                    //                        self.loadStatus = false
-                    //                    }
-                    
                 }
-                print(self.allData.count)
-                // if no data
-                if self.allData.count == 0 {
-                    self.showNoData(show: true)
-                }else{
-                    self.mainView.isHidden = false
-                    self.showNoData(show: false)
+                else {
+                    print("\n\n Mismatch found:::: \n responseForTab:\(responseFor) \n momentType:\(self.momentType)\n\n")
                 }
-                
-                self.mainView.reloadData()
-
             }
             
         })
@@ -322,9 +327,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
     
     //MARK: - Collection Delegates and Datasource
     
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        print("insideView \(insideView)")
-        print("momeentType \(momentType)")
+    func numberOfSections(in collectionView: UICollectionView) -> Int {        
         if insideView != "Monthly" {
             if momentType != "travel-life" && momentType != "review" && momentType != "local-life" {
                 return allData.count
@@ -334,8 +337,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
         return 1
     }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print(allData)
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {        
         switch momentType {
         case "all":
             if insideView == "Monthly" {
