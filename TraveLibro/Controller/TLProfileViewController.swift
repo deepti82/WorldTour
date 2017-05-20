@@ -108,6 +108,8 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
         
         self.setNavigationBar()
         
+        
+        
         if !currentlyShowingUser.isEmpty {
             if !isSelfUser(otherUserID: currentlyShowingUser["_id"].stringValue) {
                 selectedUser = currentlyShowingUser                
@@ -119,6 +121,10 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
         }
         
         self.footer.setFooterDefaultState()
+        
+        if isShowingSelf {
+            footer.setHighlightStateForView(tag: 2, color: mainOrangeColor)            
+        }       
     }
     
     override func viewDidAppear(_ animated: Bool) {

@@ -192,7 +192,6 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
         }else{
             cell.videoCountLabel.text = "0"
         }
-        
 
         cell.countryVisitedCountLabel.text = cellData["countriesVisited_count"].stringValue
         cell.journeyCountLabel.text = cellData["journeysCreated_count"].stringValue
