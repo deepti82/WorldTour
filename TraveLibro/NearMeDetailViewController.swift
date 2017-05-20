@@ -118,9 +118,12 @@ class NearMeDetailViewController: UIViewController {
                     let currentCoordinate = CLLocation(latitude: self.currentLat, longitude: self.currentLong)
                     let nearMeCoordinate = CLLocation(latitude: self.nearMeLat, longitude: self.nearMeLong)
                     let distanceInMeters = currentCoordinate.distance(from: nearMeCoordinate)
+//                    let msnt = Measurement(value: distanceInMeters, unit: UnitLength.meters)
+//                    let inkm = msnt.converted(to: .kilometers)
+                    let distanceInKM = distanceInMeters/1000
                     
                     self.nearMeDistance = NSMutableAttributedString(string: "Distance from You :", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: 14)!])
-                    self.nearMeDistance.append(NSAttributedString(string: " \(Float(distanceInMeters))m", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Heavy", size: 14)!]))
+                    self.nearMeDistance.append(NSAttributedString(string: " \(Float(distanceInKM))km", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Heavy", size: 14)!]))
                     self.distance.attributedText = self.nearMeDistance
                     
                     if self.nearMeDetailJSON["vicinity"].string != nil && self.nearMeDetailJSON["vicinity"].string != "" {
