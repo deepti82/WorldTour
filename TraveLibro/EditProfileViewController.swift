@@ -166,7 +166,7 @@ class EditProfileViewController: UIViewController, UITableViewDataSource, UITabl
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "destinationCell") as! DestinationTextFieldCell
             
-            let paddingView = UILabel(frame: CGRect(x: 5, y: 0, width: 150, height: cell.destinationTextField.frame.size.height))
+            let paddingView = UILabel(frame: CGRect(x: 5, y: 0, width: 155, height: cell.destinationTextField.frame.size.height))
             paddingView.text = labels[(indexPath as NSIndexPath).row]
             paddingView.textColor = mainBlueColor
             paddingView.font = avenirBold
