@@ -32,7 +32,7 @@ class TripSummaryPhotosViewController: UIViewController, UITableViewDataSource, 
     
     var contentDataArray: [JSON] = []
     var videoContainer:VideoView!
-    var player:Player!
+    var player:Player!    
     
     private let pageType : viewType = viewType.VIEW_TYPE_OTG
     private let separatorOffset = CGFloat(5.0)
@@ -93,6 +93,9 @@ class TripSummaryPhotosViewController: UIViewController, UITableViewDataSource, 
                     
                 }
                 else if response["value"].bool! {
+                    
+                    print("response : \(response)")
+                    self.creationDate = response["data"]["startTime"].stringValue
                     
                     if (self.currentContentType == contentType.TL_CONTENT_IMAGE_TYPE) {
                         self.contentDataArray = response["data"]["photos"].arrayValue
@@ -384,8 +387,8 @@ class TripSummaryPhotosViewController: UIViewController, UITableViewDataSource, 
         if feedCell == nil {
             feedCell = TLOTGPhotosTableViewCell(style: .default, reuseIdentifier: "OTGTripContentCell", feedData: cellData, contentType: currentContentType, helper: self)
         }
-        
-        feedCell?.setData(feedData: cellData, currentContentType: currentContentType, helper: self, delegate: self)        
+        print("\n cellData: \(cellData)")
+        feedCell?.setData(feedData: cellData, currentContentType: currentContentType, journeyStartTime: self.creationDate, helper: self, delegate: self)        
         feedCell?.FFooterViewBasic.tag = indexPath.row
         feedCell?.FFooterViewBasic.type = "TripPhotos"        
         feedCell?.tag = TL_VISIBLE_CELL_TAG

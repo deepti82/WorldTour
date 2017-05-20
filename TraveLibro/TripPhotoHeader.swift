@@ -27,10 +27,9 @@ class TripPhotoHeader: UIView {
         super.init(coder: aDecoder)
     }
     
-    func fillProfileHeader(feed:JSON) {
-
-        
+    func fillProfileHeader(feed:JSON, startTime: String) {
         timeNow.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["createdAt"].string!, isDate: false)
+        noOfDay.text = getDays(startTime, postDate: feed["createdAt"].stringValue)
 
     }
     
@@ -53,13 +52,13 @@ class TripPhotoHeader: UIView {
         
     }
     
-    func getDays(_ startDate: String, postDate: String) -> Int {
+    func getDays(_ startDate: String, postDate: String) -> String {
         
         let DFOne = DateFormatter()
         DFOne.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSZ"
         let DFTwo = DateFormatter()
         
-        DFTwo.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
+        DFTwo.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSZ"
         
         let start = DFOne.date(from: startDate)
         let post = DFTwo.date(from: postDate)
@@ -72,8 +71,8 @@ class TripPhotoHeader: UIView {
         
         let flags = NSCalendar.Unit.day
         let components = (calendar as NSCalendar).components(flags, from: date1, to: date2, options: [])
-        return components.day!
         
+        return String((components.day! + 1))        
     }
     
     func changeDateFormat(_ givenFormat: String, getFormat: String, date: String, isDate: Bool) -> String {

@@ -234,8 +234,10 @@ class TLTravelLocalLifeTableViewCell: UITableViewCell, PlayerDelegate {
             self.FMPlayer?.view.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenWidth*0.9)            
             self.FMVideoContainer?.player = self.FMPlayer
             self.FMVideoContainer?.bringSubview(toFront: (FMVideoContainer?.playBtn)!)            
+
             
-            self.FMVideoContainer?.videoHolder.hnk_setImageFromURL(getImageURL(feed["videos"][0]["thumbnail"].stringValue, width: BIG_PHOTO_WIDTH))
+            self.FMVideoContainer?.videoHolder.sd_setImage(with: getImageURL(feed["videos"][0]["thumbnail"].stringValue, width: BIG_PHOTO_WIDTH), 
+                                                           placeholderImage: getPlaceholderImage())
             
             if pageType != viewType.VIEW_TYPE_MY_LIFE {
                 FMVideoContainer?.tagText.isHidden = false
@@ -245,6 +247,7 @@ class TLTravelLocalLifeTableViewCell: UITableViewCell, PlayerDelegate {
                         
                         if feed["type"].stringValue == "travel-life" {
                             FMVideoContainer?.tagText.text = "Travel Life"
+                            FMVideoContainer?.tagText.textColor = UIColor.white
                             FMVideoContainer?.tagView.backgroundColor = mainOrangeColor
                             FMVideoContainer?.playBtn.tintColor = mainOrangeColor
                         }
@@ -261,12 +264,9 @@ class TLTravelLocalLifeTableViewCell: UITableViewCell, PlayerDelegate {
                         FMVideoContainer?.tagView.backgroundColor = UIColor.clear
                         FMVideoContainer?.playBtn.tintColor = UIColor.clear
                     }
-                }
+                }                
             }
-            else {
-                FMVideoContainer?.tagText.isHidden = true
-            }
-            
+                        
             if pageType == viewType.VIEW_TYPE_MY_LIFE && pageType == viewType.VIEW_TYPE_LOCAL_LIFE {
                 FMVideoContainer?.tagText.text = ""
                 FMVideoContainer?.tagText.textColor = UIColor.clear
@@ -278,6 +278,11 @@ class TLTravelLocalLifeTableViewCell: UITableViewCell, PlayerDelegate {
         }
             
         else if(feed["photos"].count > 0) {
+            
+            FMVideoContainer?.tagText.text = ""
+            FMVideoContainer?.tagText.textColor = UIColor.clear
+            FMVideoContainer?.tagView.backgroundColor = UIColor.clear
+            FMVideoContainer?.playBtn.tintColor = UIColor.clear
             
             if self.FMMainPhoto == nil {
                 self.FMMainPhoto = UIImageView(frame: CGRect(x: 0, y: totalHeight, width: screenWidth, height: screenWidth*0.9))
@@ -311,13 +316,17 @@ class TLTravelLocalLifeTableViewCell: UITableViewCell, PlayerDelegate {
             
             totalHeight += screenWidth*0.9
             
-            self.FMMainPhoto?.hnk_setImageFromURL(getImageURL(feed["photos"][0]["name"].stringValue, width: BLUR_PHOTO_WIDTH), placeholder: UIImage(named:"logo-default"), format: nil, failure: nil, success: { (image) in
-                self.FMMainPhoto?.image = image
-                self.FMMainPhoto?.hnk_setImageFromURL(getImageURL(feed["photos"][0]["name"].stringValue, width: BIG_PHOTO_WIDTH))
-            })
+            self.FMMainPhoto?.sd_setImage(with: getImageURL(feed["photos"][0]["name"].stringValue, width: BIG_PHOTO_WIDTH),
+                                          placeholderImage: getPlaceholderImage())
+            
         }
             
         else{
+            FMVideoContainer?.tagText.text = ""
+            FMVideoContainer?.tagText.textColor = UIColor.clear
+            FMVideoContainer?.tagView.backgroundColor = UIColor.clear
+            FMVideoContainer?.playBtn.tintColor = UIColor.clear
+            
             if feed["imageUrl"] != nil {
                 
                 if self.FMMainPhoto == nil {
@@ -345,10 +354,8 @@ class TLTravelLocalLifeTableViewCell: UITableViewCell, PlayerDelegate {
                     FMHeaderTag?.tagParent.backgroundColor = UIColor.clear
                     FMHeaderTag?.colorTag(feed: feed)
                 }
-                self.FMMainPhoto?.hnk_setImageFromURL(getImageURL(feed["imageUrl"].stringValue, width: BLUR_PHOTO_WIDTH), placeholder: UIImage(named:"logo-default"), format: nil, failure: nil, success: { (image) in
-                    self.FMMainPhoto?.image = image
-                    self.FMMainPhoto?.hnk_setImageFromURL(getImageURL(feed["imageUrl"].stringValue, width: BIG_PHOTO_WIDTH))
-                })
+                self.FMMainPhoto?.sd_setImage(with: getImageURL(feed["imageUrl"].stringValue, width: BIG_PHOTO_WIDTH),
+                                              placeholderImage: getPlaceholderImage())                
             }
         }
         

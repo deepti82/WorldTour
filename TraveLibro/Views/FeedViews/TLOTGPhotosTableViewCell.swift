@@ -80,11 +80,11 @@ class TLOTGPhotosTableViewCell: UITableViewCell {
         self.contentView.sendSubview(toBack: FBackground)
         
         if feedData != nil {
-            setData(feedData: feedData!, currentContentType: contentType, helper: helper!, delegate: nil)            
+            setData(feedData: feedData!, currentContentType: contentType, journeyStartTime: nil, helper: helper!, delegate: nil)            
         }
     }
     
-    func setData(feedData: JSON, currentContentType: contentType?, helper: UIViewController, delegate: TLFooterBasicDelegate?) {        
+    func setData(feedData: JSON, currentContentType: contentType?, journeyStartTime: String?, helper: UIViewController, delegate: TLFooterBasicDelegate?) {        
         
         self.feeds = feedData
         self.parentController = helper
@@ -92,7 +92,7 @@ class TLOTGPhotosTableViewCell: UITableViewCell {
         totalHeight = CGFloat(0)
         
         FProfileHeader.frame = CGRect(x: 0, y: 0, width: screenWidth, height: FEEDS_HEADER_HEIGHT)
-        FProfileHeader.fillProfileHeader(feed:self.feeds)
+        FProfileHeader.fillProfileHeader(feed:self.feeds, startTime: journeyStartTime!)
         FProfileHeader.layer.zPosition = 100
         totalHeight += FEEDS_HEADER_HEIGHT
         
