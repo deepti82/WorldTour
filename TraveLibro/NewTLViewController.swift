@@ -261,14 +261,16 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
                 category = ""
             }
         }
-        
-        var location = ""
-        if self.addView.addLocationButton.titleLabel?.text! != nil {
+       
+        var location = self.addView.addLocationButton.titleLabel?.text
+        if location != nil {
             location = (self.addView.addLocationButton.titleLabel?.text)!
             if(location == "Add Location") {
                 location = ""
-                
-                }
+            }
+        }
+        else{
+            location = ""
         }
         
         var thoughts = ""
@@ -279,7 +281,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
             }
         }
         
-        if(self.addView.imageArr.count > 0 || self.addView.videoURL != nil  || thoughts.characters.count > 0 || location.characters.count > 0) {
+        if(self.addView.imageArr.count > 0 || self.addView.videoURL != nil  || thoughts.characters.count > 0 || (location?.characters.count)! > 0) {
             var params:JSON = ["type":"editPost"];
             params["_id"] = JSON(self.addView.editPost.post_ids)
             params["user"] = JSON(self.addView.editPost.post_userId)
