@@ -445,7 +445,64 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         
         let cellNotificationData = notifications[indexPath.row]
         print("\n\n ********************* \n\n Selected Notification of type : \(cellNotificationData["type"].stringValue) \n CellNotificationData: \(cellNotificationData)")
-        print("")
+        
+        let notificationType = cellNotificationData["type"].stringValue
+        
+        switch notificationType {
+        case "userFollowing":
+            fallthrough
+        case "userFollowingRequest":
+            fallthrough
+        case "userFollowingResponse":
+            
+            let moveToUserJSON = cellNotificationData["userFrom"]
+    
+                selectedPeople = moveToUserJSON["_id"].stringValue
+                selectedUser = moveToUserJSON
+            
+            let profile = storyboard?.instantiateViewController(withIdentifier: "TLProfileView") as! TLProfileViewController
+            profile.displayData = "search"
+            profile.currentSelectedUser = moveToUserJSON
+            self.navigationController?.pushViewController(profile, animated: true)
+            break
+            
+            
+            
+        case "journeyLike":
+            fallthrough
+        case "journeyComment":
+            fallthrough
+        case "journeyMentionComment":
+            fallthrough
+            
+        case "itineraryLike":
+            fallthrough
+        case "itineraryComment":
+            fallthrough
+        case "itineraryMentionComment":
+            fallthrough
+            
+        case "postLike":
+            fallthrough
+        case "postComment":
+            fallthrough
+        case "postMentionComment":
+            fallthrough
+        case "postFirstTime":
+            fallthrough
+        case "postTag":
+            let showDataJSON = cellNotificationData["data"]
+            
+            let vc = storyboard!.instantiateViewController(withIdentifier: "TLMainFeedsView") as! TLMainFeedsViewController
+            vc.pageType = viewType.VIEW_TYPE_SHOW_SINGLE_POST
+            vc.feedsDataArray = [showDataJSON]
+            self.navigationController?.pushViewController(vc, animated: true)
+            break
+            
+            
+        default:
+            print("\n Not yet done for : \(notificationType)")
+        }
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -736,7 +793,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
                     isJourneyOngoing = false
                     tlVC.showJourneyOngoing(journey: JSON(""))
                 }
-                globalNavigationController?.pushViewController(tlVC, animated: false)
+                self.navigationController?.pushViewController(tlVC, animated: false)
             }
         })
     }
@@ -752,15 +809,15 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
     func gotoActivityFeed() {
         let vc = storyboard!.instantiateViewController(withIdentifier: "TLMainFeedsView") as! TLMainFeedsViewController
         vc.pageType = viewType.VIEW_TYPE_ACTIVITY        
-        globalNavigationController?.pushViewController(vc, animated: false)
+        self.navigationController?.pushViewController(vc, animated: false)
     }
     
     func gotoDetailItinerary(itineraryID: String) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "EachItineraryViewController") as! EachItineraryViewController
         controller.fromOutSide = itineraryID        
-        globalNavigationController?.setNavigationBarHidden(false, animated: false)
-        globalNavigationController?.pushViewController(controller, animated: true)
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+        self.navigationController?.pushViewController(controller, animated: true)
     }
     
     

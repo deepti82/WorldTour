@@ -75,7 +75,8 @@ class TLItinerayPostView: UIView {
             }
         }
         
-        if pageType == viewType.VIEW_TYPE_ACTIVITY {
+        if (pageType == viewType.VIEW_TYPE_ACTIVITY ||
+            pageType == viewType.VIEW_TYPE_SHOW_SINGLE_POST) {
             self.creatorImageView.isHidden = true
             self.creatorNameLabel.isHidden = true
             self.gradientView.isHidden = true

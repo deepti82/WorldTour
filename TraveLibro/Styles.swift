@@ -971,7 +971,8 @@ func getTextHeader(feed: JSON, pageType: viewType) -> NSMutableAttributedString 
             displayText.append(getRegularString(string: " - Quick Itinerary (\(feed["duration"].stringValue) Days).", size: TL_REGULAR_FONT_SIZE))
             
         case "detail-itinerary":
-            if pageType != viewType.VIEW_TYPE_ACTIVITY {
+            if (pageType != viewType.VIEW_TYPE_ACTIVITY ||
+                pageType == viewType.VIEW_TYPE_SHOW_SINGLE_POST) {
                 displayText = getBoldString(string: feed["name"].stringValue, size: TL_REGULAR_FONT_SIZE)
                 displayText.append(getRegularString(string: " (\(feed["duration"].stringValue) Days).", size: TL_REGULAR_FONT_SIZE))
             }

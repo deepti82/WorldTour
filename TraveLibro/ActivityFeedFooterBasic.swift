@@ -107,7 +107,9 @@ class ActivityFeedFooterBasic: UIView {
         self.commentCountButton.tag = self.tag
         self.optionButton.tag = self.tag
         
-        if ((self.pageType != viewType.VIEW_TYPE_OTG_CONTENTS) && (isLocalFeed(feed: self.postTop))) {
+        if ((self.pageType != viewType.VIEW_TYPE_OTG_CONTENTS) &&
+            (self.pageType != viewType.VIEW_TYPE_SHOW_SINGLE_POST) &&
+            (isLocalFeed(feed: self.postTop))) {
             fillFeedFooterForLocalFeed(feed: feed, pageType: pageType, delegate: delegate)
         }
         else {            

@@ -265,7 +265,7 @@ class MyLifeContainerViewController: UIViewController, UITableViewDelegate, UITa
                 let displatTextString = getTextHeader(feed: cellData, pageType: pageType)
                 var textHeight = (heightOfAttributedText(attributedString: displatTextString, width: (screenWidth-21)) + 10)            
                 textHeight = ((cellData["countryVisited"].arrayValue).isEmpty) ? textHeight : max(textHeight, 36)
-                height = height + ((pageType == viewType.VIEW_TYPE_ACTIVITY) ? FEEDS_HEADER_HEIGHT : 0) + textHeight + screenWidth*0.9 + (shouldShowFooterCountView(feed: cellData) ? FEED_FOOTER_HEIGHT : (FEED_FOOTER_HEIGHT-FEED_FOOTER_LOWER_VIEW_HEIGHT)) + (isLocalFeed(feed: cellData) ? FEED_UPLOADING_VIEW_HEIGHT : 0)
+                height = height + ((pageType == viewType.VIEW_TYPE_ACTIVITY || pageType == viewType.VIEW_TYPE_SHOW_SINGLE_POST) ? FEEDS_HEADER_HEIGHT : 0) + textHeight + screenWidth*0.9 + (shouldShowFooterCountView(feed: cellData) ? FEED_FOOTER_HEIGHT : (FEED_FOOTER_HEIGHT-FEED_FOOTER_LOWER_VIEW_HEIGHT)) + (isLocalFeed(feed: cellData) ? FEED_UPLOADING_VIEW_HEIGHT : 0)
                 break
                 
             default:

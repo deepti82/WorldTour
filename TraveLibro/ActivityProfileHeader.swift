@@ -82,12 +82,14 @@ class ActivityProfileHeader: UIView {
             
             
             if (pageType == viewType.VIEW_TYPE_ACTIVITY ||
+                pageType == viewType.VIEW_TYPE_SHOW_SINGLE_POST ||
                 pageType == viewType.VIEW_TYPE_OTG ||
                 (currentUser != nil) && feed["user"]["_id"].stringValue == currentUser["_id"].stringValue) {
                 followButton.isHidden = true
             }
             
-            if pageType == viewType.VIEW_TYPE_ACTIVITY {
+            if pageType == viewType.VIEW_TYPE_ACTIVITY ||
+                pageType == viewType.VIEW_TYPE_SHOW_SINGLE_POST {
                 
                 localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["timestamp"].stringValue, isDate: true)
                 localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["timestamp"].stringValue, isDate: false)

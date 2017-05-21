@@ -337,7 +337,7 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
         let profile = storyboard?.instantiateViewController(withIdentifier: "TLProfileView") as! TLProfileViewController
         profile.displayData = "search"
         profile.currentSelectedUser = followers[indexPath.row]
-        globalNavigationController.pushViewController(profile, animated: true)
+        self.navigationController?.pushViewController(profile, animated: true)
     }
     
     func setImage(_ imageView: UIImageView, imageName: String) {

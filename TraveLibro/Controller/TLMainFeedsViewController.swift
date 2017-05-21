@@ -16,6 +16,7 @@ enum viewType {
     case VIEW_TYPE_POPULAR_ITINERARY
     case VIEW_TYPE_OTG
     case VIEW_TYPE_OTG_CONTENTS
+    case VIEW_TYPE_SHOW_SINGLE_POST
 }
 
 enum feedCellType {
@@ -73,7 +74,10 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
         let i = PostImage()
         i.uploadPhotos(delegate: self)
         
-        feedsDataArray = []
+        if pageType != viewType.VIEW_TYPE_SHOW_SINGLE_POST {
+            feedsDataArray = []
+        }
+        
         self.reloadTableData()
         
         getDarkBackGround(self)
@@ -200,6 +204,17 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
             
             self.customNavigationBar(left: leftButton, right: rightButton)
         }
+        
+        else if pageType == viewType.VIEW_TYPE_SHOW_SINGLE_POST {
+            
+            self.title = "Activity Feed"
+            
+            let leftButton = UIButton()
+            leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+            leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
+            leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
+            self.customNavigationBar(left: leftButton, right: nil)
+        }
     }
     
     func setSearchAndMenuButton() {
@@ -279,6 +294,10 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
             break
             
         case .VIEW_TYPE_OTG_CONTENTS:
+            break
+            
+        case .VIEW_TYPE_SHOW_SINGLE_POST:
+            self.reloadTableData()
             break
             
         }
@@ -461,7 +480,7 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
                 let displatTextString = getTextHeader(feed: cellData, pageType: pageType)
                 var textHeight = (heightOfAttributedText(attributedString: displatTextString, width: (screenWidth-21)) + 10)            
                 textHeight = ((cellData["countryVisited"].arrayValue).isEmpty) ? textHeight : max(textHeight, 36)
-                height = height + ((pageType == viewType.VIEW_TYPE_ACTIVITY) ? FEEDS_HEADER_HEIGHT : 0) + textHeight + screenWidth*0.9 + (shouldShowFooterCountView(feed: cellData) ? FEED_FOOTER_HEIGHT : (FEED_FOOTER_HEIGHT-FEED_FOOTER_LOWER_VIEW_HEIGHT)) + (isLocalFeed(feed: cellData) ? FEED_UPLOADING_VIEW_HEIGHT : 0)
+                height = height + ((pageType == viewType.VIEW_TYPE_ACTIVITY || pageType == viewType.VIEW_TYPE_SHOW_SINGLE_POST) ? FEEDS_HEADER_HEIGHT : 0) + textHeight + screenWidth*0.9 + (shouldShowFooterCountView(feed: cellData) ? FEED_FOOTER_HEIGHT : (FEED_FOOTER_HEIGHT-FEED_FOOTER_LOWER_VIEW_HEIGHT)) + (isLocalFeed(feed: cellData) ? FEED_UPLOADING_VIEW_HEIGHT : 0)
                 break
                 
             default:

@@ -28,6 +28,7 @@ class TLTravelLocalLifeTableViewCell: UITableViewCell, PlayerDelegate {
     var willPlay = false
     var totalHeight = CGFloat(0)
     var feeds: JSON!
+    var pageType: viewType?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -120,6 +121,7 @@ class TLTravelLocalLifeTableViewCell: UITableViewCell, PlayerDelegate {
         
         self.feeds = feedData
         self.parentController = helper
+        self.pageType = pageType
         
         FMHeaderTag?.frame = CGRect.zero
         FMHeaderTag?.removeFromSuperview()
@@ -181,7 +183,7 @@ class TLTravelLocalLifeTableViewCell: UITableViewCell, PlayerDelegate {
             totalHeight += (FEED_FOOTER_HEIGHT-FEED_FOOTER_LOWER_VIEW_HEIGHT)
         }
         
-        if isLocalFeed(feed: feedData) {
+        if (pageType != viewType.VIEW_TYPE_SHOW_SINGLE_POST && isLocalFeed(feed: feedData) ) {
             FUploadingView?.frame = CGRect(x: 0, y: totalHeight, width: screenWidth, height: FEED_UPLOADING_VIEW_HEIGHT)
             FUploadingView?.fillUploadingStrip(feed: feedData)
             totalHeight += FEED_UPLOADING_VIEW_HEIGHT
@@ -316,9 +318,15 @@ class TLTravelLocalLifeTableViewCell: UITableViewCell, PlayerDelegate {
             
             totalHeight += screenWidth*0.9
             
-            self.FMMainPhoto?.sd_setImage(with: getImageURL(feed["photos"][0]["name"].stringValue, width: BIG_PHOTO_WIDTH),
-                                          placeholderImage: getPlaceholderImage())
-            
+            if pageType == viewType.VIEW_TYPE_SHOW_SINGLE_POST {
+                self.FMMainPhoto?.sd_setImage(with: getImageURL((feed["photos"].arrayValue)[0].stringValue, width: BIG_PHOTO_WIDTH),
+                                              placeholderImage: getPlaceholderImage())
+                
+            }
+            else {
+                self.FMMainPhoto?.sd_setImage(with: getImageURL(feed["photos"][0]["name"].stringValue, width: BIG_PHOTO_WIDTH),
+                                              placeholderImage: getPlaceholderImage())
+            }
         }
             
         else{
@@ -390,7 +398,15 @@ class TLTravelLocalLifeTableViewCell: UITableViewCell, PlayerDelegate {
             
             photosButton.frame.size.height = 82
             photosButton.frame.size.width = 82
-            let urlStr = getImageURL(post["photos"][i]["name"].stringValue, width: BIG_PHOTO_WIDTH)
+            
+            var urlStr: URL!
+            if self.pageType == viewType.VIEW_TYPE_SHOW_SINGLE_POST {
+                urlStr = getImageURL((post["photos"].arrayValue)[i].stringValue, width: BIG_PHOTO_WIDTH)
+            }
+            else {
+                urlStr = getImageURL(post["photos"][i]["name"].stringValue, width: BIG_PHOTO_WIDTH)
+            }
+            
             photosButton.hnk_setImageFromURL(urlStr)
             let tapGestureRecognizer = UITapGestureRecognizer(target:self, action: #selector(self.openSinglePhoto(_:)))
             photosButton.isUserInteractionEnabled = true

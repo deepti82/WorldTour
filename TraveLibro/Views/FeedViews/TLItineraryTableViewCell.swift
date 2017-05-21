@@ -86,7 +86,8 @@ class TLItineraryTableViewCell: UITableViewCell {
         
         totalHeight = CGFloat(0)
         
-        if pageType == viewType.VIEW_TYPE_ACTIVITY {
+        if (pageType == viewType.VIEW_TYPE_ACTIVITY ||
+            pageType == viewType.VIEW_TYPE_SHOW_SINGLE_POST) {
             FProfileHeader.frame = CGRect(x: 0, y: 0, width: screenWidth, height: FEEDS_HEADER_HEIGHT)        
             FProfileHeader.parentController = helper
             FProfileHeader.fillProfileHeader(feed: feedData, pageType: pageType, cellType: feedCellType.CELL_ITINERARY_TYPE)
