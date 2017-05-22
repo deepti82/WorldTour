@@ -73,7 +73,11 @@ class BucketListTableViewController: UITableViewController  {
         for vc in allControllers! {
             if (vc.isKind(of: TLProfileViewController.self)) {
                 found = true
-                self.navigationController!.popToViewController(vc, animated: true)                
+                let tlvc = vc as! TLProfileViewController
+                print(tlvc.isShowingSelf)
+                selectedPeople = ""
+                selectedUser = []
+                _ = self.navigationController?.popToViewController(vc, animated: true)
             }
         }
         

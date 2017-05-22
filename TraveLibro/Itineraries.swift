@@ -113,15 +113,15 @@ class Itineraries: UIView {
         
         if editJson["itineraryType"][0] != nil {
             itineraryTypeOne.isHidden = false
-            itineraryTypeOne.image = UIImage(named: editJson["itineraryType"][0].stringValue.lowercased())
+            itineraryTypeOne.image = UIImage(named: categoryImage(editJson["itineraryType"][0].stringValue.lowercased()))
         }
         if editJson["itineraryType"][1] != nil {
              itineraryTypeTwo.isHidden = false
-             itineraryTypeTwo.image = UIImage(named: editJson["itineraryType"][1].stringValue.lowercased())
+             itineraryTypeTwo.image = UIImage(named: categoryImage(editJson["itineraryType"][1].stringValue.lowercased()))
         }
         if editJson["itineraryType"][2] != nil {
             itineraryTypeThree.isHidden = false
-            itineraryTypeThree.image = UIImage(named: editJson["itineraryType"][2].stringValue.lowercased())
+            itineraryTypeThree.image = UIImage(named: categoryImage(editJson["itineraryType"][2].stringValue.lowercased()))
         }
         
         
