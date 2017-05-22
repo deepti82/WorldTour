@@ -2070,31 +2070,35 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     //MARK: - Keyboard Handling
     
     func keyboardWillShow(_ notification: Notification) {
+        print("\n View y :\(self.view.frame.origin.y)")
+        
         if let keyboardSize = ((notification as NSNotification).userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.view.frame.origin.y == 64 {
-                self.view.frame.origin.y -= keyboardSize.height
+//            if self.view.frame.origin.y == 64 {
+//                self.view.frame.origin.y -= keyboardSize.height
+//            }
+            let keyboardYpos = self.view.frame.height - keyboardSize.height
+            
+            if keyboardYpos < textFieldYPos {
+                difference = textFieldYPos - keyboardYpos
+                self.view.frame.origin.y -= difference 
             }
-//            let keyboardYpos = self.view.frame.height - keyboardSize.height
-//            
-//            if keyboardYpos < textFieldYPos {
-//                difference = textFieldYPos - keyboardYpos
-//                self.view.frame.origin.y -= difference 
-//            }
-//            else {
-//                difference = CGFloat(0)
-//            }
+            else {
+                difference = CGFloat(0)
+            }
         }
     }
     
     func keyboardWillHide(_ notification: Notification) {
-//        self.view.frame.origin.y += difference
-        if let keyboardSize = ((notification as NSNotification).userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.view.frame.origin.y != 64{
-                self.view.frame.origin.y += keyboardSize.height
-                print("helololol")
-                print(keyboardSize.height)
-            }
-        }
+        print("\n View y :\(self.view.frame.origin.y)")
+        
+        self.view.frame.origin.y += difference
+//        if let keyboardSize = ((notification as NSNotification).userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+//            if self.view.frame.origin.y != 64{
+//                self.view.frame.origin.y += keyboardSize.height
+//                print("helololol")
+//                print(keyboardSize.height)
+//            }
+//        }
     }
     
     
@@ -2135,7 +2139,10 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
-        textFieldYPos = textView.frame.origin.y + textView.frame.size.height
+        print("\n textView frame : \(textView.frame.origin.y) \n bounds : \(addView.thoughtsTextView.frame)")
+        print("\n thoughtFinalView : \(addView.thoughtsFinalView.frame)")
+        print("\n  y: \(addView.thoughtsTextView.bounds.origin.y)  Height : \(addView.thoughtsTextView.frame.size.height)")
+        textFieldYPos = addView.thoughtsFinalView.frame.origin.y + (2*addView.thoughtsTextView.frame.origin.y + addView.thoughtsTextView.frame.size.height)
         if addView.thoughtsTextView.text == "Fill Me In..." {
             addView.thoughtsTextView.text = ""
         }

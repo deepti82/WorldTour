@@ -540,10 +540,10 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
     }
     
     func addThoughts(_ sender: UIButton) {
+        thoughtsTextView.becomeFirstResponder()
         self.thoughtsFinalView.isHidden = false
         self.thoughtsInitalView.isHidden = true
-        addHeightToNewActivity(10.0)
-        thoughtsTextView.becomeFirstResponder()
+        addHeightToNewActivity(50.0)
     }
     
     func addHeightToNewActivity(_ height: CGFloat) {
