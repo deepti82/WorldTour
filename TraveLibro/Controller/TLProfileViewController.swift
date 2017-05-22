@@ -599,6 +599,11 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     func getUser() {
         print("\n getUser called")
         
+        if isShowingSelf {
+            selectedPeople = ""
+            selectedUser = []
+        }
+        
         request.getUser(user.getExistingUser(), urlSlug:selectedUser["urlSlug"].stringValue, completion: {(request) in
             DispatchQueue.main.async {
                 self.currentlyShowingUser = request["data"]

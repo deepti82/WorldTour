@@ -69,18 +69,23 @@ class BucketListTableViewController: UITableViewController  {
     func gotoProfile(_ sender: UIButton) {
         
         let allControllers = self.navigationController?.viewControllers
+        print("\n allControllers : \(allControllers)")
         var found = false
-        for vc in allControllers! {
-            if (vc.isKind(of: TLProfileViewController.self)) {
+        let count = ((allControllers?.count)!-1)
+        
+        for i in stride(from: count, through: 0, by: -1) {
+            let vc = allControllers?[i]
+            print("\n VC : \(vc)")
+            
+            if (vc?.isKind(of: TLProfileViewController.self))! {
+                print("\n is showing self : \((vc as! TLProfileViewController).isShowingSelf)")
                 found = true
-                let tlvc = vc as! TLProfileViewController
-                print(tlvc.isShowingSelf)
-                selectedPeople = ""
-                selectedUser = []
-                _ = self.navigationController?.popToViewController(vc, animated: true)
+                self.navigationController!.popToViewController(vc!, animated: true)
+                break
+
             }
         }
-        
+       
         if !found {
             print("\n please check")
             leftViewController.profileTap(nil)

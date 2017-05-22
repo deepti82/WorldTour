@@ -111,6 +111,7 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         self.localLifeController = UINavigationController(rootViewController: localLifeController)
         
         let myProfileController = storyboard!.instantiateViewController(withIdentifier: "TLProfileView") as! TLProfileViewController
+        myProfileController.displayData = ""
         self.myProfileViewController = UINavigationController(rootViewController: myProfileController)
         
         let signoutView = self.storyboard?.instantiateViewController(withIdentifier: "SignUpOne") as! SignInViewController
