@@ -20,6 +20,7 @@ class Search: UIView {
     var element: SearchElement!
     var elementJourney: SearchJourneyElement!
     var data: JSON = []
+    var parentController: UIViewController!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -128,20 +129,22 @@ class Search: UIView {
         let PJController = storyboard!.instantiateViewController(withIdentifier: "TLMainFeedsView") as! TLMainFeedsViewController
         PJController.pageType = viewType.VIEW_TYPE_POPULAR_JOURNEY
         PJController.shouldLoadFromStart = true
-        globalNavigationController.pushViewController(PJController, animated: true)
+        PJController.shouldShowBackButton = true
+        self.parentController.navigationController?.pushViewController(PJController, animated: true)
     }
     
     @IBAction func toItinerary(_ sender: UIButton) {
-        let PJController = storyboard!.instantiateViewController(withIdentifier: "TLMainFeedsView") as! TLMainFeedsViewController
-        PJController.pageType = viewType.VIEW_TYPE_POPULAR_ITINERARY
-        PJController.shouldLoadFromStart = true
-        globalNavigationController.pushViewController(PJController, animated: true)
+        let itinararyController = storyboard!.instantiateViewController(withIdentifier: "TLMainFeedsView") as! TLMainFeedsViewController
+        itinararyController.pageType = viewType.VIEW_TYPE_POPULAR_ITINERARY
+        itinararyController.shouldLoadFromStart = true
+        itinararyController.shouldShowBackButton = true
+        self.parentController.navigationController?.pushViewController(itinararyController, animated: true)
     }
     
     @IBAction func toBloggers(_ sender: UIButton) {
         let profile = storyboard.instantiateViewController(withIdentifier: "popularBloggers") as! PopularBloggersViewController
         profile.back = true
-        globalNavigationController.pushViewController(profile, animated: true)
+        self.parentController.navigationController?.pushViewController(profile, animated: true)
     }
     
 }

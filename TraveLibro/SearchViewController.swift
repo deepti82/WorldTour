@@ -26,6 +26,7 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
         scrollView.autoresizingMask = UIViewAutoresizing.flexibleHeight
         
         let searchView = Search(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 675))
+        searchView.parentController = self
         scrollView.contentSize = CGSize(width: 0, height: 800)
         searchView.setData()
         self.scrollView.addSubview(searchView)

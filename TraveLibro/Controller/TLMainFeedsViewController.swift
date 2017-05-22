@@ -60,7 +60,7 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
     
     var loader = LoadingOverlay()
     let refreshControl = UIRefreshControl()
-    
+    var shouldShowBackButton = false
     
     //MARK: - LifeCycle
     
@@ -71,8 +71,13 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
         
         shouldLoadFromStart = true
         
-        let i = PostImage()
-        i.uploadPhotos(delegate: self)
+        if pageType == viewType.VIEW_TYPE_ACTIVITY ||
+            pageType == viewType.VIEW_TYPE_LOCAL_LIFE {
+            
+            let i = PostImage()
+            i.uploadPhotos(delegate: self)
+        }
+        
         
         if pageType != viewType.VIEW_TYPE_SHOW_SINGLE_POST {
             feedsDataArray = []
@@ -159,23 +164,47 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
         }
         
         else if pageType == viewType.VIEW_TYPE_POPULAR_JOURNEY {
-            setNavigationBarItemText("Popular Journeys")
             
-            self.setSearchAndMenuButton()
-            
-            self.mainFooter = FooterViewNew(frame: CGRect.zero)
-            self.mainFooter?.layer.zPosition = 5
-            self.view.addSubview(self.mainFooter!)
+            if shouldShowBackButton {
+                let leftButton = UIButton()
+                leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+                leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
+                leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
+                
+                self.customNavigationTextBar(left: leftButton, right: nil, text: "Popular Journeys")
+            }
+            else {
+                
+                setNavigationBarItemText("Popular Journeys")
+                
+                self.setSearchAndMenuButton()
+                
+                self.mainFooter = FooterViewNew(frame: CGRect.zero)
+                self.mainFooter?.layer.zPosition = 5
+                self.view.addSubview(self.mainFooter!)                
+            }
         }
         
         else if pageType == viewType.VIEW_TYPE_POPULAR_ITINERARY {
-            setNavigationBarItemText("Popular Itineraries")
-            
-            self.setSearchAndMenuButton()
-            
-            self.mainFooter = FooterViewNew(frame: CGRect.zero)
-            self.mainFooter?.layer.zPosition = 5
-            self.view.addSubview(self.mainFooter!)
+                        
+            if shouldShowBackButton {
+                let leftButton = UIButton()
+                leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+                leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
+                leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
+                
+                self.customNavigationTextBar(left: leftButton, right: nil, text: "Popular Itineraries")
+                self.customNavigationBar(left: leftButton, right: nil)
+            }
+            else {                
+                setNavigationBarItemText("Popular Itineraries")
+                
+                self.setSearchAndMenuButton()
+                
+                self.mainFooter = FooterViewNew(frame: CGRect.zero)
+                self.mainFooter?.layer.zPosition = 5
+                self.view.addSubview(self.mainFooter!)
+            }
         }
         
         else if pageType == viewType.VIEW_TYPE_LOCAL_LIFE {
@@ -267,11 +296,7 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
         
         switch pageType {
             
-        case .VIEW_TYPE_ACTIVITY:
-            
-//            let i = PostImage()
-//            i.uploadPhotos()
-            
+        case .VIEW_TYPE_ACTIVITY:            
             self.getActivityFeedsData(pageNumber: currentPageNumber)
             break
             
