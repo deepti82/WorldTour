@@ -269,7 +269,8 @@ class TLTravelLocalLifeTableViewCell: UITableViewCell, PlayerDelegate {
                 }                
             }
                         
-            if pageType == viewType.VIEW_TYPE_MY_LIFE && pageType == viewType.VIEW_TYPE_LOCAL_LIFE {
+            if pageType == viewType.VIEW_TYPE_MY_LIFE ||
+                pageType == viewType.VIEW_TYPE_LOCAL_LIFE {
                 FMVideoContainer?.tagText.text = ""
                 FMVideoContainer?.tagText.textColor = UIColor.clear
                 FMVideoContainer?.tagView.backgroundColor = UIColor.clear
