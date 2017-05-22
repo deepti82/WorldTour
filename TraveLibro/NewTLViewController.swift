@@ -1260,7 +1260,12 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     
     func refresh(_ sender: AnyObject) {
         isRefreshing = true
+        if fromOutSide == ""{
+        
         getJourney()
+        }else{
+            getOneJourney()
+        }
     }
     
     var isInitialPost = true
