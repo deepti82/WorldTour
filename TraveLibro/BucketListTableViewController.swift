@@ -20,7 +20,7 @@ class BucketListTableViewController: UITableViewController  {
         
         let leftButton = UIButton()
         leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
-        leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
+        leftButton.addTarget(self, action: #selector(self.gotoProfile(_:)), for: .touchUpInside)
         leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         
         let rightButton = UIButton()
@@ -64,6 +64,23 @@ class BucketListTableViewController: UITableViewController  {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func gotoProfile(_ sender: UIButton) {
+        
+        let allControllers = self.navigationController?.viewControllers
+        var found = false
+        for vc in allControllers! {
+            if (vc.isKind(of: TLProfileViewController.self)) {
+                found = true
+                self.navigationController!.popToViewController(vc, animated: true)                
+            }
+        }
+        
+        if !found {
+            print("\n please check")
+            leftViewController.profileTap(nil)
+        }
     }
     
     func getBucketList() {
