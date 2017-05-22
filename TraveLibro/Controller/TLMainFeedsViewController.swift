@@ -71,6 +71,8 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
         
         shouldLoadFromStart = true
         
+        self.hideHeaderAndFooter(false)
+        
         if pageType == viewType.VIEW_TYPE_ACTIVITY ||
             pageType == viewType.VIEW_TYPE_LOCAL_LIFE {
             

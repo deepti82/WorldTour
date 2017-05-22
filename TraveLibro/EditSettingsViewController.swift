@@ -139,9 +139,7 @@ class EditSettingsViewController: UIViewController, UIWebViewDelegate {
                             ToastCenter.default.cancelAll()
                             
                             let alert = UIAlertController(title: nil, message: "Reported Successfully!", preferredStyle: .alert)
-                            showPopover(optionsController: alert, sender: sender, vc: self)
-
-//                            self.present(alert, animated: false, completion: nil)
+                            self.present(alert, animated: false, completion: nil)
                             alert.addAction(UIAlertAction(title: "OK", style: .default, handler:{action in
                                 self.report.theTextView.text = nil
                                 self.report.textViewDidEndEditing(self.report.theTextView)
