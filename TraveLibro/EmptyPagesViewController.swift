@@ -8,7 +8,7 @@ class EmptyPagesViewController: UIViewController {
         super.viewDidLoad()
         let leftButton = UIButton()
         leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
-        leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
+        leftButton.addTarget(self, action: #selector(self.goBack), for: .touchUpInside)
         leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         self.customNavigationBar(left: leftButton, right: nil)
         
@@ -41,6 +41,12 @@ class EmptyPagesViewController: UIViewController {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    func goBack() {
+        selectedPeople = ""
+        selectedUser = []
+        leftViewController.profileTap(nil)
     }
     
 }

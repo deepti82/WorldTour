@@ -12,6 +12,7 @@ class BucketListTableViewController: UITableViewController  {
     var isComingFromEmptyPages = false
     var otherUser: String = ""
     var loader = LoadingOverlay()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         loader.showOverlay(self.view)
