@@ -2,7 +2,6 @@ import UIKit
 
 import SwiftHTTP
 import CoreLocation
-import Toaster
 
 class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate, UITextFieldDelegate {
     var loader = LoadingOverlay()
@@ -103,7 +102,6 @@ class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewD
                                 }
                             }
                             else {
-                                Toast(text: "User's city updated").show()
                                 if (self.navigationController?.topViewController as? AddCityViewController) != nil {
                                     self.popVC(UIButton())
                                 }
