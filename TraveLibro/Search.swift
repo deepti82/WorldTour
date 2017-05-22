@@ -125,17 +125,19 @@ class Search: UIView {
     }
     
     @IBAction func toJourney(_ sender: UIButton) {
-        let profile = storyboard.instantiateViewController(withIdentifier: "popular") as! PopularController
-        profile.displayData = "popular"
-        profile.back = true
-        globalNavigationController.pushViewController(profile, animated: true)
+        let PJController = storyboard!.instantiateViewController(withIdentifier: "TLMainFeedsView") as! TLMainFeedsViewController
+        PJController.pageType = viewType.VIEW_TYPE_POPULAR_JOURNEY
+        PJController.shouldLoadFromStart = true
+        globalNavigationController.pushViewController(PJController, animated: true)
     }
+    
     @IBAction func toItinerary(_ sender: UIButton) {
-        let profile = storyboard.instantiateViewController(withIdentifier: "popular") as! PopularController
-        profile.displayData = "popitinerary"
-        profile.back = true
-        globalNavigationController.pushViewController(profile, animated: true)
+        let PJController = storyboard!.instantiateViewController(withIdentifier: "TLMainFeedsView") as! TLMainFeedsViewController
+        PJController.pageType = viewType.VIEW_TYPE_POPULAR_ITINERARY
+        PJController.shouldLoadFromStart = true
+        globalNavigationController.pushViewController(PJController, animated: true)
     }
+    
     @IBAction func toBloggers(_ sender: UIButton) {
         let profile = storyboard.instantiateViewController(withIdentifier: "popularBloggers") as! PopularBloggersViewController
         profile.back = true
