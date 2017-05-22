@@ -176,12 +176,15 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
     }
     
     func redStrip(_ msg:String){
+        
         if (internetStrip != nil) {
             internetStrip.removeFromSuperview()
         }
+        if globalNavigationController.topViewController?.title != "Add Photos/Videos"{
         internetStrip = UploadingToCloud(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 20))
         internetStrip.uploadText.text = msg
             self.addSubview(internetStrip)
+        }
     }
     
     func buddyAdded(_ json:[JSON]) {

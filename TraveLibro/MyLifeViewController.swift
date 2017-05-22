@@ -696,6 +696,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         self.addView.buddyAdded(postJson["buddies"].arrayValue)
         
         self.addView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: self.view.frame.size.height)
+        self.addView.typeOfAddActivtiy = "AddPhotosVideos"
         self.addView.editPost = post
         self.addView.newScroll = self.newScroll;
         
@@ -738,7 +739,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         
         self.addView.tagFriendsView.alpha = 1
         self.addView.tagFriendsView.isUserInteractionEnabled = true
-        self.addView.typeOfAddActivtiy = "AddPhotosVideos"
+        
         self.newScroll.addSubview(self.addView)
     }
     
