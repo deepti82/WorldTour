@@ -149,9 +149,6 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
         
 //        thoughtsTextView.delegate = self
         thoughtsTextView.returnKeyType = .done
-        if !isConnectedToNetwork() {
-            redStrip("Enter manually, No Internet Connection.")
-        }
         
         
         postButton.layer.cornerRadius = 5.0
@@ -175,16 +172,39 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
 //         penGreen.isHidden = true
     }
     
+    func checkConnection(){
+        if !isConnectedToNetwork() {
+            redStrip("Enter manually, No Internet Connection.")
+        }
+
+    }
+    
     func redStrip(_ msg:String){
+        let when = DispatchTime.now() + 2 // change 2 to desired number of seconds
+        DispatchQueue.main.asyncAfter(deadline: when) {
+            // Your code with delay
+            var msgShow = msg
+            if (self.internetStrip != nil) {
+                self.internetStrip.removeFromSuperview()
+            }
+           
+            self.internetStrip = UploadingToCloud(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 20))
+            self.internetStrip.uploadText.text = msgShow
+            
+            if self.typeOfAddActivtiy == "AddPhotosVideos"{
+                if msg == "Enter manually, Enable to locate."{
+                    
+                }else{
+                msgShow = "No Internet Connection.."
+                    self.addSubview(self.internetStrip)
+                }
+            }else{
+                self.addSubview(self.internetStrip)
+            }
+            
+
+        }
         
-        if (internetStrip != nil) {
-            internetStrip.removeFromSuperview()
-        }
-        if globalNavigationController.topViewController?.title != "Add Photos/Videos"{
-        internetStrip = UploadingToCloud(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 20))
-        internetStrip.uploadText.text = msg
-            self.addSubview(internetStrip)
-        }
     }
     
     func buddyAdded(_ json:[JSON]) {

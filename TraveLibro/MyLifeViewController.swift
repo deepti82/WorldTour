@@ -453,7 +453,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         self.addView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: self.view.frame.size.height)
         self.addView.editPost = post
         self.addView.newScroll = self.newScroll;
-        
+        self.addView.checkConnection()
         self.newScroll.contentSize.height = self.view.frame.height
         self.newScroll.contentSize.width = 0
         backView.addSubview(newScroll)
@@ -699,7 +699,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         self.addView.typeOfAddActivtiy = "AddPhotosVideos"
         self.addView.editPost = post
         self.addView.newScroll = self.newScroll;
-        
+        self.addView.checkConnection()
         self.newScroll.contentSize.height = self.view.frame.height
         newScroll.contentSize.width = 0
         backView.addSubview(newScroll)
