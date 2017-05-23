@@ -14,6 +14,7 @@ import Crashlytics
 
 class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
+    @IBOutlet weak var gradientView: UIView!
     @IBOutlet weak var userProfileImageView: UIImageView!
     @IBOutlet weak var flagImageView: UIImageView!
     @IBOutlet weak var countryNameLabel: UILabel!
@@ -69,11 +70,10 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
         
         self.automaticallyAdjustsScrollViewInsets = false
         
-        getDarkBackGround(self)
+        getDarkBackGround(self)        
         
         getUnreadNotificationCount()
-//        userBadgeImageView.imageresizeImage(image: userBadgeImageView.image!,newWidth: 50)
-
+        
         self.userNameLabel.text = ""
         self.cityNameLabel.text = ""
         
@@ -108,8 +108,6 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
         
         self.setNavigationBar()
         
-        
-        
         if !currentlyShowingUser.isEmpty {
             if !isSelfUser(otherUserID: currentlyShowingUser["_id"].stringValue) {
                 selectedUser = currentlyShowingUser                
@@ -134,6 +132,9 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
         
         self.setNavigationBar()
         
+        if isLoadedForFirstTime {
+            setGradientView()
+        }
         updateUI()
     }
     
@@ -153,6 +154,17 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     
     
     //MARK: - UI
+    
+    func setGradientView() {
+        
+        let gradientLayer = CAGradientLayer()        
+        let blackColour = UIColor.black.withAlphaComponent(0.5).cgColor as CGColor        
+        let transparent = UIColor.clear.cgColor as CGColor
+        gradientLayer.frame = self.gradientView.frame        
+        gradientLayer.colors = [blackColour, transparent, blackColour]
+        gradientLayer.locations = [0.0, 0.15, 1]
+        self.gradientView.layer.addSublayer(gradientLayer)
+    }
     
     func resizeImage(image: UIImage, newWidth: CGFloat) -> UIImage? {
 //        
