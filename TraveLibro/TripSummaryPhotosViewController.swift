@@ -104,6 +104,8 @@ class TripSummaryPhotosViewController: UIViewController, UITableViewDataSource, 
                         self.contentDataArray = response["data"]["videos"].arrayValue
                     }
                     
+//                    self.contentDataArray = sortJSONArray(inputArray: self.contentDataArray, key: "UTCModified")
+                    
                     self.reloadContent()
                     
                 }

@@ -816,6 +816,30 @@ func isLocalFeed(feed: JSON) -> Bool {
     return false
 }
 
+
+//MARK: - Sort JSON Array
+
+func sortJSONArray(inputArray:[JSON], key: String) -> [JSON] {
+    
+    let result = inputArray.sorted {
+        switch ($0[key], $1[key]) {
+        case (nil, nil), (_, nil):
+            return true
+        case (nil, _):
+            return false
+        case let (lhs as String, rhs as String):
+            return lhs < rhs
+        case let (lhs as Int, rhs as Int):
+            return  lhs < rhs
+        // Add more for Double, Date, etc.
+        default:
+            return true
+        }
+    }
+    
+    return result
+}
+
 //MARK: - PlaceHolder Image
 
 func getPlaceholderImage() -> UIImage {
