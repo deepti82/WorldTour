@@ -1813,7 +1813,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     
     
     func doneButton(_ sender: UIButton){
-        request.changeDateTime(currentPhotoFooter.postTop.post_uniqueId, date: "\(dateSelected) \(timeSelected)", completion: {(response) in
+        request.changeDateTime(currentPhotoFooter.postTop.post_uniqueId, postID: currentPhotoFooter.postTop.post_ids,  date: "\(dateSelected) \(timeSelected)", completion: {(response) in
             self.getJourney()
         })
         self.inputview.removeFromSuperview() // To resign the inputView on clicking done.
@@ -2108,7 +2108,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         print("\n\n textFieldDidBeginEditing called\n")
         textFieldYPos = textField.bounds.origin.y + textField.frame.size.height
         if textField.tag == 45 {
-            textFieldYPos += 364
+            textFieldYPos += 464
         }
     }
     
@@ -2148,45 +2148,68 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         }
     }
     
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        if textField.tag == 45 {
+            if textField.text == "" {
+                return false
+            }
+        }
+        return true
+    }
+    
     func textViewDidEndEditing(_ textView: UITextView) {
         textFieldYPos = 0
     }
-    
         
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         otgView.locationLabel.resignFirstResponder()
         self.title = "On The Go"
-        self.checkFetchedLocation()
         
         otgView.drawLineView3.isHidden = false
-//        otgView.bonVoyageLabel.isHidden = true
         if textField == otgView.nameJourneyTF {
-            print("\n mainscroll y : \(mainScroll.frame.origin.y) origin : \(mainScroll.bounds.origin.y )")
-                        otgView.closeBuddies.isHidden = true
-            otgView.cityView.isHidden = false
-            otgView.cityImage.isHidden = false
             
-            //            otgView = startOTGView(frame: CGRect(x: 0, y: 258, width: mainScroll.frame.width, height: self.view.frame.height))
-            //            self.otgView.frame.origin.y = self.view.frame.height + 258
-            otgView.detectLocationView.isHidden = true
-            otgView.nameJourneyTF.isHidden = true
-            otgView.nameJourneyView.isHidden = true
-            otgView.journeyName.isHidden = false
-            otgView.journeyName.text = otgView.nameJourneyTF.text
-            journeyName = otgView.nameJourneyTF.text
-            otgView.nameJourneyTF.resignFirstResponder()
-            height = 164
-            mainScroll.animation.makeY(mainScroll.frame.origin.y + height).thenAfter(0.3).animate(0.3)
-            print("showmeTheHeight\(mainScroll.frame.origin.y + height)")
-            otgView.detectLocationView.layer.opacity = 0.0
-            otgView.nameJourneyView.animation.moveY(-25)
-            otgView.nameJourneyTF.animation.moveY(-50)
-            otgView.detectLocationView.animation.makeOpacity(1.0).thenAfter(0.3).animate(0.3)
+            if otgView.nameJourneyTF.text == "" {
+                let errorAlert = UIAlertController(title: "Error", message: "Please name your journey", preferredStyle: UIAlertControllerStyle.alert)
+                let DestructiveAction = UIAlertAction(title: "Ok", style: .destructive) {
+                    (result : UIAlertAction) -> Void in
+                    //Cancel Action
+                }            
+                errorAlert.addAction(DestructiveAction)
+                self.navigationController?.present(errorAlert, animated: true, completion: nil)
+            }
+            else {
+                
+                self.checkFetchedLocation()
             
-            //            self.otgView.cityImage.hnk_setImageFromURL(URL(string: self.locationPic)!)
-            
-//            otgView.bonVoyageLabel.isHidden = true
-            setTopNavigation(text: "Select Kind of Journey");
+                print("\n mainscroll y : \(mainScroll.frame.origin.y) origin : \(mainScroll.bounds.origin.y )")
+                            otgView.closeBuddies.isHidden = true
+                otgView.cityView.isHidden = false
+                otgView.cityImage.isHidden = false
+                
+                //            otgView = startOTGView(frame: CGRect(x: 0, y: 258, width: mainScroll.frame.width, height: self.view.frame.height))
+                //            self.otgView.frame.origin.y = self.view.frame.height + 258
+                otgView.detectLocationView.isHidden = true
+                otgView.nameJourneyTF.isHidden = true
+                otgView.nameJourneyView.isHidden = true
+                otgView.journeyName.isHidden = false
+                otgView.journeyName.text = otgView.nameJourneyTF.text
+                journeyName = otgView.nameJourneyTF.text
+                otgView.nameJourneyTF.resignFirstResponder()
+                height = 164
+                mainScroll.animation.makeY(mainScroll.frame.origin.y + height).thenAfter(0.3).animate(0.3)
+                print("showmeTheHeight\(mainScroll.frame.origin.y + height)")
+                otgView.detectLocationView.layer.opacity = 0.0
+                _ = otgView.nameJourneyView.animation.moveY(-25)
+                _ = otgView.nameJourneyTF.animation.moveY(-50)
+                otgView.detectLocationView.animation.makeOpacity(1.0).thenAfter(0.3).animate(0.3)
+                
+                //            self.otgView.cityImage.hnk_setImageFromURL(URL(string: self.locationPic)!)
+                
+    //            otgView.bonVoyageLabel.isHidden = true
+                setTopNavigation(text: "Select Kind of Journey");
+                
+                return true
+            }
 
             
         }

@@ -319,15 +319,15 @@ class TLTravelLocalLifeTableViewCell: UITableViewCell, PlayerDelegate {
             
             totalHeight += screenWidth*0.9
             
-            if pageType == viewType.VIEW_TYPE_SHOW_SINGLE_POST {
-                self.FMMainPhoto?.sd_setImage(with: getImageURL((feed["photos"].arrayValue)[0].stringValue, width: BIG_PHOTO_WIDTH),
-                                              placeholderImage: getPlaceholderImage())
-                
-            }
-            else {
+//            if pageType == viewType.VIEW_TYPE_SHOW_SINGLE_POST {
+//                self.FMMainPhoto?.sd_setImage(with: getImageURL((feed["photos"].arrayValue)[0].stringValue, width: BIG_PHOTO_WIDTH),
+//                                              placeholderImage: getPlaceholderImage())
+//                
+//            }
+//            else {
                 self.FMMainPhoto?.sd_setImage(with: getImageURL(feed["photos"][0]["name"].stringValue, width: BIG_PHOTO_WIDTH),
                                               placeholderImage: getPlaceholderImage())
-            }
+//            }
         }
             
         else{
@@ -401,12 +401,12 @@ class TLTravelLocalLifeTableViewCell: UITableViewCell, PlayerDelegate {
             photosButton.frame.size.width = 82
             
             var urlStr: URL!
-            if self.pageType == viewType.VIEW_TYPE_SHOW_SINGLE_POST {
-                urlStr = getImageURL((post["photos"].arrayValue)[i].stringValue, width: BIG_PHOTO_WIDTH)
-            }
-            else {
+//            if self.pageType == viewType.VIEW_TYPE_SHOW_SINGLE_POST {
+//                urlStr = getImageURL((post["photos"].arrayValue)[i].stringValue, width: BIG_PHOTO_WIDTH)
+//            }
+//            else {
                 urlStr = getImageURL(post["photos"][i]["name"].stringValue, width: BIG_PHOTO_WIDTH)
-            }
+//            }
             
             photosButton.hnk_setImageFromURL(urlStr)
             let tapGestureRecognizer = UITapGestureRecognizer(target:self, action: #selector(self.openSinglePhoto(_:)))

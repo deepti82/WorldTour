@@ -579,7 +579,7 @@ extension NewTLViewController {
             
             getJourneyBuddies(journey: journey)
             //            addedBuddies = journey["buddies"].array!
-            countLabel = journey["buddies"].array!.count
+            countLabel = journey["buddies"].arrayValue.count
             showBuddies()
             
             self.otgView.journeyName.animation.makeY(125).animate(0.1)

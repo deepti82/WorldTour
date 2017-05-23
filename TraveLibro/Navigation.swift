@@ -2734,11 +2734,11 @@ class Navigation {
         }
     }
     
-    func changeDateTime(_ id: String, date: String, completion: @escaping ((JSON) -> Void)) {
+    func changeDateTime(_ id: String, postID: String, date: String, completion: @escaping ((JSON) -> Void)) {
         
         do {
             
-            let params = ["uniqueId": id, "date": date, "type": "changeDateTime", "user": currentUser["_id"].stringValue]
+            let params = ["uniqueId": id, "post": postID,  "date": date, "type": "changeDateTime", "user": currentUser["_id"].stringValue]
             
             print("change date time params: \(params)")
             
