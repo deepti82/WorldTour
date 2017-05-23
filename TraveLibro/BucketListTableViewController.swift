@@ -18,6 +18,23 @@ class BucketListTableViewController: UITableViewController  {
         loader.showOverlay(self.view)
         getDarkBackGround(self)
         
+        self.updateNavigationBar()
+        
+        if whichView == "BucketList" {
+            self.title = "Bucket List"
+            getBucketList()
+        }
+        
+        if whichView == "CountriesVisited" {
+            self.title = "Countries Visited"
+            getCountriesVisited()
+        }
+        
+        tableView.separatorColor = UIColor.white
+    }
+    
+    func updateNavigationBar(){
+        
         let leftButton = UIButton()
         leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
         leftButton.addTarget(self, action: #selector(self.gotoProfile(_:)), for: .touchUpInside)
@@ -30,25 +47,19 @@ class BucketListTableViewController: UITableViewController  {
         if otherUser == "search" {
             self.customNavigationBar(left: leftButton, right: nil)
         }else{
-            self.customNavigationBar(left: leftButton, right: rightButton)
+            if whichView == "CountriesVisited" {
+                if self.result.count > 0 {
+                    self.customNavigationBar(left: leftButton, right: rightButton)
+                }
+                else {
+                    self.customNavigationBar(left: leftButton, right: nil)
+                }
+            }
+            else {
+                self.customNavigationBar(left: leftButton, right: rightButton)
+            }
         }
         
-        
-        if whichView == "BucketList" {
-            self.title = "Bucket List"
-            self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Avenir-Medium", size: 18)!]
-
-            getBucketList()
-        }
-        
-        if whichView == "CountriesVisited" {
-            self.title = "Countries Visited"
-            self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Avenir-Medium", size: 18)!]
-
-            getCountriesVisited()
-        }
-        
-        tableView.separatorColor = UIColor.white
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -66,7 +77,7 @@ class BucketListTableViewController: UITableViewController  {
         // Dispose of any resources that can be recreated.
     }
     
-    func gotoProfile(_ sender: UIButton) {
+    func gotoProfile(_ sender: UIButton?) {
         
         let allControllers = self.navigationController?.viewControllers
         print("\n allControllers : \(allControllers)")
@@ -75,14 +86,11 @@ class BucketListTableViewController: UITableViewController  {
         
         for i in stride(from: count, through: 0, by: -1) {
             let vc = allControllers?[i]
-            print("\n VC : \(vc)")
             
-            if (vc?.isKind(of: TLProfileViewController.self))! {
-                print("\n is showing self : \((vc as! TLProfileViewController).isShowingSelf)")
+            if (vc?.isKind(of: TLProfileViewController.self))! {                
                 found = true
                 self.navigationController!.popToViewController(vc!, animated: true)
                 break
-
             }
         }
        
@@ -152,6 +160,9 @@ class BucketListTableViewController: UITableViewController  {
                         emptyBucket.whichView = "CountriesVisited"
                         self.navigationController?.pushViewController(emptyBucket, animated: false)
                         
+                    }
+                    else {
+                        self.updateNavigationBar()
                     }
                     self.tableView.reloadData()
                     

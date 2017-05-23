@@ -213,6 +213,7 @@ extension NewTLViewController {
         self.newScroll = UIScrollView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
         self.backView.addSubview(self.newScroll)
         self.addView = AddActivityNew()
+        self.addView.thoughtsTextView.delegate = globalNewTLViewController
         
         self.addView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: self.view.frame.size.height)
         self.addView.editPost = post
@@ -289,7 +290,7 @@ extension NewTLViewController {
         buddyView.center.x = self.view.center.x
         buddyView.profileName.text = post["user"]["name"].string!
         DispatchQueue.main.async(execute: {
-            buddyView.profileImageView.image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(post["user"]["profilePicture"])")!))
+            buddyView.profileImageView.image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(post["user"]["profilePicture"].stringValue)")!))
             HiBye(buddyView.profileImageView)
         })
         layout.addSubview(buddyView)

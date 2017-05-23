@@ -8,7 +8,7 @@ class EmptyPagesViewController: UIViewController {
         super.viewDidLoad()
         let leftButton = UIButton()
         leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
-        leftButton.addTarget(self, action: #selector(self.goBack), for: .touchUpInside)
+        leftButton.addTarget(self, action: #selector(self.gotoProfile(_:)), for: .touchUpInside)
         leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         self.customNavigationBar(left: leftButton, right: nil)
         
@@ -20,15 +20,11 @@ class EmptyPagesViewController: UIViewController {
         
         if whichView == "BucketList" {
             self.title = "Bucket List"
-            self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Avenir-Medium", size: 18)!]
-
             nocountries.countriesVisitedLabel.text = "Add Countries To Your Bucket List Here"
         }
             
         else if whichView == "CountriesVisited" {
             self.title = "Countries Visited"
-            self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Avenir-Medium", size: 18)!]
-
             nocountries.countriesVisitedLabel.text = "Add Countries To Your Countries Visited Here"
         }
     }
@@ -43,10 +39,27 @@ class EmptyPagesViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
-    func goBack() {
-        selectedPeople = ""
-        selectedUser = []
-        leftViewController.profileTap(nil)
+    func gotoProfile(_ sender: UIButton?) {
+        
+        let allControllers = self.navigationController?.viewControllers
+        print("\n allControllers : \(allControllers)")
+        var found = false
+        let count = ((allControllers?.count)!-1)
+        
+        for i in stride(from: count, through: 0, by: -1) {
+            let vc = allControllers?[i]
+            
+            if (vc?.isKind(of: TLProfileViewController.self))! {                
+                found = true
+                self.navigationController!.popToViewController(vc!, animated: true)
+                break
+            }
+        }
+        
+        if !found {
+            print("\n please check")
+            leftViewController.profileTap(nil)
+        }
     }
     
 }
