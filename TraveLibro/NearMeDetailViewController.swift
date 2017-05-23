@@ -123,7 +123,7 @@ class NearMeDetailViewController: UIViewController {
                     let distanceInKM = distanceInMeters/1000
                     
                     self.nearMeDistance = NSMutableAttributedString(string: "Distance from You :", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: 14)!])
-                    self.nearMeDistance.append(NSAttributedString(string: " \(Float(distanceInKM))km", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Heavy", size: 14)!]))
+                    self.nearMeDistance.append(NSAttributedString(string: " \(String(format: "%.2f", distanceInKM))km", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Heavy", size: 14)!]))
                     self.distance.attributedText = self.nearMeDistance
                     
                     if self.nearMeDetailJSON["vicinity"].string != nil && self.nearMeDetailJSON["vicinity"].string != "" {

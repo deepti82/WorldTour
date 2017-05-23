@@ -244,6 +244,7 @@ class NearMeListViewController: UIViewController, UITableViewDataSource, UITable
             lat = locValue.latitude
             long = locValue.longitude
             getNearMeValues()
+            self.stopDetectingLocation()
         }
     }
     
