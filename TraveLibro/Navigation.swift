@@ -7,7 +7,6 @@ import Crashlytics
 
 //var adminUrl = "https://travelibro.wohlig.com/api/"
 var adminUrl = "https://travelibro.com/api/"
-var adminBackendUrl = "http://travelibroadmin.travelibro.com/api/"
 var mapKey = "AIzaSyDPH6EYKMW97XMTJzqYqA0CR4fk5l2gzE4"
 
 class Navigation {
@@ -92,7 +91,7 @@ class Navigation {
         var json = JSON(1);
         let params = ["user":id, "problem":problemMessage]
         do {
-            let opt = try HTTP.POST(adminBackendUrl + "reportProblems/save", parameters: params)
+            let opt = try HTTP.POST(adminUrl + "reportProblems/save", parameters: params)
             opt.start { response in
                 if let err = response.error {
                     print("error: \(err.localizedDescription)")
