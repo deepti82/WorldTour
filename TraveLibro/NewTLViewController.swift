@@ -238,89 +238,95 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     
     func editActivity(_ sender: UIButton) {
         
-        
-        hideAddActivity()
-        var lat = ""
-        if self.addView.currentLat != nil && self.addView.currentLat != 0.0 {
-            lat = String(self.addView.currentLat!)
-            if(lat == "0.0") {
-                lat = ""
+        if isConnectedToNetwork() {
+            hideAddActivity()
+            var lat = ""
+            if self.addView.currentLat != nil && self.addView.currentLat != 0.0 {
+                lat = String(self.addView.currentLat!)
+                if(lat == "0.0") {
+                    lat = ""
+                }
             }
-        }
-        var lng = ""
-        if self.addView.currentLong != nil && self.addView.currentLong != 0.0 {
-            lng = String(self.addView.currentLong!)
-            if(lng == "0.0") {
-                lng = ""
+            var lng = ""
+            if self.addView.currentLong != nil && self.addView.currentLong != 0.0 {
+                lng = String(self.addView.currentLong!)
+                if(lng == "0.0") {
+                    lng = ""
+                }
             }
-        }
-        var category = ""
-        if self.addView.categoryLabel.text! != nil {
-            category = self.addView.categoryLabel.text!
-            if(category == "Label") {
-                category = ""
+            var category = ""
+            if self.addView.categoryLabel.text! != nil {
+                category = self.addView.categoryLabel.text!
+                if(category == "Label") {
+                    category = ""
+                }
             }
-        }
-       
-        var location = self.addView.addLocationButton.titleLabel?.text
-        if location != nil {
-            location = (self.addView.addLocationButton.titleLabel?.text)!
-            if(location == "Add Location") {
+            
+            var location = self.addView.addLocationButton.titleLabel?.text
+            if location != nil {
+                location = (self.addView.addLocationButton.titleLabel?.text)!
+                if(location == "Add Location") {
+                    location = ""
+                }
+            }
+            else{
                 location = ""
             }
-        }
-        else{
-            location = ""
-        }
-        
-        var thoughts = ""
-        if self.addView.thoughtsTextView.text! != nil {
-            thoughts = self.addView.thoughtsTextView.text!
-            if(thoughts == "Fill Me In...") {
-                thoughts = ""
-            }
-        }
-        
-        if(self.addView.imageArr.count > 0 || self.addView.videoURL != nil  || thoughts.characters.count > 0 || (location?.characters.count)! > 0) {
-            var params:JSON = ["type":"editPost"];
-            params["_id"] = JSON(self.addView.editPost.post_ids)
-            params["user"] = JSON(self.addView.editPost.post_userId)
-            params["uniqueId"] = JSON(self.addView.editPost.post_uniqueId)
-            params["journeyUniqueId"] = JSON(self.myJourney["uniqueId"].stringValue)
-            params["username"] = JSON(currentUser["name"].stringValue)
-            params["thoughts"] = JSON(thoughts)
-            let checkIn:JSON = [
-                "location": location,
-                "lat": lat,
-                "long": lng,
-                "city": self.addView.currentCity,
-                "country" : self.addView.currentCountry,
-                "category": category
-            ]
-            params["checkIn"] = checkIn
-            if(self.addView.editPost.post_location != location) {
-                params["checkInChange"] = true
-            } else {
-                params["checkInChange"] = false
-            }
-
-            params["oldBuddies"] = JSON(self.addView.prevBuddies)
-            params["newBuddies"] = JSON(self.addView.addedBuddies)
             
-            var photosJson:[JSON] = []
-            for img in self.addView.imageArr {
-                photosJson.append(img.parseJson())
+            var thoughts = ""
+            if self.addView.thoughtsTextView.text! != nil {
+                thoughts = self.addView.thoughtsTextView.text!
+                if(thoughts == "Fill Me In...") {
+                    thoughts = ""
+                }
             }
-            params["photosArr"] = JSON(photosJson)
             
-            request.postAddPhotosVideos(param: params) { (json) in
-                print(json)
-                self.getJourney();
-            }
+            if(self.addView.imageArr.count > 0 || self.addView.videoURL != nil  || thoughts.characters.count > 0 || (location?.characters.count)! > 0) {
+                var params:JSON = ["type":"editPost"];
+                params["_id"] = JSON(self.addView.editPost.post_ids)
+                params["user"] = JSON(self.addView.editPost.post_userId)
+                params["uniqueId"] = JSON(self.addView.editPost.post_uniqueId)
+                params["journeyUniqueId"] = JSON(self.myJourney["uniqueId"].stringValue)
+                params["username"] = JSON(currentUser["name"].stringValue)
+                params["thoughts"] = JSON(thoughts)
+                let checkIn:JSON = [
+                    "location": location,
+                    "lat": lat,
+                    "long": lng,
+                    "city": self.addView.currentCity,
+                    "country" : self.addView.currentCountry,
+                    "category": category
+                ]
+                params["checkIn"] = checkIn
+                if(self.addView.editPost.post_location != location) {
+                    params["checkInChange"] = true
+                } else {
+                    params["checkInChange"] = false
+                }
+                
+                params["oldBuddies"] = JSON(self.addView.prevBuddies)
+                params["newBuddies"] = JSON(self.addView.addedBuddies)
+                
+                var photosJson:[JSON] = []
+                for img in self.addView.imageArr {
+                    photosJson.append(img.parseJson())
+                }
+                params["photosArr"] = JSON(photosJson)
+                
+                request.postAddPhotosVideos(param: params) { (json) in
+                    print(json)
+                    self.getJourney();
+                }
+            }                
         }
-        
-        
-        
+        else {
+            let errorAlert = UIAlertController(title: nil, message: "Please check your internet connection and try again.", preferredStyle: UIAlertControllerStyle.alert)
+            let DestructiveAction = UIAlertAction(title: "Ok", style: .destructive) {
+                (result : UIAlertAction) -> Void in
+            }            
+            errorAlert.addAction(DestructiveAction)
+            self.navigationController?.present(errorAlert, animated: true, completion: nil)
+        }
     }
     
     func newPost(_ sender: UIButton) {
