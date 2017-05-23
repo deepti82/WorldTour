@@ -457,8 +457,8 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
             
             let moveToUserJSON = cellNotificationData["userFrom"]
     
-                selectedPeople = moveToUserJSON["_id"].stringValue
-                selectedUser = moveToUserJSON
+            selectedPeople = moveToUserJSON["_id"].stringValue
+            selectedUser = moveToUserJSON
             
             let profile = storyboard?.instantiateViewController(withIdentifier: "TLProfileView") as! TLProfileViewController
             profile.displayData = "search"
@@ -490,14 +490,41 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
             fallthrough
         case "postFirstTime":
             fallthrough
-        case "postTag":
-            let showDataJSON = cellNotificationData["data"]
+        case "postTag":            
+            let postID = cellNotificationData["data"]["_id"].stringValue
             
-            let vc = storyboard!.instantiateViewController(withIdentifier: "TLMainFeedsView") as! TLMainFeedsViewController
-            vc.pageType = viewType.VIEW_TYPE_SHOW_SINGLE_POST
-            vc.feedsDataArray = [showDataJSON]
-            self.navigationController?.pushViewController(vc, animated: true)
+            request.getNotificationDetailedPost(userID: user.getExistingUser(), postID: postID, notificationType: notificationType, completion: { (response) in
+                
+                DispatchQueue.main.async(execute: {
+                    
+                    if response.error != nil {
+                        print("error: \(response.error!.localizedDescription)")
+                    }
+                        
+                    else if response["value"].bool! {                        
+                        let showDataJSON = response["data"]
+                        self.gotoActivityFeed(withJSON: showDataJSON)
+                    }
+                        
+                    else {
+                        let errorAlert = UIAlertController(title: "Error", message: response["error"].stringValue, preferredStyle: UIAlertControllerStyle.alert)
+                        let DestructiveAction = UIAlertAction(title: "Ok", style: .destructive) {
+                            (result : UIAlertAction) -> Void in
+                            //Cancel Action
+                        }            
+                        errorAlert.addAction(DestructiveAction)
+                        self.navigationController?.present(errorAlert, animated: true, completion: nil)
+                    }
+                })
+            })
+            
             break
+            
+            
+        case "photoLike":
+            fallthrough
+        case "photoComment":            
+            self.gotoSinglePhotoVC(withJSON: cellNotificationData["data"])
             
             
         default:
@@ -806,10 +833,11 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         self.navigationController!.pushViewController(end, animated: true)
     }
     
-    func gotoActivityFeed() {
-        let vc = storyboard!.instantiateViewController(withIdentifier: "TLMainFeedsView") as! TLMainFeedsViewController
-        vc.pageType = viewType.VIEW_TYPE_ACTIVITY        
-        self.navigationController?.pushViewController(vc, animated: false)
+    func gotoActivityFeed(withJSON: JSON) {
+        let vc = self.storyboard!.instantiateViewController(withIdentifier: "TLMainFeedsView") as! TLMainFeedsViewController
+        vc.pageType = viewType.VIEW_TYPE_SHOW_SINGLE_POST
+        vc.feedsDataArray = [withJSON]
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func gotoDetailItinerary(itineraryID: String) {
@@ -818,6 +846,15 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         controller.fromOutSide = itineraryID        
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         self.navigationController?.pushViewController(controller, animated: true)
+    }
+    
+    func gotoSinglePhotoVC(withJSON: JSON) {
+        let singlePhotoController = self.storyboard?.instantiateViewController(withIdentifier: "singlePhoto") as! SinglePhotoViewController
+        singlePhotoController.index = 0
+        singlePhotoController.photos = [withJSON]
+        singlePhotoController.fetchType = photoVCType.FROM_DETAIL_ITINERARY
+        singlePhotoController.shouldShowBottomView = true
+        self.navigationController?.pushViewController(singlePhotoController, animated: true)
     }
     
     

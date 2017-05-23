@@ -294,7 +294,6 @@
 		C25F488A1CF31B1300C6C28C /* MomentsEachViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25F48891CF31B1300C6C28C /* MomentsEachViewController.swift */; };
 		C263E3A51D1E5D0C00D274FE /* NewThoughtsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C263E3A41D1E5D0C00D274FE /* NewThoughtsView.swift */; };
 		C263E3A71D1E5D2300D274FE /* NewThoughtsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C263E3A61D1E5D2300D274FE /* NewThoughtsView.xib */; };
-		C263E3A91D1EAA4600D274FE /* FooterNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C263E3A81D1EAA4600D274FE /* FooterNavigation.swift */; };
 		C26695581D3CA2CD0068D9C7 /* TimestampTagViewOnScroll.xib in Resources */ = {isa = PBXBuildFile; fileRef = C26695571D3CA2CD0068D9C7 /* TimestampTagViewOnScroll.xib */; };
 		C266955A1D3CA5060068D9C7 /* TimestampTagViewOnScroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26695591D3CA5060068D9C7 /* TimestampTagViewOnScroll.swift */; };
 		C266AA171D4B75B300174612 /* AllJourneysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C266AA161D4B75B300174612 /* AllJourneysViewController.swift */; };
@@ -429,7 +428,6 @@
 		C2DCB3721CE7454F006E5CBD /* AddYourRatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DCB3711CE7454F006E5CBD /* AddYourRatingViewController.swift */; };
 		C2DCB3741CE7470F006E5CBD /* AddRating.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2DCB3731CE7470F006E5CBD /* AddRating.xib */; };
 		C2DCB3771CE7473A006E5CBD /* AddRating.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DCB3761CE7473A006E5CBD /* AddRating.swift */; };
-		C2DCB3791CE75365006E5CBD /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DCB3781CE75365006E5CBD /* NotificationsViewController.swift */; };
 		C2DD03241CEAFDD4001878DD /* SayBye.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2DD03231CEAFDD4001878DD /* SayBye.xib */; };
 		C2DD03261CEB008C001878DD /* SayBye.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DD03251CEB008C001878DD /* SayBye.swift */; };
 		C2DD03281CEB4D0F001878DD /* ImageMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DD03271CEB4D0F001878DD /* ImageMask.swift */; };
@@ -859,7 +857,6 @@
 		C25F48891CF31B1300C6C28C /* MomentsEachViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MomentsEachViewController.swift; path = ../MomentsEachViewController.swift; sourceTree = "<group>"; };
 		C263E3A41D1E5D0C00D274FE /* NewThoughtsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewThoughtsView.swift; path = ../NewThoughtsView.swift; sourceTree = "<group>"; };
 		C263E3A61D1E5D2300D274FE /* NewThoughtsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NewThoughtsView.xib; path = ../NewThoughtsView.xib; sourceTree = "<group>"; };
-		C263E3A81D1EAA4600D274FE /* FooterNavigation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FooterNavigation.swift; sourceTree = "<group>"; };
 		C26695571D3CA2CD0068D9C7 /* TimestampTagViewOnScroll.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimestampTagViewOnScroll.xib; sourceTree = "<group>"; };
 		C26695591D3CA5060068D9C7 /* TimestampTagViewOnScroll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimestampTagViewOnScroll.swift; sourceTree = "<group>"; };
 		C266AA161D4B75B300174612 /* AllJourneysViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllJourneysViewController.swift; sourceTree = "<group>"; };
@@ -995,7 +992,6 @@
 		C2DCB3711CE7454F006E5CBD /* AddYourRatingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddYourRatingViewController.swift; sourceTree = "<group>"; };
 		C2DCB3731CE7470F006E5CBD /* AddRating.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddRating.xib; sourceTree = "<group>"; };
 		C2DCB3761CE7473A006E5CBD /* AddRating.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRating.swift; sourceTree = "<group>"; };
-		C2DCB3781CE75365006E5CBD /* NotificationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
 		C2DD03231CEAFDD4001878DD /* SayBye.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SayBye.xib; path = ../SayBye.xib; sourceTree = "<group>"; };
 		C2DD03251CEB008C001878DD /* SayBye.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SayBye.swift; sourceTree = "<group>"; };
 		C2DD03271CEB4D0F001878DD /* ImageMask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageMask.swift; sourceTree = "<group>"; };
@@ -2183,7 +2179,6 @@
 				C25C27F01D4747AA00C21F23 /* NewTLViewController.swift */,
 				C24EB2EE1D30DE2E00EB95F6 /* NoFollowingViewController.swift */,
 				C2823B001D4625830065A76C /* NotificationSubViewController.swift */,
-				C2DCB3781CE75365006E5CBD /* NotificationsViewController.swift */,
 				C254434F1CD7391900C2C6CD /* OnTheGoViewController.swift */,
 				C2A6E2561CE9C13A00D3F845 /* OTGTimelineViewController.swift */,
 				C28521B91D365FDF001EF251 /* PagerTabViewController.swift */,
@@ -2611,7 +2606,6 @@
 				367B90F31DC23ADF00D76F13 /* RegexParser.swift */,
 				367B90F41DC23ADF00D76F13 /* StringTrimExtension.swift */,
 				C2A2E7941D96858E005084A7 /* LoadingOverlay.swift */,
-				C263E3A81D1EAA4600D274FE /* FooterNavigation.swift */,
 				36E08BFA1DBB957E0032EF09 /* CAPSPageMenu.swift */,
 				C2DCAE401D18063E00B35331 /* NavigationStyle.swift */,
 				C26B4DE61D13C88900213055 /* SlideMenuViewController.swift */,
@@ -3353,7 +3347,6 @@
 				3AF187021D78539D00A86BC1 /* DisplayPagesTwoViewController.swift in Sources */,
 				44F2FAD11EB87EF3003BB3EA /* TLOTGJourneyTableViewCell.swift in Sources */,
 				8453CF3F1E30A32300C41F82 /* ActivityDetailItinerary.swift in Sources */,
-				C263E3A91D1EAA4600D274FE /* FooterNavigation.swift in Sources */,
 				C26907841CF8275500F827E6 /* LocationTextField.swift in Sources */,
 				C28A92511D0EBF5900CFEC7A /* FilterCheckboxesViewController.swift in Sources */,
 				FC19E8701EC9B9B8004630A9 /* BoxLineView.swift in Sources */,
@@ -3371,7 +3364,6 @@
 				841E43A91E1D1CA4000D2E6B /* UploadingToCloud.swift in Sources */,
 				C2DCB36C1CE7043C006E5CBD /* TripSummaryItinerary.swift in Sources */,
 				445F712C1ECF00C400934493 /* SDWebImagePrefetcher.m in Sources */,
-				C2DCB3791CE75365006E5CBD /* NotificationsViewController.swift in Sources */,
 				36E08BFB1DBB957E0032EF09 /* CAPSPageMenu.swift in Sources */,
 				44081CF61E55EA5D006EA74C /* NotificationPhotoCell.swift in Sources */,
 				445F71221ECF00C400934493 /* MKAnnotationView+WebCache.m in Sources */,

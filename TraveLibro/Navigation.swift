@@ -3704,6 +3704,44 @@ class Navigation {
     }
     
     
+    //MARK: - Notification Redirection
+    
+    func getNotificationDetailedPost(userID: String, postID: String, notificationType: String, completion: @escaping ((JSON) -> Void)) {
+        
+        do {
+            var url = ""
+            
+            if notificationType == "journeyLike" || notificationType == "journeyComment" || notificationType == "journeyMentionComment" {
+                url = "journey/getSingleJourney"
+            }
+            else if notificationType == "itineraryLike" || notificationType == "itineraryComment" || notificationType == "itineraryMentionComment" {
+                url = "itinerary/getSingleItinerary"
+            }
+            else if notificationType == "postLike" || notificationType == "postComment" || notificationType == "postMentionComment" || notificationType == "postFirstTime" || notificationType == "postTag" {
+                url = "post/getSinglePost"
+            }
+            
+            print("\n URL : \(url)")
+            
+            
+            let opt = try HTTP.POST(adminUrl + url, parameters: ["user":userID, "_id": postID])
+            var json = JSON(1);
+            opt.start {response in
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    json  = JSON(data: response.data)
+                    print("\n\n DetailPostResponse : \(json)")
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+    }
+    
     //MARK: - Fetch popular items
     
     func getPopularJourney(userId: String, pagenumber: Int, completion: @escaping ((JSON) -> Void)) {

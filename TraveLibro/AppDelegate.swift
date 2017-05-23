@@ -66,7 +66,6 @@ var whatsAppIcon: String!
 var facebookIcon: String!
 var loader = LoadingOverlay()
 var feedViewController: UIViewController!
-var notificationsViewController: UIViewController!
 var travelLifeViewController: UIViewController!
 var hasLoggedInOnce = false
 var onlyOnce = true

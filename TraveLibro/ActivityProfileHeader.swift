@@ -88,8 +88,7 @@ class ActivityProfileHeader: UIView {
                 followButton.isHidden = true
             }
             
-            if pageType == viewType.VIEW_TYPE_ACTIVITY ||
-                pageType == viewType.VIEW_TYPE_SHOW_SINGLE_POST {
+            if pageType == viewType.VIEW_TYPE_ACTIVITY {
                 
                 localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["timestamp"].stringValue, isDate: true)
                 localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["timestamp"].stringValue, isDate: false)
@@ -217,6 +216,41 @@ class ActivityProfileHeader: UIView {
                     profilePic.hnk_setImageFromURL(getImageURL(feed["postCreator"]["profilePicture"].stringValue, width: SMALL_PHOTO_WIDTH))
                 }
             }
+            
+            else if pageType == viewType.VIEW_TYPE_SHOW_SINGLE_POST {
+                
+                localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["UTCModified"].stringValue, isDate: true)
+                localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["UTCModified"].stringValue, isDate: false)
+                
+                switch feed["type"].stringValue {
+                case "on-the-go-journey":
+                    fallthrough
+                case "ended-journey":
+                    userName.text = feed["user"]["name"].stringValue
+                    profilePic.hnk_setImageFromURL(getImageURL(feed["user"]["profilePicture"].stringValue, width: SMALL_PHOTO_WIDTH))
+                    localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["startTime"].stringValue, isDate: true)
+                    localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["startTime"].stringValue, isDate: false)                    
+                    break
+                    
+                    
+                case "quick-itinerary":
+                    fallthrough
+                case "detail-itinerary":
+                    userName.text = feed["creator"]["name"].stringValue
+                    profilePic.hnk_setImageFromURL(getImageURL(feed["creator"]["profilePicture"].stringValue, width: SMALL_PHOTO_WIDTH))
+                    
+                    if feed["timestamp"].stringValue == "" {
+                        localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["createdAt"].stringValue, isDate: true)
+                        localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["createdAt"].stringValue, isDate: false)                        
+                    }
+                    
+                    break
+                    
+                default:
+                    userName.text = feed["postCreator"]["name"].stringValue
+                    profilePic.hnk_setImageFromURL(getImageURL(feed["postCreator"]["profilePicture"].stringValue, width: SMALL_PHOTO_WIDTH))
+                }
+            } 
             
         }
     }

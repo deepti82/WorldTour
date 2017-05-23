@@ -183,6 +183,7 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     func setNavigationBar() {
         
         setNavigationBarItemText("My Life")
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
         
         if displayData == "search" {
             let leftButton = UIButton()
