@@ -37,6 +37,8 @@ class EditProfileViewController: UIViewController, UITableViewDataSource, UITabl
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setAnalytics(name: "Edit Profile")
+
         editTableViewCell.reloadData()
         shouldSave = true
     }

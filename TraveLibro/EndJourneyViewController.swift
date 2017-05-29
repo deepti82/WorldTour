@@ -272,6 +272,11 @@ class EndJourneyViewController: UIViewController {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        setAnalytics(name: "End Journey")
+
+    }
+    
     var newJson: JSON = []
     
     func setRating() {

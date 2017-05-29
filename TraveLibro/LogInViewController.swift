@@ -51,8 +51,10 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)        
-        NotificationCenter.default.addObserver(self, selector: #selector(self.userSocialLoginFailed(notification:)), name: NSNotification.Name(rawValue: "SOCIAL_LOGIN_FAILED"), object: nil)       
+        super.viewWillAppear(animated)
+        setAnalytics(name: "LogIn")
+
+        NotificationCenter.default.addObserver(self, selector: #selector(self.userSocialLoginFailed(notification:)), name: NSNotification.Name(rawValue: "SOCIAL_LOGIN_FAILED"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.saveUserFailed(notification:)), name: NSNotification.Name(rawValue: "SAVE_USER_FAILED"), object: nil)
         logIn.emailTxt.text = ""
         logIn.passwordTxt.text = ""

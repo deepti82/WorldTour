@@ -21,6 +21,10 @@ class LocationCategoryViewController: UIViewController, UICollectionViewDelegate
         getDarkBackGround(self)
         collectionView.backgroundColor = UIColor.clear
     }
+    override func viewWillAppear(_ animated: Bool) {
+        setAnalytics(name: "Location Category")
+
+    }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return labels.count

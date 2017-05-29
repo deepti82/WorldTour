@@ -102,6 +102,8 @@ class EditSettingsViewController: UIViewController, UIWebViewDelegate {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setAnalytics(name: "Settings")
+
         if whichView == "MAMView" {
             MAMtextView.reloadTravelPrefeces()
         }        

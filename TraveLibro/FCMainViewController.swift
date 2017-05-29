@@ -90,6 +90,11 @@ class FCMainViewController: UIViewController, CAPSPageMenuDelegate {
         self.view.addSubview(pageMenu!.view)
         
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        setAnalytics(name: "Featured Cities")
+
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

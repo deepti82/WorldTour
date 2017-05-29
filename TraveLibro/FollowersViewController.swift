@@ -82,6 +82,8 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        setAnalytics(name: whichView)
+
         if whichView == "Following" {
             customSearch.frame = CGRect(x: 10, y: 10, width: searchView.frame.width - 10, height: 30)           
         }

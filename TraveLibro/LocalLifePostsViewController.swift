@@ -63,10 +63,10 @@ class LocalLifePostsViewController: UIViewController, UIScrollViewDelegate, CLLo
     }
     
     
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//        setTopNavigation(text: nearMeType)
-//    }
+    override func viewWillAppear(_ animated: Bool) {
+        setAnalytics(name: "Local Life Posts")
+
+    }
     
     func rateButtonTapped(_ sender: AnyObject) {
         

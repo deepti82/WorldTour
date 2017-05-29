@@ -109,6 +109,11 @@ class KindOfJourneyOTGViewController: UIViewController {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        setAnalytics(name: "Kind Of Journey")
+
+    }
+    
     func categoriesSelected(_ sender: UIButton) {
         
         if backVC.journeyCategories.count == 0 {

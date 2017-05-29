@@ -185,7 +185,9 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)        
+        super.viewWillAppear(animated)
+        setAnalytics(name: "Local Life Recommendation")
+
         self.mainFooter.frame = CGRect(x: 0, y: self.view.frame.height - MAIN_FOOTER_HEIGHT, width: self.view.frame.width, height: MAIN_FOOTER_HEIGHT)
         mainFooter.setHighlightStateForView(tag: 3, color: mainGreenColor)
     }
