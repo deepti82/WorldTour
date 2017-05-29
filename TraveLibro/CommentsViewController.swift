@@ -79,6 +79,11 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        setAnalytics(name: "Comments Page")
+
+    }
+    
     func setTopNavigation(_ text: String) {
         let leftButton = UIButton()
         leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)

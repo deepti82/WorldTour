@@ -52,6 +52,11 @@ class EachItineraryPhotosViewController: UIViewController, UICollectionViewDataS
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        setAnalytics(name: "Detailed Itinerary Photos")
+
+    }
+    
     func exitMoments(_ sender: UIButton) {
         
         self.dismiss(animated: true, completion: nil)

@@ -47,6 +47,8 @@ class QuickIteneraryFive: UIViewController, UICollectionViewDataSource, UICollec
     
     override func viewWillAppear(_ animated: Bool) {
         print(quickItinery)
+        setAnalytics(name: "Quickitinerary page Five")
+
     }
     
     

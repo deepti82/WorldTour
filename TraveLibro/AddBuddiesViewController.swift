@@ -144,6 +144,8 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         print("searchView : \(searchView.frame.size)")
+        setAnalytics(name: "Add Buddies")
+
         search.frame = CGRect(x: 45, y: 8, width: searchView.frame.width - 60 , height: 30)
     }
     

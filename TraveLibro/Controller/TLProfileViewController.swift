@@ -104,7 +104,6 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        
         setAnalytics(name: "Profile")
         
         shouldShowTransperentNavBar = true

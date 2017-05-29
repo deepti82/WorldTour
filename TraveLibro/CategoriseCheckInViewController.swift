@@ -41,6 +41,11 @@ class CategoriseCheckInViewController: UIViewController, UICollectionViewDelegat
        
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        setAnalytics(name: "Categories Check-In")
+
+    }
+    
     func nextCheckIn(_ sender: UIButton) {
         
         let addCheckIn = storyboard?.instantiateViewController(withIdentifier: "addCheckIn") as! AddCheckInViewController

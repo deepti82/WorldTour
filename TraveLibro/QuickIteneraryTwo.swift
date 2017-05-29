@@ -49,6 +49,7 @@ class QuickIteneraryTwo: UIViewController {
         }
     }
     override func viewDidAppear(_ animated: Bool) {
+        setAnalytics(name: "Quickitinerary page Two")
         print("0000000000\(screenWidth)000\(screenWidth/35)")
         for lbl in allLabel {
             lbl.font = lbl.font.withSize(screenWidth/35)

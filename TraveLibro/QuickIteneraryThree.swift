@@ -98,6 +98,8 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        setAnalytics(name: "Quickitinerary page Three")
+
         viewAdded = false
         showInternetStrip()
         fillText()

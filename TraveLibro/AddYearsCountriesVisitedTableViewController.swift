@@ -130,6 +130,11 @@ class AddYearsCountriesVisitedTableViewController: UITableViewController {
 //        tableView.reloadData()
 //    }
     
+    override func viewWillAppear(_ animated: Bool) {
+        setAnalytics(name: "Add Years Countries Visited")
+
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

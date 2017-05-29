@@ -69,6 +69,7 @@ class AddNationalityNewViewController: UIViewController, UIPickerViewDelegate {
     
     //MARK: - Lifecycle
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -119,6 +120,11 @@ class AddNationalityNewViewController: UIViewController, UIPickerViewDelegate {
         
         fetchCountries()
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        setAnalytics(name: "Add Nationality")
+
     }
     
     override func didReceiveMemoryWarning() {

@@ -63,7 +63,8 @@ class BucketListTableViewController: UITableViewController  {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
+        setAnalytics(name: "Bucket List")
+
         if isComingFromEmptyPages {
             
             print("has come here")

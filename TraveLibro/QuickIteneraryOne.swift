@@ -111,6 +111,7 @@ class QuickIteneraryOne: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setAnalytics(name: "Quickitinerary page one")
     }
  
     

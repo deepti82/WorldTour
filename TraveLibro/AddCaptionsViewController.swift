@@ -343,6 +343,8 @@ class AddCaptionsViewController: UIViewController, UITextFieldDelegate, ToolStac
     var isGoingToEdit = true
     
     override func viewDidAppear(_ animated: Bool) {
+        setAnalytics(name: "Add Caption to Image")
+
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         print("in view did appear")
         if (isEditedImage) {

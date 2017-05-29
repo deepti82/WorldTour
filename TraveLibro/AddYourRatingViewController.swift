@@ -46,7 +46,12 @@ class AddYourRatingViewController: UIViewController {
         scroll.addSubview(layout)
         
     }
-        
+    
+    override func viewWillAppear(_ animated: Bool) {
+        setAnalytics(name: "Add Your Rating")
+
+    }
+    
     func createNavigation() {
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         
