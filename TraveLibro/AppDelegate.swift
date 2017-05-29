@@ -431,17 +431,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
     }
     
     func googleAnalytics() {
-        // Configure tracker from GoogleService-Info.plist.
-//        var configureError: NSError?
-//        GGLContext.sharedInstance().configureWithError(&configureError)
-//        assert(configureError == nil, "Error configuring Google services: \(configureError)")
-//        
-//        // Optional: configure GAI options.
-//        guard let gai = GAI.sharedInstance() else {
-//            assert(false, "Google Analytics not configured correctly")
-//        }
-//        gai.trackUncaughtExceptions = true  // report uncaught exceptions
-//        gai.logger.logLevel = GAILogLevel.verbose  // remove before app release
+        
+        guard let gai = GAI.sharedInstance() else {
+            assert(false, "Google Analytics not configured correctly")
+        }
+        
+        gai.tracker(withTrackingId: "UA-73461827-2")
+        gai.trackUncaughtExceptions = true
+        gai.logger.logLevel = .verbose;
+        
+        
+        // Configure tracker from GoogleService-Info.pli st.
+        //        var configureError: NSError?
+        //        GGLContext.sharedInstance().configureWithError(&configureError)
+        //        assert(configureError == nil, "Error configuring Google services: \(configureError)")
+        //
+        //        // Optional: configure GAI options.
+        //        guard let gai = GAI.sharedInstance() else {
+        //            assert(false, "Google Analytics not configured correctly")
+        //        }
+        //        gai.trackUncaughtExceptions = true  // report uncaught exceptions
+        //        gai.logger.logLevel = GAILogLevel.verbose  // remove before app release
     }
     
 }
