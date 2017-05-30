@@ -143,8 +143,10 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
                             if self.refreshControl.isRefreshing {
                                 self.refreshControl.endRefreshing()
                             }
+                            self.isScrollingDown = false
                             self.notifyTableView.reloadData()
-                            self.notifyTableView.scrollToRow(at: NSIndexPath.init(row: indexx, section: 0) as IndexPath as IndexPath, at: .none, animated: true)
+//                            self.notifyTableView.scrollToRow(at: NSIndexPath.init(row: indexx, section: 0) as IndexPath as IndexPath, at: .none, animated: false)
+                            self.loadStatus = true
                             
                             if self.notifications.isEmpty {
                                 self.noNotificationsFound()

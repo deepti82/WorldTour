@@ -311,6 +311,9 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
                 for img in self.addView.imageArr {
                     photosJson.append(img.parseJson())
                 }
+                
+                var videoJson:[JSON] = []
+                
                 params["photosArr"] = JSON(photosJson)
                 
                 request.postAddPhotosVideos(param: params) { (json) in
