@@ -98,8 +98,7 @@ class NearMeDetailViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-    
+        setAnalytics(name: "Near Me Detail")
     }
     
     func getPlaceDetail() {

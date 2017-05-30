@@ -53,6 +53,10 @@ class PhotoCommentViewController: UIViewController, UITableViewDataSource, UITab
         // Do any additional setup after loading the view.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        setAnalytics(name: "Photo Comment Page")
+    }
+    
     func setTopNavigation(_ text: String) {
         let leftButton = UIButton()
         leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)

@@ -65,6 +65,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setAnalytics(name: "Notification sub Page")
         NotificationCenter.default.addObserver(self, selector: #selector(customRemoteNotificationReceived(notification:)), name: NSNotification.Name(rawValue: "REMOTE_NOTIFICATION_RECEIVED"), object: nil)
         self.mainFooter.frame = CGRect(x: 0, y: self.view.frame.height - MAIN_FOOTER_HEIGHT, width: self.view.frame.width, height: MAIN_FOOTER_HEIGHT)
         mainFooter.setHighlightStateForView(tag: 4, color: mainOrangeColor)

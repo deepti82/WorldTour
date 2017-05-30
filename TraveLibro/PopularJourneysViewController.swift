@@ -34,6 +34,7 @@ class PopularJourneysViewController: UIViewController, UITableViewDelegate, UITa
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setAnalytics(name: "Popular Journey")
     }
 
     override func viewWillDisappear(_ animated: Bool) {

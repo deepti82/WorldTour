@@ -1181,7 +1181,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        setAnalytics(name: "On The Go Page")
         if fromOutSide == "" {           
             self.mainFooter.setHighlightStateForView(tag: 1, color: mainOrangeColor)
         }

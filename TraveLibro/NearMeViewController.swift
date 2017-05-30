@@ -58,6 +58,7 @@ class NearMeViewController: UIViewController, UICollectionViewDelegateFlowLayout
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        setAnalytics(name: "Near Me")
         self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
     

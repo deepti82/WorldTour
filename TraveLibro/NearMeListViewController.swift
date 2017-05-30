@@ -42,6 +42,10 @@ class NearMeListViewController: UIViewController, UITableViewDataSource, UITable
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        setAnalytics(name: "Near Me List")
+    }
+    
     func getNearMeValues() {
         print("nearMeType")
         print(nearMeType)
