@@ -541,6 +541,9 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
     }
     
     func newPost(_ sender: UIButton) {
+        
+        sender.isUserInteractionEnabled = false
+        
         switch(self.typeOfAddActivtiy) {
             case "AddPhotosVideos":
                 let newTl = globalNavigationController.topViewController as! NewTLViewController;

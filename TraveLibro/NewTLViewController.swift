@@ -333,6 +333,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     }
     
     func newPost(_ sender: UIButton) {
+        sender.isUserInteractionEnabled = false
         hideHeaderAndFooter(true)
         hideAddActivity()
         let post  = Post();

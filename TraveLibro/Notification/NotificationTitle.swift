@@ -107,7 +107,7 @@ class NotificationTitle: UIView {
             str2 = " has mentioned you in a comment On"
             
         case "itineraryLike":
-            str2 = " has liked your"
+            str2 = " liked your"
             
         default:
             str2 = " wants to tag you in her On The Go Journey"
