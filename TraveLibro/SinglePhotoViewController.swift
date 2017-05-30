@@ -179,6 +179,7 @@ class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDele
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setAnalytics(name: "Single \(self.type)")
         carouselView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: self.view.frame.size.height - (bottomView.frame.size.height))
         mainImage.isHidden = true
                 

@@ -36,6 +36,9 @@ class QuickPhotosCollectionViewController: UIViewController, UICollectionViewDel
         self.view.addSubview(statusBar)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        setAnalytics(name: "Photo Collection Page")
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

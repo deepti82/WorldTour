@@ -166,6 +166,7 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setAnalytics(name: "Select Country")
         self.navigationController?.navigationBar.isTranslucent = true
     }
     

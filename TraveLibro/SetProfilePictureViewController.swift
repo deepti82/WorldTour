@@ -84,6 +84,7 @@ class SetProfilePictureViewController: UIViewController, UIImagePickerController
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setAnalytics(name: "Set Profile Picture")
         self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: NAVIGATION_FONT!]
     }
     

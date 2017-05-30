@@ -71,7 +71,8 @@ class SignInPageViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)        
+        super.viewWillAppear(animated)
+        setAnalytics(name: "SignIn Page")
         NotificationCenter.default.addObserver(self, selector: #selector(self.userSocialLoginFailed(notification:)), name: NSNotification.Name(rawValue: "SOCIAL_LOGIN_FAILED"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.userChangeLoginFailed(notification:)), name: NSNotification.Name(rawValue: "USER_MIGRATE_FAILED"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.saveUserFailed(notification:)), name: NSNotification.Name(rawValue: "SAVE_USER_FAILED"), object: nil)

@@ -22,6 +22,7 @@ class SearchLocationTableViewController: UITableViewController, UISearchBarDeleg
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setAnalytics(name: "Search Location")
         self.navigationController?.navigationBar.isTranslucent = true
     }
     

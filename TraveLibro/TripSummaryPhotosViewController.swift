@@ -70,6 +70,10 @@ class TripSummaryPhotosViewController: UIViewController, UITableViewDataSource, 
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        setAnalytics(name: "Trip Summary Photos")
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }

@@ -131,6 +131,7 @@ class QuickItineraryPreviewViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setAnalytics(name: "Quick Itinerary Preview")
     }
     
     override func viewDidAppear(_ animated: Bool) {

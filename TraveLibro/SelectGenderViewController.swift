@@ -48,6 +48,10 @@ class SelectGenderViewController: UIViewController {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        setAnalytics(name: "Select Gender")
+    }
+    
     func gotoDP(_ sender: UIButton) {
         
         //Add edit data request here

@@ -40,6 +40,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setAnalytics(name: "Settings")
         if dataSourceOption == "privacyOptions" {
             self.title = "Privacy"
         }

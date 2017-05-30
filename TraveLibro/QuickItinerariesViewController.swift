@@ -109,6 +109,10 @@ class QuickItinerariesViewController: UIViewController, UITextFieldDelegate {
     //One
     
            }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        setAnalytics(name: "Quick Itinerary Page")
+    }
 
         
    //        if one.yearPickerView.inputView == pickerView {

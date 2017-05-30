@@ -106,6 +106,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setAnalytics(name: "SignIn Page")
         self.navigationController?.isNavigationBarHidden = true
         playBtn.isHidden = true
         
