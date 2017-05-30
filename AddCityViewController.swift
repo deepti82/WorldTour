@@ -241,7 +241,7 @@ class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewD
         cityTextField.text = places[(indexPath as NSIndexPath).row]["description"].string!
         cityTextField.resignFirstResponder()
         mainTableView.isHidden = true
-        saveCity()
+        //saveCity()
         
     }
     
@@ -323,7 +323,7 @@ class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewD
                                     //TODO:Check this if autoSave should be supported
                                 }
                                 else {
-                                    self.saveCity()                                    
+                                    //self.saveCity()
                                 }
                             }
                         }
