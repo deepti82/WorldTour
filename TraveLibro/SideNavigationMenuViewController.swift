@@ -199,18 +199,18 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
             
             let isUrl = verifyUrl(imageName)
             if (isUrl) {
-                profilePicture.hnk_setImageFromURL(URL(string:imageName)!)
-                profile.image.hnk_setImageFromURL(URL(string:imageName)!)
-                backgroundImage.hnk_setImageFromURL(URL(string:imageName)!)
-                
+                let getImageUrl = URL(string:imageName)!
+                profilePicture.sd_setImage(with: getImageUrl, placeholderImage: getPlaceholderImage())
+                profile.image.sd_setImage(with: getImageUrl, placeholderImage: getPlaceholderImage())
+                backgroundImage.sd_setImage(with: getImageUrl, placeholderImage: getPlaceholderImage())
             } else {
                 let getImageUrl = URL(string:adminUrl + "upload/readFile?file=" + imageName + "&width=500")
-                profilePicture.hnk_setImageFromURL(getImageUrl!)
-                profile.image.hnk_setImageFromURL(getImageUrl!)
-                backgroundImage.hnk_setImageFromURL(getImageUrl!)
+                profilePicture.sd_setImage(with: getImageUrl, placeholderImage: getPlaceholderImage())
+                profile.image.sd_setImage(with: getImageUrl, placeholderImage: getPlaceholderImage())
+                backgroundImage.sd_setImage(with: getImageUrl, placeholderImage: getPlaceholderImage())
             }
-            if currentUser["homeCountry"] != nil {                
-                profile.flag.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(currentUser["homeCountry"]["flag"].stringValue)", width: 100))
+            if currentUser["homeCountry"] != nil {
+                profile.flag.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(currentUser["homeCountry"]["flag"].stringValue)", width: SMALL_PHOTO_WIDTH))
             }
             
             makeMenuProfilePicture(profilePicture)

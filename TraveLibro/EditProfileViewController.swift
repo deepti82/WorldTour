@@ -108,7 +108,8 @@ class EditProfileViewController: UIViewController, UITableViewDataSource, UITabl
                 cell.profilePhoto.image = pickerImage
             }
             else{
-                cell.profilePhoto.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(currentUser["profilePicture"])", width: SMALL_PHOTO_WIDTH))
+                cell.profilePhoto.sd_setImage(with: (getImageURL(currentUser["profilePicture"].stringValue, width: SMALL_PHOTO_WIDTH)),
+                                              placeholderImage: getPlaceholderImage())
             }
             cell.accessoryType = .none
             return cell
