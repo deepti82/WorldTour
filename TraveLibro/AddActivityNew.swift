@@ -192,7 +192,7 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
             self.internetStrip.uploadText.text = msgShow
             
             if self.typeOfAddActivtiy == "AddPhotosVideos"{
-                if msg == "Enter manually, Enable to locate."{
+                if msg == "Low Internet Connection Or check Settings"{
                     
                 }else{
                 msgShow = "No Internet Connection.."
@@ -608,7 +608,7 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
                 })
             })
         }else{
-            redStrip("Enter manually, Enable to locate.")
+//            redStrip("Enter manually, Low Internet Connection Or check Settings")
         }
     }
     

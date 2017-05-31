@@ -247,7 +247,7 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
             
         }
         
-        if feed["thoughts"].stringValue != "" {
+//if feed["thoughts"].stringValue != "" {
             
             //  START ACTIVITY TEXT HEADER
             textHeader = ActivityTextHeader(frame: CGRect.zero)
@@ -261,7 +261,7 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
                 self.addSubview(textHeader)
             }
             
-        }
+        //}
         
     }
     
