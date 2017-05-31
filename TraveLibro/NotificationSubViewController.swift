@@ -939,15 +939,15 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         
         let remoteNotifications = notification.object as? Array<JSON>
         
-        if notifications.isEmpty {
+//        if notifications.isEmpty {
             self.pullToRefreshCalled()
-        }
-        else {
-            for notificationObject in remoteNotifications! {
-                notifications.insert(notificationObject, at: 0)
-                notifyTableView.reloadData()
-            }
-        }
+//        }
+//        else {
+//            for notificationObject in remoteNotifications! {
+//                notifications.insert(notificationObject, at: 0)
+//                notifyTableView.reloadData()
+//            }
+//        }
     }
     
 }

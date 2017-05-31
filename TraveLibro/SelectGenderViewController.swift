@@ -10,17 +10,6 @@ class SelectGenderViewController: UIViewController {
         dpVC = self.storyboard!.instantiateViewController(withIdentifier: "setDp") as! SetProfilePictureViewController
 //        loader.showOverlay(self.view)
         
-        let leftButton = UIButton()
-        leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
-        leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
-        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-        
-        let rightButton = UIButton()
-        rightButton.setImage(UIImage(named: "arrow_next_fa"), for: UIControlState())
-        rightButton.addTarget(self, action: #selector(SelectGenderViewController.gotoDP(_:)), for: .touchUpInside)
-        rightButton.frame = CGRect(x: 0, y: 8, width: 30, height: 30)
-        
-        self.customNavigationBar(left: leftButton, right: rightButton)
         
         print("current gender: \(currentUser["gender"])")
         
@@ -49,12 +38,26 @@ class SelectGenderViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         setAnalytics(name: "Select Gender")
+        let leftButton = UIButton()
+        leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
+        leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
+        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        
+        let rightButton = UIButton()
+        rightButton.setImage(UIImage(named: "arrow_next_fa"), for: UIControlState())
+        rightButton.addTarget(self, action: #selector(SelectGenderViewController.gotoDP(_:)), for: .touchUpInside)
+        rightButton.frame = CGRect(x: 0, y: 8, width: 30, height: 30)
+        
+        self.customNavigationBar(left: leftButton, right: rightButton)
+
     }
     
     func gotoDP(_ sender: UIButton) {
         
         //Add edit data request here
+        sender.isUserInteractionEnabled = false
         
         if genderValue == nil {
             loader.hideOverlayView()

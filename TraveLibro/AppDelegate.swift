@@ -261,16 +261,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
                 UserDefaults.standard.set(notificationCount, forKey: "notificationCount")
             }
             
-//            let payload: OSNotificationPayload? = notification?.payload           
-//            
-//            let fullMessage: String? = payload?.body
+            let payload: OSNotificationPayload? = notification?.payload           
             
-//            let data = payload?.additionalData
+            let fullMessage: String? = payload?.body
             
-//            print("Data : \(data)")
-//            
-//            print("Recived notifn : " + fullMessage!)
-//            
+            let data = payload?.additionalData
+            
+            print("Data : \(data)")
+//
+            print("Recived notifn : " + fullMessage!)
+//
 //            print("Received Notification - \(notification?.payload.notificationID) - \(notification?.payload.title)")
 //            
 //            print("attachments : \(payload?.attachments) ")
@@ -287,7 +287,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
 //            
 //            print("test3 : \(notification?.payload.additionalData)")
             
-//            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "REMOTE_NOTIFICATION_RECEIVED"), object: [notification?.payload.additionalData])
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "REMOTE_NOTIFICATION_RECEIVED"), object: [notification?.payload.additionalData])
             
             updateFooterBadge()
             
