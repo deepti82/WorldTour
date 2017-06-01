@@ -14,9 +14,9 @@ extension UIViewController {
         
         if currentUser["alreadyLoggedIn"].bool! {            
             self.slideMenuController()?.changeMainViewController(profileVC, close: true)
-            navigation.pushViewController(profileVC, animated: true)
+            navigation?.pushViewController(profileVC, animated: true)
         } else {
-            navigation.pushViewController(nationalityPage, animated: true)
+            navigation?.pushViewController(nationalityPage, animated: true)
         }
     }
     

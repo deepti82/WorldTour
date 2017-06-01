@@ -68,6 +68,7 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
         
         globalNewTLViewController = nil
         globalTLMainFeedsViewController = nil
+        navigation = nil
         
         isLoadedForFirstTime = true
         

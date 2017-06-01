@@ -11,7 +11,7 @@ var loggedInUser : JSON!
 let social = SocialLoginClass()
 var profileVC: TLProfileViewController!
 var nationalityPage: AddNationalityNewViewController!
-var navigation: UINavigationController!
+var navigation: UINavigationController?
 
 class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegate, UIScrollViewDelegate {
     

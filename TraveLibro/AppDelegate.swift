@@ -538,7 +538,7 @@ func isConnectedToNetwork() -> Bool {
 
 func noInternet(view: UIView) {
     var uploadingView: UploadingToCloud!
-    uploadingView = UploadingToCloud(frame: CGRect(x: 0, y: 64, width: navigation.view.frame.width, height: 23))
+    uploadingView = UploadingToCloud(frame: CGRect(x: 0, y: 64, width: screenWidth, height: 23))
     uploadingView.uploadText.text = "No internet connection."
     view.addSubview(uploadingView)
 }
