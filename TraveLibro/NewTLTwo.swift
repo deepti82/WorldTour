@@ -519,7 +519,7 @@ extension NewTLViewController {
         }
         if isJourneyOngoing {
             otgView = startOTGView(frame: CGRect(x: 0, y: 112, width: mainScroll.frame.width, height: 550))
-            print("in on the go otg \(isUserMe(user: currentUser["_id"].stringValue))")
+            print("in on the go otg \(isSelfUser(otherUserID: currentUser["_id"].stringValue))")
             if myJourney != nil {
                 if myJourney["user"]["_id"].stringValue != user.getExistingUser() {
                     otgView.optionsButton.isHidden = true

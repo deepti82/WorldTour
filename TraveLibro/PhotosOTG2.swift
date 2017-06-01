@@ -157,7 +157,7 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
         else {
             //Footer Generation Only
             footerView = PhotoOTGFooter(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 65))
-            if isUserMe(user: currentUser["_id"].stringValue) {
+            if isSelfUser(otherUserID: currentUser["_id"].stringValue) {
                 footerView.optionButton.isHidden = false
             }else{
                 footerView.optionButton.isHidden = true
