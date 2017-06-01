@@ -1095,7 +1095,9 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         super.viewDidLoad()
         
         globalActivityFeedsController = nil
-        globalNewTLViewController = self;
+        globalNewTLViewController = self
+        globalTLMainFeedsViewController = nil
+        
         getDarkBackGroundNew(self)
         
         ToastView.appearance().backgroundColor = endJourneyColor
@@ -1254,6 +1256,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         else{
             hideHeaderAndFooter(false);
         }
+        
         for postView in layout.subviews {
             if(postView is PhotosOTG2) {
                 let photosOtg = postView as! PhotosOTG2
@@ -1261,9 +1264,19 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
                     photosOtg.videoToPlay()
                 }
             }
-        }
-        
+        }        
     }
+    
+//    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+//        for postView in layout.subviews {
+//            if(postView is PhotosOTG2) {
+//                let photosOtg = postView as! PhotosOTG2
+//                if (photosOtg.mainPhoto != nil) {
+//                    photosOtg.loadImagesOnlayout()
+//                }
+//            }
+//        }
+//    }
     
     
     var isRefreshing = false

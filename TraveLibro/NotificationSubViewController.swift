@@ -32,6 +32,9 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        globalNewTLViewController = nil
+        globalTLMainFeedsViewController = nil
+        
         setNavigationBarItemText("Alerts")
         
         self.automaticallyAdjustsScrollViewInsets = false

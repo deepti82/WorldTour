@@ -21,6 +21,9 @@ class UserProfileSettingsViewController: UIViewController, UITableViewDataSource
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        globalNewTLViewController = nil
+        globalTLMainFeedsViewController = nil
+        
         getDarkBackGround(self)
         
         self.setNavigationBarItem()

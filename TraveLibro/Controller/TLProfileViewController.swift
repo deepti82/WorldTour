@@ -66,6 +66,9 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        globalNewTLViewController = nil
+        globalTLMainFeedsViewController = nil
+        
         isLoadedForFirstTime = true
         
         self.automaticallyAdjustsScrollViewInsets = false

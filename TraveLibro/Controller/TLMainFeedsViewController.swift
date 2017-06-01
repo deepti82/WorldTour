@@ -69,6 +69,8 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
         
         globalTLMainFeedsViewController = self
         
+        globalNewTLViewController = nil
+        
         shouldLoadFromStart = true
         
         self.hideHeaderAndFooter(false)
