@@ -722,7 +722,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     
     
     func getJourney() {
-       
+        
         request.getJourney(currentUser["_id"].string!, completion: {(response) in
             DispatchQueue.main.async(execute: {
 //                self.loader.hideOverlayView()
@@ -1164,7 +1164,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
 //        addPostsButton.isHidden = true
         
         if fromOutSide == "" {
-            getJourney()            
+//            getJourney()            
         }else{
             addPostsButton.isHidden = true
             getOneJourney()
