@@ -119,7 +119,8 @@ class NearMeDetailViewController: UIViewController {
                     let distanceInMeters = currentCoordinate.distance(from: nearMeCoordinate)
 //                    let msnt = Measurement(value: distanceInMeters, unit: UnitLength.meters)
 //                    let inkm = msnt.converted(to: .kilometers)
-                    let distanceInKM = distanceInMeters/1000
+                    let a = distanceInMeters/1000
+                    let distanceInKM = Double(round(1000*a)/1000)
                     
                     self.nearMeDistance = NSMutableAttributedString(string: "Distance from You :", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: 14)!])
                     self.nearMeDistance.append(NSAttributedString(string: " \(String(format: "%.2f", distanceInKM))km", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Heavy", size: 14)!]))
