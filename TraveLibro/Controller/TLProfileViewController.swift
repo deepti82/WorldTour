@@ -574,9 +574,11 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     }
     
     func exploreMyLife(selectionTab: String) {
-        let myLifeViewCtrllr = storyboard?.instantiateViewController(withIdentifier: "myLife") as! MyLifeViewController
-        myLifeViewCtrllr.whatEmptyTab = selectionTab
-        self.navigationController?.pushViewController(myLifeViewCtrllr, animated: true)
+        if !(shouldRestrictCurrentUserProfile()) {
+            let myLifeViewCtrllr = storyboard?.instantiateViewController(withIdentifier: "myLife") as! MyLifeViewController
+            myLifeViewCtrllr.whatEmptyTab = selectionTab
+            self.navigationController?.pushViewController(myLifeViewCtrllr, animated: true)            
+        }
     }
     
     func gotoFollowersController(selectionOption: String) {
