@@ -24,7 +24,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     var myJourney: JSON!
     var isJourney = false
     var imageView1: UIImageView!
-    var isActivityHidden = true;
+    var isActivityHidden = true
     var height: CGFloat!
     var otgView:startOTGView!
     var showDetails = false
@@ -101,7 +101,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
             isRequestFromNewPost = true
             self.detectLocation()            
         }
-        showAddActivity()
+        self.showAddActivity()
         getJourneyBuddies(journey: myJourney)
     }
     
@@ -1218,16 +1218,18 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     func hideHeaderAndFooter(_ isShow:Bool) {
         if(self.journeyStart) {
             if(isShow) {
-                self.navigationController?.setNavigationBarHidden(true, animated: true)
-                if(self.toolbarView != nil ){
-                    self.toolbarView.animation.makeOpacity(0.0).animate(0.5)
-                }
-//                if(self.addPostsButton != nil) {
+                if isActivityHidden {
+                    self.navigationController?.setNavigationBarHidden(true, animated: true)
+                    if(self.toolbarView != nil ){
+                        self.toolbarView.animation.makeOpacity(0.0).animate(0.5)
+                    }
+                    //                if(self.addPostsButton != nil) {
                     UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut, animations: {
                         self.addPostsButton.frame.origin.y = self.view.frame.height - self.addPostsButton.frame.size.height - 10
                         self.mainFooter.frame.origin.y = self.view.frame.height + MAIN_FOOTER_HEIGHT
                     }, completion: nil)
-//                }
+                    //                }
+                }                
             } else {
                 self.navigationController?.setNavigationBarHidden(false, animated: true)
                 if(self.toolbarView != nil ){
