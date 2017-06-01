@@ -67,7 +67,7 @@ class NotificationCommentPhoto: UIView {
                 if mapurl == nil {
                     mapurl = URL(string: "")
                 }
-                NFPhotoImage.hnk_setImageFromURL(mapurl!)
+                NFPhotoImage.sd_setImage(with: mapurl!)
                 return
             }
         }
@@ -75,8 +75,8 @@ class NotificationCommentPhoto: UIView {
             //Showing img for thought
             imageURL = data["thoughts"].stringValue
         }
-        
-        NFPhotoImage.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(imageURL)", width: SMALL_PHOTO_WIDTH))
+        NFPhotoImage.sd_setImage(with: getImageURL("\(adminUrl)upload/readFile?file=\(imageURL)", width: SMALL_PHOTO_WIDTH),
+                                 placeholderImage: getPlaceholderImage())
     }
-
 }
+
