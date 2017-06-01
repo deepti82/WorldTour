@@ -407,8 +407,8 @@ class TLTravelLocalLifeTableViewCell: UITableViewCell, PlayerDelegate {
 //            else {
                 urlStr = getImageURL(post["photos"][i]["name"].stringValue, width: BIG_PHOTO_WIDTH)
 //            }
-            
-            photosButton.hnk_setImageFromURL(urlStr)
+            photosButton.sd_setImage(with: urlStr,
+                                     placeholderImage: getPlaceholderImage())            
             let tapGestureRecognizer = UITapGestureRecognizer(target:self, action: #selector(self.openSinglePhoto(_:)))
             photosButton.isUserInteractionEnabled = true
             photosButton.addGestureRecognizer(tapGestureRecognizer)

@@ -89,10 +89,10 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
                 let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(PhotosOTG2.openSinglePhoto(_:)))
                 self.mainPhoto?.addGestureRecognizer(tapGestureRecognizer)                
             }
-            self.mainPhoto?.hnk_setImageFromURL(getImageURL(post.imageArr[0].imageUrl.absoluteString, width: BLUR_PHOTO_WIDTH))
             
             self.mainPhoto?.sd_setImage(with: getImageURL(post.imageArr[0].imageUrl.absoluteString, width: BIG_PHOTO_WIDTH),
                                         placeholderImage: getPlaceholderImage())
+            
 
             /*cache.fetch(URL: URL(string:imgStr)!).onSuccess({ (data) in
                 self.mainPhoto?.image = UIImage(data: data as Data)
@@ -418,6 +418,7 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
                         
                         if self.mainPhoto?.tag == 0 {
                             print("\n Loading started for mainPhoto :  \(self.postTop.imageArr[0].imageUrl)")
+                            
                             self.mainPhoto?.hnk_setImageFromURL(self.postTop.imageArr[0].imageUrl, placeholder: UIImage(named: "logo-default"), format: nil, failure: nil, success: { (img) in
                                 self.mainPhoto?.image = img
                                 self.mainPhoto?.tag = 1

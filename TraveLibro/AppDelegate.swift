@@ -230,6 +230,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
         
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {        
         
+        
+        SDWebImageDownloader.shared().maxConcurrentDownloads = 3
+        
         createMenuView()        
         
         googleAnalytics()
