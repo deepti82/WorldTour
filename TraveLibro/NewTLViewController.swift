@@ -790,13 +790,13 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
                     self.layout.removeAll()
                     self.prevPosts = []
                     self.isInitialLoad = true
+                    isJourneyOngoing = true
                     self.checkFetchedLocation()
                     self.latestCity = response["data"]["startLocation"].string!
                     if self.isRefreshing {
                         self.refreshControl.endRefreshing()
                         self.isRefreshing = false
                     }
-                    isJourneyOngoing = true
                     self.journeyStart = true
                     self.myJourney = response["data"]
                     print(self.myJourney);
@@ -857,7 +857,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
                 endJourneyView.placeLabel.text = jouurneyToShow["post"][jouurneyToShow["post"].count - 1]["city"].string
 
             }else{
-            endJourneyView.placeLabel.text = jouurneyToShow["startLocation"].stringValue
+                endJourneyView.placeLabel.text = jouurneyToShow["startLocation"].stringValue
             }
             endJourneyView.dateLabel.text = getDateFormat(jouurneyToShow["endTime"].stringValue, format: "dd MMM, yyyy")
             endJourneyView.timeLabel.text = getDateFormat(jouurneyToShow["endTime"].stringValue, format: "hh:mm a")
