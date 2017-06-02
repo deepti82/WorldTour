@@ -149,7 +149,9 @@ class Navigation {
         print("\n get user params : \(params)")
         
         let urlString = adminUrl + "user/getOne"
-        if urlSlug == "" {
+        
+        if urlSlug == nil || urlSlug == "" {
+            
             self.cache.fetch(key: urlString+id).onSuccess { data in
                 let json = JSON(data: data)
                 print("\n getUser upper : \(json["data"]["name"].stringValue)")
