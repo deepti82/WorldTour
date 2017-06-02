@@ -725,7 +725,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         
         request.getJourney(currentUser["_id"].string!, completion: {(response) in
             DispatchQueue.main.async(execute: {
-//                self.loader.hideOverlayView()
+                self.loader.hideOverlayView()
                 print(response)
                 if response.error != nil {
                     
@@ -774,7 +774,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     func getOneJourney() {
         request.getJourneyById(fromOutSide, completion: {(response) in
             DispatchQueue.main.async(execute: {
-//                self.loader.hideOverlayView()
+                self.loader.hideOverlayView()
 
                 if response.error != nil {
                     print("error: \(response.error!.localizedDescription)")
@@ -868,7 +868,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
                 endJourneyView.removeFromSuperview()
             }
         }
-        self.loader.hideOverlayView()
+//        self.loader.hideOverlayView()
     }
     
     func closeInfo(_ sender: UITapGestureRecognizer) {
