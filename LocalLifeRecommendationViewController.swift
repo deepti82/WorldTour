@@ -15,6 +15,7 @@ import Toaster
 class LocalLifeRecommendationViewController: UIViewController, UIImagePickerControllerDelegate,UINavigationControllerDelegate, CLLocationManagerDelegate, UITextViewDelegate, UIScrollViewDelegate {
     var currentTime =  ""
     var addView:AddActivityNew!
+    var isAddActivityPresent = false
     var backView:UIView!
     var newScroll:UIScrollView!
     var titleLabel:UILabel!
@@ -254,6 +255,8 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
             self.present(alertController, animated: true, completion: nil)
         } else {
             //Add Dard Blur Background
+            self.hideHeaderAndFooter(false)
+            isAddActivityPresent = true
             var darkBlur: UIBlurEffect!
             var blurView: UIVisualEffectView!
             self.backView = UIView();
@@ -399,6 +402,8 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
         self.setNavigationBarItemText("Local Life")
         let rightBarButton = UIBarButtonItem()
         self.navigationItem.rightBarButtonItem = rightBarButton
+        
+        isAddActivityPresent = false
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
@@ -662,8 +667,10 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
     
     func hideHeaderAndFooter(_ isShow:Bool) {
         if(isShow) {
-            self.navigationController?.setNavigationBarHidden(true, animated: true)
-            self.mainFooter.frame.origin.y = self.view.frame.height + MAIN_FOOTER_HEIGHT
+            if !isAddActivityPresent {
+                self.navigationController?.setNavigationBarHidden(true, animated: true)
+                self.mainFooter.frame.origin.y = self.view.frame.height + MAIN_FOOTER_HEIGHT                
+            }
         } else {
             self.navigationController?.setNavigationBarHidden(false, animated: true)
             self.mainFooter.frame.origin.y = self.view.frame.height - MAIN_FOOTER_HEIGHT

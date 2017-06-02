@@ -1113,8 +1113,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         mainScroll.showsHorizontalScrollIndicator = false
         mainScroll.clipsToBounds = true
         
-        let i  = PostImage();
-        i.uploadPhotos(delegate: nil)
+//        let i  = PostImage();
+//        i.uploadPhotos(delegate: nil)
         
         refreshControl.addTarget(self, action: #selector(NewTLViewController.refresh(_:)), for: .valueChanged)
         let attributes = [NSForegroundColorAttributeName: UIColor.white]
@@ -1164,7 +1164,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
 //        addPostsButton.isHidden = true
         
         if fromOutSide == "" {
-//            getJourney()            
+            getJourney()            
         }else{
             addPostsButton.isHidden = true
             getOneJourney()
