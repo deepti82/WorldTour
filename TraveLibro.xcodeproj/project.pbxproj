@@ -138,6 +138,12 @@
 		44B17E931E691DE700CA8F0C /* NotificationTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B17E921E691DE700CA8F0C /* NotificationTime.swift */; };
 		44B672101EB9B62F00F5561A /* FeedHeaderTextFlagView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44B6720F1EB9B62F00F5561A /* FeedHeaderTextFlagView.xib */; };
 		44B672121EB9B8D000F5561A /* TLFeedHeaderTextFlagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B672111EB9B8D000F5561A /* TLFeedHeaderTextFlagView.swift */; };
+		44D2AFA81EDEEB0200E16712 /* CornerpointClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D2AFA31EDEEB0200E16712 /* CornerpointClientProtocol.swift */; };
+		44D2AFA91EDEEB0200E16712 /* CornerpointView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D2AFA41EDEEB0200E16712 /* CornerpointView.swift */; };
+		44D2AFAA1EDEEB0200E16712 /* CroppableImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D2AFA51EDEEB0200E16712 /* CroppableImageView.swift */; };
+		44D2AFAB1EDEEB0200E16712 /* CroppableImageViewDelegateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D2AFA61EDEEB0200E16712 /* CroppableImageViewDelegateProtocol.swift */; };
+		44D2AFAC1EDEEB0200E16712 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D2AFA71EDEEB0200E16712 /* Utils.swift */; };
+		44D2AFAF1EDEEB6800E16712 /* TLCropImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D2AFAE1EDEEB6800E16712 /* TLCropImageViewController.swift */; };
 		44D620EA1EBB19AC00326CB1 /* TLTravelLocalLifeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D620E91EBB19AC00326CB1 /* TLTravelLocalLifeTableViewCell.swift */; };
 		44D620F01EBB4AA100326CB1 /* TLItinerayPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D620EF1EBB4AA100326CB1 /* TLItinerayPostView.swift */; };
 		44D620F21EBB4ABB00326CB1 /* TLItinerayPostView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44D620F11EBB4ABB00326CB1 /* TLItinerayPostView.xib */; };
@@ -700,6 +706,12 @@
 		44B17E921E691DE700CA8F0C /* NotificationTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationTime.swift; path = Notification/NotificationTime.swift; sourceTree = "<group>"; };
 		44B6720F1EB9B62F00F5561A /* FeedHeaderTextFlagView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FeedHeaderTextFlagView.xib; path = Views/FeedViews/FeedHeaderTextFlagView.xib; sourceTree = "<group>"; };
 		44B672111EB9B8D000F5561A /* TLFeedHeaderTextFlagView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TLFeedHeaderTextFlagView.swift; path = Views/FeedViews/TLFeedHeaderTextFlagView.swift; sourceTree = "<group>"; };
+		44D2AFA31EDEEB0200E16712 /* CornerpointClientProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CornerpointClientProtocol.swift; path = Helpers/ImageCroppingTool/CornerpointClientProtocol.swift; sourceTree = "<group>"; };
+		44D2AFA41EDEEB0200E16712 /* CornerpointView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CornerpointView.swift; path = Helpers/ImageCroppingTool/CornerpointView.swift; sourceTree = "<group>"; };
+		44D2AFA51EDEEB0200E16712 /* CroppableImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CroppableImageView.swift; path = Helpers/ImageCroppingTool/CroppableImageView.swift; sourceTree = "<group>"; };
+		44D2AFA61EDEEB0200E16712 /* CroppableImageViewDelegateProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CroppableImageViewDelegateProtocol.swift; path = Helpers/ImageCroppingTool/CroppableImageViewDelegateProtocol.swift; sourceTree = "<group>"; };
+		44D2AFA71EDEEB0200E16712 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utils.swift; path = Helpers/ImageCroppingTool/Utils.swift; sourceTree = "<group>"; };
+		44D2AFAE1EDEEB6800E16712 /* TLCropImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TLCropImageViewController.swift; path = Controller/TLCropImageViewController.swift; sourceTree = "<group>"; };
 		44D620E91EBB19AC00326CB1 /* TLTravelLocalLifeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TLTravelLocalLifeTableViewCell.swift; path = Views/FeedViews/TLTravelLocalLifeTableViewCell.swift; sourceTree = "<group>"; };
 		44D620EF1EBB4AA100326CB1 /* TLItinerayPostView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TLItinerayPostView.swift; path = Views/FeedViews/TLItinerayPostView.swift; sourceTree = "<group>"; };
 		44D620F11EBB4ABB00326CB1 /* TLItinerayPostView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TLItinerayPostView.xib; path = Views/FeedViews/TLItinerayPostView.xib; sourceTree = "<group>"; };
@@ -1501,6 +1513,7 @@
 		445F70F61ECF005100934493 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				44D2AFA21EDEEAE100E16712 /* CropImage */,
 				445F70F71ECF005B00934493 /* SDWebImage */,
 			);
 			name = Libraries;
@@ -1560,6 +1573,26 @@
 				4468E53A1EAB1B9600DECD77 /* TLProfileViewController.swift */,
 			);
 			name = MainProfile;
+			sourceTree = "<group>";
+		};
+		44D2AFA21EDEEAE100E16712 /* CropImage */ = {
+			isa = PBXGroup;
+			children = (
+				44D2AFA31EDEEB0200E16712 /* CornerpointClientProtocol.swift */,
+				44D2AFA41EDEEB0200E16712 /* CornerpointView.swift */,
+				44D2AFA51EDEEB0200E16712 /* CroppableImageView.swift */,
+				44D2AFA61EDEEB0200E16712 /* CroppableImageViewDelegateProtocol.swift */,
+				44D2AFA71EDEEB0200E16712 /* Utils.swift */,
+			);
+			name = CropImage;
+			sourceTree = "<group>";
+		};
+		44D2AFAD1EDEEB0E00E16712 /* ImageCropping */ = {
+			isa = PBXGroup;
+			children = (
+				44D2AFAE1EDEEB6800E16712 /* TLCropImageViewController.swift */,
+			);
+			name = ImageCropping;
 			sourceTree = "<group>";
 		};
 		44F2FAC21EB85E6E003BB3EA /* Feeds */ = {
@@ -2104,6 +2137,7 @@
 		C25443511CD7392000C2C6CD /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				44D2AFAD1EDEEB0E00E16712 /* ImageCropping */,
 				44F2FAC21EB85E6E003BB3EA /* Feeds */,
 				4468E5391EAB1B2600DECD77 /* MainProfile */,
 				84FF894C1E53476A00FDE8F0 /* SearchTableViewController.swift */,
@@ -3331,12 +3365,14 @@
 				C2DCB36E1CE723C3006E5CBD /* RatingReviewViewController.swift in Sources */,
 				845C432E1E2FCE4200800F51 /* ActivityFeedFooter.swift in Sources */,
 				1A944E3A1CCB5B88007EB5BD /* FooterView.swift in Sources */,
+				44D2AFAF1EDEEB6800E16712 /* TLCropImageViewController.swift in Sources */,
 				FCE877FC1E3093A4005EE913 /* ActivityHeaderTag.swift in Sources */,
 				843510E41DF7F88100C3D8EE /* QuickIteneraryFour.swift in Sources */,
 				C2DA2B5B1CE6076600F15C5C /* MyCollectionViewCell.swift in Sources */,
 				C26B4DEF1D14288900213055 /* ConnectWithAgentViewController.swift in Sources */,
 				C2DCAE411D18063E00B35331 /* NavigationStyle.swift in Sources */,
 				440918041E9DE80100AE20F4 /* notificationEmptyView.swift in Sources */,
+				44D2AFA91EDEEB0200E16712 /* CornerpointView.swift in Sources */,
 				C2C965991CE45A51007BDA34 /* Date&Time.swift in Sources */,
 				447492251E5D535300039D56 /* NotificationFollowRequestCell.swift in Sources */,
 				C20A18FF1D22A67700760BF9 /* AddBuddiesViewController.swift in Sources */,
@@ -3355,6 +3391,7 @@
 				44081CF81E55EEC5006EA74C /* NotificationFollowCell.swift in Sources */,
 				C22138F31D547846008D9DEE /* QuickItineraryTwo.swift in Sources */,
 				C248704C1D0BF05B003CB0DD /* MoreAboutTrip.swift in Sources */,
+				44D2AFAA1EDEEB0200E16712 /* CroppableImageView.swift in Sources */,
 				FCDF490A1E255A1C00ED9A32 /* previewBase.swift in Sources */,
 				44B17E931E691DE700CA8F0C /* NotificationTime.swift in Sources */,
 				C24F84F41D0052B9002EA203 /* EmptyPagesViewController.swift in Sources */,
@@ -3500,6 +3537,7 @@
 				440918081E9DF94600AE20F4 /* activityEmptyView.swift in Sources */,
 				C23B34D91D7AF0AE00EBBF25 /* ProfilePicFancy.swift in Sources */,
 				C2AE193B1DF57078006FF114 /* ImageCropperViewController.swift in Sources */,
+				44D2AFAC1EDEEB0200E16712 /* Utils.swift in Sources */,
 				842484FC1E13AC6400083115 /* PhotoOTGFooter.swift in Sources */,
 				C24846381D8AB4E2001AEF2D /* SelectNearbyLocationTableViewController.swift in Sources */,
 				C24F84DE1D001456002EA203 /* EditSettingsViewController.swift in Sources */,
@@ -3562,6 +3600,7 @@
 				3A38275E1DDEE4BB007F181D /* NearMeListViewController.swift in Sources */,
 				FC259C291E79014D00AF815A /* MainSearchViewController.swift in Sources */,
 				FC807AD61E3CAB1700609E9B /* TripPhotoHeader.swift in Sources */,
+				44D2AFA81EDEEB0200E16712 /* CornerpointClientProtocol.swift in Sources */,
 				C23EB1DF1CFEF352005B5CE8 /* EndLocalLife.swift in Sources */,
 				C25443501CD7391900C2C6CD /* OnTheGoViewController.swift in Sources */,
 				C20163E01D26911C00A2F70B /* UserModel.swift in Sources */,
@@ -3578,6 +3617,7 @@
 				C2488AB11D51BC3900FD5306 /* PhotoList.swift in Sources */,
 				C2A026CF1D9AA82F00D548AB /* CommentsViewController.swift in Sources */,
 				C2C9659D1CE4AEB2007BDA34 /* ThoughtsViewController.swift in Sources */,
+				44D2AFAB1EDEEB0200E16712 /* CroppableImageViewDelegateProtocol.swift in Sources */,
 				C23B3BDE1D423CDE0075B733 /* EachItineraryPhotosViewController.swift in Sources */,
 				C2FA008A1CF57EC100E6A7D7 /* SetProfilePictureViewController.swift in Sources */,
 				369042C31E090E6700D266A7 /* PostImage.swift in Sources */,
