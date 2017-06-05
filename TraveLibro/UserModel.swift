@@ -8,17 +8,6 @@
 
 import SQLite
 
-//enum DataUploadOptions : String {
-//    case cellular_and_wifi = "Cellular and WiFi"
-//    case wifi = "WiFi"
-//    case cellular = "Cellular"
-//}
-//
-//enum PrivacyOptions : String {
-//    case public_everyone = "Public - Everyone"
-//    case private_myFollowers = "Private - My Followers"
-//}
-
 public class User {
 
     let db = AppDelegate.getDatabase()
@@ -42,7 +31,6 @@ public class User {
 
     let isLoggedIn = Expression<Bool>("isLoggedIn")
     
-    let dataUpload = Expression<String?>("dataUpload")
     let privacy = Expression<String?>("privacy")
     
 
@@ -60,12 +48,11 @@ public class User {
             t.column(homeCountry)
             t.column(homeCity)
             t.column(isLoggedIn)
-            t.column(dataUpload)
             t.column(privacy)
         })
     }
 
-    func setUser(_ userid: String, name: String, useremail: String, profilepicture: String, travelconfig: String, loginType: String, socialId: String, userBadge: String, homecountry: String, homecity: String, isloggedin: Bool, dataUpload: String, privacy: String) -> Void {
+    func setUser(_ userid: String, name: String, useremail: String, profilepicture: String, travelconfig: String, loginType: String, socialId: String, userBadge: String, homecountry: String, homecity: String, isloggedin: Bool, privacy: String) -> Void {
         DispatchQueue.main.async {
             let count = try! self.db.scalar(self.user.filter(self.userId == userid).count)
             if(count == 0) {
@@ -81,7 +68,6 @@ public class User {
                     self.isLoggedIn <- isloggedin,
                     self.profilePicture <- profilepicture,
                     self.travelConfig <- travelconfig,
-                    self.dataUpload <- dataUpload,
                     self.privacy <- privacy
                 )
                 do {
@@ -89,7 +75,8 @@ public class User {
                 } catch _ {
                     
                 }
-            } else {
+            }
+            else {
                 let updaterow = self.user.filter(self.userId == userid)
                 try! self.db.run(updaterow.update(self.name <- name))
                 try! self.db.run(updaterow.update(self.email <- useremail))
@@ -99,26 +86,11 @@ public class User {
                 try! self.db.run(updaterow.update(self.homeCountry <- homecountry))
                 try! self.db.run(updaterow.update(self.homeCity <- homecity))
                 try! self.db.run(updaterow.update(self.isLoggedIn <- isloggedin))
-                try! self.db.run(updaterow.update(self.dataUpload <- dataUpload))
                 try! self.db.run(updaterow.update(self.privacy <- privacy))
             }
         }
     }
 
-    func updateUserDataUploadMethod(_ userid: String, dataUpload: String) {
-        DispatchQueue.main.async {
-            let count = try! self.db.scalar(self.user.filter(self.userId == userid).count)
-            if(count == 0) {
-                print("\n Error while updating privacy in local :: No recored found for userID: \(userid)")                
-                
-            } 
-            else {
-                let updaterow = self.user.filter(self.userId == userid)
-                try! self.db.run(updaterow.update(self.dataUpload <- dataUpload))
-            }
-        }
-    }
-    
     func updateUserPrivacy(_ userid: String, privacy: String) {
         DispatchQueue.main.async {
             let count = try! self.db.scalar(self.user.filter(self.userId == userid).count)
@@ -143,8 +115,7 @@ public class User {
         homecountry: String,
         homecity: String,
         isloggedin: Bool,
-        Privacy: String,
-        dataupload: String)  {
+        Privacy: String)  {
 
         var Name = ""
         var useremail = ""
@@ -156,7 +127,6 @@ public class User {
         var homecity = ""
         var isloggedin: Bool!
         var Privacy = ""
-        var dataupload = ""
 
         let count = try! db.scalar(self.user.filter(self.userId == userid).count)
         if(count == 0) {
@@ -173,12 +143,11 @@ public class User {
             homecity = newval![homeCity]!
             isloggedin = newval![isLoggedIn]
             Privacy = newval![privacy]!
-            dataupload = newval![dataUpload]!
             
             //print(firstName, lastName, useremail, userdob, usergender, usermobile, userstatus, loginType, facebookid, twitterid, googleid, instagramid, userbadgeImage, userbadgeName, homecountry, homecity, isloggedin)
             
         }
-        return (Name, useremail, loginType, socialid, profilepicture, userbadge, homecountry, homecity, isloggedin, Privacy, dataupload)
+        return (Name, useremail, loginType, socialid, profilepicture, userbadge, homecountry, homecity, isloggedin, Privacy)
     }
     
     func getExistingUser() -> String {

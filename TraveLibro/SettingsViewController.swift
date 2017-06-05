@@ -30,12 +30,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         heightConstraintTable?.constant = count * 75
         print("NSLayoutConstraint: \(heightConstraintTable)")
         
-        if dataSourceOption == "dataUploadOptions" {
-            labels = ["Cellular and WiFi", "WiFi"]
-        }
-        else {
-            labels = ["Public - Everyone", "Private - My Followers"]
-        }
+        labels = ["Public - Everyone", "Private - My Followers"]        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -52,15 +47,12 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        if dataSourceOption == "dataUploadOptions" {
+        var index:Int? = (currentUser["status"].stringValue == "private") ? 1 : 0
+        if index == nil {
+            index = 0   //Default: Private - My Followers
         }
-        else {
-            var index:Int? = (currentUser["status"].stringValue == "private") ? 1 : 0
-            if index == nil {
-                index = 0   //Default: Private - My Followers
-            }
-            self.tableView(settingsTableView, didSelectRowAt: IndexPath(row: index!, section: 0))
-        }
+        self.tableView(settingsTableView, didSelectRowAt: IndexPath(row: index!, section: 0))
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -100,15 +92,11 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         }
         
         else {
-            if selectedOption != "" {
-                if dataSourceOption == "dataUploadOptions" {
-                }
-                else {
-                    let index:Int? = (currentUser["status"].stringValue == "private") ? 1 : 0
-                    if index != nil {
-                        self.tableView(settingsTableView, didDeselectRowAt: IndexPath(row: index!, section: 0))
-                    }
-                }
+            if selectedOption != "" {                
+                let index:Int? = (currentUser["status"].stringValue == "private") ? 1 : 0
+                if index != nil {
+                    self.tableView(settingsTableView, didDeselectRowAt: IndexPath(row: index!, section: 0))
+                }                
             }
             selectedCell?.accessoryType = .checkmark
             selectedOption = labels[indexPath.row]
@@ -166,26 +154,18 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         //TODO: check if any option must be selected or not
         
         if selectedOption != "" {
-            
-            if dataSourceOption == "dataUploadOptions" {
-                if localLoggedInUser.dataupload != selectedOption {
-                    user.updateUserDataUploadMethod(currentUser["_id"].stringValue, dataUpload: selectedOption)
-                    Toast(text:"Profile updated").show()
-                }
-            }
-            else {
-                if localLoggedInUser.Privacy != selectedOption {
-                    request.editUser(currentUser["_id"].stringValue, editField: "status", editFieldValue: (selectedOption == "Private - My Followers") ? "private" : "public", completion: { (response) in
-                        DispatchQueue.main.async(execute: {
-                            if response["value"].bool!{
-                                currentUser = response["data"]
-                                user.updateUserPrivacy(currentUser["_id"].stringValue, privacy: (self.selectedOption == "Private - My Followers") ? "private" : "public")
-                                Toast(text:"Profile updated").show()
-                            }
-                        })
+            if localLoggedInUser.Privacy != selectedOption {
+                request.editUser(currentUser["_id"].stringValue, editField: "status", editFieldValue: (selectedOption == "Private - My Followers") ? "private" : "public", completion: { (response) in
+                    DispatchQueue.main.async(execute: {
+                        if response["value"].bool!{
+                            currentUser = response["data"]
+                            user.updateUserPrivacy(currentUser["_id"].stringValue, privacy: (self.selectedOption == "Private - My Followers") ? "private" : "public")
+                            Toast(text:"Profile updated").show()
+                        }
                     })
-                }
-            }           
+                })
+            }
+                       
         }
     }
 }
