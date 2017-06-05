@@ -15,6 +15,8 @@ protocol TLUploadDelegate {
 
 public class PostImage {
     
+    let db = TLModelManager.getSharedManager().db!
+    
     private var delegate: TLUploadDelegate?
     
     var imageUrl: URL!
@@ -67,15 +69,6 @@ public class PostImage {
         cache.fetch(URL: URL(string:self.serverUrl + "&width=200")!).onSuccess({ (data) in
             self.image = UIImage(data: data as Data)
         })
-    }
-
-    
-    
-    
-    func getDocumentsDirectory() -> URL {
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        let documentsDirectory = paths[0]
-        return documentsDirectory
     }
     
     func save() {
@@ -147,7 +140,7 @@ public class PostImage {
                         do {
                             let singlePhoto = self.photos.filter(self.id == photo[self.id])
                             let urlString = response["data"][0].stringValue
-                            try db.run(singlePhoto.update(self.url <- urlString ))
+                            try self.db.run(singlePhoto.update(self.url <- urlString ))
                         }
                         catch {
                             

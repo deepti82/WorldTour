@@ -9,9 +9,9 @@
 import Foundation
 import SQLite
 
-let db = AppDelegate.getDatabase()
-
 public class Post {
+    
+    let db = TLModelManager.getSharedManager().db!
     
     let post = Table("Post")
     var jsonPost:JSON!
@@ -461,7 +461,7 @@ public class Post {
                         do {
                             print(response);
                             let singlePhoto = self.post.filter(self.id == postID)
-                            try db.run(singlePhoto.delete())
+                            try self.db.run(singlePhoto.delete())
                             i.deletePhotos(postID);
                             v.delete(postID)
                         }

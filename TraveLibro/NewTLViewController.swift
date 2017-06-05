@@ -624,7 +624,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
             self.currentTime = dateFormatterTwo.string(from: Date())
             //            print("time: \(currentTime)")
             
-            if Reachability.isConnectedToNetwork() {
+            if isConnectedToNetwork() {
                 
                 //                print("internet is connected post")
                 request.postTravelLife(thoughts, location: location, locationCategory: locationCategory, latitude: "\(myLatitude.latitude)", longitude: "\(myLatitude.longitude)", photosArray: photos, videosArray: videos, buddies: buddies, userId: currentUser["_id"].string!, journeyId: id, userName: currentUser["name"].string!, city: currentCity, country: currentCountry, hashtags: hashtags, date: currentTime, completion: {(response) in

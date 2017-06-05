@@ -10,6 +10,7 @@ import Foundation
 import SQLite
 
 public class LocalLifePostModel {
+    let db = TLModelManager.getSharedManager().db!
     
     let post = Table("LocalLifePost")
     var jsonPost:JSON!
@@ -415,7 +416,7 @@ public class LocalLifePostModel {
                         do {
                             print(response);
                             let singlePhoto = self.post.filter(self.id == postID)
-                            try db.run(singlePhoto.delete())
+                            try self.db.run(singlePhoto.delete())
                             i.deletePhotos(Int64(actualId));
                             v.delete(Int64(actualId))
                         }

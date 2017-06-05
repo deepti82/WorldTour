@@ -105,6 +105,8 @@
 		4437CE671E782A7C00AFA0EA /* Terms&Conditions.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4437CE661E782A7C00AFA0EA /* Terms&Conditions.pdf */; };
 		44434C511E7AD55600344C7C /* PrivacyPolicy.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 44434C501E7AD55500344C7C /* PrivacyPolicy.pdf */; };
 		44479DE31E864BAC0084669A /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44479DE21E864BAC0084669A /* Crashlytics.framework */; };
+		444871051EE53ED80042CCF0 /* TLModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444871041EE53ED80042CCF0 /* TLModelManager.swift */; };
+		444871081EE5530B0042CCF0 /* TLReachabilty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444871071EE5530B0042CCF0 /* TLReachabilty.swift */; };
 		445970DE1EC4884C002DAF96 /* TLLoadingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445970DD1EC4884C002DAF96 /* TLLoadingTableViewCell.swift */; };
 		445B0D7B1ECACD4A0006BF35 /* TLOTGPhotosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445B0D7A1ECACD4A0006BF35 /* TLOTGPhotosTableViewCell.swift */; };
 		445F71211ECF00C400934493 /* FLAnimatedImage in Resources */ = {isa = PBXBuildFile; fileRef = 445F70F91ECF00C400934493 /* FLAnimatedImage */; };
@@ -652,6 +654,8 @@
 		4437CE661E782A7C00AFA0EA /* Terms&Conditions.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Terms&Conditions.pdf"; sourceTree = "<group>"; };
 		44434C501E7AD55500344C7C /* PrivacyPolicy.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = PrivacyPolicy.pdf; sourceTree = "<group>"; };
 		44479DE21E864BAC0084669A /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		444871041EE53ED80042CCF0 /* TLModelManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TLModelManager.swift; path = Managers/TLModelManager.swift; sourceTree = "<group>"; };
+		444871071EE5530B0042CCF0 /* TLReachabilty.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TLReachabilty.swift; path = Reachability/TLReachabilty.swift; sourceTree = "<group>"; };
 		445970DD1EC4884C002DAF96 /* TLLoadingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TLLoadingTableViewCell.swift; path = Views/FeedViews/TLLoadingTableViewCell.swift; sourceTree = "<group>"; };
 		445B0D7A1ECACD4A0006BF35 /* TLOTGPhotosTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TLOTGPhotosTableViewCell.swift; path = Views/FeedViews/TLOTGPhotosTableViewCell.swift; sourceTree = "<group>"; };
 		445F70F81ECF00C300934493 /* TraveLibro-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TraveLibro-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -1168,6 +1172,7 @@
 		1A944E061CCB4567007EB5BD /* TraveLibro */ = {
 			isa = PBXGroup;
 			children = (
+				444871021EE53E5B0042CCF0 /* Managers */,
 				36CAA7F31E2E41F00019B380 /* TraveLibro.entitlements */,
 				445F70F61ECF005100934493 /* Libraries */,
 				C2DCAE3F1D17FC9600B35331 /* Helpers */,
@@ -1510,9 +1515,34 @@
 			name = NotificationMainView;
 			sourceTree = "<group>";
 		};
+		444871021EE53E5B0042CCF0 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				444871031EE53E630042CCF0 /* ModelManager */,
+			);
+			name = Managers;
+			sourceTree = "<group>";
+		};
+		444871031EE53E630042CCF0 /* ModelManager */ = {
+			isa = PBXGroup;
+			children = (
+				444871041EE53ED80042CCF0 /* TLModelManager.swift */,
+			);
+			name = ModelManager;
+			sourceTree = "<group>";
+		};
+		444871061EE552BC0042CCF0 /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				444871071EE5530B0042CCF0 /* TLReachabilty.swift */,
+			);
+			name = Reachability;
+			sourceTree = "<group>";
+		};
 		445F70F61ECF005100934493 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				444871061EE552BC0042CCF0 /* Reachability */,
 				44D2AFA21EDEEAE100E16712 /* CropImage */,
 				445F70F71ECF005B00934493 /* SDWebImage */,
 			);
@@ -3363,6 +3393,7 @@
 				FC9A0C1C1E0932E300BC3F7A /* CountrySummary.swift in Sources */,
 				FCCFAAE11E7A813400F01DE6 /* PopularItinerary.swift in Sources */,
 				C2DCB36E1CE723C3006E5CBD /* RatingReviewViewController.swift in Sources */,
+				444871081EE5530B0042CCF0 /* TLReachabilty.swift in Sources */,
 				845C432E1E2FCE4200800F51 /* ActivityFeedFooter.swift in Sources */,
 				1A944E3A1CCB5B88007EB5BD /* FooterView.swift in Sources */,
 				44D2AFAF1EDEEB6800E16712 /* TLCropImageViewController.swift in Sources */,
@@ -3606,6 +3637,7 @@
 				C20163E01D26911C00A2F70B /* UserModel.swift in Sources */,
 				44081CF41E55E46B006EA74C /* NotificationAcknolwdgementCell.swift in Sources */,
 				C26907891CF82E9100F827E6 /* AccountVerified.swift in Sources */,
+				444871051EE53ED80042CCF0 /* TLModelManager.swift in Sources */,
 				C212930E1D2E806B002D5A4A /* MyLifeContainerViewController.swift in Sources */,
 				445B0D7B1ECACD4A0006BF35 /* TLOTGPhotosTableViewCell.swift in Sources */,
 				4435D2FD1E548D3D003BD1D9 /* NotificationUserFollowing.swift in Sources */,

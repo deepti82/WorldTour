@@ -11,6 +11,8 @@ import SQLite
 
 public class Buddy {
     
+    let db = TLModelManager.getSharedManager().db!
+    
     var buddyID = ""
     var postID = 0
     var buddyEmail = ""

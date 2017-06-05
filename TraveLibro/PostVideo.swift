@@ -10,6 +10,9 @@ import SQLite
 import Haneke
 
 public class PostVideo {
+    
+    let db = TLModelManager.getSharedManager().db!
+    
     var imageUrl: URL!
     var image:UIImage!
     var videoUrl:URL!
@@ -45,12 +48,6 @@ public class PostVideo {
             print("There was error in the system");
         }
         
-    }
-    
-    func getDocumentsDirectory() -> URL {
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        let documentsDirectory = paths[0]
-        return documentsDirectory
     }
     
     func save() {
@@ -119,7 +116,7 @@ public class PostVideo {
                             let singlePhoto = self.videos.filter(self.id == photo[self.id])
                             let urlString = response["data"][0]["name"].stringValue
                             let urlthumbString = response["data"][0]["thumbnail"].stringValue
-                            try db.run(singlePhoto.update(self.url <- urlString, self.thumbnail <- urlthumbString ))
+                            try self.db.run(singlePhoto.update(self.url <- urlString, self.thumbnail <- urlthumbString ))
                         }
                         catch {
                             

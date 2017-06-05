@@ -10,7 +10,7 @@ import SQLite
 
 public class User {
 
-    let db = AppDelegate.getDatabase()
+    let db = TLModelManager.getSharedManager().db!
 
     let user = Table("user")
 

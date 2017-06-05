@@ -11,6 +11,8 @@ import SQLite
 
 public class PostEditPhotosVideos {
     
+    let db = TLModelManager.getSharedManager().db!
+    
     var buddyJson:[JSON] = []
     
     let addPhotosVideos_db = Table("AddPhotosVideos")
@@ -80,7 +82,7 @@ public class PostEditPhotosVideos {
                     else if response["value"].bool! {
                         do {
                             let singlePhoto = self.addPhotosVideos_db.filter(self.id_db == post[self.id_db])
-                            try db.run(singlePhoto.delete())
+                            try self.db.run(singlePhoto.delete())
                             i.deletePhotos(Int64(actualId));
                         }
                         catch {

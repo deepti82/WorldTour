@@ -68,7 +68,6 @@ var loader = LoadingOverlay()
 var feedViewController: UIViewController!
 var travelLifeViewController: UIViewController!
 var hasLoggedInOnce = false
-var onlyOnce = true
 var HUD: UIActivityIndicatorView?
 
 let request = Navigation()
@@ -149,28 +148,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
     
     var window: UIWindow?
     
-    static func getDatabase () -> Connection {
+    var reachability: Reachability? = Reachability.networkReachabilityForInternetConnection()
         
-        let path = NSSearchPathForDirectoriesInDomains(
-            .documentDirectory, .userDomainMask, true
-            ).first!
-        let db = try! Connection("\(path)/db.sqlite3")
-        if(onlyOnce)
-        {
-            onlyOnce = false
-            print("database path: \(path)")
-        }
-        return db;
-        
-    }
-    
-//    func visibleViewController() -> UIViewController? {
-//        if let rootViewController: UIViewController  = rootViewController {
-//            return wind.getVisibleViewControllerFrom(rootViewController)
-//        }
-//        return nil
-//    }
-    
     internal func createMenuView() {
         
         storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -228,8 +207,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
     
     
         
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {        
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(reachabilityDidChange(_:)), name: NSNotification.Name(rawValue: ReachabilityDidChangeNotificationName), object: nil)        
+        _ = reachability?.startNotifier()
         
         SDWebImageDownloader.shared().maxConcurrentDownloads = 3
         
@@ -239,7 +221,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
         
         enableCrashReporting()
         
-        _ = AppDelegate.getDatabase()
+        //TODO: Create database process is remaining
+        
         
         if #available(iOS 10.0, *) {
             UNUserNotificationCenter.current().requestAuthorization(options: [.badge, .alert, .sound]) { (granted, error) in
@@ -399,6 +382,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
         return UIInterfaceOrientationMask.portrait
     }
 
+    
+    //MARK: - Reachability
+    
+    func reachabilityDidChange(_ notification: Notification) {
+        checkReachability()
+    }
+    
+    func checkReachability() {
+        guard let r = reachability else { return }
+        if r.isReachable  {
+            print("\n**************************\n Network is Reachable \n**************************\n\n")
+        } else {
+            print("\n**************************\n Unreachable \n**************************\n\n")
+        }
+    }
+    
+    func isConnectedToNetwork() -> Bool {
+        guard let r = reachability else { return false}
+        if r.isReachable  {
+            return true
+        } else {
+            return false
+        }
+    }
+    
     //MARK: - Navigation Delegate
     
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {

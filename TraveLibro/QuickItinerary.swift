@@ -11,6 +11,8 @@ import SQLite
 
 public class QuickItinerary {
     
+    let db = TLModelManager.getSharedManager().db!
+    
     let post = Table("QuickItinerary")
     var jsonPost:JSON!
     var imageArr:[PostImage] = []
@@ -151,7 +153,7 @@ public class QuickItinerary {
                     else if response["value"].bool! {
                         do {
                             let singlePhoto = self.post.filter(self.id == postID)
-                            try db.run(singlePhoto.delete())
+                            try self.db.run(singlePhoto.delete())
                             i.deletePhotos(Int64(actualId));
                         }
                         catch {
