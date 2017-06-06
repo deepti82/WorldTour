@@ -511,7 +511,7 @@ public class Post {
                             
                         }
                         print(" ******* postCheck 3")
-                        self.uploadPost()
+                        //self.uploadPost()
                     }
                     else {
                         print("response error")

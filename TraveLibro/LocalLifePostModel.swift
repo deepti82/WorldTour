@@ -266,8 +266,7 @@ public class LocalLifePostModel {
         
     }
     
-    func updateStatus(postId: Int64, status: uploadStatus) {
-        print("\n postID: \(postId) status: \(status)")
+    func updateStatus(postId: Int64, status: uploadStatus) {        
         var toStatus = 0
         switch status {
         case .UPLOAD_PENDING:
@@ -377,6 +376,7 @@ public class LocalLifePostModel {
         do {
             var check = false;
             let query = post.select(id,type,userId,journeyId,thoughts,location,category,city,country,latitude,longitude,date,buddyDb)
+                .filter(localLifePostStatus == 0 || localLifePostStatus == 4)
                 .limit(1)
             for post in try db.prepare(query) {
                 check = true
@@ -449,8 +449,7 @@ public class LocalLifePostModel {
                         self.updateStatus(postId: post[self.id], status: uploadStatus.UPLOAD_FAILED)
                     }
                     else if response["value"].bool! {
-                        do {
-                            print(response);
+                        do {                            
                             let singlePhoto = self.post.filter(self.id == postID)
                             try self.db.run(singlePhoto.delete())
                             i.deletePhotos(Int64(actualId));
@@ -462,7 +461,9 @@ public class LocalLifePostModel {
                             
                         }
                         if(check) {
-                            self.uploadPost()
+                            isUploadingInProgress = false
+                            let i = PostImage()
+                            i.uploadPhotos(delegate: nil)
                         }
                     }
                     else {

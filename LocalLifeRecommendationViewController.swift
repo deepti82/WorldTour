@@ -327,9 +327,8 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
     }
     
     func newPost(_ sender: UIButton) {
+        
         hideAddActivity()
-        
-        
         
         let post  = LocalLifePostModel();
         
