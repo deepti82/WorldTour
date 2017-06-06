@@ -172,9 +172,9 @@ public class QuickItinerary {
             }
             if(!check) {
                 if globalNewTLViewController != nil {
-                    if(globalNewTLViewController.isActivityHidden) {
-                        if globalNewTLViewController.fromOutSide == "" {
-                            globalNewTLViewController.getJourney()                            
+                    if(globalNewTLViewController?.isActivityHidden)! {
+                        if globalNewTLViewController?.fromOutSide == "" {
+                            globalNewTLViewController?.getJourney()                            
                         }
                     }
                     
@@ -182,6 +182,8 @@ public class QuickItinerary {
                 if globalTLMainFeedsViewController != nil {                    
                         globalTLMainFeedsViewController.getDataMain()
                 }
+                isUploadingInProgress = false
+                
 //                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "UPLOAD_ITINERARY"), object: nil)
             }
         }

@@ -32,6 +32,7 @@ public class PostVideo {
     let localUrl = Expression<String>("localUrl")
     let url = Expression<String>("url")
     let thumbnail = Expression<String>("thumbnail")
+    let videoUploadStatus = Expression<Int64>("uploadStatus")
     
     init() {
         do {
@@ -42,6 +43,7 @@ public class PostVideo {
                 t.column(localUrl)
                 t.column(url)
                 t.column(thumbnail)
+                t.column(videoUploadStatus)
             })
         }
         catch {
@@ -61,7 +63,7 @@ public class PostVideo {
             filename = getDocumentsDirectory().appendingPathComponent( filenameOnly )
             try? data?.write(to: filename)
         }
-        let insert = videos.insert(post <- Int64(self.postId) , captions <- self.caption ,localUrl <- filenameOnly,url <- "",thumbnail <- "")
+        let insert = videos.insert(post <- Int64(self.postId) , captions <- self.caption ,localUrl <- filenameOnly,url <- "",thumbnail <- "", videoUploadStatus <- 0)
         do {
             try db.run(insert)
         }
@@ -97,46 +99,73 @@ public class PostVideo {
         return all
     }
     
-    func upload() {
+    func uploadVideo() {
+        print(" ******* videoCheck 1")
         do {
             var check = false;
             let query = videos.select(id,post,captions,localUrl,url)
-                .filter(url == "")
+                .filter(url == "" && (videoUploadStatus == 0 || videoUploadStatus == 4))
                 .limit(1)
+            
             for photo in try db.prepare(query) {
+                print(" ******* videoCheck 2")
+                
+                self.updateStatus(videoID: photo[id], status: uploadStatus.UPLOAD_IN_PROGRESS, urlString: "", thumbnailStr: "")
                 check = true;
                 let url = getDocumentsDirectory().appendingPathComponent( String(photo[localUrl]) )
                 request.uploadPhotos(url, localDbId: 0,completion: {(response) in
                     if response.error != nil {
                         print("response: \(response.error?.localizedDescription)")
+                        self.updateStatus(videoID: photo[self.id], status: uploadStatus.UPLOAD_FAILED, urlString: "", thumbnailStr: "")                        
                     }
-                    else if response["value"].bool! {
-                        do {
-                            print(response)
-                            let singlePhoto = self.videos.filter(self.id == photo[self.id])
-                            let urlString = response["data"][0]["name"].stringValue
-                            let urlthumbString = response["data"][0]["thumbnail"].stringValue
-                            try self.db.run(singlePhoto.update(self.url <- urlString, self.thumbnail <- urlthumbString ))
-                        }
-                        catch {
-                            
-                        }
-                        if(check) {
-                            self.upload()
-                        }
+                    else if response["value"].bool! {                        
+                        print(response)
+                        self.updateStatus(videoID: photo[self.id], status: uploadStatus.UPLOAD_COMPLETE, urlString: response["data"][0]["name"].stringValue, thumbnailStr: response["data"][0]["thumbnail"].stringValue)                        
                     }
                     else {
+                        self.updateStatus(videoID: photo[self.id], status: uploadStatus.UPLOAD_FAILED, urlString: "", thumbnailStr: "")
                         print("response error")
                     }
+                    print(" ******* videoCheck 3")
+                    self.uploadVideo()
                 })
             }
             if(!check) {
+                print(" ******* videoCheck 4")
                 let po = Post();
                 po.uploadPost();
             }
         }
         catch {
             print(error);
+            print(" ******* videoCheck 5")
+        }
+        
+    }
+    
+    func updateStatus(videoID: Int64, status: uploadStatus, urlString: String, thumbnailStr: String) {
+        print("\n videoID : \(videoID) urlString: \(urlString)")
+        var toStatus = 0
+        switch status {
+        case .UPLOAD_PENDING:
+            toStatus = 0
+            
+        case .UPLOAD_IN_PROGRESS:
+            toStatus = 1
+            
+        case .UPLOAD_COMPLETE:
+            toStatus = 2
+            
+        case .UPLOAD_FAILED:
+            toStatus = 3
+        }
+        
+        let updaterow = self.videos.filter(self.id == videoID)
+        do {
+            try self.db.run(updaterow.update(self.videoUploadStatus <- Int64(toStatus), url <- urlString, self.thumbnail <- thumbnailStr)) 
+        }
+        catch {
+            print("\n VIDEO update error FOUND")
         }
         
     }

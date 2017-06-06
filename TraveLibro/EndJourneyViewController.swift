@@ -558,7 +558,7 @@ class EndJourneyViewController: UIViewController {
                                 self.goBack()
                                 currentUser = response["data"]
                                 if globalNewTLViewController != nil {
-                                    globalNewTLViewController.removeFromParentViewController()
+                                    globalNewTLViewController?.removeFromParentViewController()
                                 }
                                 //                        tstr = Toast(text: "Journey ended successfully. Have a good life.")
                                 //                        tstr.show()

@@ -35,6 +35,7 @@ public class Post {
     let longitude = Expression<String>("longitude")
     let date = Expression<String>("date")
     let buddyDb = Expression<String>("buddyDb")
+    let postUploadStatus = Expression<Int64>("uploadstatus")
     
     var finalThought = NSMutableAttributedString(string: "")
     
@@ -60,6 +61,7 @@ public class Post {
     var post_commentCount:Int!
     var post_likeDone = false
     var post_isOffline = false
+    var post_status: uploadStatus!
     let hasCompleted = Expression<Bool>("hasCompleted")
     
     init() {
@@ -77,6 +79,7 @@ public class Post {
             t.column(longitude)
             t.column(date)
             t.column(buddyDb)
+            t.column(postUploadStatus)
         })
     }
     
@@ -94,11 +97,12 @@ public class Post {
             self.country <- Country,
             self.city <- City,
             self.thoughts <- thoughts,
-            self.buddyDb <- buddies
+            self.buddyDb <- buddies,
+            self.postUploadStatus <- Int64(0)
         )
+        
         do {
             let postId = try db.run(photoinsert)
-            
             
             for image in imageArr {
                 image.postId = Int(postId)
@@ -389,13 +393,47 @@ public class Post {
     }
     
     
+    func updateStatus(postId: Int64, status: uploadStatus) {
+        
+        var toStatus = 0
+        switch status {
+        case .UPLOAD_PENDING:
+            toStatus = 0
+            
+        case .UPLOAD_IN_PROGRESS:
+            toStatus = 1
+            
+        case .UPLOAD_COMPLETE:
+            toStatus = 2
+            
+        case .UPLOAD_FAILED:
+            toStatus = 3
+        }
+        
+        let updaterow = self.post.filter(self.id == postId)
+        do {
+            try self.db.run(updaterow.update(self.postUploadStatus <- Int64(toStatus))) 
+        }
+        catch {
+            print("\n POST update error FOUND")
+        }
+        
+    }
     
     func uploadPost() {
+        print(" ******* postCheck 1")
         do {
             var check = false;
             let query = post.select(id,type,userId,journeyId,thoughts,location,category,city,country,latitude,longitude,date,buddyDb)
+                .filter(postUploadStatus == 0 || postUploadStatus == 4)
                 .limit(1)
+            
             for post in try db.prepare(query) {
+                
+                print(" ******* postCheck 2")
+                
+                self.updateStatus(postId: post[id], status: uploadStatus.UPLOAD_IN_PROGRESS)
+                
                 check = true
                 let p = Post();
                 
@@ -417,12 +455,13 @@ public class Post {
                 
                 let i = PostImage();
                 p.imageArr = i.getAllImages(postNo: post[id])
-                
+                print("\n imageArr: \(p.imageArr)")
                 var photosJson:[JSON] = []
                 
                 for img in p.imageArr {
                     photosJson.append(img.parseJson())
                 }
+                print("\n PhotoJson : \(photosJson)")
                 
                 
                 let v = PostVideo();
@@ -456,6 +495,7 @@ public class Post {
                 request.postTravelLifeJson(params, completion: {(response) in
                     if response.error != nil {
                         print("response: \(response.error?.localizedDescription)")
+                        self.updateStatus(postId: post[self.id], status: uploadStatus.UPLOAD_FAILED)
                     }
                     else if response["value"].bool! {
                         do {
@@ -463,29 +503,45 @@ public class Post {
                             let singlePhoto = self.post.filter(self.id == postID)
                             try self.db.run(singlePhoto.delete())
                             i.deletePhotos(postID);
-                            v.delete(postID)
+                            v.delete(postID)                            
+                            self.updateStatus(postId: post[self.id], status: uploadStatus.UPLOAD_COMPLETE)
+                            p.delete(postID)
                         }
                         catch {
                             
                         }
-                        if(check) {
-                            self.uploadPost()
-                        }
+                        print(" ******* postCheck 3")
+                        self.uploadPost()
                     }
                     else {
                         print("response error")
+                        self.updateStatus(postId: post[self.id], status: uploadStatus.UPLOAD_FAILED)
                     }
                 })
             }
+            
             if(!check) {
+                print(" ******* postCheck 4")
                 let pe = PostEditPhotosVideos();
                 pe.uploadPostPhotosVideos()
             }
         }
         catch {
+            print(" ******* postCheck 5")
             print("There is an error");
         }
     }
+    
+    func delete(_ post:Int64) {
+        do {
+            let query = self.post.filter(self.id == post)
+            try db.run(query.delete())
+        }
+        catch {
+            print("\n Error in deleting POST")
+        }
+    }
+    
 }
 
 

@@ -115,7 +115,7 @@ class UserProfileSettingsViewController: UIViewController, UITableViewDataSource
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "profileCell") as! MainProfileTableViewCell
         makeTLProfilePicture(cell.profileImage)
-        cell.profileImage.sd_setImage(with: (getImageURL(currentUser["profilePicture"].stringValue, width: SMALL_PHOTO_WIDTH)),
+        cell.profileImage.sd_setImage(with: (getImageURL(currentUser["profilePicture"].stringValue, width: BIG_PHOTO_WIDTH)),
                                       placeholderImage: getPlaceholderImage())
         cell.profileName.text = currentUser["name"].stringValue
         cell.DoB.text = "Edit Profile"

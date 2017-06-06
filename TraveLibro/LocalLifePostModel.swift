@@ -35,6 +35,7 @@ public class LocalLifePostModel {
     let longitude = Expression<String>("longitude")
     let date = Expression<String>("date")
     let buddyDb = Expression<String>("buddyDb")
+    let localLifePostStatus = Expression<Int64>("uploadstatus")
     
     var finalThought:String!
     
@@ -60,6 +61,7 @@ public class LocalLifePostModel {
     var post_commentCount:Int!
     var post_likeDone = false
     var post_isOffline = false
+    var post_local_life_status: uploadStatus!
     let hasCompleted = Expression<Bool>("hasCompleted")
     
     init() {
@@ -77,7 +79,8 @@ public class LocalLifePostModel {
             t.column(longitude)
             t.column(date)
             t.column(buddyDb)
-        })
+            t.column(localLifePostStatus)
+        })        
     }
     
     func setPost(_ UserId: String, JourneyId: String, Type: String, Date: String, Location: String, Category: String, Latitude: String, Longitude: String, Country: String, City: String, thoughts: String,buddies:String,imageArr:[PostImage], videoURL:URL!,videoCaption:String) -> LocalLifePostModel {
@@ -94,7 +97,8 @@ public class LocalLifePostModel {
             self.country <- Country,
             self.city <- City,
             self.thoughts <- thoughts,
-            self.buddyDb <- buddies
+            self.buddyDb <- buddies,
+            self.localLifePostStatus <- Int64(0)
         )
         do {
             let postId = try db.run(photoinsert)
@@ -262,6 +266,32 @@ public class LocalLifePostModel {
         
     }
     
+    func updateStatus(postId: Int64, status: uploadStatus) {
+        print("\n postID: \(postId) status: \(status)")
+        var toStatus = 0
+        switch status {
+        case .UPLOAD_PENDING:
+            toStatus = 0
+            
+        case .UPLOAD_IN_PROGRESS:
+            toStatus = 1
+            
+        case .UPLOAD_COMPLETE:
+            toStatus = 2
+            
+        case .UPLOAD_FAILED:
+            toStatus = 3
+        }
+        
+        let updaterow = self.post.filter(self.id == postId)
+        do {
+            try self.db.run(updaterow.update(self.localLifePostStatus <- Int64(toStatus))) 
+        }
+        catch {
+            print("\n POST update error FOUND")
+        }
+    }
+    
     func changeDate(givenFormat: String, getFormat: String, date: String, isDate: Bool) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = givenFormat
@@ -279,12 +309,12 @@ public class LocalLifePostModel {
         do {
             var check = false;
             let query = post.select(id,type,userId,journeyId,thoughts,location,category,city,country,latitude,longitude,date,buddyDb)
+                .filter(localLifePostStatus == 0 || localLifePostStatus == 4)
+                .limit(1)
+            
             for post in try db.prepare(query) {
                 check = true
-                let p = LocalLifePostModel();
-                
-                var postID = post[id]
-                
+                let p = LocalLifePostModel()
                 p.post_id = Int(post[id])
                 p.post_type = String(post[type])
                 p.post_userId = String(post[userId])
@@ -343,15 +373,19 @@ public class LocalLifePostModel {
     }
     
     func uploadPost() {
+        print("\n uploadPost called in localLife")
         do {
             var check = false;
             let query = post.select(id,type,userId,journeyId,thoughts,location,category,city,country,latitude,longitude,date,buddyDb)
                 .limit(1)
             for post in try db.prepare(query) {
                 check = true
+                
+                self.updateStatus(postId: post[id], status: uploadStatus.UPLOAD_IN_PROGRESS)
+                
                 let p = LocalLifePostModel();
                 
-                var postID = post[id]
+                let postID = post[id]
                 
                 p.post_id = Int(post[id])
                 p.post_type = String(post[type])
@@ -378,6 +412,7 @@ public class LocalLifePostModel {
                     photosJson.append(img.parseJson())
                 }
                 
+                print("\n photoJson : \(photosJson)")
                 
                 let v = PostVideo();
                 p.videoArr = v.getAll(postNo: Int64(actualId))
@@ -411,6 +446,7 @@ public class LocalLifePostModel {
                 request.postLocalLifeJson(params, completion: {(response) in
                     if response.error != nil {
                         print("response: \(response.error?.localizedDescription)")
+                        self.updateStatus(postId: post[self.id], status: uploadStatus.UPLOAD_FAILED)
                     }
                     else if response["value"].bool! {
                         do {
@@ -418,7 +454,9 @@ public class LocalLifePostModel {
                             let singlePhoto = self.post.filter(self.id == postID)
                             try self.db.run(singlePhoto.delete())
                             i.deletePhotos(Int64(actualId));
-                            v.delete(Int64(actualId))
+                            v.delete(Int64(actualId))                            
+                            self.updateStatus(postId: post[self.id], status: uploadStatus.UPLOAD_COMPLETE)
+                            p.delete(Int64(actualId))
                         }
                         catch {
                             
@@ -429,6 +467,7 @@ public class LocalLifePostModel {
                     }
                     else {
                         print("response error")
+                        self.updateStatus(postId: post[self.id], status: uploadStatus.UPLOAD_FAILED)
                     }
                 })
             }
@@ -441,6 +480,16 @@ public class LocalLifePostModel {
         }
         catch {
             print("There is an error");
+        }
+    }
+    
+    func delete(_ post:Int64) {
+        do {
+            let query = self.post.filter(self.id == post)
+            try db.run(query.delete())
+        }
+        catch {
+            print("\n Error in deleting Local POST")
         }
     }
 }

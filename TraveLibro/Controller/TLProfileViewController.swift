@@ -259,8 +259,7 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
         }
     }
     
-    func setUserBadgeName(badge: String) {
-        print(screenWidth/25)
+    func setUserBadgeName(badge: String) {        
         if currentUser["userBadgeName"].string == "newbie"{
             self.userBadgeImageView.image = resizeImage(image: UIImage(named: "badge1")!, newWidth: screenWidth/25)
         }
@@ -543,10 +542,9 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
             self.MAM = MoreAboutMe()
             self.MAM.forUser = currentlyShowingUser
             self.MAM.reloadTravelPrefeces()
-            print("uuuuuuuu\(MAM.mainTextView.frame.height)")
             
             let textViewHeight = (heightOfAttributedText(attributedString: MAM.mainTextView.attributedText.mutableCopy() as! NSMutableAttributedString, width: (self.MAMTextView.frame.size.width - 25)) + 15)
-            print("textHeight : \(textViewHeight)")
+            
             self.MAM.frame = CGRect(x: 0, y: 0, width: self.MAMTextView.frame.size.width, height: textViewHeight)
             
             self.MAM.backgroundColor = UIColor.clear
@@ -618,7 +616,6 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     //MARK: - Functional Helpers
     
     func getUser() {
-        print("\n getUser called")
         
         if isShowingSelf {
             selectedPeople = ""
@@ -678,8 +675,7 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     
     func setTextWithAnimation(onView: UILabel, text: String) {
         
-        let charArray = Array(text.characters)
-        print("\n charArray : \(charArray)")
+        let charArray = Array(text.characters)        
         onView.text = ""
         
         strIndex = 0
@@ -690,8 +686,7 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     func addNextChar(onView: UILabel, str: String) {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
-            if self.isProfileVCVisible {
-                print("onView.text \(onView.text)")
+            if self.isProfileVCVisible {                
                 let charArray = Array(str.characters)
                 if charArray.count > 0 { 
                     onView.text = onView.text?.appending(String(charArray[self.strIndex]))

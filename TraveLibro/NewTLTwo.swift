@@ -625,7 +625,7 @@ extension NewTLViewController {
         self.view.bringSubview(toFront: addPostsButton)
         self.view.bringSubview(toFront: mainFooter)
         self.view.bringSubview(toFront: infoButton)
-        if globalNewTLViewController.fromOutSide == "" {
+        if globalNewTLViewController?.fromOutSide == "" {
             self.scrollToBottom();
 
         }

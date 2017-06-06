@@ -140,7 +140,7 @@ class KindOfJourneyOTGViewController: UIViewController {
                     print("is editing? \(self.isEdit)")
                     self.goBack(UIView())
                     if(globalNewTLViewController != nil) {
-                        globalNewTLViewController.getJourney()
+                        globalNewTLViewController?.getJourney()
                     }
                     
                 }

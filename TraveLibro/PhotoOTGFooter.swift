@@ -219,7 +219,7 @@ class PhotoOTGFooter: UIView {
         
         
 
-                globalNewTLViewController.addHeightToLayout(height: 500)
+        globalNewTLViewController?.addHeightToLayout(height: 500)
         
     }
     
@@ -324,15 +324,15 @@ class PhotoOTGFooter: UIView {
         let EditCheckIn: UIAlertAction = UIAlertAction(title: "Edit Activity", style: .default)
         {action -> Void in
             //            self.isEdit = true
-            globalNewTLViewController.showEditActivity(self.postTop)
+            globalNewTLViewController?.showEditActivity(self.postTop)
             //print("inside edit check in \(self.addView), \(self.newScroll.isHidden)")
         }
         actionSheetControllerIOS8.addAction(EditCheckIn)
         
         let EditDnt: UIAlertAction = UIAlertAction(title: "Change Date & Time", style: .default)
         { action -> Void in
-            globalNewTLViewController.hideHeaderAndFooter(true)
-            globalNewTLViewController.changeDateAndTime(self)
+            globalNewTLViewController?.hideHeaderAndFooter(true)
+            globalNewTLViewController?.changeDateAndTime(self)
         }
         actionSheetControllerIOS8.addAction(EditDnt)
         let DeletePost: UIAlertAction = UIAlertAction(title: "Delete Activity", style: .default)
@@ -340,9 +340,9 @@ class PhotoOTGFooter: UIView {
             let alert = UIAlertController(title: "", message: "Are you sure you want to delete this Activtiy", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil))
             alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.destructive, handler: { action in
-                globalNewTLViewController.deletePost(self)
+                globalNewTLViewController?.deletePost(self)
             }))
-            globalNewTLViewController.present(alert, animated: true, completion: nil)
+            globalNewTLViewController?.present(alert, animated: true, completion: nil)
             
             //  request.deletePost(self.currentPost["_id"].string!, uniqueId: self.myJourney["uniqueId"].string!, user: self.currentPost["user"]["_id"].string!, completion: {(response) in
             //  })
@@ -350,7 +350,7 @@ class PhotoOTGFooter: UIView {
         actionSheetControllerIOS8.addAction(DeletePost)
         let share: UIAlertAction = UIAlertAction(title: "Add Photos/Videos", style: .default)
         { action -> Void in
-            globalNewTLViewController.showEditAddActivity(self.postTop)
+            globalNewTLViewController?.showEditAddActivity(self.postTop)
         }
         actionSheetControllerIOS8.addAction(share)
         

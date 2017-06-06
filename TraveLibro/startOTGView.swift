@@ -208,6 +208,6 @@ class startOTGView: UIView {
         
     }
     @IBAction func onBuddyCancel(_ sender: Any) {
-        globalNewTLViewController.getJourney()
+        globalNewTLViewController?.getJourney()
     }
 }
