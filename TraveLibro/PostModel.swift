@@ -511,7 +511,9 @@ public class Post {
                             
                         }
                         print(" ******* postCheck 3")
-                        //self.uploadPost()
+                        isUploadingInProgress = false
+                        let i = PostImage()
+                        i.uploadPhotos(delegate: nil)
                     }
                     else {
                         print("response error")
