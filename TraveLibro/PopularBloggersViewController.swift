@@ -13,10 +13,11 @@ import Foundation
 class PopularBloggersViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var tableTopConstraint: NSLayoutConstraint!
-    var allUsers: [JSON] = []
-    var pagenum = 1
+    var allUsers: [JSON] = []    
     var loader = LoadingOverlay()
+    var pagenum = 1
     var hasNext = true
+    var isLoading = false
     let refreshControl = UIRefreshControl()
     var mainFooter: FooterViewNew!
     var back: Bool = false
@@ -101,6 +102,8 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
     
     func pullToRefreshCalled() {        
         pagenum = 1
+        hasNext = true
+        isLoading = false
         getPopulerUser(pageNum: pagenum)
     }
     
@@ -145,13 +148,15 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
                     
                     if !(newResponse.isEmpty) {
                         self.userTableView.reloadData()                            
-                    }                        
+                    }
                 }
                     
                 else {                    
                     print("response error!")
                     self.refreshControl.endRefreshing()                    
                 }
+                
+                self.isLoading = false
                 
             })
             
@@ -287,8 +292,10 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
                 
         if allUsers.count > 0 && indexPath.row == (allUsers.count - 1) {            
-            if hasNext {
-                getPopulerUser(pageNum: (pagenum + 1))
+            if hasNext && !isLoading {
+                isLoading = true
+                pagenum += 1
+                getPopulerUser(pageNum: pagenum)
             }
         }
     }
