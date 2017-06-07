@@ -492,7 +492,7 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
             let cell = tableView.dequeueReusableCell(withIdentifier: "cellTwo") as! MentionSuggestionsTableViewCell
             cell.urlSlug.text = mentionSuggestions[indexPath.row]["urlSlug"].string!
             cell.titleLabel.text = mentionSuggestions[indexPath.row]["name"].string!
-            cell.profilePhoto.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(mentionSuggestions[indexPath.row]["profilePicture"])", width: SMALL_PHOTO_WIDTH))
+            cell.profilePhoto.sd_setImage(with: getImageURL(mentionSuggestions[indexPath.row]["profilePicture"].stringValue, width:200), placeholderImage: getPlaceholderImage())
             HiBye(cell.profilePhoto)
             
             return cell
@@ -514,7 +514,8 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
             }
             DispatchQueue.main.async(execute: {
                 cell.profileImage.image = UIImage(named: "logo-default")
-                cell.profileImage.hnk_setImageFromURL(URL(string: "\(adminUrl)upload/readFile?file=\(self.comments[indexPath.row]["user"]["profilePicture"])&width=100")!)
+                
+                cell.profileImage.sd_setImage(with: getImageURL(self.comments[indexPath.row]["user"]["profilePicture"].stringValue, width:200), placeholderImage: getPlaceholderImage())
                 makeTLProfilePicture(cell.profileImage)
             })
             

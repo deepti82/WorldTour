@@ -136,7 +136,7 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
                         self.hasNext = false
                     }
                     
-                    if self.allUsers.isEmpty {
+                    if self.allUsers.isEmpty || self.pagenum == 1 {
                         self.allUsers = newResponse
                         if newResponse.isEmpty {
                             Toast(text: "No bloggers....").show()
@@ -321,7 +321,7 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
         
         if currentUser != nil {
             if sender.titleLabel?.text == "Follow" {
-                request.followUser(currentUser["_id"].string!, followUserId: allUsers[sender.tag]["_id"].stringValue, completion: {(response) in                
+                request.followUser(user.getExistingUser(), followUserId: allUsers[sender.tag]["_id"].stringValue, completion: {(response) in
                     DispatchQueue.main.async(execute: {
                         
                         
@@ -330,6 +330,10 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
                         }
                         else if response["value"].bool! {
                             setFollowButtonTitle(button: sender, followType: response["data"]["responseValue"].intValue, otherUserID: "")
+                            self.pagenum = 1
+                            self.hasNext = true
+                            self.isLoading = false
+                            self.getPopulerUser(pageNum: self.pagenum)
                         }
                         else {
                             print("error: \(response["error"])")
@@ -338,13 +342,17 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
                 })
             }
             else{
-                request.unfollow(currentUser["_id"].string!, unFollowId: allUsers[sender.tag]["_id"].stringValue, completion: {(response) in
+                request.unfollow(user.getExistingUser(), unFollowId: allUsers[sender.tag]["_id"].stringValue, completion: {(response) in
                     DispatchQueue.main.async(execute: {
                         if response.error != nil {
                             print("error: \(response.error!.localizedDescription)")
                         }
                         else if response["value"].bool! {
                             setFollowButtonTitle(button: sender, followType: response["data"]["responseValue"].intValue, otherUserID: "")
+                            self.pagenum = 1
+                            self.hasNext = true
+                            self.isLoading = false
+                            self.getPopulerUser(pageNum: self.pagenum)
                         }
                         else {                            
                             print("error: \(response["error"])")
