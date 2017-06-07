@@ -442,9 +442,13 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
         if insideView == "Monthly" {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MomentsLargeImageCell", for: indexPath) as! photosTwoCollectionViewCell
             if allData[indexPath.row]["name"].stringValue != "" {
-                
+                if self.allData[indexPath.row]["type"] == "video" {
+                    cell.photoBig.sd_setImage(with: getImageURL(self.allData[indexPath.row]["thumbnail"].stringValue, width: BIG_PHOTO_WIDTH),
+                                              placeholderImage: getPlaceholderImage())
+                }else{
                 cell.photoBig.sd_setImage(with: getImageURL(self.allData[indexPath.row]["name"].stringValue, width: BIG_PHOTO_WIDTH),
                                           placeholderImage: getPlaceholderImage())
+                }
                 
             }else{
                 cell.photoBig.image = UIImage(named: "logo-default")
@@ -455,14 +459,24 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
             
             switch momentType {
             case "all":
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath) as! photosCollectionViewCell                
-                if allData[indexPath.section]["data"][indexPath.row]["name"].stringValue != "" {
-                    cell.photo.sd_setImage(with: getImageURL(allData[indexPath.section]["data"][indexPath.row]["name"].stringValue, width: SMALL_PHOTO_WIDTH),
-                                           placeholderImage: getPlaceholderImage())
-                    
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath) as! photosCollectionViewCell
+                
+                if self.allData[indexPath.section]["data"][indexPath.row]["type"] == "video" {
+                    cell.photo.sd_setImage(with: getImageURL(self.allData[indexPath.section]["data"][indexPath.row]["thumbnail"].stringValue, width: SMALL_PHOTO_WIDTH),
+                                              placeholderImage: getPlaceholderImage())
                 }else{
-                    cell.photo.image = UIImage(named: "logo-default")
+                    cell.photo.sd_setImage(with: getImageURL(self.allData[indexPath.section]["data"][indexPath.row]["name"].stringValue, width: SMALL_PHOTO_WIDTH),
+                                              placeholderImage: getPlaceholderImage())
                 }
+
+                
+//                if allData[indexPath.section]["data"][indexPath.row]["name"].stringValue != "" {
+//                    cell.photo.sd_setImage(with: getImageURL(allData[indexPath.section]["data"][indexPath.row]["name"].stringValue, width: SMALL_PHOTO_WIDTH),
+//                                           placeholderImage: getPlaceholderImage())
+//                    
+//                }else{
+//                    cell.photo.image = UIImage(named: "logo-default")
+//                }
                 return cell
             case "Monthly", "SelectCover":
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MomentsLargeImageCell", for: indexPath) as! photosTwoCollectionViewCell                

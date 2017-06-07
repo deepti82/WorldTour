@@ -108,7 +108,7 @@ class EditProfileViewController: UIViewController, UITableViewDataSource, UITabl
                 cell.profilePhoto.image = pickerImage
             }
             else{
-                cell.profilePhoto.sd_setImage(with: (getImageURL(currentUser["profilePicture"].stringValue, width: BIG_PHOTO_WIDTH)),
+                cell.profilePhoto.sd_setImage(with: (getImageURL(currentUser["profilePicture"].stringValue, width: SMALL_PHOTO_WIDTH)),
                                               placeholderImage: getPlaceholderImage())
             }
             cell.accessoryType = .none
