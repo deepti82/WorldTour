@@ -238,7 +238,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     
     func editActivity(_ sender: UIButton) {
         
-        if isConnectedToNetwork() {
+        if isNetworkReachable {
             hideAddActivity()
             var lat = ""
             if self.addView.currentLat != nil && self.addView.currentLat != 0.0 {
@@ -314,7 +314,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
                 
                 params["photosArr"] = JSON(photosJson)
                 params["videosArr"] = self.addView.editPost.jsonPost["videos"]
-                request.postAddPhotosVideos(param: params) { (json) in
+                request.editPost(param: params) { (json) in
                     print(json)
                     self.getJourney();
                 }
@@ -624,7 +624,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
             self.currentTime = dateFormatterTwo.string(from: Date())
             //            print("time: \(currentTime)")
             
-            if isConnectedToNetwork() {
+            if isNetworkReachable {
                 
                 //                print("internet is connected post")
                 request.postTravelLife(thoughts, location: location, locationCategory: locationCategory, latitude: "\(myLatitude.latitude)", longitude: "\(myLatitude.longitude)", photosArray: photos, videosArray: videos, buddies: buddies, userId: currentUser["_id"].string!, journeyId: id, userName: currentUser["name"].string!, city: currentCity, country: currentCountry, hashtags: hashtags, date: currentTime, completion: {(response) in

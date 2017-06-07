@@ -173,7 +173,7 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
     }
     
     func checkConnection(){
-        if !isConnectedToNetwork() {
+        if !isNetworkReachable {
             redStrip("Enter manually, No Internet Connection.")
         }
 
@@ -492,16 +492,12 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
         
     }
     
-    
-    
-    
     func completionVideoBlock(result:UIImage?,video:URL?){
         self.cameraViewController.dismiss(animated: true, completion: nil)
         addVideoToBlock(video: video)
     }
     
     func addVideoToBlock(video:URL?) {
-        
         
         self.videosInitialView.isHidden = true
         self.videosFinalView.isHidden = false
@@ -525,12 +521,14 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
         self.viewContainerView.addSubview(self.player.view)
         
     }
+    
     func removeVideoBlock() {
         self.videosInitialView.isHidden = false
         self.videosFinalView.isHidden = true
         self.videoURL = nil
         self.videoCaption = ""
     }
+    
     func addCaptionVideo(_ sender: UIButton) {
         let captionVC = storyboard?.instantiateViewController(withIdentifier: "addCaptions") as! AddCaptionsViewController
         captionVC.type = "videoCaption"

@@ -311,7 +311,7 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
                             NSLog(" check 2 \n")
                         }                        
                         
-                        if isConnectedToNetwork() {
+                        if isNetworkReachable {
                             NSLog(" check started building actual layout \n")
                             NSLog(" check done building actual layout \n")
                         }else{
@@ -433,7 +433,7 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if isConnectedToNetwork() {
+        if isNetworkReachable {
             if scrollView.contentOffset.y >= (scrollView.contentSize.height - scrollView.frame.size.height) {
                 if loadStatus {
                     print("in load more of data.")

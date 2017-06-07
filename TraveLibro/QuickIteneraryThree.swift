@@ -108,12 +108,12 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate {
     
     func showInternetStrip() {
         
-        print(isConnectedToNetwork())
+        print("\n isNetworkReachable: \(isNetworkReachable)")
         
         if uploadingView != nil {
             uploadingView.removeFromSuperview()
         }
-        if !isConnectedToNetwork() {
+        if !isNetworkReachable {
           uploadingView = UploadingToCloud(frame: CGRect(x: 0, y: 64, width: self.view.frame.width, height: 23))
             uploadingView.uploadText.text = "No internet connection."
         self.view.addSubview(uploadingView)

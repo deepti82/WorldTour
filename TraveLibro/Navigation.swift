@@ -172,7 +172,6 @@ class Navigation {
                     if urlSlug == "" {
                         self.cache.set(value: response.data, key: urlString+id)
                     }
-                    print("\n getUser lower : \(json["data"]["name"].stringValue)")
                     completion(json)
                 }
             }
@@ -3340,7 +3339,8 @@ class Navigation {
     }
     
     
-    func postAddPhotosVideos (param:JSON, completion: @escaping ((JSON) -> Void) ) {
+//    func postAddPhotosVideos (param:JSON, completion: @escaping ((JSON) -> Void) ) {
+    func editPost(param:JSON, completion: @escaping ((JSON) -> Void) ) {
         do {
             let jsonData = try param.rawData()
             // create post request

@@ -87,7 +87,7 @@ public class PostEditPhotosVideos {
                     params["buddies"] = JSON(data:data)
                 }
                 
-                request.postAddPhotosVideos(param: params, completion: {(response) in
+                request.editPost(param: params, completion: {(response) in
                     if response.error != nil {
                         print("response: \(response.error?.localizedDescription)")
                         self.updateStatus(postID: post[self.id_db], status: uploadStatus.UPLOAD_FAILED)

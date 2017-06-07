@@ -378,7 +378,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         
         playBtn.isHidden = true
         
-        if isConnectedToNetwork() {
+        if isNetworkReachable {
             let pageNumber = round(videoScrollView.contentOffset.x / videoScrollView.frame.size.width)
             let i = Int(pageNumber)
             
