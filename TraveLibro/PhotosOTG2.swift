@@ -62,7 +62,9 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
             
             videoContainer.playBtn.tintColor = mainOrangeColor
             
-            getThumbnailFromVideoURL(url: videoUrl!, onView: self.videoContainer.videoHolder)
+            if videoUrl != nil {
+                getThumbnailFromVideoURL(url: videoUrl!, onView: self.videoContainer.videoHolder)                
+            }
             
             self.videoContainer.videoHolder.addSubview(self.player.view)
             self.addSubview(self.videoContainer)
@@ -360,14 +362,17 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
                     if !self.willPlay {
 //                        self.videoContainer.playBtn.isHidden = true
                         self.willPlay = true
-                        var videoUrl : URL!
+                        var videoUrl : URL?
+                        
                         if(!self.postTop.post_isOffline) {
                             videoUrl = URL(string: self.postTop.videoArr[0].serverUrl)
                         } else {
                             videoUrl = self.postTop.videoArr[0].imageUrl
                         }
-                        self.player.setUrl(videoUrl!)
-                        self.player.playFromBeginning()
+                        if videoUrl != nil {
+                            self.player.setUrl(videoUrl!)
+                            self.player.playFromBeginning()
+                        }
                     }
                 }
                 else {
