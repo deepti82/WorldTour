@@ -39,6 +39,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     var loader = LoadingOverlay()
     var insideView:String = "both"
     
+    var editingPostLayout: PhotosOTG2?
+    
     var prevPosts: [JSON] = []
     var initialPost = true
     
@@ -293,8 +295,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
                 let isCheckInchanged = (self.addView.editPost.post_location != location) ? true : false
                 
                 let post  = Post()
-                let po = post.setPost(currentUser["_id"].stringValue, username: currentUser["name"].stringValue, JourneyId: self.myJourney["uniqueId"].stringValue, editPostId: self.addView.editPost.post_ids, editPostUniqueID: self.addView.editPost.post_uniqueId, Type: "editPost", Date: "", Location: location!, Category: category, Latitude: lat, Longitude: lng, Country: self.addView.currentCountry, City: self.addView.currentCity, thoughts: thoughts, newbuddies: newbuddies!, oldbuddies: prevbuddies, imageArr: self.addView.imageArr, videoURL: nil, videoCaption: "", isCheckInChange: isCheckInchanged)
-                self.addPostLayout(po)
+                let po = post.setPost(currentUser["_id"].stringValue, username: currentUser["name"].stringValue, JourneyId: self.myJourney["uniqueId"].stringValue, editPostId: self.addView.editPost.post_ids, editPostUniqueID: self.addView.editPost.post_uniqueId, Type: "editPost", Date: "", Location: location!, Category: category, Latitude: lat, Longitude: lng, Country: self.addView.currentCountry, City: self.addView.currentCity, thoughts: thoughts, newbuddies: newbuddies!, oldbuddies: prevbuddies, imageArr: self.addView.imageArr, videoURL: nil, videoCaption: "", isCheckInChange: isCheckInchanged, postType: editPostType.EDITING_ACTIVITY)
+                self.editPostFromLayout(post: po, postLayout: self.editingPostLayout)
                 
                 let i = PostImage()
                 i.uploadPhotos(delegate: nil)
@@ -365,7 +367,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         
         if(self.addView.imageArr.count > 0 || self.addView.videoURL != nil || thoughts.characters.count > 0 || location.characters.count > 0) {
             let post  = Post()
-            let po = post.setPost(currentUser["_id"].stringValue, username: currentUser["name"].stringValue, JourneyId: self.journeyId, editPostId: nil, editPostUniqueID: nil, Type: "travel-life", Date: self.currentTime, Location: location, Category: category, Latitude: lat, Longitude: lng, Country: self.addView.currentCountry, City: self.addView.currentCity, thoughts: thoughts, newbuddies: buddies!, oldbuddies: nil, imageArr: self.addView.imageArr, videoURL: self.addView.videoURL, videoCaption: self.addView.videoCaption, isCheckInChange: false)            
+            let po = post.setPost(currentUser["_id"].stringValue, username: currentUser["name"].stringValue, JourneyId: self.journeyId, editPostId: nil, editPostUniqueID: nil, Type: "travel-life", Date: self.currentTime, Location: location, Category: category, Latitude: lat, Longitude: lng, Country: self.addView.currentCountry, City: self.addView.currentCity, thoughts: thoughts, newbuddies: buddies!, oldbuddies: nil, imageArr: self.addView.imageArr, videoURL: self.addView.videoURL, videoCaption: self.addView.videoCaption, isCheckInChange: false, postType: editPostType.EDIT_NEW_POST)            
             self.addPostLayout(po)
             
             let i = PostImage()
@@ -1287,6 +1289,37 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         addHeightToLayout(height: checkIn.frame.height + 50)
     }
     
+    func editPostFromLayout(post:Post, postLayout:PhotosOTG2?) {
+       
+        if postLayout != nil {            
+            if post.post_location != "" {
+                (postLayout!.rateButton).removeFromSuperview()
+            }
+            
+            let uploadingView = UploadingToCloud(frame: CGRect(x: 0, y: 0, width: (postLayout?.frame.size.width)!, height: 23))
+            
+            var text = ""            
+            switch post.post_editType {
+            case 0:
+                text = "EDIT_NEW_POST"
+                
+            case 1:
+                text = "EDITING_ACTIVITY"
+                
+            case 2:
+                text = "EDITING_PHOTO_VIDEO"
+                
+            default:
+                text = ""
+            }
+            
+            let localJson:JSON = ["type":"editTravelLifePost","editType":text]            
+            uploadingView.fillUploadingStrip(feed: localJson)
+            postLayout?.addSubview(uploadingView)
+            self.layout.layoutSubviews()            
+        }
+    }
+    
     func showPost(_ whichPost: String, post: JSON) {
         
         var thoughts = String()
@@ -1816,11 +1849,17 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     
     
     func doneButton(_ sender: UIButton){
-        request.changeDateTime(currentPhotoFooter.postTop.post_uniqueId, postID: currentPhotoFooter.postTop.post_ids,  date: "\(dateSelected) \(timeSelected)", completion: {(response) in
-            self.getJourney()
-        })
-        self.inputview.removeFromSuperview() // To resign the inputView on clicking done.
-        self.backView.removeFromSuperview()
+        
+        self.hideHeaderAndFooter(false)
+        DispatchQueue.main.asyncAfter(deadline: .now()+0.5) { 
+            self.loader.showOverlay(self.view)
+            request.changeDateTime(self.currentPhotoFooter.postTop.post_uniqueId, postID: self.currentPhotoFooter.postTop.post_ids,  date: "\(self.dateSelected) \(self.timeSelected)", completion: {(response) in
+                self.getJourney()
+            })
+            self.inputview.removeFromSuperview() // To resign the inputView on clicking done.
+            self.backView.removeFromSuperview()
+        }        
+        
     }
     
     func doneButtonJourney(_ sender: UIButton){        

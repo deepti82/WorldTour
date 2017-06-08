@@ -121,7 +121,7 @@ extension NewTLViewController {
     }
     
     
-    func showEditAddActivity(_ post:Post) {
+    func showEditAddActivity(_ post:Post, onPostLayout:PhotosOTG2?) {
         isActivityHidden = false;
         hideHeaderAndFooter(false)
         var darkBlur: UIBlurEffect!
@@ -191,7 +191,11 @@ extension NewTLViewController {
         self.newScroll.addSubview(self.addView)
     }
     
-    func showEditActivity(_ post:Post) {
+    func showEditActivity(_ post:Post, onPostLayout:PhotosOTG2?) {
+        if (onPostLayout != nil) {
+            editingPostLayout = onPostLayout
+        }
+        
         isActivityHidden = false;
         hideHeaderAndFooter(false)
         var darkBlur: UIBlurEffect!

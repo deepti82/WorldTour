@@ -42,6 +42,7 @@ public class Post {
     let postUploadStatus = Expression<Int64>("uploadstatus")
     let userName = Expression<String>("userName")
     let checkInChange = Expression<Bool>("checkInChange")
+    let postEditType = Expression<Int64>("postEditType")
     
     var finalThought = NSMutableAttributedString(string: "")
     
@@ -66,7 +67,8 @@ public class Post {
     var post_likeCount:Int!
     var post_commentCount:Int!
     var post_likeDone = false
-    var post_isOffline = false    
+    var post_isOffline = false 
+    var post_editType: Int!
     var post_status: uploadStatus!
     let hasCompleted = Expression<Bool>("hasCompleted")
     
@@ -91,14 +93,16 @@ public class Post {
             t.column(prevBuddyDb)
             t.column(userName)
             t.column(checkInChange)
+            t.column(postEditType)
         })
     }
     
     func setPost(_ UserId: String, username:String, JourneyId: String, editPostId: String?, editPostUniqueID:String?, Type: String, Date: String, Location: String, Category: String, Latitude: String, 
-                 Longitude: String, Country: String, City: String, thoughts: String, newbuddies:String, oldbuddies:String?, imageArr:[PostImage], videoURL:URL?, videoCaption:String, isCheckInChange:Bool) -> Post {
+                 Longitude: String, Country: String, City: String, thoughts: String, newbuddies:String, oldbuddies:String?, imageArr:[PostImage], videoURL:URL?, videoCaption:String, isCheckInChange:Bool, postType: editPostType) -> Post {
         
         var retPost:Post!
         var postInsert: SQLite.Insert!
+        
         
         if editPostId != nil {
             postInsert = self.post.insert(
@@ -119,7 +123,8 @@ public class Post {
                 self.postUploadStatus <- Int64(0),
                 self.userName <- username,
                 self.checkInChange <- isCheckInChange,
-                self.prevBuddyDb <- oldbuddies!
+                self.prevBuddyDb <- oldbuddies!,
+                self.postEditType <- self.getPostType(from: postType)
             )
         }
         else{
@@ -141,7 +146,8 @@ public class Post {
                 self.postUploadStatus <- Int64(0),
                 self.userName <- "",
                 self.checkInChange <- false,
-                self.prevBuddyDb <- ""
+                self.prevBuddyDb <- "",
+                self.postEditType <- self.getPostType(from: postType)
             )
         }
         
@@ -177,10 +183,27 @@ public class Post {
         return retPost;
     }
     
+    private func getPostType (from: editPostType) -> Int64 {
+        
+        var retPostType = 0        
+        switch from {
+        case .EDIT_NEW_POST:
+            retPostType = 0
+            
+        case .EDITING_ACTIVITY:
+            retPostType = 1
+            
+        case .EDITING_PHOTO_VIDEO:
+            retPostType = 2
+        }
+            
+        return Int64(retPostType)
+    }
+    
     func getAllPost(journey:String) -> [Post] {
         var allPosts:[Post] = []
         do {
-            let query = post.select(id,postServerId,postServerUniqueId,type,userId,journeyId,thoughts,location,category,city,country,latitude,longitude,date, prevBuddyDb, userName, checkInChange, postUploadStatus)
+            let query = post.select(id,postServerId,postServerUniqueId,type,userId,journeyId,thoughts,location,category,city,country,latitude,longitude,date, prevBuddyDb, userName, checkInChange, postUploadStatus, postEditType)
                 .filter(journeyId == journey)
             for post in try db.prepare(query) {
                 let p = Post();
@@ -198,6 +221,7 @@ public class Post {
                 p.post_latitude = String(post[latitude])
                 p.post_longitude = String(post[longitude])
                 p.post_date = String(post[date])
+                p.post_editType = Int(post[postEditType])
                 p.post_isOffline = true;
                 
                 let i = PostImage();
@@ -219,7 +243,7 @@ public class Post {
     func getAllPost(postid:Int64) -> [Post] {
         var allPosts:[Post] = []
         do {
-            let query = post.select(id,postServerId,postServerUniqueId,type,userId,journeyId,thoughts,location,category,city,country,latitude,longitude,date, prevBuddyDb, userName, checkInChange, postUploadStatus)
+            let query = post.select(id,postServerId,postServerUniqueId,type,userId,journeyId,thoughts,location,category,city,country,latitude,longitude,date, prevBuddyDb, userName, checkInChange, postUploadStatus, postEditType)
                 .filter(id == postid)
             for post in try db.prepare(query) {
                 let p = Post();
@@ -237,7 +261,7 @@ public class Post {
                 p.post_latitude = String(post[latitude])
                 p.post_longitude = String(post[longitude])
                 p.post_date = String(post[date])
-                
+                p.post_editType = Int(post[postEditType])
                 
                 p.post_dateDay = changeDate(givenFormat: "yyyy-MM-dd'T'HH:mm:ss.SSZ", getFormat: "dd-MM-yyyy", date: p.post_date, isDate: true)
                 p.post_dateTime = changeDate(givenFormat: "yyyy-MM-dd'T'HH:mm:ss.SSZ", getFormat: "h:mm a", date: p.post_date, isDate: false)
