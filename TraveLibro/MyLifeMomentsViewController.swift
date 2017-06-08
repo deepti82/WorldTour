@@ -441,11 +441,18 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
         
         if insideView == "Monthly" {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MomentsLargeImageCell", for: indexPath) as! photosTwoCollectionViewCell
+            if momentType == "local-life" {
+                cell.playImage.tintColor = endJourneyColor
+            }else{
+                cell.playImage.tintColor = mainOrangeColor
+            }
             if allData[indexPath.row]["name"].stringValue != "" {
                 if self.allData[indexPath.row]["type"] == "video" {
+                    cell.playImage.isHidden = false
                     cell.photoBig.sd_setImage(with: getImageURL(self.allData[indexPath.row]["thumbnail"].stringValue, width: BIG_PHOTO_WIDTH),
                                               placeholderImage: getPlaceholderImage())
                 }else{
+                    cell.playImage.isHidden = true
                 cell.photoBig.sd_setImage(with: getImageURL(self.allData[indexPath.row]["name"].stringValue, width: BIG_PHOTO_WIDTH),
                                           placeholderImage: getPlaceholderImage())
                 }
@@ -744,6 +751,7 @@ class photosCollectionViewCell: UICollectionViewCell {
 class photosTwoCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var photoBig: UIImageView!
+    @IBOutlet weak var playImage: UIImageView!
     
 }
 

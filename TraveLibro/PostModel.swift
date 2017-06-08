@@ -491,7 +491,8 @@ public class Post {
                 params["checkIn"] = checkInJson
                 params["photos"] = JSON(photosJson)
                 params["videos"] = JSON(vidoesJson)
-
+                print("///////////")
+                print(params)
                 request.postTravelLifeJson(params, completion: {(response) in
                     if response.error != nil {
                         print("response: \(response.error?.localizedDescription)")

@@ -76,11 +76,11 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate {
     }
     
     func cityPlaceholder() {
-        cityVisited.attributedText = NSAttributedString(string:  "Add City", attributes: [NSForegroundColorAttributeName: mainBlueColor])
+        cityVisited.attributedText = NSAttributedString(string:  "Add City +", attributes: [NSForegroundColorAttributeName: mainBlueColor])
     }
 
     func countryPlaceholder() {
-        countryVisited.attributedText = NSAttributedString(string:  "Add Country", attributes: [NSForegroundColorAttributeName: mainBlueColor])
+        countryVisited.attributedText = NSAttributedString(string:  "Add Country +", attributes: [NSForegroundColorAttributeName: mainBlueColor])
     }
 
     
@@ -181,6 +181,7 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate {
                 }
                 
             }
+            a = a + " +"
         }
         
         return a
