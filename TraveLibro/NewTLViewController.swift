@@ -39,6 +39,9 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     var loader = LoadingOverlay()
     var insideView:String = "both"
     
+    var prevPosts: [JSON] = []
+    var initialPost = true
+    
     @IBOutlet weak var infoButton: UIButton!
     @IBOutlet weak var toolbarView: UIView!
     @IBOutlet weak var hideVisual: UIVisualEffectView!
@@ -225,6 +228,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     var isEdit = false
     
     
+    //MARK: - Post Create / Edit
     
     func savePhotoVideo (_ sender: UIButton) {
         let post = PostEditPhotosVideos()
@@ -255,7 +259,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
                 }
             }
             var category = ""
-            if self.addView.categoryLabel.text! != nil {
+            if self.addView.categoryLabel.text != nil {
                 category = self.addView.categoryLabel.text!
                 if(category == "Label") {
                     category = ""
@@ -274,7 +278,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
             }
             
             var thoughts = ""
-            if self.addView.thoughtsTextView.text! != nil {
+            if self.addView.thoughtsTextView.text != nil {
                 thoughts = self.addView.thoughtsTextView.text!
                 if(thoughts == "Fill Me In...") {
                     thoughts = ""
@@ -282,42 +286,19 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
             }
             
             if(self.addView.imageArr.count > 0 || self.addView.videoURL != nil  || thoughts.characters.count > 0 || (location?.characters.count)! > 0) {
-                var params:JSON = ["type":"editPost"];
-                params["_id"] = JSON(self.addView.editPost.post_ids)
-                params["user"] = JSON(self.addView.editPost.post_userId)
-                params["uniqueId"] = JSON(self.addView.editPost.post_uniqueId)
-                params["journeyUniqueId"] = JSON(self.myJourney["uniqueId"].stringValue)
-                params["username"] = JSON(currentUser["name"].stringValue)
-                params["thoughts"] = JSON(thoughts)
-                let checkIn:JSON = [
-                    "location": location,
-                    "lat": lat,
-                    "long": lng,
-                    "city": self.addView.currentCity,
-                    "country" : self.addView.currentCountry,
-                    "category": category
-                ]
-                params["checkIn"] = checkIn
-                if(self.addView.editPost.post_location != location) {
-                    params["checkInChange"] = true
-                } else {
-                    params["checkInChange"] = false
-                }
                 
-                params["oldBuddies"] = JSON(self.addView.prevBuddies)
-                params["newBuddies"] = JSON(self.addView.addedBuddies)
+                let newbuddies = JSON(self.addView.addedBuddies).rawString()
+                let prevbuddies = JSON(self.addView.prevBuddies).rawString()
                 
-                var photosJson:[JSON] = []
-                for img in self.addView.imageArr {
-                    photosJson.append(img.parseJson())
-                }
+                let isCheckInchanged = (self.addView.editPost.post_location != location) ? true : false
                 
-                params["photosArr"] = JSON(photosJson)
-                params["videosArr"] = self.addView.editPost.jsonPost["videos"]
-                request.editPost(param: params) { (json) in
-                    print(json)
-                    self.getJourney();
-                }
+                let post  = Post()
+                let po = post.setPost(currentUser["_id"].stringValue, username: currentUser["name"].stringValue, JourneyId: self.myJourney["uniqueId"].stringValue, editPostId: self.addView.editPost.post_ids, editPostUniqueID: self.addView.editPost.post_uniqueId, Type: "editPost", Date: "", Location: location!, Category: category, Latitude: lat, Longitude: lng, Country: self.addView.currentCountry, City: self.addView.currentCity, thoughts: thoughts, newbuddies: newbuddies!, oldbuddies: prevbuddies, imageArr: self.addView.imageArr, videoURL: nil, videoCaption: "", isCheckInChange: isCheckInchanged)
+                self.addPostLayout(po)
+                
+                let i = PostImage()
+                i.uploadPhotos(delegate: nil)
+                self.addView.postButton.isHidden = true
             }                
         }
         else {
@@ -334,7 +315,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         sender.isUserInteractionEnabled = false
         hideHeaderAndFooter(true)
         hideAddActivity()
-        let post  = Post();
         
         let buddies = JSON(self.addView.addedBuddies).rawString()
         
@@ -384,7 +364,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         self.currentTime = dateFormatterTwo.string(from: Date())
         
         if(self.addView.imageArr.count > 0 || self.addView.videoURL != nil || thoughts.characters.count > 0 || location.characters.count > 0) {
-            let po = post.setPost(currentUser["_id"].string!, JourneyId: self.journeyId, Type: "travel-life", Date: self.currentTime, Location: location, Category: category, Latitude: lat, Longitude: lng, Country: self.addView.currentCountry, City: self.addView.currentCity, thoughts: thoughts, buddies: buddies!, imageArr: self.addView.imageArr,videoURL:self.addView.videoURL, videoCaption:self.addView.videoCaption)
+            let post  = Post()
+            let po = post.setPost(currentUser["_id"].stringValue, username: currentUser["name"].stringValue, JourneyId: self.journeyId, editPostId: nil, editPostUniqueID: nil, Type: "travel-life", Date: self.currentTime, Location: location, Category: category, Latitude: lat, Longitude: lng, Country: self.addView.currentCountry, City: self.addView.currentCity, thoughts: thoughts, newbuddies: buddies!, oldbuddies: nil, imageArr: self.addView.imageArr, videoURL: self.addView.videoURL, videoCaption: self.addView.videoCaption, isCheckInChange: false)            
             self.addPostLayout(po)
             
             let i = PostImage()
@@ -393,10 +374,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         }
         
     }
-    
-    var prevPosts: [JSON] = []
-    var initialPost = true
-    
     
     func showOfflinePost(post: JSON, postId: Int) {
         var thoughts = String()
@@ -770,7 +747,9 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         
     }
     
-    //MARK: - getone journey added.
+    
+    //MARK: - Getone journey added.
+    
     func getOneJourney() {
         request.getJourneyById(fromOutSide, completion: {(response) in
             DispatchQueue.main.async(execute: {

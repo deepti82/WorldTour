@@ -57,7 +57,7 @@ public class PostEditPhotosVideos {
             
             var check = false;
             let query = addPhotosVideos_db.select(id_db,uniqueId_db,buddyDb)
-                .filter(postEditUploadStatus == 0 || postEditUploadStatus == 4)
+                .filter(postEditUploadStatus == 0 || postEditUploadStatus == 3)
                 .limit(1)
             
             for post in try db.prepare(query) {
@@ -109,7 +109,9 @@ public class PostEditPhotosVideos {
                         self.updateStatus(postID: post[self.id_db], status: uploadStatus.UPLOAD_FAILED)
                     }
                     print(" ******* postPhotoVideoCheck 3")
-                    self.uploadPostPhotosVideos()
+                    isUploadingInProgress = false
+                    let i = PostImage()
+                    i.uploadPhotos(delegate: nil)
                 })
             }
             if(!check) {

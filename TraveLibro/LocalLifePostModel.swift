@@ -376,7 +376,7 @@ public class LocalLifePostModel {
         do {
             var check = false;
             let query = post.select(id,type,userId,journeyId,thoughts,location,category,city,country,latitude,longitude,date,buddyDb)
-                .filter(localLifePostStatus == 0 || localLifePostStatus == 4)
+                .filter(localLifePostStatus == 0 || localLifePostStatus == 3)
                 .limit(1)
             for post in try db.prepare(query) {
                 check = true
