@@ -568,27 +568,6 @@ public class Post {
                     oldBuddyJSON = JSON(data:data)
                 }
                 
-<<<<<<< HEAD
-                params["checkIn"] = checkInJson
-                params["photos"] = JSON(photosJson)
-                params["videos"] = JSON(vidoesJson)
-                print("///////////")
-                print(params)
-                request.postTravelLifeJson(params, completion: {(response) in
-                    if response.error != nil {
-                        print("response: \(response.error?.localizedDescription)")
-                        self.updateStatus(postId: post[self.id], status: uploadStatus.UPLOAD_FAILED)
-                    }
-                    else if response["value"].bool! {
-                        do {
-                            print(response);
-                            let singlePhoto = self.post.filter(self.id == postID)
-                            try self.db.run(singlePhoto.delete())
-                            i.deletePhotos(postID);
-                            v.delete(postID)                            
-                            self.updateStatus(postId: post[self.id], status: uploadStatus.UPLOAD_COMPLETE)
-                            p.delete(postID)
-=======
                 let postID = post[id]
                 
                 var newPostParams:JSON = ["user":post[userId],
@@ -609,7 +588,6 @@ public class Post {
                         if response.error != nil {
                             print("response: \(response.error?.localizedDescription)")
                             self.updateStatus(postId: post[self.id], status: uploadStatus.UPLOAD_FAILED)
->>>>>>> origin/level-3-
                         }
                         else if response["value"].bool! {
                             do {
