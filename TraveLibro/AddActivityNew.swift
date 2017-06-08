@@ -662,6 +662,9 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
     
     func putLocationName(_ selectedLocation: String, placeId: String!) {
         self.addLocationButton.setTitle(selectedLocation, for: UIControlState())
+        if selectedLocation != "" {
+            self.addLocationText.placeholder = ""
+        }
         if typeOfAddActivtiy == "CreateLocalLife"{
             self.locationTag.tintColor = mainGreenColor
         } else {
