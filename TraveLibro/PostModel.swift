@@ -424,6 +424,8 @@ public class Post {
         self.post_likeCount = json["likeCount"].intValue
         self.post_commentCount = json["commentCount"].intValue
         self.buddyJson = json["buddies"].array!
+        self.post_editType = json["editPostType"].intValue
+        self.post_isOffline = json["isPostOffline"].boolValue
         self.post_dateDay = changeDate(givenFormat: "yyyy-MM-dd'T'HH:mm:ss.SSZ", getFormat: "dd-MM-yyyy", date: self.post_date, isDate: true)
         self.post_dateTime = changeDate(givenFormat: "yyyy-MM-dd'T'HH:mm:ss.SSZ", getFormat: "h:mm a", date: self.post_date, isDate: false)
         
@@ -539,8 +541,6 @@ public class Post {
                 for img in p.imageArr {
                     photosJson.append(img.parseJson())
                 }
-                print("\n PhotoJson : \(photosJson)")
-                
                 
                 let v = PostVideo();
                 p.videoArr = v.getAll(postNo: post[id])

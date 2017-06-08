@@ -69,6 +69,9 @@ extension NewTLViewController {
         self.setTopNavigation(text: "On The Go");
     }
     
+    
+    //MARK:- Show Add / Edit Activity
+    
     func showAddActivity() {
         isActivityHidden = false;
         hideHeaderAndFooter(false)

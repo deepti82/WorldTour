@@ -235,16 +235,37 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     func savePhotoVideo (_ sender: UIButton) {
         let post = PostEditPhotosVideos()
         post.saveAddPhotosVideos(uniqueId: self.addView.editPost.post_uniqueId, imageArr: self.addView.imageArr,buddy:JSON(self.addView.addedBuddies).rawString()!)
-        hideAddActivity()
+        
+        
+        let po = Post()
+        var postJSON:JSON = self.addView.editPost.jsonPost
+        postJSON["isPostOffline"] = true
+        postJSON["editPostType"] = 2
+        
+        var photosJson:[JSON] = []
+        for img in self.addView.imageArr {
+            photosJson.append(img.parseJson())
+        }
+        
+        postJSON["photos"] = JSON(photosJson)
+        postJSON["buddies"] = JSON(self.addView.addedBuddies)
+        print("\n PhotoJson : \(photosJson)")
+        
+        print("\n postJSON : \(postJSON)")
+        print("\n imgarrr: \(self.addView.imageArr)")
+
+        po.jsonToPost(postJSON);
+        self.editPostFromLayout(post: po, postLayout: self.editingPostLayout)
         
         let i = PostImage()
         i.uploadPhotos(delegate: nil)
         self.addView.postButton.isHidden = true
+        
+        hideAddActivity()
     }
     
     func editActivity(_ sender: UIButton) {
-                
-        hideAddActivity()
+        
         var lat = ""
         if self.addView.currentLat != nil && self.addView.currentLat != 0.0 {
             lat = String(self.addView.currentLat!)
@@ -301,13 +322,14 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
             i.uploadPhotos(delegate: nil)
             self.addView.postButton.isHidden = true
         }
+        
+        hideAddActivity()
        
     }
     
     func newPost(_ sender: UIButton) {
         sender.isUserInteractionEnabled = false
         hideHeaderAndFooter(true)
-        hideAddActivity()
         
         let buddies = JSON(self.addView.addedBuddies).rawString()
         
@@ -366,6 +388,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
             self.addView.postButton.isHidden = true
         }
         
+        hideAddActivity()
     }
     
     func showOfflinePost(post: JSON, postId: Int) {
