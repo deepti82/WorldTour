@@ -401,6 +401,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
             isNetworkReachable = false
             print("\n**************************\n Unreachable \n**************************\n\n")
         }
+        
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "REACHABILITY_STATUS_CHANGED"), object: ["status":isNetworkReachable])
     }
     
     func isConnectedToNetwork() -> Bool {

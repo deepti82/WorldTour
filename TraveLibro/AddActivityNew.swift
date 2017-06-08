@@ -170,41 +170,40 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
 //        locationGreen.isHidden = true
 //        locationTag.isHidden = false
 //         penGreen.isHidden = true
+        self.checkConnection()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(reachabilityStatusChangedHandler(notification:)), name: NSNotification.Name(rawValue: "REACHABILITY_STATUS_CHANGED"), object: nil)
+    }
+    
+    @objc private func reachabilityStatusChangedHandler(notification: Notification) {
+        if isNetworkReachable {
+            self.removeRedStrip()
+        }
+        else {
+            self.addRedStrip(messages: "No Internet Connection.")
+        }
     }
     
     func checkConnection(){
         if !isNetworkReachable {
-            redStrip("Enter manually, No Internet Connection.")
+            addRedStrip(messages: "Enter manually, No Internet Connection.")
         }
 
     }
     
-    func redStrip(_ msg:String){
-        let when = DispatchTime.now() + 2 // change 2 to desired number of seconds
-        DispatchQueue.main.asyncAfter(deadline: when) {
-            // Your code with delay
-            var msgShow = msg
-            if (self.internetStrip != nil) {
-                self.internetStrip.removeFromSuperview()
-            }
-           
-            self.internetStrip = UploadingToCloud(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 20))
-            self.internetStrip.uploadText.text = msgShow
-            
-            if self.typeOfAddActivtiy == "AddPhotosVideos"{
-                if msg == "Low Internet Connection Or check Settings"{
-                    
-                }else{
-                msgShow = "No Internet Connection.."
-                    self.addSubview(self.internetStrip)
-                }
-            }else{
-                self.addSubview(self.internetStrip)
-            }
-            
-
-        }
+    func addRedStrip(messages: String){
+        self.removeRedStrip()
         
+        self.internetStrip = UploadingToCloud(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 20))
+        self.internetStrip.uploadText.text = messages
+        
+        self.addSubview(self.internetStrip)
+    }
+    
+    func removeRedStrip() {
+        if (self.internetStrip != nil) {
+            self.internetStrip.removeFromSuperview()
+        }
     }
     
     func buddyAdded(_ json:[JSON]) {
