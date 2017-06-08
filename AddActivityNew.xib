@@ -142,7 +142,7 @@
                                         <action selector="clearLocation:" destination="-1" eventType="touchUpInside" id="wte-zg-War"/>
                                     </connections>
                                 </button>
-                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Add Location" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jAY-J0-unF">
+                                <textField opaque="NO" clipsSubviews="YES" tag="15" contentMode="scaleAspectFit" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Add Location" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jAY-J0-unF">
                                     <rect key="frame" x="52" y="5" width="332" height="35"/>
                                     <color key="tintColor" red="1" green="0.4039215686" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>

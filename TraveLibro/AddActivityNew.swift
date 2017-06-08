@@ -349,12 +349,13 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
         
         
     }
+    
     func textFieldDidBeginEditing(_ textField: UITextField) {
-//        if textField == addLocationText{
-//        newScroll.setContentOffset(CGPoint(x: 0, y: 250), animated: true)
-//        self.frame.origin.y = self.frame.origin.y
-//        }
+        if textField.tag == 15 {
+            self.addLocationButton.setTitle("", for: .normal)
+        }
     }
+    
     func tagMoreBuddies(_ sender: UIButton) {
         print(typeOfAddActivtiy)
         self.resignThoughtsTexViewKeyboard()
