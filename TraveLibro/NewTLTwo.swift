@@ -62,6 +62,7 @@ extension NewTLViewController {
     
     
     func hideAddActivity() {
+        editingPostLayout = nil
         isActivityHidden = true;
         addView.removeFromSuperview()
         backView.removeFromSuperview()
@@ -122,6 +123,11 @@ extension NewTLViewController {
     
     
     func showEditAddActivity(_ post:Post, onPostLayout:PhotosOTG2?) {
+        
+        if (onPostLayout != nil) {
+            editingPostLayout = onPostLayout
+        }
+        
         isActivityHidden = false;
         hideHeaderAndFooter(false)
         var darkBlur: UIBlurEffect!

@@ -243,74 +243,65 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     }
     
     func editActivity(_ sender: UIButton) {
+                
+        hideAddActivity()
+        var lat = ""
+        if self.addView.currentLat != nil && self.addView.currentLat != 0.0 {
+            lat = String(self.addView.currentLat!)
+            if(lat == "0.0") {
+                lat = ""
+            }
+        }
+        var lng = ""
+        if self.addView.currentLong != nil && self.addView.currentLong != 0.0 {
+            lng = String(self.addView.currentLong!)
+            if(lng == "0.0") {
+                lng = ""
+            }
+        }
+        var category = ""
+        if self.addView.categoryLabel.text != nil {
+            category = self.addView.categoryLabel.text!
+            if(category == "Label") {
+                category = ""
+            }
+        }
         
-        if isNetworkReachable {
-            hideAddActivity()
-            var lat = ""
-            if self.addView.currentLat != nil && self.addView.currentLat != 0.0 {
-                lat = String(self.addView.currentLat!)
-                if(lat == "0.0") {
-                    lat = ""
-                }
-            }
-            var lng = ""
-            if self.addView.currentLong != nil && self.addView.currentLong != 0.0 {
-                lng = String(self.addView.currentLong!)
-                if(lng == "0.0") {
-                    lng = ""
-                }
-            }
-            var category = ""
-            if self.addView.categoryLabel.text != nil {
-                category = self.addView.categoryLabel.text!
-                if(category == "Label") {
-                    category = ""
-                }
-            }
-            
-            var location = self.addView.addLocationButton.titleLabel?.text
-            if location != nil {
-                location = (self.addView.addLocationButton.titleLabel?.text)!
-                if(location == "Add Location") {
-                    location = ""
-                }
-            }
-            else{
+        var location = self.addView.addLocationButton.titleLabel?.text
+        if location != nil {
+            location = (self.addView.addLocationButton.titleLabel?.text)!
+            if(location == "Add Location") {
                 location = ""
             }
-            
-            var thoughts = ""
-            if self.addView.thoughtsTextView.text != nil {
-                thoughts = self.addView.thoughtsTextView.text!
-                if(thoughts == "Fill Me In...") {
-                    thoughts = ""
-                }
+        }
+        else{
+            location = ""
+        }
+        
+        var thoughts = ""
+        if self.addView.thoughtsTextView.text != nil {
+            thoughts = self.addView.thoughtsTextView.text!
+            if(thoughts == "Fill Me In...") {
+                thoughts = ""
             }
+        }
+        
+        if(self.addView.imageArr.count > 0 || self.addView.videoURL != nil  || thoughts.characters.count > 0 || (location?.characters.count)! > 0) {
             
-            if(self.addView.imageArr.count > 0 || self.addView.videoURL != nil  || thoughts.characters.count > 0 || (location?.characters.count)! > 0) {
-                
-                let newbuddies = JSON(self.addView.addedBuddies).rawString()
-                let prevbuddies = JSON(self.addView.prevBuddies).rawString()
-                
-                let isCheckInchanged = (self.addView.editPost.post_location != location) ? true : false
-                
-                let post  = Post()
-                let po = post.setPost(currentUser["_id"].stringValue, username: currentUser["name"].stringValue, JourneyId: self.myJourney["uniqueId"].stringValue, editPostId: self.addView.editPost.post_ids, editPostUniqueID: self.addView.editPost.post_uniqueId, Type: "editPost", Date: "", Location: location!, Category: category, Latitude: lat, Longitude: lng, Country: self.addView.currentCountry, City: self.addView.currentCity, thoughts: thoughts, newbuddies: newbuddies!, oldbuddies: prevbuddies, imageArr: self.addView.imageArr, videoURL: nil, videoCaption: "", isCheckInChange: isCheckInchanged, postType: editPostType.EDITING_ACTIVITY)
-                self.editPostFromLayout(post: po, postLayout: self.editingPostLayout)
-                
-                let i = PostImage()
-                i.uploadPhotos(delegate: nil)
-                self.addView.postButton.isHidden = true
-            }                
+            let newbuddies = JSON(self.addView.addedBuddies).rawString()
+            let prevbuddies = JSON(self.addView.prevBuddies).rawString()
+            
+            let isCheckInchanged = (self.addView.editPost.post_location != location) ? true : false
+            
+            let post  = Post()
+            let po = post.setPost(currentUser["_id"].stringValue, username: currentUser["name"].stringValue, JourneyId: self.myJourney["uniqueId"].stringValue, editPostId: self.addView.editPost.post_ids, editPostUniqueID: self.addView.editPost.post_uniqueId, Type: "editPost", Date: "", Location: location!, Category: category, Latitude: lat, Longitude: lng, Country: self.addView.currentCountry, City: self.addView.currentCity, thoughts: thoughts, newbuddies: newbuddies!, oldbuddies: prevbuddies, imageArr: self.addView.imageArr, videoURL: nil, videoCaption: "", isCheckInChange: isCheckInchanged, postType: editPostType.EDITING_ACTIVITY)
+            self.editPostFromLayout(post: po, postLayout: self.editingPostLayout)
+            
+            let i = PostImage()
+            i.uploadPhotos(delegate: nil)
+            self.addView.postButton.isHidden = true
         }
-        else {
-            let errorAlert = UIAlertController(title: nil, message: "Please check your internet connection and try again.", preferredStyle: UIAlertControllerStyle.alert)
-            let DestructiveAction = UIAlertAction(title: "Ok", style: .destructive) {
-                (result : UIAlertAction) -> Void in
-            }            
-            errorAlert.addAction(DestructiveAction)
-            self.navigationController?.present(errorAlert, animated: true, completion: nil)
-        }
+       
     }
     
     func newPost(_ sender: UIButton) {

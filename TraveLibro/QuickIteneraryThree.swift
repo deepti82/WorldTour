@@ -114,9 +114,9 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate {
             uploadingView.removeFromSuperview()
         }
         if !isNetworkReachable {
-          uploadingView = UploadingToCloud(frame: CGRect(x: 0, y: 64, width: self.view.frame.width, height: 23))
+            uploadingView = UploadingToCloud(frame: CGRect(x: 0, y: 64, width: self.view.frame.width, height: 23))
             uploadingView.uploadText.text = "No internet connection."
-        self.view.addSubview(uploadingView)
+            self.view.addSubview(uploadingView)
         }
         
     }
