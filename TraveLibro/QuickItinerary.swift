@@ -151,7 +151,7 @@ public class QuickItinerary {
         do {
             var check = false;
             let query = post.select(id,quickJson,status,editId)
-                .filter(QIUploadStatus == 0 || QIUploadStatus == 4)
+                .filter(QIUploadStatus == 0 || QIUploadStatus == 3)
                 .limit(1)
             
             for post1 in try db.prepare(query) {

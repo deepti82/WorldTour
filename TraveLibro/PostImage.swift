@@ -60,7 +60,7 @@ public class PostImage {
         self.serverUrl = adminUrl + "upload/readFile?file=" + str
         self.stripServerURL = str;
         self.imageUrl = URL(string: self.serverUrl)
-        cache.fetch(URL: URL(string:self.serverUrl + "&width=200")!).onSuccess({ (data) in
+        cache.fetch(URL: URL(string:self.serverUrl + "&width=500")!).onSuccess({ (data) in
             self.image = UIImage(data: data as Data)
         })
     }
@@ -69,7 +69,7 @@ public class PostImage {
         self.serverUrl = adminUrl + "upload/readFile?file=" + str
         self.imageUrl = URL(string: self.serverUrl)
         self.editId = serverID;
-        cache.fetch(URL: URL(string:self.serverUrl + "&width=200")!).onSuccess({ (data) in
+        cache.fetch(URL: URL(string:self.serverUrl + "&width=500")!).onSuccess({ (data) in
             self.image = UIImage(data: data as Data)
         })
     }
@@ -165,7 +165,7 @@ public class PostImage {
             do {
                 var check = false;
                 let query = photos.select(id,post,captions,localUrl,url)
-                    .filter(url == "" && (photoUploadStatus == 0 || photoUploadStatus == 4))
+                    .filter(url == "" && (photoUploadStatus == 0 || photoUploadStatus == 3))
                     .limit(1)
                 
                 for photo in try db.prepare(query) {

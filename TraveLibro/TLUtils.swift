@@ -13,7 +13,12 @@ enum uploadStatus {
     case UPLOAD_IN_PROGRESS
     case UPLOAD_COMPLETE
     case UPLOAD_FAILED
-    
+}
+
+enum editPostType {
+    case EDIT_NEW_POST
+    case EDITING_ACTIVITY
+    case EDITING_PHOTO_VIDEO
 }
 
 class TLUtils: NSObject {

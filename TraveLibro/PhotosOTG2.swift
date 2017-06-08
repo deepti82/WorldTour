@@ -152,7 +152,26 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
         
         if(post.post_isOffline) {
             //Offline Generation Only
+            
             uploadingView = UploadingToCloud(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 23))
+            
+            var text = ""            
+            switch post.post_editType {
+            case 0:
+                text = "EDIT_NEW_POST"
+                
+            case 1:
+                text = "EDITING_ACTIVITY"
+                
+            case 2:
+                text = "EDITING_PHOTO_VIDEO"
+                
+            default:
+                text = ""
+            }
+            let localJson:JSON = ["type":"editTravelLifePost","editType":text]
+            print("\n localJson: \(localJson)")
+            uploadingView.fillUploadingStrip(feed: localJson)
             self.addSubview(uploadingView)
             //End of Footer
         }

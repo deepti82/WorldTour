@@ -104,7 +104,7 @@ public class PostVideo {
         do {
             var check = false;
             let query = videos.select(id,post,captions,localUrl,url)
-                .filter(url == "" && (videoUploadStatus == 0 || videoUploadStatus == 4))
+                .filter(url == "" && (videoUploadStatus == 0 || videoUploadStatus == 3))
                 .limit(1)
             
             for photo in try db.prepare(query) {
