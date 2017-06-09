@@ -426,13 +426,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
         guard let r = reachability else { return }
         if r.isReachable  {
             isNetworkReachable = true
+            DispatchQueue.main.asyncAfter(deadline: .now()+0.5, execute: {
+                self.resumeUploading()                
+            })
             print("\n**************************\n Network is Reachable \n**************************\n\n")
         } else {
             isNetworkReachable = false
+            DispatchQueue.main.asyncAfter(deadline: .now()+0.5, execute: {
+                self.stopUploading()                
+            })
             print("\n**************************\n Unreachable \n**************************\n\n")
         }
         
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "REACHABILITY_STATUS_CHANGED"), object: ["status":isNetworkReachable])
+    }
+    
+    func stopUploading() {
+        isUploadingInProgress = false
+        self.rollbackDBIfOperationNotCommitted()
+    }
+    
+    func resumeUploading() {
+        let i = PostImage()
+        i.uploadPhotos(delegate: nil)
     }
     
     func isConnectedToNetwork() -> Bool {
