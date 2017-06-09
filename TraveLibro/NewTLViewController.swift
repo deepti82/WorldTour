@@ -288,6 +288,11 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
             }
         }
         
+        if (userLocation == nil) {
+            self.addView.addLocationButton.titleLabel?.text = self.addView.addLocationText.text
+            lat = ""
+            lng = ""
+        }
         var location = self.addView.addLocationButton.titleLabel?.text
         if location != nil {
             location = (self.addView.addLocationButton.titleLabel?.text)!
@@ -1306,9 +1311,9 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     func editPostFromLayout(post:Post, postLayout:PhotosOTG2?) {
        
         if postLayout != nil {            
-            if post.post_location != "" {
-                (postLayout!.rateButton).removeFromSuperview()
-            }
+            
+            (postLayout!.rateButton)?.removeFromSuperview()
+            
             
             let uploadingView = UploadingToCloud(frame: CGRect(x: 0, y: 0, width: (postLayout?.frame.size.width)!, height: 23))
             

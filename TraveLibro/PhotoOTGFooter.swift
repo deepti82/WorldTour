@@ -348,7 +348,7 @@ class PhotoOTGFooter: UIView {
             //  })
         }
         actionSheetControllerIOS8.addAction(DeletePost)
-        let share: UIAlertAction = UIAlertAction(title: "Add Photos/Videos", style: .default)
+        let share: UIAlertAction = UIAlertAction(title: "Add Photos", style: .default)
         { action -> Void in
             globalNewTLViewController?.showEditAddActivity(self.postTop, onPostLayout: self.PhotoOtg)
         }

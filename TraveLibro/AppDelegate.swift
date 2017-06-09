@@ -166,6 +166,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
         
         
         let mainViewController = storyboard.instantiateViewController(withIdentifier: "TLProfileView") as! TLProfileViewController
+        mainViewController.isAppStartedFromInitial = true
         
 //        let signInVC = storyboard.instantiateViewController(withIdentifier: "SignUpOne") as! SignInViewController
         
@@ -223,9 +224,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
         googleAnalytics()
         
         enableCrashReporting()
-        
-        //TODO: Create database process is remaining
-        
         
         if #available(iOS 10.0, *) {
             UNUserNotificationCenter.current().requestAuthorization(options: [.badge, .alert, .sound]) { (granted, error) in
@@ -374,6 +372,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
     
     func applicationWillTerminate(_ application: UIApplication) {
         clearNotificationCount()
+        
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
@@ -383,6 +382,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
     
     func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
         return UIInterfaceOrientationMask.portrait
+    }
+    
+    
+    //MARK: - Database Rollback If Not Committed
+    
+    func rollbackDBIfOperationNotCommitted() {
+        
+        //PhotoTable
+        let photoInstance = PostImage()
+        photoInstance.rollbackPhotoTableProgress()
+        
+        
+        //VideoTable
+        let videoInstance = PostVideo()
+        videoInstance.rollbackVideoTableProgress()
+        
+        //PostTable
+        let postInstance = Post()
+        postInstance.rollbackPostTableProgress()
+        
+        //LocalPostTable
+        let localPostInstance = LocalLifePostModel()
+        localPostInstance.rollbackLocalPostTableProgress()
+        
+        //QuickItineraryTable
+        let quickTableInstance = QuickItinerary()
+        quickTableInstance.rollbackItineraryTableProgress()
+        
+        //PostEditPhotoVideoTable
+        let postEditPhotoInstance = PostEditPhotosVideos()
+        postEditPhotoInstance.rollbackPostEditPhotoTableProgress()
     }
 
     

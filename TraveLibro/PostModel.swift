@@ -674,6 +674,20 @@ public class Post {
     }
     
     
+    func rollbackPostTableProgress() {
+        do {
+            let query = post.select(id,post)
+                .filter(postUploadStatus == 1)
+            
+            for post in try db.prepare(query) {
+                self.updateStatus(postId: post[self.id], status: uploadStatus.UPLOAD_FAILED)
+            }
+        }
+        catch {
+            print(error);
+        }
+    }
+    
     func delete(_ post:Int64) {
         do {
             let query = self.post.filter(self.id == post)

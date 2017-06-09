@@ -24,7 +24,7 @@ class TLModelManager: NSObject {
     static func createDatabase() -> Connection {
         let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
         let localDB = try! Connection("\(path)/db.sqlite3")
-        print("database path: \(path)")
+        print("\n\n *******************************\n database path: \(path) \n******************************* \n\n")
         return localDB
     }
     

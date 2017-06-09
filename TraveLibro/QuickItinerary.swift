@@ -227,6 +227,20 @@ public class QuickItinerary {
         }
     }
     
+    func rollbackItineraryTableProgress() {
+        do {
+            let query = post.select(id,post)
+                .filter(QIUploadStatus == 1)
+            
+            for post in try db.prepare(query) {
+                self.updateStatus(postId: post[self.id], status: uploadStatus.UPLOAD_FAILED)
+            }
+        }
+        catch {
+            print(error);
+        }
+    }
+    
     func goToActivity() {        
         let vc = storyboard!.instantiateViewController(withIdentifier: "TLMainFeedsView") as! TLMainFeedsViewController
         vc.pageType = viewType.VIEW_TYPE_ACTIVITY        

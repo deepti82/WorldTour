@@ -44,6 +44,7 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     var shouldStopAnimate = true
     var isProfileVCVisible = true
     var isLoadedForFirstTime = false
+    var isAppStartedFromInitial = false
     
     var myLifeVC:MyLifeViewController!
     var MAM: MoreAboutMe!
@@ -71,6 +72,16 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
         navigation = nil
         
         isLoadedForFirstTime = true
+        
+        if isAppStartedFromInitial {
+            
+            print("\n DB : Uploading to cloud started...")
+            
+            let i = PostImage()
+            i.uploadPhotos(delegate: nil)
+            
+            isAppStartedFromInitial = false
+        }
         
         self.automaticallyAdjustsScrollViewInsets = false
         

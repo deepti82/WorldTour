@@ -154,7 +154,7 @@ extension NewTLViewController {
         self.backView.addSubview(self.newScroll)
         self.addView = AddActivityNew()
         self.addView.buddyAdded(myJourney["buddies"].arrayValue)
-        
+        self.addView.typeOfAddActivtiy = "AddPhotosVideos"
         self.addView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: self.view.frame.size.height)
         self.addView.editPost = post
         self.addView.newScroll = self.newScroll;
@@ -191,12 +191,14 @@ extension NewTLViewController {
         self.addView.locationView.alpha = 0.1
         self.addView.locationView.isUserInteractionEnabled = false
         
+        self.addView.videosInitialView.alpha = 0.1
+        self.addView.videosInitialView.isUserInteractionEnabled = false
+        
         self.addView.thoughtsInitalView.alpha = 0.1
         self.addView.thoughtsInitalView.isUserInteractionEnabled = false
         
         self.addView.tagFriendsView.alpha = 1
         self.addView.tagFriendsView.isUserInteractionEnabled = true
-        self.addView.typeOfAddActivtiy = "AddPhotosVideos"
         self.newScroll.addSubview(self.addView)
     }
     
@@ -273,12 +275,14 @@ extension NewTLViewController {
         }
         
         if(post.post_location != "") {
-            self.addView.putLocationName(post.post_location, placeId: nil)
-            self.addView.categoryLabel.text = post.post_category
-            self.addView.currentCity = post.post_city
-            self.addView.currentCountry = post.post_country
-            self.addView.currentLat = Float(post.post_latitude)
-            self.addView.currentLong = Float(post.post_longitude)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.2, execute: {
+                self.addView.putLocationName(post.post_location, placeId: nil)
+                self.addView.categoryLabel.text = post.post_category
+                self.addView.currentCity = post.post_city
+                self.addView.currentCountry = post.post_country
+                self.addView.currentLat = Float(post.post_latitude)
+                self.addView.currentLong = Float(post.post_longitude)                
+            })
         }
         self.addView.prevBuddies = post.jsonPost["buddies"].array!
         self.addView.buddyAdded(post.jsonPost["buddies"].array!)

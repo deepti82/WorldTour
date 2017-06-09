@@ -223,6 +223,21 @@ public class PostImage {
         }
         return photoJson
     }
+    
+    func rollbackPhotoTableProgress() {
+        do {
+            let query = photos.select(id,post,url)
+                .filter(url == "" && (photoUploadStatus == 1))
+            
+            for photo in try db.prepare(query) {
+                self.updateStatus(photoId: photo[id], status: uploadStatus.UPLOAD_FAILED, urlString: "")
+            }
+        }
+        catch {
+            print(error);
+        }
+    }
+    
 }
 
 

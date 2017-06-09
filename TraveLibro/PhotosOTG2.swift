@@ -16,7 +16,7 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
     var newTl:NewTLViewController!
     var player:Player!
     var scrollView:UIScrollView!
-    var rateButton:RatingCheckIn!
+    var rateButton:RatingCheckIn?
     var headerLine:DottedLine!
     var dropView: DropShadow1!
     var journeyUser: String = ""
@@ -203,30 +203,28 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
             
             if(post.post_location != "") {
                 rateButton = RatingCheckIn(frame: CGRect(x: 0, y: 0, width: width, height: 150))
-                rateButton.photosOtg = self;
-                rateButton.whichView = "otg"
-                rateButton.journeyUser = self.journeyUser
-                print("postuser \(self.journeyUser)")
-                print("current user \(user.getExistingUser())")
+                rateButton?.photosOtg = self;
+                rateButton?.whichView = "otg"
+                rateButton?.journeyUser = self.journeyUser
+                
                 if post.postCreator["_id"].stringValue != user.getExistingUser() {
-                    rateButton.showRating = false
-                    rateButton.rateCheckInLabel.text = post.post_location
-                }else{
-                    rateButton.showRating = true
-                    rateButton.rateCheckInLabel.text = "Rate " + post.post_location
+                    rateButton?.showRating = false
+                    rateButton?.rateCheckInLabel.text = post.post_location
+                }
+                else{
+                    rateButton?.showRating = true
+                    rateButton?.rateCheckInLabel.text = "Rate " + post.post_location
                 }
                 
                 if((post.jsonPost["review"].count) > 0) {
-//                    self.rateButton.rateCheckInButton.setBackgroundImage(UIImage(named:"box8"), for: UIControlState())
-
                     let review = post.jsonPost["review"].array?[0]
-                    rateButton.review = review
-                    rateButton.modifyAsReview()
+                    rateButton?.review = review
+                    rateButton?.modifyAsReview()
                 }
                 
                 
                 
-                self.addSubview(rateButton)
+                self.addSubview(rateButton!)
             }
             
             
