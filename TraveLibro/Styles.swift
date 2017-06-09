@@ -759,15 +759,15 @@ func setFollowButtonTitle(button:UIButton, followType: Int, otherUserID: String)
         
         if followType == 1 {
             button.setTitle("Following", for: .normal)
-            button.tag = 1
+//            button.tag = 1
         }
         else if followType == 2 {
             button.setTitle("Requested", for: .normal)
-            button.tag = 2
+//            button.tag = 2
         }
         else if followType == 0 {
             button.setTitle("Follow", for: .normal)
-            button.tag = 0
+//            button.tag = 0
         }
     }
 }
