@@ -207,6 +207,11 @@ extension NewTLViewController {
             editingPostLayout = onPostLayout
         }
         
+        if locationManager == nil {
+            isRequestFromNewPost = true
+            self.detectLocation()            
+        }
+        
         isActivityHidden = false;
         hideHeaderAndFooter(false)
         var darkBlur: UIBlurEffect!
