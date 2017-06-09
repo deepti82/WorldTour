@@ -153,7 +153,13 @@ class PhotoCommentViewController: UIViewController, UITableViewDataSource, UITab
         switch tableView.tag {
         case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: "cellTwo") as! PhotoMentionTableViewCell
-            cell.titleLabel.text = mentionSuggestions[indexPath.row]["urlSlug"].string!
+//            cell.titleLabel.text = mentionSuggestions[indexPath.row]["urlSlug"].string!
+            
+            cell.urlSlug.text = mentionSuggestions[indexPath.row]["urlSlug"].string!
+            cell.titleLabel.text = mentionSuggestions[indexPath.row]["name"].string!
+            cell.profilePhoto.sd_setImage(with: getImageURL(mentionSuggestions[indexPath.row]["profilePicture"].stringValue, width:200), placeholderImage: getPlaceholderImage())
+            HiBye(cell.profilePhoto)
+            
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! PhotoSuggestionsTableViewCell
@@ -647,6 +653,8 @@ class PhotoCommentCell: UITableViewCell {
 
 class PhotoMentionTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var profilePhoto: UIImageView!
+    @IBOutlet weak var urlSlug: UILabel!
 }
 
 class PhotoSuggestionsTableViewCell: UITableViewCell {
