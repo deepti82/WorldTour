@@ -119,12 +119,12 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
                 self.loader.hideOverlayView()
                 
                 if response.error != nil {                    
-                    print("error: \(response.error!.localizedDescription)")
+//                    print("error: \(response.error!.localizedDescription)")
                     self.refreshControl.endRefreshing()
                 }
                     
                 else if response["value"].bool! {
-                    
+                    print("popular Bloggers :  \(response["data"])")
                     if self.refreshControl.isRefreshing {
                         self.allUsers = []
                         self.refreshControl.endRefreshing()
@@ -183,7 +183,9 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
         cell.followButton.layer.cornerRadius = 5
         cell.followButton.layer.borderColor = mainOrangeColor.cgColor
         cell.followButton.layer.borderWidth = 1.5
-        cell.followButton.clipsToBounds = true        
+        cell.followButton.clipsToBounds = true
+        cell.followButton.tag = indexPath.row
+        cell.tag = indexPath.row
         
         let cellData = allUsers[indexPath.row]
         
@@ -236,6 +238,7 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
                 starCnt = 0
                 cell.starName.text = ""
                 break
+            
         }
         
         if starCnt != 0 {            
@@ -248,9 +251,11 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
                 }
             }
         }
+        
+        cell.followButton.addTarget(self, action: #selector(self.followButtonClicked(_:)), for: .touchUpInside)
 
         if(currentUser != nil) {
-            cell.followButton.tag = indexPath.row
+            
             setFollowButtonTitle(button: cell.followButton, followType: cellData["following"].intValue, otherUserID: cellData["_id"].stringValue)
         }
         else {
@@ -277,7 +282,6 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
         self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Avenir-Medium", size: 18)!]
         
         self.customNavigationBar(left: leftButton, right: rightButton)
-        
         
     }
 
@@ -317,54 +321,56 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
     
     //MARK: - Follow Action
     
-    @IBAction func followButtonClicked(_ sender: UIButton) {
+    func followButtonClicked(_ sender: UIButton){
         
-        if currentUser != nil {
-            if sender.titleLabel?.text == "Follow" {
-                request.followUser(user.getExistingUser(), followUserId: allUsers[sender.tag]["_id"].stringValue, completion: {(response) in
-                    DispatchQueue.main.async(execute: {
-                        
-                        
-                        if response.error != nil {
-                            print("error: \(response.error!.localizedDescription)")
-                        }
-                        else if response["value"].bool! {
-                            setFollowButtonTitle(button: sender, followType: response["data"]["responseValue"].intValue, otherUserID: "")
-                            self.pagenum = 1
-                            self.hasNext = true
-                            self.isLoading = false
-                            self.getPopulerUser(pageNum: self.pagenum)
-                        }
-                        else {
-                            print("error: \(response["error"])")
-                        }
-                    })
-                })
-            }
-            else{
-                request.unfollow(user.getExistingUser(), unFollowId: allUsers[sender.tag]["_id"].stringValue, completion: {(response) in
-                    DispatchQueue.main.async(execute: {
-                        if response.error != nil {
-                            print("error: \(response.error!.localizedDescription)")
-                        }
-                        else if response["value"].bool! {
-                            setFollowButtonTitle(button: sender, followType: response["data"]["responseValue"].intValue, otherUserID: "")
-                            self.pagenum = 1
-                            self.hasNext = true
-                            self.isLoading = false
-                            self.getPopulerUser(pageNum: self.pagenum)
-                        }
-                        else {                            
-                            print("error: \(response["error"])")
-                        }
-                    })
-                })
-            }            
-        }
-        else {
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)            
-        }        
-    }    
+        print(sender.tag)
+        
+//        if currentUser != nil {
+//            if sender.titleLabel?.text == "Follow" {
+//                request.followUser(user.getExistingUser(), followUserId: allUsers[sender.tag]["_id"].stringValue, completion: {(response) in
+//                    DispatchQueue.main.async(execute: {
+//                        
+//                        
+//                        if response.error != nil {
+//                            print("error: \(response.error!.localizedDescription)")
+//                        }
+//                        else if response["value"].bool! {
+//                            setFollowButtonTitle(button: sender, followType: response["data"]["responseValue"].intValue, otherUserID: "")
+//                            self.pagenum = 1
+//                            self.hasNext = true
+//                            self.isLoading = false
+//                            self.getPopulerUser(pageNum: self.pagenum)
+//                        }
+//                        else {
+//                            print("error: \(response["error"])")
+//                        }
+//                    })
+//                })
+//            }
+//            else{
+//                request.unfollow(user.getExistingUser(), unFollowId: allUsers[sender.tag]["_id"].stringValue, completion: {(response) in
+//                    DispatchQueue.main.async(execute: {
+//                        if response.error != nil {
+//                            print("error: \(response.error!.localizedDescription)")
+//                        }
+//                        else if response["value"].bool! {
+//                            setFollowButtonTitle(button: sender, followType: response["data"]["responseValue"].intValue, otherUserID: "")
+//                            self.pagenum = 1
+//                            self.hasNext = true
+//                            self.isLoading = false
+//                            self.getPopulerUser(pageNum: self.pagenum)
+//                        }
+//                        else {                            
+//                            print("error: \(response["error"])")
+//                        }
+//                    })
+//                })
+//            }            
+//        }
+//        else {
+//            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)            
+//        }        
+    }
     
     //MARK: - Scroll Delagtes
     
