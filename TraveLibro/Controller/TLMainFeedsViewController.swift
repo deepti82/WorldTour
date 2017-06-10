@@ -639,12 +639,14 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
     
     //MARK: - Navigate to otherVC
     
-    func showDetailedJourney(feed: JSON) {        
+    func showDetailedJourney(feed: JSON) {
         if currentUser != nil {
-            let controller = storyboard?.instantiateViewController(withIdentifier: "newTL") as! NewTLViewController
-            controller.fromOutSide = feed["_id"].stringValue
-            controller.fromType = feed["type"].stringValue
-            self.navigationController?.pushViewController(controller, animated: false)
+            if isNetworkReachable {
+                let controller = storyboard?.instantiateViewController(withIdentifier: "newTL") as! NewTLViewController
+                controller.fromOutSide = feed["_id"].stringValue
+                controller.fromType = feed["type"].stringValue
+                self.navigationController?.pushViewController(controller, animated: false)                
+            }
         }
         else {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
@@ -653,9 +655,11 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
     
     func showQuickItinerary(feed: JSON) {
         if currentUser != nil {
-            selectedQuickI = feed["_id"].stringValue
-            let profile = storyboard?.instantiateViewController(withIdentifier: "previewQ") as! QuickItineraryPreviewViewController
-            self.navigationController?.pushViewController(profile, animated: true)
+            if isNetworkReachable {
+                selectedQuickI = feed["_id"].stringValue
+                let profile = storyboard?.instantiateViewController(withIdentifier: "previewQ") as! QuickItineraryPreviewViewController
+                self.navigationController?.pushViewController(profile, animated: true)                
+            }
         }
         else {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
