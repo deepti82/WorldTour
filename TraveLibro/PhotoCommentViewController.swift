@@ -410,14 +410,31 @@ class PhotoCommentViewController: UIViewController, UITableViewDataSource, UITab
         } else {
             
             let myString = textView.text as NSString
-            
-            let myRange = myString.range(of: whichView, options: .backwards)
-            
+            let repOf = replacableString
+            let myRange = myString.range(of: repOf, options: .backwards)
             textView.text = myString.replacingOccurrences(of: replacableString, with: modifiedString, options: .backwards, range: myRange)
             
         }
         
     }
+    
+//    func modifyText(textView: UITextView, modifiedString: String, replacableString: String, whichView: String) {
+//        
+//        if replacableString == "" {
+//            
+//            textView.text = "\(textView.text!)\(modifiedString)"
+//            
+//        } else {
+//            
+//            let myString = textView.text as NSString
+//            
+//            let myRange = myString.range(of: whichView, options: .backwards)
+//            
+//            textView.text = myString.replacingOccurrences(of: replacableString, with: modifiedString, options: .backwards, range: myRange)
+//            
+//        }
+//        
+//    }
     
     //MARK: - Keyboard Handling
     
