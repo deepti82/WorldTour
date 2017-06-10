@@ -400,7 +400,8 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
                         print("error: \(response.error!.localizedDescription)")
                     }
                     else if response["value"].bool! {                                              
-                        clearNotificationCount()                        
+                        clearNotificationCount()
+                                             
                         let newViewController = self.storyboard?.instantiateViewController(withIdentifier: "SignUpOne") as! SignInViewController
                         newViewController.shouldShowNavBar = false
                         
@@ -410,6 +411,7 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
                         
                         ((UIApplication.shared.delegate as! AppDelegate).window)?.rootViewController = slideMenuController
                         UIViewController().customiseNavigation()
+                        
                     }
                     else {
                         let errorAlert = UIAlertController(title: "Error", message: "Logout failed. Please try again later", preferredStyle: UIAlertControllerStyle.alert)

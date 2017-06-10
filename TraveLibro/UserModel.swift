@@ -88,6 +88,13 @@ public class User {
                 try! self.db.run(updaterow.update(self.isLoggedIn <- isloggedin))
                 try! self.db.run(updaterow.update(self.privacy <- privacy))
             }
+            let prevUser = UserDefaults.standard.string(forKey: "currentLoggedInUserId")
+            if (prevUser != userid) {
+                print("\n\n ******************\nUser mismatched...\nDropping OLD DB \n ******************\n")
+                UserDefaults.standard.set(userid, forKey: "currentLoggedInUserId")
+                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                appDelegate.dropDBTables()
+            }
         }
     }
 

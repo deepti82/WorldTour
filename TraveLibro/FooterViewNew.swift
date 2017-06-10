@@ -164,11 +164,9 @@ class FooterViewNew: UIView {
                     currentUser = response["data"]
                     let vc = storyboard!.instantiateViewController(withIdentifier: "newTL") as! NewTLViewController
                     vc.isJourney = false
-                    if(currentUser["journeyId"].stringValue == "-1") {
-                        isJourneyOngoing = false
-                        vc.showJourneyOngoing(journey: JSON(""))
+                    if(currentUser["journeyId"].stringValue != "-1") {
+                        self.setVC(newViewController: vc)
                     }
-                    self.setVC(newViewController: vc)
                 })
             }
             

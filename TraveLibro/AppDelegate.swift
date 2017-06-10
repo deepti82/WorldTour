@@ -490,7 +490,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
         }
     }
     
-    private func dropDBTables() {
+    func dropDBTables() {
         
         //PhotoTable
         let photoInstance = PostImage()
