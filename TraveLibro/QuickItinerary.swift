@@ -227,6 +227,12 @@ public class QuickItinerary {
         }
     }
     
+    func goToActivity() {        
+        let vc = storyboard!.instantiateViewController(withIdentifier: "TLMainFeedsView") as! TLMainFeedsViewController
+        vc.pageType = viewType.VIEW_TYPE_ACTIVITY        
+        globalNavigationController.pushViewController(vc, animated: false)
+    }
+    
     func rollbackItineraryTableProgress() {
         do {
             let query = post.select(id,post)
@@ -241,9 +247,7 @@ public class QuickItinerary {
         }
     }
     
-    func goToActivity() {        
-        let vc = storyboard!.instantiateViewController(withIdentifier: "TLMainFeedsView") as! TLMainFeedsViewController
-        vc.pageType = viewType.VIEW_TYPE_ACTIVITY        
-        globalNavigationController.pushViewController(vc, animated: false)
+    func dropQITable() {
+        try! db.run(post.drop(ifExists: true))
     }
 }

@@ -238,6 +238,10 @@ public class PostImage {
         }
     }
     
+    func dropPhotoTable() {
+        try! db.run(photos.drop(ifExists: true))
+    }
+    
 }
 
 

@@ -484,6 +484,16 @@ public class LocalLifePostModel {
         }
     }
     
+    func delete(_ post:Int64) {
+        do {
+            let query = self.post.filter(self.id == post)
+            try db.run(query.delete())
+        }
+        catch {
+            print("\n Error in deleting Local POST")
+        }
+    }
+    
     func rollbackLocalPostTableProgress() {
         do {
             let query = post.select(id,post)
@@ -498,15 +508,11 @@ public class LocalLifePostModel {
         }
     }
     
-    func delete(_ post:Int64) {
-        do {
-            let query = self.post.filter(self.id == post)
-            try db.run(query.delete())
-        }
-        catch {
-            print("\n Error in deleting Local POST")
-        }
+    func dropLocalPostTable() {
+        try! db.run(post.drop(ifExists: true))
     }
+    
+    
 }
 
 

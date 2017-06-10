@@ -44,4 +44,8 @@ public class Buddy {
         }
     }
     
+    func dropBuddyTable() {
+        try! db.run(buddy.drop(ifExists: true))
+    }
+    
 }

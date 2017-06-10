@@ -208,14 +208,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
     
     
     //MARK:- Application Delegates
-    
-    
         
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         
         NotificationCenter.default.addObserver(self, selector: #selector(reachabilityDidChange(_:)), name: NSNotification.Name(rawValue: ReachabilityDidChangeNotificationName), object: nil)        
         _ = reachability?.startNotifier()
+        
+        self.dropOldDB()
         
         SDWebImageDownloader.shared().maxConcurrentDownloads = 3
         
@@ -385,37 +385,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
     }
     
     
-    //MARK: - Database Rollback If Not Committed
-    
-    func rollbackDBIfOperationNotCommitted() {
-        
-        //PhotoTable
-        let photoInstance = PostImage()
-        photoInstance.rollbackPhotoTableProgress()
-        
-        
-        //VideoTable
-        let videoInstance = PostVideo()
-        videoInstance.rollbackVideoTableProgress()
-        
-        //PostTable
-        let postInstance = Post()
-        postInstance.rollbackPostTableProgress()
-        
-        //LocalPostTable
-        let localPostInstance = LocalLifePostModel()
-        localPostInstance.rollbackLocalPostTableProgress()
-        
-        //QuickItineraryTable
-        let quickTableInstance = QuickItinerary()
-        quickTableInstance.rollbackItineraryTableProgress()
-        
-        //PostEditPhotoVideoTable
-        let postEditPhotoInstance = PostEditPhotosVideos()
-        postEditPhotoInstance.rollbackPostEditPhotoTableProgress()
-    }
-
-    
     //MARK: - Reachability
     
     func reachabilityDidChange(_ notification: Notification) {
@@ -441,16 +410,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "REACHABILITY_STATUS_CHANGED"), object: ["status":isNetworkReachable])
     }
     
-    func stopUploading() {
-        isUploadingInProgress = false
-        self.rollbackDBIfOperationNotCommitted()
-    }
-    
-    func resumeUploading() {
-        let i = PostImage()
-        i.uploadPhotos(delegate: nil)
-    }
-    
     func isConnectedToNetwork() -> Bool {
         guard let r = reachability else { return false}
         if r.isReachable  {
@@ -460,6 +419,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
         }
     }
     
+    
     //MARK: - Navigation Delegate
     
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
@@ -468,6 +428,94 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
             prevVC = navigationController.viewControllers[navigationController.viewControllers.count - 1]
             prevVC.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         }
+    }
+    
+    
+    //MARK: - Database related Operations
+    
+    private func rollbackDBIfOperationNotCommitted() {
+        
+        //PhotoTable
+        let photoInstance = PostImage()
+        photoInstance.rollbackPhotoTableProgress()
+        
+        //VideoTable
+        let videoInstance = PostVideo()
+        videoInstance.rollbackVideoTableProgress()
+        
+        //PostTable
+        let postInstance = Post()
+        postInstance.rollbackPostTableProgress()
+        
+        //LocalPostTable
+        let localPostInstance = LocalLifePostModel()
+        localPostInstance.rollbackLocalPostTableProgress()
+        
+        //QuickItineraryTable
+        let quickTableInstance = QuickItinerary()
+        quickTableInstance.rollbackItineraryTableProgress()
+        
+        //PostEditPhotoVideoTable
+        let postEditPhotoInstance = PostEditPhotosVideos()
+        postEditPhotoInstance.rollbackPostEditPhotoTableProgress()
+    }
+    
+    private func stopUploading() {
+        isUploadingInProgress = false
+        self.rollbackDBIfOperationNotCommitted()
+    }
+    
+    private func resumeUploading() {
+        let i = PostImage()
+        i.uploadPhotos(delegate: nil)
+    }
+    
+    private func dropOldDB() {
+        
+        if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
+            print("\n current version is  : \(version)")
+            
+            var fullVersionString = version.replacingOccurrences(of: ".", with: "")
+            let array = version.components(separatedBy: ".")
+            
+            if array.count < 3 {
+                for _ in array.count..<3 {
+                    fullVersionString.append("0")
+                }
+            }
+            
+            if ((Int(fullVersionString))! < 406) {
+                self.dropDBTables()                
+            }
+        }
+    }
+    
+    private func dropDBTables() {
+        
+        //PhotoTable
+        let photoInstance = PostImage()
+        photoInstance.dropPhotoTable()
+        
+        //VideoTable
+        let videoInstance = PostVideo()
+        videoInstance.dropVideoTable()
+        
+        //PostTable
+        let postInstance = Post()
+        postInstance.dropPostTable()
+        
+        //LocalPostTable
+        let localPostInstance = LocalLifePostModel()
+        localPostInstance.dropLocalPostTable()
+        
+        //QuickItineraryTable
+        let quickTableInstance = QuickItinerary()
+        quickTableInstance.dropQITable()
+        
+        //PostEditPhotoVideoTable
+        let postEditPhotoInstance = PostEditPhotosVideos()
+        postEditPhotoInstance.dropPostEditAddPhotoTable()
+        
     }
     
     

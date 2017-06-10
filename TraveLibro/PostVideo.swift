@@ -170,20 +170,6 @@ public class PostVideo {
         
     }
     
-    func rollbackVideoTableProgress() {
-        do {
-            let query = videos.select(id,post,url)
-                .filter(url == "" && (videoUploadStatus == 1))
-            
-            for photo in try db.prepare(query) {
-                self.updateStatus(videoID: photo[self.id], status: uploadStatus.UPLOAD_FAILED, urlString: "", thumbnailStr: "")
-            }
-        }
-        catch {
-            print(error);
-        }
-    }
-    
     func delete(_ post:Int64) {
         do {
             let query = self.videos.filter(self.post == post)
@@ -205,4 +191,24 @@ public class PostVideo {
         print(photoJson);
         return photoJson
     }
+    
+    func rollbackVideoTableProgress() {
+        do {
+            let query = videos.select(id,post,url)
+                .filter(url == "" && (videoUploadStatus == 1))
+            
+            for photo in try db.prepare(query) {
+                self.updateStatus(videoID: photo[self.id], status: uploadStatus.UPLOAD_FAILED, urlString: "", thumbnailStr: "")
+            }
+        }
+        catch {
+            print(error);
+        }
+    }
+    
+    func dropVideoTable() {
+        try! db.run(videos.drop(ifExists: true))
+    }
+    
+    
 }

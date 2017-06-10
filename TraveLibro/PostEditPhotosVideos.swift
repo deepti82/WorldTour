@@ -126,20 +126,6 @@ public class PostEditPhotosVideos {
         }
     }
     
-    func rollbackPostEditPhotoTableProgress() {
-        do {
-            let query = addPhotosVideos_db.select(id_db)
-                .filter(postEditUploadStatus == 1)
-            
-            for post in try db.prepare(query) {
-                self.updateStatus(postID: post[self.id_db], status: uploadStatus.UPLOAD_FAILED)
-            }
-        }
-        catch {
-            print(error);
-        }
-    }
-    
     func updateStatus(postID: Int64, status: uploadStatus) {
         print("\n photoId : \(postID)")
         var toStatus = 0
@@ -165,6 +151,24 @@ public class PostEditPhotosVideos {
             print("\n PostEditPhotoVideo update error FOUND")
         }
         
+    }
+    
+    func rollbackPostEditPhotoTableProgress() {
+        do {
+            let query = addPhotosVideos_db.select(id_db)
+                .filter(postEditUploadStatus == 1)
+            
+            for post in try db.prepare(query) {
+                self.updateStatus(postID: post[self.id_db], status: uploadStatus.UPLOAD_FAILED)
+            }
+        }
+        catch {
+            print(error);
+        }
+    }
+    
+    func dropPostEditAddPhotoTable() {
+        try! db.run(addPhotosVideos_db.drop(ifExists: true))
     }
     
 }

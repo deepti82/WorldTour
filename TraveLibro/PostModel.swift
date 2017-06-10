@@ -673,6 +673,15 @@ public class Post {
         }
     }
     
+    func delete(_ post:Int64) {
+        do {
+            let query = self.post.filter(self.id == post)
+            try db.run(query.delete())
+        }
+        catch {
+            print("\n Error in deleting POST")
+        }
+    }
     
     func rollbackPostTableProgress() {
         do {
@@ -688,14 +697,8 @@ public class Post {
         }
     }
     
-    func delete(_ post:Int64) {
-        do {
-            let query = self.post.filter(self.id == post)
-            try db.run(query.delete())
-        }
-        catch {
-            print("\n Error in deleting POST")
-        }
+    func dropPostTable() {
+        try! db.run(post.drop(ifExists: true))
     }
     
 }
