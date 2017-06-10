@@ -552,7 +552,7 @@ class EndJourneyViewController: UIViewController {
                         print("error: \(response.error!.localizedDescription)")
                     }
                     else if response["value"].bool! {                            
-                        request.getUser(user.getExistingUser(), urlSlug: nil, completion: {(response) in
+                        request.getUser(user.getExistingUser(), urlSlug: nil, completion: {(response, isFromCache) in
                             
                             DispatchQueue.main.async(execute: {
                                 self.goBack()

@@ -141,8 +141,26 @@ class FooterViewNew: UIView {
         if currentUser != nil {
             setFooterDefaultState()
             setHighlightStateForView(tag: 1, color: mainOrangeColor)
-            request.getUser(user.getExistingUser(), urlSlug: nil, completion: { (response) in
-                DispatchQueue.main.async {
+            
+            if isNetworkReachable {
+                request.getUser(user.getExistingUser(), urlSlug: nil, completion: { (response, isFromCache) in
+                    if !isFromCache {
+                        DispatchQueue.main.async {
+                            currentUser = response["data"]
+                            let vc = storyboard!.instantiateViewController(withIdentifier: "newTL") as! NewTLViewController
+                            vc.isJourney = false
+                            if(currentUser["journeyId"].stringValue == "-1") {
+                                isJourneyOngoing = false
+                                vc.showJourneyOngoing(journey: JSON(""))
+                            }
+                            self.setVC(newViewController: vc)
+                        }
+                    }
+                })
+                
+            }
+            else {
+                request.getUserFromCache(user.getExistingUser(), completion: { (response) in
                     currentUser = response["data"]
                     let vc = storyboard!.instantiateViewController(withIdentifier: "newTL") as! NewTLViewController
                     vc.isJourney = false
@@ -151,8 +169,9 @@ class FooterViewNew: UIView {
                         vc.showJourneyOngoing(journey: JSON(""))
                     }
                     self.setVC(newViewController: vc)
-                }
-            })
+                })
+            }
+            
         }
         else {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: ["type":0])

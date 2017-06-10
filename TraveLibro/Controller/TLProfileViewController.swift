@@ -633,7 +633,7 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
             selectedUser = []
         }
         
-        request.getUser(user.getExistingUser(), urlSlug:selectedUser["urlSlug"].stringValue, completion: {(request) in
+        request.getUser(user.getExistingUser(), urlSlug:selectedUser["urlSlug"].stringValue, completion: {(request, isFromCache) in
             DispatchQueue.main.async {
                 self.currentlyShowingUser = request["data"]
                 currentUser = request["data"]

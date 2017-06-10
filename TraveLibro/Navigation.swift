@@ -137,7 +137,7 @@ class Navigation {
         }
     }
     
-    func getUser(_ id: String, urlSlug: String?, completion: @escaping ((JSON) -> Void)) {
+    func getUser(_ id: String, urlSlug: String?, completion: @escaping ((JSON, Bool) -> Void)) {
         
         
         var json = JSON(1);
@@ -155,7 +155,7 @@ class Navigation {
             self.cache.fetch(key: urlString+id).onSuccess { data in
                 let json = JSON(data: data)
                 print("\n getUser upper : \(json["data"]["name"].stringValue)")
-                completion(json)
+                completion(json,true)
             }
         }
         
@@ -172,7 +172,7 @@ class Navigation {
                     if urlSlug == "" {
                         self.cache.set(value: response.data, key: urlString+id)
                     }
-                    completion(json)
+                    completion(json,false)
                 }
             }
         } catch let error {

@@ -816,7 +816,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
     //MARK: - Button Action Helpers
     
     func gotoOTG() {
-        request.getUser(user.getExistingUser(), urlSlug: nil, completion: {(request) in
+        request.getUser(user.getExistingUser(), urlSlug: nil, completion: {(request, isFromCache) in
             DispatchQueue.main.async {
                 
                 self.loader.hideOverlayView()                

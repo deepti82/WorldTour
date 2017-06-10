@@ -57,7 +57,7 @@ class DisplayPagesOneViewController: UIViewController {
         swipeLeft.direction = UISwipeGestureRecognizerDirection.left
         self.view.addGestureRecognizer(swipeLeft)
         
-        request.getUser(currentUser["_id"].string!, urlSlug: nil, completion: {(response) in
+        request.getUser(currentUser["_id"].string!, urlSlug: nil, completion: {(response, isFromCache) in
             
             DispatchQueue.main.async(execute: {
               
