@@ -167,6 +167,15 @@ class FooterViewNew: UIView {
                     if(currentUser["journeyId"].stringValue != "-1") {
                         self.setVC(newViewController: vc)
                     }
+                    else {
+                        let errorAlert = UIAlertController(title: "Error", message: "Please check your internet connection and try again.", preferredStyle: UIAlertControllerStyle.alert)
+                        let DestructiveAction = UIAlertAction(title: "Ok", style: .destructive) {
+                            (result : UIAlertAction) -> Void in
+                            self.gotoMyLife()
+                        }            
+                        errorAlert.addAction(DestructiveAction)
+                        globalNavigationController.topViewController?.present(errorAlert, animated: true, completion: nil)
+                    }
                 })
             }
             

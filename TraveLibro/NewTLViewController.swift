@@ -721,7 +721,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     
     func getJourney() {
         
-        request.getJourney(currentUser["_id"].string!, completion: {(response) in
+        request.getJourney(currentUser["_id"].string!, completion: {(response, isFromCache) in
             DispatchQueue.main.async(execute: {
                 self.loader.hideOverlayView()
                 print(response)

@@ -158,7 +158,9 @@ public class PostImage {
         
         if !isUploadingInProgress || isLoopingRequest {
             
-            isUploadingInProgress = true
+            if isNetworkReachable {
+                isUploadingInProgress = true                
+            }            
             isLoopingRequest = false
             
             print(" ******* check 1")
@@ -171,7 +173,7 @@ public class PostImage {
                 for photo in try db.prepare(query) {
                     
                     print(" ******* check 2")
-                    self.updateStatus(photoId: photo[id], status: uploadStatus.UPLOAD_IN_PROGRESS, urlString: "")                
+                    self.updateStatus(photoId: photo[id], status: (isNetworkReachable ? uploadStatus.UPLOAD_IN_PROGRESS : uploadStatus.UPLOAD_PENDING) , urlString: "")                
                     
                     check = true;
                     let url = getDocumentsDirectory().appendingPathComponent( String(photo[localUrl]) )
@@ -226,8 +228,8 @@ public class PostImage {
     
     func rollbackPhotoTableProgress() {
         do {
-            let query = photos.select(id,post,url)
-                .filter(url == "" && (photoUploadStatus == 1))
+            let query = photos.select(id,post,captions,localUrl,url)
+                .filter(url == "" && (photoUploadStatus == 1))                
             
             for photo in try db.prepare(query) {
                 self.updateStatus(photoId: photo[id], status: uploadStatus.UPLOAD_FAILED, urlString: "")

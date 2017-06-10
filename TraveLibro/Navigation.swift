@@ -1205,11 +1205,23 @@ class Navigation {
         }
     }
     
-    func getJourney(_ id: String, completion: @escaping ((JSON) -> Void)) {
+    func getJourney(_ id: String, completion: @escaping ((JSON, Bool) -> Void)) {
         
         do {
             
-            let opt = try HTTP.POST(adminUrl + "journey/getOnGoing", parameters: ["user": id])
+            let urlString = adminUrl + "journey/getOnGoing"
+            
+            if !isNetworkReachable {
+                if(isSelfUser(otherUserID: id)) {
+                    self.cache.fetch(key: urlString+id).onSuccess { data in
+                        let json = JSON(data: data)
+                        completion(json,true)
+                    }
+                }
+            }
+            
+            
+            let opt = try HTTP.POST(urlString, parameters: ["user": id])
             var json = JSON(1);
             opt.start {response in
                 if let err = response.error {
@@ -1218,8 +1230,11 @@ class Navigation {
                 else
                 {
                     json  = JSON(data: response.data)
+                    if(isSelfUser(otherUserID: id)) {
+                        self.cache.set(value: response.data, key: urlString+id)
+                    }
                     currentJourney = json["data"]
-                    completion(json)
+                    completion(json, false)
                 }
             }
         } catch let error {

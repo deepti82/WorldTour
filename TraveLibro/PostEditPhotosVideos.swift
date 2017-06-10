@@ -64,7 +64,7 @@ public class PostEditPhotosVideos {
                 
                 print(" ******* postPhotoVideoCheck 2")
                 
-                self.updateStatus(postID: post[self.id_db], status: uploadStatus.UPLOAD_IN_PROGRESS)
+                self.updateStatus(postID: post[self.id_db], status: (isNetworkReachable ? uploadStatus.UPLOAD_IN_PROGRESS : uploadStatus.UPLOAD_PENDING))
                 
                 check = true
                 let str = String(post[uniqueId_db])
@@ -155,8 +155,8 @@ public class PostEditPhotosVideos {
     
     func rollbackPostEditPhotoTableProgress() {
         do {
-            let query = addPhotosVideos_db.select(id_db)
-                .filter(postEditUploadStatus == 1)
+            let query = addPhotosVideos_db.select(id_db,uniqueId_db,buddyDb)
+                .filter(postEditUploadStatus == 1)                
             
             for post in try db.prepare(query) {
                 self.updateStatus(postID: post[self.id_db], status: uploadStatus.UPLOAD_FAILED)

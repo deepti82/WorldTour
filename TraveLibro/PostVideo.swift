@@ -110,7 +110,7 @@ public class PostVideo {
             for photo in try db.prepare(query) {
                 print(" ******* videoCheck 2")
                 
-                self.updateStatus(videoID: photo[id], status: uploadStatus.UPLOAD_IN_PROGRESS, urlString: "", thumbnailStr: "")
+                self.updateStatus(videoID: photo[id], status: (isNetworkReachable ? uploadStatus.UPLOAD_IN_PROGRESS : uploadStatus.UPLOAD_PENDING), urlString: "", thumbnailStr: "")
                 check = true;
                 let url = getDocumentsDirectory().appendingPathComponent( String(photo[localUrl]) )
                 request.uploadPhotos(url, localDbId: 0,completion: {(response) in
@@ -194,7 +194,7 @@ public class PostVideo {
     
     func rollbackVideoTableProgress() {
         do {
-            let query = videos.select(id,post,url)
+            let query = videos.select(id,post,captions,localUrl,url)
                 .filter(url == "" && (videoUploadStatus == 1))
             
             for photo in try db.prepare(query) {

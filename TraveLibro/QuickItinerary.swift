@@ -157,7 +157,7 @@ public class QuickItinerary {
             for post1 in try db.prepare(query) {
                 check = true
                 
-                self.updateStatus(postId: post1[id], status: uploadStatus.UPLOAD_IN_PROGRESS)
+                self.updateStatus(postId: post1[id], status: (isNetworkReachable ? uploadStatus.UPLOAD_IN_PROGRESS : uploadStatus.UPLOAD_PENDING))
                 
                 let p = LocalLifePostModel();
                 
@@ -235,8 +235,9 @@ public class QuickItinerary {
     
     func rollbackItineraryTableProgress() {
         do {
-            let query = post.select(id,post)
+            let query = post.select(id,quickJson,status,editId)
                 .filter(QIUploadStatus == 1)
+                
             
             for post in try db.prepare(query) {
                 self.updateStatus(postId: post[self.id], status: uploadStatus.UPLOAD_FAILED)

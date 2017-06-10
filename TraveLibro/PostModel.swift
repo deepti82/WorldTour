@@ -513,7 +513,7 @@ public class Post {
                 
                 print("\n postId : \(post[id]) postIds: \(post[postServerId])")
                 
-                self.updateStatus(postId: post[id], status: uploadStatus.UPLOAD_IN_PROGRESS)
+                self.updateStatus(postId: post[id], status: (isNetworkReachable ? uploadStatus.UPLOAD_IN_PROGRESS : uploadStatus.UPLOAD_PENDING))
                 
                 check = true
                 let p = Post();                
@@ -685,7 +685,7 @@ public class Post {
     
     func rollbackPostTableProgress() {
         do {
-            let query = post.select(id,post)
+            let query = post.select(id, type, userId, journeyId, thoughts, location, category, city, country, latitude, longitude, date, newbuddyDb, prevBuddyDb, userName, checkInChange, postUploadStatus, postServerId, postServerUniqueId)
                 .filter(postUploadStatus == 1)
             
             for post in try db.prepare(query) {

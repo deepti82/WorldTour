@@ -381,7 +381,7 @@ public class LocalLifePostModel {
             for post in try db.prepare(query) {
                 check = true
                 
-                self.updateStatus(postId: post[id], status: uploadStatus.UPLOAD_IN_PROGRESS)
+                self.updateStatus(postId: post[id], status: (isNetworkReachable ? uploadStatus.UPLOAD_IN_PROGRESS : uploadStatus.UPLOAD_PENDING))
                 
                 let p = LocalLifePostModel();
                 
@@ -496,8 +496,8 @@ public class LocalLifePostModel {
     
     func rollbackLocalPostTableProgress() {
         do {
-            let query = post.select(id,post)
-                .filter(localLifePostStatus == 1)
+            let query = post.select(id,type,userId,journeyId,thoughts,location,category,city,country,latitude,longitude,date,buddyDb)
+                .filter(localLifePostStatus == 1)                
             
             for post in try db.prepare(query) {
                 self.updateStatus(postId: post[self.id], status: uploadStatus.UPLOAD_FAILED)
