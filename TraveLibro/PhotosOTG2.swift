@@ -9,7 +9,7 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
     var profileHeader:ActivityProfileHeader!
     var textHeader:ActivityTextHeader!
     var centerView:PhotosOTGView?
-    var footerView:PhotoOTGFooter!
+    var footerView:PhotoOTGFooter?
     var mainPhoto:UIImageView?
     var videoContainer:VideoView!
     var uploadingView:UploadingToCloud!
@@ -179,27 +179,23 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
             //Footer Generation Only
             footerView = PhotoOTGFooter(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 65))
             if isSelfUser(otherUserID: currentUser["_id"].stringValue) {
-                footerView.optionButton.isHidden = false
+                footerView?.optionButton.isHidden = false
             }else{
-                footerView.optionButton.isHidden = true
+                footerView?.optionButton.isHidden = true
             }
 
-            footerView.PhotoOtg = self;
-            footerView.postTop = self.postTop;
-            footerView.setLikeCount(post.post_likeCount)
-            footerView.setCommentCount(post.post_commentCount)
-            footerView.setLikeSelected(post.post_likeDone)
+            footerView?.PhotoOtg = self;
+            footerView?.postTop = self.postTop;
+            footerView?.setLikeCount(post.post_likeCount)
+            footerView?.setCommentCount(post.post_commentCount)
+            footerView?.setLikeSelected(post.post_likeDone)
             
             if post.postCreator["_id"].stringValue == user.getExistingUser() {
-                footerView.optionButton.isHidden = false
+                footerView?.optionButton.isHidden = false
             }else{
-                footerView.optionButton.isHidden = true
-            }
-            
-            self.addSubview(footerView)
-//            dropView = DropShadow1(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 2))
-//            self.addSubview(dropView)
-            
+                footerView?.optionButton.isHidden = true
+            }            
+            self.addSubview(footerView!)            
             
             if(post.post_location != "") {
                 rateButton = RatingCheckIn(frame: CGRect(x: 0, y: 0, width: width, height: 150))

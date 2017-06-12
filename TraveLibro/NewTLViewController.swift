@@ -1313,7 +1313,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         if postLayout != nil {            
             
             (postLayout!.rateButton)?.removeFromSuperview()
-            
+            (postLayout!.footerView)?.removeFromSuperview()
             
             let uploadingView = UploadingToCloud(frame: CGRect(x: 0, y: 0, width: (postLayout?.frame.size.width)!, height: 23))
             

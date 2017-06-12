@@ -48,7 +48,7 @@ class UploadingToCloud: UIView {
                 valtext = "Updating changes to activity..."
             }
             else if feed["editType"].stringValue == "EDITING_PHOTO_VIDEO" {
-                valtext = "Uploading To this activity..."
+                valtext = "Uploading moments to this activity..."
             }
             
             self.uploadText.text = valtext
