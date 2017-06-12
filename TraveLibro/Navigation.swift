@@ -2098,7 +2098,7 @@ class Navigation {
 
 
     
-    func getGoogleSearchNearby(_ lat: Double, long: Double, searchText: String, completion: @escaping ((JSON) -> Void)) {
+    func getGoogleSearchNearby(_ lat: Double, long: Double, searchText: String, requestId:Int, completion: @escaping ((JSON, Int) -> Void)) {
         
         do {
             
@@ -2114,7 +2114,7 @@ class Navigation {
                 {
                     json  = JSON(data: response.data)
                     print(json)
-                    completion(json)
+                    completion(json, requestId)
                 }
             }
         } catch let error {

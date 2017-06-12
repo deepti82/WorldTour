@@ -606,12 +606,16 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
         self.putLocationName(sender.titleLabel!.text!, placeId: id)
     }
     
-    func putLocationName(_ selectedLocation: String, placeId: String!) {
+    func putLocationName(_ selectedLocation: String, placeId: String!) {        
         if selectedLocation != "" {
             //self.addLocationButton.titleLabel?.text == ""
-            self.addLocationButton.setTitle(selectedLocation, for: .normal)            
+            self.addLocationButton.setTitle(selectedLocation, for: .normal)
+            self.addLocationText.isHidden = true
         }else {
-            self.addLocationText.placeholder = "Add Location"
+            if self.addLocationButton.titleLabel?.text == "" {
+                self.addLocationText.placeholder = "Add Location"
+                self.addLocationText.isHidden = false
+            }
         }
         
         if selectedLocation != "" {
