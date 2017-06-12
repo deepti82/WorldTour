@@ -279,15 +279,13 @@ extension NewTLViewController {
             self.addView.countCharacters(post.post_thoughts.characters.count)
         }
         
-        if(post.post_location != "") {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.2, execute: {
-                self.addView.putLocationName(post.post_location, placeId: nil)
-                self.addView.categoryLabel.text = post.post_category
-                self.addView.currentCity = post.post_city
-                self.addView.currentCountry = post.post_country
-                self.addView.currentLat = Float(post.post_latitude)
-                self.addView.currentLong = Float(post.post_longitude)                
-            })
+        if(post.post_location != "") {            
+            self.addView.putLocationName(post.post_location, placeId: nil)
+            self.addView.categoryLabel.text = post.post_category
+            self.addView.currentCity = post.post_city
+            self.addView.currentCountry = post.post_country
+            self.addView.currentLat = Float(post.post_latitude)
+            self.addView.currentLong = Float(post.post_longitude)
         }
         self.addView.prevBuddies = post.jsonPost["buddies"].array!
         self.addView.buddyAdded(post.jsonPost["buddies"].array!)

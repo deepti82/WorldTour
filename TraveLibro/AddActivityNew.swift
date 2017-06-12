@@ -185,11 +185,9 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
         let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        self.addSubview(view);
+        self.addSubview(view)
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            self.addLocationTapped()
-        }
+        self.addLocationTapped()       
         
         self.addLocationButton.addTarget(self, action: #selector(self.gotoSearchLocation(_:)), for: .touchUpInside)
         self.photosButton.addTarget(self, action: #selector(self.addPhotos(_:)), for: .touchUpInside)
@@ -609,7 +607,11 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
     }
     
     func putLocationName(_ selectedLocation: String, placeId: String!) {
-        self.addLocationButton.setTitle(selectedLocation, for: .normal)
+        if selectedLocation != "" {
+            //self.addLocationButton.titleLabel?.text == ""
+            self.addLocationButton.setTitle(selectedLocation, for: .normal)            
+        }
+        
         if selectedLocation != "" {
             self.addLocationText.placeholder = ""
         }
