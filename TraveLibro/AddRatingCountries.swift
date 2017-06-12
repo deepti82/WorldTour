@@ -113,12 +113,7 @@ class AddRatingCountries: UIView, UITextViewDelegate {
             self.postReview.setTitle(journeyData["_id"].string!, for: .application)
             self.postReview.setTitle(data[i - 1]["country"]["_id"].string!, for: .disabled)
             let imageURL = "\(adminUrl)upload/readFile?file=\(data[i - 1]["country"]["flag"].string!)"
-            DispatchQueue.main.async(execute: {
-                do {
-                    let data = try? Data(contentsOf: URL(string: imageURL)!)
-                    self.countryImage.image = UIImage(data: data!)
-                }
-            })
+            self.countryImage.hnk_setImageFromURL(URL(string: imageURL)!)
 //            view.postReviewTapped(view.postReview)
 //            if data.count > num {
             
