@@ -231,7 +231,6 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
         self.layoutSubviews()
     }
     
-    
     func headerLayout(feed:JSON) {
         headerLine = DottedLine(frame: CGRect(x: 0, y: 2, width: self.frame.width, height: 38))
         
@@ -305,7 +304,6 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
         }
     }
     
-    
     func setText(text: String) {
         textHeader.headerText.text = text
         //        self.addSubview(textHeader)
@@ -320,7 +318,6 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
         globalNavigationController.pushViewController(singlePhotoController, animated: true)
 //        globalNavigationController.present(singlePhotoController, animated: true, completion: nil)
     }
-
     
     func addPhotoToLayout(_ post: Post, startIndex: Int) {
         centerView?.horizontalScrollForPhotos.removeAll()

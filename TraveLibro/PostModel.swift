@@ -434,7 +434,12 @@ public class Post {
         }
         
         if(json["imageUrl"].string != nil) {
-            self.post_locationImage = json["imageUrl"].stringValue
+            if json["checkIn"]["location"] != "" {
+                self.post_locationImage = json["imageUrl"].stringValue
+            }
+            else {
+                self.post_locationImage = ""
+            }
         }
         
         for photo in json["photos"].arrayValue {
