@@ -310,7 +310,8 @@ extension NewTLViewController {
         buddyView.center.x = self.view.center.x
         buddyView.profileName.text = post["user"]["name"].string!
         DispatchQueue.main.async(execute: {
-            buddyView.profileImageView.image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(post["user"]["profilePicture"].stringValue)")!))
+            buddyView.profileImageView.sd_setImage(with: getImageURL(post["user"]["profilePicture"].stringValue, width: BIG_PHOTO_WIDTH),
+                                                   placeholderImage: getPlaceholderImage())
             HiBye(buddyView.profileImageView)
         })
         layout.addSubview(buddyView)
