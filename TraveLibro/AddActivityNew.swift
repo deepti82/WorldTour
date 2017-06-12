@@ -610,6 +610,8 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
         if selectedLocation != "" {
             //self.addLocationButton.titleLabel?.text == ""
             self.addLocationButton.setTitle(selectedLocation, for: .normal)            
+        }else {
+            self.addLocationText.placeholder = "Add Location"
         }
         
         if selectedLocation != "" {
