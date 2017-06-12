@@ -612,7 +612,8 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
             self.addLocationButton.setTitle(selectedLocation, for: .normal)
             self.addLocationText.isHidden = true
         }else {
-            if self.addLocationButton.titleLabel?.text == "" {
+            if ((self.addLocationButton.titleLabel?.text == nil)
+                || (self.addLocationButton.titleLabel?.text == "")) {
                 self.addLocationText.placeholder = "Add Location"
                 self.addLocationText.isHidden = false
             }
