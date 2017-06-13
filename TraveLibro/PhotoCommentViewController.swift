@@ -262,10 +262,10 @@ class PhotoCommentViewController: UIViewController, UITableViewDataSource, UITab
             cell.profileComment.customize {label in
                 label.handleMentionTap {_ in
                     print("\n\n\n CommentData : \(self.comments[indexPath.row])")
-                    let profile = self.storyboard?.instantiateViewController(withIdentifier: "TLProfileView") as! TLProfileViewController
-                    profile.displayData = "search"
-                    profile.currentSelectedUser = self.comments[indexPath.row]["user"]
-                    self.navigationController?.pushViewController(profile, animated: true)
+//                    let profile = self.storyboard?.instantiateViewController(withIdentifier: "TLProfileView") as! TLProfileViewController
+//                    profile.displayData = "search"
+//                    profile.currentSelectedUser = self.comments[indexPath.row]["user"]
+//                    self.navigationController?.pushViewController(profile, animated: true)
                 }
                 
                 label.handleHashtagTap {_ in 

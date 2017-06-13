@@ -13,6 +13,7 @@ class SuggestionsViewController: UIViewController {
     var suggestions: [JSON] = []
     var whichSuggestion = "hashtag"
     var textVar = ""
+    private var requestId = 0
     
     @IBOutlet weak var suggestionsTable: UITableView!
     
@@ -49,24 +50,20 @@ class SuggestionsViewController: UIViewController {
     
     func getMentions() {
         
-        request.getMentions(userId: currentUser["_id"].string!, searchText: textVar, completion: {(response) in
+        requestId += 1
+        
+        request.getMentions(userId: currentUser["_id"].string!, searchText: textVar, requestId: self.requestId, completion: {(response, responseId) in
             
             DispatchQueue.main.async(execute: {
                 
-                if response.error != nil {
-                    
-                    print("error: \(response.error!.localizedDescription)")
-                    
-                }
-                else if response["value"].bool! {
-                    
-                    //                    self.comments = response["data"]["comment"].array!
-                    self.suggestionsTable.reloadData()
-                    
-                }
-                else {
-                    
-                    
+                if (self.requestId == responseId) {
+                    if response.error != nil {                        
+                        print("error: \(response.error!.localizedDescription)")                        
+                    }
+                    else if response["value"].bool! {                        
+                        //                    self.comments = response["data"]["comment"].array!
+                        self.suggestionsTable.reloadData()
+                    }
                 }
                 
             })

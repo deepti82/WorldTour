@@ -410,10 +410,10 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
                 label.handleMentionTap {_ in 
                     print("\n\n user : \(self.comments[indexPath.row])")
                     
-                    let profile = self.storyboard?.instantiateViewController(withIdentifier: "TLProfileView") as! TLProfileViewController
-                    profile.displayData = "search"
-                    profile.currentSelectedUser = self.comments[indexPath.row]["user"]
-                    self.navigationController?.pushViewController(profile, animated: true)
+//                    let profile = self.storyboard?.instantiateViewController(withIdentifier: "TLProfileView") as! TLProfileViewController
+//                    profile.displayData = "search"
+//                    profile.currentSelectedUser = self.comments[indexPath.row]["user"]
+//                    self.navigationController?.pushViewController(profile, animated: true)
                 }
                 
                 label.handleHashtagTap {_ in 
