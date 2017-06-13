@@ -111,8 +111,7 @@ class FooterViewNew: UIView {
     }
     
     func gotoActivity() {
-        if currentUser != nil {
-            setFooterDefaultState()
+        if currentUser != nil {            
             setHighlightStateForView(tag: 0, color: mainOrangeColor)
             request.getUserFromCache(user.getExistingUser(), completion: { (response) in
                 DispatchQueue.main.async {
@@ -138,8 +137,7 @@ class FooterViewNew: UIView {
     }
     
     func gotoTraveLife() {
-        if currentUser != nil {
-            setFooterDefaultState()
+        if currentUser != nil {            
             setHighlightStateForView(tag: 1, color: mainOrangeColor)
             
             if isNetworkReachable {
@@ -194,8 +192,7 @@ class FooterViewNew: UIView {
     }
     
     func gotoMyLife() {
-        if currentUser != nil {
-            setFooterDefaultState()
+        if currentUser != nil {            
             setHighlightStateForView(tag: 2, color: mainOrangeColor)
             request.getUserFromCache(user.getExistingUser(), completion: { (response) in
                 DispatchQueue.main.async {
@@ -227,8 +224,7 @@ class FooterViewNew: UIView {
     }
     
     func gotoLocaLife() {
-        if currentUser != nil {
-            setFooterDefaultState()
+        if currentUser != nil {            
             setHighlightStateForView(tag: 3, color: mainGreenColor)
             request.getUserFromCache(user.getExistingUser(), completion: { (response) in
                 DispatchQueue.main.async {
@@ -252,8 +248,7 @@ class FooterViewNew: UIView {
     }
     
     func gotoAlerts() {
-        if currentUser != nil {
-            setFooterDefaultState()
+        if currentUser != nil {            
             setHighlightStateForView(tag: 4, color: mainOrangeColor)
             request.getUserFromCache(user.getExistingUser(), completion: { (response) in
                 DispatchQueue.main.async {
@@ -315,6 +310,8 @@ class FooterViewNew: UIView {
     }
     
     func setHighlightStateForView(tag: Int, color: UIColor) {
+        self.setFooterDefaultState()
+        
         switch tag {
         case 0:
             activityView.isUserInteractionEnabled = false

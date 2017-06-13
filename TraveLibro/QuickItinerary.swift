@@ -225,13 +225,7 @@ public class QuickItinerary {
         catch {
             print("There is an error");
         }
-    }
-    
-    func goToActivity() {        
-        let vc = storyboard!.instantiateViewController(withIdentifier: "TLMainFeedsView") as! TLMainFeedsViewController
-        vc.pageType = viewType.VIEW_TYPE_ACTIVITY        
-        globalNavigationController.pushViewController(vc, animated: false)
-    }
+    }    
     
     func rollbackItineraryTableProgress() {
         do {

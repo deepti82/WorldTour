@@ -560,9 +560,6 @@ class EndJourneyViewController: UIViewController {
                                 if globalNewTLViewController != nil {
                                     globalNewTLViewController?.removeFromParentViewController()
                                 }
-                                //                        tstr = Toast(text: "Journey ended successfully. Have a good life.")
-                                //                        tstr.show()
-                                //                        self.goBack()
                             })
                         })
                     }
@@ -623,15 +620,8 @@ class EndJourneyViewController: UIViewController {
         }
     }
     
-    
-    
-   
-    
     func goBack() {
-        
-        let tlVC = self.storyboard!.instantiateViewController(withIdentifier: "TLMainFeedsView") as! TLMainFeedsViewController
-        tlVC.pageType = viewType.VIEW_TYPE_ACTIVITY
-        self.navigationController?.pushViewController(tlVC, animated: false)
+        self.gotoActivityController(lat: nil, lng: nil, category: nil)
     }
     
     

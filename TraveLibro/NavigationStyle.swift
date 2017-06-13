@@ -20,6 +20,32 @@ extension UIViewController {
         }
     }
     
+    func gotoActivityController(lat:String?, lng:String?, category:String?) {
+        if currentUser != nil {
+            request.getUserFromCache(user.getExistingUser(), completion: { (response) in
+                DispatchQueue.main.async {
+                    popularView = "activity"
+                    currentUser = response["data"]
+                    let vc = self.storyboard!.instantiateViewController(withIdentifier: "TLMainFeedsView") as! TLMainFeedsViewController
+                    vc.pageType = viewType.VIEW_TYPE_ACTIVITY
+                    if lat != nil {
+                        vc.currentLocation = ["lat":lat!, "long":lng!]                        
+                    }
+                    if category != nil {
+                        vc.currentCategory = category!
+                    }
+                    
+                    let nvc = UINavigationController(rootViewController: vc)
+                    leftViewController.mainViewController = nvc
+                    leftViewController.slideMenuController()?.changeMainViewController(leftViewController.mainViewController, close: true)
+                    
+                    UIViewController().customiseNavigation()
+                    nvc.delegate = UIApplication.shared.delegate as! UINavigationControllerDelegate?
+                }
+            })
+        }
+    }
+    
     
     //MARK: - Set Navigation bar
     

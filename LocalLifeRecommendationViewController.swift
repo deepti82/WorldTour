@@ -384,14 +384,8 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
         if(self.addView.imageArr.count > 0 || self.addView.videoURL != nil || thoughts.characters.count > 0 || location.characters.count > 0) {
             _ = post.setPost(currentUser["_id"].string!, JourneyId: "", Type: "local-life", Date: self.currentTime, Location: location, Category: category, Latitude: lat, Longitude: lng, Country: self.addView.currentCountry, City: self.addView.currentCity, thoughts: thoughts, buddies: buddies!, imageArr: self.addView.imageArr,videoURL:self.addView.videoURL, videoCaption:self.addView.videoCaption)
             
-            goToActivity();
+            self.gotoActivityController(lat: nil, lng: nil, category: nil)
         }
-    }
-    
-    func goToActivity() {
-        let vc = storyboard!.instantiateViewController(withIdentifier: "TLMainFeedsView") as! TLMainFeedsViewController
-        vc.pageType = viewType.VIEW_TYPE_ACTIVITY
-        self.navigationController?.pushViewController(vc, animated: false)
     }
     
     func hideAddActivity() {
@@ -619,15 +613,11 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
             }else {
                 nearMeListController.nearMeType = category
             }
-            let localFeedsController = storyboard?.instantiateViewController(withIdentifier: "TLMainFeedsView") as! TLMainFeedsViewController
-            localFeedsController.currentLocation = ["lat":String(userLocation.latitude), "long":String(userLocation.longitude)]
-            localFeedsController.currentCategory = category
-            localFeedsController.pageType = viewType.VIEW_TYPE_LOCAL_LIFE
             
             let numCat = self.json[category].intValue
             switch(numCat) {
             case 1:
-                self.navigationController?.pushViewController(localFeedsController, animated: true)
+                self.gotoActivityController(lat: String(userLocation.latitude), lng: String(userLocation.longitude), category: category)
             case 2:
                 self.navigationController?.pushViewController(nearMeListController, animated: true)
             case 3:
