@@ -629,7 +629,7 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
         }
         self.cancelLocationButton.isHidden = false
         
-        if(placeId != nil) {
+        if(placeId != nil || placeId != "") {
             request.getPlaceId(placeId, completion: { response in
                 DispatchQueue.main.async(execute: {
                     if response.error != nil { }
@@ -639,9 +639,6 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
                         self.currentCountry = response["country"].string!
                         self.currentLat = response["lat"].float!
                         self.currentLong = response["long"].float!
-                    }
-                    else {
-                        
                     }
                 })
             })

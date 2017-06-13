@@ -174,33 +174,24 @@ class SearchLocationTableViewController: UITableViewController, UISearchBarDeleg
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let myCell = tableView.cellForRow(at: indexPath) as! searchLocationsTableViewCell
         var myId = ""
-        print("\n didSelectRowAt called...")
+        var locName = ""
         
         if shouldShowSearchResults {
             
             searchController.searchBar.resignFirstResponder()
             searchController.isActive = false
             
-            for place in filteredArray {                
-                if myCell.placeName.text! == place["terms"].string! {                    
-                    myId = place["place_id"].string!                    
-                }
-            }
+            myId = filteredArray[indexPath.row]["place_id"].stringValue
+            locName = filteredArray[indexPath.row]["terms"].stringValue 
         }
         
         else {
-            
-            for place in places {
-                if myCell.placeName.text! == place["name"].string! {
-                    myId = place["place_id"].string!
-                }
-            }
-            
+            myId = places[indexPath.row]["place_id"].stringValue
+            locName = places[indexPath.row]["name"].stringValue
         }
         
-        globalAddActivityNew.putLocationName(myCell.placeName.text!, placeId: myId)
+        globalAddActivityNew.putLocationName(locName, placeId: myId)
         _ = self.navigationController?.popViewController(animated: true)
     }
 
