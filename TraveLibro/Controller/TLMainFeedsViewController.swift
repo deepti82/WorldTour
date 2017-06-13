@@ -674,9 +674,9 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
             self.navigationController?.pushViewController(controller, animated: true)
         }
         else {
-            if (feed["itineraryBy"].stringValue.lowercased() != "admin") {
+//            if (feed["itineraryBy"].stringValue.lowercased() != "admin") {
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)                
-            }
+//            }
         }
     }
     
