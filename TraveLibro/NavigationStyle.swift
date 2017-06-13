@@ -33,6 +33,7 @@ extension UIViewController {
                     }
                     if category != nil {
                         vc.currentCategory = category!
+                        vc.pageType = viewType.VIEW_TYPE_LOCAL_LIFE
                     }
                     
                     let nvc = UINavigationController(rootViewController: vc)
