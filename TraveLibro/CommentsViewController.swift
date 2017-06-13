@@ -29,7 +29,8 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
     var addedHashtags: [String] = []
     var isEdit = false
     var textVar = ""
-    private var requestId = 0 
+    private var requestId = 0
+    private var requestHashId = 0
     
     @IBOutlet weak var bottomSpaceToSuperview: NSLayoutConstraint!
     @IBOutlet weak var addCommentLabel: UILabel!
@@ -263,16 +264,20 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func getHashtags() {
-        request.getHashtags(hashtag: textVar, completion: {(response) in
+        
+        requestHashId += 1
+        
+        request.getHashtags(hashtag: textVar, requestId: self.requestHashId, completion: {(response, responsehashId) in
             DispatchQueue.main.async(execute: {
-                if response.error != nil {
-                    print("error: \(response.error!.localizedDescription)")
+                if (self.requestHashId == responsehashId){
+                    if response.error != nil {
+                        print("error: \(response.error!.localizedDescription)")
+                    }
+                    else if response["value"].bool! {
+                        self.hashtagSuggestions = response["data"].array!
+                        self.hashTagSuggestionsTable.reloadData()
+                    }
                 }
-                else if response["value"].bool! {
-                    self.hashtagSuggestions = response["data"].array!
-                    self.hashTagSuggestionsTable.reloadData()
-                }
-                else {}
             })
         })
     }
@@ -443,7 +448,8 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
             mentionSuggestionsTable.isHidden = true
             let cell = mentionSuggestionsTable.cellForRow(at: indexPath) as! MentionSuggestionsTableViewCell
             mentions.append(mentionSuggestions[indexPath.row]["_id"].string!)
-            modifyText(textView: addComment, modifiedString: cell.urlSlug.text!, replacableString: textVar, whichView: "@")
+            let reqStr = cell.titleLabel.text?.replacingOccurrences(of: " ", with: "")
+            modifyText(textView: addComment, modifiedString: reqStr!, replacableString: textVar, whichView: "@")
         case 1:
             hashTagSuggestionsTable.isHidden = true
             let cell = hashTagSuggestionsTable.cellForRow(at: indexPath) as! SuggestionsTableViewCell

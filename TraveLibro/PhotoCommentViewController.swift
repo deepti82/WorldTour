@@ -17,7 +17,8 @@ class PhotoCommentViewController: UIViewController, UITableViewDataSource, UITab
     var hashtags: [String] = []
     var mentions: [String] = []
     var mentionSuggestions: [JSON] = []
-    private var requestId = 0 
+    private var requestId = 0
+    private var requestHashId = 0
     
     var type = "Photo"
     
@@ -295,7 +296,8 @@ class PhotoCommentViewController: UIViewController, UITableViewDataSource, UITab
             mentionTableView.isHidden = true
             let cell = mentionTableView.cellForRow(at: indexPath) as! MentionSuggestionsTableViewCell
             mentions.append(mentionSuggestions[indexPath.row]["_id"].string!)
-            modifyText(textView: editComment, modifiedString: cell.urlSlug.text!, replacableString: textVar, whichView: "@")
+            let reqStr = cell.titleLabel.text?.replacingOccurrences(of: " ", with: "")
+            modifyText(textView: editComment, modifiedString: reqStr!, replacableString: textVar, whichView: "@")
         case 1:
             hashtagTableView.isHidden = true
             let cell = hashtagTableView.cellForRow(at: indexPath) as! SuggestionsTableViewCell
@@ -681,24 +683,20 @@ class PhotoCommentViewController: UIViewController, UITableViewDataSource, UITab
     
     func getHashtags() {
         
-        request.getHashtags(hashtag: textVar, completion: {(response) in
+        requestHashId += 1
+        
+        request.getHashtags(hashtag: textVar, requestId: self.requestHashId, completion: {(response, responseHashId) in
             
             DispatchQueue.main.async(execute: {
                 
-                if response.error != nil {
-                    
-                    print("error: \(response.error!.localizedDescription)")
-                    
-                }
-                else if response["value"].bool! {
-                    
-                    self.hashtagSuggestions = response["data"].array!
-                    self.hashtagTableView.reloadData()
-                    
-                }
-                else {
-                    
-                    
+                if (self.requestHashId == responseHashId) {
+                    if response.error != nil {                        
+                        print("error: \(response.error!.localizedDescription)")                        
+                    }
+                    else if response["value"].bool! {                        
+                        self.hashtagSuggestions = response["data"].array!
+                        self.hashtagTableView.reloadData()
+                    }
                 }
                 
             })

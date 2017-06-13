@@ -3154,7 +3154,7 @@ class Navigation {
         
     }
     
-    func getHashtags(hashtag: String, completion: @escaping ((JSON) -> Void)) {
+    func getHashtags(hashtag: String, requestId: Int, completion: @escaping ((JSON, Int) -> Void)) {
         
         do {
             let params = ["hashtag": hashtag]
@@ -3167,7 +3167,7 @@ class Navigation {
                 else
                 {
                     json  = JSON(data: response.data)
-                    completion(json)
+                    completion(json, requestId)
                 }
             }
         } catch let error {
