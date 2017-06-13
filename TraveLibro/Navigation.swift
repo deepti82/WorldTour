@@ -3176,7 +3176,7 @@ class Navigation {
         
     }
     
-    func getMentions(userId: String, searchText: String, completion: @escaping ((JSON) -> Void)) {
+    func getMentions(userId: String, searchText: String, requestId: Int, completion: @escaping ((JSON,Int) -> Void)) {
         
         do {
             let params = ["search": searchText, "_id": userId, "fromTag": true] as [String: Any]
@@ -3190,7 +3190,7 @@ class Navigation {
                 else
                 {
                     json  = JSON(data: response.data)
-                    completion(json)
+                    completion(json, requestId)
                 }
             }
         } catch let error {

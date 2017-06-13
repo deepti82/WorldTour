@@ -29,6 +29,7 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
     var addedHashtags: [String] = []
     var isEdit = false
     var textVar = ""
+    private var requestId = 0 
     
     @IBOutlet weak var bottomSpaceToSuperview: NSLayoutConstraint!
     @IBOutlet weak var addCommentLabel: UILabel!
@@ -240,27 +241,22 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func getMentions() {
         
-        request.getMentions(userId: currentUser["_id"].string!, searchText: textVar, completion: {(response) in
+        requestId += 1
+        
+        request.getMentions(userId: currentUser["_id"].string!, searchText: textVar, requestId: self.requestId, completion: {(response, responseId) in
             
             DispatchQueue.main.async(execute: {
                 
-                if response.error != nil {
-                    
-                    print("error: \(response.error!.localizedDescription)")
-                    
+                if (self.requestId == responseId) {
+                    if response.error != nil {
+                        print("error: \(response.error!.localizedDescription)")
+                    }
+                    else if response["value"].bool! {
+                        self.mentionSuggestions = response["data"].array!
+                        print("datamention\(self.mentionSuggestions)")
+                        self.mentionSuggestionsTable.reloadData()
+                    }
                 }
-                else if response["value"].bool! {
-                    
-                    self.mentionSuggestions = response["data"].array!
-                    print("datamention\(self.mentionSuggestions)")
-                    self.mentionSuggestionsTable.reloadData()
-                    
-                }
-                else {
-                    
-                    
-                }
-                
             })
             
         })
@@ -386,21 +382,18 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
             return cell
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! CommentTableViewCell
+            
+            cell.profileImage.sd_setImage(with: getImageURL(self.comments[indexPath.row]["user"]["profilePicture"].stringValue, width:200), placeholderImage: getPlaceholderImage())
+            makeTLProfilePicture(cell.profileImage)
+            
             cell.profileName.text = comments[indexPath.row]["user"]["name"].string!
             cell.profileComment.text = comments[(indexPath as NSIndexPath).row]["text"].string!
-//            cell.commentScroll.contentSize = CGSize(width: 50, height: 0)
             if textVar.contains("@"){
                 cell.profileComment.font = UIFont(name: "Avenir-Heavy", size: 14)
 //                cell.commentScroll.contentSize = CGSize(width: cell.profileComment.frame.width, height: 0)
             }else {
                 print("hello")
             }
-            DispatchQueue.main.async(execute: {
-                cell.profileImage.image = UIImage(named: "logo-default")
-                
-                cell.profileImage.sd_setImage(with: getImageURL(self.comments[indexPath.row]["user"]["profilePicture"].stringValue, width:200), placeholderImage: getPlaceholderImage())
-                makeTLProfilePicture(cell.profileImage)
-            })
             
             let dateFormatter = DateFormatter()
             let timeFormatter = DateFormatter()
@@ -414,21 +407,23 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
             cell.calendarIcon.text = String(format: "%C", faicon["calendar"]!)
             
             cell.profileComment.customize {label in
-//                label.text = 
-                label.handleMentionTap {
+                label.handleMentionTap {_ in 
+                    print("\n\n user : \(self.comments[indexPath.row])")
                     
-                    let actionSheetControllerIOS8: UIAlertController = UIAlertController(title: "Mention", message: $0, preferredStyle: .alert)
-                    let cancelActionButton: UIAlertAction = UIAlertAction(title: "OK", style: .default) {action -> Void in}
-                    actionSheetControllerIOS8.addAction(cancelActionButton)
-                    self.present(actionSheetControllerIOS8, animated: true, completion: nil)
+                    let profile = self.storyboard?.instantiateViewController(withIdentifier: "TLProfileView") as! TLProfileViewController
+                    profile.displayData = "search"
+                    profile.currentSelectedUser = self.comments[indexPath.row]["user"]
+                    self.navigationController?.pushViewController(profile, animated: true)
                 }
-                label.handleHashtagTap {
+                
+                label.handleHashtagTap {_ in 
                     
-                    let actionSheetControllerIOS8: UIAlertController = UIAlertController(title: "Hashtag", message: $0, preferredStyle: .alert)
-                    let cancelActionButton: UIAlertAction = UIAlertAction(title: "OK", style: .default) {action -> Void in}
-                    actionSheetControllerIOS8.addAction(cancelActionButton)
-                    self.present(actionSheetControllerIOS8, animated: true, completion: nil)
+//                    let actionSheetControllerIOS8: UIAlertController = UIAlertController(title: "Hashtag", message: $0, preferredStyle: .alert)
+//                    let cancelActionButton: UIAlertAction = UIAlertAction(title: "OK", style: .default) {action -> Void in}
+//                    actionSheetControllerIOS8.addAction(cancelActionButton)
+//                    self.present(actionSheetControllerIOS8, animated: true, completion: nil)
                 }
+                
                 label.handleURLTap { let actionSheetControllerIOS8: UIAlertController =
                     
                     UIAlertController(title: "Url", message: "\($0)", preferredStyle: .alert)
@@ -448,7 +443,7 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
             mentionSuggestionsTable.isHidden = true
             let cell = mentionSuggestionsTable.cellForRow(at: indexPath) as! MentionSuggestionsTableViewCell
             mentions.append(mentionSuggestions[indexPath.row]["_id"].string!)
-            modifyText(textView: addComment, modifiedString: cell.titleLabel.text!, replacableString: textVar, whichView: "@")
+            modifyText(textView: addComment, modifiedString: cell.urlSlug.text!, replacableString: textVar, whichView: "@")
         case 1:
             hashTagSuggestionsTable.isHidden = true
             let cell = hashTagSuggestionsTable.cellForRow(at: indexPath) as! SuggestionsTableViewCell
