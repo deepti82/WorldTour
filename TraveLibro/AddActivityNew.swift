@@ -629,7 +629,7 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
         }
         self.cancelLocationButton.isHidden = false
         
-        if(placeId != nil || placeId != "") {
+        if(placeId != nil && placeId != "") {
             request.getPlaceId(placeId, completion: { response in
                 DispatchQueue.main.async(execute: {
                     if response.error != nil { }

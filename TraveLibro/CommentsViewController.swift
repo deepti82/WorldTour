@@ -25,6 +25,11 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
     var footerViewBasic: ActivityFeedFooterBasic!
     var type: String = ""
     
+    var removedHashtags: [String] = []
+    var addedHashtags: [String] = []
+    var isEdit = false
+    var textVar = ""
+    
     @IBOutlet weak var bottomSpaceToSuperview: NSLayoutConstraint!
     @IBOutlet weak var addCommentLabel: UILabel!
     @IBOutlet weak var mentionSuggestionsTable: UITableView!
@@ -33,6 +38,57 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
     @IBOutlet weak var container: UIView!
     @IBOutlet weak var commentsTable: UITableView!
     @IBOutlet weak var addComment: UITextView!
+    
+    
+    //MARK: - Lifecycle
+    
+    override func viewDidLoad() {
+        //        loader.showOverlay(self.view)
+        super.viewDidLoad()
+        getAllComments()
+        print("user....type\(type)")
+        setTopNavigation("Comment")
+        commentsTable.tableFooterView = UIView()
+        commentsTable.estimatedRowHeight = 80.0
+        commentsTable.rowHeight = UITableViewAutomaticDimension
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(CommentsViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(CommentsViewController.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        addComment.returnKeyType = .done
+        addComment.delegate = self
+        let leftButton = UIButton()
+        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
+        leftButton.addTarget(self, action: #selector(CommentsViewController.closeAdd(_:)), for: .touchUpInside)
+        let rightButton = UIButton()
+        globalNavigationController.topViewController?.customNavigationBar(left: leftButton,right:rightButton)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        setAnalytics(name: "Comments Page")
+    }
+    
+    func setTopNavigation(_ text: String) {
+        let leftButton = UIButton()
+        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
+        leftButton.addTarget(self, action: #selector(self.goBack(_:)), for: .touchUpInside)
+        let rightButton = UIView()
+        self.title = text
+        self.customNavigationBar(left: leftButton, right: rightButton)
+    }
+    
+    func goBack(_ sender:AnyObject) {
+        _ = self.navigationController!.popViewController(animated: true)
+    }
+       
+    func closeAdd(_ sender:UIButton) {
+        self.goBack(sender)
+    }
+    
+    
+    //MARK: - Action
+    
     @IBAction func sendComment(_ sender: UIButton?) {
         print("type ::: \(self.type)")
         mentionSuggestionsTable.isHidden = true
@@ -61,7 +117,7 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
             if addComment.text != "" {
                 request.editComment(type: self.type, commentId: editComment["_id"].string!, commentText: addComment.text, userId: currentUser["_id"].string!, hashtag: hashtags, addedHashtags: addedHashtags, removedHashtags: removedHashtags, photoId: "", completion: {(response) in
                     DispatchQueue.main.async(execute: {
-//                        loader.hideOverlayView()
+                        //                        loader.hideOverlayView()
                         if response.error != nil {
                             print("error: \(response.error!.localizedDescription)")
                         }
@@ -77,53 +133,6 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
             setAllComments(addComment.text)
             addComment.text = ""
         }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        setAnalytics(name: "Comments Page")
-
-    }
-    
-    func setTopNavigation(_ text: String) {
-        let leftButton = UIButton()
-        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-        leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
-        leftButton.addTarget(self, action: #selector(self.goBack(_:)), for: .touchUpInside)
-        let rightButton = UIView()
-        self.title = text
-        self.customNavigationBar(left: leftButton, right: rightButton)
-    }
-    
-    func goBack(_ sender:AnyObject) {
-        _ = self.navigationController!.popViewController(animated: true)
-    }
-    
-    override func viewDidLoad() {
-//        loader.showOverlay(self.view)
-        super.viewDidLoad()
-        getAllComments()
-        print("user....type\(type)")
-        setTopNavigation("Comment")
-        commentsTable.tableFooterView = UIView()
-        commentsTable.estimatedRowHeight = 80.0
-        commentsTable.rowHeight = UITableViewAutomaticDimension
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(CommentsViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(CommentsViewController.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-        addComment.returnKeyType = .done
-        addComment.delegate = self
-        let leftButton = UIButton()
-        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-        leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
-        leftButton.addTarget(self, action: #selector(CommentsViewController.closeAdd(_:)), for: .touchUpInside)
-        let rightButton = UIButton()
-        globalNavigationController.topViewController?.customNavigationBar(left: leftButton,right:rightButton)
-    }
-    
-    
-    
-    func closeAdd(_ sender:UIButton) {
-        _ = globalNavigationController?.popViewController(animated: true)
     }
     
     
@@ -155,13 +164,6 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
         }
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
-        addComment.resignFirstResponder()
-        sendComment(nil)
-        return true
-    }
-    
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if (text == "\n") {
             textView.resignFirstResponder()
@@ -177,136 +179,17 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
         return true
     }
     
-    
-    var removedHashtags: [String] = []
-    var addedHashtags: [String] = []
-    var isEdit = false
-    
-    
-    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        var usr:String = ""
-        let userm = User()
-        if currentUser["_id"].stringValue == userm.getExistingUser() {
-            usr = currentUser["_id"].stringValue
-        }else{
-            usr = userm.getExistingUser()
-        }
-        if self.comments[indexPath.row]["user"]["_id"].string! == usr {
-            
-            let more = UITableViewRowAction(style: .normal, title: "  Edit  ") { action, index in
-                self.addComment.text = self.comments[indexPath.row]["text"].string!
-                self.previousHashtags = self.getHashtagsFromText(oldText: self.comments[indexPath.row]["text"].string!)
-                self.editComment = self.comments[indexPath.row]
-                self.isEdit = true
-                self.addCommentLabel.isHidden = true
-            }
-//            let moreImage = UIImageView(image: UIImage(named: "penciltranswhite (2)"))
-//            moreImage.contentMode = .scaleAspectFit
-//            moreImage.clipsToBounds = true
-//            more.backgroundColor = UIColor(patternImage: moreImage.image!)
-              more.backgroundColor = mainOrangeColor
-            
-            let favorite = UITableViewRowAction(style: .default, title: " Delete " ) { action, index in
-                print("delete button tapped")
-                request.deleteComment(commentId: self.comments[indexPath.row]["_id"].string!, completion: {(response) in
-                    
-                    DispatchQueue.main.async(execute: {
-                        
-                        if response.error != nil {
-                            
-                            print("error: \(response.error!.localizedDescription)")
-                            
-                        }
-                        else if response["value"].bool! {
-                            self.isEdit = false
-                            self.getAllComments()
-                        }
-                        else {
-                            
-                            
-                        }
-                        
-                    })
-                    
-                })
-                
-                
-            }
-//            let favoriteImage = UIImageView(frame: CGRect(x: 0, y: 0, width: 60, height: 200))
-//            
-//            favoriteImage.image = UIImage(named: "trashtranswhite (2)")
-//            favoriteImage.contentMode = .top
-            
-              favorite.backgroundColor = mainOrangeColor
-    
-//            favoriteImage.backgroundColor = mainOrangeColor
-//            favorite.backgroundColor = mainOrangeColor
-            
-            return [favorite, more]
-        }
+    func modifyText(textView: UITextView, modifiedString: String, replacableString: String, whichView: String) {
         
-        else {
-            
-            let share = UITableViewRowAction(style: .normal, title: " Reply  ") { action, index in
-                print("reply button tapped")
-                
-                let userTag = "@\(self.comments[indexPath.row]["user"]["urlSlug"].string!)"
-                self.addComment.text = userTag
-                
-            }
-//            share.backgroundColor = UIColor(patternImage: UIImage(named: "backtranswhite (1)")!)
-              share.backgroundColor = UIColor.gray
-            let report = UITableViewRowAction(style: .normal, title: " Report ") { action, index in
-                print("report button tapped")
-                let actionSheet: UIAlertController = UIAlertController(title: "Why are you reporting this comment?", message: nil, preferredStyle: .actionSheet)
-                //actionSheet.view.tintColor = UIColor.red
-                
-                let cancelActionButton: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel) { action -> Void in
-                    print("Cancel")
-                }
-                actionSheet.addAction(cancelActionButton)
-                
-                let spamActionButton: UIAlertAction = UIAlertAction(title: "Spam or Scam", style: .default) { action -> Void in
-                    print("Spam or Scam")
-                }
-                
-                actionSheet.addAction(spamActionButton)
-                
-                let abusiveActionButton: UIAlertAction = UIAlertAction(title: "Abusive Content", style: .default) { action -> Void in
-                    print("Abusive Content")
-                }
-                actionSheet.addAction(abusiveActionButton)
-                showPopover(optionsController: actionSheet, sender: tableView, vc: self)
-//                self.present(actionSheet, animated: true, completion: nil)
-            }
-//            report.backgroundColor = UIColor(patternImage: UIImage(named: "info (3)")!)
-              report.backgroundColor = UIColor.red
-        
-            return [report, share]
+        if replacableString == "" {            
+            textView.text = "\(textView.text!)\(modifiedString)"            
+        } else {            
+            let myString = textView.text as NSString
+            let repOf = replacableString
+            let myRange = myString.range(of: repOf, options: .backwards)
+            textView.text = myString.replacingOccurrences(of: replacableString, with: modifiedString, options: .backwards, range: myRange)
         }
-        
     }
-    
-    
-    
-    func getHashtagsFromText(oldText: String) -> [String] {
-        
-        var hashtags: [String] = []
-        
-        let oldTextArray = oldText.components(separatedBy: " ")
-        
-        for word in oldTextArray {
-            
-            if word.contains("#") {
-                hashtags.append(word)
-            }
-            
-        }
-        
-        return hashtags
-    }
-    
-    var textVar = ""
     
     func textViewDidChange(_ textView: UITextView) {
         if textView.text == "" {
@@ -331,45 +214,28 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
         }
     }
     
-
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return  min((44.0 * CGFloat(indexPath.row) + 1), 85)
-//    }
-    
-
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
-        switch tableView.tag {
-        case 2:
-            mentionSuggestionsTable.isHidden = true
-            let cell = mentionSuggestionsTable.cellForRow(at: indexPath) as! MentionSuggestionsTableViewCell
-            mentions.append(mentionSuggestions[indexPath.row]["_id"].string!)
-            modifyText(textView: addComment, modifiedString: cell.titleLabel.text!, replacableString: textVar, whichView: "@")
-        case 1:
-            hashTagSuggestionsTable.isHidden = true
-            let cell = hashTagSuggestionsTable.cellForRow(at: indexPath) as! SuggestionsTableViewCell
-            modifyText(textView: addComment, modifiedString: cell.titleLabel.text!, replacableString: textVar, whichView: "#")
-        default:
-            break
-        }
-        
+        addComment.resignFirstResponder()
+        sendComment(nil)
+        return true
     }
+     
     
-    func modifyText(textView: UITextView, modifiedString: String, replacableString: String, whichView: String) {
+    //MARK: - Helpers
+    
+    func getHashtagsFromText(oldText: String) -> [String] {
         
-        if replacableString == "" {
-            
-            textView.text = "\(textView.text!)\(modifiedString)"
-            
-        } else {
-            
-            let myString = textView.text as NSString
-            let repOf = replacableString
-            let myRange = myString.range(of: repOf, options: .backwards)
-            textView.text = myString.replacingOccurrences(of: replacableString, with: modifiedString, options: .backwards, range: myRange)
-            
-        }
-
+        var hashtags: [String] = []
+        
+        let oldTextArray = oldText.components(separatedBy: " ")
+        
+        for word in oldTextArray {            
+            if word.contains("#") {
+                hashtags.append(word)
+            }
+        }        
+        return hashtags
     }
     
     func getMentions() {
@@ -399,7 +265,21 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
             
         })
     }
-
+    
+    func getHashtags() {
+        request.getHashtags(hashtag: textVar, completion: {(response) in
+            DispatchQueue.main.async(execute: {
+                if response.error != nil {
+                    print("error: \(response.error!.localizedDescription)")
+                }
+                else if response["value"].bool! {
+                    self.hashtagSuggestions = response["data"].array!
+                    self.hashTagSuggestionsTable.reloadData()
+                }
+                else {}
+            })
+        })
+    }
     
     func setAllComments(_ comment: String) {
         
@@ -463,6 +343,9 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
         })
         
     }
+    
+    
+    //MARK: - TableView Datasource and Delegates
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch tableView.tag {
@@ -558,20 +441,128 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
         }
     }
     
-    func getHashtags() {
-        request.getHashtags(hashtag: textVar, completion: {(response) in
-            DispatchQueue.main.async(execute: {
-                if response.error != nil {
-                    print("error: \(response.error!.localizedDescription)")
-                }
-                else if response["value"].bool! {
-                    self.hashtagSuggestions = response["data"].array!
-                    self.hashTagSuggestionsTable.reloadData()
-                }
-                else {}
-            })
-        })
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        switch tableView.tag {
+        case 2:
+            mentionSuggestionsTable.isHidden = true
+            let cell = mentionSuggestionsTable.cellForRow(at: indexPath) as! MentionSuggestionsTableViewCell
+            mentions.append(mentionSuggestions[indexPath.row]["_id"].string!)
+            modifyText(textView: addComment, modifiedString: cell.titleLabel.text!, replacableString: textVar, whichView: "@")
+        case 1:
+            hashTagSuggestionsTable.isHidden = true
+            let cell = hashTagSuggestionsTable.cellForRow(at: indexPath) as! SuggestionsTableViewCell
+            modifyText(textView: addComment, modifiedString: cell.titleLabel.text!, replacableString: textVar, whichView: "#")
+        default:
+            break
+        }
+        
     }
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        var usr:String = ""
+        let userm = User()
+        if currentUser["_id"].stringValue == userm.getExistingUser() {
+            usr = currentUser["_id"].stringValue
+        }else{
+            usr = userm.getExistingUser()
+        }
+        if self.comments[indexPath.row]["user"]["_id"].string! == usr {
+            
+            let more = UITableViewRowAction(style: .normal, title: "  Edit  ") { action, index in
+                self.addComment.text = self.comments[indexPath.row]["text"].string!
+                self.previousHashtags = self.getHashtagsFromText(oldText: self.comments[indexPath.row]["text"].string!)
+                self.editComment = self.comments[indexPath.row]
+                self.isEdit = true
+                self.addCommentLabel.isHidden = true
+            }
+            //            let moreImage = UIImageView(image: UIImage(named: "penciltranswhite (2)"))
+            //            moreImage.contentMode = .scaleAspectFit
+            //            moreImage.clipsToBounds = true
+            //            more.backgroundColor = UIColor(patternImage: moreImage.image!)
+            more.backgroundColor = mainOrangeColor
+            
+            let favorite = UITableViewRowAction(style: .default, title: " Delete " ) { action, index in
+                print("delete button tapped")
+                request.deleteComment(commentId: self.comments[indexPath.row]["_id"].string!, completion: {(response) in
+                    
+                    DispatchQueue.main.async(execute: {
+                        
+                        if response.error != nil {
+                            
+                            print("error: \(response.error!.localizedDescription)")
+                            
+                        }
+                        else if response["value"].bool! {
+                            self.isEdit = false
+                            self.getAllComments()
+                        }
+                        else {
+                            
+                            
+                        }
+                        
+                    })
+                    
+                })
+                
+                
+            }
+            //            let favoriteImage = UIImageView(frame: CGRect(x: 0, y: 0, width: 60, height: 200))
+            //            
+            //            favoriteImage.image = UIImage(named: "trashtranswhite (2)")
+            //            favoriteImage.contentMode = .top
+            
+            favorite.backgroundColor = mainOrangeColor
+            
+            //            favoriteImage.backgroundColor = mainOrangeColor
+            //            favorite.backgroundColor = mainOrangeColor
+            
+            return [favorite, more]
+        }
+            
+        else {
+            
+            let share = UITableViewRowAction(style: .normal, title: " Reply  ") { action, index in
+                print("reply button tapped")
+                
+                let userTag = "@\(self.comments[indexPath.row]["user"]["urlSlug"].string!)"
+                self.addComment.text = userTag
+                
+            }
+            //            share.backgroundColor = UIColor(patternImage: UIImage(named: "backtranswhite (1)")!)
+            share.backgroundColor = UIColor.gray
+            let report = UITableViewRowAction(style: .normal, title: " Report ") { action, index in
+                print("report button tapped")
+                let actionSheet: UIAlertController = UIAlertController(title: "Why are you reporting this comment?", message: nil, preferredStyle: .actionSheet)
+                //actionSheet.view.tintColor = UIColor.red
+                
+                let cancelActionButton: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel) { action -> Void in
+                    print("Cancel")
+                }
+                actionSheet.addAction(cancelActionButton)
+                
+                let spamActionButton: UIAlertAction = UIAlertAction(title: "Spam or Scam", style: .default) { action -> Void in
+                    print("Spam or Scam")
+                }
+                
+                actionSheet.addAction(spamActionButton)
+                
+                let abusiveActionButton: UIAlertAction = UIAlertAction(title: "Abusive Content", style: .default) { action -> Void in
+                    print("Abusive Content")
+                }
+                actionSheet.addAction(abusiveActionButton)
+                showPopover(optionsController: actionSheet, sender: tableView, vc: self)
+                //                self.present(actionSheet, animated: true, completion: nil)
+            }
+            //            report.backgroundColor = UIColor(patternImage: UIImage(named: "info (3)")!)
+            report.backgroundColor = UIColor.red
+            
+            return [report, share]
+        }
+        
+    }    
+    
 }
 
 class CommentTableViewCell: UITableViewCell {
