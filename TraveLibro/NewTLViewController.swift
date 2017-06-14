@@ -1154,11 +1154,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         self.view.addSubview(self.addPostsButton)
         addPostsButton.isHidden = true
         
-        self.mainFooter = FooterViewNew(frame: CGRect(x: 0, y: self.view.frame.height - MAIN_FOOTER_HEIGHT, width: self.view.frame.width, height: MAIN_FOOTER_HEIGHT))
-        self.mainFooter.layer.zPosition = 5
-        self.view.addSubview(self.mainFooter)
-        
-        
         infoButton.isHidden = true
         
 //        addPostsButton.isHidden = true
@@ -1177,6 +1172,10 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         self.navigationController?.setNavigationBarHidden(true, animated: true)
         mainScroll.delegate = self
         loader.showOverlay(self.view)
+        
+        self.mainFooter = FooterViewNew(frame: CGRect(x: 0, y: self.view.frame.height - MAIN_FOOTER_HEIGHT, width: self.view.frame.width, height: MAIN_FOOTER_HEIGHT))
+        self.mainFooter.layer.zPosition = 5
+        self.view.addSubview(self.mainFooter)
         
     }
     
