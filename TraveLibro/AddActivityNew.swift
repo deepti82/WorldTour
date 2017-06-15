@@ -185,9 +185,7 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
         let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        self.addSubview(view)
-        
-        self.addLocationTapped()       
+        self.addSubview(view)        
         
         self.addLocationButton.addTarget(self, action: #selector(self.gotoSearchLocation(_:)), for: .touchUpInside)
         self.photosButton.addTarget(self, action: #selector(self.addPhotos(_:)), for: .touchUpInside)
@@ -204,7 +202,9 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
         let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(AddActivityNew.addCaptionVideo(_:)))
         self.viewContainerView.addGestureRecognizer(tapGestureRecognizer)
         
-        
+        DispatchQueue.main.asyncAfter(deadline: .now()+0.5) { 
+            self.addLocationTapped()
+        }
     }
     
     //MARK: - Reachability Handlers
