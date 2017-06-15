@@ -101,9 +101,6 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         let PBController = storyboard!.instantiateViewController(withIdentifier: "popularBloggers") as! PopularBloggersViewController
         self.popBloggersController = UINavigationController(rootViewController: PBController)
         
-        let inviteController = storyboard!.instantiateViewController(withIdentifier: "inviteFriends") as! InviteFriendsViewController
-        self.inviteFriendsController = UINavigationController(rootViewController: inviteController)
-        
         let rateUsController = storyboard!.instantiateViewController(withIdentifier: "Home") as! HomeViewController
         self.rateUsController = UINavigationController(rootViewController: rateUsController)
         
