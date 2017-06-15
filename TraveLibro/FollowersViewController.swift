@@ -150,7 +150,7 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
                         self.headerText.text = "Followers (\(followers.count))"
                         self.followerTable.reloadData()
                         loader.hideOverlayView()
-                        if followers.isEmpty {
+                        if ((followers.isEmpty) && (self.searchText == "")) {
                             self.noFollowersFound()
                         }
                     }
