@@ -584,7 +584,7 @@ class PhotoCommentViewController: UIViewController, UITableViewDataSource, UITab
         
         requestId += 1
         
-        request.getMentions(userId: currentUser["_id"].string!, searchText: textVar, requestId: self.requestId, completion: {(response, responseId) in
+        request.getMentions(userId: user.getExistingUser(), searchText: textVar, requestId: self.requestId, completion: {(response, responseId) in
             
             DispatchQueue.main.async(execute: {
                 if (self.requestId == responseId) {
