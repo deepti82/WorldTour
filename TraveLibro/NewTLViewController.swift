@@ -725,7 +725,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         request.getJourney(currentUser["_id"].string!, completion: {(response, isFromCache) in
             DispatchQueue.main.async(execute: {
                 self.loader.hideOverlayView()
-                print(response)
+                print("\n\n JourneyJSON : \(response)")
+                
                 if response.error != nil {
                     
                     print("error: \(response.error!.localizedDescription)")
@@ -1818,6 +1819,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     }
     
     func deletePost(_ footer:PhotoOTGFooter) {
+        loader.showOverlay(self.view)
         request.deletePost(footer.postTop.post_ids, uniqueId: self.myJourney["uniqueId"].string!, user: currentUser["_id"].stringValue, completion: {(response) in
             self.getJourney()
         })
@@ -2408,6 +2410,24 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
                             self.otgView.buddyStack.isHidden = true
                             self.otgView.addBuddiesButton.isHidden = false
                             self.otgView.closeBuddies.isHidden = false
+                        }
+                        
+                        DispatchQueue.global().async {
+                            request.getUser(user.getExistingUser(), urlSlug: "") { (response, isFromCache) in
+                                if !isFromCache {
+                                    DispatchQueue.main.async {
+                                        if response.error != nil {
+                                            print("error: \(response.error!.localizedDescription)")
+                                        }
+                                        else if response["value"].bool! {
+                                            currentUser = response["data"]
+                                        }
+                                        else {
+                                            print("Response error")
+                                        }
+                                    }
+                                }
+                            }
                         }
 
                         

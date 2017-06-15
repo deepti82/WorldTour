@@ -622,7 +622,23 @@ class EndJourneyViewController: UIViewController {
     
     func goBack() {
         self.gotoActivityController(lat: nil, lng: nil, category: nil)
+        DispatchQueue.global().async { 
+            request.getUser(user.getExistingUser(), urlSlug: "") { (response, isFromCache) in
+                if !isFromCache {
+                    DispatchQueue.main.async {
+                        if response.error != nil {
+                            print("error: \(response.error!.localizedDescription)")
+                        }
+                        else if response["value"].bool! {
+                            currentUser = response["data"]
+                        }
+                        else {
+                            print("Response error")
+                        }
+                    }
+                }
+            }
+        }
     }
-    
     
 }

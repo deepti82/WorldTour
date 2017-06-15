@@ -141,20 +141,34 @@ class FooterViewNew: UIView {
             setHighlightStateForView(tag: 1, color: mainOrangeColor)
             
             if isNetworkReachable {
-                request.getUser(user.getExistingUser(), urlSlug: nil, completion: { (response, isFromCache) in
-                    if !isFromCache {
-                        DispatchQueue.main.async {
-                            currentUser = response["data"]
-                            let vc = storyboard!.instantiateViewController(withIdentifier: "newTL") as! NewTLViewController
-                            vc.isJourney = false
-                            if(currentUser["journeyId"].stringValue == "-1") {
-                                isJourneyOngoing = false
-                                vc.showJourneyOngoing(journey: JSON(""))
-                            }
-                            self.setVC(newViewController: vc)
+                
+                request.getUserFromCache(user.getExistingUser(), completion: { (response) in
+                    DispatchQueue.main.async {
+                        currentUser = response["data"]
+                        let vc = storyboard!.instantiateViewController(withIdentifier: "newTL") as! NewTLViewController
+                        vc.isJourney = false
+                        if(currentUser["journeyId"].stringValue == "-1") {
+                            isJourneyOngoing = false
+                            vc.showJourneyOngoing(journey: JSON(""))
                         }
+                        self.setVC(newViewController: vc)
                     }
                 })
+                
+//                request.getUser(user.getExistingUser(), urlSlug: nil, completion: { (response, isFromCache) in
+//                    if !isFromCache {
+//                        DispatchQueue.main.async {
+//                            currentUser = response["data"]
+//                            let vc = storyboard!.instantiateViewController(withIdentifier: "newTL") as! NewTLViewController
+//                            vc.isJourney = false
+//                            if(currentUser["journeyId"].stringValue == "-1") {
+//                                isJourneyOngoing = false
+//                                vc.showJourneyOngoing(journey: JSON(""))
+//                            }
+//                            self.setVC(newViewController: vc)
+//                        }
+//                    }
+//                })
                 
             }
             else {

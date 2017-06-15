@@ -51,20 +51,24 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
             self.player.muted = true
             self.player.fillMode = "AVLayerVideoGravityResizeAspectFill"
             self.videoContainer.player = self.player
-            var videoUrl:URL!
+//            var videoUrl:URL!
             self.videoContainer.tagText.isHidden = true
             videoContainer.tagView.isHidden = true
-            if(!post.post_isOffline) {
-                videoUrl = URL(string: post.videoArr[0].serverUrl)
-            } else {
-                videoUrl = post.videoArr[0].imageUrl
-            }
+            
+//            if(!post.post_isOffline) {
+//                videoUrl = URL(string: post.videoArr[0].serverUrl)
+//            } else {
+//                videoUrl = post.videoArr[0].imageUrl
+//            }
+            let serverThumbnailURL = post.videoArr[0].serverUrlThumbnail
             
             videoContainer.playBtn.tintColor = mainOrangeColor
             
-            if videoUrl != nil {
-                getThumbnailFromVideoURL(url: videoUrl!, onView: self.videoContainer.videoHolder)                
-            }
+            //if videoUrl != nil {
+                self.videoContainer.videoHolder.sd_setImage(with: getImageURL(serverThumbnailURL, width: BIG_PHOTO_WIDTH),
+                                                            placeholderImage: getPlaceholderImage())
+                //getThumbnailFromVideoURL(url: videoUrl!, onView: self.videoContainer.videoHolder)
+            //}
             
             self.videoContainer.videoHolder.addSubview(self.player.view)
             self.addSubview(self.videoContainer)
