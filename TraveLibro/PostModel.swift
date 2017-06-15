@@ -20,6 +20,7 @@ public class Post {
     var videoArr:[PostVideo] = []
     var buddiesStr:String = "[]"
     var oldbuddiesStr:String = "[]"
+    var oldVideoStr:String = "[]"
     var buddies:[Buddy] = []
     var buddyJson:[JSON] = []
     
@@ -43,6 +44,7 @@ public class Post {
     let userName = Expression<String>("userName")
     let checkInChange = Expression<Bool>("checkInChange")
     let postEditType = Expression<Int64>("postEditType")
+    let oldVideo = Expression<String>("prevVideo")
     
     var finalThought = NSMutableAttributedString(string: "")
     
@@ -94,11 +96,13 @@ public class Post {
             t.column(userName)
             t.column(checkInChange)
             t.column(postEditType)
+            t.column(oldVideo)
         })
     }
     
     func setPost(_ UserId: String, username:String, JourneyId: String, editPostId: String?, editPostUniqueID:String?, Type: String, Date: String, Location: String, Category: String, Latitude: String, 
-                 Longitude: String, Country: String, City: String, thoughts: String, newbuddies:String, oldbuddies:String?, imageArr:[PostImage], videoURL:URL?, videoCaption:String, isCheckInChange:Bool, postType: editPostType) -> Post {
+                 Longitude: String, Country: String, City: String, thoughts: String, newbuddies:String, oldbuddies:String?, imageArr:[PostImage], videoURL:URL?, videoCaption:String, isCheckInChange:Bool,
+                 oldVideoStream:String?, postType: editPostType) -> Post {
         
         var retPost:Post!
         var postInsert: SQLite.Insert!
@@ -124,6 +128,7 @@ public class Post {
                 self.userName <- username,
                 self.checkInChange <- isCheckInChange,
                 self.prevBuddyDb <- oldbuddies!,
+                self.oldVideo <- oldVideoStream!,
                 self.postEditType <- self.getPostType(from: postType)
             )
         }
@@ -147,6 +152,7 @@ public class Post {
                 self.userName <- "",
                 self.checkInChange <- false,
                 self.prevBuddyDb <- "",
+                self.oldVideo <- "",
                 self.postEditType <- self.getPostType(from: postType)
             )
         }
@@ -176,8 +182,9 @@ public class Post {
             }
             
             
-        } catch _ {
-            print("ERROR OCCURED");
+        }
+        catch {
+            print("Error")
         }
 
         return retPost;
@@ -508,7 +515,7 @@ public class Post {
         print(" ******* postCheck 1")
         do {
             var check = false;
-            let query = post.select(id, type, userId, journeyId, thoughts, location, category, city, country, latitude, longitude, date, newbuddyDb, prevBuddyDb, userName, checkInChange, postUploadStatus, postServerId, postServerUniqueId)
+            let query = post.select(id, type, userId, journeyId, thoughts, location, category, city, country, latitude, longitude, date, newbuddyDb, prevBuddyDb, userName, checkInChange, postUploadStatus, postServerId, postServerUniqueId, oldVideo)
                 .filter(postUploadStatus == 0 || postUploadStatus == 3)
                 .limit(1)
             
@@ -537,6 +544,7 @@ public class Post {
                 p.post_date = String(post[date])
                 p.buddiesStr = String(post[newbuddyDb])
                 p.oldbuddiesStr = String(post[prevBuddyDb])
+                p.oldVideoStr = String(post[oldVideo])
                 
                 let i = PostImage();
                 p.imageArr = i.getAllImages(postNo: post[id])
@@ -573,6 +581,11 @@ public class Post {
                     oldBuddyJSON = JSON(data:data)
                 }
                 
+                var oldVideoJSON : JSON = [:]
+                if let data = p.oldVideoStr.data(using: String.Encoding.utf8) {
+                    oldVideoJSON = JSON(data:data)
+                }
+                
                 let postID = post[id]
                 
                 var newPostParams:JSON = ["user":post[userId],
@@ -585,7 +598,7 @@ public class Post {
                     newPostParams["date"] = JSON(post[date])
                     newPostParams["buddies"] = newBuddyJSON
                     newPostParams["photos"] = JSON(photosJson)
-                    newPostParams["videos"] = JSON(vidoesJson)
+                    newPostParams["videos"] = JSON(vidoesJson)                    
                     
                     request.postTravelLifeJson(newPostParams, completion: {(response) in
                         print("\n postTravel RESPOSNESSSSS: \(response)")
@@ -626,8 +639,9 @@ public class Post {
                     newPostParams["username"] = JSON(post[userName])                    
                     newPostParams["newBuddies"] = newBuddyJSON
                     newPostParams["oldBuddies"] = oldBuddyJSON
+                    newPostParams["videosArr"] = oldVideoJSON
                     newPostParams["photosArr"] = JSON(photosJson)
-                    newPostParams["videosArr"] = JSON(vidoesJson)
+//                    newPostParams["videosArr"] = JSON(vidoesJson)
                     newPostParams["checkInChange"] = JSON(post[checkInChange])
                     
                     request.editPost(param: newPostParams, completion: { (response) in

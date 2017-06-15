@@ -194,6 +194,9 @@ extension NewTLViewController {
         self.addView.videosInitialView.alpha = 0.1
         self.addView.videosInitialView.isUserInteractionEnabled = false
         
+        self.addView.videosFinalView.alpha = 0.1
+        self.addView.videosFinalView.isUserInteractionEnabled = false
+                
         self.addView.thoughtsInitalView.alpha = 0.1
         self.addView.thoughtsInitalView.isUserInteractionEnabled = false
         
@@ -719,11 +722,6 @@ extension NewTLViewController {
         self.infoView.videosButton.addTarget(self, action: #selector(NewTLViewController.gotoVideos(_:)), for: .touchUpInside)
         self.infoView.reviewsButton.tag = response["review"].intValue
         self.infoView.reviewsButton.addTarget(self, action: #selector(NewTLViewController.gotoReviews(_:)), for: .touchUpInside)
-        self.infoView.mustDoButton.addTarget(self, action: #selector(NewTLViewController.gotoMustDo(_:)), for: .touchUpInside)
-        self.infoView.hotelsButton.addTarget(self, action: #selector(NewTLViewController.gotoHotels(_:)), for: .touchUpInside)
-        self.infoView.restaurantsButton.addTarget(self, action: #selector(NewTLViewController.gotoRestaurants(_:)), for: .touchUpInside)
-        self.infoView.itinerariesButton.addTarget(self, action: #selector(NewTLViewController.gotoItineraries(_:)), for: .touchUpInside)
-        self.infoView.nearMeButton.addTarget(self, action: #selector(NewTLViewController.gotoNearMe(_:)), for: .touchUpInside)
         self.infoView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.closeInfo(_:))))
         
         if(response["videos"].number != nil) {
@@ -731,10 +729,6 @@ extension NewTLViewController {
             self.infoView.videosCount.setTitle("\(response["videos"])", for: .normal)
             self.infoView.photosCount.setTitle("\(response["photos"])", for: .normal)
             self.infoView.ratingCount.setTitle("\(response["review"])", for: .normal)
-            self.infoView.mustDoCount.setTitle("\(response["mustDo"])", for: .normal)
-            self.infoView.hotelsCount.setTitle("\(response["hotel"])", for: .normal)
-            self.infoView.restaurantCount.setTitle("\(response["restaurant"])", for: .normal)
-            self.infoView.itinerariesCount.setTitle("\(response["itinerary"])", for: .normal)
             
             self.infoView.videosCount.alpha = 1
             self.infoView.photosCount.alpha = 1
@@ -751,41 +745,6 @@ extension NewTLViewController {
         self.infoView.isHidden = false
         self.view.addSubview(self.infoView)
         self.view.bringSubview(toFront: self.infoView)
-        
-        
-    }
-    
-    func gotoMustDo(_ sender: UIButton) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: "eachCityPagerStripVC") as! EachCityPagerViewController
-        vc.city = latestCity
-        self.navigationController?.pushViewController(vc, animated: true)
-    }
-    
-    func gotoHotels(_ sender: UIButton) {
-        
-        
-        let vc = storyboard?.instantiateViewController(withIdentifier: "eachCityPagerStripVC") as! EachCityPagerViewController
-        vc.city = latestCity
-        self.navigationController?.pushViewController(vc, animated: true)
-        
-        
-    }
-    
-    func gotoRestaurants(_ sender: UIButton) {
-        
-        let vc = storyboard?.instantiateViewController(withIdentifier: "eachCityPagerStripVC") as! EachCityPagerViewController
-        vc.city = latestCity
-        self.navigationController?.pushViewController(vc, animated: true)
-        
-        
-    }
-    
-    func gotoItineraries(_ sender: UIButton) {
-        
-        let vc = storyboard?.instantiateViewController(withIdentifier: "eachCityPagerStripVC") as! EachCityPagerViewController
-        vc.city = latestCity
-        self.navigationController?.pushViewController(vc, animated: true)
-        
     }
     
     func gotoNearMe(_ sender: UIButton) {
