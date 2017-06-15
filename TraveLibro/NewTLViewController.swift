@@ -1192,6 +1192,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         globalNavigationController = self.navigationController
+        self.mainFooter.frame = CGRect(x: 0, y: self.view.frame.height - MAIN_FOOTER_HEIGHT, width: self.view.frame.width, height: MAIN_FOOTER_HEIGHT)
     }
             
     override func viewWillDisappear(_ animated: Bool) {
