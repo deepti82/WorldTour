@@ -1082,13 +1082,14 @@ func getHeightForMiddleViewPostType(feed:JSON, pageType: viewType) -> CGFloat{
 //MARK: GoogleAnalytics function used in all controller.
 
 func setAnalytics(name:String) {
-    guard let tracker = GAI.sharedInstance().defaultTracker else {
-        return
+    DispatchQueue.global().async {
+        guard let tracker = GAI.sharedInstance().defaultTracker else {
+            return
+        }
+        tracker.set(kGAIScreenName, value: name)
+        
+        guard let builder = GAIDictionaryBuilder.createScreenView() else { return }
+        tracker.send(builder.build() as [NSObject : AnyObject])        
     }
-    tracker.set(kGAIScreenName, value: name)
-    
-    guard let builder = GAIDictionaryBuilder.createScreenView() else { return }
-    tracker.send(builder.build() as [NSObject : AnyObject])
-
 }
 
