@@ -134,7 +134,11 @@ class Navigation {
             let json = JSON(data: data)
             print("\n getUserFromCache : \(json["data"]["name"].stringValue)")
             completion(json)
+        }.onFailure { (error) in
+            print("Error : \(error)")
         }
+        
+        
     }
     
     func getUser(_ id: String, urlSlug: String?, completion: @escaping ((JSON, Bool) -> Void)) {
