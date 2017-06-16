@@ -37,8 +37,6 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         
         setNavigationBarItemText("Alerts")
         
-        self.automaticallyAdjustsScrollViewInsets = false
-        
         let rightButton = UIButton()
         rightButton.setImage(UIImage(named: "search_toolbar"), for: UIControlState())
         rightButton.addTarget(self, action: #selector(self.searchTapped(_:)), for: .touchUpInside)
@@ -68,6 +66,11 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        request.getUserFromCache(user.getExistingUser(), completion: { (response) in
+            currentUser = response["data"]
+        })
+        
         setAnalytics(name: "Notification sub Page")
         NotificationCenter.default.addObserver(self, selector: #selector(customRemoteNotificationReceived(notification:)), name: NSNotification.Name(rawValue: "REMOTE_NOTIFICATION_RECEIVED"), object: nil)
         self.mainFooter.frame = CGRect(x: 0, y: self.view.frame.height - MAIN_FOOTER_HEIGHT, width: self.view.frame.width, height: MAIN_FOOTER_HEIGHT)
@@ -120,8 +123,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
             
             print("\n Fetching data for pageNumber: \(currentPageNumber)")
             
-            request.getNotify(user.getExistingUser(), pageNumber: currentPageNumber,  completion: {(response) in
-                
+            request.getNotify(user.getExistingUser(), pageNumber: currentPageNumber,  completion: {(response) in                
                 DispatchQueue.main.async(execute: {
                     
                     self.loader.hideOverlayView()
