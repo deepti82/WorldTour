@@ -1057,7 +1057,7 @@ func getHeightForMiddleViewPostType(feed:JSON, pageType: viewType) -> CGFloat{
     }
         
     else{
-        if feed["imageUrl"] != nil {            
+        if ((feed["imageUrl"] != nil) && (feed["checkIn"]["location"].stringValue != "")) {            
             middleViewHeight += screenWidth*0.9
         }
     }

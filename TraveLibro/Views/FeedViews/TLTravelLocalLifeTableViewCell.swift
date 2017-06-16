@@ -336,7 +336,7 @@ class TLTravelLocalLifeTableViewCell: UITableViewCell, PlayerDelegate {
             FMVideoContainer?.tagView.backgroundColor = UIColor.clear
             FMVideoContainer?.playBtn.tintColor = UIColor.clear
             
-            if feed["imageUrl"] != nil {
+            if ((feed["imageUrl"] != nil) && (feed["checkIn"]["location"].stringValue != "")) {
                 
                 if self.FMMainPhoto == nil {
                     self.FMMainPhoto = UIImageView(frame: CGRect(x: 0, y: totalHeight, width: screenWidth, height: screenWidth*0.9))

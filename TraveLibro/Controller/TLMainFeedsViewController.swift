@@ -326,7 +326,7 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
             break
             
         case .VIEW_TYPE_SHOW_SINGLE_POST:
-            self.reloadTableData()
+//            self.reloadTableData()
             break
             
         }
@@ -471,7 +471,7 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if isLoading && hasMorePages {
+        if isLoading && hasMorePages && (self.pageType != viewType.VIEW_TYPE_SHOW_SINGLE_POST)  {
             return (feedsDataArray.count+1)            
         }
         return feedsDataArray.count
