@@ -233,7 +233,11 @@ class FooterViewNew: UIView {
             if isSelfUser(otherUserID: currentUser["_id"].stringValue) {
                 selectedPeople = ""
                 selectedUser = []
-                leftViewController.profileTap(nil)
+//                leftViewController.profileTap(nil)
+                let vc = storyboard?.instantiateViewController(withIdentifier: "TLProfileView") as! TLProfileViewController
+                vc.displayData = ""
+                vc.currentSelectedUser = currentUser
+                self.setVC(newViewController: vc)
             }
             else {
                 request.getUserFromCache(user.getExistingUser(), completion: { (response) in
@@ -242,12 +246,12 @@ class FooterViewNew: UIView {
                         currentUser = response["data"]
                         selectedPeople = ""
                         selectedUser = []
-                        leftViewController.profileTap(nil)
+//                        leftViewController.profileTap(nil)
                                             
-    //                    let vc = storyboard?.instantiateViewController(withIdentifier: "TLProfileView") as! TLProfileViewController
-    //                    vc.displayData = ""
-    //                    vc.currentSelectedUser = selectedUser
-    //                    self.setVC(newViewController: vc)
+                        let vc = storyboard?.instantiateViewController(withIdentifier: "TLProfileView") as! TLProfileViewController
+                        vc.displayData = ""
+                        vc.currentSelectedUser = currentUser
+                        self.setVC(newViewController: vc)
                         
                     }
                 })

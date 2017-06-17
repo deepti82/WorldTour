@@ -2130,7 +2130,44 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
             self.navigationController!.popViewController(animated: true)
         }
         else {
-            leftViewController.profileTap(nil)
+            if isSelfUser(otherUserID: currentUser["_id"].stringValue) {
+                selectedPeople = ""
+                selectedUser = []
+                
+                let vc = storyboard?.instantiateViewController(withIdentifier: "TLProfileView") as! TLProfileViewController
+                vc.displayData = ""
+                vc.currentSelectedUser = currentUser
+                
+                let nvc = UINavigationController(rootViewController: vc)
+                leftViewController.mainViewController = nvc
+                leftViewController.slideMenuController()?.changeMainViewController(leftViewController.mainViewController, close: true)
+                
+                UIViewController().customiseNavigation()
+                nvc.delegate = UIApplication.shared.delegate as! UINavigationControllerDelegate?
+                
+            }
+            else {
+                request.getUserFromCache(user.getExistingUser(), completion: { (response) in
+                    DispatchQueue.main.async {
+                        
+                        currentUser = response["data"]
+                        selectedPeople = ""
+                        selectedUser = []
+                        
+                        let vc = self.storyboard?.instantiateViewController(withIdentifier: "TLProfileView") as! TLProfileViewController
+                        vc.displayData = ""
+                        vc.currentSelectedUser = currentUser
+                        
+                        let nvc = UINavigationController(rootViewController: vc)
+                        leftViewController.mainViewController = nvc
+                        leftViewController.slideMenuController()?.changeMainViewController(leftViewController.mainViewController, close: true)
+                        
+                        UIViewController().customiseNavigation()
+                        nvc.delegate = UIApplication.shared.delegate as! UINavigationControllerDelegate?
+                        
+                    }
+                })
+            }
         }        
     }
     
