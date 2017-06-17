@@ -654,106 +654,6 @@
             </objects>
             <point key="canvasLocation" x="1802" y="2591"/>
         </scene>
-        <!--Filter Checkboxes View Controller-->
-        <scene sceneID="lHt-ig-70D">
-            <objects>
-                <viewController storyboardIdentifier="FilterViewController" id="p4W-KY-TOB" customClass="FilterCheckboxesViewController" customModule="TraveLibro" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="ixR-zT-lMS"/>
-                        <viewControllerLayoutGuide type="bottom" id="Nbd-69-Hvg"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="0GU-QE-Y7z">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JvG-3b-W03">
-                                <rect key="frame" x="128" y="627" width="120" height="32"/>
-                                <color key="backgroundColor" red="0.98823529480000005" green="0.31372550129999999" blue="0.27843138579999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="120" id="bQp-Je-Q8k"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
-                                <state key="normal" title="Done">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                            </button>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="9t5-cb-t1E">
-                                <rect key="frame" x="20" y="268" width="335" height="351"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="3" id="4x8-tl-p0A">
-                                    <size key="itemSize" width="150" height="25"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="20" minY="0.0" maxX="5" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="gKV-ts-c1j" customClass="CheckBoxCollectionViewCell" customModule="TraveLibro" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="0.0" width="150" height="25"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="150" height="25"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y7N-RF-iaI">
-                                                    <rect key="frame" x="0.0" y="0.0" width="150" height="25"/>
-                                                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
-                                                    <state key="normal" title="Button">
-                                                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </state>
-                                                </button>
-                                            </subviews>
-                                        </view>
-                                        <constraints>
-                                            <constraint firstItem="Y7N-RF-iaI" firstAttribute="leading" secondItem="gKV-ts-c1j" secondAttribute="leading" id="g7G-NL-JvL"/>
-                                            <constraint firstItem="Y7N-RF-iaI" firstAttribute="top" secondItem="gKV-ts-c1j" secondAttribute="top" id="oOK-y7-Cgh"/>
-                                            <constraint firstAttribute="bottom" secondItem="Y7N-RF-iaI" secondAttribute="bottom" id="tzq-Cc-Jvh"/>
-                                            <constraint firstAttribute="trailing" secondItem="Y7N-RF-iaI" secondAttribute="trailing" id="yTU-SH-9TW"/>
-                                        </constraints>
-                                        <connections>
-                                            <outlet property="checkboxButton" destination="Y7N-RF-iaI" id="omf-z2-fJO"/>
-                                        </connections>
-                                    </collectionViewCell>
-                                </cells>
-                                <connections>
-                                    <outlet property="dataSource" destination="p4W-KY-TOB" id="qQz-az-Nli"/>
-                                    <outlet property="delegate" destination="p4W-KY-TOB" id="rkS-20-zCD"/>
-                                </connections>
-                            </collectionView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FHe-V0-41R">
-                                <rect key="frame" x="0.0" y="40" width="375" height="220"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="220" id="XrB-8J-BnZ"/>
-                                </constraints>
-                            </view>
-                        </subviews>
-                        <constraints>
-                            <constraint firstItem="FHe-V0-41R" firstAttribute="leading" secondItem="0GU-QE-Y7z" secondAttribute="leading" id="351-fX-xRy"/>
-                            <constraint firstItem="Nbd-69-Hvg" firstAttribute="top" secondItem="JvG-3b-W03" secondAttribute="bottom" constant="8" id="9Ot-eK-pFy"/>
-                            <constraint firstItem="JvG-3b-W03" firstAttribute="centerX" secondItem="0GU-QE-Y7z" secondAttribute="centerX" id="Twi-dx-2RC"/>
-                            <constraint firstItem="9t5-cb-t1E" firstAttribute="top" secondItem="FHe-V0-41R" secondAttribute="bottom" constant="8" id="chk-PC-twt"/>
-                            <constraint firstAttribute="trailing" secondItem="FHe-V0-41R" secondAttribute="trailing" id="dbE-FL-bee"/>
-                            <constraint firstItem="FHe-V0-41R" firstAttribute="top" secondItem="ixR-zT-lMS" secondAttribute="bottom" constant="20" id="g7J-oP-vEN"/>
-                            <constraint firstItem="9t5-cb-t1E" firstAttribute="leading" secondItem="0GU-QE-Y7z" secondAttribute="leading" id="sdm-kW-wQI"/>
-                            <constraint firstItem="JvG-3b-W03" firstAttribute="top" secondItem="9t5-cb-t1E" secondAttribute="bottom" constant="8" id="tkT-Jf-6xs"/>
-                            <constraint firstItem="9t5-cb-t1E" firstAttribute="leading" secondItem="0GU-QE-Y7z" secondAttribute="leading" constant="20" id="v7j-EZ-UEx"/>
-                            <constraint firstAttribute="trailing" secondItem="9t5-cb-t1E" secondAttribute="trailing" constant="20" id="zdC-L0-OdA"/>
-                        </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="sdm-kW-wQI"/>
-                            </mask>
-                        </variation>
-                    </view>
-                    <connections>
-                        <outlet property="HeadView" destination="FHe-V0-41R" id="AVq-V6-AaF"/>
-                        <outlet property="HeadViewHeightConstraint" destination="XrB-8J-BnZ" id="Ldq-L3-foO"/>
-                        <outlet property="doneButton" destination="JvG-3b-W03" id="YzG-Yo-LYq"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="vH4-Og-bf7" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="142" y="3305"/>
-        </scene>
         <!--Itinerary Preview-->
         <scene sceneID="nX2-Sn-5Ea">
             <objects>
@@ -1563,24 +1463,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gO5-jx-Uj1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3726" y="3311"/>
-        </scene>
-        <!--Pager Tab View Controller-->
-        <scene sceneID="OWq-WZ-EIl">
-            <objects>
-                <viewController storyboardIdentifier="pagerTab" id="4de-hX-vPZ" customClass="PagerTabViewController" customModule="TraveLibro" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="nCB-of-mAL"/>
-                        <viewControllerLayoutGuide type="bottom" id="jc5-mr-NlR"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="rvL-Zd-Das">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="2Cd-qy-vbq" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="5235" y="3311"/>
         </scene>
         <!--Each Itinerary Photos View Controller-->
         <scene sceneID="DPY-3y-cPY">
@@ -4352,7 +4234,7 @@
                                                 <rect key="frame" x="161.5" y="0.0" width="48.5" height="30"/>
                                                 <subviews>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wjB-Dd-ihB">
-                                                        <rect key="frame" x="0.0" y="0.0" width="48.5" height="30"/>
+                                                        <rect key="frame" x="0.5" y="0.0" width="48.5" height="30"/>
                                                         <color key="tintColor" red="1" green="0.4039215686" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <color key="textColor" red="0.17254901959999999" green="0.2156862745" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
                                                         <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>

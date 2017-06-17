@@ -90,11 +90,7 @@ class Search: UIView {
     
     func setJourney(data: JSON) {
         print("journey journey \(data)")
-        for (i, iti) in data {
-            var xco = 4
-            if i == "0" {
-                xco = 0
-            }
+        for (_, iti) in data {
             elementJourney = SearchJourneyElement(frame: CGRect(x: 0, y: 0, width: Int(globalSearchViewController.view.frame.width), height: 220))
             elementJourney.imageLable.text = iti["name"].stringValue
             elementJourney.image.hnk_setImageFromURL(getImageURL(iti["coverPhoto"].stringValue, width: BIG_PHOTO_WIDTH))

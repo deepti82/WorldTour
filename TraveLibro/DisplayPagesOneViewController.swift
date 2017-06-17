@@ -61,26 +61,16 @@ class DisplayPagesOneViewController: UIViewController {
             
             DispatchQueue.main.async(execute: {
               
-                if response.error != nil {
-                    
-                    print("error: \(response.error?.localizedDescription)")
-                    
+                if response.error != nil {                    
+                    print("error: \(response.error?.localizedDescription)")                    
                 }
                 else if response["value"].bool! {
-                    
-                    for button in self.buttonsForView {
-                        print(button.titleLabel?.text!)
-                    }
                     profilePic = response["data"]["profilePicture"].string!
-                    print("image: \(profilePic)")
                     self.setImage()
-                    
                 }
-                else {
-                    
+                else {                    
                     print("response error: \(response["error"])")
-                }
-                
+                }                
             })
             
         })

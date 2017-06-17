@@ -143,7 +143,6 @@ class PhotoCommentViewController: UIViewController, UITableViewDataSource, UITab
         case 1:
             return hashtagSuggestions.count
         default:
-            print(comments.count)
             if comments.count != nil {
                 self.commentText.text = "\(comments.count) Comments"
             }
