@@ -13,7 +13,6 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
     var exploreDestinationsController:UIViewController!
     var popBloggersController:UIViewController!    
     var inviteFriendsController:UIViewController!
-    var rateUsController:UIViewController!    
     var settingsViewController: UIViewController!
     var localLifeController: UIViewController!
     var myProfileViewController: UIViewController!
@@ -100,9 +99,6 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         
         let PBController = storyboard!.instantiateViewController(withIdentifier: "popularBloggers") as! PopularBloggersViewController
         self.popBloggersController = UINavigationController(rootViewController: PBController)
-        
-        let rateUsController = storyboard!.instantiateViewController(withIdentifier: "Home") as! HomeViewController
-        self.rateUsController = UINavigationController(rootViewController: rateUsController)
         
         let localLifeController = storyboard!.instantiateViewController(withIdentifier: "localLife") as! LocalLifeRecommendationViewController
         self.localLifeController = UINavigationController(rootViewController: localLifeController)

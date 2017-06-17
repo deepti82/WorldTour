@@ -38,7 +38,6 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        globalActivityFeedsController = nil
         globalNewTLViewController = nil
         globalTLMainFeedsViewController = nil
         loader.hideOverlayView()

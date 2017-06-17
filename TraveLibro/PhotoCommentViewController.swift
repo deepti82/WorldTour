@@ -563,23 +563,6 @@ class PhotoCommentViewController: UIViewController, UITableViewDataSource, UITab
         }        
     }
     
-    //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if (segue.identifier == "myEmbeddedSegue") {
-//            print("hashtag segue")
-//            let childViewController = segue.destination as! SuggestionsViewController
-//            childViewController.getSuggestions()
-//            let commentText = editComment.text.components(separatedBy: " ")
-//            childViewController.textVar = commentText.last!
-//        }
-//        else if (segue.identifier == "myEmbeddedSegueTwo") {
-//            print("mention segue")
-//            let childViewController = segue.destination as! PhotoMentionTableViewCell
-//            //            childViewController.getMentions()
-//            let commentText = editComment.text.components(separatedBy: " ")
-//            childViewController.textVar = commentText.last!
-//        }
-//    }
-    
     func getMentions() {
         
         requestId += 1

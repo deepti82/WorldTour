@@ -740,7 +740,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
                     isJourneyOngoing = true
                     self.journeyStart = true
                     self.myJourney = response["data"]
-                    print("line no : \(self.myJourney)");
                     self.checkFetchedLocation()
                     self.latestCity = response["data"]["startLocation"].string!
                     if self.isRefreshing {
@@ -1097,7 +1096,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        globalActivityFeedsController = nil
         globalNewTLViewController = self
         globalTLMainFeedsViewController = nil
         
@@ -1114,10 +1112,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         mainScroll.showsVerticalScrollIndicator = false
         mainScroll.showsHorizontalScrollIndicator = false
         mainScroll.clipsToBounds = true
-        
-//        let i  = PostImage();
-//        i.uploadPhotos(delegate: nil)
-        
+                
         refreshControl.addTarget(self, action: #selector(NewTLViewController.refresh(_:)), for: .valueChanged)
         let attributes = [NSForegroundColorAttributeName: UIColor.white]
         let attributedTitle = NSAttributedString(string: "Pull To Refresh", attributes: attributes)

@@ -21,7 +21,6 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
     var previousHashtags: [String] = []
     var editComment: JSON!
     var footerViewOtg: PhotoOTGFooter!
-    var footerViewFooter: ActivityFeedFooter!
     var footerViewBasic: ActivityFeedFooterBasic!
     var type: String = ""
     
@@ -357,9 +356,6 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
         default:
             if(footerViewOtg != nil) {
                 footerViewOtg.setCommentCount(comments.count)
-            }
-            if(footerViewFooter != nil) {
-                footerViewFooter.setCommentCount(comments.count)
             }
             if(footerViewBasic != nil) {
                 footerViewBasic.setCommentCount(comments.count)

@@ -332,13 +332,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let tabBarController = UITabBarController()
         let homeVC = storyboard.instantiateViewController(withIdentifier: "Home") as! HomeViewController
-        let feedVC = storyboard.instantiateViewController(withIdentifier: "Activity") as! ProfilePostsViewController
-        tabBarController.viewControllers = [homeVC, feedVC]
+//        let feedVC = storyboard.instantiateViewController(withIdentifier: "Activity") as! ProfilePostsViewController
+        tabBarController.viewControllers = [homeVC]
         //        window?.rootViewController = tabBarController
         
         let image = UIImage(named: "adventure_icon")
         
-        feedVC.tabBarItem = UITabBarItem(title: "Feed", image: image, tag: 1)
+//        feedVC.tabBarItem = UITabBarItem(title: "Feed", image: image, tag: 1)
         
         return true
     }

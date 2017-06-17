@@ -2137,8 +2137,6 @@ class Navigation {
                 params = ["uniqueId": id, "user": userId,"name":"","post":postId]
             }
             
-            print("like post: \(params)")
-            
             let opt = try HTTP.POST(adminUrl + "post/updateLikePost", parameters: [params])
             var json = JSON(1);
             opt.start {response in
@@ -2148,7 +2146,7 @@ class Navigation {
                 else
                 {
                     json  = JSON(data: response.data)
-                    print(json)
+                    print("like post response : \(json)")
                     completion(json)
                 }
             }
@@ -2242,73 +2240,6 @@ class Navigation {
             print("got an error creating the request: \(error)")
         }
     }
-    
-    
-    //  ITINERARY
-    func likeItinerary(_ id: String, userId: String, userName: String, unlike: Bool, itinerary: String, completion: @escaping ((JSON) -> Void)) {
-        
-        do {
-            
-            var params = ["uniqueId": id, "user": userId, "unlike": unlike] as [String : Any]
-            
-            if !unlike {
-                
-                params = ["uniqueId": id, "user": userId, "name": userName, "itinerary": itinerary]
-            }
-            
-            print("like post: \(params)")
-            
-            let opt = try HTTP.POST(adminUrl + "itinerary/updateLikeItinerary", parameters: [params])
-            var json = JSON(1);
-            opt.start {response in
-                if let err = response.error {
-                    print("error: \(err.localizedDescription)")
-                }
-                else
-                {
-                    json  = JSON(data: response.data)
-                    print(json)
-                    completion(json)
-                }
-            }
-        } catch let error {
-            print("got an error creating the request: \(error)")
-        }
-    }
-    
-    //  END AND START JOURNEY LIKE
-    func likeStartEnd(_ id: String, userId: String, userName: String, unlike: Bool, journey:
-        String, completion: @escaping ((JSON) -> Void)) {
-        
-        do {
-            
-            var params = ["uniqueId": id, "user": userId, "unlike": unlike] as [String : Any]
-            
-            if !unlike {
-                
-                params = ["uniqueId": id, "user": userId, "name": userName, "journey": journey]
-            }
-            
-            print("like post: \(params)")
-            
-            let opt = try HTTP.POST(adminUrl + "journey/likeJourney", parameters: [params])
-            var json = JSON(1);
-            opt.start {response in
-                if let err = response.error {
-                    print("error: \(err.localizedDescription)")
-                }
-                else
-                {
-                    json  = JSON(data: response.data)
-                    print(json)
-                    completion(json)
-                }
-            }
-        } catch let error {
-            print("got an error creating the request: \(error)")
-        }
-    }
-    
     
     func commentOnPost(postId: String, userId: String, commentText: String, hashtags: [String], mentions: [String], completion: @escaping ((JSON) -> Void)) {
         
