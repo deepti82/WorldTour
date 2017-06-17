@@ -208,7 +208,7 @@ public class QuickItinerary {
             if(!check) {
                 if globalNewTLViewController != nil {
                     if(globalNewTLViewController?.isActivityHidden)! {
-                        if globalNewTLViewController?.fromOutSide == "" {
+                        if (globalNewTLViewController?.isSelfJourney(journeyID: (globalNewTLViewController?.fromOutSide)!))! {
                             globalNewTLViewController?.getJourney()                            
                         }
                     }

@@ -64,7 +64,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     var backgroundReview = UIView()
     var buttons = NearMeOptionButton()
     var addPostsButton: UIButton!
-    var mainFooter: FooterViewNew!
+    var mainFooter: FooterViewNew?
     var layout: VerticalLayout!
     var refreshControl = UIRefreshControl()
     var isInitialLoad = true
@@ -1158,26 +1158,21 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         
         infoButton.isHidden = true
         
-//        addPostsButton.isHidden = true
-        
-        if fromOutSide == "" {
-            getJourney()            
-        }else{
-            addPostsButton.isHidden = true
-            getOneJourney()
-        }
+        self.fetchJourneyData()
         
         self.view.bringSubview(toFront: infoButton)
         self.view.bringSubview(toFront: addPostsButton)
         self.view.bringSubview(toFront: toolbarView)
         self.view.addSubview(TLLoader)
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
+        
+        self.hideHeaderAndFooter(true)
+        
         mainScroll.delegate = self
         loader.showOverlay(self.view)
         
         self.mainFooter = FooterViewNew(frame: CGRect(x: 0, y: self.view.frame.height - MAIN_FOOTER_HEIGHT, width: self.view.frame.width, height: MAIN_FOOTER_HEIGHT))
-        self.mainFooter.layer.zPosition = 5
-        self.view.addSubview(self.mainFooter)
+        self.mainFooter?.layer.zPosition = 5
+        self.view.addSubview(self.mainFooter!)
         
     }
     
@@ -1185,21 +1180,21 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         super.viewWillAppear(animated)
         setAnalytics(name: "On The Go Page")
         if fromOutSide == "" {           
-            self.mainFooter.setHighlightStateForView(tag: 1, color: mainOrangeColor)
+            self.mainFooter?.setHighlightStateForView(tag: 1, color: mainOrangeColor)
         }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         globalNavigationController = self.navigationController
-        self.mainFooter.frame = CGRect(x: 0, y: self.view.frame.height - MAIN_FOOTER_HEIGHT, width: self.view.frame.width, height: MAIN_FOOTER_HEIGHT)
+        self.mainFooter?.frame = CGRect(x: 0, y: self.view.frame.height - MAIN_FOOTER_HEIGHT, width: self.view.frame.width, height: MAIN_FOOTER_HEIGHT)
     }
             
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         hideHeaderAndFooter(false)
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        self.mainFooter.setFooterDefaultState()
+        self.mainFooter?.setFooterDefaultState()
     }
     
     override func didReceiveMemoryWarning() {
@@ -1231,7 +1226,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
                     //                if(self.addPostsButton != nil) {
                     UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut, animations: {
                         self.addPostsButton.frame.origin.y = self.view.frame.height - self.addPostsButton.frame.size.height - 10
-                        self.mainFooter.frame.origin.y = self.view.frame.height + MAIN_FOOTER_HEIGHT
+                        self.mainFooter?.frame.origin.y = self.view.frame.height + MAIN_FOOTER_HEIGHT
                     }, completion: nil)
                     //                }
                 }                
@@ -1242,12 +1237,14 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
                 }
                 UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut, animations: {
                     self.addPostsButton.frame.origin.y = self.view.frame.height - 120
-                    self.mainFooter.frame.origin.y = self.view.frame.height - MAIN_FOOTER_HEIGHT
+                    self.mainFooter?.frame.origin.y = self.view.frame.height - MAIN_FOOTER_HEIGHT
                 }, completion: nil)
             }
         }
-        else {
+        else {  
             self.navigationController?.setNavigationBarHidden(true, animated: true)
+            self.addPostsButton.frame.origin.y = self.view.frame.height - self.addPostsButton.frame.size.height - 10
+            self.mainFooter?.frame.origin.y = self.view.frame.height + MAIN_FOOTER_HEIGHT
         }
     }
     
@@ -1284,14 +1281,20 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     
     var isRefreshing = false
     
-    func refresh(_ sender: AnyObject) {
-        isRefreshing = true
-        if fromOutSide == ""{
-        
-        getJourney()
-        }else{
+    func fetchJourneyData() {
+        if fromOutSide == "" {
+            getJourney()
+        }else{            
+            if !isSelfJourney(journeyID: fromOutSide) {
+                addPostsButton.isHidden = true                
+            }
             getOneJourney()
         }
+    }
+    
+    func refresh(_ sender: AnyObject) {
+        isRefreshing = true
+        self.fetchJourneyData()
     }
     
     var isInitialPost = true
@@ -2036,7 +2039,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     //MARK:- First View Actions
     
     func checkForLocation(_ sender: UIButton?) {
-        if fromOutSide == "" {
+        if isSelfJourney(journeyID: fromOutSide) {
             self.detectLocation()            
         }
     }
@@ -2338,7 +2341,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
                 })
             }
             else {
-                if fromOutSide == "" {
+                if isSelfJourney(journeyID: fromOutSide) {
                     self.detectLocation()
                 }
             }
@@ -2364,7 +2367,10 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         otgView.closeBuddies.isHidden = true
         
         transparentCardWhite(otgView.nameJourneyView)
-        self.view.bringSubview(toFront: mainFooter)
+        if mainFooter != nil {
+            self.view.bringSubview(toFront: mainFooter!)                        
+        }
+        
 //        transparentWhiteTextField(otgView.nameJourneyTF)
     }
     
@@ -2628,13 +2634,12 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         otgView.closeBuddies.isHidden = true
         infoButton.isHidden = true
         
-        if fromOutSide != "" {
-            addPostsButton.isHidden = true
-        } else {
+        if isSelfJourney(journeyID: fromOutSide) {
             addPostsButton.isHidden = false
         }
-        
-        //        otgView.lineThree.isHidden = false
+        else {
+            addPostsButton.isHidden = true
+        }
         
         
         if fromOutSide == "" {
@@ -2845,64 +2850,44 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     
     
     
-    func checkForEditedImages(editedImagesArray: [Dictionary<Int,UIImage>]) {
-        
-        
+    func checkForEditedImages(editedImagesArray: [Dictionary<Int,UIImage>]) {        
         let subviewCount = addView.horizontalScrollForPhotos.subviews.count - 2
-        
-        
         for subview in addView.horizontalScrollForPhotos.subviews {
-            
             if subview.tag != 1 {
-                
                 let eachImage = subview as! UIButton
                 let index = addView.horizontalScrollForPhotos.subviews.index(of: subview)!
-                
-                
                 DispatchQueue.main.async(execute: {
-                    
-                    //                    for editImage in editedImagesArray {
-                    
-                    if eachImage.currentImage != editedImagesArray[index][index] && index < subviewCount {
-                        
-                        eachImage.setImage(editedImagesArray[index][index], for: .normal)
-                        
+                    if eachImage.currentImage != editedImagesArray[index][index] && index < subviewCount {                        
+                        eachImage.setImage(editedImagesArray[index][index], for: .normal)                        
                         let exportFileUrl = "file://" + NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] + "/image\(index).jpg"
                         
-                        
                         DispatchQueue.main.async(execute: {
-                            
-                            //                                if editedImage[index] != nil {
-                            
-                            do {
-                                
+                            do {                                
                                 if let data = UIImageJPEGRepresentation(editedImagesArray[index][index]!, 0.35) {
                                     try data.write(to: URL(string: exportFileUrl)!, options: .atomic)
                                 }
                             } catch let error as NSError {
-                                
                                 print("error creating file: \(error.localizedDescription)")
-                                
                             }
-                            
-                            //                                }
-                            
                         })
-                        
                     }
-                    
-                    
-                    //                    }
-                    
                 })
-                
             }
-            
         }
-        
         print("for loop over")
-        
     }
+    
+    
+    //MARK: - Helper Functions
+    
+    func isSelfJourney(journeyID: String) -> Bool {
+        if ((journeyID == "") ||
+            (isSelfUser(otherUserID: currentUser["_id"].stringValue) && currentUser["journeyId"].stringValue == journeyID)) {
+            return true
+        }
+        return false
+    }
+    
     
     //MARK: - -- Location --
     

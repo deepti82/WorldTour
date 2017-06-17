@@ -647,11 +647,12 @@ extension NewTLViewController {
         
         self.view.bringSubview(toFront: toolbarView)
         self.view.bringSubview(toFront: addPostsButton)
-        self.view.bringSubview(toFront: mainFooter)
+        if self.mainFooter != nil {
+            self.view.bringSubview(toFront: mainFooter!)            
+        }
         self.view.bringSubview(toFront: infoButton)
-        if globalNewTLViewController?.fromOutSide == "" {
-            self.scrollToBottom();
-
+        if (globalNewTLViewController?.isSelfJourney(journeyID: fromOutSide))! {
+            self.scrollToBottom()
         }
         
     }
