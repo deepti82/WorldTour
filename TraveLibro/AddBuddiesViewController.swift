@@ -39,13 +39,13 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
         case "AddActivity":
             globalAddActivityNew.buddyAdded(addedFriends);
         case "NewTLMiddle":
-            globalNewTLViewController.buddyAdded(addedFriends,inMiddle:true);
+            globalNewTLViewController?.buddyAdded(addedFriends,inMiddle:true);
 //        case "local-Life" :
 //        globalLocalLife.buddyAdded(addedFriends);
             
         case "NewTLView":
-            globalNewTLViewController.buddyAdded(addedFriends,inMiddle:false,completionDone: { (json) in
-                 globalNewTLViewController.getJourney()
+            globalNewTLViewController?.buddyAdded(addedFriends,inMiddle:false,completionDone: { (json) in
+                 globalNewTLViewController?.getJourney()
             });
         default:
             break;
@@ -144,6 +144,8 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         print("searchView : \(searchView.frame.size)")
+        setAnalytics(name: "Add Buddies")
+
         search.frame = CGRect(x: 45, y: 8, width: searchView.frame.width - 60 , height: 30)
     }
     

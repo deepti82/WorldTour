@@ -11,7 +11,7 @@ var loggedInUser : JSON!
 let social = SocialLoginClass()
 var profileVC: TLProfileViewController!
 var nationalityPage: AddNationalityNewViewController!
-var navigation: UINavigationController!
+var navigation: UINavigationController?
 
 class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegate, UIScrollViewDelegate {
     
@@ -106,6 +106,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setAnalytics(name: "SignIn Page")
         self.navigationController?.isNavigationBarHidden = true
         playBtn.isHidden = true
         
@@ -377,7 +378,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         
         playBtn.isHidden = true
         
-        if isConnectedToNetwork() {
+        if isNetworkReachable {
             let pageNumber = round(videoScrollView.contentOffset.x / videoScrollView.frame.size.width)
             let i = Int(pageNumber)
             

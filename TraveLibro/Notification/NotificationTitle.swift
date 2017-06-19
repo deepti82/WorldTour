@@ -57,8 +57,11 @@ class NotificationTitle: UIView {
         case "postComment":
             str2 = " has commented on your"
             
+        case "postMentionComment":
+            str2 = " has mentioned you in a comment"
+            
         case "photoComment":
-            str2 = " has commented on a photo in your"
+            str2 = " has commented on a photo"
             
         case "photoLike":
             str2 = " has liked your photo"
@@ -104,7 +107,7 @@ class NotificationTitle: UIView {
             str2 = " has mentioned you in a comment On"
             
         case "itineraryLike":
-            str2 = " has liked your"
+            str2 = " liked your"
             
         default:
             str2 = " wants to tag you in her On The Go Journey"
@@ -125,6 +128,7 @@ class NotificationTitle: UIView {
             notificationType != "journeyAccept" &&
             notificationType != "photoLike" &&
             notificationType != "postComment" &&
+            notificationType != "postMentionComment" &&
             notificationType != "journeyRequest" &&
             notificationType != "itineraryMentionComment" &&
             notificationType != "itineraryLike" &&
@@ -133,7 +137,7 @@ class NotificationTitle: UIView {
             let travelType = data["data"]["type"].string
             if travelType != nil {
                 if travelType == "local-life" {
-                    str3 = " a Local Life Activity"
+                    str3 = " Local Life Activity"
                 }
                 else if travelType == "on_the_go" {
                     str3 = " an On The Go Activity"
@@ -219,7 +223,10 @@ class NotificationTitle: UIView {
         
         NFMessageLabel.frame = CGRect(x: NFMessageLabel.frame.origin.x, y: NFMessageLabel.frame.origin.y, width: NFMessageLabel.frame.size.width,
                                       height: heightForView(text: (firstName + str2 + str3 + str4 + str5 + " ") , font: NFMessageLabel.font, width: NFMessageLabel.frame.size.width))
-        
+//        message.append(getRegularString(string: "     ", size: 12))
+//        print("type: \(notificationType) text: \(message.string)")
+//        NFMessageLabel.frame = CGRect(x: NFMessageLabel.frame.origin.x, y: NFMessageLabel.frame.origin.y, width: NFMessageLabel.frame.size.width,
+//                                      height: heightOfAttributedText(attributedString: message, width: (screenWidth - HEADER_HEIGHT - IMAGE_HEIGHT)))
         return NFMessageLabel.frame.size.height
     }
     

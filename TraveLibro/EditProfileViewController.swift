@@ -37,6 +37,8 @@ class EditProfileViewController: UIViewController, UITableViewDataSource, UITabl
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setAnalytics(name: "Edit Profile")
+
         editTableViewCell.reloadData()
         shouldSave = true
     }
@@ -106,7 +108,8 @@ class EditProfileViewController: UIViewController, UITableViewDataSource, UITabl
                 cell.profilePhoto.image = pickerImage
             }
             else{
-                cell.profilePhoto.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(currentUser["profilePicture"])", width: SMALL_PHOTO_WIDTH))
+                cell.profilePhoto.sd_setImage(with: (getImageURL(currentUser["profilePicture"].stringValue, width: SMALL_PHOTO_WIDTH)),
+                                              placeholderImage: getPlaceholderImage())
             }
             cell.accessoryType = .none
             return cell
@@ -166,7 +169,7 @@ class EditProfileViewController: UIViewController, UITableViewDataSource, UITabl
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "destinationCell") as! DestinationTextFieldCell
             
-            let paddingView = UILabel(frame: CGRect(x: 5, y: 0, width: 150, height: cell.destinationTextField.frame.size.height))
+            let paddingView = UILabel(frame: CGRect(x: 5, y: 0, width: 155, height: cell.destinationTextField.frame.size.height))
             paddingView.text = labels[(indexPath as NSIndexPath).row]
             paddingView.textColor = mainBlueColor
             paddingView.font = avenirBold

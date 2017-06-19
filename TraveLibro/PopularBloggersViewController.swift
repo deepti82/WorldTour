@@ -13,10 +13,11 @@ import Foundation
 class PopularBloggersViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var tableTopConstraint: NSLayoutConstraint!
-    var allUsers: [JSON] = []
-    var pagenum = 1
+    var allUsers: [JSON] = []    
     var loader = LoadingOverlay()
+    var pagenum = 1
     var hasNext = true
+    var isLoading = false
     let refreshControl = UIRefreshControl()
     var mainFooter: FooterViewNew!
     var back: Bool = false
@@ -50,6 +51,7 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setAnalytics(name: "Popular Blogger")
         self.mainFooter.frame = CGRect(x: 0, y: self.view.frame.height - MAIN_FOOTER_HEIGHT, width: self.view.frame.width, height: MAIN_FOOTER_HEIGHT)
     }
     
@@ -100,6 +102,8 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
     
     func pullToRefreshCalled() {        
         pagenum = 1
+        hasNext = true
+        isLoading = false
         getPopulerUser(pageNum: pagenum)
     }
     
@@ -115,12 +119,12 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
                 self.loader.hideOverlayView()
                 
                 if response.error != nil {                    
-                    print("error: \(response.error!.localizedDescription)")
+//                    print("error: \(response.error!.localizedDescription)")
                     self.refreshControl.endRefreshing()
                 }
                     
                 else if response["value"].bool! {
-                    
+                    print("popular Bloggers :  \(response["data"])")
                     if self.refreshControl.isRefreshing {
                         self.allUsers = []
                         self.refreshControl.endRefreshing()
@@ -132,7 +136,7 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
                         self.hasNext = false
                     }
                     
-                    if self.allUsers.isEmpty {
+                    if self.allUsers.isEmpty || self.pagenum == 1 {
                         self.allUsers = newResponse
                         if newResponse.isEmpty {
                             Toast(text: "No bloggers....").show()
@@ -144,13 +148,15 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
                     
                     if !(newResponse.isEmpty) {
                         self.userTableView.reloadData()                            
-                    }                        
+                    }
                 }
                     
                 else {                    
                     print("response error!")
                     self.refreshControl.endRefreshing()                    
                 }
+                
+                self.isLoading = false
                 
             })
             
@@ -168,23 +174,23 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        print(screenHeight)
-        let tableh = screenHeight
-        let h = (tableh / 2) - 50
-        return h
+        return (screenWidth * 0.8)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "popularCell") as! PopularBloggerTableViewCell
         cell.followButton.layer.cornerRadius = 5
-        cell.followButton.layer.borderColor = UIColor.white.cgColor
+        cell.followButton.layer.borderColor = mainOrangeColor.cgColor
         cell.followButton.layer.borderWidth = 1.5
         cell.followButton.clipsToBounds = true
+        cell.followButton.tag = indexPath.row
+        cell.tag = indexPath.row
         
-        let cellData = allUsers[indexPath.row]        
-        cell.userIcon.image = UIImage(named:"logo-default")
-        cell.userIcon.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(cellData["profilePicture"].stringValue)", width: SMALL_PHOTO_WIDTH))
+        let cellData = allUsers[indexPath.row]
+        
+        cell.userIcon.sd_setImage(with: getImageURL(cellData["profilePicture"].stringValue, width: BIG_PHOTO_WIDTH),
+                                  placeholderImage: getPlaceholderImage())
 
         cell.userName.text = cellData["name"].stringValue
 
@@ -194,31 +200,62 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
         }else{
             cell.videoCountLabel.text = "0"
         }
-        
 
         cell.countryVisitedCountLabel.text = cellData["countriesVisited_count"].stringValue
         cell.journeyCountLabel.text = cellData["journeysCreated_count"].stringValue
         cell.followerCountLabel.text = cellData["followers_count"].stringValue
-
-        cell.userBadgeImage.image = UIImage(named:"\(cellData["userBadgeName"].stringValue.lowercased())blogger")
-        print("iiiiiiii \(cellData["userBadgeName"].stringValue.lowercased())")
         
-        switch cellData["userBadgeName"].stringValue.lowercased() {
-        case "justgotwings":
-            cell.userBadgeImage.image = resizeImage(image: UIImage(named:"\(cellData["userBadgeName"].stringValue.lowercased())blogger")!, newWidth: screenWidth/2)
-        case "globetrotter":
-            cell.userBadgeImage.image = resizeImage(image: UIImage(named:"\(cellData["userBadgeName"].stringValue.lowercased())blogger")!, newWidth: screenWidth/2)
-        case "wayfarer":
-            cell.userBadgeImage.image = resizeImage(image: UIImage(named:"\(cellData["userBadgeName"].stringValue.lowercased())blogger")!, newWidth: screenWidth/2.5)
-        case "nomad":
-            cell.userBadgeImage.image = resizeImage(image: UIImage(named:"\(cellData["userBadgeName"].stringValue.lowercased())blogger")!, newWidth: screenWidth/2.5)
-
-        default:
-            cell.userBadgeImage.image = resizeImage(image: UIImage(named:"\(cellData["userBadgeName"].stringValue.lowercased())blogger")!, newWidth: screenWidth/3)
+        var starCnt = 0
+        
+        switch cellData["userBadgeName"].stringValue {
+            
+            case "newbie":
+                starCnt = 1
+                cell.starName.text = "Newbie - "
+                break
+            
+            case "justGotWings":
+                starCnt = 2
+                cell.starName.text = "Just Got Wings - "
+                break
+            
+            case "globeTrotter":
+                starCnt = 3
+                cell.starName.text = "Globetrotter - "
+                break
+            
+            case "wayfarer":
+                starCnt = 4
+                cell.starName.text = "Wayfarer - "
+                break
+                
+            case "nomad":
+                starCnt = 5
+                cell.starName.text = "Nomad - "
+                break
+            
+            default:
+                starCnt = 0
+                cell.starName.text = ""
+                break
+            
         }
+        
+        if starCnt != 0 {            
+            for rat in cell.starButton {
+                if rat.tag > starCnt {
+                    rat.image = UIImage(named: "star_uncheck")
+                }else{
+                    rat.image = UIImage(named: "star_check")                    
+                    rat.tintColor = UIColor.white
+                }
+            }
+        }
+        
+        cell.followButton.addTarget(self, action: #selector(self.followButtonClicked(_:)), for: .touchUpInside)
 
         if(currentUser != nil) {
-            cell.followButton.tag = indexPath.row
+            
             setFollowButtonTitle(button: cell.followButton, followType: cellData["following"].intValue, otherUserID: cellData["_id"].stringValue)
         }
         else {
@@ -228,6 +265,7 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
         return cell
         
     }
+   
 
     func setTopNavigation(_ text: String) {
         let leftButton = UIButton()
@@ -245,7 +283,6 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
         
         self.customNavigationBar(left: leftButton, right: rightButton)
         
-        
     }
 
     
@@ -259,8 +296,10 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
                 
         if allUsers.count > 0 && indexPath.row == (allUsers.count - 1) {            
-            if hasNext {
-                getPopulerUser(pageNum: (pagenum + 1))
+            if hasNext && !isLoading {
+                isLoading = true
+                pagenum += 1
+                getPopulerUser(pageNum: pagenum)
             }
         }
     }
@@ -282,11 +321,13 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
     
     //MARK: - Follow Action
     
-    @IBAction func followButtonClicked(_ sender: UIButton) {
+    func followButtonClicked(_ sender: UIButton){
+        
+        print(sender.tag)
         
         if currentUser != nil {
             if sender.titleLabel?.text == "Follow" {
-                request.followUser(currentUser["_id"].string!, followUserId: allUsers[sender.tag]["_id"].stringValue, completion: {(response) in                
+                request.followUser(user.getExistingUser(), followUserId: allUsers[sender.tag]["_id"].stringValue, completion: {(response) in
                     DispatchQueue.main.async(execute: {
                         
                         
@@ -295,6 +336,10 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
                         }
                         else if response["value"].bool! {
                             setFollowButtonTitle(button: sender, followType: response["data"]["responseValue"].intValue, otherUserID: "")
+                            self.pagenum = 1
+                            self.hasNext = true
+                            self.isLoading = false
+                            self.getPopulerUser(pageNum: self.pagenum)
                         }
                         else {
                             print("error: \(response["error"])")
@@ -303,13 +348,17 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
                 })
             }
             else{
-                request.unfollow(currentUser["_id"].string!, unFollowId: allUsers[sender.tag]["_id"].stringValue, completion: {(response) in
+                request.unfollow(user.getExistingUser(), unFollowId: allUsers[sender.tag]["_id"].stringValue, completion: {(response) in
                     DispatchQueue.main.async(execute: {
                         if response.error != nil {
                             print("error: \(response.error!.localizedDescription)")
                         }
                         else if response["value"].bool! {
                             setFollowButtonTitle(button: sender, followType: response["data"]["responseValue"].intValue, otherUserID: "")
+                            self.pagenum = 1
+                            self.hasNext = true
+                            self.isLoading = false
+                            self.getPopulerUser(pageNum: self.pagenum)
                         }
                         else {                            
                             print("error: \(response["error"])")
@@ -321,7 +370,7 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
         else {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)            
         }        
-    }    
+    }
     
     //MARK: - Scroll Delagtes
     
@@ -376,11 +425,13 @@ class PopularBloggerTableViewCell: UITableViewCell {
     @IBOutlet weak var starWidth: NSLayoutConstraint!
 //    @IBOutlet weak var bucketListCount: UILabel!
 //    
+    @IBOutlet weak var starName: UILabel!
+    @IBOutlet var starButton: [UIImageView]!
     @IBOutlet weak var countryVisitedCountLabel: UILabel!
     @IBOutlet weak var followerCountLabel: UILabel!
     @IBOutlet weak var journeyCountLabel: UILabel!
 //
-    @IBOutlet weak var userBadgeImage: UIImageView!
+//    @IBOutlet weak var userBadgeImage: UIImageView!
 //
     @IBOutlet weak var followButton: UIButton!
 }

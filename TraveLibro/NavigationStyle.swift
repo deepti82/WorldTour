@@ -14,9 +14,36 @@ extension UIViewController {
         
         if currentUser["alreadyLoggedIn"].bool! {            
             self.slideMenuController()?.changeMainViewController(profileVC, close: true)
-            navigation.pushViewController(profileVC, animated: true)
+            navigation?.pushViewController(profileVC, animated: true)
         } else {
-            navigation.pushViewController(nationalityPage, animated: true)
+            navigation?.pushViewController(nationalityPage, animated: true)
+        }
+    }
+    
+    func gotoActivityController(lat:String?, lng:String?, category:String?) {
+        if currentUser != nil {
+            request.getUserFromCache(user.getExistingUser(), completion: { (response) in
+                DispatchQueue.main.async {
+                    popularView = "activity"
+                    currentUser = response["data"]
+                    let vc = self.storyboard!.instantiateViewController(withIdentifier: "TLMainFeedsView") as! TLMainFeedsViewController
+                    vc.pageType = viewType.VIEW_TYPE_ACTIVITY
+                    if lat != nil {
+                        vc.currentLocation = ["lat":lat!, "long":lng!]                        
+                    }
+                    if category != nil {
+                        vc.currentCategory = category!
+                        vc.pageType = viewType.VIEW_TYPE_LOCAL_LIFE
+                    }
+                    
+                    let nvc = UINavigationController(rootViewController: vc)
+                    leftViewController.mainViewController = nvc
+                    leftViewController.slideMenuController()?.changeMainViewController(leftViewController.mainViewController, close: true)
+                    
+                    UIViewController().customiseNavigation()
+                    nvc.delegate = UIApplication.shared.delegate as! UINavigationControllerDelegate?
+                }
+            })
         }
     }
     

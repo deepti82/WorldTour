@@ -165,6 +165,7 @@ class DisplayPagesFourViewController: UIViewController {
                         self.alert(message: "Enable to save", title: "Holiday Type")
                     }
                     let next = self.storyboard?.instantiateViewController(withIdentifier: "TLProfileView") as! TLProfileViewController
+                    next.isAppStartedFromInitial = true
                     self.navigationController?.pushViewController(next, animated: true)
                 })
             })

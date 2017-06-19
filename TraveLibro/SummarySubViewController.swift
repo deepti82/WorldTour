@@ -34,6 +34,10 @@ class SummarySubViewController: UIViewController, UIScrollViewDelegate {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        setAnalytics(name: "Journey Summary")
+    }
+    
     func getImageName(categoryLabel: String) -> String {
         
         switch categoryLabel {

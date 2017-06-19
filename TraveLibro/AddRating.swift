@@ -25,8 +25,7 @@ class AddRating: UIView, UITextViewDelegate {
     @IBOutlet weak var addReviewText: UILabel!
     
     var post:Post!
-    var checkIn:RatingCheckIn!
-    var activity: ActivityFeedFooter!
+    var checkIn:RatingCheckIn!    
     var activityBasic: ActivityFeedFooterBasic!
     var accordianCell: allReviewsMLTableViewCell!
     var json:JSON!

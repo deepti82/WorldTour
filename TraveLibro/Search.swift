@@ -20,6 +20,7 @@ class Search: UIView {
     var element: SearchElement!
     var elementJourney: SearchJourneyElement!
     var data: JSON = []
+    var parentController: UIViewController!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -89,11 +90,7 @@ class Search: UIView {
     
     func setJourney(data: JSON) {
         print("journey journey \(data)")
-        for (i, iti) in data {
-            var xco = 4
-            if i == "0" {
-                xco = 0
-            }
+        for (_, iti) in data {
             elementJourney = SearchJourneyElement(frame: CGRect(x: 0, y: 0, width: Int(globalSearchViewController.view.frame.width), height: 220))
             elementJourney.imageLable.text = iti["name"].stringValue
             elementJourney.image.hnk_setImageFromURL(getImageURL(iti["coverPhoto"].stringValue, width: BIG_PHOTO_WIDTH))
@@ -125,21 +122,25 @@ class Search: UIView {
     }
     
     @IBAction func toJourney(_ sender: UIButton) {
-        let profile = storyboard.instantiateViewController(withIdentifier: "popular") as! PopularController
-        profile.displayData = "popular"
-        profile.back = true
-        globalNavigationController.pushViewController(profile, animated: true)
+        let PJController = storyboard!.instantiateViewController(withIdentifier: "TLMainFeedsView") as! TLMainFeedsViewController
+        PJController.pageType = viewType.VIEW_TYPE_POPULAR_JOURNEY
+        PJController.shouldLoadFromStart = true
+        PJController.shouldShowBackButton = true
+        self.parentController.navigationController?.pushViewController(PJController, animated: true)
     }
+    
     @IBAction func toItinerary(_ sender: UIButton) {
-        let profile = storyboard.instantiateViewController(withIdentifier: "popular") as! PopularController
-        profile.displayData = "popitinerary"
-        profile.back = true
-        globalNavigationController.pushViewController(profile, animated: true)
+        let itinararyController = storyboard!.instantiateViewController(withIdentifier: "TLMainFeedsView") as! TLMainFeedsViewController
+        itinararyController.pageType = viewType.VIEW_TYPE_POPULAR_ITINERARY
+        itinararyController.shouldLoadFromStart = true
+        itinararyController.shouldShowBackButton = true
+        self.parentController.navigationController?.pushViewController(itinararyController, animated: true)
     }
+    
     @IBAction func toBloggers(_ sender: UIButton) {
         let profile = storyboard.instantiateViewController(withIdentifier: "popularBloggers") as! PopularBloggersViewController
         profile.back = true
-        globalNavigationController.pushViewController(profile, animated: true)
+        self.parentController.navigationController?.pushViewController(profile, animated: true)
     }
     
 }

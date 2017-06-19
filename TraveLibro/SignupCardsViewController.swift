@@ -61,9 +61,13 @@ class SignupCardsViewController: UIViewController {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        setAnalytics(name: "SignUp Cards")
+    }
+    
     func getUser() {
         
-        request.getUser(currentUser["_id"].string!, urlSlug: nil, completion: {(response) in
+        request.getUser(currentUser["_id"].string!, urlSlug: nil, completion: {(response, isFromCache) in
             
             DispatchQueue.main.async(execute: {
                 self.loader.hideOverlayView()

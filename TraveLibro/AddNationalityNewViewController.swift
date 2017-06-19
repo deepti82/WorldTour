@@ -69,28 +69,14 @@ class AddNationalityNewViewController: UIViewController, UIPickerViewDelegate {
     
     //MARK: - Lifecycle
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         navigationController?.isNavigationBarHidden = false
         getDarkBackGroundBlur(self)
         
-        if isFromSettings != nil && isFromSettings == true {
-            let leftButton = UIButton()
-            leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
-            leftButton.addTarget(self, action: #selector(self.saveCountry(_:)), for: .touchUpInside)
-            leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-            
-            self.customNavigationBar(left: leftButton, right: nil)
-        }
-        else {
-            let rightButton = UIButton()
-            rightButton.setImage(UIImage(named: "arrow_next_fa"), for: UIControlState())
-            rightButton.addTarget(self, action: #selector(AddNationalityNewViewController.saveCountry(_:)), for: .touchUpInside)
-            rightButton.frame = CGRect(x: 0, y: 8, width: 30, height: 30)
-            self.customNavigationBar(left: nil, right: rightButton)
-            self.navigationItem.hidesBackButton = true
-        }
+        
         
         hintLabel = UILabel(frame: CGRect(x: 20, y: 0, width: screenWidth - 40, height: 30))
         hintLabel.center = CGPoint(x: hintLabel.center.x, y: self.view.center.y - 100)
@@ -119,6 +105,32 @@ class AddNationalityNewViewController: UIViewController, UIPickerViewDelegate {
         
         fetchCountries()
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setAnalytics(name: "Add Nationality")
+        if isFromSettings != nil && isFromSettings == true {
+            let leftButton = UIButton()
+            leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
+            leftButton.addTarget(self, action: #selector(self.saveCountry(_:)), for: .touchUpInside)
+            leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+            
+            self.customNavigationBar(left: leftButton, right: nil)
+        }
+        else {
+            let rightButton = UIButton()
+            rightButton.setImage(UIImage(named: "arrow_next_fa"), for: UIControlState())
+            rightButton.addTarget(self, action: #selector(AddNationalityNewViewController.saveCountry(_:)), for: .touchUpInside)
+            rightButton.frame = CGRect(x: 0, y: 8, width: 30, height: 30)
+            self.customNavigationBar(left: nil, right: rightButton)
+            self.navigationItem.hidesBackButton = true
+        }
+
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        print("view...disappear")
     }
     
     override func didReceiveMemoryWarning() {
@@ -217,9 +229,8 @@ class AddNationalityNewViewController: UIViewController, UIPickerViewDelegate {
                                     self.chooseCity(sender)
                                 }
                                 else {
-                                    Toast(text: "User's nation updated").show()
                                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "currentUserUpdated"), object: nil)
-                                    self.popVC(UIButton())
+                                    //self.popVC(UIButton())
                                 }
                             } else {
                                 

@@ -25,16 +25,17 @@ class EachItineraryPhotosViewController: UIViewController, UICollectionViewDataS
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        photosCollectionView.delegate = self        
+        photosCollectionView.delegate = self
+        getDarkBackGround(self)
         
         itineraryNameLabel.text = (selectedItinerary["name"].stringValue)
         
         photoJSON = (selectedItinerary["photos"].arrayValue)
         
         if selectedItinerary != "" {
-            itineraryNameLabel.text = "Photo (\(self.photoJSON.count))"            
+            itineraryNameLabel.text = "Photos (\(self.photoJSON.count))"
         }else{
-            itineraryNameLabel.text = "Photo (\(globalPostImage.count))"
+            itineraryNameLabel.text = "Photos (\(globalPostImage.count))"
         }      
         
 //        if (photoJSON.count == 0) {
@@ -49,6 +50,11 @@ class EachItineraryPhotosViewController: UIViewController, UICollectionViewDataS
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        setAnalytics(name: "Detailed Itinerary Photos")
+
     }
     
     func exitMoments(_ sender: UIButton) {
@@ -70,32 +76,36 @@ class EachItineraryPhotosViewController: UIViewController, UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if shouldShowBigImage(position: indexPath.row) {
-            return CGSize(width: (collectionView.frame.size.width), height: collectionView.frame.size.width * 0.7)
-        }
+//        if shouldShowBigImage(position: indexPath.row) {
+//            return CGSize(width: (collectionView.frame.size.width), height: collectionView.frame.size.width * 0.7)
+//        }
         
-        return CGSize(width: (collectionView.frame.size.width/3 - 2), height: (collectionView.frame.size.width/3 - 2))       
+        return CGSize(width: ((screenWidth-4)/2), height: (((screenWidth-4)/2) * 1.35))
+     
     }
     
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 1
+        return 2
     }
     
     func collectionView(_ collectionView: UICollectionView, layout
         collectionViewLayout: UICollectionViewLayout,
                         minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 1
+        return 2
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! EachItineraryMomentCollectionViewCell        
-        cell.photo.image = UIImage(named: "logo-default")
+//        cell.photo.image = UIImage(named: "logo-default")
         
         if selectedItinerary != "" {
-            cell.photo.hnk_setImageFromURL(getImageURL(photoJSON[indexPath.row]["name"].stringValue, width: 0))
+            
+            cell.photo.sd_setImage(with: getImageURL(self.photoJSON[indexPath.row]["name"].stringValue, width: BIG_PHOTO_WIDTH), 
+                                   placeholderImage: getPlaceholderImage())
+
         }else{
             cell.photo.image = globalPostImage[indexPath.row].image
         }

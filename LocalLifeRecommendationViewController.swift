@@ -15,6 +15,7 @@ import Toaster
 class LocalLifeRecommendationViewController: UIViewController, UIImagePickerControllerDelegate,UINavigationControllerDelegate, CLLocationManagerDelegate, UITextViewDelegate, UIScrollViewDelegate {
     var currentTime =  ""
     var addView:AddActivityNew!
+    var isAddActivityPresent = false
     var backView:UIView!
     var newScroll:UIScrollView!
     var titleLabel:UILabel!
@@ -26,7 +27,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
     var json:JSON!
     var loader = LoadingOverlay()
     var layout:VerticalLayout!
-    var mainFooter: FooterViewNew!
+    var mainFooter: FooterViewNew?
     var textFieldYPos = CGFloat(0)
     var difference = CGFloat(0)
     var isBack:Bool = false
@@ -37,7 +38,8 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        globalActivityFeedsController = nil
+        globalNewTLViewController = nil
+        globalTLMainFeedsViewController = nil
         loader.hideOverlayView()
         let i = PostImage()
         i.uploadPhotos(delegate: nil)
@@ -174,9 +176,10 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
         myView5.photoBottomView2.tag = 14
         layout.addSubview(myView5)
         
-        self.mainFooter = FooterViewNew(frame: CGRect.zero)
-
-        self.view.addSubview(mainFooter)
+        if !(self.isBack) {
+            self.mainFooter = FooterViewNew(frame: CGRect.zero)
+            self.view.addSubview(mainFooter!)
+        }
         
         self.changeAddButton(false)
         self.addHeightToLayout();
@@ -185,9 +188,11 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)        
-        self.mainFooter.frame = CGRect(x: 0, y: self.view.frame.height - MAIN_FOOTER_HEIGHT, width: self.view.frame.width, height: MAIN_FOOTER_HEIGHT)
-        mainFooter.setHighlightStateForView(tag: 3, color: mainGreenColor)
+        super.viewWillAppear(animated)
+        setAnalytics(name: "Local Life Recommendation")
+
+        self.mainFooter?.frame = CGRect(x: 0, y: self.view.frame.height - MAIN_FOOTER_HEIGHT, width: self.view.frame.width, height: MAIN_FOOTER_HEIGHT)
+        mainFooter?.setHighlightStateForView(tag: 3, color: mainGreenColor)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -198,7 +203,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         hideHeaderAndFooter(false)
-        mainFooter.setFooterDefaultState()
+        mainFooter?.setFooterDefaultState()
     }
     
     func addHeightToLayout() {
@@ -250,6 +255,8 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
             self.present(alertController, animated: true, completion: nil)
         } else {
             //Add Dard Blur Background
+            self.hideHeaderAndFooter(false)
+            isAddActivityPresent = true
             var darkBlur: UIBlurEffect!
             var blurView: UIVisualEffectView!
             self.backView = UIView();
@@ -320,9 +327,8 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
     }
     
     func newPost(_ sender: UIButton) {
+        
         hideAddActivity()
-        
-        
         
         let post  = LocalLifePostModel();
         
@@ -378,14 +384,8 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
         if(self.addView.imageArr.count > 0 || self.addView.videoURL != nil || thoughts.characters.count > 0 || location.characters.count > 0) {
             _ = post.setPost(currentUser["_id"].string!, JourneyId: "", Type: "local-life", Date: self.currentTime, Location: location, Category: category, Latitude: lat, Longitude: lng, Country: self.addView.currentCountry, City: self.addView.currentCity, thoughts: thoughts, buddies: buddies!, imageArr: self.addView.imageArr,videoURL:self.addView.videoURL, videoCaption:self.addView.videoCaption)
             
-            goToActivity();
+            self.gotoActivityController(lat: nil, lng: nil, category: nil)
         }
-    }
-    
-    func goToActivity() {
-        let vc = storyboard!.instantiateViewController(withIdentifier: "TLMainFeedsView") as! TLMainFeedsViewController
-        vc.pageType = viewType.VIEW_TYPE_ACTIVITY
-        self.navigationController?.pushViewController(vc, animated: false)
     }
     
     func hideAddActivity() {
@@ -395,6 +395,8 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
         self.setNavigationBarItemText("Local Life")
         let rightBarButton = UIBarButtonItem()
         self.navigationItem.rightBarButtonItem = rightBarButton
+        
+        isAddActivityPresent = false
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
@@ -427,12 +429,11 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
             leftButton.imageView?.tintColor = UIColor.white
             leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
         }else{
-        
-        leftButton.frame = CGRect(x: -10, y: 0, width: 30, height: 30)
-        leftButton.setImage(UIImage(named: "menu_left_icon"), for: UIControlState())
-        leftButton.imageView?.image = leftButton.imageView?.image!.withRenderingMode(.alwaysTemplate)
-        leftButton.imageView?.tintColor = UIColor.white
-        leftButton.addTarget(self, action: #selector(self.openSideMenu(_:)), for: .touchUpInside)
+            leftButton.frame = CGRect(x: -10, y: 0, width: 30, height: 30)
+            leftButton.setImage(UIImage(named: "menu_left_icon"), for: UIControlState())
+            leftButton.imageView?.image = leftButton.imageView?.image!.withRenderingMode(.alwaysTemplate)
+            leftButton.imageView?.tintColor = UIColor.white
+            leftButton.addTarget(self, action: #selector(self.openSideMenu(_:)), for: .touchUpInside)
         }
         
         
@@ -611,6 +612,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
             }else {
                 nearMeListController.nearMeType = category
             }
+            
             let localFeedsController = storyboard?.instantiateViewController(withIdentifier: "TLMainFeedsView") as! TLMainFeedsViewController
             localFeedsController.currentLocation = ["lat":String(userLocation.latitude), "long":String(userLocation.longitude)]
             localFeedsController.currentCategory = category
@@ -658,11 +660,13 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
     
     func hideHeaderAndFooter(_ isShow:Bool) {
         if(isShow) {
-            self.navigationController?.setNavigationBarHidden(true, animated: true)
-            self.mainFooter.frame.origin.y = self.view.frame.height + MAIN_FOOTER_HEIGHT
+            if !isAddActivityPresent {
+                self.navigationController?.setNavigationBarHidden(true, animated: true)
+                self.mainFooter?.frame.origin.y = self.view.frame.height + MAIN_FOOTER_HEIGHT                
+            }
         } else {
             self.navigationController?.setNavigationBarHidden(false, animated: true)
-            self.mainFooter.frame.origin.y = self.view.frame.height - MAIN_FOOTER_HEIGHT
+            self.mainFooter?.frame.origin.y = self.view.frame.height - MAIN_FOOTER_HEIGHT
         }
     }
 

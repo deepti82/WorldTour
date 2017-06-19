@@ -9,9 +9,9 @@
 import Foundation
 import SQLite
 
-let db = AppDelegate.getDatabase()
-
 public class Post {
+    
+    let db = TLModelManager.getSharedManager().db!
     
     let post = Table("Post")
     var jsonPost:JSON!
@@ -19,13 +19,17 @@ public class Post {
     var imageArr:[PostImage] = []
     var videoArr:[PostVideo] = []
     var buddiesStr:String = "[]"
+    var oldbuddiesStr:String = "[]"
+    var oldVideoStr:String = "[]"
     var buddies:[Buddy] = []
     var buddyJson:[JSON] = []
     
     let id = Expression<Int64>("id")
+    let postServerId = Expression<String>("postid")
+    let postServerUniqueId = Expression<String>("postuniqueid")
     let type = Expression<String>("postType")
     let userId = Expression<String>("userid")
-    let journeyId = Expression<String>("journey")
+    let journeyId = Expression<String>("journeyId")
     let thoughts = Expression<String>("thoughts")
     let location = Expression<String>("location")
     let category = Expression<String>("category")
@@ -34,14 +38,20 @@ public class Post {
     let latitude = Expression<String>("latitude")
     let longitude = Expression<String>("longitude")
     let date = Expression<String>("date")
-    let buddyDb = Expression<String>("buddyDb")
+    let newbuddyDb = Expression<String>("newbuddyDb")
+    let prevBuddyDb = Expression<String>("prevbuddyDb")
+    let postUploadStatus = Expression<Int64>("uploadstatus")
+    let userName = Expression<String>("userName")
+    let checkInChange = Expression<Bool>("checkInChange")
+    let postEditType = Expression<Int64>("postEditType")
+    let oldVideo = Expression<String>("prevVideo")
     
     var finalThought = NSMutableAttributedString(string: "")
     
     var typeOfPost:String!
     var post_uniqueId:String!
-    var post_id:Int!;
-    var post_ids:String!;
+    var post_id:Int!
+    var post_ids:String!    
     var post_type:String!
     var post_userId:String!
     var post_journeyId:String!
@@ -59,12 +69,16 @@ public class Post {
     var post_likeCount:Int!
     var post_commentCount:Int!
     var post_likeDone = false
-    var post_isOffline = false
+    var post_isOffline = false 
+    var post_editType: Int!
+    var post_status: uploadStatus!
     let hasCompleted = Expression<Bool>("hasCompleted")
     
     init() {
         try! db.run(post.create(ifNotExists: true) { t in
             t.column(id, primaryKey: true)
+            t.column(postServerId)
+            t.column(postServerUniqueId)
             t.column(type)
             t.column(userId)
             t.column(journeyId)
@@ -76,32 +90,80 @@ public class Post {
             t.column(latitude)
             t.column(longitude)
             t.column(date)
-            t.column(buddyDb)
+            t.column(newbuddyDb)
+            t.column(postUploadStatus)
+            t.column(prevBuddyDb)
+            t.column(userName)
+            t.column(checkInChange)
+            t.column(postEditType)
+            t.column(oldVideo)
         })
     }
     
-    func setPost(_ UserId: String, JourneyId: String, Type: String, Date: String, Location: String, Category: String, Latitude: String, Longitude: String, Country: String, City: String, thoughts: String,buddies:String,imageArr:[PostImage], videoURL:URL!,videoCaption:String) -> Post{
+    func setPost(_ UserId: String, username:String, JourneyId: String, editPostId: String?, editPostUniqueID:String?, Type: String, Date: String, Location: String, Category: String, Latitude: String, 
+                 Longitude: String, Country: String, City: String, thoughts: String, newbuddies:String, oldbuddies:String?, imageArr:[PostImage], videoURL:URL?, videoCaption:String, isCheckInChange:Bool,
+                 oldVideoStream:String?, postType: editPostType) -> Post {
+        
         var retPost:Post!
-        let photoinsert = self.post.insert(
-            self.type <- Type,
-            self.userId <- UserId,
-            self.journeyId <- JourneyId,
-            self.date <- Date,
-            self.location <- Location,
-            self.category <- Category,
-            self.latitude <- Latitude,
-            self.longitude <- Longitude,
-            self.country <- Country,
-            self.city <- City,
-            self.thoughts <- thoughts,
-            self.buddyDb <- buddies
-        )
+        var postInsert: SQLite.Insert!
+        
+        
+        if editPostId != nil {
+            postInsert = self.post.insert(
+                self.type <- Type,
+                self.postServerId <- editPostId!,
+                self.postServerUniqueId <- editPostUniqueID!,
+                self.userId <- UserId,
+                self.journeyId <- JourneyId,
+                self.date <- Date,
+                self.location <- Location,
+                self.category <- Category,
+                self.latitude <- Latitude,
+                self.longitude <- Longitude,
+                self.country <- Country,
+                self.city <- City,
+                self.thoughts <- thoughts,
+                self.newbuddyDb <- newbuddies,
+                self.postUploadStatus <- Int64(0),
+                self.userName <- username,
+                self.checkInChange <- isCheckInChange,
+                self.prevBuddyDb <- oldbuddies!,
+                self.oldVideo <- oldVideoStream!,
+                self.postEditType <- self.getPostType(from: postType)
+            )
+        }
+        else{
+            postInsert = self.post.insert(
+                self.type <- Type,
+                self.postServerId <- "",
+                self.postServerUniqueId <- "",
+                self.userId <- UserId,
+                self.journeyId <- JourneyId,
+                self.date <- Date,
+                self.location <- Location,
+                self.category <- Category,
+                self.latitude <- Latitude,
+                self.longitude <- Longitude,
+                self.country <- Country,
+                self.city <- City,
+                self.thoughts <- thoughts,
+                self.newbuddyDb <- newbuddies,
+                self.postUploadStatus <- Int64(0),
+                self.userName <- "",
+                self.checkInChange <- false,
+                self.prevBuddyDb <- "",
+                self.oldVideo <- "",
+                self.postEditType <- self.getPostType(from: postType)
+            )
+        }
+        
         do {
-            let postId = try db.run(photoinsert)
+            var localPostId: Int64!
             
+            localPostId = try db.run(postInsert)
             
             for image in imageArr {
-                image.postId = Int(postId)
+                image.postId = Int(localPostId)
                 image.save()
             }
             
@@ -109,32 +171,52 @@ public class Post {
                 let video = PostVideo()
                 video.videoUrl = videoURL
                 video.caption = videoCaption
-                video.postId = Int(postId)
+                video.postId = Int(localPostId)
                 video.save()
             }
             
-            let query = self.getAllPost(postid: postId)
+            let query = self.getAllPost(postid: localPostId)
             for post in query {
                 retPost = post;
                 retPost.post_isOffline = true;
             }
             
             
-        } catch _ {
-            print("ERROR OCCURED");
+        }
+        catch {
+            print("Error")
         }
 
         return retPost;
     }
     
+    private func getPostType (from: editPostType) -> Int64 {
+        
+        var retPostType = 0        
+        switch from {
+        case .EDIT_NEW_POST:
+            retPostType = 0
+            
+        case .EDITING_ACTIVITY:
+            retPostType = 1
+            
+        case .EDITING_PHOTO_VIDEO:
+            retPostType = 2
+        }
+            
+        return Int64(retPostType)
+    }
+    
     func getAllPost(journey:String) -> [Post] {
         var allPosts:[Post] = []
         do {
-            let query = post.select(id,type,userId,journeyId,thoughts,location,category,city,country,latitude,longitude,date)
+            let query = post.select(id,postServerId,postServerUniqueId,type,userId,journeyId,thoughts,location,category,city,country,latitude,longitude,date, prevBuddyDb, userName, checkInChange, postUploadStatus, postEditType)
                 .filter(journeyId == journey)
             for post in try db.prepare(query) {
                 let p = Post();
                 p.post_id = Int(post[id])
+                p.post_ids = String(post[postServerId])
+                p.post_uniqueId = String(post[postServerUniqueId])
                 p.post_type = String(post[type])
                 p.post_userId = String(post[userId])
                 p.post_journeyId = String(post[journeyId])
@@ -146,6 +228,7 @@ public class Post {
                 p.post_latitude = String(post[latitude])
                 p.post_longitude = String(post[longitude])
                 p.post_date = String(post[date])
+                p.post_editType = Int(post[postEditType])
                 p.post_isOffline = true;
                 
                 let i = PostImage();
@@ -160,7 +243,6 @@ public class Post {
             
         }
         
-        
         return allPosts
         
     }
@@ -168,11 +250,13 @@ public class Post {
     func getAllPost(postid:Int64) -> [Post] {
         var allPosts:[Post] = []
         do {
-            let query = post.select(id,type,userId,journeyId,thoughts,location,category,city,country,latitude,longitude,date)
+            let query = post.select(id,postServerId,postServerUniqueId,type,userId,journeyId,thoughts,location,category,city,country,latitude,longitude,date, prevBuddyDb, userName, checkInChange, postUploadStatus, postEditType)
                 .filter(id == postid)
             for post in try db.prepare(query) {
                 let p = Post();
                 p.post_id = Int(post[id])
+                p.post_ids = String(post[postServerId])
+                p.post_uniqueId = String(post[postServerUniqueId])
                 p.post_type = String(post[type])
                 p.post_userId = String(post[userId])
                 p.post_journeyId = String(post[journeyId])
@@ -184,7 +268,7 @@ public class Post {
                 p.post_latitude = String(post[latitude])
                 p.post_longitude = String(post[longitude])
                 p.post_date = String(post[date])
-                
+                p.post_editType = Int(post[postEditType])
                 
                 p.post_dateDay = changeDate(givenFormat: "yyyy-MM-dd'T'HH:mm:ss.SSZ", getFormat: "dd-MM-yyyy", date: p.post_date, isDate: true)
                 p.post_dateTime = changeDate(givenFormat: "yyyy-MM-dd'T'HH:mm:ss.SSZ", getFormat: "h:mm a", date: p.post_date, isDate: false)
@@ -347,6 +431,8 @@ public class Post {
         self.post_likeCount = json["likeCount"].intValue
         self.post_commentCount = json["commentCount"].intValue
         self.buddyJson = json["buddies"].array!
+        self.post_editType = json["editPostType"].intValue
+        self.post_isOffline = json["isPostOffline"].boolValue
         self.post_dateDay = changeDate(givenFormat: "yyyy-MM-dd'T'HH:mm:ss.SSZ", getFormat: "dd-MM-yyyy", date: self.post_date, isDate: true)
         self.post_dateTime = changeDate(givenFormat: "yyyy-MM-dd'T'HH:mm:ss.SSZ", getFormat: "h:mm a", date: self.post_date, isDate: false)
         
@@ -355,7 +441,12 @@ public class Post {
         }
         
         if(json["imageUrl"].string != nil) {
-            self.post_locationImage = json["imageUrl"].stringValue
+            if json["checkIn"]["location"] != "" {
+                self.post_locationImage = json["imageUrl"].stringValue
+            }
+            else {
+                self.post_locationImage = ""
+            }
         }
         
         for photo in json["photos"].arrayValue {
@@ -377,29 +468,67 @@ public class Post {
     }
     
     func changeDate(givenFormat: String, getFormat: String, date: String, isDate: Bool) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = givenFormat
-        let date = dateFormatter.date(from: date)
-        dateFormatter.dateFormat = getFormat
-        if isDate {
-            dateFormatter.dateStyle = .medium
+        if date != "" {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = givenFormat
+            let date = dateFormatter.date(from: date)
+            dateFormatter.dateFormat = getFormat
+            if isDate {
+                dateFormatter.dateStyle = .medium
+            }
+            let goodDate = dateFormatter.string(from: date!)
+            return goodDate            
         }
-        let goodDate = dateFormatter.string(from: date!)
-        return goodDate
+        
+        return ""        
     }
     
     
+    func updateStatus(postId: Int64, status: uploadStatus) {
+        
+        var toStatus = 0
+        switch status {
+        case .UPLOAD_PENDING:
+            toStatus = 0
+            
+        case .UPLOAD_IN_PROGRESS:
+            toStatus = 1
+            
+        case .UPLOAD_COMPLETE:
+            toStatus = 2
+            
+        case .UPLOAD_FAILED:
+            toStatus = 3
+        }
+        
+        let updaterow = self.post.filter(self.id == postId)
+        do {
+            try self.db.run(updaterow.update(self.postUploadStatus <- Int64(toStatus))) 
+        }
+        catch {
+            print("\n POST update error FOUND")
+        }
+        
+    }
     
     func uploadPost() {
+        print(" ******* postCheck 1")
         do {
             var check = false;
-            let query = post.select(id,type,userId,journeyId,thoughts,location,category,city,country,latitude,longitude,date,buddyDb)
+            let query = post.select(id, type, userId, journeyId, thoughts, location, category, city, country, latitude, longitude, date, newbuddyDb, prevBuddyDb, userName, checkInChange, postUploadStatus, postServerId, postServerUniqueId, oldVideo)
+                .filter(postUploadStatus == 0 || postUploadStatus == 3)
                 .limit(1)
+            
             for post in try db.prepare(query) {
-                check = true
-                let p = Post();
                 
-                let postID = post[id]
+                print(" ******* postCheck 2")
+                
+                print("\n postId : \(post[id]) postIds: \(post[postServerId])")
+                
+                self.updateStatus(postId: post[id], status: (isNetworkReachable ? uploadStatus.UPLOAD_IN_PROGRESS : uploadStatus.UPLOAD_PENDING))
+                
+                check = true
+                let p = Post();                
                 
                 p.post_id = Int(post[id])
                 p.post_type = String(post[type])
@@ -413,17 +542,18 @@ public class Post {
                 p.post_latitude = String(post[latitude])
                 p.post_longitude = String(post[longitude])
                 p.post_date = String(post[date])
-                p.buddiesStr = String(post[buddyDb])
+                p.buddiesStr = String(post[newbuddyDb])
+                p.oldbuddiesStr = String(post[prevBuddyDb])
+                p.oldVideoStr = String(post[oldVideo])
                 
                 let i = PostImage();
                 p.imageArr = i.getAllImages(postNo: post[id])
-                
+                print("\n imageArr: \(p.imageArr)")
                 var photosJson:[JSON] = []
                 
                 for img in p.imageArr {
                     photosJson.append(img.parseJson())
                 }
-                
                 
                 let v = PostVideo();
                 p.videoArr = v.getAll(postNo: post[id])
@@ -433,59 +563,163 @@ public class Post {
                 for vid in p.videoArr {
                     vidoesJson.append(vid.parseJson())
                 }
+                                
+                let checkInJson:JSON = ["location":p.post_location,
+                                        "category":((p.post_category == "") ? "Others" : p.post_category)!,
+                                        "city":p.post_city,
+                                        "country":p.post_country,
+                                        "lat":p.post_latitude,
+                                        "long":p.post_longitude]
                 
-                var ctgry = ""
-                if p.post_category == "" {
-                    ctgry = "Others"
-                }else{
-                    ctgry = p.post_category
-                }
-                
-                let checkInJson:JSON = ["location":p.post_location,"category":ctgry,"city":p.post_city,"country":p.post_country,"lat":p.post_latitude,"long":p.post_longitude]
-                
-                var params:JSON = ["type":"travel-life", "thoughts":p.post_thoughts,"user": p.post_userId,"journey":p.post_journeyId,"date":p.post_date]
-                
+                var newBuddyJSON : JSON = [:]
                 if let data = p.buddiesStr.data(using: String.Encoding.utf8) {
-                    params["buddies"] = JSON(data:data)
+                    newBuddyJSON = JSON(data:data)
                 }
                 
-                params["checkIn"] = checkInJson
-                params["photos"] = JSON(photosJson)
-                params["videos"] = JSON(vidoesJson)
+                var oldBuddyJSON : JSON = [:]
+                if let data = p.oldbuddiesStr.data(using: String.Encoding.utf8) {
+                    oldBuddyJSON = JSON(data:data)
+                }
+                
+                var oldVideoJSON : JSON = [:]
+                if let data = p.oldVideoStr.data(using: String.Encoding.utf8) {
+                    oldVideoJSON = JSON(data:data)
+                }
+                
+                let postID = post[id]
+                
+                var newPostParams:JSON = ["user":post[userId],
+                                          "type":post[type],                                          
+                                          "thoughts":post[thoughts],
+                                          "checkIn":checkInJson]
 
-                request.postTravelLifeJson(params, completion: {(response) in
-                    if response.error != nil {
-                        print("response: \(response.error?.localizedDescription)")
-                    }
-                    else if response["value"].bool! {
-                        do {
-                            print(response);
-                            let singlePhoto = self.post.filter(self.id == postID)
-                            try db.run(singlePhoto.delete())
-                            i.deletePhotos(postID);
-                            v.delete(postID)
+                if post[postServerId] == "" {
+                    newPostParams["journey"] = JSON(post[journeyId])
+                    newPostParams["date"] = JSON(post[date])
+                    newPostParams["buddies"] = newBuddyJSON
+                    newPostParams["photos"] = JSON(photosJson)
+                    newPostParams["videos"] = JSON(vidoesJson)                    
+                    
+                    request.postTravelLifeJson(newPostParams, completion: {(response) in
+                        print("\n postTravel RESPOSNESSSSS: \(response)")
+                        
+                        if response.error != nil {
+                            print("response: \(response.error?.localizedDescription)")
+                            self.updateStatus(postId: post[self.id], status: uploadStatus.UPLOAD_FAILED)
                         }
-                        catch {
-                            
+                        else if response["value"].bool! {
+                            do {
+                                print(response);
+                                let singlePhoto = self.post.filter(self.id == postID)
+                                try self.db.run(singlePhoto.delete())
+                                i.deletePhotos(postID);
+                                v.delete(postID)                            
+                                self.updateStatus(postId: post[self.id], status: uploadStatus.UPLOAD_COMPLETE)
+                                p.delete(postID)
+                            }
+                            catch {
+                                
+                            }
+                            print(" ******* postCheck 3")
+                            isUploadingInProgress = false
+                            let i = PostImage()
+                            i.uploadPhotos(delegate: nil)
                         }
-                        if(check) {
-                            self.uploadPost()
+                        else {
+                            print("response error")
+                            self.updateStatus(postId: post[self.id], status: uploadStatus.UPLOAD_FAILED)
                         }
-                    }
-                    else {
-                        print("response error")
-                    }
-                })
+                    })
+                    
+                }
+                else {
+                    newPostParams["journeyUniqueId"] = JSON(post[journeyId])
+                    newPostParams["_id"] = JSON(post[postServerId])
+                    newPostParams["uniqueId"] = JSON(post[postServerUniqueId])
+                    newPostParams["username"] = JSON(post[userName])                    
+                    newPostParams["newBuddies"] = newBuddyJSON
+                    newPostParams["oldBuddies"] = oldBuddyJSON
+                    newPostParams["videosArr"] = oldVideoJSON
+                    newPostParams["photosArr"] = JSON(photosJson)
+//                    newPostParams["videosArr"] = JSON(vidoesJson)
+                    newPostParams["checkInChange"] = JSON(post[checkInChange])
+                    
+                    request.editPost(param: newPostParams, completion: { (response) in
+                        
+                        print("\n editPost RESPOSNESSSSS: \(response)")
+                        
+                        if response.error != nil {
+                            print("response: \(response.error?.localizedDescription)")
+                            self.updateStatus(postId: post[self.id], status: uploadStatus.UPLOAD_FAILED)
+                        }
+                        else if response["value"].bool! {
+                            do {
+                                print(response);
+                                let singlePhoto = self.post.filter(self.id == postID)
+                                try self.db.run(singlePhoto.delete())
+                                i.deletePhotos(postID);
+                                v.delete(postID)                            
+                                self.updateStatus(postId: post[self.id], status: uploadStatus.UPLOAD_COMPLETE)
+                                p.delete(postID)
+                            }
+                            catch {
+                                
+                            }
+                            print(" ******* postCheck 3")
+                            isUploadingInProgress = false
+                            let i = PostImage()
+                            i.uploadPhotos(delegate: nil)
+                        }
+                        else {
+                            print("response error")
+                            self.updateStatus(postId: post[self.id], status: uploadStatus.UPLOAD_FAILED)
+                        }
+                    })
+                    
+                }
+                
             }
+            
             if(!check) {
+                print(" ******* postCheck 4")
                 let pe = PostEditPhotosVideos();
                 pe.uploadPostPhotosVideos()
             }
         }
         catch {
+            print(" ******* postCheck 5")
             print("There is an error");
         }
     }
+    
+    func delete(_ post:Int64) {
+        do {
+            let query = self.post.filter(self.id == post)
+            try db.run(query.delete())
+        }
+        catch {
+            print("\n Error in deleting POST")
+        }
+    }
+    
+    func rollbackPostTableProgress() {
+        do {
+            let query = post.select(id, type, userId, journeyId, thoughts, location, category, city, country, latitude, longitude, date, newbuddyDb, prevBuddyDb, userName, checkInChange, postUploadStatus, postServerId, postServerUniqueId)
+                .filter(postUploadStatus == 1)
+            
+            for post in try db.prepare(query) {
+                self.updateStatus(postId: post[self.id], status: uploadStatus.UPLOAD_FAILED)
+            }
+        }
+        catch {
+            print(error);
+        }
+    }
+    
+    func dropPostTable() {
+        try! db.run(post.drop(ifExists: true))
+    }
+    
 }
 
 

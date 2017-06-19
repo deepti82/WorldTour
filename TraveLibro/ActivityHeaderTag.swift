@@ -22,22 +22,36 @@ class ActivityHeaderTag: UIView {
         transparentBack()
         
     }
+
+    func resetActivityHeaderTag() {
+        self.tagText.text = ""
+        self.tagText.textColor = UIColor.clear
+        self.tagView.backgroundColor = UIColor.clear
+    }
+    
     func colorTag(feed:JSON) {
         
         if feed["type"].stringValue == "travel-life" {
             self.tagText.text = "Travel Life"
-//            self.tagView.backgroundColor = mainOrangeColor
-        }else if feed["type"].stringValue == "quick-itinerary" {
+            self.tagText.textColor = UIColor.white
+            self.tagView.backgroundColor = mainOrangeColor            
+        }
+        else if feed["type"].stringValue == "quick-itinerary" {
             self.tagText.text = "Unpublished"
-        }else{
+            self.tagText.textColor = UIColor.white
+            self.tagView.backgroundColor = mainOrangeColor
+        }
+        else{
             self.tagText.text = "  Local Life"
             self.tagText.textColor = UIColor(hex: "#303557")
             self.tagView.backgroundColor = endJourneyColor
         }
     }
+    
     func transparentBack() {
         transparentCardWhite(tagParent)
     }
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }

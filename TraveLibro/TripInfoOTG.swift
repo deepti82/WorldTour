@@ -9,12 +9,7 @@
 import UIKit
 
 class TripInfoOTG: UIView {
-
-    @IBOutlet weak var nearMeButton: UIButton!
-    @IBOutlet weak var itinerariesButton: UIButton!
-    @IBOutlet weak var restaurantsButton: UIButton!
-    @IBOutlet weak var hotelsButton: UIButton!
-    @IBOutlet weak var mustDoButton: UIButton!
+    
     @IBOutlet weak var reviewsButton: UIButton!
     @IBOutlet weak var photosButton: UIButton!
     @IBOutlet weak var videosButton: UIButton!
@@ -23,16 +18,11 @@ class TripInfoOTG: UIView {
     @IBOutlet weak var crollInoView: UIScrollView!
     @IBOutlet weak var videosCount: UIButton!
     @IBOutlet weak var photosCount: UIButton!
-    @IBOutlet weak var ratingCount: UIButton!
-    @IBOutlet weak var mustDoCount: UIButton!
-    @IBOutlet weak var hotelsCount: UIButton!
-    @IBOutlet weak var restaurantCount: UIButton!
-    @IBOutlet weak var itinerariesCount: UIButton!
-    @IBOutlet weak var nearMeCount: UIButton!
-    @IBOutlet weak var aboutLocationText: UILabel!
-    
-//    @IBOutlet weak var closeButton: UIButton!
+    @IBOutlet weak var ratingCount: UIButton!    
+    @IBOutlet weak var aboutLocationText: UILabel!    
+
     @IBOutlet var notifications: [UIButton]!
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()

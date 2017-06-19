@@ -14,6 +14,7 @@ import Crashlytics
 
 class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
+    @IBOutlet weak var gradientView: UIView!
     @IBOutlet weak var userProfileImageView: UIImageView!
     @IBOutlet weak var flagImageView: UIImageView!
     @IBOutlet weak var countryNameLabel: UILabel!
@@ -43,6 +44,7 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     var shouldStopAnimate = true
     var isProfileVCVisible = true
     var isLoadedForFirstTime = false
+    var isAppStartedFromInitial = false
     
     var myLifeVC:MyLifeViewController!
     var MAM: MoreAboutMe!
@@ -65,15 +67,28 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        globalNewTLViewController = nil
+        globalTLMainFeedsViewController = nil
+        navigation = nil
+        
         isLoadedForFirstTime = true
+        
+        if isAppStartedFromInitial {
+            
+            print("\n DB : Uploading to cloud started...")
+            
+            let i = PostImage()
+            i.uploadPhotos(delegate: nil)
+            
+            isAppStartedFromInitial = false
+        }
         
         self.automaticallyAdjustsScrollViewInsets = false
         
-        getDarkBackGround(self)
+        getDarkBackGround(self)        
         
         getUnreadNotificationCount()
-//        userBadgeImageView.imageresizeImage(image: userBadgeImageView.image!,newWidth: 50)
-
+        
         self.userNameLabel.text = ""
         self.cityNameLabel.text = ""
         
@@ -104,6 +119,8 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        setAnalytics(name: "Profile")
+        
         shouldShowTransperentNavBar = true
         
         self.setNavigationBar()
@@ -119,6 +136,10 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
         }
         
         self.footer.setFooterDefaultState()
+        
+        if isShowingSelf {
+            footer.setHighlightStateForView(tag: 2, color: mainOrangeColor)            
+        }       
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -128,13 +149,19 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
         
         self.setNavigationBar()
         
+        if isLoadedForFirstTime {
+            setGradientView()
+        }
         updateUI()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         isProfileVCVisible = false
-        shouldShowTransperentNavBar = false
+        shouldShowTransperentNavBar = false        
+        if (self.mamStackView.tag == 1) {
+            self.toggleMAMTextView(stackView: self.mamStackView)
+        }
         self.customiseNavigation()
     }
 
@@ -144,6 +171,17 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     
     
     //MARK: - UI
+    
+    func setGradientView() {
+        
+        let gradientLayer = CAGradientLayer()        
+        let blackColour = UIColor.black.withAlphaComponent(0.5).cgColor as CGColor        
+        let transparent = UIColor.clear.cgColor as CGColor
+        gradientLayer.frame = self.gradientView.frame        
+        gradientLayer.colors = [blackColour, transparent, blackColour]
+        gradientLayer.locations = [0.0, 0.15, 1]
+        self.gradientView.layer.addSublayer(gradientLayer)
+    }
     
     func resizeImage(image: UIImage, newWidth: CGFloat) -> UIImage? {
 //        
@@ -162,6 +200,7 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     func setNavigationBar() {
         
         setNavigationBarItemText("My Life")
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
         
         if displayData == "search" {
             let leftButton = UIButton()
@@ -231,8 +270,7 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
         }
     }
     
-    func setUserBadgeName(badge: String) {
-        print(screenWidth/25)
+    func setUserBadgeName(badge: String) {        
         if currentUser["userBadgeName"].string == "newbie"{
             self.userBadgeImageView.image = resizeImage(image: UIImage(named: "badge1")!, newWidth: screenWidth/25)
         }
@@ -284,7 +322,7 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
             
            // print("==========\(currentUser)")
             
-            self.userProfileImageView.hnk_setImageFromURL(getImageURL(currentlyShowingUser["profilePicture"].stringValue, width: 0))
+            self.userProfileImageView.sd_setImage(with: getImageURL(currentlyShowingUser["profilePicture"].stringValue, width: ORIGINAL_PHOTO_WIDTH))
             
             setUserName(username: currentlyShowingUser["name"].stringValue)
             
@@ -422,7 +460,7 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
         cell.separatorView.isHidden = false
         
         cell.countLabel.text = labels[indexPath.row]["count"]
-        cell.infoLabel.text = labels[indexPath.row]["text"]
+        cell.infoLabel.text = getTrimmedString(inputString: labels[indexPath.row]["text"]!)
 //        cell.infoLabel.sizeToFit()
 //        cell.infoLabel.center = CGPoint(x: cell.center.x, y: cell.infoLabel.center.y)
         
@@ -512,31 +550,21 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     func toggleMAMTextView(stackView: UIStackView) {
         
         if stackView.tag == 0 {
-            self.MAM = MoreAboutMe(frame: CGRect(x: 0, y: 0, width: self.MAMTextView.frame.size.width, height: 140))
-            self.MAM.mainTextView.textAlignment = .center
+            self.MAM = MoreAboutMe()
+            self.MAM.forUser = currentlyShowingUser
+            self.MAM.reloadTravelPrefeces()
+            
+            let textViewHeight = (heightOfAttributedText(attributedString: MAM.mainTextView.attributedText.mutableCopy() as! NSMutableAttributedString, width: (self.MAMTextView.frame.size.width - 25)) + 15)
+            
+            self.MAM.frame = CGRect(x: 0, y: 0, width: self.MAMTextView.frame.size.width, height: textViewHeight)
+            
             self.MAM.backgroundColor = UIColor.clear
 //            self.MAM.transform = CGAffineTransform(translationX: 0, y: 0);
             self.MAMTextView.addSubview(self.MAM)
             
-            self.MAMTextViewHeightConstraint.constant = 140
-            self.MAMTextView.frame.size.height = 140
+            self.MAMTextViewHeightConstraint.constant = textViewHeight + CGFloat(15)
+            self.MAMTextView.frame.size.height = textViewHeight + CGFloat(15)
             self.mamStackView.tag = 1
-
-            UIView.animate(withDuration: 0.5){
-                self.view.layoutIfNeeded()
-            }
-//            UIView.animate(withDuration: 0.5, delay: 0.3, options: [.curveEaseOut], animations: {
-//                self.MAM = MoreAboutMe(frame: CGRect(x: 0, y: 0, width: self.MAMTextView.frame.size.width, height: 140))
-//                self.MAM.mainTextView.textAlignment = .center
-//                self.MAM.backgroundColor = UIColor.clear
-//                 self.MAM.transform = CGAffineTransform(translationX: 0, y: 0);
-//                self.MAMTextView.addSubview(self.MAM)
-//                
-//                self.MAMTextViewHeightConstraint.constant = 140
-//                self.MAMTextView.frame.size.height = 140
-//                self.mamStackView.tag = 1
-//            }, completion: nil)
-            
             
         }
         else {
@@ -555,9 +583,11 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     }
     
     func exploreMyLife(selectionTab: String) {
-        let myLifeViewCtrllr = storyboard?.instantiateViewController(withIdentifier: "myLife") as! MyLifeViewController
-        myLifeViewCtrllr.whatEmptyTab = selectionTab
-        self.navigationController?.pushViewController(myLifeViewCtrllr, animated: true)
+        if !(shouldRestrictCurrentUserProfile()) {
+            let myLifeViewCtrllr = storyboard?.instantiateViewController(withIdentifier: "myLife") as! MyLifeViewController
+            myLifeViewCtrllr.whatEmptyTab = selectionTab
+            self.navigationController?.pushViewController(myLifeViewCtrllr, animated: true)            
+        }
     }
     
     func gotoFollowersController(selectionOption: String) {
@@ -597,9 +627,13 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     //MARK: - Functional Helpers
     
     func getUser() {
-        print("\n getUser called")
         
-        request.getUser(user.getExistingUser(), urlSlug:selectedUser["urlSlug"].stringValue, completion: {(request) in
+        if isShowingSelf {
+            selectedPeople = ""
+            selectedUser = []
+        }
+        
+        request.getUser(user.getExistingUser(), urlSlug:selectedUser["urlSlug"].stringValue, completion: {(request, isFromCache) in
             DispatchQueue.main.async {
                 self.currentlyShowingUser = request["data"]
                 currentUser = request["data"]
@@ -652,8 +686,7 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     
     func setTextWithAnimation(onView: UILabel, text: String) {
         
-        let charArray = Array(text.characters)
-        print("\n charArray : \(charArray)")
+        let charArray = Array(text.characters)        
         onView.text = ""
         
         strIndex = 0
@@ -664,8 +697,7 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     func addNextChar(onView: UILabel, str: String) {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
-            if self.isProfileVCVisible {
-                print("onView.text \(onView.text)")
+            if self.isProfileVCVisible {                
                 let charArray = Array(str.characters)
                 if charArray.count > 0 { 
                     onView.text = onView.text?.appending(String(charArray[self.strIndex]))

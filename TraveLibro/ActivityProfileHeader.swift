@@ -62,6 +62,8 @@ class ActivityProfileHeader: UIView {
         
         currentFeed = feed
         
+        profilePic.image = UIImage(named: "logo-default")
+        
         if isLocalFeed(feed: currentFeed) {
             fillProfileHeaderLocalFeed(feed: feed, pageType: pageType, cellType: cellType)
         }
@@ -79,7 +81,9 @@ class ActivityProfileHeader: UIView {
             setFollowButtonTitle(button: followButton, followType: feed["following"].intValue, otherUserID: (feed["_id"] != nil ? feed["_id"].stringValue : "admin"))
             
             
-            if(pageType == viewType.VIEW_TYPE_ACTIVITY ||
+            if (pageType == viewType.VIEW_TYPE_ACTIVITY ||
+                pageType == viewType.VIEW_TYPE_SHOW_SINGLE_POST ||
+                pageType == viewType.VIEW_TYPE_OTG ||
                 (currentUser != nil) && feed["user"]["_id"].stringValue == currentUser["_id"].stringValue) {
                 followButton.isHidden = true
             }
@@ -213,6 +217,41 @@ class ActivityProfileHeader: UIView {
                 }
             }
             
+            else if pageType == viewType.VIEW_TYPE_SHOW_SINGLE_POST {
+                
+                localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["UTCModified"].stringValue, isDate: true)
+                localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["UTCModified"].stringValue, isDate: false)
+                
+                switch feed["type"].stringValue {
+                case "on-the-go-journey":
+                    fallthrough
+                case "ended-journey":
+                    userName.text = feed["user"]["name"].stringValue
+                    profilePic.hnk_setImageFromURL(getImageURL(feed["user"]["profilePicture"].stringValue, width: SMALL_PHOTO_WIDTH))
+                    localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["startTime"].stringValue, isDate: true)
+                    localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["startTime"].stringValue, isDate: false)                    
+                    break
+                    
+                    
+                case "quick-itinerary":
+                    fallthrough
+                case "detail-itinerary":
+                    userName.text = feed["creator"]["name"].stringValue
+                    profilePic.hnk_setImageFromURL(getImageURL(feed["creator"]["profilePicture"].stringValue, width: SMALL_PHOTO_WIDTH))
+                    
+                    if feed["timestamp"].stringValue == "" {
+                        localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["createdAt"].stringValue, isDate: true)
+                        localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["createdAt"].stringValue, isDate: false)                        
+                    }
+                    
+                    break
+                    
+                default:
+                    userName.text = feed["postCreator"]["name"].stringValue
+                    profilePic.hnk_setImageFromURL(getImageURL(feed["postCreator"]["profilePicture"].stringValue, width: SMALL_PHOTO_WIDTH))
+                }
+            } 
+            
         }
     }
     
@@ -260,7 +299,7 @@ class ActivityProfileHeader: UIView {
         }
     }
     
-    func removePreviousGesture() {
+    private func removePreviousGesture() {
         for recognizer in self.gestureRecognizers ?? [] {
             self.removeGestureRecognizer(recognizer)
         }

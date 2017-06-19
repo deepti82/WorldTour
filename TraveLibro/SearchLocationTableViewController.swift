@@ -9,6 +9,7 @@ class SearchLocationTableViewController: UITableViewController, UISearchBarDeleg
     var shouldShowSearchResults = false
     var location: CLLocationCoordinate2D!
     var searchString = "Loha"
+    private var requestId = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +23,7 @@ class SearchLocationTableViewController: UITableViewController, UISearchBarDeleg
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setAnalytics(name: "Search Location")
         self.navigationController?.navigationBar.isTranslucent = true
     }
     
@@ -33,31 +35,31 @@ class SearchLocationTableViewController: UITableViewController, UISearchBarDeleg
     func getSearchText() {
         
         print("in the search text \(searchString.characters.count)")
+
+        self.requestId += 1
         
-//        if searchString.characters.count > 2 {
-        
-            request.getGoogleSearchNearby(location.latitude, long: location.longitude, searchText: searchString, completion: {(response) in
-                
-                if response.error != nil {
-                    
-                    print("error: \(response.error?.localizedDescription)")
-                    
-                }
-                else if response["value"].bool! {
-                    
-                    self.filteredArray = response["data"].array!
-                    self.tableView.reloadData()
-                    
-                }
-                else {
-                    
-                    print("response error")
-                }
-                
-            })
+        DispatchQueue.global().async {
             
-//        }
-        
+            request.getGoogleSearchNearby(self.location.latitude, long: self.location.longitude, searchText: self.searchString, requestId: self.requestId, completion: {(response, responseId) in
+                
+                if self.requestId == responseId {
+                    
+                    DispatchQueue.main.async(execute: {
+                        
+                        if response.error != nil {                            
+                            print("error: \(response.error?.localizedDescription)")
+                        }
+                        else if response["value"].bool! {
+                            self.filteredArray = response["data"].array!
+                            self.tableView.reloadData()
+                        }
+                        else {
+                            print("response error")
+                        }
+                    })
+                }
+            })
+        }
     }
     
     func setTopNavigation(_ text: String) {
@@ -101,7 +103,6 @@ class SearchLocationTableViewController: UITableViewController, UISearchBarDeleg
         
         print("search cancelled")
         shouldShowSearchResults = false
-        print("\(shouldShowSearchResults)")
         tableView.reloadData()
         
     }
@@ -137,19 +138,18 @@ class SearchLocationTableViewController: UITableViewController, UISearchBarDeleg
         super.didReceiveMemoryWarning()
         
     }
+    
+    
+    //MARK: - TableView Datasource & Delegates
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-
         return 1
-        
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if shouldShowSearchResults {
-            
+        if shouldShowSearchResults {            
             return filteredArray.count
-            
         }
         
         return places.count
@@ -160,12 +160,10 @@ class SearchLocationTableViewController: UITableViewController, UISearchBarDeleg
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! searchLocationsTableViewCell
         
-        if shouldShowSearchResults {
-            
+        if shouldShowSearchResults {            
             cell.placeName.text = filteredArray[(indexPath as NSIndexPath).row]["terms"].string!
             cell.vicinityLabel.text = filteredArray[(indexPath as NSIndexPath).row]["description"].string!
             return cell
-            
         }
         
         cell.placeName.text = places[(indexPath as NSIndexPath).row]["name"].string!
@@ -176,42 +174,24 @@ class SearchLocationTableViewController: UITableViewController, UISearchBarDeleg
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let myCell = tableView.cellForRow(at: indexPath) as! searchLocationsTableViewCell
         var myId = ""
+        var locName = ""
+        
         if shouldShowSearchResults {
             
             searchController.searchBar.resignFirstResponder()
             searchController.isActive = false
             
-            for place in filteredArray {
-                
-                if myCell.placeName.text! == place["terms"].string! {
-                    
-                    myId = place["place_id"].string!
-                    
-                }
-                
-                
-            }
-            
-            
+            myId = filteredArray[indexPath.row]["place_id"].stringValue
+            locName = filteredArray[indexPath.row]["terms"].stringValue 
         }
         
         else {
-            
-            for place in places {
-                
-                if myCell.placeName.text! == place["name"].string! {
-                    
-                    myId = place["place_id"].string!
-                    
-                }
-                
-            }
-            
+            myId = places[indexPath.row]["place_id"].stringValue
+            locName = places[indexPath.row]["name"].stringValue
         }
         
-        globalAddActivityNew.putLocationName(myCell.placeName.text!, placeId: myId)
+        globalAddActivityNew.putLocationName(locName, placeId: myId)
         _ = self.navigationController?.popViewController(animated: true)
     }
 

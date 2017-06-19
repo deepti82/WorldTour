@@ -107,9 +107,7 @@ class NotificationPhotoCell: UITableViewCell {
         let xPos = NFHeader.frame.origin.x + NFHeader.frame.size.width
         
         let titleHeight = NFTitle.setMessageLabel(data: notificationData)
-        NFTitle.frame = CGRect(x: xPos, y: 0, width: screenWidth - xPos - IMAGE_HEIGHT, height: titleHeight)        
-        
-        NFPhoto.NFPhotoImage.image = UIImage(named: "logo-default")
+        NFTitle.frame = CGRect(x: xPos, y: 0, width: screenWidth - xPos - IMAGE_HEIGHT, height: titleHeight)
         
         NFPhoto.frame = CGRect(x: screenWidth - IMAGE_HEIGHT, y: CGFloat(0), width: IMAGE_HEIGHT, height: IMAGE_HEIGHT)
         if notificationData["type"] == "journeyMentionComment" ||
@@ -124,7 +122,8 @@ class NotificationPhotoCell: UITableViewCell {
                 imageURL = notificationData["data"]["startLocationPic"].stringValue
             }
             NFPhoto.NFPlayImage.isHidden = true
-            NFPhoto.NFPhotoImage.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(imageURL!)", width: SMALL_PHOTO_WIDTH))
+            NFPhoto.NFPlayImage.sd_setImage(with: getImageURL("\(adminUrl)upload/readFile?file=\(imageURL!)", width: SMALL_PHOTO_WIDTH),
+                                            placeholderImage: getPlaceholderImage())
         }
         else{
             NFPhoto.setPhoto(data: notificationData["data"])

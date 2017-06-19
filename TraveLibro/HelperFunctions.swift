@@ -65,7 +65,7 @@ class SocialLoginClass: UIViewController {
                                         }
                                         else if response["value"].bool! {
                                             
-                                            request.getUser(loggedInUser["_id"].stringValue, urlSlug: nil, completion: { (response1) in
+                                            request.getUser(loggedInUser["_id"].stringValue, urlSlug: nil, completion: { (response1, isFromCache) in
                                                 
                                                 
                                                 DispatchQueue.main.async(execute: {
@@ -89,7 +89,7 @@ class SocialLoginClass: UIViewController {
                                                                      homecountry: response["homeCountry"]["name"].stringValue,
                                                                      homecity: response["homeCity"].stringValue,
                                                                      isloggedin: response["alreadyLoggedIn"].bool!, 
-                                                                     dataUpload:"", privacy:response["status"].stringValue)
+                                                                     privacy:response["status"].stringValue)
                                                         
                                                         if response1["value"].bool! {
                                                             
@@ -218,7 +218,7 @@ class SocialLoginClass: UIViewController {
                                         }
                                         else if responsess["value"].bool! {
                                             
-                                            request.getUser(loggedInUser["_id"].stringValue, urlSlug: nil, completion: { (response1) in
+                                            request.getUser(loggedInUser["_id"].stringValue, urlSlug: nil, completion: { (response1, isFromCache) in
                                                 DispatchQueue.main.async(execute: {
                                                     print("response11: \(response1)")
                                                     if (response1.error != nil) {
@@ -239,8 +239,8 @@ class SocialLoginClass: UIViewController {
                                                                      userBadge: response["userBadgeImage"].stringValue,
                                                                      homecountry: response["homeCountry"]["name"].stringValue,
                                                                      homecity: response["homeCity"].stringValue,
-                                                                     isloggedin: response["alreadyLoggedIn"].bool!, 
-                                                                     dataUpload:"", privacy:response["status"].stringValue)
+                                                                     isloggedin: response["alreadyLoggedIn"].bool!,
+                                                                     privacy:response["status"].stringValue)
                                                         
                                                         if response1["value"].bool! {
                                                             
@@ -431,28 +431,6 @@ extension UIView {
     }
 }
 
-import SystemConfiguration
-
-open class Reachability {
-    class func isConnectedToNetwork() -> Bool {
-        var zeroAddress = sockaddr_in()
-        zeroAddress.sin_len = UInt8(MemoryLayout.size(ofValue: zeroAddress))
-        zeroAddress.sin_family = sa_family_t(AF_INET)
-        let defaultRouteReachability = withUnsafePointer(to: &zeroAddress, {
-            $0.withMemoryRebound(to: sockaddr.self, capacity: 1) {
-                SCNetworkReachabilityCreateWithAddress(nil, $0)
-            }
-        })
-        var flags = SCNetworkReachabilityFlags()
-        if !SCNetworkReachabilityGetFlags(defaultRouteReachability!, &flags) {
-            return false
-        }
-        let isReachable = (flags.rawValue & UInt32(kSCNetworkFlagsReachable)) != 0
-        let needsConnection = (flags.rawValue & UInt32(kSCNetworkFlagsConnectionRequired)) != 0
-        return (isReachable && !needsConnection)
-    }
-}
-
 extension Data {
 
     var uint8: UInt8 {
@@ -521,14 +499,6 @@ extension UIImageView {
     
 }
 
-func isUserMe(user:String) -> Bool {
-    let loggedInUser = User()
-    if user == loggedInUser.getExistingUser() {
-        return true
-    }else{
-        return false
-    }
-}
 
 func log(_ message: String, _ filename: String = #file, _ line: Int = #line, _ function: String = #function) {
     print("\((filename as NSString).lastPathComponent):\(line) \(function):\r\(message)\n\n")

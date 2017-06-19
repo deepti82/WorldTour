@@ -57,30 +57,20 @@ class DisplayPagesOneViewController: UIViewController {
         swipeLeft.direction = UISwipeGestureRecognizerDirection.left
         self.view.addGestureRecognizer(swipeLeft)
         
-        request.getUser(currentUser["_id"].string!, urlSlug: nil, completion: {(response) in
+        request.getUser(currentUser["_id"].string!, urlSlug: nil, completion: {(response, isFromCache) in
             
             DispatchQueue.main.async(execute: {
               
-                if response.error != nil {
-                    
-                    print("error: \(response.error?.localizedDescription)")
-                    
+                if response.error != nil {                    
+                    print("error: \(response.error?.localizedDescription)")                    
                 }
                 else if response["value"].bool! {
-                    
-                    for button in self.buttonsForView {
-                        print(button.titleLabel?.text!)
-                    }
                     profilePic = response["data"]["profilePicture"].string!
-                    print("image: \(profilePic)")
                     self.setImage()
-                    
                 }
-                else {
-                    
+                else {                    
                     print("response error: \(response["error"])")
-                }
-                
+                }                
             })
             
         })

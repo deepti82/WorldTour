@@ -47,6 +47,8 @@ class QuickIteneraryFive: UIViewController, UICollectionViewDataSource, UICollec
     
     override func viewWillAppear(_ animated: Bool) {
         print(quickItinery)
+        setAnalytics(name: "Quickitinerary page Five")
+
     }
     
     
@@ -67,11 +69,10 @@ class QuickIteneraryFive: UIViewController, UICollectionViewDataSource, UICollec
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        if shouldShowBigImage(position: indexPath.row) {
-            return CGSize(width: (collectionView.frame.size.width), height: collectionView.frame.size.width * 0.7)
-        }
-        
-        return CGSize(width: (collectionView.frame.size.width/3 - 2), height: (collectionView.frame.size.width/3 - 2))
+//        if shouldShowBigImage(position: indexPath.row) {
+//            return CGSize(width: (collectionView.frame.size.width), height: collectionView.frame.size.width * 0.7)
+//        }
+        return CGSize(width: ((photosCollection.frame.size.width - 2)/2), height: (((photosCollection.frame.size.width - 2)/2) * 1.35))
         
     }
 
@@ -80,7 +81,8 @@ class QuickIteneraryFive: UIViewController, UICollectionViewDataSource, UICollec
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photosFromGallery", for: indexPath)
             as! photosSelection
         if(self.imageArr[indexPath.row].imageUrl != nil) {
-            cell.photosImage.hnk_setImageFromURL(self.imageArr[indexPath.row].imageUrl)
+            cell.photosImage.sd_setImage(with: self.imageArr[indexPath.row].imageUrl,
+                                         placeholderImage: getPlaceholderImage())
         } else {
             cell.photosImage.image = self.imageArr[indexPath.row].image
         }

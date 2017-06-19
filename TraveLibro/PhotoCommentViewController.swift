@@ -17,6 +17,8 @@ class PhotoCommentViewController: UIViewController, UITableViewDataSource, UITab
     var hashtags: [String] = []
     var mentions: [String] = []
     var mentionSuggestions: [JSON] = []
+    private var requestId = 0
+    private var requestHashId = 0
     
     var type = "Photo"
     
@@ -53,6 +55,10 @@ class PhotoCommentViewController: UIViewController, UITableViewDataSource, UITab
         // Do any additional setup after loading the view.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        setAnalytics(name: "Photo Comment Page")
+    }
+    
     func setTopNavigation(_ text: String) {
         let leftButton = UIButton()
         leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
@@ -66,6 +72,7 @@ class PhotoCommentViewController: UIViewController, UITableViewDataSource, UITab
     @IBAction func back(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
+    
     @IBAction func sendComments(_ sender: UIButton?) {
         mentionTableView.isHidden = true
         hashtagTableView.isHidden = true
@@ -136,7 +143,6 @@ class PhotoCommentViewController: UIViewController, UITableViewDataSource, UITab
         case 1:
             return hashtagSuggestions.count
         default:
-            print(comments.count)
             if comments.count != nil {
                 self.commentText.text = "\(comments.count) Comments"
             }
@@ -144,12 +150,18 @@ class PhotoCommentViewController: UIViewController, UITableViewDataSource, UITab
         }
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    /*func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         switch tableView.tag {
         case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: "cellTwo") as! PhotoMentionTableViewCell
-            cell.titleLabel.text = mentionSuggestions[indexPath.row]["urlSlug"].string!
+//            cell.titleLabel.text = mentionSuggestions[indexPath.row]["urlSlug"].string!
+            
+            cell.urlSlug.text = mentionSuggestions[indexPath.row]["urlSlug"].string!
+            cell.titleLabel.text = mentionSuggestions[indexPath.row]["name"].string!
+            cell.profilePhoto.sd_setImage(with: getImageURL(mentionSuggestions[indexPath.row]["profilePicture"].stringValue, width:200), placeholderImage: getPlaceholderImage())
+            HiBye(cell.profilePhoto)
+            
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! PhotoSuggestionsTableViewCell
@@ -202,6 +214,95 @@ class PhotoCommentViewController: UIViewController, UITableViewDataSource, UITab
             }
             
             return cell
+        }
+        
+    }*/
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        switch tableView.tag {
+        case 2:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cellTwo") as! MentionSuggestionsTableViewCell
+            cell.urlSlug.text = mentionSuggestions[indexPath.row]["urlSlug"].string!
+            cell.titleLabel.text = mentionSuggestions[indexPath.row]["name"].string!
+            cell.profilePhoto.sd_setImage(with: getImageURL(mentionSuggestions[indexPath.row]["profilePicture"].stringValue, width:200), placeholderImage: getPlaceholderImage())
+            HiBye(cell.profilePhoto)
+            
+            return cell
+        case 1:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! SuggestionsTableViewCell
+            cell.titleLabel.text = hashtagSuggestions[indexPath.row]["title"].string!
+            cell.statistics.text = "\(hashtagSuggestions[indexPath.row]["count"])"
+            return cell
+        default:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! CommentTableViewCell
+            
+            cell.profileImage.sd_setImage(with: getImageURL(self.comments[indexPath.row]["user"]["profilePicture"].stringValue, width:200), placeholderImage: getPlaceholderImage())
+            makeTLProfilePicture(cell.profileImage)
+            
+            cell.profileName.text = comments[indexPath.row]["user"]["name"].string!
+            cell.profileComment.text = comments[(indexPath as NSIndexPath).row]["text"].string!
+            if textVar.contains("@"){
+                cell.profileComment.font = UIFont(name: "Avenir-Heavy", size: 14)
+            }else {
+                print("hello")
+            }
+            
+            let dateFormatter = DateFormatter()
+            let timeFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSZ"
+            let date = dateFormatter.date(from: comments[indexPath.row]["createdAt"].string!)
+            dateFormatter.dateFormat = "dd MMM, yyyy"
+            timeFormatter.dateFormat = "hh:mm a"
+            cell.calendarText.text = "\(dateFormatter.string(from: date!))"
+            cell.clockText.text = "\(timeFormatter.string(from: date!))"
+            cell.clockIcon.text = String(format: "%C", faicon["clock"]!)
+            cell.calendarIcon.text = String(format: "%C", faicon["calendar"]!)
+            
+            cell.profileComment.customize {label in
+                label.handleMentionTap {_ in
+                    print("\n\n\n CommentData : \(self.comments[indexPath.row])")
+//                    let profile = self.storyboard?.instantiateViewController(withIdentifier: "TLProfileView") as! TLProfileViewController
+//                    profile.displayData = "search"
+//                    profile.currentSelectedUser = self.comments[indexPath.row]["user"]
+//                    self.navigationController?.pushViewController(profile, animated: true)
+                }
+                
+                label.handleHashtagTap {_ in 
+                    
+                    //                    let actionSheetControllerIOS8: UIAlertController = UIAlertController(title: "Hashtag", message: $0, preferredStyle: .alert)
+                    //                    let cancelActionButton: UIAlertAction = UIAlertAction(title: "OK", style: .default) {action -> Void in}
+                    //                    actionSheetControllerIOS8.addAction(cancelActionButton)
+                    //                    self.present(actionSheetControllerIOS8, animated: true, completion: nil)
+                }
+                
+                label.handleURLTap { let actionSheetControllerIOS8: UIAlertController =
+                    
+                    UIAlertController(title: "Url", message: "\($0)", preferredStyle: .alert)
+                    let cancelActionButton: UIAlertAction = UIAlertAction(title: "OK", style: .default) {action -> Void in}
+                    actionSheetControllerIOS8.addAction(cancelActionButton)
+                    self.present(actionSheetControllerIOS8, animated: true, completion: nil)
+                }
+            }
+            return cell
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        switch tableView.tag {
+        case 2:
+            mentionTableView.isHidden = true
+            let cell = mentionTableView.cellForRow(at: indexPath) as! MentionSuggestionsTableViewCell
+            mentions.append(mentionSuggestions[indexPath.row]["_id"].string!)
+            let reqStr = cell.titleLabel.text?.replacingOccurrences(of: " ", with: "")
+            modifyText(textView: editComment, modifiedString: reqStr!, replacableString: textVar, whichView: "@")
+        case 1:
+            hashtagTableView.isHidden = true
+            let cell = hashtagTableView.cellForRow(at: indexPath) as! SuggestionsTableViewCell
+            modifyText(textView: editComment, modifiedString: cell.titleLabel.text!, replacableString: textVar, whichView: "#")
+        default:
+            break
         }
         
     }
@@ -360,25 +461,7 @@ class PhotoCommentViewController: UIViewController, UITableViewDataSource, UITab
             hashtagTableView.isHidden = true
             mentionTableView.isHidden = true
         }
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        switch tableView.tag {
-        case 2:
-            mentionTableView.isHidden = true
-            let cell = mentionTableView.cellForRow(at: indexPath) as! PhotoMentionTableViewCell
-            mentions.append(mentionSuggestions[indexPath.row]["_id"].string!)
-            modifyText(textView: editComment, modifiedString: cell.titleLabel.text!, replacableString: textVar, whichView: "@")
-        case 1:
-            hashtagTableView.isHidden = true
-            let cell = hashtagTableView.cellForRow(at: indexPath) as! PhotoSuggestionsTableViewCell
-            modifyText(textView: editComment, modifiedString: cell.titleLabel.text!, replacableString: textVar, whichView: "#")
-        default:
-            break
-        }
-        
-    }
+    }    
     
 //    func modifyText(textView: UITextView, modifiedString: String, replacableString: String) {
 //        
@@ -391,23 +474,25 @@ class PhotoCommentViewController: UIViewController, UITableViewDataSource, UITab
 //        
 //    }
     
-    func modifyText(textView: UITextView, modifiedString: String, replacableString: String, whichView: String) {
-        
-        if replacableString == "" {
-            
-            textView.text = "\(textView.text!)\(modifiedString)"
-            
-        } else {
-            
-            let myString = textView.text as NSString
-            
-            let myRange = myString.range(of: whichView, options: .backwards)
-            
-            textView.text = myString.replacingOccurrences(of: replacableString, with: modifiedString, options: .backwards, range: myRange)
-            
-        }
-        
-    }
+    
+    
+//    func modifyText(textView: UITextView, modifiedString: String, replacableString: String, whichView: String) {
+//        
+//        if replacableString == "" {
+//            
+//            textView.text = "\(textView.text!)\(modifiedString)"
+//            
+//        } else {
+//            
+//            let myString = textView.text as NSString
+//            
+//            let myRange = myString.range(of: whichView, options: .backwards)
+//            
+//            textView.text = myString.replacingOccurrences(of: replacableString, with: modifiedString, options: .backwards, range: myRange)
+//            
+//        }
+//        
+//    }
     
     //MARK: - Keyboard Handling
     
@@ -465,45 +550,34 @@ class PhotoCommentViewController: UIViewController, UITableViewDataSource, UITab
         }
     }
     
-    //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if (segue.identifier == "myEmbeddedSegue") {
-//            print("hashtag segue")
-//            let childViewController = segue.destination as! SuggestionsViewController
-//            childViewController.getSuggestions()
-//            let commentText = editComment.text.components(separatedBy: " ")
-//            childViewController.textVar = commentText.last!
-//        }
-//        else if (segue.identifier == "myEmbeddedSegueTwo") {
-//            print("mention segue")
-//            let childViewController = segue.destination as! PhotoMentionTableViewCell
-//            //            childViewController.getMentions()
-//            let commentText = editComment.text.components(separatedBy: " ")
-//            childViewController.textVar = commentText.last!
-//        }
-//    }
+    func modifyText(textView: UITextView, modifiedString: String, replacableString: String, whichView: String) {
+        
+        if replacableString == "" {            
+            textView.text = "\(textView.text!)\(modifiedString)"            
+        } else {            
+            let myString = textView.text as NSString
+            let repOf = replacableString
+            let myRange = myString.range(of: repOf, options: .backwards)
+            textView.text = myString.replacingOccurrences(of: replacableString, with: modifiedString, options: .backwards, range: myRange)
+        }        
+    }
     
     func getMentions() {
         
-        request.getMentions(userId: currentUser["_id"].string!, searchText: textVar, completion: {(response) in
+        requestId += 1
+        
+        request.getMentions(userId: user.getExistingUser(), searchText: textVar, requestId: self.requestId, completion: {(response, responseId) in
             
             DispatchQueue.main.async(execute: {
-                
-                if response.error != nil {
-                    
-                    print("error: \(response.error!.localizedDescription)")
-                    
+                if (self.requestId == responseId) {
+                    if response.error != nil {
+                        print("error: \(response.error!.localizedDescription)")
+                    }
+                    else if response["value"].bool! {
+                        self.mentionSuggestions = response["data"].array!
+                        self.mentionTableView.reloadData()
+                    }
                 }
-                else if response["value"].bool! {
-                    
-                    self.mentionSuggestions = response["data"].array!
-                    self.mentionTableView.reloadData()
-                    
-                }
-                else {
-                    
-                    
-                }
-                
             })
             
         })
@@ -591,24 +665,20 @@ class PhotoCommentViewController: UIViewController, UITableViewDataSource, UITab
     
     func getHashtags() {
         
-        request.getHashtags(hashtag: textVar, completion: {(response) in
+        requestHashId += 1
+        
+        request.getHashtags(hashtag: textVar, requestId: self.requestHashId, completion: {(response, responseHashId) in
             
             DispatchQueue.main.async(execute: {
                 
-                if response.error != nil {
-                    
-                    print("error: \(response.error!.localizedDescription)")
-                    
-                }
-                else if response["value"].bool! {
-                    
-                    self.hashtagSuggestions = response["data"].array!
-                    self.hashtagTableView.reloadData()
-                    
-                }
-                else {
-                    
-                    
+                if (self.requestHashId == responseHashId) {
+                    if response.error != nil {                        
+                        print("error: \(response.error!.localizedDescription)")                        
+                    }
+                    else if response["value"].bool! {                        
+                        self.hashtagSuggestions = response["data"].array!
+                        self.hashtagTableView.reloadData()
+                    }
                 }
                 
             })
@@ -616,17 +686,6 @@ class PhotoCommentViewController: UIViewController, UITableViewDataSource, UITab
         })
         
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
 class PhotoCommentCell: UITableViewCell {
@@ -643,6 +702,8 @@ class PhotoCommentCell: UITableViewCell {
 
 class PhotoMentionTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var profilePhoto: UIImageView!
+    @IBOutlet weak var urlSlug: UILabel!
 }
 
 class PhotoSuggestionsTableViewCell: UITableViewCell {

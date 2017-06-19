@@ -53,13 +53,10 @@ class PhotoOTGFooter: UIView {
         
         do {
             audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: like))
-//            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryAmbient)
-//            try AVAudioSession.sharedInstance().setActive(true)
         }
         catch{
             print(error)
         }
-//         audioPlayer = AVAudioPlayer(contentsOfURL: like, error: nil)
         audioPlayer.prepareToPlay()
         
         let bundle = Bundle(for: type(of: self))
@@ -222,7 +219,7 @@ class PhotoOTGFooter: UIView {
         
         
 
-                globalNewTLViewController.addHeightToLayout(height: 500)
+        globalNewTLViewController?.addHeightToLayout(height: 500)
         
     }
     
@@ -242,81 +239,81 @@ class PhotoOTGFooter: UIView {
     
     @IBAction func sendLikes(_ sender: UIButton) {
         if currentUser != nil {
-
-        audioPlayer.play()
-        likeButton.animation = "pop"
-        likeButton.velocity = 2
-        likeButton.force = 2
-        likeButton.damping = 10
-        likeButton.curve = "spring"
-        likeButton.animateTo()
-        
-        print("like button tapped \(sender.titleLabel!.text)")
-        
-        var unLike = false
-        if sender.tag == 1 {
-            unLike = true
-            sender.tag = 0
-        }
-        else {
-            sender.tag = 1
-        }
-        if !unLike {
-            self.setLikeSelected(true)
-            self.likeCount = self.likeCount + 1
-            self.setLikeCount(self.likeCount)
-        }
-        else {
-            self.setLikeSelected(false)
-            if self.likeCount <= 0 {
-                self.likeCount = 0
-            } else {
-                self.likeCount = self.likeCount - 1
+            
+            audioPlayer.play()
+            likeButton.animation = "pop"
+            likeButton.velocity = 2
+            likeButton.force = 2
+            likeButton.damping = 10
+            likeButton.curve = "spring"
+            likeButton.animateTo()
+            
+            print("like button tapped \(sender.titleLabel!.text)")
+            
+            var unLike = false
+            if sender.tag == 1 {
+                unLike = true
+                sender.tag = 0
             }
-            self.setLikeCount(self.likeCount)
-        }
-        
-        
-        var usr:String = ""
-        let userm = User()
-        if currentUser["_id"].stringValue == userm.getExistingUser() {
-            usr = currentUser["_id"].stringValue
-        }else{
-            usr = userm.getExistingUser()
-        }
-        request.likePost(postTop.jsonPost["uniqueId"].stringValue, userId: usr, unlike: unLike,postId: postTop.jsonPost["_id"].stringValue, completion: {(response) in
-            print(response);
-            DispatchQueue.main.async(execute: {
-                if response.error != nil {
-                    print("error: \(response.error!.localizedDescription)")
-                    if unLike {
-                        self.setLikeSelected(true)
-                        self.likeCount = self.likeCount + 1
-                        self.setLikeCount(self.likeCount)
+            else {
+                sender.tag = 1
+            }
+            if !unLike {
+                self.setLikeSelected(true)
+                self.likeCount = self.likeCount + 1
+                self.setLikeCount(self.likeCount)
+            }
+            else {
+                self.setLikeSelected(false)
+                if self.likeCount <= 0 {
+                    self.likeCount = 0
+                } else {
+                    self.likeCount = self.likeCount - 1
+                }
+                self.setLikeCount(self.likeCount)
+            }
+            
+            
+            var usr:String = ""
+            let userm = User()
+            if currentUser["_id"].stringValue == userm.getExistingUser() {
+                usr = currentUser["_id"].stringValue
+            }else{
+                usr = userm.getExistingUser()
+            }
+            request.likePost(postTop.jsonPost["uniqueId"].stringValue, userId: usr, unlike: unLike,postId: postTop.jsonPost["_id"].stringValue, completion: {(response) in
+                print(response);
+                DispatchQueue.main.async(execute: {
+                    if response.error != nil {
+                        print("error: \(response.error!.localizedDescription)")
+                        if unLike {
+                            self.setLikeSelected(true)
+                            self.likeCount = self.likeCount + 1
+                            self.setLikeCount(self.likeCount)
+                        }
+                        else {
+                            self.setLikeSelected(false)
+                            if self.likeCount <= 0 {
+                                self.likeCount = 0
+                            } else {
+                                self.likeCount = self.likeCount - 1
+                            }
+                            self.setLikeCount(self.likeCount)
+                        }
+                        
+                    }
+                    else if response["value"].bool! {
+                        
                     }
                     else {
-                        self.setLikeSelected(false)
-                        if self.likeCount <= 0 {
-                            self.likeCount = 0
-                        } else {
-                            self.likeCount = self.likeCount - 1
-                        }
-                        self.setLikeCount(self.likeCount)
+                        
                     }
-                    
-                }
-                else if response["value"].bool! {
-                    
-                }
-                else {
-                    
-                }
+                })
             })
-        })
-    }
-    else {
-    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
-    }
+        }
+        else {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
+        }
     }
 
     @IBAction func optionClick(_ sender: UIButton) {
@@ -327,15 +324,15 @@ class PhotoOTGFooter: UIView {
         let EditCheckIn: UIAlertAction = UIAlertAction(title: "Edit Activity", style: .default)
         {action -> Void in
             //            self.isEdit = true
-            globalNewTLViewController.showEditActivity(self.postTop)
+            globalNewTLViewController?.showEditActivity(self.postTop, onPostLayout: self.PhotoOtg)
             //print("inside edit check in \(self.addView), \(self.newScroll.isHidden)")
         }
         actionSheetControllerIOS8.addAction(EditCheckIn)
         
         let EditDnt: UIAlertAction = UIAlertAction(title: "Change Date & Time", style: .default)
         { action -> Void in
-            globalNewTLViewController.hideHeaderAndFooter(true)
-            globalNewTLViewController.changeDateAndTime(self)
+            globalNewTLViewController?.hideHeaderAndFooter(true)
+            globalNewTLViewController?.changeDateAndTime(self)
         }
         actionSheetControllerIOS8.addAction(EditDnt)
         let DeletePost: UIAlertAction = UIAlertAction(title: "Delete Activity", style: .default)
@@ -343,17 +340,17 @@ class PhotoOTGFooter: UIView {
             let alert = UIAlertController(title: "", message: "Are you sure you want to delete this Activtiy", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil))
             alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.destructive, handler: { action in
-                globalNewTLViewController.deletePost(self)
+                globalNewTLViewController?.deletePost(self)
             }))
-            globalNewTLViewController.present(alert, animated: true, completion: nil)
+            globalNewTLViewController?.present(alert, animated: true, completion: nil)
             
             //  request.deletePost(self.currentPost["_id"].string!, uniqueId: self.myJourney["uniqueId"].string!, user: self.currentPost["user"]["_id"].string!, completion: {(response) in
             //  })
         }
         actionSheetControllerIOS8.addAction(DeletePost)
-        let share: UIAlertAction = UIAlertAction(title: "Add Photos/Videos", style: .default)
+        let share: UIAlertAction = UIAlertAction(title: "Add Photos", style: .default)
         { action -> Void in
-            globalNewTLViewController.showEditAddActivity(self.postTop)
+            globalNewTLViewController?.showEditAddActivity(self.postTop, onPostLayout: self.PhotoOtg)
         }
         actionSheetControllerIOS8.addAction(share)
         

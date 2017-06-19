@@ -113,7 +113,10 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
     var eachButtonText = ""
     var buttonCollection: [UIButton] = []
     var horizontal: HorizontalLayout!
+    var internetStrip: UploadingToCloud!
     var horizontalScrollForPhotos: HorizontalLayout!
+    
+    //MARK: - Init
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -124,8 +127,8 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
         makeFAButton("googleSquare", button: googleShare)
         makeFAButton("twitterSquare", button: twitterShare)
         
-
         makeFAButton("edit", button: editCategory)
+        
         editCategory.imageView?.tintColor = lightGreyColor
         horizontal = HorizontalLayout(height: locationHorizontalScroll.frame.height)
         horizontalScrollForPhotos = HorizontalLayout(height: photoScroll.frame.height)
@@ -145,6 +148,7 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
 //        thoughtsTextView.delegate = self
         thoughtsTextView.returnKeyType = .done
         
+        
         postButton.layer.cornerRadius = 5.0
         postButton.layer.borderColor = UIColor.white.cgColor
         postButton.layer.borderWidth = 3.0
@@ -161,113 +165,8 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
         self.finalImageTag.tintColor = mainOrangeColor
         self.videoTagFinal.tintColor = mainOrangeColor
         self.addLocationText.delegate = self
-//        locationGreen.isHidden = true
-//        locationTag.isHidden = false
-//         penGreen.isHidden = true
-    }
-    
-    
-    
-    func buddyAdded(_ json:[JSON]) {
-        addedBuddies = json;
-        let count = json.count
-        if(count ==  1) {
-            if typeOfAddActivtiy == "CreateLocalLife"{
-            self.friendsCount.setTitle("1 Friend", for: UIControlState())
-            self.friendsCount.isHidden = false;
-            self.friendsTag.tintColor = mainGreenColor
-            } else {
-                self.friendsCount.setTitle("1 Friend", for: UIControlState())
-                self.friendsCount.isHidden = false;
-                self.friendsTag.tintColor = mainOrangeColor
-            }
-        } else if(count > 1)  {
-            if typeOfAddActivtiy == "CreateLocalLife"{
-                self.friendsCount.setTitle("\(count) Friends", for: UIControlState())
-                self.friendsCount.isHidden = false;
-                self.friendsTag.tintColor = mainGreenColor
-            } else {
-            self.friendsCount.setTitle("\(count) Friends", for: UIControlState())
-            self.friendsCount.isHidden = false;
-            self.friendsTag.tintColor = mainOrangeColor
-            }
-        } else if (count == 0) {
-            self.friendsCount.setTitle("0 Friend", for: UIControlState())
-            self.friendsCount.isHidden = true;
-            self.friendsTag.tintColor = mainBlueColor
-        }
-        
-    }
-    
-    
-    
-    
-    @IBAction func clearLocation(_ sender: Any) {
-        self.locationHorizontalScroll.isHidden = false
-        self.categoryView.isHidden = true
-        self.editCategory.addTarget(self, action: #selector(self.selectAnotherCategory(_:)), for: .touchUpInside)
-        self.addLocationButton.setTitle("Add Location", for: UIControlState())
-        self.categoryLabel.text = ""
-        self.locationTag.tintColor = mainBlueColor
-        self.cancelLocationButton.isHidden = true
-        self.currentLat = 0
-        self.currentLong = 0
-        self.currentCity = ""
-        self.currentCountry = ""
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        addLocationText.resignFirstResponder()
-        return true
-    }
-    
-    func styleHorizontalButton(_ button: UIButton, buttonTitle: String) {
-        button.backgroundColor = UIColor.clear
-        button.titleLabel!.font = avenirFont
-        button.setTitle(buttonTitle, for: UIControlState())
-        button.setTitleColor(mainBlueColor, for: .normal)
-        button.sizeToFit()
-        button.frame.size.width = button.frame.size.width + 15
-        button.frame.size.height = 20
-//        button.titleLabel?.textColor = UIColor(hex: "#424242")
-//        button.titleLabel?.tintColor = UIColor.black
-        button.layer.cornerRadius = 5
-        button.layer.borderColor = mainBlueColor.cgColor
-        button.layer.borderWidth = 1.0
-        locationHorizontalScroll.contentSize.width += button.frame.width + 10
-    }
-    
-    
-    func makeFAButton(_ faValue: String, button: UIButton) {
-        let edit = String(format: "%C", faicon[faValue]!)
-        button.setTitle(edit, for: .normal)
-    }
-    
-    func countCharacters(_ number:Int) {
-        thoughtsCharacterCount.text = String(180 - number)
-        
-        if(number != 0) {
-            if typeOfAddActivtiy == "CreateLocalLife"{
-            self.finalThoughtTag.tintColor = mainGreenColor
-            }else {
-                self.finalThoughtTag.tintColor = lightOrangeColor
-            }
-        } else {
-            self.finalThoughtTag.tintColor = mainBlueColor
-        }
-        
-        if thoughtsCharacterCount.text == "-1" {
-            thoughtsCharacterCount.text = "0"
-        }
-    }
-    
-    func resignThoughtsTexViewKeyboard() {
-        thoughtsTextView.resignFirstResponder()
-    }
-    
-    
-    func getStylesOn(_ view: UIView) {
-        view.layer.cornerRadius = 5.0
+
+        NotificationCenter.default.addObserver(self, selector: #selector(reachabilityStatusChangedHandler(notification:)), name: NSNotification.Name(rawValue: "REACHABILITY_STATUS_CHANGED"), object: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -276,9 +175,6 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
     
     func loadViewFromNib() {
         globalAddActivityNew = self;
-        
-        
-        
         
         self.animation = "squeezeUp"
         self.duration = 1.5
@@ -289,9 +185,7 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
         let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        self.addSubview(view);
-        
-        addLocationTapped();
+        self.addSubview(view)        
         
         self.addLocationButton.addTarget(self, action: #selector(self.gotoSearchLocation(_:)), for: .touchUpInside)
         self.photosButton.addTarget(self, action: #selector(self.addPhotos(_:)), for: .touchUpInside)
@@ -308,14 +202,104 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
         let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(AddActivityNew.addCaptionVideo(_:)))
         self.viewContainerView.addGestureRecognizer(tapGestureRecognizer)
         
+        DispatchQueue.main.asyncAfter(deadline: .now()+0.5) { 
+            self.addLocationTapped()
+        }
+    }
+    
+    //MARK: - Reachability Handlers
+    
+    @objc private func reachabilityStatusChangedHandler(notification: Notification) {
+        self.checkConnection()
+    }
+    
+    func checkConnection() {
+        
+        if !isNetworkReachable {
+            if userLocation != nil || self.typeOfAddActivtiy == "AddPhotosVideos" {
+                self.addRedStrip(messages: "No Internet Connection.")
+            }
+            else {
+                self.addRedStrip(messages: "No Internet Connection. Enter Location Manually.")
+            }
+        }
+        else {
+            if self.typeOfAddActivtiy == "AddPhotosVideos" || userLocation != nil {
+                self.removeRedStrip()
+            }
+            
+            else {
+                self.addRedStrip(messages: "Enter Location Manually.")
+            }
+        }
+    }
+    
+    
+    //MARK: - Red Strip Handlers
+    
+    func addRedStrip(messages: String){
+        self.removeRedStrip()
+        
+        self.internetStrip = UploadingToCloud(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 20))
+        self.internetStrip.uploadText.text = messages
+        
+        self.addSubview(self.internetStrip)
+    }
+    
+    func removeRedStrip() {
+        if (self.internetStrip != nil) {
+            self.internetStrip.removeFromSuperview()
+        }
+    }
+    
+    
+    //MARK: - Actions
+    
+    @IBAction func clearLocation(_ sender: Any) {
+        self.locationHorizontalScroll.isHidden = false
+        self.categoryView.isHidden = true
+        self.editCategory.addTarget(self, action: #selector(self.selectAnotherCategory(_:)), for: .touchUpInside)
+        self.addLocationButton.setTitle("Add Location", for: UIControlState())
+        self.categoryLabel.text = ""
+        self.locationTag.tintColor = mainBlueColor
+        self.cancelLocationButton.isHidden = true
+        self.currentLat = 0
+        self.currentLong = 0
+        self.currentCity = ""
+        self.currentCountry = ""
+    }
+    
+    func buddyAdded(_ json:[JSON]) {
+        addedBuddies = json;
+        let count = json.count
+        if(count ==  1) {
+            if typeOfAddActivtiy == "CreateLocalLife"{
+                self.friendsCount.setTitle("1 Friend", for: UIControlState())
+                self.friendsCount.isHidden = false;
+                self.friendsTag.tintColor = mainGreenColor
+            } else {
+                self.friendsCount.setTitle("1 Friend", for: UIControlState())
+                self.friendsCount.isHidden = false;
+                self.friendsTag.tintColor = mainOrangeColor
+            }
+        } else if(count > 1)  {
+            if typeOfAddActivtiy == "CreateLocalLife"{
+                self.friendsCount.setTitle("\(count) Friends", for: UIControlState())
+                self.friendsCount.isHidden = false;
+                self.friendsTag.tintColor = mainGreenColor
+            } else {
+                self.friendsCount.setTitle("\(count) Friends", for: UIControlState())
+                self.friendsCount.isHidden = false;
+                self.friendsTag.tintColor = mainOrangeColor
+            }
+        } else if (count == 0) {
+            self.friendsCount.setTitle("0 Friend", for: UIControlState())
+            self.friendsCount.isHidden = true;
+            self.friendsTag.tintColor = mainBlueColor
+        }
         
     }
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-//        if textField == addLocationText{
-//        newScroll.setContentOffset(CGPoint(x: 0, y: 250), animated: true)
-//        self.frame.origin.y = self.frame.origin.y
-//        }
-    }
+    
     func tagMoreBuddies(_ sender: UIButton) {
         print(typeOfAddActivtiy)
         self.resignThoughtsTexViewKeyboard()
@@ -342,7 +326,6 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
         globalNavigationController?.pushViewController(next, animated: true)
     }
     
-    
     func addVideos(_ sender: UIButton) {
         
         self.videosInitialView.isHidden = false
@@ -361,10 +344,10 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
                     cameraConf.showCameraRoll = false
                     cameraConf.maximumVideoLength = 30
                     
-//                    let timeLabel = UILabel(frame: CGRect(x: 50, y: 100, width: 200, height: 40))
-//                    timeLabel.text = "time :"
-//                    timeLabel.textColor = UIColor.white                    
-//                    cameraConf.timeLabelConfigurationClosure = timeLabel
+                    //                    let timeLabel = UILabel(frame: CGRect(x: 50, y: 100, width: 200, height: 40))
+                    //                    timeLabel.text = "time :"
+                    //                    timeLabel.textColor = UIColor.white                    
+                    //                    cameraConf.timeLabelConfigurationClosure = timeLabel
                     
                     cameraConf.videoOutputSettings = [
                         "AVVideoCodecKey": AVVideoCodecH264 as AnyObject,
@@ -384,7 +367,7 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
             
             
             self.cameraViewController = CameraViewController(configuration:configuration)
-//            timeLabel.text = self.cameraViewController.recordingTimeLabel.text
+            //            timeLabel.text = self.cameraViewController.recordingTimeLabel.text
             self.cameraViewController.completionBlock = self.completionVideoBlock
             
             if let popover = self.cameraViewController.popoverPresentationController{
@@ -392,12 +375,12 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
                 popover.sourceRect = sender.bounds
             }
             globalNavigationController.present(self.cameraViewController, animated: true, completion: nil)
-
             
             
-//            showPopover(optionsController: optionMenu, sender: sender, vc: globalNavigationController)
-
-//            globalNavigationController.topViewController?.present(self.cameraViewController, animated: true, completion: nil)
+            
+            //            showPopover(optionsController: optionMenu, sender: sender, vc: globalNavigationController)
+            
+            //            globalNavigationController.topViewController?.present(self.cameraViewController, animated: true, completion: nil)
         })
         
         func buttonColor (button:UIButton) {
@@ -427,15 +410,15 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
             } else {
                 imagePickerController.delegate = globalNewTLViewController
             }
-//            showPopover(optionsController: imagePickerController, sender: sender, vc: globalNavigationController)
-
+            //            showPopover(optionsController: imagePickerController, sender: sender, vc: globalNavigationController)
+            
             if let popover = imagePickerController.popoverPresentationController{
                 popover.sourceView = self.videosButton
                 popover.sourceRect = sender.bounds
             }
             globalNavigationController.present(imagePickerController, animated: true, completion: nil)
             
-//            globalNavigationController.topViewController?.present(imagePickerController, animated: true, completion: nil)
+            //            globalNavigationController.topViewController?.present(imagePickerController, animated: true, completion: nil)
         })
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: {
@@ -447,14 +430,11 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
         optionMenu.addAction(takeVideoGallery)
         optionMenu.addAction(cancelAction)
         showPopover(optionsController: optionMenu, sender: sender, vc: globalNavigationController)
-
-//        globalNavigationController.topViewController?.present(optionMenu, animated: true, completion: nil)
+        
+        //        globalNavigationController.topViewController?.present(optionMenu, animated: true, completion: nil)
         
         
     }
-    
-    
-    
     
     func completionVideoBlock(result:UIImage?,video:URL?){
         self.cameraViewController.dismiss(animated: true, completion: nil)
@@ -462,7 +442,6 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
     }
     
     func addVideoToBlock(video:URL?) {
-        
         
         self.videosInitialView.isHidden = true
         self.videosFinalView.isHidden = false
@@ -486,12 +465,14 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
         self.viewContainerView.addSubview(self.player.view)
         
     }
+    
     func removeVideoBlock() {
         self.videosInitialView.isHidden = false
         self.videosFinalView.isHidden = true
         self.videoURL = nil
         self.videoCaption = ""
     }
+    
     func addCaptionVideo(_ sender: UIButton) {
         let captionVC = storyboard?.instantiateViewController(withIdentifier: "addCaptions") as! AddCaptionsViewController
         captionVC.type = "videoCaption"
@@ -502,19 +483,22 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
     }
     
     func newPost(_ sender: UIButton) {
+        
+        sender.isUserInteractionEnabled = false
+        
         switch(self.typeOfAddActivtiy) {
-            case "AddPhotosVideos":
-                let newTl = globalNavigationController.topViewController as! NewTLViewController;
-                newTl.savePhotoVideo(sender);
-            case "EditActivity":
-                let newTl = globalNavigationController.topViewController as! NewTLViewController;
-                newTl.editActivity(sender);
-            case "CreateLocalLife":
-                let newTl = globalLocalLife;
-                newTl?.newPost(sender)
-            default:
-                let newTl = globalNavigationController.topViewController as! NewTLViewController;
-                newTl.newPost(sender);   
+        case "AddPhotosVideos":
+            let newTl = globalNavigationController.topViewController as! NewTLViewController;
+            newTl.savePhotoVideo(sender);
+        case "EditActivity":
+            let newTl = globalNavigationController.topViewController as! NewTLViewController;
+            newTl.editActivity(sender);
+        case "CreateLocalLife":
+            let newTl = globalLocalLife;
+            newTl?.newPost(sender)
+        default:
+            let newTl = globalNavigationController.topViewController as! NewTLViewController;
+            newTl.newPost(sender);   
         }
     }
     
@@ -524,18 +508,10 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
     }
     
     func addThoughts(_ sender: UIButton) {
+        thoughtsTextView.becomeFirstResponder()
         self.thoughtsFinalView.isHidden = false
         self.thoughtsInitalView.isHidden = true
-        addHeightToNewActivity(10.0)
-        thoughtsTextView.becomeFirstResponder()
-    }
-    
-    func addHeightToNewActivity(_ height: CGFloat) {
-        self.frame.size.height = self.frame.height + height
-        newScroll.contentSize.height = self.frame.height
-        newScroll.bounces = false
-        newScroll.showsVerticalScrollIndicator = false
-        
+        addHeightToNewActivity(50.0)
     }
     
     func addLocationTapped() {
@@ -544,27 +520,40 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
         self.addLocationText.isHidden = false
         
         if userLocation != nil {
+            
             print("locations = \(userLocation.latitude) \(userLocation.longitude)")
-            request.getLocationOTG(userLocation.latitude, long: userLocation.longitude, completion: {(response) in
+            
+            if isNetworkReachable {
                 
-                DispatchQueue.main.async(execute: {
-                    if (response.error != nil) {
-                        print("error: \(response.error?.localizedDescription)")
-                    }
-                    else if response["value"].bool! {
-                        if(self.typeOfAddActivtiy != "EditActivity" && self.typeOfAddActivtiy != "AddPhotosVideos") {
-                            self.clearLocation(UIButton())
-                        } else {
-                            if(self.editPost.post_location == "") {
-                                self.clearLocation(UIButton())
-                            }
+                request.getLocationOTG(userLocation.latitude, long: userLocation.longitude, completion: {(response) in
+                    DispatchQueue.main.async(execute: {
+                        if (response.error != nil) {
+                            print("error: \(response.error?.localizedDescription)")
                         }
-                        self.locationArray = response["data"].array!;
-                        self.getAllLocations();
-                        self.addLocationText.isHidden = true
-                    }
+                        else if response["value"].bool! {
+                            self.checkConnection()
+                            if(self.typeOfAddActivtiy != "EditActivity" && self.typeOfAddActivtiy != "AddPhotosVideos") {
+                                self.clearLocation(UIButton())
+                            } else {
+                                if(self.editPost.post_location == "") {
+                                    self.clearLocation(UIButton())
+                                }
+                            }
+                            self.locationArray = response["data"].array!;
+                            self.getAllLocations();                            
+                            self.addLocationText.isHidden = true
+                        }
+                    })
                 })
-            })
+                
+            }
+            else {
+                self.checkConnection()
+            }
+            
+        }
+        else {
+            self.checkConnection()
         }
     }
     
@@ -579,8 +568,7 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
         chooseCategory.categoryTextView = self.categoryLabel;
         globalNavigationController?.setNavigationBarHidden(false, animated: false)
         globalNavigationController?.pushViewController(chooseCategory, animated: true)
-    }
-    
+    }    
     
     func getAllLocations() {
         
@@ -618,15 +606,30 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
         self.putLocationName(sender.titleLabel!.text!, placeId: id)
     }
     
-    func putLocationName(_ selectedLocation: String, placeId: String!) {
-        self.addLocationButton.setTitle(selectedLocation, for: UIControlState())
+    func putLocationName(_ selectedLocation: String, placeId: String!) {        
+        if selectedLocation != "" {
+            //self.addLocationButton.titleLabel?.text == ""
+            self.addLocationButton.setTitle(selectedLocation, for: .normal)
+            self.addLocationText.isHidden = true
+        }else {
+            if ((self.addLocationButton.titleLabel?.text == nil)
+                || (self.addLocationButton.titleLabel?.text == "")) {
+                self.addLocationText.placeholder = "Add Location"
+                self.addLocationText.isHidden = false
+            }
+        }
+        
+        if selectedLocation != "" {
+            self.addLocationText.placeholder = ""
+        }
         if typeOfAddActivtiy == "CreateLocalLife"{
             self.locationTag.tintColor = mainGreenColor
         } else {
-        self.locationTag.tintColor = lightOrangeColor
+            self.locationTag.tintColor = lightOrangeColor
         }
         self.cancelLocationButton.isHidden = false
-        if(placeId != nil) {
+        
+        if(placeId != nil && placeId != "") {
             request.getPlaceId(placeId, completion: { response in
                 DispatchQueue.main.async(execute: {
                     if response.error != nil { }
@@ -637,17 +640,15 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
                         self.currentLat = response["lat"].float!
                         self.currentLong = response["long"].float!
                     }
-                    else {
-                        
-                    }
                 })
             })
-
+            
         }
         
         self.hideLocation()
         
     }
+    
     func gotoSearchLocation(_ sender: UIButton) {
         let searchVC = storyboard!.instantiateViewController(withIdentifier: "searchLocationsVC") as! SearchLocationTableViewController
         searchVC.places = self.locationArray
@@ -660,37 +661,37 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
         let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let takePhotos = UIAlertAction(title: "Take Photos", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
-//            let configuration = Configuration() { builder in
-//                builder.configureCameraViewController( { cameraConf in
-//                        cameraConf.allowedRecordingModes = [.photo]
-//                })
-//            }
-//            let cameraViewController = CameraViewController(configuration:configuration)
-//            cameraViewController.cameraController?.recordingMode = .photo
-//            
-//            
-//            
-//            func abc(image:UIImage?,url:URL?) -> Void
-//            {
-//                let photoEffect = PhotoEffectThumbnailRenderer(inputImage: image!);
-//                if(cameraViewController.cameraController?.photoEffect != nil) {
-//                    photoEffect.generateThumbnails(for: [(cameraViewController.cameraController?.photoEffect)!], of: (image?.size)!, singleCompletion: { (image:UIImage, num:Int) in
-//                        DispatchQueue.main.async(execute: {
-//                            let imgA:[UIImage] = [image]
-//                            cameraViewController.dismiss(animated: true, completion: nil)
-//                            globalAddActivityNew.photosAdded(assets: imgA)
-//                        })
-//                    })
-//                } else {
-//                    let imgA:[UIImage] = [image!]
-//                    cameraViewController.dismiss(animated: true, completion: nil)
-//                    globalAddActivityNew.photosAdded(assets: imgA)
-//                }
-//                
-//            }
-//            cameraViewController.completionBlock = abc;
-//            
-//            globalNavigationController?.topViewController?.present(cameraViewController, animated: true, completion: nil)
+            //            let configuration = Configuration() { builder in
+            //                builder.configureCameraViewController( { cameraConf in
+            //                        cameraConf.allowedRecordingModes = [.photo]
+            //                })
+            //            }
+            //            let cameraViewController = CameraViewController(configuration:configuration)
+            //            cameraViewController.cameraController?.recordingMode = .photo
+            //            
+            //            
+            //            
+            //            func abc(image:UIImage?,url:URL?) -> Void
+            //            {
+            //                let photoEffect = PhotoEffectThumbnailRenderer(inputImage: image!);
+            //                if(cameraViewController.cameraController?.photoEffect != nil) {
+            //                    photoEffect.generateThumbnails(for: [(cameraViewController.cameraController?.photoEffect)!], of: (image?.size)!, singleCompletion: { (image:UIImage, num:Int) in
+            //                        DispatchQueue.main.async(execute: {
+            //                            let imgA:[UIImage] = [image]
+            //                            cameraViewController.dismiss(animated: true, completion: nil)
+            //                            globalAddActivityNew.photosAdded(assets: imgA)
+            //                        })
+            //                    })
+            //                } else {
+            //                    let imgA:[UIImage] = [image!]
+            //                    cameraViewController.dismiss(animated: true, completion: nil)
+            //                    globalAddActivityNew.photosAdded(assets: imgA)
+            //                }
+            //                
+            //            }
+            //            cameraViewController.completionBlock = abc;
+            //            
+            //            globalNavigationController?.topViewController?.present(cameraViewController, animated: true, completion: nil)
             
             let imagePickerController = UIImagePickerController()
             if(self.typeOfAddActivtiy == "CreateLocalLife") {
@@ -701,7 +702,7 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
                 imagePickerController.navigationBar.titleTextAttributes = [
                     NSForegroundColorAttributeName : UIColor.white
                 ] // Title color
-
+                
                 self.finalImageTag.tintColor = UIColor(hex: "#11d3cb")
                 self.videoTagFinal.tintColor = UIColor(hex: "#11d3cb")
             } else {
@@ -719,8 +720,8 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
             
             
             
-//            showPopover(optionsController: , sender: self.photosButton, vc: globalNavigationController)
-//            globalNavigationController?.topViewController?.present(imagePickerController, animated: true, completion: nil)
+            //            showPopover(optionsController: , sender: self.photosButton, vc: globalNavigationController)
+            //            globalNavigationController?.topViewController?.present(imagePickerController, animated: true, completion: nil)
             
         })
         let photoLibrary = UIAlertAction(title: "Photos Library", style: .default, handler: {
@@ -733,7 +734,7 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
             multipleImage.navigationBar.titleTextAttributes = [
                 NSForegroundColorAttributeName : UIColor.white
             ] // Title color
-
+            
             
             globalNavigationController?.topViewController?.bs_presentImagePickerController(multipleImage, animated: true, select: { (asset: PHAsset) -> Void in
                 print("Selected: \(asset)")
@@ -771,8 +772,8 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
         optionMenu.addAction(cancelAction)
         //        optionMenu.addAction(customeAction)
         showPopover(optionsController: optionMenu, sender: sender as! UIView, vc: globalNavigationController)
-
-//        globalNavigationController?.topViewController?.present(optionMenu, animated: true, completion: nil)
+        
+        //        globalNavigationController?.topViewController?.present(optionMenu, animated: true, completion: nil)
         
     }
     
@@ -794,7 +795,6 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
         addPhotos(sender)
     }
     
-    
     func addCaption(_ sender: UIButton) {
         let captionVC = storyboard?.instantiateViewController(withIdentifier: "addCaptions") as! AddCaptionsViewController
         captionVC.imageArr = imageArr
@@ -804,7 +804,14 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
         globalNavigationController?.setNavigationBarHidden(false, animated: false)
         globalNavigationController!.pushViewController(captionVC, animated: true)
     }
-
+    
+    func resignThoughtsTexViewKeyboard() {
+        thoughtsTextView.resignFirstResponder()
+    }
+    
+    
+    //MARK: - UI Helpers
+    
     func addPhotoToLayout() {
         self.horizontalScrollForPhotos.removeAll()
         for i in 0 ..< imageArr.count {
@@ -841,5 +848,69 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
         }
     }
     
+    func styleHorizontalButton(_ button: UIButton, buttonTitle: String) {
+        button.backgroundColor = UIColor.clear
+        button.titleLabel!.font = avenirFont
+        button.setTitle(buttonTitle, for: UIControlState())
+        button.setTitleColor(mainBlueColor, for: .normal)
+        button.sizeToFit()
+        button.frame.size.width = button.frame.size.width + 15
+        button.frame.size.height = 20
+//        button.titleLabel?.textColor = UIColor(hex: "#424242")
+//        button.titleLabel?.tintColor = UIColor.black
+        button.layer.cornerRadius = 5
+        button.layer.borderColor = mainBlueColor.cgColor
+        button.layer.borderWidth = 1.0
+        locationHorizontalScroll.contentSize.width += button.frame.width + 10
+    }
+    
+    func makeFAButton(_ faValue: String, button: UIButton) {
+        let edit = String(format: "%C", faicon[faValue]!)
+        button.setTitle(edit, for: .normal)
+    }
+    
+    func countCharacters(_ number:Int) {
+        thoughtsCharacterCount.text = String(180 - number)
+        
+        if(number != 0) {
+            if typeOfAddActivtiy == "CreateLocalLife"{
+            self.finalThoughtTag.tintColor = mainGreenColor
+            }else {
+                self.finalThoughtTag.tintColor = lightOrangeColor
+            }
+        } else {
+            self.finalThoughtTag.tintColor = mainBlueColor
+        }
+        
+        if thoughtsCharacterCount.text == "-1" {
+            thoughtsCharacterCount.text = "0"
+        }
+    }
+    
+    func getStylesOn(_ view: UIView) {
+        view.layer.cornerRadius = 5.0
+    }
+    
+    func addHeightToNewActivity(_ height: CGFloat) {
+        self.frame.size.height = self.frame.height + height
+        newScroll.contentSize.height = self.frame.height
+        newScroll.bounces = false
+        newScroll.showsVerticalScrollIndicator = false
+        
+    }
+    
+    
+    //MARK: - Text Feild Delegates
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField.tag == 15 {
+            self.addLocationButton.setTitle("", for: .normal)
+        }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        addLocationText.resignFirstResponder()
+        return true
+    }
 
 }

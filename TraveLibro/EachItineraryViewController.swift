@@ -151,6 +151,8 @@ class EachItineraryViewController: UIViewController, UITableViewDataSource, UITa
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        setAnalytics(name: "Detailed Itinerary")
+
         globalNavigationController = self.navigationController
     }
     

@@ -15,6 +15,8 @@ protocol TLUploadDelegate {
 
 public class PostImage {
     
+    let db = TLModelManager.getSharedManager().db!
+    
     private var delegate: TLUploadDelegate?
     
     var imageUrl: URL!
@@ -24,6 +26,7 @@ public class PostImage {
     var serverUrl = ""
     var editId = ""
     var stripServerURL = "";
+    var isLoopingRequest = false
     
     let photos = Table("Photos")
     
@@ -33,6 +36,7 @@ public class PostImage {
     let localUrl = Expression<String>("localUrl")
     let url = Expression<String>("url")
     let editIdTable = Expression<String>("editIdTable")
+    let photoUploadStatus = Expression<Int64>("uploadStatus")
     
     init() {
         do {
@@ -43,6 +47,7 @@ public class PostImage {
                 t.column(localUrl)
                 t.column(url)
                 t.column(editIdTable)
+                t.column(photoUploadStatus)
             })
         }
         catch {
@@ -55,7 +60,7 @@ public class PostImage {
         self.serverUrl = adminUrl + "upload/readFile?file=" + str
         self.stripServerURL = str;
         self.imageUrl = URL(string: self.serverUrl)
-        cache.fetch(URL: URL(string:self.serverUrl + "&width=200")!).onSuccess({ (data) in
+        cache.fetch(URL: URL(string:self.serverUrl + "&width=500")!).onSuccess({ (data) in
             self.image = UIImage(data: data as Data)
         })
     }
@@ -64,18 +69,9 @@ public class PostImage {
         self.serverUrl = adminUrl + "upload/readFile?file=" + str
         self.imageUrl = URL(string: self.serverUrl)
         self.editId = serverID;
-        cache.fetch(URL: URL(string:self.serverUrl + "&width=200")!).onSuccess({ (data) in
+        cache.fetch(URL: URL(string:self.serverUrl + "&width=500")!).onSuccess({ (data) in
             self.image = UIImage(data: data as Data)
         })
-    }
-
-    
-    
-    
-    func getDocumentsDirectory() -> URL {
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        let documentsDirectory = paths[0]
-        return documentsDirectory
     }
     
     func save() {
@@ -90,7 +86,7 @@ public class PostImage {
             try? data.write(to: filename)
         }
         
-        let insert = photos.insert(post <- Int64(self.postId) , captions <- self.caption ,localUrl <- filenameOnly,url <- stripServerURL,editIdTable <- self.editId)
+        let insert = photos.insert(post <- Int64(self.postId) , captions <- self.caption ,localUrl <- filenameOnly,url <- stripServerURL, editIdTable <- self.editId, photoUploadStatus <- 0)
         do {
             try db.run(insert)
         }
@@ -98,6 +94,34 @@ public class PostImage {
             print("ERROR FOUND");
         }
     }
+    
+    func updateStatus(photoId: Int64, status: uploadStatus, urlString: String) {
+        print("\n photoId : \(photoId) urlString: \(urlString)")
+        var toStatus = 0
+        switch status {
+        case .UPLOAD_PENDING:
+            toStatus = 0
+        
+        case .UPLOAD_IN_PROGRESS:
+            toStatus = 1
+            
+        case .UPLOAD_COMPLETE:
+            toStatus = 2
+        
+        case .UPLOAD_FAILED:
+            toStatus = 3
+        }
+        
+        let updaterow = self.photos.filter(self.id == photoId)
+        do {
+            try self.db.run(updaterow.update(self.photoUploadStatus <- Int64(toStatus), url <- urlString)) 
+        }
+        catch {
+            print("\n PHOTO update error FOUND")
+        }
+        
+    }
+    
     func getAllImages(postNo:Int64) -> [PostImage] {
         var allImages:[PostImage] = []
         do {
@@ -130,46 +154,58 @@ public class PostImage {
         if delegate != nil {
             self.delegate = delegate
         }
+        print("\n isLoopingRequest : \(self.isLoopingRequest)")
         
-        do {
-            var check = false;
-            let query = photos.select(id,post,captions,localUrl,url)
-                .filter(url == "")
-                .limit(1)
-            for photo in try db.prepare(query) {
-                check = true;
-                let url = getDocumentsDirectory().appendingPathComponent( String(photo[localUrl]) )
-                request.uploadPhotos(url, localDbId: 0,completion: {(response) in
-                    if response.error != nil {
-                        print("response: \(response.error?.localizedDescription)")
-                    }
-                    else if response["value"].bool! {
-                        do {
-                            let singlePhoto = self.photos.filter(self.id == photo[self.id])
-                            let urlString = response["data"][0].stringValue
-                            try db.run(singlePhoto.update(self.url <- urlString ))
+        if !isUploadingInProgress || isLoopingRequest {
+            
+            if isNetworkReachable {
+                isUploadingInProgress = true                
+            }            
+            isLoopingRequest = false
+            
+            print(" ******* check 1")
+            do {
+                var check = false;
+                let query = photos.select(id,post,captions,localUrl,url)
+                    .filter(url == "" && (photoUploadStatus == 0 || photoUploadStatus == 3))
+                    .limit(1)
+                
+                for photo in try db.prepare(query) {
+                    
+                    print(" ******* check 2")
+                    self.updateStatus(photoId: photo[id], status: (isNetworkReachable ? uploadStatus.UPLOAD_IN_PROGRESS : uploadStatus.UPLOAD_PENDING) , urlString: "")                
+                    
+                    check = true;
+                    let url = getDocumentsDirectory().appendingPathComponent( String(photo[localUrl]) )
+                    request.uploadPhotos(url, localDbId: 0,completion: {(response) in
+                        if response.error != nil {
+                            print("response: \(response.error?.localizedDescription)")
+                            self.updateStatus(photoId: photo[self.id], status: uploadStatus.UPLOAD_FAILED, urlString: "")
                         }
-                        catch {
-                            
+                        else if response["value"].bool! {
+                            self.updateStatus(photoId: photo[self.id], status: uploadStatus.UPLOAD_COMPLETE, urlString: response["data"][0].stringValue)
                         }
-                        if(check) {
-                            self.uploadPhotos(delegate: self.delegate)
+                        else {
+                            print("response error")
+                            self.updateStatus(photoId: photo[self.id], status: uploadStatus.UPLOAD_FAILED, urlString: "")
                         }
-                    }
-                    else {
-                        print("response error")
-                    }
-                })
+                        print(" ******* check 3")
+                        self.isLoopingRequest = true
+                        self.uploadPhotos(delegate: self.delegate)
+                    })
+                }
+                
+                if(!check) {
+                    print(" ******* check 4")
+                    let video = PostVideo();
+                    video.uploadVideo();
+                }
             }
-            if(!check) {
-                let video = PostVideo();
-                video.upload();
-            }
+            catch {
+                print(" ******* check 5")
+                print(error);
+            }            
         }
-        catch {
-            print(error);
-        }
-        
     }
     
     func deletePhotos(_ post:Int64) {
@@ -189,6 +225,25 @@ public class PostImage {
         }
         return photoJson
     }
+    
+    func rollbackPhotoTableProgress() {
+        do {
+            let query = photos.select(id,post,captions,localUrl,url)
+                .filter(url == "" && (photoUploadStatus == 1))                
+            
+            for photo in try db.prepare(query) {
+                self.updateStatus(photoId: photo[id], status: uploadStatus.UPLOAD_FAILED, urlString: "")
+            }
+        }
+        catch {
+            print(error);
+        }
+    }
+    
+    func dropPhotoTable() {
+        try! db.run(photos.drop(ifExists: true))
+    }
+    
 }
 
 

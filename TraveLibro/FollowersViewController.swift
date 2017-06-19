@@ -82,6 +82,8 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        setAnalytics(name: whichView)
+
         if whichView == "Following" {
             customSearch.frame = CGRect(x: 10, y: 10, width: searchView.frame.width - 10, height: 30)           
         }
@@ -148,7 +150,7 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
                         self.headerText.text = "Followers (\(followers.count))"
                         self.followerTable.reloadData()
                         loader.hideOverlayView()
-                        if followers.isEmpty {
+                        if ((followers.isEmpty) && (self.searchText == "")) {
                             self.noFollowersFound()
                         }
                     }
@@ -337,7 +339,7 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
         let profile = storyboard?.instantiateViewController(withIdentifier: "TLProfileView") as! TLProfileViewController
         profile.displayData = "search"
         profile.currentSelectedUser = followers[indexPath.row]
-        globalNavigationController.pushViewController(profile, animated: true)
+        self.navigationController?.pushViewController(profile, animated: true)
     }
     
     func setImage(_ imageView: UIImageView, imageName: String) {

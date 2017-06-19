@@ -26,6 +26,10 @@ class LikeUserViewController: UITableViewController {
         self.tableView.tableFooterView = UIView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        setAnalytics(name: "User like")
+    }
+    
     func loadLikes(page:Int) {
         print(type)
         loader.showOverlay(self.view)

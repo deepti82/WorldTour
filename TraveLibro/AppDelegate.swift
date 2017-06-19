@@ -53,6 +53,8 @@ let MAIN_FOOTER_HEIGHT = CGFloat(60)
 let VERY_BIG_PHOTO_WIDTH = 800
 let BIG_PHOTO_WIDTH = 500
 let SMALL_PHOTO_WIDTH = 100
+let BLUR_PHOTO_WIDTH = 10
+let ORIGINAL_PHOTO_WIDTH = 0
 
 var existingUserGlobal = ""
 
@@ -64,10 +66,8 @@ var whatsAppIcon: String!
 var facebookIcon: String!
 var loader = LoadingOverlay()
 var feedViewController: UIViewController!
-var notificationsViewController: UIViewController!
 var travelLifeViewController: UIViewController!
 var hasLoggedInOnce = false
-var onlyOnce = true
 var HUD: UIActivityIndicatorView?
 
 let request = Navigation()
@@ -75,9 +75,12 @@ let shared = LoadingOverlay()
 var coverImageGrid = ""
 var popularView = "popular"
 
+var isNetworkReachable = true
+
 var shouldShowLoader = false
 var isSettingsEdited = false
 var isCountryAdded = false
+var isUploadingInProgress = false
 
 let user = User()
 
@@ -136,7 +139,7 @@ let FEED_UPLOADING_VIEW_HEIGHT = CGFloat(25)
 
 
 //Font
-let TL_REGULAR_FONT_SIZE = 12
+let TL_REGULAR_FONT_SIZE = 14
 
 
 let categoryImages = ["restaurant_checkin", "nature_checkin", "landmarks_checkin", "museums_landmarks", "adventure_icon", "aqua_checkin", "shopping", "beach_checkin", "cinema_checkin", "hotels-1", "planetrans", "reg", "othersdottrans", "city_icon", "health_beauty", "emergency", "essential", "entertainment"]
@@ -148,28 +151,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
     
     var window: UIWindow?
     
-    static func getDatabase () -> Connection {
+    var reachability: Reachability? = Reachability.networkReachabilityForInternetConnection()
         
-        let path = NSSearchPathForDirectoriesInDomains(
-            .documentDirectory, .userDomainMask, true
-            ).first!
-        let db = try! Connection("\(path)/db.sqlite3")
-        if(onlyOnce)
-        {
-            onlyOnce = false
-            print("database path: \(path)")
-        }
-        return db;
-        
-    }
-    
-//    func visibleViewController() -> UIViewController? {
-//        if let rootViewController: UIViewController  = rootViewController {
-//            return wind.getVisibleViewControllerFrom(rootViewController)
-//        }
-//        return nil
-//    }
-    
     internal func createMenuView() {
         
         storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -183,6 +166,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
         
         
         let mainViewController = storyboard.instantiateViewController(withIdentifier: "TLProfileView") as! TLProfileViewController
+        mainViewController.isAppStartedFromInitial = true
         
 //        let signInVC = storyboard.instantiateViewController(withIdentifier: "SignUpOne") as! SignInViewController
         
@@ -224,10 +208,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
     
     
     //MARK:- Application Delegates
-    
-    
         
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {        
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(reachabilityDidChange(_:)), name: NSNotification.Name(rawValue: ReachabilityDidChangeNotificationName), object: nil)        
+        _ = reachability?.startNotifier()
+        
+        self.dropOldDB()
+        
+        SDWebImageDownloader.shared().maxConcurrentDownloads = 3
         
         createMenuView()        
         
@@ -235,7 +225,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
         
         enableCrashReporting()
         
-        _ = AppDelegate.getDatabase()
+        checkReachability()
         
         if #available(iOS 10.0, *) {
             UNUserNotificationCenter.current().requestAuthorization(options: [.badge, .alert, .sound]) { (granted, error) in
@@ -260,16 +250,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
                 UserDefaults.standard.set(notificationCount, forKey: "notificationCount")
             }
             
-//            let payload: OSNotificationPayload? = notification?.payload           
-//            
-//            let fullMessage: String? = payload?.body
+            let payload: OSNotificationPayload? = notification?.payload           
             
-//            let data = payload?.additionalData
+            let fullMessage: String? = payload?.body
             
-//            print("Data : \(data)")
-//            
-//            print("Recived notifn : " + fullMessage!)
-//            
+            let data = payload?.additionalData
+            
+            print("Data : \(data)")
+//
+            print("Recived notifn : " + fullMessage!)
+//
 //            print("Received Notification - \(notification?.payload.notificationID) - \(notification?.payload.title)")
 //            
 //            print("attachments : \(payload?.attachments) ")
@@ -286,7 +276,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
 //            
 //            print("test3 : \(notification?.payload.additionalData)")
             
-//            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "REMOTE_NOTIFICATION_RECEIVED"), object: [notification?.payload.additionalData])
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "REMOTE_NOTIFICATION_RECEIVED"), object: [notification?.payload.additionalData])
             
             updateFooterBadge()
             
@@ -342,13 +332,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let tabBarController = UITabBarController()
         let homeVC = storyboard.instantiateViewController(withIdentifier: "Home") as! HomeViewController
-        let feedVC = storyboard.instantiateViewController(withIdentifier: "Activity") as! ProfilePostsViewController
-        tabBarController.viewControllers = [homeVC, feedVC]
+//        let feedVC = storyboard.instantiateViewController(withIdentifier: "Activity") as! ProfilePostsViewController
+        tabBarController.viewControllers = [homeVC]
         //        window?.rootViewController = tabBarController
         
         let image = UIImage(named: "adventure_icon")
         
-        feedVC.tabBarItem = UITabBarItem(title: "Feed", image: image, tag: 1)
+//        feedVC.tabBarItem = UITabBarItem(title: "Feed", image: image, tag: 1)
         
         return true
     }
@@ -384,6 +374,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
     
     func applicationWillTerminate(_ application: UIApplication) {
         clearNotificationCount()
+        
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
@@ -394,7 +385,43 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
     func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
         return UIInterfaceOrientationMask.portrait
     }
-
+    
+    
+    //MARK: - Reachability
+    
+    func reachabilityDidChange(_ notification: Notification) {
+        checkReachability()
+    }
+    
+    func checkReachability() {
+        guard let r = reachability else { return }
+        if r.isReachable  {
+            isNetworkReachable = true
+            DispatchQueue.main.asyncAfter(deadline: .now()+0.5, execute: {
+                self.resumeUploading()                
+            })
+            print("\n**************************\n Network is Reachable \n**************************\n\n")
+        } else {
+            isNetworkReachable = false
+            DispatchQueue.main.asyncAfter(deadline: .now()+0.5, execute: {
+                self.stopUploading()                
+            })
+            print("\n**************************\n Unreachable \n**************************\n\n")
+        }
+        
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "REACHABILITY_STATUS_CHANGED"), object: ["status":isNetworkReachable])
+    }
+    
+    func isConnectedToNetwork() -> Bool {
+        guard let r = reachability else { return false}
+        if r.isReachable  {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    
     //MARK: - Navigation Delegate
     
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
@@ -403,6 +430,94 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
             prevVC = navigationController.viewControllers[navigationController.viewControllers.count - 1]
             prevVC.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         }
+    }
+    
+    
+    //MARK: - Database related Operations
+    
+    private func rollbackDBIfOperationNotCommitted() {
+        
+        //PhotoTable
+        let photoInstance = PostImage()
+        photoInstance.rollbackPhotoTableProgress()
+        
+        //VideoTable
+        let videoInstance = PostVideo()
+        videoInstance.rollbackVideoTableProgress()
+        
+        //PostTable
+        let postInstance = Post()
+        postInstance.rollbackPostTableProgress()
+        
+        //LocalPostTable
+        let localPostInstance = LocalLifePostModel()
+        localPostInstance.rollbackLocalPostTableProgress()
+        
+        //QuickItineraryTable
+        let quickTableInstance = QuickItinerary()
+        quickTableInstance.rollbackItineraryTableProgress()
+        
+        //PostEditPhotoVideoTable
+        let postEditPhotoInstance = PostEditPhotosVideos()
+        postEditPhotoInstance.rollbackPostEditPhotoTableProgress()
+    }
+    
+    private func stopUploading() {
+        isUploadingInProgress = false
+        self.rollbackDBIfOperationNotCommitted()
+    }
+    
+    private func resumeUploading() {
+        let i = PostImage()
+        i.uploadPhotos(delegate: nil)
+    }
+    
+    private func dropOldDB() {
+        
+        if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
+            print("\n current version is  : \(version)")
+            
+            var fullVersionString = version.replacingOccurrences(of: ".", with: "")
+            let array = version.components(separatedBy: ".")
+            
+            if array.count < 3 {
+                for _ in array.count..<3 {
+                    fullVersionString.append("0")
+                }
+            }
+            
+            if ((Int(fullVersionString))! < 406) {
+                self.dropDBTables()                
+            }
+        }
+    }
+    
+    func dropDBTables() {
+        
+        //PhotoTable
+        let photoInstance = PostImage()
+        photoInstance.dropPhotoTable()
+        
+        //VideoTable
+        let videoInstance = PostVideo()
+        videoInstance.dropVideoTable()
+        
+        //PostTable
+        let postInstance = Post()
+        postInstance.dropPostTable()
+        
+        //LocalPostTable
+        let localPostInstance = LocalLifePostModel()
+        localPostInstance.dropLocalPostTable()
+        
+        //QuickItineraryTable
+        let quickTableInstance = QuickItinerary()
+        quickTableInstance.dropQITable()
+        
+        //PostEditPhotoVideoTable
+        let postEditPhotoInstance = PostEditPhotosVideos()
+        postEditPhotoInstance.dropPostEditAddPhotoTable()
+        
     }
     
     
@@ -430,17 +545,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
     }
     
     func googleAnalytics() {
-        // Configure tracker from GoogleService-Info.plist.
-//        var configureError: NSError?
-//        GGLContext.sharedInstance().configureWithError(&configureError)
-//        assert(configureError == nil, "Error configuring Google services: \(configureError)")
-//        
-//        // Optional: configure GAI options.
-//        guard let gai = GAI.sharedInstance() else {
-//            assert(false, "Google Analytics not configured correctly")
-//        }
-//        gai.trackUncaughtExceptions = true  // report uncaught exceptions
-//        gai.logger.logLevel = GAILogLevel.verbose  // remove before app release
+        
+        guard let gai = GAI.sharedInstance() else {
+            assert(false, "Google Analytics not configured correctly")
+        }
+        
+        gai.tracker(withTrackingId: "UA-73461827-2")
+        gai.trackUncaughtExceptions = true
+        gai.logger.logLevel = .verbose;
+        
+        
+        // Configure tracker from GoogleService-Info.pli st.
+        //        var configureError: NSError?
+        //        GGLContext.sharedInstance().configureWithError(&configureError)
+        //        assert(configureError == nil, "Error configuring Google services: \(configureError)")
+        //
+        //        // Optional: configure GAI options.
+        //        guard let gai = GAI.sharedInstance() else {
+        //            assert(false, "Google Analytics not configured correctly")
+        //        }
+        //        gai.trackUncaughtExceptions = true  // report uncaught exceptions
+        //        gai.logger.logLevel = GAILogLevel.verbose  // remove before app release
     }
     
 }
@@ -493,41 +618,9 @@ func addTopBorder(_ color: UIColor, view: UIView, borderWidth: CGFloat) {
 
 //MARK: - Internet Check Helpers
 
-func isConnectedToNetwork() -> Bool {
-    
-    var zeroAddress = sockaddr_in(sin_len: 0, sin_family: 0, sin_port: 0, sin_addr: in_addr(s_addr: 0), sin_zero: (0, 0, 0, 0, 0, 0, 0, 0))
-    zeroAddress.sin_len = UInt8(MemoryLayout.size(ofValue: zeroAddress))
-    zeroAddress.sin_family = sa_family_t(AF_INET)
-    
-    let defaultRouteReachability = withUnsafePointer(to: &zeroAddress) {
-        $0.withMemoryRebound(to: sockaddr.self, capacity: 1) {zeroSockAddress in
-            SCNetworkReachabilityCreateWithAddress(nil, zeroSockAddress)
-        }
-    }
-    
-    var flags: SCNetworkReachabilityFlags = SCNetworkReachabilityFlags(rawValue: 0)
-    if SCNetworkReachabilityGetFlags(defaultRouteReachability!, &flags) == false {
-        return false
-    }
-    
-    /* Only Working for WIFI
-     let isReachable = flags == .reachable
-     let needsConnection = flags == .connectionRequired
-     
-     return isReachable && !needsConnection
-     */
-    
-    // Working for Cellular and WIFI
-    let isReachable = (flags.rawValue & UInt32(kSCNetworkFlagsReachable)) != 0
-    let needsConnection = (flags.rawValue & UInt32(kSCNetworkFlagsConnectionRequired)) != 0
-    let ret = (isReachable && !needsConnection)
-    
-    return ret
-}
-
 func noInternet(view: UIView) {
     var uploadingView: UploadingToCloud!
-    uploadingView = UploadingToCloud(frame: CGRect(x: 0, y: 64, width: navigation.view.frame.width, height: 23))
+    uploadingView = UploadingToCloud(frame: CGRect(x: 0, y: 64, width: screenWidth, height: 23))
     uploadingView.uploadText.text = "No internet connection."
     view.addSubview(uploadingView)
 }

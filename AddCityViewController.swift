@@ -2,7 +2,6 @@ import UIKit
 
 import SwiftHTTP
 import CoreLocation
-import Toaster
 
 class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate, UITextFieldDelegate {
     var loader = LoadingOverlay()
@@ -30,24 +29,6 @@ class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewD
         cityTextField.delegate = self
         cityTextField.addTarget(self, action: #selector(AddCityViewController.textFieldDidChange(_:)), for: .editingChanged)
         
-        let leftButton = UIButton()
-        leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())        
-        leftButton.frame = CGRect(x: -8, y: 0, width: 30, height: 30)
-        
-        if isFromSettings != nil && isFromSettings == true {
-            leftButton.addTarget(self, action: #selector(self.saveCity), for: .touchUpInside)
-            self.customNavigationBar(left: leftButton, right: nil)           
-        }
-        else {
-            leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
-            
-            let rightButton = UIButton()
-            rightButton.setImage(UIImage(named: "arrow_next_fa"), for: UIControlState())
-            rightButton.addTarget(self, action: #selector(AddCityViewController.saveCity), for: .touchUpInside)
-            rightButton.frame = CGRect(x: 8, y: 8, width: 30, height: 30)
-            self.customNavigationBar(left: leftButton, right: rightButton)
-        }
-        
         
         mainTableView.tableFooterView = UIView()
         
@@ -58,11 +39,32 @@ class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewD
         }        
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        let leftButton = UIButton()
+        leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
+        leftButton.frame = CGRect(x: -8, y: 0, width: 30, height: 30)
+        
+        if isFromSettings != nil && isFromSettings == true {
+            leftButton.addTarget(self, action: #selector(self.saveCity), for: .touchUpInside)
+            self.customNavigationBar(left: leftButton, right: nil)
+        }
+        else {
+            leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
+            
+            let rightButton = UIButton()
+            rightButton.setImage(UIImage(named: "arrow_next_fa"), for: UIControlState())
+            rightButton.addTarget(self, action: #selector(AddCityViewController.saveCity), for: .touchUpInside)
+            rightButton.frame = CGRect(x: 8, y: 8, width: 30, height: 30)
+            self.customNavigationBar(left: leftButton, right: rightButton)
+        }
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillAppear(animated)
         print("\n\n viewWillDisappear called ")
         if isFromSettings != nil && isFromSettings == true {
-            self.saveCity()
+            self.saveCity(nil)
         }
     }
     
@@ -71,7 +73,9 @@ class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewD
         // Dispose of any resources that can be recreated.
     }
     
-    func saveCity() {
+    func saveCity(_ sender: UIButton?) {
+        sender?.isUserInteractionEnabled = false
+        
         print("\n\n Save city called")
         var cityName = ""
         
@@ -103,7 +107,6 @@ class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewD
                                 }
                             }
                             else {
-                                Toast(text: "User's city updated").show()
                                 if (self.navigationController?.topViewController as? AddCityViewController) != nil {
                                     self.popVC(UIButton())
                                 }
@@ -243,7 +246,7 @@ class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewD
         cityTextField.text = places[(indexPath as NSIndexPath).row]["description"].string!
         cityTextField.resignFirstResponder()
         mainTableView.isHidden = true
-        saveCity()
+        //saveCity()
         
     }
     
@@ -325,7 +328,7 @@ class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewD
                                     //TODO:Check this if autoSave should be supported
                                 }
                                 else {
-                                    self.saveCity()                                    
+                                    //self.saveCity()
                                 }
                             }
                         }

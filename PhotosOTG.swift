@@ -233,7 +233,7 @@ class PhotosOTG: UIView {
         }
         
         self.frame.size = CGSize(width: screenWidth, height: accheight)
-        globalNewTLViewController.addHeightToLayout(height: 50.0)
+        globalNewTLViewController?.addHeightToLayout(height: 50.0)
     };
     
     
@@ -337,7 +337,7 @@ class PhotosOTG: UIView {
         globalNavigationController.pushViewController(singlePhotoController, animated: true)
     }
     @IBAction func optionClick(_ sender: UIButton) {
-        globalNewTLViewController.chooseOptions(sender)
+        globalNewTLViewController?.chooseOptions(sender)
     }
     
 }

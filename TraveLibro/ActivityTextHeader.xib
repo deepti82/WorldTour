@@ -19,19 +19,25 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="38"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="..." selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pHq-mg-oUi">
-                    <rect key="frame" x="0.0" y="0.0" width="370" height="33"/>
-                    <color key="textColor" red="0.16470588235294117" green="0.16470588235294117" blue="0.16470588235294117" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="15"/>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pHq-mg-oUi">
+                    <rect key="frame" x="8" y="1" width="359" height="36.5"/>
+                    <attributedString key="attributedText">
+                        <fragment content="...">
+                            <attributes>
+                                <color key="NSColor" red="0.16470588235294117" green="0.16470588235294117" blue="0.16470588235294117" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <font key="NSFont" size="15" name="Avenir-Roman"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                            </attributes>
+                        </fragment>
+                    </attributedString>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
             </subviews>
             <color key="backgroundColor" red="0.98697105929999995" green="0.99956106259999999" blue="1" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="pHq-mg-oUi" secondAttribute="trailing" constant="5" id="6sq-Zz-zG5"/>
-                <constraint firstAttribute="bottom" secondItem="pHq-mg-oUi" secondAttribute="bottom" constant="5" id="HXR-rV-E6G"/>
-                <constraint firstItem="pHq-mg-oUi" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Tzu-lH-yNb"/>
-                <constraint firstItem="pHq-mg-oUi" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="bbp-zK-YA9"/>
+                <constraint firstItem="pHq-mg-oUi" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="JmO-bu-6mm"/>
+                <constraint firstItem="pHq-mg-oUi" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="eUs-Vc-q3a"/>
+                <constraint firstAttribute="trailing" secondItem="pHq-mg-oUi" secondAttribute="trailing" constant="8" id="qH8-5H-8fd"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="38.5" y="-173"/>

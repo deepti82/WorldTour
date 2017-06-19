@@ -48,8 +48,13 @@ class KindOfJourneyOTGViewController: UIViewController {
         
         let allControllers = self.navigationController?.viewControllers
         print("All controllers \(allControllers)")
-        backVC = allControllers![allControllers!.count - 2] as! NewTLViewController
-        backVC.journeyCategories = []
+        for vc in allControllers! {
+            if (vc.isKind(of: NewTLViewController.self)) {
+                backVC = vc as! NewTLViewController
+                backVC.journeyCategories = []
+                break
+            }
+        }
         
         doneButton.addTarget(self, action: #selector(KindOfJourneyOTGViewController.categoriesSelected(_:)), for: .touchUpInside)
         doneButton.layer.cornerRadius = 5
@@ -104,6 +109,11 @@ class KindOfJourneyOTGViewController: UIViewController {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        setAnalytics(name: "Kind Of Journey")
+
+    }
+    
     func categoriesSelected(_ sender: UIButton) {
         
         if backVC.journeyCategories.count == 0 {
@@ -130,7 +140,7 @@ class KindOfJourneyOTGViewController: UIViewController {
                     print("is editing? \(self.isEdit)")
                     self.goBack(UIView())
                     if(globalNewTLViewController != nil) {
-                        globalNewTLViewController.getJourney()
+                        globalNewTLViewController?.getJourney()
                     }
                     
                 }

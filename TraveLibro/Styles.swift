@@ -9,6 +9,11 @@
 import UIKit
 import AVFoundation
 
+func getDocumentsDirectory() -> URL {
+    let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+    let documentsDirectory = paths[0]
+    return documentsDirectory
+}
 
 func addShadow(_ myView: UIView, offset: CGSize, opacity: CGFloat, shadowRadius: CGFloat, cornerRadius: CGFloat) {
     
@@ -373,106 +378,25 @@ func getThought (_ post:JSON) ->  NSMutableAttributedString {
 //            retText = retText + " at " + location!
             retText.append(getRegularString(string: " at ", size: TL_REGULAR_FONT_SIZE))
             retText.append(getBoldString(string: location!.trimmingCharacters(in: CharacterSet.whitespaces), size: TL_REGULAR_FONT_SIZE))
-            
-            if(buddy.count == 1) {
-//                retText = retText + " with " + buddy[0]["name"].stringValue
-                retText.append(getRegularString(string: " with ", size: TL_REGULAR_FONT_SIZE))
-                retText.append(getBoldString(string: buddy[0]["name"].stringValue, size: TL_REGULAR_FONT_SIZE))
-            } else if (buddy.count == 2) {
-//                retText = retText + " with " + buddy[0]["name"].stringValue + " and " + buddy[1]["name"].stringValue
-                retText.append(getRegularString(string: " with ", size: TL_REGULAR_FONT_SIZE))
-                retText.append(getBoldString(string: buddy[0]["name"].stringValue, size: TL_REGULAR_FONT_SIZE))
-                retText.append(getRegularString(string: " and ", size: TL_REGULAR_FONT_SIZE))
-                 retText.append(getBoldString(string: buddy[1]["name"].stringValue, size: TL_REGULAR_FONT_SIZE))
 
-            } else if (buddy.count > 2) {
-                let n = buddy.count - 1
-//                retText = retText + " with " + buddy[0]["name"].stringValue + " and " + String(n) + " others"
-                retText.append(getRegularString(string: " with ", size: TL_REGULAR_FONT_SIZE))
-                retText.append(getBoldString(string: buddy[0]["name"].stringValue, size: TL_REGULAR_FONT_SIZE))
-                retText.append(getRegularString(string: " and ", size: TL_REGULAR_FONT_SIZE))
-                retText.append(getRegularString(string: String(n), size: TL_REGULAR_FONT_SIZE))
-                retText.append(getRegularString(string: " others", size: TL_REGULAR_FONT_SIZE))
-            }
+            retText.append(getBuddiesString(buddies: buddy))            
         } else {
-            if(buddy.count == 1) {
-//                retText = retText + " with " + buddy[0]["name"].stringValue
-                retText.append(getRegularString(string: " with ", size: TL_REGULAR_FONT_SIZE))
-                retText.append(getBoldString(string: buddy[0]["name"].stringValue, size: TL_REGULAR_FONT_SIZE))
-
-            } else if (buddy.count == 2) {
-//                retText = retText + " with " + buddy[0]["name"].stringValue + " and " + buddy[1]["name"].stringValue
-                retText.append(getRegularString(string: " with ", size: TL_REGULAR_FONT_SIZE))
-                retText.append(getBoldString(string: buddy[0]["name"].stringValue, size: TL_REGULAR_FONT_SIZE))
-                retText.append(getRegularString(string: " and ", size: TL_REGULAR_FONT_SIZE))
-                retText.append(getBoldString(string: buddy[1]["name"].stringValue, size: TL_REGULAR_FONT_SIZE))
-            } else if (buddy.count > 2) {
-                let n = buddy.count - 1
-//                retText = retText + " with " + buddy[0]["name"].stringValue + " and " + String(n) + " others"
-                retText.append(getRegularString(string: " with ", size: TL_REGULAR_FONT_SIZE))
-                retText.append(getBoldString(string: buddy[0]["name"].stringValue, size: TL_REGULAR_FONT_SIZE))
-                retText.append(getRegularString(string: " and ", size: TL_REGULAR_FONT_SIZE))
-                retText.append(getRegularString(string: String(n), size: TL_REGULAR_FONT_SIZE))
-                retText.append(getRegularString(string: " others", size: TL_REGULAR_FONT_SIZE))
-            }
+            retText.append(getBuddiesString(buddies: buddy))
         }
     } 
     else {
         if(location != nil && location != "") {
-//            retText = "At " + location!
             retText.append(getRegularString(string: "At ", size: TL_REGULAR_FONT_SIZE))
             retText.append(getBoldString(string: location!.trimmingCharacters(in: CharacterSet.whitespaces), size: TL_REGULAR_FONT_SIZE))
 
-            if(buddy.count == 1) {
-//                retText = retText + " with " + buddy[0]["name"].stringValue
-                retText.append(getRegularString(string: " with ", size: TL_REGULAR_FONT_SIZE))
-                retText.append(getBoldString(string: buddy[0]["name"].stringValue, size: TL_REGULAR_FONT_SIZE))
-
-            } else if (buddy.count == 2) {
-//                retText = retText + " with " + buddy[0]["name"].stringValue + " and " + buddy[1]["name"].stringValue
-                retText.append(getRegularString(string: " with ", size: TL_REGULAR_FONT_SIZE))
-                retText.append(getBoldString(string: buddy[0]["name"].stringValue, size: TL_REGULAR_FONT_SIZE))
-                retText.append(getRegularString(string: " and ", size: TL_REGULAR_FONT_SIZE))
-                retText.append(getBoldString(string: buddy[1]["name"].stringValue, size: TL_REGULAR_FONT_SIZE))
-            } else if (buddy.count > 2) {
-                let n = buddy.count - 1
-//                retText = retText + " with " + buddy[0]["name"].stringValue + " and " + String(n) + " others"
-                retText.append(getRegularString(string: " with ", size: TL_REGULAR_FONT_SIZE))
-                retText.append(getBoldString(string: buddy[0]["name"].stringValue, size: TL_REGULAR_FONT_SIZE))
-                retText.append(getRegularString(string: " and ", size: TL_REGULAR_FONT_SIZE))
-                retText.append(getRegularString(string: String(n), size: TL_REGULAR_FONT_SIZE))
-                retText.append(getRegularString(string: " others", size: TL_REGULAR_FONT_SIZE))
-
-            }
+            retText.append(getBuddiesString(buddies: buddy))
         }
         else {
-            if(buddy.count == 1) {
-//                retText = "With " + buddy[0]["name"].stringValue
-                retText.append(getRegularString(string: "With ", size: TL_REGULAR_FONT_SIZE))
-                retText.append(getBoldString(string: buddy[0]["name"].stringValue, size: TL_REGULAR_FONT_SIZE))
-
-            } else if (buddy.count == 2) {
-//                retText = "With " + buddy[0]["name"].stringValue + " and " + buddy[1]["name"].stringValue
-                retText.append(getRegularString(string: "With ", size: TL_REGULAR_FONT_SIZE))
-                retText.append(getBoldString(string: buddy[0]["name"].stringValue, size: TL_REGULAR_FONT_SIZE))
-                retText.append(getRegularString(string: " and ", size: TL_REGULAR_FONT_SIZE))
-                retText.append(getBoldString(string: buddy[1]["name"].stringValue, size: TL_REGULAR_FONT_SIZE))
-
-            } else if (buddy.count > 2) {
-                let n = buddy.count - 1
-//              retText = "With " + buddy[0]["name"].stringValue + " and " + String(n) + " others"
-                retText.append(getRegularString(string: "With ", size: TL_REGULAR_FONT_SIZE))
-                retText.append(getBoldString(string: buddy[0]["name"].stringValue, size: TL_REGULAR_FONT_SIZE))
-                retText.append(getRegularString(string: " and ", size: TL_REGULAR_FONT_SIZE))
-                retText.append(getRegularString(string: String(n), size: TL_REGULAR_FONT_SIZE))
-                retText.append(getRegularString(string: " others", size: TL_REGULAR_FONT_SIZE))
-
-                
-            }
+            retText.append(getBuddiesString(buddies: buddy))
         }
     }
     
-  return retText
+    return retText
 }
 
 
@@ -483,114 +407,59 @@ func getThoughtForLocalPost (_ post: Post) ->  NSMutableAttributedString {
     let buddy = post.buddyJson
     
     if(post.post_thoughts != "" ) {
-        //        retText = post["thoughts"].stringValue
         retText.append(getRegularString(string: post.post_thoughts.trimmingCharacters(in: CharacterSet.whitespaces), size: TL_REGULAR_FONT_SIZE))
         if(location != nil && location != "") {
-            //            retText = retText + " at " + location!
             retText.append(getRegularString(string: " at ", size: TL_REGULAR_FONT_SIZE))
             retText.append(getBoldString(string: location!.trimmingCharacters(in: CharacterSet.whitespaces), size: TL_REGULAR_FONT_SIZE))
             
-            if(buddy.count == 1) {
-                //                retText = retText + " with " + buddy[0]["name"].stringValue
-                retText.append(getRegularString(string: " with ", size: TL_REGULAR_FONT_SIZE))
-                retText.append(getBoldString(string: buddy[0]["name"].stringValue, size: TL_REGULAR_FONT_SIZE))
-            } else if (buddy.count == 2) {
-                //                retText = retText + " with " + buddy[0]["name"].stringValue + " and " + buddy[1]["name"].stringValue
-                retText.append(getRegularString(string: " with ", size: TL_REGULAR_FONT_SIZE))
-                retText.append(getBoldString(string: buddy[0]["name"].stringValue, size: TL_REGULAR_FONT_SIZE))
-                retText.append(getRegularString(string: " and ", size: TL_REGULAR_FONT_SIZE))
-                retText.append(getBoldString(string: buddy[1]["name"].stringValue, size: TL_REGULAR_FONT_SIZE))
-                
-            } else if (buddy.count > 2) {
-                let n = buddy.count - 1
-                //                retText = retText + " with " + buddy[0]["name"].stringValue + " and " + String(n) + " others"
-                retText.append(getRegularString(string: " with ", size: TL_REGULAR_FONT_SIZE))
-                retText.append(getBoldString(string: buddy[0]["name"].stringValue, size: TL_REGULAR_FONT_SIZE))
-                retText.append(getRegularString(string: " and ", size: TL_REGULAR_FONT_SIZE))
-                retText.append(getRegularString(string: String(n), size: TL_REGULAR_FONT_SIZE))
-                retText.append(getRegularString(string: " others", size: TL_REGULAR_FONT_SIZE))
-            }
+            retText.append(getBuddiesString(buddies: buddy))
         } else {
-            if(buddy.count == 1) {
-                //                retText = retText + " with " + buddy[0]["name"].stringValue
-                retText.append(getRegularString(string: " with ", size: TL_REGULAR_FONT_SIZE))
-                retText.append(getBoldString(string: buddy[0]["name"].stringValue, size: TL_REGULAR_FONT_SIZE))
-                
-            } else if (buddy.count == 2) {
-                //                retText = retText + " with " + buddy[0]["name"].stringValue + " and " + buddy[1]["name"].stringValue
-                retText.append(getRegularString(string: " with ", size: TL_REGULAR_FONT_SIZE))
-                retText.append(getBoldString(string: buddy[0]["name"].stringValue, size: TL_REGULAR_FONT_SIZE))
-                retText.append(getRegularString(string: " and ", size: TL_REGULAR_FONT_SIZE))
-                retText.append(getBoldString(string: buddy[1]["name"].stringValue, size: TL_REGULAR_FONT_SIZE))
-            } else if (buddy.count > 2) {
-                let n = buddy.count - 1
-                //                retText = retText + " with " + buddy[0]["name"].stringValue + " and " + String(n) + " others"
-                retText.append(getRegularString(string: " with ", size: TL_REGULAR_FONT_SIZE))
-                retText.append(getBoldString(string: buddy[0]["name"].stringValue, size: TL_REGULAR_FONT_SIZE))
-                retText.append(getRegularString(string: " and ", size: TL_REGULAR_FONT_SIZE))
-                retText.append(getRegularString(string: String(n), size: TL_REGULAR_FONT_SIZE))
-                retText.append(getRegularString(string: " others", size: TL_REGULAR_FONT_SIZE))
-            }
+            retText.append(getBuddiesString(buddies: buddy))
         }
     } 
     else {
-        if(location != nil && location != "") {
-            //            retText = "At " + location!
+        if(location != nil && location != "") {            
             retText.append(getRegularString(string: "At ", size: TL_REGULAR_FONT_SIZE))
             retText.append(getBoldString(string: location!.trimmingCharacters(in: CharacterSet.whitespaces), size: TL_REGULAR_FONT_SIZE))
             
-            if(buddy.count == 1) {
-                //                retText = retText + " with " + buddy[0]["name"].stringValue
-                retText.append(getRegularString(string: " with ", size: TL_REGULAR_FONT_SIZE))
-                retText.append(getBoldString(string: buddy[0]["name"].stringValue, size: TL_REGULAR_FONT_SIZE))
-                
-            } else if (buddy.count == 2) {
-                //                retText = retText + " with " + buddy[0]["name"].stringValue + " and " + buddy[1]["name"].stringValue
-                retText.append(getRegularString(string: " with ", size: TL_REGULAR_FONT_SIZE))
-                retText.append(getBoldString(string: buddy[0]["name"].stringValue, size: TL_REGULAR_FONT_SIZE))
-                retText.append(getRegularString(string: " and ", size: TL_REGULAR_FONT_SIZE))
-                retText.append(getBoldString(string: buddy[1]["name"].stringValue, size: TL_REGULAR_FONT_SIZE))
-            } else if (buddy.count > 2) {
-                let n = buddy.count - 1
-                //                retText = retText + " with " + buddy[0]["name"].stringValue + " and " + String(n) + " others"
-                retText.append(getRegularString(string: " with ", size: TL_REGULAR_FONT_SIZE))
-                retText.append(getBoldString(string: buddy[0]["name"].stringValue, size: TL_REGULAR_FONT_SIZE))
-                retText.append(getRegularString(string: " and ", size: TL_REGULAR_FONT_SIZE))
-                retText.append(getRegularString(string: String(n), size: TL_REGULAR_FONT_SIZE))
-                retText.append(getRegularString(string: " others", size: TL_REGULAR_FONT_SIZE))
-                
-            }
+            retText.append(getBuddiesString(buddies: buddy))
         }
         else {
-            if(buddy.count == 1) {
-                //                retText = "With " + buddy[0]["name"].stringValue
-                retText.append(getRegularString(string: "With ", size: TL_REGULAR_FONT_SIZE))
-                retText.append(getBoldString(string: buddy[0]["name"].stringValue, size: TL_REGULAR_FONT_SIZE))
-                
-            } else if (buddy.count == 2) {
-                //                retText = "With " + buddy[0]["name"].stringValue + " and " + buddy[1]["name"].stringValue
-                retText.append(getRegularString(string: "With ", size: TL_REGULAR_FONT_SIZE))
-                retText.append(getBoldString(string: buddy[0]["name"].stringValue, size: TL_REGULAR_FONT_SIZE))
-                retText.append(getRegularString(string: " and ", size: TL_REGULAR_FONT_SIZE))
-                retText.append(getBoldString(string: buddy[1]["name"].stringValue, size: TL_REGULAR_FONT_SIZE))
-                
-            } else if (buddy.count > 2) {
-                let n = buddy.count - 1
-                //              retText = "With " + buddy[0]["name"].stringValue + " and " + String(n) + " others"
-                retText.append(getRegularString(string: "With ", size: TL_REGULAR_FONT_SIZE))
-                retText.append(getBoldString(string: buddy[0]["name"].stringValue, size: TL_REGULAR_FONT_SIZE))
-                retText.append(getRegularString(string: " and ", size: TL_REGULAR_FONT_SIZE))
-                retText.append(getRegularString(string: String(n), size: TL_REGULAR_FONT_SIZE))
-                retText.append(getRegularString(string: " others", size: TL_REGULAR_FONT_SIZE))
-                
-                
-            }
+            retText.append(getBuddiesString(buddies: buddy))
         }
     }
     
     return retText
 }
 
+func getBuddiesString (buddies: [JSON]) -> NSMutableAttributedString {
+    let buddyText = NSMutableAttributedString(string: "") 
+   
+    if buddies.isNotEmpty {
+        if(buddies.count == 1) {
+            //                retText = retText + " with " + buddy[0]["name"].stringValue
+            buddyText.append(getRegularString(string: " with ", size: TL_REGULAR_FONT_SIZE))
+            buddyText.append(getBoldString(string: buddies[0]["name"].stringValue, size: TL_REGULAR_FONT_SIZE))
+        } else {
+            buddyText.append(getRegularString(string: " with ", size: TL_REGULAR_FONT_SIZE))
+            for i in 0..<buddies.count {
+                let buddyVal = buddies[i]
+                
+                if i == (buddies.count - 2) {
+                    buddyText.append(getBoldString(string: "\(buddyVal["name"].stringValue) and ", size: TL_REGULAR_FONT_SIZE))                            
+                }
+                else if i == (buddies.count-1) {
+                    buddyText.append(getBoldString(string: "\(buddyVal["name"].stringValue)", size: TL_REGULAR_FONT_SIZE))
+                }
+                else {                        
+                    buddyText.append(getBoldString(string: "\(buddyVal["name"].stringValue), ", size: TL_REGULAR_FONT_SIZE))
+                }
+            }
+        }
+    }
+    
+    return buddyText
+}
 
 func getTypeOfPost(_ post:JSON) -> String {
     var str = ""
@@ -785,6 +654,11 @@ func getWidthOfText(text:String, font:UIFont) -> CGFloat{
     return size.width
 }
 
+func getTrimmedString(inputString: String) -> String {
+    let trimmedString = inputString.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+    return trimmedString
+}
+
 func getRegularStringWithColor(string: String, size: Int, color: UIColor) -> NSMutableAttributedString {
     return NSMutableAttributedString(string: string, 
                                      attributes: [NSFontAttributeName: UIFont(name: "Avenir-Medium", size: CGFloat(size))!, NSForegroundColorAttributeName: color])
@@ -885,15 +759,15 @@ func setFollowButtonTitle(button:UIButton, followType: Int, otherUserID: String)
         
         if followType == 1 {
             button.setTitle("Following", for: .normal)
-            button.tag = 1
+//            button.tag = 1
         }
         else if followType == 2 {
             button.setTitle("Requested", for: .normal)
-            button.tag = 2
+//            button.tag = 2
         }
         else if followType == 0 {
             button.setTitle("Follow", for: .normal)
-            button.tag = 0
+//            button.tag = 0
         }
     }
 }
@@ -945,6 +819,36 @@ func isLocalFeed(feed: JSON) -> Bool {
         return true
     }
     return false
+}
+
+
+//MARK: - Sort JSON Array
+
+func sortJSONArray(inputArray:[JSON], key: String) -> [JSON] {
+    
+    let result = inputArray.sorted {
+        switch ($0[key], $1[key]) {
+        case (nil, nil), (_, nil):
+            return true
+        case (nil, _):
+            return false
+        case let (lhs as String, rhs as String):
+            return lhs < rhs
+        case let (lhs as Int, rhs as Int):
+            return  lhs < rhs
+        // Add more for Double, Date, etc.
+        default:
+            return true
+        }
+    }
+    
+    return result
+}
+
+//MARK: - PlaceHolder Image
+
+func getPlaceholderImage() -> UIImage {
+    return UIImage(named: "logo-default")!
 }
 
 
@@ -1092,14 +996,18 @@ func getTextHeader(feed: JSON, pageType: viewType) -> NSMutableAttributedString 
             displayText = getRegularString(string: "\(feed["name"].stringValue) - (\(feed["duration"].stringValue) Days).", size: TL_REGULAR_FONT_SIZE)
             
         case "quick-itinerary":
-            displayText = getRegularString(string: "\(feed[isLocalFeed(feed: feed) ? "title" : "name"].stringValue) - Quick Itinerary (\(feed["duration"].stringValue) Days).", size: TL_REGULAR_FONT_SIZE)
+            displayText = getBoldString(string: feed[isLocalFeed(feed: feed) ? "title" : "name"].stringValue, size: TL_REGULAR_FONT_SIZE)
+            displayText.append(getRegularString(string: " - Quick Itinerary (\(feed["duration"].stringValue) Days).", size: TL_REGULAR_FONT_SIZE))
             
         case "detail-itinerary":
-            if pageType != viewType.VIEW_TYPE_ACTIVITY {
-                displayText = getRegularString(string: "\(feed["name"].stringValue) (\(feed["duration"].stringValue) Days).", size: TL_REGULAR_FONT_SIZE)                
+            if (pageType != viewType.VIEW_TYPE_ACTIVITY ||
+                pageType == viewType.VIEW_TYPE_SHOW_SINGLE_POST) {
+                displayText = getBoldString(string: feed["name"].stringValue, size: TL_REGULAR_FONT_SIZE)
+                displayText.append(getRegularString(string: " (\(feed["duration"].stringValue) Days).", size: TL_REGULAR_FONT_SIZE))
             }
             else {
-                displayText = getRegularString(string: "\(feed["name"].stringValue) - Itinerary (\(feed["duration"].stringValue) Days).", size: TL_REGULAR_FONT_SIZE)
+                displayText = getBoldString(string: feed["name"].stringValue, size: TL_REGULAR_FONT_SIZE)
+                displayText.append(getRegularString(string: " - Itinerary (\(feed["duration"].stringValue) Days).", size: TL_REGULAR_FONT_SIZE))
             }
             
             
@@ -1149,7 +1057,7 @@ func getHeightForMiddleViewPostType(feed:JSON, pageType: viewType) -> CGFloat{
     }
         
     else{
-        if feed["imageUrl"] != nil {            
+        if ((feed["imageUrl"] != nil) && (feed["checkIn"]["location"].stringValue != "")) {            
             middleViewHeight += screenWidth*0.9
         }
     }
@@ -1169,5 +1077,19 @@ func getHeightForMiddleViewPostType(feed:JSON, pageType: viewType) -> CGFloat{
     
     return middleViewHeight
     
+}
+
+//MARK: GoogleAnalytics function used in all controller.
+
+func setAnalytics(name:String) {
+    DispatchQueue.global().async {
+        guard let tracker = GAI.sharedInstance().defaultTracker else {
+            return
+        }
+        tracker.set(kGAIScreenName, value: name)
+        
+        guard let builder = GAIDictionaryBuilder.createScreenView() else { return }
+        tracker.send(builder.build() as [NSObject : AnyObject])        
+    }
 }
 

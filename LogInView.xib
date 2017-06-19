@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -22,7 +22,7 @@
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB">
+        <view contentMode="scaleAspectFit" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="404" height="420"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -51,27 +51,22 @@
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="3Ji-Fr-Ac2">
-                    <rect key="frame" x="142" y="315" width="120" height="50"/>
-                    <subviews>
-                        <button opaque="NO" clipsSubviews="YES" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rpu-Cz-L1X">
-                            <rect key="frame" x="0.0" y="0.0" width="55" height="50"/>
-                            <color key="backgroundColor" red="0.23529411852359772" green="0.35294118523597717" blue="0.60000002384185791" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <inset key="imageEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
-                            <state key="normal" image="facebook_icon"/>
-                        </button>
-                        <button opaque="NO" clipsSubviews="YES" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="voY-fl-hF0">
-                            <rect key="frame" x="65" y="0.0" width="55" height="50"/>
-                            <color key="backgroundColor" red="0.86666667461395264" green="0.29411765933036804" blue="0.22352941334247589" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
-                            <state key="normal" image="google_plus_icon"/>
-                        </button>
-                    </subviews>
+                <button opaque="NO" clipsSubviews="YES" contentMode="redraw" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rpu-Cz-L1X">
+                    <rect key="frame" x="147" y="315" width="50" height="50"/>
+                    <color key="backgroundColor" red="0.23529411852359772" green="0.35294118523597717" blue="0.60000002384185791" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="120" id="TnU-KO-Yvi"/>
-                        <constraint firstAttribute="height" constant="50" id="W53-R6-uth"/>
+                        <constraint firstAttribute="width" secondItem="rpu-Cz-L1X" secondAttribute="height" multiplier="1:1" id="1eU-Fp-BpK"/>
+                        <constraint firstAttribute="height" constant="50" id="RF8-mD-UgF"/>
                     </constraints>
-                </stackView>
+                    <inset key="imageEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
+                    <state key="normal" image="facebook_icon"/>
+                </button>
+                <button opaque="NO" clipsSubviews="YES" contentMode="redraw" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="voY-fl-hF0">
+                    <rect key="frame" x="207" y="315" width="50" height="50"/>
+                    <color key="backgroundColor" red="0.86666667461395264" green="0.29411765933036804" blue="0.22352941334247589" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                    <state key="normal" image="google_plus_icon"/>
+                </button>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email Id" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HVq-p4-zhd">
                     <rect key="frame" x="8" y="35" width="388" height="60"/>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.45000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
@@ -103,29 +98,27 @@
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="8i9-n6-luR" secondAttribute="trailing" constant="8" id="52m-pL-cz6"/>
                 <constraint firstItem="Guu-nG-DDS" firstAttribute="top" secondItem="8i9-n6-luR" secondAttribute="bottom" constant="8" id="80A-4j-Cq3"/>
+                <constraint firstItem="voY-fl-hF0" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" constant="30" id="9ok-mj-vUF"/>
                 <constraint firstItem="TwH-o7-Tm9" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="F10-zE-99R"/>
+                <constraint firstItem="rpu-Cz-L1X" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" constant="-30" id="Jwo-5T-Iib"/>
                 <constraint firstItem="Vng-w3-nUV" firstAttribute="top" secondItem="HVq-p4-zhd" secondAttribute="bottom" constant="1" id="LRG-Rl-egK"/>
                 <constraint firstAttribute="trailing" secondItem="Guu-nG-DDS" secondAttribute="trailing" constant="8" id="Ltr-82-bbO"/>
                 <constraint firstItem="HVq-p4-zhd" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="35" id="MPa-9w-dZM"/>
-                <constraint firstItem="3Ji-Fr-Ac2" firstAttribute="top" secondItem="TwH-o7-Tm9" secondAttribute="bottom" constant="8" id="Y0x-ih-E2Q"/>
+                <constraint firstItem="rpu-Cz-L1X" firstAttribute="width" secondItem="voY-fl-hF0" secondAttribute="width" id="RXv-9c-oYu"/>
+                <constraint firstItem="voY-fl-hF0" firstAttribute="top" secondItem="TwH-o7-Tm9" secondAttribute="bottom" constant="8" id="e7E-Mu-T8V"/>
                 <constraint firstItem="HVq-p4-zhd" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="hZj-dh-kNm"/>
                 <constraint firstAttribute="trailing" secondItem="Vng-w3-nUV" secondAttribute="trailing" constant="8" id="hsT-rl-iBd"/>
-                <constraint firstItem="3Ji-Fr-Ac2" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="ixF-O2-s3m"/>
                 <constraint firstItem="TwH-o7-Tm9" firstAttribute="top" secondItem="Guu-nG-DDS" secondAttribute="bottom" constant="24" id="k8U-uO-9Xt"/>
                 <constraint firstItem="8i9-n6-luR" firstAttribute="top" secondItem="Vng-w3-nUV" secondAttribute="bottom" constant="8" id="mPm-81-6H5"/>
                 <constraint firstAttribute="trailing" secondItem="HVq-p4-zhd" secondAttribute="trailing" constant="8" id="moy-gc-YV2"/>
                 <constraint firstItem="Vng-w3-nUV" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="nbq-dX-Hlv"/>
                 <constraint firstItem="HVq-p4-zhd" firstAttribute="height" secondItem="Vng-w3-nUV" secondAttribute="height" id="qWW-AE-HMp"/>
+                <constraint firstItem="rpu-Cz-L1X" firstAttribute="height" secondItem="voY-fl-hF0" secondAttribute="height" id="wjN-Wu-qdY"/>
                 <constraint firstItem="Guu-nG-DDS" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="xqv-8B-SV6"/>
-                <constraint firstAttribute="bottom" secondItem="Guu-nG-DDS" secondAttribute="bottom" id="yPC-j2-r47"/>
+                <constraint firstItem="rpu-Cz-L1X" firstAttribute="top" secondItem="TwH-o7-Tm9" secondAttribute="bottom" constant="8" id="zqo-Q2-RdH"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <variation key="default">
-                <mask key="constraints">
-                    <exclude reference="yPC-j2-r47"/>
-                </mask>
-            </variation>
             <point key="canvasLocation" x="274" y="251"/>
         </view>
     </objects>

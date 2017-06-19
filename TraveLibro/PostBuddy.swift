@@ -11,6 +11,8 @@ import SQLite
 
 public class Buddy {
     
+    let db = TLModelManager.getSharedManager().db!
+    
     var buddyID = ""
     var postID = 0
     var buddyEmail = ""
@@ -40,6 +42,10 @@ public class Buddy {
         } catch _ {
             
         }
+    }
+    
+    func dropBuddyTable() {
+        try! db.run(buddy.drop(ifExists: true))
     }
     
 }

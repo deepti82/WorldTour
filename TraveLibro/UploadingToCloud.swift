@@ -36,7 +36,24 @@ class UploadingToCloud: UIView {
         
         self.uploadText.text = "Uploading To Cloud..."
         
-        if feed["type"].stringValue == "travel-life" {
+        if feed["type"].stringValue == "editTravelLifePost" {
+            self.backgroundView.backgroundColor = mainOrangeColor            
+            self.uploadText.textColor = UIColor.white
+            
+            var valtext = "Uploading To Cloud..."
+            if feed["editType"].stringValue == "EDIT_NEW_POST" {
+                valtext = "Uploading To Journey..."
+            }
+            else if feed["editType"].stringValue == "EDITING_ACTIVITY" {
+                valtext = "Updating changes to activity..."
+            }
+            else if feed["editType"].stringValue == "EDITING_PHOTO_VIDEO" {
+                valtext = "Uploading moments to this activity..."
+            }
+            
+            self.uploadText.text = valtext
+        }
+        else if feed["type"].stringValue == "travel-life" {
             self.backgroundView.backgroundColor = mainOrangeColor            
             self.uploadText.textColor = UIColor.white
         }

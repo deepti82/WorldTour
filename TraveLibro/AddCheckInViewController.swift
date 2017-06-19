@@ -59,6 +59,11 @@ class AddCheckInViewController: UIViewController, UIImagePickerControllerDelegat
         
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        setAnalytics(name: "Check In")
+
+    }
+    
     func cameraTapped(_ sender: AnyObject) {
         
         print("Camera tapped")

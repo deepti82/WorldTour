@@ -111,18 +111,26 @@ class FooterViewNew: UIView {
     }
     
     func gotoActivity() {
-        if currentUser != nil {
-            setFooterDefaultState()
+        if currentUser != nil {            
             setHighlightStateForView(tag: 0, color: mainOrangeColor)
-            request.getUserFromCache(user.getExistingUser(), completion: { (response) in
-                DispatchQueue.main.async {
-                    popularView = "activity"
-                    currentUser = response["data"]
-                    let vc = storyboard!.instantiateViewController(withIdentifier: "TLMainFeedsView") as! TLMainFeedsViewController
-                    vc.pageType = viewType.VIEW_TYPE_ACTIVITY
-                    self.setVC(newViewController: vc)
-                }
-            })
+            
+            if isSelfUser(otherUserID: currentUser["_id"].stringValue) {
+                popularView = "activity"
+                let vc = storyboard!.instantiateViewController(withIdentifier: "TLMainFeedsView") as! TLMainFeedsViewController
+                vc.pageType = viewType.VIEW_TYPE_ACTIVITY
+                self.setVC(newViewController: vc)
+            }
+            else {
+                request.getUserFromCache(user.getExistingUser(), completion: { (response) in
+                    DispatchQueue.main.async {
+                        popularView = "activity"
+                        currentUser = response["data"]
+                        let vc = storyboard!.instantiateViewController(withIdentifier: "TLMainFeedsView") as! TLMainFeedsViewController
+                        vc.pageType = viewType.VIEW_TYPE_ACTIVITY
+                        self.setVC(newViewController: vc)
+                    }
+                })
+            }
         }
         else {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil )
@@ -139,11 +147,11 @@ class FooterViewNew: UIView {
     
     func gotoTraveLife() {
         if currentUser != nil {
-            setFooterDefaultState()
+            
             setHighlightStateForView(tag: 1, color: mainOrangeColor)
-            request.getUser(user.getExistingUser(), urlSlug: nil, completion: { (response) in
-                DispatchQueue.main.async {
-                    currentUser = response["data"]
+            
+            if isNetworkReachable {
+                if isSelfUser(otherUserID: currentUser["_id"].stringValue) {
                     let vc = storyboard!.instantiateViewController(withIdentifier: "newTL") as! NewTLViewController
                     vc.isJourney = false
                     if(currentUser["journeyId"].stringValue == "-1") {
@@ -152,7 +160,57 @@ class FooterViewNew: UIView {
                     }
                     self.setVC(newViewController: vc)
                 }
-            })
+                else {
+                    request.getUserFromCache(user.getExistingUser(), completion: { (response) in
+                        DispatchQueue.main.async {
+                            currentUser = response["data"]
+                            let vc = storyboard!.instantiateViewController(withIdentifier: "newTL") as! NewTLViewController
+                            vc.isJourney = false
+                            if(currentUser["journeyId"].stringValue == "-1") {
+                                isJourneyOngoing = false
+                                vc.showJourneyOngoing(journey: JSON(""))
+                            }
+                            self.setVC(newViewController: vc)
+                        }
+                    })
+                }
+                
+//                request.getUser(user.getExistingUser(), urlSlug: nil, completion: { (response, isFromCache) in
+//                    if !isFromCache {
+//                        DispatchQueue.main.async {
+//                            currentUser = response["data"]
+//                            let vc = storyboard!.instantiateViewController(withIdentifier: "newTL") as! NewTLViewController
+//                            vc.isJourney = false
+//                            if(currentUser["journeyId"].stringValue == "-1") {
+//                                isJourneyOngoing = false
+//                                vc.showJourneyOngoing(journey: JSON(""))
+//                            }
+//                            self.setVC(newViewController: vc)
+//                        }
+//                    }
+//                })
+                
+            }
+            else {
+                request.getUserFromCache(user.getExistingUser(), completion: { (response) in
+                    currentUser = response["data"]
+                    let vc = storyboard!.instantiateViewController(withIdentifier: "newTL") as! NewTLViewController
+                    vc.isJourney = false
+                    if(currentUser["journeyId"].stringValue != "-1") {
+                        self.setVC(newViewController: vc)
+                    }
+                    else {
+                        let errorAlert = UIAlertController(title: "Error", message: "Please check your internet connection and try again.", preferredStyle: UIAlertControllerStyle.alert)
+                        let DestructiveAction = UIAlertAction(title: "Ok", style: .destructive) {
+                            (result : UIAlertAction) -> Void in
+                            self.gotoMyLife()
+                        }            
+                        errorAlert.addAction(DestructiveAction)
+                        globalNavigationController.topViewController?.present(errorAlert, animated: true, completion: nil)
+                    }
+                })
+            }
+            
         }
         else {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: ["type":0])
@@ -168,23 +226,36 @@ class FooterViewNew: UIView {
     }
     
     func gotoMyLife() {
-        if currentUser != nil {
-            setFooterDefaultState()
+        if currentUser != nil {            
+            
             setHighlightStateForView(tag: 2, color: mainOrangeColor)
-            request.getUserFromCache(user.getExistingUser(), completion: { (response) in
-                DispatchQueue.main.async {
-                    currentUser = response["data"]
-                    
-                    selectedPeople = currentUser["_id"].stringValue
-                    selectedUser = currentUser
-                                        
-                    let vc = storyboard?.instantiateViewController(withIdentifier: "TLProfileView") as! TLProfileViewController
-                    vc.displayData = ""
-                    vc.currentSelectedUser = selectedUser
-                    self.setVC(newViewController: vc)
-                    
-                }
-            })
+            
+            if isSelfUser(otherUserID: currentUser["_id"].stringValue) {
+                selectedPeople = ""
+                selectedUser = []
+//                leftViewController.profileTap(nil)
+                let vc = storyboard?.instantiateViewController(withIdentifier: "TLProfileView") as! TLProfileViewController
+                vc.displayData = ""
+                vc.currentSelectedUser = currentUser
+                self.setVC(newViewController: vc)
+            }
+            else {
+                request.getUserFromCache(user.getExistingUser(), completion: { (response) in
+                    DispatchQueue.main.async {
+                        
+                        currentUser = response["data"]
+                        selectedPeople = ""
+                        selectedUser = []
+//                        leftViewController.profileTap(nil)
+                                            
+                        let vc = storyboard?.instantiateViewController(withIdentifier: "TLProfileView") as! TLProfileViewController
+                        vc.displayData = ""
+                        vc.currentSelectedUser = currentUser
+                        self.setVC(newViewController: vc)
+                        
+                    }
+                })
+            }
         }
         else {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
@@ -200,16 +271,23 @@ class FooterViewNew: UIView {
     }
     
     func gotoLocaLife() {
-        if currentUser != nil {
-            setFooterDefaultState()
+        if currentUser != nil {            
+            
             setHighlightStateForView(tag: 3, color: mainGreenColor)
-            request.getUserFromCache(user.getExistingUser(), completion: { (response) in
-                DispatchQueue.main.async {
-                    currentUser = response["data"]
-                    let vc = storyboard?.instantiateViewController(withIdentifier: "localLife") as! LocalLifeRecommendationViewController
-                    self.setVC(newViewController: vc)
-                }
-            })
+            
+            if isSelfUser(otherUserID: currentUser["_id"].stringValue) {
+                let vc = storyboard?.instantiateViewController(withIdentifier: "localLife") as! LocalLifeRecommendationViewController
+                self.setVC(newViewController: vc)
+            }
+            else {
+                request.getUserFromCache(user.getExistingUser(), completion: { (response) in
+                    DispatchQueue.main.async {
+                        currentUser = response["data"]
+                        let vc = storyboard?.instantiateViewController(withIdentifier: "localLife") as! LocalLifeRecommendationViewController
+                        self.setVC(newViewController: vc)
+                    }
+                })
+            }
         }
         else {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: ["type":1])
@@ -225,16 +303,23 @@ class FooterViewNew: UIView {
     }
     
     func gotoAlerts() {
-        if currentUser != nil {
-            setFooterDefaultState()
+        if currentUser != nil {            
+           
             setHighlightStateForView(tag: 4, color: mainOrangeColor)
-            request.getUserFromCache(user.getExistingUser(), completion: { (response) in
-                DispatchQueue.main.async {
-                    currentUser = response["data"]
-                    let vc = storyboard?.instantiateViewController(withIdentifier: "notifySub") as! NotificationSubViewController
-                    self.setVC(newViewController: vc)
-                }
-            })
+            
+            if isSelfUser(otherUserID: currentUser["_id"].stringValue) {
+                let vc = storyboard?.instantiateViewController(withIdentifier: "notifySub") as! NotificationSubViewController
+                self.setVC(newViewController: vc)
+            }
+            else {
+                request.getUserFromCache(user.getExistingUser(), completion: { (response) in
+                    DispatchQueue.main.async {
+                        currentUser = response["data"]
+                        let vc = storyboard?.instantiateViewController(withIdentifier: "notifySub") as! NotificationSubViewController
+                        self.setVC(newViewController: vc)
+                    }
+                })
+            }
         }
         else {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil )
@@ -288,6 +373,8 @@ class FooterViewNew: UIView {
     }
     
     func setHighlightStateForView(tag: Int, color: UIColor) {
+        self.setFooterDefaultState()
+        
         switch tag {
         case 0:
             activityView.isUserInteractionEnabled = false

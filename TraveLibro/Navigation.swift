@@ -7,7 +7,6 @@ import Crashlytics
 
 //var adminUrl = "https://travelibro.wohlig.com/api/"
 var adminUrl = "https://travelibro.com/api/"
-var adminBackendUrl = "http://travelibroadmin.travelibro.com/api/"
 var mapKey = "AIzaSyDPH6EYKMW97XMTJzqYqA0CR4fk5l2gzE4"
 
 class Navigation {
@@ -51,7 +50,7 @@ class Navigation {
                             socialType = "facebook"
                             socialId = json["facebookID"].string!
                         }
-                        user.setUser(json["_id"].stringValue, name: json["name"].stringValue, useremail: json["email"].stringValue, profilepicture: json["profilePicture"].stringValue, travelconfig: "", loginType: socialType, socialId: socialId, userBadge: json["userBadgeImage"].stringValue, homecountry: json["homeCountry"]["name"].stringValue, homecity: json["homeCity"].stringValue, isloggedin: json["alreadyLoggedIn"].bool!, dataUpload:"", privacy:json["status"].stringValue )
+                        user.setUser(json["_id"].stringValue, name: json["name"].stringValue, useremail: json["email"].stringValue, profilepicture: json["profilePicture"].stringValue, travelconfig: "", loginType: socialType, socialId: socialId, userBadge: json["userBadgeImage"].stringValue, homecountry: json["homeCountry"]["name"].stringValue, homecity: json["homeCity"].stringValue, isloggedin: json["alreadyLoggedIn"].bool!, privacy:json["status"].stringValue )
                         completion(json1)
                     }
                 }
@@ -92,7 +91,7 @@ class Navigation {
         var json = JSON(1);
         let params = ["user":id, "problem":problemMessage]
         do {
-            let opt = try HTTP.POST(adminBackendUrl + "reportProblems/save", parameters: params)
+            let opt = try HTTP.POST(adminUrl + "reportProblems/save", parameters: params)
             opt.start { response in
                 if let err = response.error {
                     print("error: \(err.localizedDescription)")
@@ -135,10 +134,14 @@ class Navigation {
             let json = JSON(data: data)
             print("\n getUserFromCache : \(json["data"]["name"].stringValue)")
             completion(json)
+        }.onFailure { (error) in
+            print("Error : \(error)")
         }
+        
+        
     }
     
-    func getUser(_ id: String, urlSlug: String?, completion: @escaping ((JSON) -> Void)) {
+    func getUser(_ id: String, urlSlug: String?, completion: @escaping ((JSON, Bool) -> Void)) {
         
         
         var json = JSON(1);
@@ -150,11 +153,13 @@ class Navigation {
         print("\n get user params : \(params)")
         
         let urlString = adminUrl + "user/getOne"
-        if urlSlug == "" {
+        
+        if urlSlug == nil || urlSlug == "" {
+            
             self.cache.fetch(key: urlString+id).onSuccess { data in
                 let json = JSON(data: data)
                 print("\n getUser upper : \(json["data"]["name"].stringValue)")
-                completion(json)
+                completion(json,true)
             }
         }
         
@@ -171,8 +176,7 @@ class Navigation {
                     if urlSlug == "" {
                         self.cache.set(value: response.data, key: urlString+id)
                     }
-                    print("\n getUser lower : \(json["data"]["name"].stringValue)")
-                    completion(json)
+                    completion(json,false)
                 }
             }
         } catch let error {
@@ -1126,7 +1130,6 @@ class Navigation {
                 else
                 {
                     json  = JSON(data: response.data)
-                    print(json)
                     completion(json)
                 }
             }
@@ -1206,11 +1209,23 @@ class Navigation {
         }
     }
     
-    func getJourney(_ id: String, completion: @escaping ((JSON) -> Void)) {
+    func getJourney(_ id: String, completion: @escaping ((JSON, Bool) -> Void)) {
         
         do {
             
-            let opt = try HTTP.POST(adminUrl + "journey/getOnGoing", parameters: ["user": id])
+            let urlString = adminUrl + "journey/getOnGoing"
+            
+            if !isNetworkReachable {
+                if(isSelfUser(otherUserID: id)) {
+                    self.cache.fetch(key: urlString+id).onSuccess { data in
+                        let json = JSON(data: data)
+                        completion(json,true)
+                    }
+                }
+            }
+            
+            
+            let opt = try HTTP.POST(urlString, parameters: ["user": id])
             var json = JSON(1);
             opt.start {response in
                 if let err = response.error {
@@ -1219,8 +1234,11 @@ class Navigation {
                 else
                 {
                     json  = JSON(data: response.data)
+                    if(isSelfUser(otherUserID: id)) {
+                        self.cache.set(value: response.data, key: urlString+id)
+                    }
                     currentJourney = json["data"]
-                    completion(json)
+                    completion(json, false)
                 }
             }
         } catch let error {
@@ -1673,7 +1691,7 @@ class Navigation {
     }
 
     
-    func getMomentLife(_ user: String, pageNumber: Int, type: String, token: String, urlSlug: String?, completion: @escaping ((JSON) -> Void)) {
+    func getMomentLife(_ user: String, pageNumber: Int, type: String, token: String, urlSlug: String?, completion: @escaping ((JSON, String) -> Void)) {
         
         
         do {
@@ -1699,7 +1717,6 @@ class Navigation {
 
             }
             
-                        print(params)
             let jsonData = try params.rawData()
             
             // create post request
@@ -1720,8 +1737,7 @@ class Navigation {
                 
                 do {
                     let result = try JSONSerialization.jsonObject(with: data!, options: []) as! [String:AnyObject]
-                    print("response: \(JSON(result))")
-                    completion(JSON(result))
+                    completion(JSON(result), type)
                     
                 } catch {
                     print("Error: \(error)")
@@ -2086,7 +2102,7 @@ class Navigation {
 
 
     
-    func getGoogleSearchNearby(_ lat: Double, long: Double, searchText: String, completion: @escaping ((JSON) -> Void)) {
+    func getGoogleSearchNearby(_ lat: Double, long: Double, searchText: String, requestId:Int, completion: @escaping ((JSON, Int) -> Void)) {
         
         do {
             
@@ -2102,7 +2118,7 @@ class Navigation {
                 {
                     json  = JSON(data: response.data)
                     print(json)
-                    completion(json)
+                    completion(json, requestId)
                 }
             }
         } catch let error {
@@ -2121,8 +2137,6 @@ class Navigation {
                 params = ["uniqueId": id, "user": userId,"name":"","post":postId]
             }
             
-            print("like post: \(params)")
-            
             let opt = try HTTP.POST(adminUrl + "post/updateLikePost", parameters: [params])
             var json = JSON(1);
             opt.start {response in
@@ -2132,7 +2146,7 @@ class Navigation {
                 else
                 {
                     json  = JSON(data: response.data)
-                    print(json)
+                    print("like post response : \(json)")
                     completion(json)
                 }
             }
@@ -2226,73 +2240,6 @@ class Navigation {
             print("got an error creating the request: \(error)")
         }
     }
-    
-    
-    //  ITINERARY
-    func likeItinerary(_ id: String, userId: String, userName: String, unlike: Bool, itinerary: String, completion: @escaping ((JSON) -> Void)) {
-        
-        do {
-            
-            var params = ["uniqueId": id, "user": userId, "unlike": unlike] as [String : Any]
-            
-            if !unlike {
-                
-                params = ["uniqueId": id, "user": userId, "name": userName, "itinerary": itinerary]
-            }
-            
-            print("like post: \(params)")
-            
-            let opt = try HTTP.POST(adminUrl + "itinerary/updateLikeItinerary", parameters: [params])
-            var json = JSON(1);
-            opt.start {response in
-                if let err = response.error {
-                    print("error: \(err.localizedDescription)")
-                }
-                else
-                {
-                    json  = JSON(data: response.data)
-                    print(json)
-                    completion(json)
-                }
-            }
-        } catch let error {
-            print("got an error creating the request: \(error)")
-        }
-    }
-    
-    //  END AND START JOURNEY LIKE
-    func likeStartEnd(_ id: String, userId: String, userName: String, unlike: Bool, journey:
-        String, completion: @escaping ((JSON) -> Void)) {
-        
-        do {
-            
-            var params = ["uniqueId": id, "user": userId, "unlike": unlike] as [String : Any]
-            
-            if !unlike {
-                
-                params = ["uniqueId": id, "user": userId, "name": userName, "journey": journey]
-            }
-            
-            print("like post: \(params)")
-            
-            let opt = try HTTP.POST(adminUrl + "journey/likeJourney", parameters: [params])
-            var json = JSON(1);
-            opt.start {response in
-                if let err = response.error {
-                    print("error: \(err.localizedDescription)")
-                }
-                else
-                {
-                    json  = JSON(data: response.data)
-                    print(json)
-                    completion(json)
-                }
-            }
-        } catch let error {
-            print("got an error creating the request: \(error)")
-        }
-    }
-    
     
     func commentOnPost(postId: String, userId: String, commentText: String, hashtags: [String], mentions: [String], completion: @escaping ((JSON) -> Void)) {
         
@@ -2584,7 +2531,6 @@ class Navigation {
                 {
                     print("making json")
                     json  = JSON(data: response.data)
-                    print(json)
                     completion(json)
                 }
             }
@@ -2738,11 +2684,11 @@ class Navigation {
         }
     }
     
-    func changeDateTime(_ id: String, date: String, completion: @escaping ((JSON) -> Void)) {
+    func changeDateTime(_ id: String, postID: String, date: String, completion: @escaping ((JSON) -> Void)) {
         
         do {
             
-            let params = ["uniqueId": id, "date": date, "type": "changeDateTime", "user": currentUser["_id"].stringValue]
+            let params = ["uniqueId": id, "post": postID,  "date": date, "type": "changeDateTime", "user": currentUser["_id"].stringValue]
             
             print("change date time params: \(params)")
             
@@ -3076,8 +3022,7 @@ class Navigation {
         
         do {
             
-            let params = ["_id" : journeyId, "type" : type, "user": userId]
-            print("journey type data: \(params)")
+            let params = ["_id" : journeyId, "type" : type, "user": userId]            
             let opt = try HTTP.POST(adminUrl + "journey/getCountData", parameters: params)
             var json = JSON(1);
             opt.start {response in
@@ -3087,7 +3032,6 @@ class Navigation {
                 else
                 {
                     json  = JSON(data: response.data)
-                    print(json)
                     completion(json)
                 }
             }
@@ -3145,7 +3089,7 @@ class Navigation {
         
     }
     
-    func getHashtags(hashtag: String, completion: @escaping ((JSON) -> Void)) {
+    func getHashtags(hashtag: String, requestId: Int, completion: @escaping ((JSON, Int) -> Void)) {
         
         do {
             let params = ["hashtag": hashtag]
@@ -3158,7 +3102,7 @@ class Navigation {
                 else
                 {
                     json  = JSON(data: response.data)
-                    completion(json)
+                    completion(json, requestId)
                 }
             }
         } catch let error {
@@ -3167,7 +3111,7 @@ class Navigation {
         
     }
     
-    func getMentions(userId: String, searchText: String, completion: @escaping ((JSON) -> Void)) {
+    func getMentions(userId: String, searchText: String, requestId: Int, completion: @escaping ((JSON,Int) -> Void)) {
         
         do {
             let params = ["search": searchText, "_id": userId, "fromTag": true] as [String: Any]
@@ -3181,7 +3125,7 @@ class Navigation {
                 else
                 {
                     json  = JSON(data: response.data)
-                    completion(json)
+                    completion(json, requestId)
                 }
             }
         } catch let error {
@@ -3345,7 +3289,8 @@ class Navigation {
     }
     
     
-    func postAddPhotosVideos (param:JSON, completion: @escaping ((JSON) -> Void) ) {
+//    func postAddPhotosVideos (param:JSON, completion: @escaping ((JSON) -> Void) ) {
+    func editPost(param:JSON, completion: @escaping ((JSON) -> Void) ) {
         do {
             let jsonData = try param.rawData()
             // create post request
@@ -3710,6 +3655,44 @@ class Navigation {
         }
     }
     
+    
+    //MARK: - Notification Redirection
+    
+    func getNotificationDetailedPost(userID: String, postID: String, notificationType: String, completion: @escaping ((JSON) -> Void)) {
+        
+        do {
+            var url = ""
+            
+            if notificationType == "journeyLike" || notificationType == "journeyComment" || notificationType == "journeyMentionComment" {
+                url = "journey/getSingleJourney"
+            }
+            else if notificationType == "itineraryLike" || notificationType == "itineraryComment" || notificationType == "itineraryMentionComment" {
+                url = "itinerary/getSingleItinerary"
+            }
+            else if notificationType == "postLike" || notificationType == "postComment" || notificationType == "postMentionComment" || notificationType == "postFirstTime" || notificationType == "postTag" {
+                url = "post/getSinglePost"
+            }
+            
+            print("\n URL : \(url)")
+            
+            
+            let opt = try HTTP.POST(adminUrl + url, parameters: ["user":userID, "_id": postID])
+            var json = JSON(1);
+            opt.start {response in
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    json  = JSON(data: response.data)
+                    print("\n\n DetailPostResponse : \(json)")
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+    }
     
     //MARK: - Fetch popular items
     

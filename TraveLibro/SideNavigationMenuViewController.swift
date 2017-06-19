@@ -13,7 +13,6 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
     var exploreDestinationsController:UIViewController!
     var popBloggersController:UIViewController!    
     var inviteFriendsController:UIViewController!
-    var rateUsController:UIViewController!    
     var settingsViewController: UIViewController!
     var localLifeController: UIViewController!
     var myProfileViewController: UIViewController!
@@ -90,25 +89,22 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         
         let PJController = storyboard!.instantiateViewController(withIdentifier: "TLMainFeedsView") as! TLMainFeedsViewController
         PJController.pageType = viewType.VIEW_TYPE_POPULAR_JOURNEY
+        PJController.shouldLoadFromStart = true
         self.popJourneysController = UINavigationController(rootViewController: PJController)
         
         let EDController = storyboard!.instantiateViewController(withIdentifier: "TLMainFeedsView") as! TLMainFeedsViewController
         EDController.pageType = viewType.VIEW_TYPE_POPULAR_ITINERARY
+        PJController.shouldLoadFromStart = true
         self.exploreDestinationsController = UINavigationController(rootViewController: EDController)
         
         let PBController = storyboard!.instantiateViewController(withIdentifier: "popularBloggers") as! PopularBloggersViewController
         self.popBloggersController = UINavigationController(rootViewController: PBController)
         
-        let inviteController = storyboard!.instantiateViewController(withIdentifier: "inviteFriends") as! InviteFriendsViewController
-        self.inviteFriendsController = UINavigationController(rootViewController: inviteController)
-        
-        let rateUsController = storyboard!.instantiateViewController(withIdentifier: "Home") as! HomeViewController
-        self.rateUsController = UINavigationController(rootViewController: rateUsController)
-        
         let localLifeController = storyboard!.instantiateViewController(withIdentifier: "localLife") as! LocalLifeRecommendationViewController
         self.localLifeController = UINavigationController(rootViewController: localLifeController)
         
         let myProfileController = storyboard!.instantiateViewController(withIdentifier: "TLProfileView") as! TLProfileViewController
+        myProfileController.displayData = ""
         self.myProfileViewController = UINavigationController(rootViewController: myProfileController)
         
         let signoutView = self.storyboard?.instantiateViewController(withIdentifier: "SignUpOne") as! SignInViewController
@@ -196,18 +192,18 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
             
             let isUrl = verifyUrl(imageName)
             if (isUrl) {
-                profilePicture.hnk_setImageFromURL(URL(string:imageName)!)
-                profile.image.hnk_setImageFromURL(URL(string:imageName)!)
-                backgroundImage.hnk_setImageFromURL(URL(string:imageName)!)
-                
+                let getImageUrl = URL(string:imageName)!
+                profilePicture.sd_setImage(with: getImageUrl, placeholderImage: getPlaceholderImage())
+                profile.image.sd_setImage(with: getImageUrl, placeholderImage: getPlaceholderImage())
+                backgroundImage.sd_setImage(with: getImageUrl, placeholderImage: getPlaceholderImage())
             } else {
                 let getImageUrl = URL(string:adminUrl + "upload/readFile?file=" + imageName + "&width=500")
-                profilePicture.hnk_setImageFromURL(getImageUrl!)
-                profile.image.hnk_setImageFromURL(getImageUrl!)
-                backgroundImage.hnk_setImageFromURL(getImageUrl!)
+                profilePicture.sd_setImage(with: getImageUrl, placeholderImage: getPlaceholderImage())
+                profile.image.sd_setImage(with: getImageUrl, placeholderImage: getPlaceholderImage())
+                backgroundImage.sd_setImage(with: getImageUrl, placeholderImage: getPlaceholderImage())
             }
-            if currentUser["homeCountry"] != nil {                
-                profile.flag.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(currentUser["homeCountry"]["flag"].stringValue)", width: 100))
+            if currentUser["homeCountry"] != nil {
+                profile.flag.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(currentUser["homeCountry"]["flag"].stringValue)", width: SMALL_PHOTO_WIDTH))
             }
             
             makeMenuProfilePicture(profilePicture)
@@ -225,7 +221,7 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         profile.flag.isHidden = true
     }
     
-    @IBAction func profileTap(_ sender: AnyObject) {
+    @IBAction func profileTap(_ sender: AnyObject?) {
         if currentUser != nil {
             selectedUser = nil
             request.getUserFromCache(user.getExistingUser(), completion: { (response) in
@@ -397,7 +393,8 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
                         print("error: \(response.error!.localizedDescription)")
                     }
                     else if response["value"].bool! {                                              
-                        clearNotificationCount()                        
+                        clearNotificationCount()
+                                             
                         let newViewController = self.storyboard?.instantiateViewController(withIdentifier: "SignUpOne") as! SignInViewController
                         newViewController.shouldShowNavBar = false
                         
@@ -407,6 +404,7 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
                         
                         ((UIApplication.shared.delegate as! AppDelegate).window)?.rootViewController = slideMenuController
                         UIViewController().customiseNavigation()
+                        
                     }
                     else {
                         let errorAlert = UIAlertController(title: "Error", message: "Logout failed. Please try again later", preferredStyle: UIAlertControllerStyle.alert)

@@ -39,6 +39,8 @@ class QuickIteneraryFour: UIViewController, UITextViewDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         print(quickItinery)
+        setAnalytics(name: "Quickitinerary page Four")
+
     }
     
     override func viewWillDisappear(_ animated: Bool) {

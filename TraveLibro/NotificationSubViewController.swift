@@ -32,9 +32,10 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setNavigationBarItemText("Alerts")
+        globalNewTLViewController = nil
+        globalTLMainFeedsViewController = nil
         
-        self.automaticallyAdjustsScrollViewInsets = false
+        setNavigationBarItemText("Alerts")
         
         let rightButton = UIButton()
         rightButton.setImage(UIImage(named: "search_toolbar"), for: UIControlState())
@@ -65,6 +66,12 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        request.getUserFromCache(user.getExistingUser(), completion: { (response) in
+            currentUser = response["data"]
+        })
+        
+        setAnalytics(name: "Notification sub Page")
         NotificationCenter.default.addObserver(self, selector: #selector(customRemoteNotificationReceived(notification:)), name: NSNotification.Name(rawValue: "REMOTE_NOTIFICATION_RECEIVED"), object: nil)
         self.mainFooter.frame = CGRect(x: 0, y: self.view.frame.height - MAIN_FOOTER_HEIGHT, width: self.view.frame.width, height: MAIN_FOOTER_HEIGHT)
         mainFooter.setHighlightStateForView(tag: 4, color: mainOrangeColor)
@@ -116,8 +123,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
             
             print("\n Fetching data for pageNumber: \(currentPageNumber)")
             
-            request.getNotify(user.getExistingUser(), pageNumber: currentPageNumber,  completion: {(response) in
-                
+            request.getNotify(user.getExistingUser(), pageNumber: currentPageNumber,  completion: {(response) in                
                 DispatchQueue.main.async(execute: {
                     
                     self.loader.hideOverlayView()
@@ -143,8 +149,10 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
                             if self.refreshControl.isRefreshing {
                                 self.refreshControl.endRefreshing()
                             }
+                            self.isScrollingDown = false
                             self.notifyTableView.reloadData()
-                            self.notifyTableView.scrollToRow(at: NSIndexPath.init(row: indexx, section: 0) as IndexPath as IndexPath, at: .none, animated: true)
+//                            self.notifyTableView.scrollToRow(at: NSIndexPath.init(row: indexx, section: 0) as IndexPath as IndexPath, at: .none, animated: false)
+                            self.loadStatus = true
                             
                             if self.notifications.isEmpty {
                                 self.noNotificationsFound()
@@ -218,56 +226,56 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
             
         case "postFirstTime":
             fallthrough
-        case "postTag":
-            fallthrough            
         case "postLike":
             fallthrough            
         case "postComment":
-            fallthrough            
-        case "photoComment":
             fallthrough
+        case "postMentionComment":
+            fallthrough
+        case "postTag":
+            fallthrough            
+        
         case "photoLike":
             fallthrough
-        case "journeyAccept":
-            fallthrough
-        case "journeyMentionComment":
+        case "photoComment":
+            fallthrough        
+                        
+        case "journeyLike":
             fallthrough
         case "journeyComment":
             fallthrough
-        case "journeyLike":
+        case "journeyMentionComment":
             fallthrough
-        case "itineraryMentionComment":
+        case "journeyRequest":
+            fallthrough
+        case "journeyAccept":
+            fallthrough
+        case "journeyReject":
+            fallthrough
+        case "journeyLeft":
+            fallthrough
+        
+        case "itineraryRequest":
             fallthrough
         case "itineraryLike":
             fallthrough
         case "itineraryComment":
             fallthrough
-        case "postMentionComment":
-            fallthrough       
-        case "journeyLeft":
-            fallthrough            
-        case "journeyRequest":
+        case "itineraryMentionComment":
             fallthrough
-        case "journeyComment":
-            fallthrough
-        case "journeyLike":
-            fallthrough
+            
         case "userFollowing":
             fallthrough
         case "userFollowingRequest":
             fallthrough
-        case "userBadge":
-            fallthrough
-        case "itineraryRequest":
-            fallthrough
         case "userFollowingResponse":
             fallthrough
-        case "journeyReject":                                
+            
+        case "userBadge":
             return currentCellHeight + 8
             
         case "userWelcome":
             return 180
-            
             
         default:
             return 230
@@ -288,30 +296,33 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         switch notificationType {
             
         case "postFirstTime":
-            fallthrough
-        case "postTag":
-            fallthrough            
+            fallthrough                    
         case "postLike":
             fallthrough            
         case "postComment":
-            fallthrough        
-        case "photoComment":
             fallthrough
+        case "postMentionComment":
+            fallthrough
+        case "postTag":
+            fallthrough
+        
         case "photoLike":
             fallthrough
-        case "journeyMentionComment":
+        case "photoComment":
+            fallthrough 
+        
+        case "journeyLike":
             fallthrough
         case "journeyComment":
             fallthrough
-        case "journeyLike":
+        case "journeyMentionComment":
             fallthrough
-        case "itineraryMentionComment":
-            fallthrough
+        
         case "itineraryLike":
             fallthrough
         case "itineraryComment":
             fallthrough
-        case "postMentionComment":
+        case "itineraryMentionComment":
             
             if cellNotificationData["data"]["thoughts"].stringValue != "" && canLoadCommentCell(data: cellNotificationData) {
                 
@@ -366,6 +377,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
             
             
         case "userFollowingRequest":
+            
             var cell = tableView.dequeueReusableCell(withIdentifier: "followRequestCell", for: indexPath) as? NotificationFollowRequestCell
             if cell == nil {
                 cell = NotificationFollowRequestCell.init(style: .default, reuseIdentifier: "followRequestCell", notificationData: cellNotificationData, helper: self) 
@@ -385,11 +397,11 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
             fallthrough
         case "journeyAccept":
             fallthrough
+        case "journeyReject":
+            fallthrough
         case "userFollowing":
             fallthrough
         case "userFollowingResponse":
-            fallthrough
-        case "journeyReject":
             var cell = tableView.dequeueReusableCell(withIdentifier: "acknolwdgeCell", for: indexPath) as? NotificationAcknolwdgementCell
             if cell == nil {
                 cell = NotificationAcknolwdgementCell.init(style: .default, reuseIdentifier: "acknolwdgeCell", notificationData: cellNotificationData, helper: self) 
@@ -434,15 +446,99 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
     }
     
     func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
-        return false
+        return true
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
         let cellNotificationData = notifications[indexPath.row]
-        print("\n Selected Notification of type : \(cellNotificationData["type"].stringValue)")
-        gotoActivityFeed()
+        print("\n\n ********************* \n\n Selected Notification of type : \(cellNotificationData["type"].stringValue) \n CellNotificationData: \(cellNotificationData)")
+        
+        let notificationType = cellNotificationData["type"].stringValue
+        
+        switch notificationType {
+        case "userFollowing":
+            fallthrough
+        case "userFollowingRequest":
+            fallthrough
+        case "userFollowingResponse":
+            
+            let moveToUserJSON = cellNotificationData["userFrom"]
+    
+            selectedPeople = moveToUserJSON["_id"].stringValue
+            selectedUser = moveToUserJSON
+            
+            let profile = storyboard?.instantiateViewController(withIdentifier: "TLProfileView") as! TLProfileViewController
+            profile.displayData = "search"
+            profile.currentSelectedUser = moveToUserJSON
+            self.navigationController?.pushViewController(profile, animated: true)
+            break
+            
+            
+            
+        case "journeyLike":
+            fallthrough
+        case "journeyComment":
+            fallthrough
+        case "journeyMentionComment":
+            fallthrough
+            
+        case "itineraryLike":
+            fallthrough
+        case "itineraryComment":
+            fallthrough
+        case "itineraryMentionComment":
+            fallthrough
+            
+        case "postLike":
+            fallthrough
+        case "postComment":
+            fallthrough
+        case "postMentionComment":
+            fallthrough
+        case "postFirstTime":
+            fallthrough
+        case "postTag":            
+            let postID = cellNotificationData["data"]["_id"].stringValue
+            
+            request.getNotificationDetailedPost(userID: user.getExistingUser(), postID: postID, notificationType: notificationType, completion: { (response) in
+                
+                DispatchQueue.main.async(execute: {
+                    
+                    if response.error != nil {
+                        print("error: \(response.error!.localizedDescription)")
+                    }
+                        
+                    else if response["value"].bool! {                        
+                        let showDataJSON = response["data"]
+                        self.gotoActivityFeed(withJSON: showDataJSON)
+                    }
+                        
+                    else {
+                        let errorAlert = UIAlertController(title: "Error", message: response["error"].stringValue, preferredStyle: UIAlertControllerStyle.alert)
+                        let DestructiveAction = UIAlertAction(title: "Ok", style: .destructive) {
+                            (result : UIAlertAction) -> Void in
+                            //Cancel Action
+                        }            
+                        errorAlert.addAction(DestructiveAction)
+                        self.navigationController?.present(errorAlert, animated: true, completion: nil)
+                    }
+                })
+            })
+            
+            break
+            
+            
+        case "photoLike":
+            fallthrough
+        case "photoComment":            
+            self.gotoSinglePhotoVC(withJSON: cellNotificationData["data"])
+            
+            
+        default:
+            print("\n Not yet done for : \(notificationType)")
+        }
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -722,7 +818,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
     //MARK: - Button Action Helpers
     
     func gotoOTG() {
-        request.getUser(user.getExistingUser(), urlSlug: nil, completion: {(request) in
+        request.getUser(user.getExistingUser(), urlSlug: nil, completion: {(request, isFromCache) in
             DispatchQueue.main.async {
                 
                 self.loader.hideOverlayView()                
@@ -733,7 +829,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
                     isJourneyOngoing = false
                     tlVC.showJourneyOngoing(journey: JSON(""))
                 }
-                globalNavigationController?.pushViewController(tlVC, animated: false)
+                self.navigationController?.pushViewController(tlVC, animated: false)
             }
         })
     }
@@ -746,18 +842,28 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         self.navigationController!.pushViewController(end, animated: true)
     }
     
-    func gotoActivityFeed() {
-        let vc = storyboard!.instantiateViewController(withIdentifier: "TLMainFeedsView") as! TLMainFeedsViewController
-        vc.pageType = viewType.VIEW_TYPE_ACTIVITY        
-        globalNavigationController?.pushViewController(vc, animated: false)
+    func gotoActivityFeed(withJSON: JSON) {
+        let vc = self.storyboard!.instantiateViewController(withIdentifier: "TLMainFeedsView") as! TLMainFeedsViewController
+        vc.pageType = viewType.VIEW_TYPE_SHOW_SINGLE_POST
+        vc.feedsDataArray = [withJSON]
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func gotoDetailItinerary(itineraryID: String) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "EachItineraryViewController") as! EachItineraryViewController
         controller.fromOutSide = itineraryID        
-        globalNavigationController?.setNavigationBarHidden(false, animated: false)
-        globalNavigationController?.pushViewController(controller, animated: true)
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+        self.navigationController?.pushViewController(controller, animated: true)
+    }
+    
+    func gotoSinglePhotoVC(withJSON: JSON) {
+        let singlePhotoController = self.storyboard?.instantiateViewController(withIdentifier: "singlePhoto") as! SinglePhotoViewController
+        singlePhotoController.index = 0
+        singlePhotoController.photos = [withJSON]
+        singlePhotoController.fetchType = photoVCType.FROM_DETAIL_ITINERARY
+        singlePhotoController.shouldShowBottomView = true
+        self.navigationController?.pushViewController(singlePhotoController, animated: true)
     }
     
     
@@ -838,15 +944,15 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         
         let remoteNotifications = notification.object as? Array<JSON>
         
-        if notifications.isEmpty {
+//        if notifications.isEmpty {
             self.pullToRefreshCalled()
-        }
-        else {
-            for notificationObject in remoteNotifications! {
-                notifications.insert(notificationObject, at: 0)
-                notifyTableView.reloadData()
-            }
-        }
+//        }
+//        else {
+//            for notificationObject in remoteNotifications! {
+//                notifications.insert(notificationObject, at: 0)
+//                notifyTableView.reloadData()
+//            }
+//        }
     }
     
 }

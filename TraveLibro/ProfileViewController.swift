@@ -417,7 +417,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     
     
     func getUser() {
-        request.getUser(user.getExistingUser(), urlSlug:selectedUser["urlSlug"].stringValue, completion: {(request) in
+        request.getUser(user.getExistingUser(), urlSlug:selectedUser["urlSlug"].stringValue, completion: {(request, isFromCache) in
             DispatchQueue.main.async {
                 currentUser = request["data"]
                 if self.displayData == "search" {

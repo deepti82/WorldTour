@@ -40,7 +40,9 @@ class QuickIteneraryTableViewController: UITableViewController, UISearchBarDeleg
         
     }
     
-    
+    override func viewWillAppear(_ animated: Bool) {
+        setAnalytics(name: "Quick Itinerary List")
+    }
     
     func searchDisplayControllerWillBeginSearch(_ controller: UISearchDisplayController) {
         controller.searchResultsTableView.delegate = self

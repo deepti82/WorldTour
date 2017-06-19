@@ -62,11 +62,15 @@ extension NewTLViewController {
     
     
     func hideAddActivity() {
+        editingPostLayout = nil
         isActivityHidden = true;
         addView.removeFromSuperview()
         backView.removeFromSuperview()
         self.setTopNavigation(text: "On The Go");
     }
+    
+    
+    //MARK:- Show Add / Edit Activity
     
     func showAddActivity() {
         isActivityHidden = false;
@@ -121,7 +125,12 @@ extension NewTLViewController {
     }
     
     
-    func showEditAddActivity(_ post:Post) {
+    func showEditAddActivity(_ post:Post, onPostLayout:PhotosOTG2?) {
+        
+        if (onPostLayout != nil) {
+            editingPostLayout = onPostLayout
+        }
+        
         isActivityHidden = false;
         hideHeaderAndFooter(false)
         var darkBlur: UIBlurEffect!
@@ -145,7 +154,7 @@ extension NewTLViewController {
         self.backView.addSubview(self.newScroll)
         self.addView = AddActivityNew()
         self.addView.buddyAdded(myJourney["buddies"].arrayValue)
-        
+        self.addView.typeOfAddActivtiy = "AddPhotosVideos"
         self.addView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: self.view.frame.size.height)
         self.addView.editPost = post
         self.addView.newScroll = self.newScroll;
@@ -182,16 +191,30 @@ extension NewTLViewController {
         self.addView.locationView.alpha = 0.1
         self.addView.locationView.isUserInteractionEnabled = false
         
+        self.addView.videosInitialView.alpha = 0.1
+        self.addView.videosInitialView.isUserInteractionEnabled = false
+        
+        self.addView.videosFinalView.alpha = 0.1
+        self.addView.videosFinalView.isUserInteractionEnabled = false
+                
         self.addView.thoughtsInitalView.alpha = 0.1
         self.addView.thoughtsInitalView.isUserInteractionEnabled = false
         
         self.addView.tagFriendsView.alpha = 1
         self.addView.tagFriendsView.isUserInteractionEnabled = true
-        self.addView.typeOfAddActivtiy = "AddPhotosVideos"
         self.newScroll.addSubview(self.addView)
     }
     
-    func showEditActivity(_ post:Post) {
+    func showEditActivity(_ post:Post, onPostLayout:PhotosOTG2?) {
+        if (onPostLayout != nil) {
+            editingPostLayout = onPostLayout
+        }
+        
+        if locationManager == nil {
+            isRequestFromNewPost = true
+            self.detectLocation()            
+        }
+        
         isActivityHidden = false;
         hideHeaderAndFooter(false)
         var darkBlur: UIBlurEffect!
@@ -213,6 +236,7 @@ extension NewTLViewController {
         self.newScroll = UIScrollView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
         self.backView.addSubview(self.newScroll)
         self.addView = AddActivityNew()
+        self.addView.thoughtsTextView.delegate = globalNewTLViewController
         
         self.addView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: self.view.frame.size.height)
         self.addView.editPost = post
@@ -258,7 +282,7 @@ extension NewTLViewController {
             self.addView.countCharacters(post.post_thoughts.characters.count)
         }
         
-        if(post.post_location != "") {
+        if(post.post_location != "") {            
             self.addView.putLocationName(post.post_location, placeId: nil)
             self.addView.categoryLabel.text = post.post_category
             self.addView.currentCity = post.post_city
@@ -289,7 +313,8 @@ extension NewTLViewController {
         buddyView.center.x = self.view.center.x
         buddyView.profileName.text = post["user"]["name"].string!
         DispatchQueue.main.async(execute: {
-            buddyView.profileImageView.image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(post["user"]["profilePicture"])")!))
+            buddyView.profileImageView.sd_setImage(with: getImageURL(post["user"]["profilePicture"].stringValue, width: BIG_PHOTO_WIDTH),
+                                                   placeholderImage: getPlaceholderImage())
             HiBye(buddyView.profileImageView)
         })
         layout.addSubview(buddyView)
@@ -518,7 +543,7 @@ extension NewTLViewController {
         }
         if isJourneyOngoing {
             otgView = startOTGView(frame: CGRect(x: 0, y: 112, width: mainScroll.frame.width, height: 550))
-            print("in on the go otg \(isUserMe(user: currentUser["_id"].stringValue))")
+            print("in on the go otg \(isSelfUser(otherUserID: currentUser["_id"].stringValue))")
             if myJourney != nil {
                 if myJourney["user"]["_id"].stringValue != user.getExistingUser() {
                     otgView.optionsButton.isHidden = true
@@ -579,7 +604,7 @@ extension NewTLViewController {
             
             getJourneyBuddies(journey: journey)
             //            addedBuddies = journey["buddies"].array!
-            countLabel = journey["buddies"].array!.count
+            countLabel = journey["buddies"].arrayValue.count
             showBuddies()
             
             self.otgView.journeyName.animation.makeY(125).animate(0.1)
@@ -622,14 +647,16 @@ extension NewTLViewController {
         
         self.view.bringSubview(toFront: toolbarView)
         self.view.bringSubview(toFront: addPostsButton)
-        self.view.bringSubview(toFront: mainFooter)
+        if self.mainFooter != nil {
+            self.view.bringSubview(toFront: mainFooter!)            
+        }
         self.view.bringSubview(toFront: infoButton)
-        if globalNewTLViewController.fromOutSide == "" {
-            self.scrollToBottom();
-
+        if (globalNewTLViewController?.isSelfJourney(journeyID: fromOutSide))! {
+            self.scrollToBottom()
         }
         
     }
+    
     func scrollToBottom() {
         let bottomOffset = CGPoint(x: 0, y: mainScroll.contentSize.height - mainScroll.bounds.size.height)
         mainScroll.setContentOffset(bottomOffset, animated: true)
@@ -696,11 +723,6 @@ extension NewTLViewController {
         self.infoView.videosButton.addTarget(self, action: #selector(NewTLViewController.gotoVideos(_:)), for: .touchUpInside)
         self.infoView.reviewsButton.tag = response["review"].intValue
         self.infoView.reviewsButton.addTarget(self, action: #selector(NewTLViewController.gotoReviews(_:)), for: .touchUpInside)
-        self.infoView.mustDoButton.addTarget(self, action: #selector(NewTLViewController.gotoMustDo(_:)), for: .touchUpInside)
-        self.infoView.hotelsButton.addTarget(self, action: #selector(NewTLViewController.gotoHotels(_:)), for: .touchUpInside)
-        self.infoView.restaurantsButton.addTarget(self, action: #selector(NewTLViewController.gotoRestaurants(_:)), for: .touchUpInside)
-        self.infoView.itinerariesButton.addTarget(self, action: #selector(NewTLViewController.gotoItineraries(_:)), for: .touchUpInside)
-        self.infoView.nearMeButton.addTarget(self, action: #selector(NewTLViewController.gotoNearMe(_:)), for: .touchUpInside)
         self.infoView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.closeInfo(_:))))
         
         if(response["videos"].number != nil) {
@@ -708,10 +730,6 @@ extension NewTLViewController {
             self.infoView.videosCount.setTitle("\(response["videos"])", for: .normal)
             self.infoView.photosCount.setTitle("\(response["photos"])", for: .normal)
             self.infoView.ratingCount.setTitle("\(response["review"])", for: .normal)
-            self.infoView.mustDoCount.setTitle("\(response["mustDo"])", for: .normal)
-            self.infoView.hotelsCount.setTitle("\(response["hotel"])", for: .normal)
-            self.infoView.restaurantCount.setTitle("\(response["restaurant"])", for: .normal)
-            self.infoView.itinerariesCount.setTitle("\(response["itinerary"])", for: .normal)
             
             self.infoView.videosCount.alpha = 1
             self.infoView.photosCount.alpha = 1
@@ -728,43 +746,6 @@ extension NewTLViewController {
         self.infoView.isHidden = false
         self.view.addSubview(self.infoView)
         self.view.bringSubview(toFront: self.infoView)
-        
-        
-    }
-    
-    func gotoMustDo(_ sender: UIButton) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: "eachCityPagerStripVC") as! EachCityPagerViewController
-        vc.city = latestCity
-        self.navigationController?.pushViewController(vc, animated: true)
-        
-        
-    }
-    
-    func gotoHotels(_ sender: UIButton) {
-        
-        
-        let vc = storyboard?.instantiateViewController(withIdentifier: "eachCityPagerStripVC") as! EachCityPagerViewController
-        vc.city = latestCity
-        self.navigationController?.pushViewController(vc, animated: true)
-        
-        
-    }
-    
-    func gotoRestaurants(_ sender: UIButton) {
-        
-        let vc = storyboard?.instantiateViewController(withIdentifier: "eachCityPagerStripVC") as! EachCityPagerViewController
-        vc.city = latestCity
-        self.navigationController?.pushViewController(vc, animated: true)
-        
-        
-    }
-    
-    func gotoItineraries(_ sender: UIButton) {
-        
-        let vc = storyboard?.instantiateViewController(withIdentifier: "eachCityPagerStripVC") as! EachCityPagerViewController
-        vc.city = latestCity
-        self.navigationController?.pushViewController(vc, animated: true)
-        
     }
     
     func gotoNearMe(_ sender: UIButton) {

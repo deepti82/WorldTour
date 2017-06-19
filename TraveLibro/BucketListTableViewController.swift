@@ -12,14 +12,32 @@ class BucketListTableViewController: UITableViewController  {
     var isComingFromEmptyPages = false
     var otherUser: String = ""
     var loader = LoadingOverlay()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         loader.showOverlay(self.view)
         getDarkBackGround(self)
         
+        self.updateNavigationBar()
+        
+        if whichView == "BucketList" {
+            self.title = "Bucket List"
+            getBucketList()
+        }
+        
+        if whichView == "CountriesVisited" {
+            self.title = "Countries Visited"
+            getCountriesVisited()
+        }
+        
+        tableView.separatorColor = UIColor.white
+    }
+    
+    func updateNavigationBar(){
+        
         let leftButton = UIButton()
         leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
-        leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
+        leftButton.addTarget(self, action: #selector(self.gotoProfile(_:)), for: .touchUpInside)
         leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         
         let rightButton = UIButton()
@@ -29,29 +47,24 @@ class BucketListTableViewController: UITableViewController  {
         if otherUser == "search" {
             self.customNavigationBar(left: leftButton, right: nil)
         }else{
-            self.customNavigationBar(left: leftButton, right: rightButton)
+            if whichView == "CountriesVisited" {
+                if self.result.count > 0 {
+                    self.customNavigationBar(left: leftButton, right: rightButton)
+                }
+                else {
+                    self.customNavigationBar(left: leftButton, right: nil)
+                }
+            }
+            else {
+                self.customNavigationBar(left: leftButton, right: rightButton)
+            }
         }
         
-        
-        if whichView == "BucketList" {
-            self.title = "Bucket List"
-            self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Avenir-Medium", size: 18)!]
-
-            getBucketList()
-        }
-        
-        if whichView == "CountriesVisited" {
-            self.title = "Countries Visited"
-            self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Avenir-Medium", size: 18)!]
-
-            getCountriesVisited()
-        }
-        
-        tableView.separatorColor = UIColor.white
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
+        setAnalytics(name: "Bucket List")
+
         if isComingFromEmptyPages {
             
             print("has come here")
@@ -63,6 +76,29 @@ class BucketListTableViewController: UITableViewController  {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func gotoProfile(_ sender: UIButton?) {
+        
+        let allControllers = self.navigationController?.viewControllers
+        print("\n allControllers : \(allControllers)")
+        var found = false
+        let count = ((allControllers?.count)!-1)
+        
+        for i in stride(from: count, through: 0, by: -1) {
+            let vc = allControllers?[i]
+            
+            if (vc?.isKind(of: TLProfileViewController.self))! {                
+                found = true
+                self.navigationController!.popToViewController(vc!, animated: true)
+                break
+            }
+        }
+       
+        if !found {
+            print("\n please check")
+            leftViewController.profileTap(nil)
+        }
     }
     
     func getBucketList() {
@@ -125,6 +161,9 @@ class BucketListTableViewController: UITableViewController  {
                         emptyBucket.whichView = "CountriesVisited"
                         self.navigationController?.pushViewController(emptyBucket, animated: false)
                         
+                    }
+                    else {
+                        self.updateNavigationBar()
                     }
                     self.tableView.reloadData()
                     

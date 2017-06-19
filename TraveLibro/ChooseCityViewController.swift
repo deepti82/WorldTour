@@ -62,6 +62,11 @@ class ChooseCityViewController: UIViewController, UIPickerViewDelegate, UIPicker
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        setAnalytics(name: "Choose City")
+
+    }
+    
     func donePicker(_ sender: AnyObject) {
         
         cityTextField.resignFirstResponder()

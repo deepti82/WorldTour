@@ -50,6 +50,8 @@ class EditSettingsViewController: UIViewController, UIWebViewDelegate {
             self.view.addSubview(titleView)
             
             MAMtextView = MoreAboutMe(frame: CGRect(x: 0, y: 76, width: self.view.frame.width, height: 150))
+            MAMtextView.forUser = currentUser
+            MAMtextView.reloadTravelPrefeces()
             MAMtextView.backgroundColor = UIColor(white: 1, alpha: 0.8)
             self.view.addSubview(MAMtextView)
             break        
@@ -100,6 +102,8 @@ class EditSettingsViewController: UIViewController, UIWebViewDelegate {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setAnalytics(name: "Settings")
+
         if whichView == "MAMView" {
             MAMtextView.reloadTravelPrefeces()
         }        
@@ -137,9 +141,7 @@ class EditSettingsViewController: UIViewController, UIWebViewDelegate {
                             ToastCenter.default.cancelAll()
                             
                             let alert = UIAlertController(title: nil, message: "Reported Successfully!", preferredStyle: .alert)
-                            showPopover(optionsController: alert, sender: sender, vc: self)
-
-//                            self.present(alert, animated: false, completion: nil)
+                            self.present(alert, animated: false, completion: nil)
                             alert.addAction(UIAlertAction(title: "OK", style: .default, handler:{action in
                                 self.report.theTextView.text = nil
                                 self.report.textViewDidEndEditing(self.report.theTextView)

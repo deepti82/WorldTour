@@ -49,8 +49,8 @@ class EndJourneyViewController: UIViewController {
             photoVC.fromView = "endJourney"
             self.navigationController?.setNavigationBarHidden(false, animated: true)
             self.navigationController?.pushViewController(photoVC, animated: true)
-            photoVC.whichView = "photos"
-            photoVC.journey = journey["_id"].string!
+            photoVC.currentContentType = contentType.TL_CONTENT_IMAGE_TYPE
+            photoVC.journeyID = journey["_id"].string!
             photoVC.creationDate = journey["startTime"].string!
             
         }
@@ -270,6 +270,11 @@ class EndJourneyViewController: UIViewController {
         self.title = "End Journey"
         self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Avenir-Medium", size: 18)!]
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        setAnalytics(name: "End Journey")
+
     }
     
     var newJson: JSON = []
@@ -547,17 +552,14 @@ class EndJourneyViewController: UIViewController {
                         print("error: \(response.error!.localizedDescription)")
                     }
                     else if response["value"].bool! {                            
-                        request.getUser(user.getExistingUser(), urlSlug: nil, completion: {(response) in
+                        request.getUser(user.getExistingUser(), urlSlug: nil, completion: {(response, isFromCache) in
                             
                             DispatchQueue.main.async(execute: {
                                 self.goBack()
                                 currentUser = response["data"]
                                 if globalNewTLViewController != nil {
-                                    globalNewTLViewController.removeFromParentViewController()
+                                    globalNewTLViewController?.removeFromParentViewController()
                                 }
-                                //                        tstr = Toast(text: "Journey ended successfully. Have a good life.")
-                                //                        tstr.show()
-                                //                        self.goBack()
                             })
                         })
                     }
@@ -618,16 +620,25 @@ class EndJourneyViewController: UIViewController {
         }
     }
     
-    
-    
-   
-    
     func goBack() {
-        
-        let tlVC = self.storyboard!.instantiateViewController(withIdentifier: "TLMainFeedsView") as! TLMainFeedsViewController
-        tlVC.pageType = viewType.VIEW_TYPE_ACTIVITY
-        self.navigationController?.pushViewController(tlVC, animated: false)
+        self.gotoActivityController(lat: nil, lng: nil, category: nil)
+        DispatchQueue.global().async { 
+            request.getUser(user.getExistingUser(), urlSlug: "") { (response, isFromCache) in
+                if !isFromCache {
+                    DispatchQueue.main.async {
+                        if response.error != nil {
+                            print("error: \(response.error!.localizedDescription)")
+                        }
+                        else if response["value"].bool! {
+                            currentUser = response["data"]
+                        }
+                        else {
+                            print("Response error")
+                        }
+                    }
+                }
+            }
+        }
     }
-    
     
 }

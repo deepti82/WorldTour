@@ -131,6 +131,7 @@ class QuickItineraryPreviewViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setAnalytics(name: "Quick Itinerary Preview")
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -259,7 +260,7 @@ class QuickItineraryPreviewViewController: UIViewController {
             let qi = QuickItinerary()
             qi.save(quickItinery, imageArr: globalPostImage, statusVal: false,oldId:editValue)
             
-            self.goToActivity()
+            self.gotoActivityController(lat: nil, lng: nil, category: nil)
         }
 //        if selectedQuickI != "" && !quickItinery["status"].boolValue {
             actionSheet.addAction(saveActionButton)
@@ -268,7 +269,7 @@ class QuickItineraryPreviewViewController: UIViewController {
         let publishActionButton: UIAlertAction = UIAlertAction(title: "Publish", style: .destructive) { action -> Void in
             let qi = QuickItinerary()
             qi.save(quickItinery, imageArr: globalPostImage, statusVal: true,oldId:editValue)
-            self.goToActivity()
+            self.gotoActivityController(lat: nil, lng: nil, category: nil)
         }
         
         let cancelActionButton: UIAlertAction = UIAlertAction(title: "Cancel", style: .destructive) { action -> Void in
@@ -282,12 +283,6 @@ class QuickItineraryPreviewViewController: UIViewController {
             actionSheet.view.superview?.isUserInteractionEnabled = true
             actionSheet.view.superview?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.alertControllerBackgroundTapped)))
         })
-    }
-    
-    func goToActivity() {
-        let vc = storyboard!.instantiateViewController(withIdentifier: "TLMainFeedsView") as! TLMainFeedsViewController
-        vc.pageType = viewType.VIEW_TYPE_ACTIVITY
-        self.navigationController?.pushViewController(vc, animated: false)
     }
     
 }

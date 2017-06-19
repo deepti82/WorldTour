@@ -76,11 +76,11 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate {
     }
     
     func cityPlaceholder() {
-        cityVisited.attributedText = NSAttributedString(string:  "Add City", attributes: [NSForegroundColorAttributeName: mainBlueColor])
+        cityVisited.attributedText = NSAttributedString(string:  "Add City +", attributes: [NSForegroundColorAttributeName: mainBlueColor])
     }
 
     func countryPlaceholder() {
-        countryVisited.attributedText = NSAttributedString(string:  "Add Country", attributes: [NSForegroundColorAttributeName: mainBlueColor])
+        countryVisited.attributedText = NSAttributedString(string:  "Add Country +", attributes: [NSForegroundColorAttributeName: mainBlueColor])
     }
 
     
@@ -98,6 +98,8 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        setAnalytics(name: "Quickitinerary page Three")
+
         viewAdded = false
         showInternetStrip()
         fillText()
@@ -106,15 +108,15 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate {
     
     func showInternetStrip() {
         
-        print(isConnectedToNetwork())
+        print("\n isNetworkReachable: \(isNetworkReachable)")
         
         if uploadingView != nil {
             uploadingView.removeFromSuperview()
         }
-        if !isConnectedToNetwork() {
-          uploadingView = UploadingToCloud(frame: CGRect(x: 0, y: 64, width: self.view.frame.width, height: 23))
+        if !isNetworkReachable {
+            uploadingView = UploadingToCloud(frame: CGRect(x: 0, y: 64, width: self.view.frame.width, height: 23))
             uploadingView.uploadText.text = "No internet connection."
-        self.view.addSubview(uploadingView)
+            self.view.addSubview(uploadingView)
         }
         
     }
@@ -179,6 +181,7 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate {
                 }
                 
             }
+            a = a + " +"
         }
         
         return a

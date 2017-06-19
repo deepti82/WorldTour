@@ -15,6 +15,8 @@ enum viewType {
     case VIEW_TYPE_POPULAR_JOURNEY
     case VIEW_TYPE_POPULAR_ITINERARY
     case VIEW_TYPE_OTG
+    case VIEW_TYPE_OTG_CONTENTS
+    case VIEW_TYPE_SHOW_SINGLE_POST
 }
 
 enum feedCellType {
@@ -42,8 +44,10 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
     @IBOutlet weak var feedsTableView: UITableView!
     
     private let TL_VISIBLE_CELL_TAG = 6789
+    private let separatorOffset = CGFloat(15.0)
     
     var mainFooter: FooterViewNew?
+    var shouldLoadFromStart = false
     
     var pageType: viewType = viewType.VIEW_TYPE_ACTIVITY
     var currentLocation = ["lat":"0.0", "long":"0.0"]
@@ -54,11 +58,9 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
     var hasMorePages = true
     var isLoading = false
     
-    let separatorOffset = CGFloat(15.0)
-    
     var loader = LoadingOverlay()
     let refreshControl = UIRefreshControl()
-    
+    var shouldShowBackButton = false
     
     //MARK: - LifeCycle
     
@@ -67,10 +69,24 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
         
         globalTLMainFeedsViewController = self
         
-        let i = PostImage()
-        i.uploadPhotos(delegate: self)
+        globalNewTLViewController = nil
         
-        feedsDataArray = []
+        shouldLoadFromStart = true
+        
+        self.hideHeaderAndFooter(false)
+        
+        if pageType == viewType.VIEW_TYPE_ACTIVITY ||
+            pageType == viewType.VIEW_TYPE_LOCAL_LIFE {
+            
+            let i = PostImage()
+            i.uploadPhotos(delegate: self)
+        }
+        
+        
+        if pageType != viewType.VIEW_TYPE_SHOW_SINGLE_POST {
+            feedsDataArray = []
+        }
+        
         self.reloadTableData()
         
         getDarkBackGround(self)
@@ -104,6 +120,11 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
         else if pageType == viewType.VIEW_TYPE_LOCAL_LIFE {            
             self.mainFooter?.setHighlightStateForView(tag: 3, color: mainGreenColor)
         }
+        
+        if shouldLoadFromStart && self.feedsDataArray.isNotEmpty {
+            self.feedsTableView.reloadData()
+            self.feedsTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -113,6 +134,7 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        self.shouldLoadFromStart = false
         self.hideHeaderAndFooter(false)        
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         self.mainFooter?.setFooterDefaultState()
@@ -136,6 +158,8 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
             
             setNavigationBarItemText("Activity Feed")
             
+            self.setSearchAndMenuButton()
+            
             self.mainFooter = FooterViewNew(frame: CGRect.zero)
             self.mainFooter?.layer.zPosition = 5
             self.view.addSubview(self.mainFooter!)
@@ -144,19 +168,47 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
         }
         
         else if pageType == viewType.VIEW_TYPE_POPULAR_JOURNEY {
-            setNavigationBarItemText("Popular Journeys")
             
-            self.mainFooter = FooterViewNew(frame: CGRect.zero)
-            self.mainFooter?.layer.zPosition = 5
-            self.view.addSubview(self.mainFooter!)
+            if shouldShowBackButton {
+                let leftButton = UIButton()
+                leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+                leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
+                leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
+                
+                self.customNavigationTextBar(left: leftButton, right: nil, text: "Popular Journeys")
+            }
+            else {
+                
+                setNavigationBarItemText("Popular Journeys")
+                
+                self.setSearchAndMenuButton()
+                
+                self.mainFooter = FooterViewNew(frame: CGRect.zero)
+                self.mainFooter?.layer.zPosition = 5
+                self.view.addSubview(self.mainFooter!)                
+            }
         }
         
         else if pageType == viewType.VIEW_TYPE_POPULAR_ITINERARY {
-            setNavigationBarItemText("Popular Itineraries")
-            
-            self.mainFooter = FooterViewNew(frame: CGRect.zero)
-            self.mainFooter?.layer.zPosition = 5
-            self.view.addSubview(self.mainFooter!)
+                        
+            if shouldShowBackButton {
+                let leftButton = UIButton()
+                leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+                leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
+                leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
+                
+                self.customNavigationTextBar(left: leftButton, right: nil, text: "Popular Itineraries")
+                self.customNavigationBar(left: leftButton, right: nil)
+            }
+            else {                
+                setNavigationBarItemText("Popular Itineraries")
+                
+                self.setSearchAndMenuButton()
+                
+                self.mainFooter = FooterViewNew(frame: CGRect.zero)
+                self.mainFooter?.layer.zPosition = 5
+                self.view.addSubview(self.mainFooter!)
+            }
         }
         
         else if pageType == viewType.VIEW_TYPE_LOCAL_LIFE {
@@ -185,6 +237,35 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
             
             self.customNavigationBar(left: leftButton, right: rightButton)
         }
+        
+        else if pageType == viewType.VIEW_TYPE_SHOW_SINGLE_POST {
+            
+            self.title = "Activity Feed"
+            
+            let leftButton = UIButton()
+            leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+            leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
+            leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
+            self.customNavigationBar(left: leftButton, right: nil)
+        }
+    }
+    
+    func setSearchAndMenuButton() {
+        
+        let rightButton = UIButton()
+        rightButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        rightButton.addTarget(self, action: #selector(self.searchTapped(_:)), for: .touchUpInside)
+        rightButton.setImage(UIImage(named: "search_toolbar"), for: .normal)            
+        let rightBarButtonItem = UIBarButtonItem(customView: rightButton)
+        self.navigationItem.rightBarButtonItem = rightBarButtonItem
+        
+        
+        let leftButton = UIButton()
+        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        leftButton.addTarget(self, action: #selector(UIViewController.toggleLeft), for: .touchUpInside)
+        leftButton.setImage(UIImage(named: "menu_left_icon"), for: .normal)            
+        let leftBarButtonItem = UIBarButtonItem(customView: leftButton)
+        self.navigationItem.leftBarButtonItem = leftBarButtonItem
     }
     
     
@@ -219,11 +300,7 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
         
         switch pageType {
             
-        case .VIEW_TYPE_ACTIVITY:
-            
-//            let i = PostImage()
-//            i.uploadPhotos()
-            
+        case .VIEW_TYPE_ACTIVITY:            
             self.getActivityFeedsData(pageNumber: currentPageNumber)
             break
             
@@ -243,6 +320,13 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
             break
             
         case .VIEW_TYPE_OTG:
+            break
+            
+        case .VIEW_TYPE_OTG_CONTENTS:
+            break
+            
+        case .VIEW_TYPE_SHOW_SINGLE_POST:
+//            self.reloadTableData()
             break
             
         }
@@ -379,7 +463,7 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     
-    //MARK: - TableView Datasource and Delegates
+    //MARK: - TableView DataSource and Delegates
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -387,7 +471,7 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if isLoading && hasMorePages {
+        if isLoading && hasMorePages && (self.pageType != viewType.VIEW_TYPE_SHOW_SINGLE_POST)  {
             return (feedsDataArray.count+1)            
         }
         return feedsDataArray.count
@@ -425,7 +509,7 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
                 let displatTextString = getTextHeader(feed: cellData, pageType: pageType)
                 var textHeight = (heightOfAttributedText(attributedString: displatTextString, width: (screenWidth-21)) + 10)            
                 textHeight = ((cellData["countryVisited"].arrayValue).isEmpty) ? textHeight : max(textHeight, 36)
-                height = height + ((pageType == viewType.VIEW_TYPE_ACTIVITY) ? FEEDS_HEADER_HEIGHT : 0) + textHeight + screenWidth*0.9 + (shouldShowFooterCountView(feed: cellData) ? FEED_FOOTER_HEIGHT : (FEED_FOOTER_HEIGHT-FEED_FOOTER_LOWER_VIEW_HEIGHT)) + (isLocalFeed(feed: cellData) ? FEED_UPLOADING_VIEW_HEIGHT : 0)
+                height = height + ((pageType == viewType.VIEW_TYPE_ACTIVITY || pageType == viewType.VIEW_TYPE_SHOW_SINGLE_POST) ? FEEDS_HEADER_HEIGHT : 0) + textHeight + screenWidth*0.9 + (shouldShowFooterCountView(feed: cellData) ? FEED_FOOTER_HEIGHT : (FEED_FOOTER_HEIGHT-FEED_FOOTER_LOWER_VIEW_HEIGHT)) + (isLocalFeed(feed: cellData) ? FEED_UPLOADING_VIEW_HEIGHT : 0)
                 break
                 
             default:
@@ -555,12 +639,14 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
     
     //MARK: - Navigate to otherVC
     
-    func showDetailedJourney(feed: JSON) {        
+    func showDetailedJourney(feed: JSON) {
         if currentUser != nil {
-            let controller = storyboard?.instantiateViewController(withIdentifier: "newTL") as! NewTLViewController
-            controller.fromOutSide = feed["_id"].stringValue
-            controller.fromType = feed["type"].stringValue
-            self.navigationController?.pushViewController(controller, animated: false)
+            if isNetworkReachable {
+                let controller = storyboard?.instantiateViewController(withIdentifier: "newTL") as! NewTLViewController
+                controller.fromOutSide = feed["_id"].stringValue
+                controller.fromType = feed["type"].stringValue
+                self.navigationController?.pushViewController(controller, animated: false)                
+            }
         }
         else {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
@@ -569,9 +655,11 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
     
     func showQuickItinerary(feed: JSON) {
         if currentUser != nil {
-            selectedQuickI = feed["_id"].stringValue
-            let profile = storyboard?.instantiateViewController(withIdentifier: "previewQ") as! QuickItineraryPreviewViewController
-            self.navigationController?.pushViewController(profile, animated: true)
+            if isNetworkReachable {
+                selectedQuickI = feed["_id"].stringValue
+                let profile = storyboard?.instantiateViewController(withIdentifier: "previewQ") as! QuickItineraryPreviewViewController
+                self.navigationController?.pushViewController(profile, animated: true)                
+            }
         }
         else {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
@@ -586,9 +674,9 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
             self.navigationController?.pushViewController(controller, animated: true)
         }
         else {
-            if (feed["itineraryBy"].stringValue.lowercased() != "admin") {
+//            if (feed["itineraryBy"].stringValue.lowercased() != "admin") {
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)                
-            }
+//            }
         }
     }
     
