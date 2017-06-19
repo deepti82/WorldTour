@@ -647,7 +647,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
                                 //                                print("removed")
                                 isRemoved = true
                             }
-                            self.getJourney()
+                            self.getJourney(canGetFromCache: false)
                             
                         }
                         else {
@@ -711,7 +711,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
                         self.addView.isHidden = true
                         self.newScroll.isHidden = true
                         self.backView.isHidden = true
-                        self.getJourney()
+                        self.getJourney(canGetFromCache: false)
                     }
                 })
             })
@@ -720,53 +720,57 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     
     
     
-    func getJourney() {
+    func getJourney(canGetFromCache: Bool) {
         
-        request.getJourney(currentUser["_id"].string!, completion: {(response, isFromCache) in
+        request.getJourney(currentUser["_id"].string!, canGetCachedData: canGetFromCache, completion: {(response, isFromCache) in
             DispatchQueue.main.async(execute: {
-                self.loader.hideOverlayView()
-                print("\n\n JourneyJSON : \(response)")
-                
-                if response.error != nil {
+                if (canGetFromCache == isFromCache) {
                     
-                    print("error: \(response.error!.localizedDescription)")
-                }
-                else if response["value"].bool! {
-                    whichJourney = ""
-                    self.cancelButton(nil)
-                    self.layout.removeAll()
-                    self.prevPosts = []
-                    self.isInitialLoad = true                    
-                    isJourneyOngoing = true
-                    self.journeyStart = true
-                    self.myJourney = response["data"]
-                    self.checkFetchedLocation()
-                    self.latestCity = response["data"]["startLocation"].string!
-                    if self.isRefreshing {
-                        self.refreshControl.endRefreshing()
-                        self.isRefreshing = false
-                    }
-                    self.journeyID = self.myJourney["_id"].stringValue
-                    self.journeyName = self.myJourney["name"].stringValue
-                    self.isInitialLoad = false
+                    self.loader.hideOverlayView()
+                    print("\n\n JourneyJSON : \(response)")
                     
-                    self.showJourneyOngoing(journey: response["data"])
-                    self.setTopNavigation(text: "On The Go");
-                }
-                else{
-                    self.cancelButton(nil)
-                    self.layout.removeAll()
-                    if self.insideView == "journey" {
-                        self.checkForLocation(nil)
+                    if response.error != nil {
                         
-                    }else if self.insideView == "itinerary" {
-                        self.newItinerary(nil)
+                        print("error: \(response.error!.localizedDescription)")
                     }
+                    else if response["value"].bool! {
+                        whichJourney = ""
+                        self.cancelButton(nil)
+                        self.layout.removeAll()
+                        self.prevPosts = []
+                        self.isInitialLoad = true                    
+                        isJourneyOngoing = true
+                        self.journeyStart = true
+                        self.myJourney = response["data"]
+                        self.checkFetchedLocation()
+                        self.latestCity = response["data"]["startLocation"].string!
+                        if self.isRefreshing {
+                            self.refreshControl.endRefreshing()
+                            self.isRefreshing = false
+                        }
+                        self.journeyID = self.myJourney["_id"].stringValue
+                        self.journeyName = self.myJourney["name"].stringValue
+                        self.isInitialLoad = false
+                        
+                        self.showJourneyOngoing(journey: response["data"])
+                        self.setTopNavigation(text: "On The Go");
+                    }
+                    else{
+                        self.cancelButton(nil)
+                        self.layout.removeAll()
+                        if self.insideView == "journey" {
+                            self.checkForLocation(nil)
+                            
+                        }else if self.insideView == "itinerary" {
+                            self.newItinerary(nil)
+                        }
+                    }
+                }
+                else {
+                    print("\n canGetFromCache : \(canGetFromCache) \n isFromCache: \(isFromCache)")
                 }
             })
-            
         })
-        
     }
     
     
@@ -1153,7 +1157,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         
         infoButton.isHidden = true
         
-        self.fetchJourneyData()
+        self.fetchJourneyData(true)
         
         self.view.bringSubview(toFront: infoButton)
         self.view.bringSubview(toFront: addPostsButton)
@@ -1276,9 +1280,9 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     
     var isRefreshing = false
     
-    func fetchJourneyData() {
+    func fetchJourneyData(_ getFromCache: Bool) {
         if fromOutSide == "" {
-            getJourney()
+            getJourney(canGetFromCache: getFromCache)
         }else{            
             if !isSelfJourney(journeyID: fromOutSide) {
                 addPostsButton.isHidden = true                
@@ -1289,7 +1293,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     
     func refresh(_ sender: AnyObject) {
         isRefreshing = true
-        self.fetchJourneyData()
+        self.fetchJourneyData(false)
     }
     
     var isInitialPost = true
@@ -1820,7 +1824,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     func deletePost(_ footer:PhotoOTGFooter) {
         loader.showOverlay(self.view)
         request.deletePost(footer.postTop.post_ids, uniqueId: self.myJourney["uniqueId"].string!, user: currentUser["_id"].stringValue, completion: {(response) in
-            self.getJourney()
+            self.getJourney(canGetFromCache: false)
         })
     }
     
@@ -1874,7 +1878,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         DispatchQueue.main.asyncAfter(deadline: .now()+0.5) { 
             self.loader.showOverlay(self.view)
             request.changeDateTime(self.currentPhotoFooter.postTop.post_uniqueId, postID: self.currentPhotoFooter.postTop.post_ids,  date: "\(self.dateSelected) \(self.timeSelected)", completion: {(response) in
-                self.getJourney()
+                self.getJourney(canGetFromCache: false)
             })
             self.inputview.removeFromSuperview() // To resign the inputView on clicking done.
             self.backView.removeFromSuperview()
@@ -1891,7 +1895,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
                 } else if response["value"].bool! {
                     print("edited date time response")
                     self.journeyDateChanged(date: "\(self.dateSelected)T\(self.timeSelected).000Z")
-                    self.getJourney()
+                    self.getJourney(canGetFromCache: false)
                 } else {
                     
                 }
@@ -2169,7 +2173,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     //MARK: - Keyboard Handling
     
     func keyboardWillShow(_ notification: Notification) {
-        print("\n View y :\(self.view.frame.origin.y)")
         
         if let keyboardSize = ((notification as NSNotification).userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
 //            if self.view.frame.origin.y == 64 {
@@ -2188,7 +2191,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     }
     
     func keyboardWillHide(_ notification: Notification) {
-        print("\n View y :\(self.view.frame.origin.y)")
         
         self.view.frame.origin.y += difference
 //        if let keyboardSize = ((notification as NSNotification).userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
@@ -2468,9 +2470,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
                                 }
                             }
                         }
-
-                        
-                        //                        self.getJourney()
                     }
                         
                     else {

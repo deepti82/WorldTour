@@ -538,7 +538,6 @@ class allReviewsMLTableViewCell: UITableViewCell {
     func afterRating(starCnt:Int, review:String, type:String, shouldReload:Bool) {
         print(starCnt)
         if starCnt != 0 {
-            print("start rating \(self.tag)")
             for rat in starImageArray {
                 if rat.tag > starCnt {
                     rat.image = UIImage(named: "star_uncheck")

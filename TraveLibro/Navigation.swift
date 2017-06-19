@@ -136,6 +136,11 @@ class Navigation {
             completion(json)
         }.onFailure { (error) in
             print("Error : \(error)")
+            request.getUser(id, urlSlug: "", completion: { (response, isFromCache) in
+                if !(isFromCache) {
+                    completion(response)                    
+                }
+            })
         }
         
         
@@ -1209,18 +1214,23 @@ class Navigation {
         }
     }
     
-    func getJourney(_ id: String, completion: @escaping ((JSON, Bool) -> Void)) {
+    func getJourney(_ id: String, canGetCachedData: Bool, completion: @escaping ((JSON, Bool) -> Void)) {
         
         do {
             
             let urlString = adminUrl + "journey/getOnGoing"
+            var isCacheInvalid = false
             
-            if !isNetworkReachable {
+            if !isNetworkReachable || canGetCachedData {
                 if(isSelfUser(otherUserID: id)) {
                     self.cache.fetch(key: urlString+id).onSuccess { data in
                         let json = JSON(data: data)
                         completion(json,true)
                     }
+                    .onFailure({ (error) in
+                        isCacheInvalid = true
+                        print("\n ERROR in fetching OTG data from cache : \(error)")
+                    })
                 }
             }
             
@@ -1238,7 +1248,12 @@ class Navigation {
                         self.cache.set(value: response.data, key: urlString+id)
                     }
                     currentJourney = json["data"]
-                    completion(json, false)
+                    if isCacheInvalid {
+                        completion(json, true)
+                    }
+                    else {
+                        completion(json, false)
+                    }
                 }
             }
         } catch let error {
