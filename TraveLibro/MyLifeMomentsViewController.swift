@@ -89,7 +89,6 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
         
         if pageno == 1 {
             loader.showOverlay(mainView)
-            allData = []
         }
         savedMediaType = mediaType
         savedToken = token
@@ -103,6 +102,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
                     if request["data"].count > 0 {
                         self.loadStatus = true
                         if pageno == 1 {
+                            self.allData = []
                             self.allData = request["data"].array!
                         }else{
                             for post in request["data"].array! {
@@ -124,6 +124,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
                     if request["data"].count > 0 {
                         self.loadStatus = true
                         if pageno == 1 {
+                            self.allData = []
                             self.allData = request["data"].array!
                         }else{
                             for post in request["data"].array! {
@@ -469,16 +470,16 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath) as! photosCollectionViewCell
                 
                 if self.allData[indexPath.section]["data"][indexPath.row]["type"] == "video" {
-                    cell.photo.sd_setImage(with: getImageURL(self.allData[indexPath.section]["data"][indexPath.row]["thumbnail"].stringValue, width: SMALL_PHOTO_WIDTH),
+                    cell.photo.sd_setImage(with: getImageURL(self.allData[indexPath.section]["data"][indexPath.row]["thumbnail"].stringValue, width: BIG_PHOTO_WIDTH),
                                               placeholderImage: getPlaceholderImage())
                 }else{
-                    cell.photo.sd_setImage(with: getImageURL(self.allData[indexPath.section]["data"][indexPath.row]["name"].stringValue, width: SMALL_PHOTO_WIDTH),
+                    cell.photo.sd_setImage(with: getImageURL(self.allData[indexPath.section]["data"][indexPath.row]["name"].stringValue, width: BIG_PHOTO_WIDTH),
                                               placeholderImage: getPlaceholderImage())
                 }
 
                 
 //                if allData[indexPath.section]["data"][indexPath.row]["name"].stringValue != "" {
-//                    cell.photo.sd_setImage(with: getImageURL(allData[indexPath.section]["data"][indexPath.row]["name"].stringValue, width: SMALL_PHOTO_WIDTH),
+//                    cell.photo.sd_setImage(with: getImageURL(allData[indexPath.section]["data"][indexPath.row]["name"].stringValue, width: BIG_PHOTO_WIDTH),
 //                                           placeholderImage: getPlaceholderImage())
 //                    
 //                }else{
@@ -488,7 +489,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
             case "Monthly", "SelectCover":
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MomentsLargeImageCell", for: indexPath) as! photosTwoCollectionViewCell                
                 cell.photoBig.backgroundColor = UIColor.white
-                cell.photoBig.sd_setImage(with: URL(string: "\(adminUrl)upload/readFile?file=\(self.images[(indexPath as NSIndexPath).item])&width=\(SMALL_PHOTO_WIDTH)")!,
+                cell.photoBig.sd_setImage(with: URL(string: "\(adminUrl)upload/readFile?file=\(self.images[(indexPath as NSIndexPath).item])&width=\(BIG_PHOTO_WIDTH)")!,
                                           placeholderImage: getPlaceholderImage())                
                 return cell
             case "local-life":
