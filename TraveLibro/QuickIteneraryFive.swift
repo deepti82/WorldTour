@@ -105,9 +105,10 @@ class QuickIteneraryFive: UIViewController, UICollectionViewDataSource, UICollec
 //        captionVC.imageArr = thumbnail1
         
         let multipleImage = BSImagePickerViewController()
+        UIApplication.shared.statusBarView?.backgroundColor = NAVIGATION_BAR_CLEAR_COLOR
         multipleImage.maxNumberOfSelections = 20
         multipleImage.navigationBar.isTranslucent = true
-        multipleImage.navigationBar.barTintColor = mainBlueColor
+        multipleImage.navigationBar.barTintColor = NAVIGATION_BAR_COLOR
         multipleImage.navigationBar.tintColor = UIColor.white
         multipleImage.navigationBar.titleTextAttributes = [
             NSForegroundColorAttributeName : UIColor.white

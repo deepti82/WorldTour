@@ -42,11 +42,14 @@ var globalTLMainFeedsViewController:TLMainFeedsViewController!
 class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, TLFooterBasicDelegate, TLUploadDelegate {
 
     @IBOutlet weak var feedsTableView: UITableView!
+    @IBOutlet weak var feedsTableTopSpaceConstant: NSLayoutConstraint!
     
     private let TL_VISIBLE_CELL_TAG = 6789
     private let separatorOffset = CGFloat(15.0)
     
     var mainFooter: FooterViewNew?
+    var internetStrip: UploadingToCloud?
+    
     var shouldLoadFromStart = false
     
     var pageType: viewType = viewType.VIEW_TYPE_ACTIVITY
@@ -125,15 +128,21 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
             self.feedsTableView.reloadData()
             self.feedsTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
         }
+        
+        self.updateUIWithRechabilityStatus(notification: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         globalNavigationController = self.navigationController
+        NotificationCenter.default.addObserver(self, selector: #selector(updateUIWithRechabilityStatus(notification:)), name: NSNotification.Name(rawValue: "REACHABILITY_STATUS_CHANGED"), object: nil)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        
+        NotificationCenter.default.removeObserver(self)
+        
         self.shouldLoadFromStart = false
         self.hideHeaderAndFooter(false)        
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
@@ -266,6 +275,52 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
         leftButton.setImage(UIImage(named: "menu_left_icon"), for: .normal)            
         let leftBarButtonItem = UIBarButtonItem(customView: leftButton)
         self.navigationItem.leftBarButtonItem = leftBarButtonItem
+    }
+    
+    
+    //MARK: - Reachability Handler
+    
+    func updateUIWithRechabilityStatus(notification: Notification?) {
+        if notification != nil {
+            DispatchQueue.main.asyncAfter(deadline: .now()+0.5, execute: {
+                if isNetworkReachable {
+                    self.removeRedStrip()
+                }
+                else {
+                    self.addRedStrip(messages: "No Internet Connection.")
+                }                
+            })
+        }
+        else {
+            if isNetworkReachable {
+                self.removeRedStrip()
+            }
+            else {
+                self.addRedStrip(messages: "No Internet Connection.")
+            }
+        }
+    }
+    
+    
+    //MARK: - Red Strip Handlers
+    
+    func addRedStrip(messages: String){
+        self.removeRedStrip()
+        
+        let NAVIGATION_BAR_HEIGHT = self.navigationController?.navigationBar.frame.size.height
+        
+        self.internetStrip = UploadingToCloud(frame: CGRect(x: 0, y: ((self.navigationController?.navigationBar.isHidden)! ? STATUS_BAR_HEIGHT : 0), width: screenWidth, height: 20))
+        self.internetStrip?.uploadText.text = messages
+        
+        self.feedsTableTopSpaceConstant.constant = 23
+        self.view.addSubview(self.internetStrip!)
+    }
+    
+    func removeRedStrip() {
+        if (self.internetStrip != nil) {
+            self.feedsTableTopSpaceConstant.constant = 0
+            self.internetStrip?.removeFromSuperview()
+        }
     }
     
     
@@ -766,13 +821,18 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     private func hideHeaderAndFooter(_ isShow:Bool) {
-        if(isShow) {
-            self.navigationController?.setNavigationBarHidden(true, animated: true)
-            self.mainFooter?.frame.origin.y = self.view.frame.height + MAIN_FOOTER_HEIGHT
-        }
-        else {
-            self.navigationController?.setNavigationBarHidden(false, animated: true)
-            self.mainFooter?.frame.origin.y = self.view.frame.height - MAIN_FOOTER_HEIGHT
+        if (isShow != self.navigationController?.navigationBar.isHidden) {
+            if(isShow) {
+                self.navigationController?.setNavigationBarHidden(true, animated: true)                        
+                self.mainFooter?.frame.origin.y = self.view.frame.height + MAIN_FOOTER_HEIGHT
+            }
+            else {
+                self.navigationController?.setNavigationBarHidden(false, animated: true)
+                self.mainFooter?.frame.origin.y = self.view.frame.height - MAIN_FOOTER_HEIGHT
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now()+0.1, execute: {
+                self.internetStrip?.frame = CGRect(x: 0, y: ((self.navigationController?.navigationBar.isHidden)! ? STATUS_BAR_HEIGHT : 0), width: screenWidth, height: 20)                
+            })
         }
     }
     

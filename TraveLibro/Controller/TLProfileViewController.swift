@@ -121,6 +121,8 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
         
         setAnalytics(name: "Profile")
         
+        UIApplication.shared.statusBarView?.backgroundColor = NAVIGATION_BAR_CLEAR_COLOR
+        
         shouldShowTransperentNavBar = true
         
         self.setNavigationBar()
@@ -157,6 +159,9 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        
+        UIApplication.shared.statusBarView?.backgroundColor = NAVIGATION_BAR_COLOR
+        
         isProfileVCVisible = false
         shouldShowTransperentNavBar = false        
         if (self.mamStackView.tag == 1) {

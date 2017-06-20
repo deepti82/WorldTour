@@ -62,6 +62,8 @@ extension NewTLViewController {
     
     
     func hideAddActivity() {
+        UIApplication.shared.statusBarView?.backgroundColor = NAVIGATION_BAR_COLOR
+        
         editingPostLayout = nil
         isActivityHidden = true;
         addView.removeFromSuperview()

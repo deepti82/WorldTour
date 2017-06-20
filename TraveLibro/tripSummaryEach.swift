@@ -24,11 +24,6 @@ class tripSummaryEach: UIView {
         
         calendarLabel.text = String(format: "%C", faicon["calendar"]!)
         clockLabel.text = String(format: "%C", faicon["clock"]!)
-        
-//        let text = NSMutableAttributedString(string: "Evening by the beach! :) with Gayatri Sakalkar and Sarvesh Brahme at Girgaon", attributes: [NSForegroundColorAttributeName: UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 1), NSFontAttributeName: avenirFont!])
-    
-//        summaryTitle.attributedText = text
-        
     }
     
     required init?(coder aDecoder: NSCoder) {

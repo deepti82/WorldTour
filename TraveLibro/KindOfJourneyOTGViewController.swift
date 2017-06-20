@@ -60,7 +60,6 @@ class KindOfJourneyOTGViewController: UIViewController {
         doneButton.layer.cornerRadius = 5
         
         for button in groupOneCategoryButtons {
-//            print(<#T##items: Any...##Any#>)
             print(button.currentImage as Any)
             for cat in selectedCategories {
                 if cat.1.stringValue == (button.titleLabel?.text)! {
@@ -70,7 +69,7 @@ class KindOfJourneyOTGViewController: UIViewController {
                 }
             }
             button.addTarget(self, action: #selector(KindOfJourneyOTGViewController.selectGroupOne(_:)), for: .touchUpInside)
-           button.imageView?.tintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 1)
+           button.imageView?.tintColor = NAVIGATION_BAR_COLOR
             
         }
         
@@ -86,7 +85,7 @@ class KindOfJourneyOTGViewController: UIViewController {
                 }
             }
             button.addTarget(self, action: #selector(KindOfJourneyOTGViewController.selectGroupTwo(_:)), for: .touchUpInside)
-            button.imageView?.tintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 1)
+            button.imageView?.tintColor = NAVIGATION_BAR_COLOR
             
         }
         
@@ -102,7 +101,7 @@ class KindOfJourneyOTGViewController: UIViewController {
                 }
             }
             button.addTarget(self, action: #selector(KindOfJourneyOTGViewController.selectGroupThree(_:)), for: .touchUpInside)
-            button.imageView?.tintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 1)
+            button.imageView?.tintColor = NAVIGATION_BAR_COLOR
             
         }
 

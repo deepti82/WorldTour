@@ -554,11 +554,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
                 cell.bgImage.layer.shadowOffset = CGSize(width: 2, height: 2)
                 cell.bgImage.layer.masksToBounds = true
                 cell.bgImage.layer.shadowOpacity = 0.5
-
-//                cell.foregroundImage.layer.cornerRadius = cell.foregroundImage.frame.width/2
                 cell.foregroundImage.clipsToBounds = true
-//                cell.foregroundImage.layer.borderColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 1).cgColor
-//                cell.foregroundImage.layer.borderWidth = 3.0
                 return cell
                 
             }

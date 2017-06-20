@@ -20,6 +20,9 @@ class SetProfilePictureViewController: UIViewController, UIImagePickerController
     var yourIdeal: [String] = []
     
     
+    
+    //MARK: - Life cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         getDarkBackGroundBlur(self)
@@ -88,14 +91,13 @@ class SetProfilePictureViewController: UIViewController, UIImagePickerController
         self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: NAVIGATION_FONT!]
     }
     
-    func changeLabelText(_ sender: UIGestureRecognizer) {
-        
-        uploadView.usernameTextField.text = uploadView.username.text
-        uploadView.username.isHidden = true
-        uploadView.usernameTextField.isHidden = false
-        uploadView.usernameTextField.becomeFirstResponder()
-        
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
+    
+    
+    //MARK: - TextField Delegates
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         print("Editing Completed");
@@ -103,8 +105,7 @@ class SetProfilePictureViewController: UIViewController, UIImagePickerController
             print("response arrived!")
             
         })
-    }
-    
+    }    
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
@@ -121,6 +122,17 @@ class SetProfilePictureViewController: UIViewController, UIImagePickerController
         
     }
     
+    
+    //MARK: - Actions
+    
+    func changeLabelText(_ sender: UIGestureRecognizer) {
+        
+        uploadView.usernameTextField.text = uploadView.username.text
+        uploadView.username.isHidden = true
+        uploadView.usernameTextField.isHidden = false
+        uploadView.usernameTextField.becomeFirstResponder()
+        
+    }
     
     func choosePreferences(_ sender: AnyObject) {
         
@@ -154,12 +166,15 @@ class SetProfilePictureViewController: UIViewController, UIImagePickerController
         
         let deleteActionButton: UIAlertAction = UIAlertAction(title: "Photo Library", style: .default)
         { action -> Void in
-            
+            UIApplication.shared.statusBarView?.backgroundColor = NAVIGATION_BAR_CLEAR_COLOR
             self.imagePicker.allowsEditing = true
             self.imagePicker.navigationBar.isTranslucent = true
-            self.imagePicker.navigationBar.barTintColor = mainBlueColor
+            self.imagePicker.navigationBar.barTintColor = NAVIGATION_BAR_COLOR
             self.imagePicker.navigationBar.tintColor = UIColor.white
             self.imagePicker.sourceType = .photoLibrary
+            self.imagePicker.navigationBar.titleTextAttributes = [
+                NSForegroundColorAttributeName : UIColor.white
+            ]
             self.present(self.imagePicker, animated: true, completion: {
                 
                 print("photo chosen")
@@ -174,8 +189,13 @@ class SetProfilePictureViewController: UIViewController, UIImagePickerController
 //        self.present(chooseSource, animated: true, completion: nil)
     }
     
+    
+    //MARK: - Image Picker Delegate
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
 
+        UIApplication.shared.statusBarView?.backgroundColor = NAVIGATION_BAR_COLOR
+        
         loader.showOverlay(self.view)
         
         tempImage = info[UIImagePickerControllerEditedImage] as! UIImage
@@ -221,8 +241,10 @@ class SetProfilePictureViewController: UIViewController, UIImagePickerController
         
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: {
+            UIApplication.shared.statusBarView?.backgroundColor = NAVIGATION_BAR_COLOR
+        })
     }
+    
 }

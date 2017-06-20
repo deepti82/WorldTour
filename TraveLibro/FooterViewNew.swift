@@ -56,7 +56,7 @@ class FooterViewNew: UIView {
         
         loadViewFromNib ()
         
-        backView.backgroundColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 1)
+        backView.backgroundColor = NAVIGATION_BAR_COLOR
         
         badgeButton.layer.cornerRadius = (badgeButton.frame.size.width/2.0)
         self.alertView.bringSubview(toFront: badgeButton)

@@ -223,17 +223,21 @@ class EditProfileViewController: UIViewController, UITableViewDataSource, UITabl
             
             let deleteActionButton: UIAlertAction = UIAlertAction(title: "Photo Library", style: .default)
             { action -> Void in
+                UIApplication.shared.statusBarView?.backgroundColor = NAVIGATION_BAR_CLEAR_COLOR
                 self.imagePicker.allowsEditing = true
                 self.imagePicker.sourceType = .photoLibrary
                 self.imagePicker.navigationBar.isTranslucent = true
-                self.imagePicker.navigationBar.barTintColor = mainBlueColor
+                self.imagePicker.navigationBar.barTintColor = NAVIGATION_BAR_COLOR
                 self.imagePicker.navigationBar.tintColor = UIColor.white
+                self.imagePicker.navigationBar.titleTextAttributes = [
+                    NSForegroundColorAttributeName : UIColor.white
+                ]
                 self.present(self.imagePicker, animated: true, completion: nil)
             }
             actionSheetControllerIOS8.addAction(deleteActionButton)
             showPopover(optionsController: actionSheetControllerIOS8, sender: tableView, vc: self)
-//            self.present(actionSheetControllerIOS8, animated: true, completion: nil)
-        
+            break
+            
         case 4: //City
             shouldSave = false
             let cityVC = self.storyboard!.instantiateViewController(withIdentifier: "addCity") as! AddCityViewController
@@ -316,7 +320,7 @@ class EditProfileViewController: UIViewController, UITableViewDataSource, UITabl
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
-        print("\n\n Info : \(info)")
+        UIApplication.shared.statusBarView?.backgroundColor = NAVIGATION_BAR_COLOR
         
         var pickedImage = info[UIImagePickerControllerEditedImage] as? UIImage
         if pickedImage != nil {
@@ -368,6 +372,11 @@ class EditProfileViewController: UIViewController, UITableViewDataSource, UITabl
         dismiss(animated: true, completion: nil)
     }
     
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: {
+            UIApplication.shared.statusBarView?.backgroundColor = NAVIGATION_BAR_COLOR
+        })
+    }
     
     //MARK: - Date Picker Delegate
     

@@ -44,10 +44,16 @@ let endJourneyColor = UIColor(red: 87/255, green: 211/255, blue: 199/255, alpha:
 let navGreen = UIColor(red: 17/255, green: 211/255, blue: 203/255, alpha: 1) // #11d3cb
 let navBlue = UIColor(red: 44/255, green: 55/255, blue: 87/255, alpha: 1) // #2c3757
 let navOrange = UIColor(red: 255/255, green: 103/255, blue: 89/255, alpha: 1) // #ff6759
+
+let NAVIGATION_BAR_COLOR = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 1)
+let NAVIGATION_BAR_CLEAR_COLOR = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 0)
+
 let avenirFont = UIFont(name: "Avenir-Roman", size: 14)
 let avenirBold = UIFont(name: "Avenir-Heavy", size: 14)
 let FontAwesomeFont = UIFont(name: "FontAwesome", size: 14)
 let NAVIGATION_FONT = UIFont(name: "Avenir-Roman", size: 18)
+
+let STATUS_BAR_HEIGHT = UIApplication.shared.statusBarFrame.size.height
 
 let MAIN_FOOTER_HEIGHT = CGFloat(60)
 let VERY_BIG_PHOTO_WIDTH = 800
@@ -81,6 +87,7 @@ var shouldShowLoader = false
 var isSettingsEdited = false
 var isCountryAdded = false
 var isUploadingInProgress = false
+var currentUploadingPostID = Int64(0)
 
 let user = User()
 
@@ -220,6 +227,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
         SDWebImageDownloader.shared().maxConcurrentDownloads = 3
         
         createMenuView()        
+        
+        UIApplication.shared.statusBarView?.backgroundColor = NAVIGATION_BAR_COLOR
         
         googleAnalytics()
         
@@ -694,3 +703,8 @@ func updateFooterBadge(){
 }
 
 
+extension UIApplication {
+    var statusBarView: UIView? {
+        return value(forKey: "statusBar") as? UIView
+    }
+}

@@ -285,12 +285,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
             backView.addSubview(newScroll)
             addView.finalImageTag.tintColor = UIColor(hex: "#11d3cb")
             addView.videoTagFinal.tintColor = UIColor(hex: "#11d3cb")
-//            addView.finalThoughtTag.tintColor = UIColor(hex: "#11d3cb")
-//            addView.locationGreen.isHidden = true
-//            addView.locationTag.isHidden = true
-//            addView.locationGreen.tintColor = UIColor(hex: "#11d3cb")
-            
-//            addView.penGreen.tintColor = UIColor(hex: "#11d3cb")
+
             let leftButton = UIButton()
             leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
             leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
@@ -389,6 +384,9 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
     }
     
     func hideAddActivity() {
+        
+        UIApplication.shared.statusBarView?.backgroundColor = NAVIGATION_BAR_COLOR
+        
         addView.removeFromSuperview()
         backView.removeFromSuperview()
         
@@ -458,7 +456,6 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
     
     func changeAddButton(_ bol:Bool) {
         self.isSameCity = bol
-        //        self.plusButton.isUserInteractionEnabled = bol
         if(bol) {
             self.plusButton.setImage(UIImage(named:"add_circleGreen"), for: UIControlState())
         } else {

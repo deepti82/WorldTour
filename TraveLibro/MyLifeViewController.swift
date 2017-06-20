@@ -102,13 +102,6 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         let tap = UITapGestureRecognizer(target: self, action: #selector(MyLifeViewController.exitMyLife(_:)))
         profileName.addGestureRecognizer(tap)
         
-        
-//        let statusBar = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 20))
-//        statusBar.layer.zPosition = -1
-//        statusBar.backgroundColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 1)
-//        self.view.addSubview(statusBar)
-        
-        
         let frameWidth = self.view.frame.width - 25
         
         journeysWC.constant = frameWidth/3
@@ -517,6 +510,9 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     func hideAddActivity() {
+        
+        UIApplication.shared.statusBarView?.backgroundColor = NAVIGATION_BAR_COLOR
+        
         addView.removeFromSuperview()
         backView.removeFromSuperview()
         let leftButton = UIButton()
