@@ -168,14 +168,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
         
         leftViewController = storyboard.instantiateViewController(withIdentifier: "sideMenu") as! SideNavigationMenuViewController
         
-//        let mainViewController = storyboard.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
-        
-        
-        
         let mainViewController = storyboard.instantiateViewController(withIdentifier: "TLProfileView") as! TLProfileViewController
         mainViewController.isAppStartedFromInitial = true
-        
-//        let signInVC = storyboard.instantiateViewController(withIdentifier: "SignUpOne") as! SignInViewController
         
         let nationality = storyboard.instantiateViewController(withIdentifier: "nationalityNew") as!AddNationalityNewViewController
         
@@ -341,7 +335,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let tabBarController = UITabBarController()
         let homeVC = storyboard.instantiateViewController(withIdentifier: "Home") as! HomeViewController
-//        let feedVC = storyboard.instantiateViewController(withIdentifier: "Activity") as! ProfilePostsViewController
         tabBarController.viewControllers = [homeVC]
         //        window?.rootViewController = tabBarController
         

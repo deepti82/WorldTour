@@ -552,11 +552,7 @@ open class SlideMenuController: UIViewController, UIGestureRecognizerDelegate {
     
     open func changeMainViewController(_ mainViewController: UIViewController,  close: Bool) {
         
-        if doRemove {
-            
-            removeViewController(self.mainViewController)
-            
-        }
+        removeViewController(self.mainViewController)
         
         self.mainViewController = mainViewController
         setUpViewController(mainContainerView, targetViewController: mainViewController)
