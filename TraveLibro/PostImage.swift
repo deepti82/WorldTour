@@ -151,59 +151,79 @@ public class PostImage {
     }
     
     func uploadPhotos(delegate: TLUploadDelegate?) {
-        if delegate != nil {
-            self.delegate = delegate
-        }
-        print("\n isLoopingRequest : \(self.isLoopingRequest)")
-        
-        if !isUploadingInProgress || isLoopingRequest {
-            
-            if isNetworkReachable {
-                isUploadingInProgress = true                
-            }            
-            isLoopingRequest = false
-            
-            print(" ******* check 1")
-            do {
-                var check = false;
-                let query = photos.select(id,post,captions,localUrl,url)
-                    .filter(url == "" && (photoUploadStatus == 0 || photoUploadStatus == 3))
-                    .limit(1)
-                
-                for photo in try db.prepare(query) {
-                    
-                    print(" ******* check 2")
-                    self.updateStatus(photoId: photo[id], status: (isNetworkReachable ? uploadStatus.UPLOAD_IN_PROGRESS : uploadStatus.UPLOAD_PENDING) , urlString: "")                
-                    
-                    check = true;
-                    let url = getDocumentsDirectory().appendingPathComponent( String(photo[localUrl]) )
-                    request.uploadPhotos(url, localDbId: 0,completion: {(response) in
-                        if response.error != nil {
-                            print("response: \(response.error?.localizedDescription)")
-                            self.updateStatus(photoId: photo[self.id], status: uploadStatus.UPLOAD_FAILED, urlString: "")
-                        }
-                        else if response["value"].bool! {
-                            self.updateStatus(photoId: photo[self.id], status: uploadStatus.UPLOAD_COMPLETE, urlString: response["data"][0].stringValue)
-                        }
-                        else {
-                            print("response error")
-                            self.updateStatus(photoId: photo[self.id], status: uploadStatus.UPLOAD_FAILED, urlString: "")
-                        }
-                        print(" ******* check 3")
-                        self.isLoopingRequest = true
-                        self.uploadPhotos(delegate: self.delegate)
-                    })
-                }
-                
-                if(!check) {
-                    print(" ******* check 4")
-                    let video = PostVideo();
-                    video.uploadVideo();
-                }
+        if currentUser != nil {
+            if delegate != nil {
+                self.delegate = delegate
             }
-            catch {
-                print(" ******* check 5")
-                print(error);
+            print("\n isLoopingRequest : \(self.isLoopingRequest)")
+            
+            if !isUploadingInProgress || isLoopingRequest {
+                
+                if isNetworkReachable {
+                    isUploadingInProgress = true
+                }
+                isLoopingRequest = false
+                
+                print(" ******* check 1")
+                do {
+                    var check = false;
+                    var query: QueryType!
+                    print("currentUploadingPostID inside uploadPhoto: \(currentUploadingPostID)")
+                    
+                    if currentUploadingPostID == Int64(0) {
+                        print("\n if succeed")
+                        query = photos.select(id,post,captions,localUrl,url)
+                            .filter(url == "" && (photoUploadStatus == 0 || photoUploadStatus == 3))
+                            .limit(1)                    
+                    }
+                    else {
+                        print("\n else succeed")
+                        query = photos.select(id,post,captions,localUrl,url)
+                            .filter(url == "" && (photoUploadStatus == 0 || photoUploadStatus == 3) && (post == currentUploadingPostID))
+                            .limit(1)
+                    }
+                    
+                    print("")
+                    
+                    
+                    for photo in try db.prepare(query) {
+                        print("\n &&&&&&&& uploading photos from post : \(photo[post])\n &&&&&&&&")
+                        
+                        print(" ******* check 2")
+                        self.updateStatus(photoId: photo[id], status: (isNetworkReachable ? uploadStatus.UPLOAD_IN_PROGRESS : uploadStatus.UPLOAD_PENDING) , urlString: "")                
+                        
+                        check = true
+                        uploadFlag = true
+                        
+                        let url = getDocumentsDirectory().appendingPathComponent( String(photo[localUrl]) )
+                        request.uploadPhotos(url, localDbId: 0,completion: {(response) in
+                            if response.error != nil {
+                                print("response: \(response.error?.localizedDescription)")
+                                self.updateStatus(photoId: photo[self.id], status: uploadStatus.UPLOAD_FAILED, urlString: "")
+                            }
+                            else if response["value"].bool! {
+                                self.updateStatus(photoId: photo[self.id], status: uploadStatus.UPLOAD_COMPLETE, urlString: response["data"][0].stringValue)
+                            }
+                            else {
+                                print("response error")
+                                self.updateStatus(photoId: photo[self.id], status: uploadStatus.UPLOAD_FAILED, urlString: "")
+                            }
+                            print(" ******* check 3")
+                            self.isLoopingRequest = true
+                            self.uploadPhotos(delegate: self.delegate)
+                        })
+                    }
+                    
+                    if(!check) {
+                        print(" ******* check 4")
+                        let video = PostVideo();
+                        video.uploadVideo();
+                    }
+                }
+                catch {
+                    print(" ******* check 5")
+                    print(error);
+                }            
             }            
         }
     }

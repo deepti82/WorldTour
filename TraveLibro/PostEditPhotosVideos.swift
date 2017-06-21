@@ -55,10 +55,21 @@ public class PostEditPhotosVideos {
             print("in in in ininin")
             print(" ******* postPhotoVideoCheck 1")
             
-            var check = false;
-            let query = addPhotosVideos_db.select(id_db,uniqueId_db,buddyDb)
-                .filter(postEditUploadStatus == 0 || postEditUploadStatus == 3)
-                .limit(1)
+            var check = false            
+            var query: QueryType!
+            
+            if currentUploadingPostID == Int64(0) {
+                print("\n if succeed")
+                query = addPhotosVideos_db.select(id_db,uniqueId_db,buddyDb)
+                    .filter(postEditUploadStatus == 0 || postEditUploadStatus == 3)
+                    .limit(1)                   
+            }
+            else {
+                print("\n else succeed")
+                query = addPhotosVideos_db.select(id_db,uniqueId_db,buddyDb)
+                    .filter(postEditUploadStatus == 0 || postEditUploadStatus == 3 && (id_db == currentUploadingPostID))
+                    .limit(1)
+            }
             
             for post in try db.prepare(query) {
                 
@@ -67,8 +78,9 @@ public class PostEditPhotosVideos {
                 self.updateStatus(postID: post[self.id_db], status: (isNetworkReachable ? uploadStatus.UPLOAD_IN_PROGRESS : uploadStatus.UPLOAD_PENDING))
                 
                 check = true
+                uploadFlag = true
                 let str = String(post[uniqueId_db])
-                var params:JSON = [ "uniqueId" : str!, "type": "addPhotosVideos","user": currentUser["_id"].stringValue]
+                var params:JSON = ["uniqueId" : str!, "type": "addPhotosVideos","user": currentUser["_id"].stringValue]
                 let actualId = Int(post[id_db]) + 10000
                 
                 let i = PostImage();

@@ -374,12 +374,25 @@ public class LocalLifePostModel {
     func uploadPost() {
         print("\n uploadPost called in localLife")
         do {
-            var check = false;
-            let query = post.select(id,type,userId,journeyId,thoughts,location,category,city,country,latitude,longitude,date,buddyDb)
-                .filter(localLifePostStatus == 0 || localLifePostStatus == 3)
-                .limit(1)
+            var check = false
+            var query: QueryType!
+            
+            if currentUploadingPostID == Int64(0) {
+                print("\n if succeed")
+                query = post.select(id,type,userId,journeyId,thoughts,location,category,city,country,latitude,longitude,date,buddyDb)
+                    .filter(localLifePostStatus == 0 || localLifePostStatus == 3)
+                    .limit(1)                   
+            }
+            else {
+                print("\n else succeed")
+                query = post.select(id,type,userId,journeyId,thoughts,location,category,city,country,latitude,longitude,date,buddyDb)
+                    .filter(localLifePostStatus == 0 || localLifePostStatus == 3 && (id == currentUploadingPostID))
+                    .limit(1)
+            }
+            
             for post in try db.prepare(query) {
                 check = true
+                uploadFlag = true
                 
                 self.updateStatus(postId: post[id], status: (isNetworkReachable ? uploadStatus.UPLOAD_IN_PROGRESS : uploadStatus.UPLOAD_PENDING))
                 

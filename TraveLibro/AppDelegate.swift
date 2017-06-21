@@ -87,6 +87,7 @@ var shouldShowLoader = false
 var isSettingsEdited = false
 var isCountryAdded = false
 var isUploadingInProgress = false
+var uploadFlag = false
 var currentUploadingPostID = Int64(0)
 
 let user = User()
@@ -470,6 +471,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
     }
     
     private func resumeUploading() {
+        uploadFlag = false
         let i = PostImage()
         i.uploadPhotos(delegate: nil)
     }

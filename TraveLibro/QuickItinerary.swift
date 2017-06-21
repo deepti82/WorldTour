@@ -150,9 +150,21 @@ public class QuickItinerary {
         
         do {
             var check = false;
-            let query = post.select(id,quickJson,status,editId)
-                .filter(QIUploadStatus == 0 || QIUploadStatus == 3)
-                .limit(1)
+            
+            var query: QueryType!
+            
+            if currentUploadingPostID == Int64(0) {
+                print("\n if succeed")
+                query = post.select(id,quickJson,status,editId)
+                    .filter(QIUploadStatus == 0 || QIUploadStatus == 3)
+                    .limit(1)                   
+            }
+            else {
+                print("\n else succeed")
+                query = post.select(id,quickJson,status,editId)
+                    .filter(QIUploadStatus == 0 || QIUploadStatus == 3 && (id == currentUploadingPostID))
+                    .limit(1)
+            }
             
             for post1 in try db.prepare(query) {
                 check = true
@@ -205,21 +217,34 @@ public class QuickItinerary {
                 })
             }
             
-            if(!check) {
+            print("\n UploadFlag :::: \(uploadFlag)")
+            if(!check && (uploadFlag == true)) {
                 if globalNewTLViewController != nil {
                     if(globalNewTLViewController?.isActivityHidden)! {
                         if (globalNewTLViewController?.isSelfJourney(journeyID: (globalNewTLViewController?.fromOutSide)!))! {
                             globalNewTLViewController?.getJourney(canGetFromCache: false)                            
                         }
-                    }
-                    
+                    }                    
+                }
+                else {
+                    request.getJourney(currentUser["_id"].string!, canGetCachedData: false, completion: {(response, isFromCache) in
+                        //This call is just to update cached data
+                    })
                 }
                 if globalTLMainFeedsViewController != nil {                    
                         globalTLMainFeedsViewController.getDataMain()
                 }
-                isUploadingInProgress = false
                 
-//                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "UPLOAD_ITINERARY"), object: nil)
+                isUploadingInProgress = false
+                currentUploadingPostID = Int64(0)
+                uploadFlag = false
+                let i = PostImage()
+                i.uploadPhotos(delegate: nil)
+            }
+            else if (!check) {
+                isUploadingInProgress = false
+                currentUploadingPostID = Int64(0)
+                uploadFlag = false
             }
         }
         catch {

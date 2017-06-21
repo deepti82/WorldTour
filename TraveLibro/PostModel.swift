@@ -128,7 +128,7 @@ public class Post {
                 self.userName <- username,
                 self.checkInChange <- isCheckInChange,
                 self.prevBuddyDb <- oldbuddies!,
-                self.oldVideo <- oldVideoStream!,
+                self.oldVideo <- (oldVideoStream != nil ? oldVideoStream! : ""),
                 self.postEditType <- self.getPostType(from: postType)
             )
         }
@@ -174,14 +174,17 @@ public class Post {
                 video.postId = Int(localPostId)
                 video.save()
             }
+            print("\n isUploadingInProgress : \(isUploadingInProgress)")
+            if (!isUploadingInProgress && (localPostId == Int64(1))) {
+                currentUploadingPostID = localPostId
+            }
+            print("currentUploadingPostID inside setPost: \(currentUploadingPostID)")
             
             let query = self.getAllPost(postid: localPostId)
             for post in query {
                 retPost = post;
                 retPost.post_isOffline = true;
             }
-            
-            
         }
         catch {
             print("Error")
@@ -515,9 +518,21 @@ public class Post {
         print(" ******* postCheck 1")
         do {
             var check = false;
-            let query = post.select(id, type, userId, journeyId, thoughts, location, category, city, country, latitude, longitude, date, newbuddyDb, prevBuddyDb, userName, checkInChange, postUploadStatus, postServerId, postServerUniqueId, oldVideo)
-                .filter(postUploadStatus == 0 || postUploadStatus == 3)
-                .limit(1)
+            
+            var query: QueryType!
+            if currentUploadingPostID == Int64(0) {
+                print("\n if succeed")
+                query = post.select(id, type, userId, journeyId, thoughts, location, category, city, country, latitude, longitude, date, newbuddyDb, prevBuddyDb, userName, checkInChange, postUploadStatus, postServerId, postServerUniqueId, oldVideo)
+                    .filter(postUploadStatus == 0 || postUploadStatus == 3)
+                    .limit(1)                    
+            }
+            else {
+                print("\n else succeed")
+                query = post.select(id, type, userId, journeyId, thoughts, location, category, city, country, latitude, longitude, date, newbuddyDb, prevBuddyDb, userName, checkInChange, postUploadStatus, postServerId, postServerUniqueId, oldVideo)
+                    .filter(postUploadStatus == 0 || postUploadStatus == 3 && (id == currentUploadingPostID))
+                    .limit(1)
+            }
+            
             
             for post in try db.prepare(query) {
                 
@@ -528,6 +543,8 @@ public class Post {
                 self.updateStatus(postId: post[id], status: (isNetworkReachable ? uploadStatus.UPLOAD_IN_PROGRESS : uploadStatus.UPLOAD_PENDING))
                 
                 check = true
+                uploadFlag = true
+                
                 let p = Post();                
                 
                 p.post_id = Int(post[id])
@@ -620,7 +637,9 @@ public class Post {
                             catch {
                                 
                             }
-                            print(" ******* postCheck 3")
+                            print(" ******* postCheck 3")                            
+//                            currentUploadingPostID = Int64(0)
+//                            self.dispatchResponseFunction()
                             isUploadingInProgress = false
                             let i = PostImage()
                             i.uploadPhotos(delegate: nil)
@@ -654,7 +673,6 @@ public class Post {
                         }
                         else if response["value"].bool! {
                             do {
-                                print(response);
                                 let singlePhoto = self.post.filter(self.id == postID)
                                 try self.db.run(singlePhoto.delete())
                                 i.deletePhotos(postID);
@@ -666,6 +684,8 @@ public class Post {
                                 
                             }
                             print(" ******* postCheck 3")
+//                            currentUploadingPostID = Int64(0)
+//                            self.dispatchResponseFunction()
                             isUploadingInProgress = false
                             let i = PostImage()
                             i.uploadPhotos(delegate: nil)
@@ -690,6 +710,24 @@ public class Post {
             print(" ******* postCheck 5")
             print("There is an error");
         }
+    }
+    
+    func dispatchResponseFunction() {
+        
+        print("\n dispatchResponseFunction dispatchResponseFunction")
+        
+        if globalNewTLViewController != nil {
+            if(globalNewTLViewController?.isActivityHidden)! {
+                if (globalNewTLViewController?.isSelfJourney(journeyID: (globalNewTLViewController?.fromOutSide)!))! {
+                    globalNewTLViewController?.getJourney(canGetFromCache: false)                            
+                }
+            }
+            
+        }
+        if globalTLMainFeedsViewController != nil {                    
+            globalTLMainFeedsViewController.getDataMain()
+        }
+        isUploadingInProgress = false
     }
     
     func delete(_ post:Int64) {

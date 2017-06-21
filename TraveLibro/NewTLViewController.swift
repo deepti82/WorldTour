@@ -316,12 +316,14 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
             
             let newbuddies = JSON(self.addView.addedBuddies).rawString()
             let prevbuddies = JSON(self.addView.prevBuddies).rawString()
-            let prevVideo = self.addView.editPost.jsonPost["videos"].rawString() //JSON(self.addView.editPost.jsonPost["videos"]).rawString()
+            
+            let prevVideo = (self.addView.videoURL != nil) ? (self.addView.editPost.jsonPost["videos"].rawString()) : nil 
+            //JSON(self.addView.editPost.jsonPost["videos"]).rawString()
             
             let isCheckInchanged = (self.addView.editPost.post_location != location) ? true : false
             
             let post  = Post()
-            let po = post.setPost(currentUser["_id"].stringValue, username: currentUser["name"].stringValue, JourneyId: self.myJourney["uniqueId"].stringValue, editPostId: self.addView.editPost.post_ids, editPostUniqueID: self.addView.editPost.post_uniqueId, Type: "editPost", Date: "", Location: location!, Category: category, Latitude: lat, Longitude: lng, Country: self.addView.currentCountry, City: self.addView.currentCity, thoughts: thoughts, newbuddies: newbuddies!, oldbuddies: prevbuddies, imageArr: self.addView.imageArr, videoURL: nil, videoCaption: "", isCheckInChange: isCheckInchanged, oldVideoStream: prevVideo!, postType: editPostType.EDITING_ACTIVITY)
+            let po = post.setPost(currentUser["_id"].stringValue, username: currentUser["name"].stringValue, JourneyId: self.myJourney["uniqueId"].stringValue, editPostId: self.addView.editPost.post_ids, editPostUniqueID: self.addView.editPost.post_uniqueId, Type: "editPost", Date: "", Location: location!, Category: category, Latitude: lat, Longitude: lng, Country: self.addView.currentCountry, City: self.addView.currentCity, thoughts: thoughts, newbuddies: newbuddies!, oldbuddies: prevbuddies, imageArr: self.addView.imageArr, videoURL: nil, videoCaption: "", isCheckInChange: isCheckInchanged, oldVideoStream: prevVideo, postType: editPostType.EDITING_ACTIVITY)
             self.editPostFromLayout(post: po, postLayout: self.editingPostLayout)
             
             let i = PostImage()
@@ -400,7 +402,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     func showOfflinePost(post: JSON, postId: Int) {
         var thoughts = String()
         var postTitle = ""
-        var photos: [JSON] = []
+//        var photos: [JSON] = []
         
         if post["thoughts"] != nil && post["thoughts"].string != "" {
             
@@ -499,7 +501,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         
         if post["photos"] != nil && post["photos"].array!.count > 0 {
             
-            photos = post["photos"].array!
+//            photos = post["photos"].array!
             checkIn.mainPhoto.hnk_setImageFromURL(NSURL(string: "\(adminUrl)upload/readFile?file=\(post["photos"][0]["name"].string!)&width=500") as! URL)
             checkIn.mainPhoto.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.openSinglePhoto(_:))))
             checkIn.mainPhoto.tag = 0
@@ -509,13 +511,13 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
             checkIn.mainPhoto.addGestureRecognizer(likeMainPhoto)
             checkIn.mainPhoto.isUserInteractionEnabled = true
             //            print("photobar count: \(photos.count)")
-            var count = 4
-            if photos.count < 5 {
-                
-                count = photos.count - 1
-                //                print("in the if statement \(count)")
-                
-            }
+//            var count = 4
+//            if photos.count < 5 {
+//                
+//                count = photos.count - 1
+//                //                print("in the if statement \(count)")
+//                
+//            }
             
             //            for i in 0 ..< count {
             //
@@ -1010,7 +1012,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
             self.addView.photosAdded(assets: imgA)
         } else {
             picker.dismiss(animated: true, completion: {})
-            self.addView.addVideoToBlock(video: info["UIImagePickerControllerMediaURL"] as! URL)
+            self.addView.addVideoToBlock(video: (info["UIImagePickerControllerMediaURL"] as! URL))
         }
     }
     

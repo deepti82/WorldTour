@@ -12,9 +12,10 @@ import UIKit
 
 func rectFromStartAndEnd(_ startPoint:CGPoint, endPoint: CGPoint) -> CGRect
 {
-    var  top, left, bottom, right: CGFloat;
+    var  top, left, right: CGFloat;
+//    var bottom
     top = min(startPoint.y, endPoint.y)
-    bottom = max(startPoint.y, endPoint.y)
+//    bottom = max(startPoint.y, endPoint.y)
     
     left = min(startPoint.x, endPoint.x)
     right = max(startPoint.x, endPoint.x)

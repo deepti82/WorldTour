@@ -102,16 +102,28 @@ public class PostVideo {
     func uploadVideo() {
         print(" ******* videoCheck 1")
         do {
-            var check = false;
-            let query = videos.select(id,post,captions,localUrl,url)
-                .filter(url == "" && (videoUploadStatus == 0 || videoUploadStatus == 3))
-                .limit(1)
+            var check = false
+            var query: QueryType!
+            
+            if currentUploadingPostID == Int64(0) {
+                print("\n if succeed")
+                query = videos.select(id,post,captions,localUrl,url)
+                    .filter(url == "" && (videoUploadStatus == 0 || videoUploadStatus == 3))
+                    .limit(1)                    
+            }
+            else {
+                print("\n else succeed")
+                query = videos.select(id,post,captions,localUrl,url)
+                    .filter(url == "" && (videoUploadStatus == 0 || videoUploadStatus == 3) && (post == currentUploadingPostID))
+                    .limit(1)
+            }
             
             for photo in try db.prepare(query) {
                 print(" ******* videoCheck 2")
                 
                 self.updateStatus(videoID: photo[id], status: (isNetworkReachable ? uploadStatus.UPLOAD_IN_PROGRESS : uploadStatus.UPLOAD_PENDING), urlString: "", thumbnailStr: "")
-                check = true;
+                check = true
+                uploadFlag = true
                 let url = getDocumentsDirectory().appendingPathComponent( String(photo[localUrl]) )
                 request.uploadPhotos(url, localDbId: 0,completion: {(response) in
                     if response.error != nil {

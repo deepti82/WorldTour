@@ -874,41 +874,34 @@ class Navigation {
             
         var params: JSON = ["_id": id, "countryId": countryVisited]
         params["visited"] = list
+                
+        let jsonData = try! params.rawData()
+        // create post request
+        let url = URL(string: adminUrl + "user/updateCountriesVisited")!
+        let request = NSMutableURLRequest(url: url)
+        request.httpMethod = "POST"
         
-            do {
-                
-                let jsonData = try! params.rawData()
-                // create post request
-                let url = URL(string: adminUrl + "user/updateCountriesVisited")!
-                let request = NSMutableURLRequest(url: url)
-                request.httpMethod = "POST"
-                
-                // insert json data to the request
-                request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
-                request.httpBody = jsonData
-                
-                let task = URLSession.shared.dataTask(with: request as URLRequest) {data, response, error in
-                    if error != nil{
-                        print("Error -> \(error)")
-                        return
-                    }
-                    
-                    do {
-                        let result = try JSONSerialization.jsonObject(with: data!, options: []) as! [String:AnyObject]
-                        print("response: \(JSON(result))")
-                        completion(JSON(result))
-                        
-                    } catch {
-                        print("Error: \(error)")
-                    }
-                }
-                
-                task.resume()
-                
-            } catch {
-                print(error)
+        // insert json data to the request
+        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+        request.httpBody = jsonData
+        
+        let task = URLSession.shared.dataTask(with: request as URLRequest) {data, response, error in
+            if error != nil{
+                print("Error -> \(error)")
+                return
             }
             
+            do {
+                let result = try JSONSerialization.jsonObject(with: data!, options: []) as! [String:AnyObject]
+                print("response: \(JSON(result))")
+                completion(JSON(result))
+                
+            } catch {
+                print("Error: \(error)")
+            }
+        }
+        
+        task.resume()
             
 //            let newParams = ["data": "\(params)"]
             
@@ -1883,8 +1876,8 @@ class Navigation {
         
         do {
             var params: JSON!
-            if urlSlug != "" {
-                params = ["user": user, "type": type, "pagenumber": pageNumber, "urlSlug": urlSlug]
+            if urlSlug != nil && urlSlug != "" {
+                params = ["user": user, "type": type, "pagenumber": pageNumber, "urlSlug": urlSlug!]
             }else{
                 params = ["user": user, "type": type, "pagenumber": pageNumber]
             }
@@ -2381,7 +2374,7 @@ class Navigation {
         do {
             print("getComments \(["_id": id, "user": userId, "pagenumber": pageno])")
             
-            var params = ["_id": id, "user": userId, "pagenumber": pageno] as [String : Any]
+            let params = ["_id": id, "user": userId, "pagenumber": pageno] as [String : Any]
             var url = ""
         
             switch type.lowercased() {
@@ -2525,89 +2518,74 @@ class Navigation {
     }
     
     func getOneJourneyPost(id: String, completion: @escaping ((JSON) -> Void)) {
+
+        let params = ["_id": id]
+
+        print("get one journey params: \(params)")
+
+        let opt = try! HTTP.POST(adminUrl + "post/getOne", parameters: params)
+        var json = JSON(1)
         
-        do {
+        opt.start{(response) in
 
-            let params = ["_id": id]
+            if let err = response.error {
 
-            print("get one journey params: \(params)")
-
-            let opt = try! HTTP.POST(adminUrl + "post/getOne", parameters: params)
-            var json = JSON(1)
-            
-            opt.start{(response) in
-
-                if let err = response.error {
-
-                    print("error: \(err.localizedDescription)")
-                }
-
-                else
-                {
-                    print("making json")
-                    json  = JSON(data: response.data)
-                    completion(json)
-                }
+                print("error: \(err.localizedDescription)")
             }
-        } catch let error {
-            print("got an error creating the request: \(error)")
+
+            else
+            {
+                print("making json")
+                json  = JSON(data: response.data)
+                completion(json)
+            }
         }
+        
     }
     
     func getOnePostPhotos(_ id: String, _ userId: String, completion: @escaping ((JSON) -> Void)) {
         
-        do {
+        let params = ["_id": id, "user": userId]            
+        
+        let opt = try! HTTP.POST(adminUrl + "postphotos/getOne", parameters: params)
+        var json = JSON(1)
+        
+        opt.start{(response) in
             
-            let params = ["_id": id, "user": userId]            
-            
-            let opt = try! HTTP.POST(adminUrl + "postphotos/getOne", parameters: params)
-            var json = JSON(1)
-            
-            opt.start{(response) in
+            if let err = response.error {
                 
-                if let err = response.error {
-                    
-                    print("error: \(err.localizedDescription)")
-                }
-                    
-                else
-                {
-                    json  = JSON(data: response.data)
-                    completion(json)
-                }
+                print("error: \(err.localizedDescription)")
             }
-        } catch let error {
-            print("got an error creating the request: \(error)")
+            else {
+                json  = JSON(data: response.data)
+                completion(json)
+            }
         }
     }
     
     func getOnePostVideos(_ id: String, _ userId: String, completion: @escaping ((JSON) -> Void)) {
+            
+        let params = ["_id": id, "user": userId]            
         
-        do {
+        let opt = try! HTTP.POST(adminUrl + "postvideos/getOne", parameters: params)
+        var json = JSON(1)
+        
+        opt.start{(response) in
             
-            let params = ["_id": id, "user": userId]            
-            
-            let opt = try! HTTP.POST(adminUrl + "postvideos/getOne", parameters: params)
-            var json = JSON(1)
-            
-            opt.start{(response) in
+            if let err = response.error {
                 
-                if let err = response.error {
-                    
-                    print("error: \(err.localizedDescription)")
-                }
-                    
-                else
-                {
-                    print("making json")
-                    json  = JSON(data: response.data)
-                    print(json)
-                    completion(json)
-                }
+                print("error: \(err.localizedDescription)")
             }
-        } catch let error {
-            print("got an error creating the request: \(error)")
+                
+            else
+            {
+                print("making json")
+                json  = JSON(data: response.data)
+                print(json)
+                completion(json)
+            }
         }
+        
     }
     
     func postPhotosLike(_ photoId: String, postId: String, userId: String, userName: String, unlike: Bool, completion: @escaping ((JSON) -> Void)) {
@@ -3181,10 +3159,7 @@ class Navigation {
         
         
         do {
-            var params = ["type":type.lowercased(), "_id": commentId, "text": commentText, "user": userId, "hashtag": hashtag, "addHashtag": addedHashtags, "removeHashtag": removedHashtags] as [String: Any]
-            
-            
-            print(params)
+            let params = ["type":type.lowercased(), "_id": commentId, "text": commentText, "user": userId, "hashtag": hashtag, "addHashtag": addedHashtags, "removeHashtag": removedHashtags] as [String: Any]
 //            if type == "Photo" {
 //                params = ["type":"photo", "_id": commentId, "text": commentText, "user": userId, "hashtag": hashtag, "addHashtag": addedHashtags, "removeHashtag": removedHashtags, "photo": photoId] as [String: Any]
 //            } else {
@@ -3758,7 +3733,7 @@ class Navigation {
     
     }
     
-    func getPopularItinerary(userId: String, pagenumber: Int, completion: @escaping ((JSON) -> Void)) {
+    func getPopularItinerary(userId: String?, pagenumber: Int, completion: @escaping ((JSON) -> Void)) {
         
         do {
             var params: JSON
@@ -3766,7 +3741,7 @@ class Navigation {
             if userId == nil {
                 params = ["pagenumber": pagenumber]
             }else{
-                params = ["user": userId, "pagenumber": pagenumber]
+                params = ["user": userId!, "pagenumber": pagenumber]
             }
             
             let jsonData = try params.rawData()

@@ -1615,11 +1615,11 @@
 				C20163DF1D26911C00A2F70B /* UserModel.swift */,
 				369042C21E090E6700D266A7 /* PostImage.swift */,
 				363A7C771E29ED94001CB126 /* PostVideo.swift */,
-				36EB3F971E0D81A000EFF9EC /* PostBuddy.swift */,
 				C27C48081DB5ECDF00330ABF /* PostModel.swift */,
+				362FA0C91E1E78E500267736 /* PostEditPhotosVideos.swift */,
 				36200B9E1E30E0B700BFA227 /* LocalLifePostModel.swift */,
 				36F3D7E01E45C39400D79A24 /* QuickItinerary.swift */,
-				362FA0C91E1E78E500267736 /* PostEditPhotosVideos.swift */,
+				36EB3F971E0D81A000EFF9EC /* PostBuddy.swift */,
 				C2488AB51D51D0E100FD5306 /* Navigation.swift */,
 				360C1A8E1E02A6F0009780B3 /* ConfigModel.swift */,
 			);
