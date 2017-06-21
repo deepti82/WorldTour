@@ -78,7 +78,7 @@ public class PostImage {
         var filename:URL!
         var filenameOnly = "";
         if(self.serverUrl != "") {
-            self.image = self.image.resizeWith(width: 800.0)
+            self.image = self.image.resizeWith(width: CGFloat(VERY_BIG_PHOTO_WIDTH))
         }
         if let data = UIImageJPEGRepresentation(self.image, 0.5) {
             filenameOnly = String(Date().ticks) + ".jpg"

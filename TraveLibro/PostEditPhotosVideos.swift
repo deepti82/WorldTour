@@ -80,7 +80,7 @@ public class PostEditPhotosVideos {
                 check = true
                 uploadFlag = true
                 let str = String(post[uniqueId_db])
-                var params:JSON = ["uniqueId" : str!, "type": "addPhotosVideos","user": currentUser["_id"].stringValue]
+                var params:JSON = ["uniqueId" : str!, "type": "addPhotosVideos","user": user.getExistingUser()]
                 let actualId = Int(post[id_db]) + 10000
                 
                 let i = PostImage();

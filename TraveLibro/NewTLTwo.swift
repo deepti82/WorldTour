@@ -185,7 +185,13 @@ extension NewTLViewController {
         if(post.videoArr.count > 0) {
             let videoUrl = URL(string:post.videoArr[0].serverUrl)
             self.addView.addVideoToBlock(video: videoUrl)
-        }
+
+            self.addView.videosInitialView.alpha = 0.1
+            self.addView.videosInitialView.isUserInteractionEnabled = false
+            
+            self.addView.videosFinalView.alpha = 0.1
+            self.addView.videosFinalView.isUserInteractionEnabled = false
+        }        
         
         self.addView.locationView.alpha = 0.1
         self.addView.locationView.isUserInteractionEnabled = false
@@ -193,12 +199,6 @@ extension NewTLViewController {
         self.addView.locationView.alpha = 0.1
         self.addView.locationView.isUserInteractionEnabled = false
         
-        self.addView.videosInitialView.alpha = 0.1
-        self.addView.videosInitialView.isUserInteractionEnabled = false
-        
-        self.addView.videosFinalView.alpha = 0.1
-        self.addView.videosFinalView.isUserInteractionEnabled = false
-                
         self.addView.thoughtsInitalView.alpha = 0.1
         self.addView.thoughtsInitalView.isUserInteractionEnabled = false
         

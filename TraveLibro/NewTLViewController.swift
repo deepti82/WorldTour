@@ -233,28 +233,53 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     //MARK: - Post Create / Edit
     
     func savePhotoVideo (_ sender: UIButton) {
-        let post = PostEditPhotosVideos()
-        post.saveAddPhotosVideos(uniqueId: self.addView.editPost.post_uniqueId, imageArr: self.addView.imageArr,buddy:JSON(self.addView.addedBuddies).rawString()!)
+        
+        print("\n\n videoURL : \(self.addView.videoURL) \n videoCaption : \(self.addView.videoCaption)")
+        
+        let post = Post()
+        let po = post.setPost(user.getExistingUser(), 
+                              username: "", 
+                              JourneyId: self.addView.editPost.post_uniqueId,
+                              editPostId: self.addView.editPost.post_ids,
+                              editPostUniqueID: self.addView.editPost.post_uniqueId,
+                              type: "addPhotosVideos", 
+                              Date: "", 
+                              Location: "", 
+                              Category: "", 
+                              Latitude: "", 
+                              Longitude: "", 
+                              Country: "", 
+                              City: "", 
+                              thoughts: "", 
+                              newbuddies: JSON(self.addView.addedBuddies).rawString()!, 
+                              oldbuddies: nil,
+                              imageArr: self.addView.imageArr,
+                              videoURL: self.addView.videoURL,
+                              videoCaption: self.addView.videoCaption,
+                              isCheckInChange: false,
+                              oldVideoStream: nil,
+                              postType: editPostType.EDITING_PHOTO_VIDEO)
+        
+//        let post = PostEditPhotosVideos()
+//        post.saveAddPhotosVideos(uniqueId: self.addView.editPost.post_uniqueId, 
+//                                 imageArr: self.addView.imageArr,
+//                                 buddy:JSON(self.addView.addedBuddies).rawString()!)
         
         
-        let po = Post()
-        var postJSON:JSON = self.addView.editPost.jsonPost
-        postJSON["isPostOffline"] = true
-        postJSON["editPostType"] = 2
-        
-        var photosJson:[JSON] = []
-        for img in self.addView.imageArr {
-            photosJson.append(img.parseJson())
-        }
-        
-        postJSON["photos"] = JSON(photosJson)
-        postJSON["buddies"] = JSON(self.addView.addedBuddies)
-        print("\n PhotoJson : \(photosJson)")
-        
-        print("\n postJSON : \(postJSON)")
-        print("\n imgarrr: \(self.addView.imageArr)")
-
-        po.jsonToPost(postJSON);
+//        let po = Post()
+//        var postJSON:JSON = self.addView.editPost.jsonPost
+//        postJSON["isPostOffline"] = true
+//        postJSON["editPostType"] = 2
+//        
+//        var photosJson:[JSON] = []
+//        for img in self.addView.imageArr {
+//            photosJson.append(img.parseJson())
+//        }
+//        
+//        postJSON["photos"] = JSON(photosJson)
+//        postJSON["buddies"] = JSON(self.addView.addedBuddies)
+//
+//        po.jsonToPost(postJSON);
         self.editPostFromLayout(post: po, postLayout: self.editingPostLayout)
         
         let i = PostImage()
@@ -323,7 +348,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
             let isCheckInchanged = (self.addView.editPost.post_location != location) ? true : false
             
             let post  = Post()
-            let po = post.setPost(currentUser["_id"].stringValue, username: currentUser["name"].stringValue, JourneyId: self.myJourney["uniqueId"].stringValue, editPostId: self.addView.editPost.post_ids, editPostUniqueID: self.addView.editPost.post_uniqueId, Type: "editPost", Date: "", Location: location!, Category: category, Latitude: lat, Longitude: lng, Country: self.addView.currentCountry, City: self.addView.currentCity, thoughts: thoughts, newbuddies: newbuddies!, oldbuddies: prevbuddies, imageArr: self.addView.imageArr, videoURL: nil, videoCaption: "", isCheckInChange: isCheckInchanged, oldVideoStream: prevVideo, postType: editPostType.EDITING_ACTIVITY)
+            let po = post.setPost(currentUser["_id"].stringValue, username: currentUser["name"].stringValue, JourneyId: self.myJourney["uniqueId"].stringValue, editPostId: self.addView.editPost.post_ids, editPostUniqueID: self.addView.editPost.post_uniqueId, type: "editPost", Date: "", Location: location!, Category: category, Latitude: lat, Longitude: lng, Country: self.addView.currentCountry, City: self.addView.currentCity, thoughts: thoughts, newbuddies: newbuddies!, oldbuddies: prevbuddies, imageArr: self.addView.imageArr, videoURL: nil, videoCaption: "", isCheckInChange: isCheckInchanged, oldVideoStream: prevVideo, postType: editPostType.EDITING_ACTIVITY)
             self.editPostFromLayout(post: po, postLayout: self.editingPostLayout)
             
             let i = PostImage()
@@ -388,7 +413,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         
         if(self.addView.imageArr.count > 0 || self.addView.videoURL != nil || thoughts.characters.count > 0 || location.characters.count > 0) {
             let post  = Post()
-            let po = post.setPost(currentUser["_id"].stringValue, username: currentUser["name"].stringValue, JourneyId: self.journeyId, editPostId: nil, editPostUniqueID: nil, Type: "travel-life", Date: self.currentTime, Location: location, Category: category, Latitude: lat, Longitude: lng, Country: self.addView.currentCountry, City: self.addView.currentCity, thoughts: thoughts, newbuddies: buddies!, oldbuddies: nil, imageArr: self.addView.imageArr, videoURL: self.addView.videoURL, videoCaption: self.addView.videoCaption, isCheckInChange: false, oldVideoStream: "", postType: editPostType.EDIT_NEW_POST)            
+            let po = post.setPost(currentUser["_id"].stringValue, username: currentUser["name"].stringValue, JourneyId: self.journeyId, editPostId: nil, editPostUniqueID: nil, type: "travel-life", Date: self.currentTime, Location: location, Category: category, Latitude: lat, Longitude: lng, Country: self.addView.currentCountry, City: self.addView.currentCity, thoughts: thoughts, newbuddies: buddies!, oldbuddies: nil, imageArr: self.addView.imageArr, videoURL: self.addView.videoURL, videoCaption: self.addView.videoCaption, isCheckInChange: false, oldVideoStream: "", postType: editPostType.EDIT_NEW_POST)            
             self.addPostLayout(po)
             
             let i = PostImage()
