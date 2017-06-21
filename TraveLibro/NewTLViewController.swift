@@ -62,7 +62,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     var addedBuddies: [JSON] = []
     var addView: AddActivityNew!
     var backgroundReview = UIView()
-    var buttons = NearMeOptionButton()
+//    var buttons = NearMeOptionButton()
     var addPostsButton: UIButton!
     var mainFooter: FooterViewNew?
     var layout: VerticalLayout!
@@ -1204,7 +1204,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         let nearMe = storyboard?.instantiateViewController(withIdentifier: "nearMeVC") as! NearMeViewController
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationController?.pushViewController(nearMe, animated: true)        
-        buttons.isHidden = true
+//        buttons.isHidden = true
         
         
     }

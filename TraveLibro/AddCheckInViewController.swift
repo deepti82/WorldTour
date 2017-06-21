@@ -53,10 +53,8 @@ class AddCheckInViewController: UIViewController, UIImagePickerControllerDelegat
     }
     
     func previewCheckIn(_ sender: UIButton) {
-        
         let localLifeVC = storyboard?.instantiateViewController(withIdentifier: "localLifePosts") as! LocalLifePostsViewController
         self.navigationController?.pushViewController(localLifeVC, animated: true)
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {

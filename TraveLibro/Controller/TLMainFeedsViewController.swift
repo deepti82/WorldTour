@@ -135,7 +135,7 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
     override func viewDidAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         globalNavigationController = self.navigationController
-        NotificationCenter.default.addObserver(self, selector: #selector(updateUIWithRechabilityStatus(notification:)), name: NSNotification.Name(rawValue: "REACHABILITY_STATUS_CHANGED"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.updateUIWithRechabilityStatus(notification:)), name: NSNotification.Name(rawValue: "REACHABILITY_STATUS_CHANGED"), object: nil)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -305,9 +305,8 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
     //MARK: - Red Strip Handlers
     
     func addRedStrip(messages: String){
-        self.removeRedStrip()
         
-        let NAVIGATION_BAR_HEIGHT = self.navigationController?.navigationBar.frame.size.height
+        self.removeRedStrip()
         
         self.internetStrip = UploadingToCloud(frame: CGRect(x: 0, y: ((self.navigationController?.navigationBar.isHidden)! ? STATUS_BAR_HEIGHT : 0), width: screenWidth, height: 20))
         self.internetStrip?.uploadText.text = messages
@@ -320,6 +319,7 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
         if (self.internetStrip != nil) {
             self.feedsTableTopSpaceConstant.constant = 0
             self.internetStrip?.removeFromSuperview()
+            self.internetStrip = nil
         }
     }
     
