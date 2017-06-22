@@ -26,7 +26,6 @@
 		36006DB11DBB346600C7F44B /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36006DB01DBB346600C7F44B /* SwiftyJSON.swift */; };
 		360C1A8F1E02A6F0009780B3 /* ConfigModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360C1A8E1E02A6F0009780B3 /* ConfigModel.swift */; };
 		36200B9F1E30E0B700BFA227 /* LocalLifePostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36200B9E1E30E0B700BFA227 /* LocalLifePostModel.swift */; };
-		362DAD461E34972000329C9A /* LocalLifePost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362DAD451E34972000329C9A /* LocalLifePost.swift */; };
 		362FA0CA1E1E78E500267736 /* PostEditPhotosVideos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362FA0C91E1E78E500267736 /* PostEditPhotosVideos.swift */; };
 		3638F9E31E2C224800B2EA04 /* VideoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3638F9E21E2C224800B2EA04 /* VideoView.xib */; };
 		3638F9E51E2C226200B2EA04 /* VideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3638F9E41E2C226200B2EA04 /* VideoView.swift */; };
@@ -191,7 +190,6 @@
 		C20939071D1180D100CBA70F /* JennaSue.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C2A5C1D31CF9731B0035EF0E /* JennaSue.ttf */; };
 		C20A18F81D2294D900760BF9 /* AddCheckIn.xib in Resources */ = {isa = PBXBuildFile; fileRef = C20A18F71D2294D900760BF9 /* AddCheckIn.xib */; };
 		C20A18FA1D2299EE00760BF9 /* AddCheckIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20A18F91D2299EE00760BF9 /* AddCheckIn.swift */; };
-		C20A18FD1D229E1800760BF9 /* AddCheckInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20A18FC1D229E1800760BF9 /* AddCheckInViewController.swift */; };
 		C20A18FF1D22A67700760BF9 /* AddBuddiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20A18FE1D22A67700760BF9 /* AddBuddiesViewController.swift */; };
 		C212930E1D2E806B002D5A4A /* MyLifeContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C212930D1D2E806B002D5A4A /* MyLifeContainerViewController.swift */; };
 		C21293101D2E830B002D5A4A /* MyLifeMomentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C212930F1D2E830B002D5A4A /* MyLifeMomentsViewController.swift */; };
@@ -246,7 +244,6 @@
 		C25649971D48D7670046E36D /* TripInfoOTG.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25649961D48D7670046E36D /* TripInfoOTG.swift */; };
 		C256499A1D48EE5E0046E36D /* SummarySubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25649991D48EE5E0046E36D /* SummarySubViewController.swift */; };
 		C258A3371D6C74E600664CF7 /* AddNationalityNewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C258A3361D6C74E600664CF7 /* AddNationalityNewViewController.swift */; };
-		C25BE1F31CFC06BB00C98DD3 /* LocalLifePostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25BE1F21CFC06BB00C98DD3 /* LocalLifePostsViewController.swift */; };
 		C25C27EF1D4735BE00C21F23 /* KindOfJourneyOTGViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25C27EE1D4735BE00C21F23 /* KindOfJourneyOTGViewController.swift */; };
 		C25C27F11D4747AA00C21F23 /* NewTLViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25C27F01D4747AA00C21F23 /* NewTLViewController.swift */; };
 		C25F488A1CF31B1300C6C28C /* MomentsEachViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25F48891CF31B1300C6C28C /* MomentsEachViewController.swift */; };
@@ -438,7 +435,6 @@
 		36006DB01DBB346600C7F44B /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		360C1A8E1E02A6F0009780B3 /* ConfigModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigModel.swift; sourceTree = "<group>"; };
 		36200B9E1E30E0B700BFA227 /* LocalLifePostModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalLifePostModel.swift; sourceTree = "<group>"; };
-		362DAD451E34972000329C9A /* LocalLifePost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalLifePost.swift; sourceTree = "<group>"; };
 		362FA0C91E1E78E500267736 /* PostEditPhotosVideos.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostEditPhotosVideos.swift; sourceTree = "<group>"; };
 		3638F9E21E2C224800B2EA04 /* VideoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoView.xib; sourceTree = "<group>"; };
 		3638F9E41E2C226200B2EA04 /* VideoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoView.swift; sourceTree = "<group>"; };
@@ -627,7 +623,6 @@
 		C20939001D11557B00CBA70F /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = ../HomeViewController.swift; sourceTree = "<group>"; };
 		C20A18F71D2294D900760BF9 /* AddCheckIn.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddCheckIn.xib; sourceTree = "<group>"; };
 		C20A18F91D2299EE00760BF9 /* AddCheckIn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCheckIn.swift; sourceTree = "<group>"; };
-		C20A18FC1D229E1800760BF9 /* AddCheckInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCheckInViewController.swift; sourceTree = "<group>"; };
 		C20A18FE1D22A67700760BF9 /* AddBuddiesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBuddiesViewController.swift; sourceTree = "<group>"; };
 		C212930D1D2E806B002D5A4A /* MyLifeContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyLifeContainerViewController.swift; sourceTree = "<group>"; };
 		C212930F1D2E830B002D5A4A /* MyLifeMomentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyLifeMomentsViewController.swift; sourceTree = "<group>"; };
@@ -682,7 +677,6 @@
 		C25649961D48D7670046E36D /* TripInfoOTG.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripInfoOTG.swift; sourceTree = "<group>"; };
 		C25649991D48EE5E0046E36D /* SummarySubViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SummarySubViewController.swift; sourceTree = "<group>"; };
 		C258A3361D6C74E600664CF7 /* AddNationalityNewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNationalityNewViewController.swift; sourceTree = "<group>"; };
-		C25BE1F21CFC06BB00C98DD3 /* LocalLifePostsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalLifePostsViewController.swift; sourceTree = "<group>"; };
 		C25C27EE1D4735BE00C21F23 /* KindOfJourneyOTGViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KindOfJourneyOTGViewController.swift; sourceTree = "<group>"; };
 		C25C27F01D4747AA00C21F23 /* NewTLViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTLViewController.swift; sourceTree = "<group>"; };
 		C25F48891CF31B1300C6C28C /* MomentsEachViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MomentsEachViewController.swift; path = ../MomentsEachViewController.swift; sourceTree = "<group>"; };
@@ -1256,7 +1250,6 @@
 				3A9F8C7A1DE2BDC1007F3CF0 /* NearMeDetailViewController.swift */,
 				3A38275D1DDEE4BB007F181D /* NearMeListViewController.swift */,
 				3AAA769E1DDDBE8800DCB6F2 /* NearMeViewController.swift */,
-				C25BE1F21CFC06BB00C98DD3 /* LocalLifePostsViewController.swift */,
 				C23EB1DA1CFEE242005B5CE8 /* LocalLifeRecommendationViewController.swift */,
 			);
 			name = LocalLifeVC;
@@ -1694,7 +1687,6 @@
 			children = (
 				C23EB1D41CFED110005B5CE8 /* LocalLifeRecommends.xib */,
 				C23EB1D61CFED335005B5CE8 /* LocalLifeRecommends.swift */,
-				362DAD451E34972000329C9A /* LocalLifePost.swift */,
 			);
 			name = LocalLifeRecommends;
 			sourceTree = "<group>";
@@ -1823,7 +1815,6 @@
 				84FF894C1E53476A00FDE8F0 /* SearchTableViewController.swift */,
 				84FF89481E52EAA800FDE8F0 /* SearchViewController.swift */,
 				C2E56EA41DA5390000D81B0A /* AddCaptionsViewController.swift */,
-				C20A18FC1D229E1800760BF9 /* AddCheckInViewController.swift */,
 				C2C9659A1CE4979D007BDA34 /* CheckInViewController.swift */,
 				C26730291D27D30300F2C822 /* ChooseCityViewController.swift */,
 				C2A026CE1D9AA82D00D548AB /* CommentsViewController.swift */,
@@ -2608,18 +2599,15 @@
 				FCCA8F191E28B5BC00775985 /* TripSummaryView.swift in Sources */,
 				C2DCB3771CE7473A006E5CBD /* AddRating.swift in Sources */,
 				C23EB1DB1CFEE242005B5CE8 /* LocalLifeRecommendationViewController.swift in Sources */,
-				C25BE1F31CFC06BB00C98DD3 /* LocalLifePostsViewController.swift in Sources */,
 				C24909B11D49D616007EB6B4 /* tripSummaryEach.swift in Sources */,
 				C258A3371D6C74E600664CF7 /* AddNationalityNewViewController.swift in Sources */,
 				C27C48091DB5ECDF00330ABF /* PostModel.swift in Sources */,
 				C266955A1D3CA5060068D9C7 /* TimestampTagViewOnScroll.swift in Sources */,
-				C20A18FD1D229E1800760BF9 /* AddCheckInViewController.swift in Sources */,
 				C2A27A4E1CEDCE4C00F74DD1 /* SignInFullView.swift in Sources */,
 				C24F84E71D00252F002EA203 /* SettingsViewController.swift in Sources */,
 				843510E61DF7F8A300C3D8EE /* QuickIteneraryFive.swift in Sources */,
 				367B90F91DC23ADF00D76F13 /* StringTrimExtension.swift in Sources */,
 				C256499A1D48EE5E0046E36D /* SummarySubViewController.swift in Sources */,
-				362DAD461E34972000329C9A /* LocalLifePost.swift in Sources */,
 				8453CF451E30AFE200C41F82 /* ActivityFeedQuickItinerary.swift in Sources */,
 				444871081EE5530B0042CCF0 /* TLReachabilty.swift in Sources */,
 				1A944E3A1CCB5B88007EB5BD /* FooterView.swift in Sources */,

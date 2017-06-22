@@ -27,12 +27,6 @@ class LocalLifeRecommends: SpringView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
-//        
-//        topLabel.adjustsFontSizeToFitWidth = true
-//        bottomLabel1.adjustsFontSizeToFitWidth = true
-//        bottomLabel2.adjustsFontSizeToFitWidth = true
-        
-        
     }
     
     required init?(coder aDecoder: NSCoder) {

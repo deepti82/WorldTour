@@ -15,7 +15,6 @@ class NearMeListViewController: UIViewController, UITableViewDataSource, UITable
     var city: String!
     var nearMeType: String!
     var ratingIndex: Int!
-    var localLife: LocalLifePostsViewController!
     var nearMeListJSON: [JSON] = []
     var nearMeAddress = NSMutableAttributedString()
     var lat: Double!
