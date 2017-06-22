@@ -13,7 +13,7 @@ class SummarySubViewController: UIViewController, UIScrollViewDelegate {
 
    
     var labels: [JSON] = []
-    var images = ["restaurantsandbars", "leaftrans", "hotels-1", "shopping-1", "nature_checkin", "sightstrans", "museumstrans", "zootrans", "religious-1", "cinematrans", "planetrans", "othersdottrans", "city_icon"]
+    var images = ["restaurantsandbars", "leaftrans", "hotels", "shopping", "nature_checkin", "sightstrans", "museumstrans", "zootrans", "religious", "cinematrans", "planetrans", "othersdottrans", "city_icon"]
     var journeyId = ""
     var tripCountData: JSON = []
     var cellSubview: VerticalLayout!

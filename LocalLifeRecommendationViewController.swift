@@ -298,16 +298,15 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
             rightButton.titleLabel?.font = avenirBold
             rightButton.titleLabel!.font = UIFont (name: "avenirBold", size: 20)
             rightButton.addTarget(self, action: #selector(self.newPost(_:)), for: .touchUpInside)
+            
+            addView.postButton.setTitle("Post", for: .normal)
+            
             globalNavigationController.topViewController?.title = "Add Activity"
             globalNavigationController.topViewController?.customNavigationBar(left: leftButton, right: rightButton)
             addView.layer.zPosition = 10
             backView.layer.zPosition = 10
             newScroll.contentSize.height = self.view.frame.height
-//            addView.finalThoughtTag.isHidden = true
-//           addView.penGreen.isHidden = true
-        
         }
-        
     }
     
     

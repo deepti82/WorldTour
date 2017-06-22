@@ -153,7 +153,7 @@ let FEED_UPLOADING_VIEW_HEIGHT = CGFloat(25)
 let TL_REGULAR_FONT_SIZE = 14
 
 
-let categoryImages = ["restaurant_checkin", "nature_checkin", "landmarks_checkin", "museums_landmarks", "adventure_icon", "aqua_checkin", "shopping", "beach_checkin", "cinema_checkin", "hotels-1", "planetrans", "reg", "othersdottrans", "city_icon", "health_beauty", "emergency", "essential", "entertainment"]
+let categoryImages = ["restaurant_checkin", "nature_checkin", "landmarks_checkin", "museums_landmarks", "adventure_icon", "aqua_checkin", "shopping", "beach_checkin", "cinema_checkin", "hotels", "planetrans", "reg", "othersdottrans", "city_icon", "health_beauty", "emergency", "essential", "entertainment"]
 
 var globalNavigationController:UINavigationController!
 
@@ -543,6 +543,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
         globalNavigationController.delegate = self
         globalNavigationController.pushViewController(signInVC, animated: true)
     }
+    
+    
+    //MARK: - Helper Functions
     
     func enableCrashReporting() {
         Fabric.with([Crashlytics.self])

@@ -471,19 +471,39 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
         
         sender.isUserInteractionEnabled = false
         
+        print("\n globalNavigationController.topViewController ::: \(globalNavigationController.topViewController) \n\n")
+        
         switch(self.typeOfAddActivtiy) {
-        case "AddPhotosVideos":
-            let newTl = globalNavigationController.topViewController as! NewTLViewController;
-            newTl.savePhotoVideo(sender);
+        case "AddPhotosVideos":            
+            if (globalNavigationController.topViewController?.isKind(of: NewTLViewController.self))! {
+                let newTl = globalNavigationController.topViewController as! NewTLViewController
+                newTl.savePhotoVideo(sender)                
+            }
+            else {
+                let myLifeVC = globalNavigationController.topViewController as! MyLifeViewController
+                myLifeVC.savePhotoVideoToFeed(sender)
+            }
+            
+            
         case "EditActivity":
-            let newTl = globalNavigationController.topViewController as! NewTLViewController;
-            newTl.editActivity(sender);
+            if (globalNavigationController.topViewController?.isKind(of: NewTLViewController.self))! {
+                let newTl = globalNavigationController.topViewController as! NewTLViewController
+                newTl.editActivity(sender)
+            }
+            else {
+                let myLifeVC = globalNavigationController.topViewController as! MyLifeViewController
+                myLifeVC.editFeedData(sender)
+            }
+            
+            
         case "CreateLocalLife":
-            let newTl = globalLocalLife;
-            newTl?.newPost(sender)
+            let newLl = globalLocalLife
+            newLl?.newPost(sender)
+            
+            
         default:
-            let newTl = globalNavigationController.topViewController as! NewTLViewController;
-            newTl.newPost(sender);   
+            let newTl = globalNavigationController.topViewController as! NewTLViewController
+            newTl.newPost(sender)
         }
     }
     

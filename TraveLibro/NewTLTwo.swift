@@ -119,92 +119,14 @@ extension NewTLViewController {
         rightButton.titleLabel?.font = avenirBold
         rightButton.titleLabel!.font = UIFont (name: "Avenir-Roman", size: 17)
         rightButton.addTarget(self, action: #selector(self.newPost(_:) ), for: .touchUpInside)
+        
+        addView.postButton.setTitle("Post", for: .normal)
+        
         globalNavigationController.topViewController?.title = "Add Activity"
         globalNavigationController.topViewController?.customNavigationBar(left: leftButton, right: rightButton)
         addView.layer.zPosition = 10
         backView.layer.zPosition = 10
         newScroll.contentSize.height = self.view.frame.height
-    }
-    
-    
-    func showEditAddActivity(_ post:Post, onPostLayout:PhotosOTG2?) {
-        
-        if (onPostLayout != nil) {
-            editingPostLayout = onPostLayout
-        }
-        
-        isActivityHidden = false;
-        hideHeaderAndFooter(false)
-        var darkBlur: UIBlurEffect!
-        var blurView: UIVisualEffectView!
-        self.backView = UIView();
-        self.backView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: self.view.frame.size.height)
-        self.view.addSubview(self.backView)        
-        darkBlur = UIBlurEffect(style: .dark)
-        blurView = UIVisualEffectView(effect: darkBlur)
-        blurView.frame.size.height = self.backView.frame.height
-        blurView.frame.size.width = self.backView.frame.width
-        blurView.layer.zPosition = -1
-        blurView.isUserInteractionEnabled = false
-        self.backView.addSubview(blurView)
-        let vibrancyEffect = UIVibrancyEffect(blurEffect: darkBlur)
-        let vibrancyEffectView = UIVisualEffectView(effect: vibrancyEffect)
-        blurView.contentView.addSubview(vibrancyEffectView)
-        
-        
-        self.newScroll = UIScrollView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
-        self.backView.addSubview(self.newScroll)
-        self.addView = AddActivityNew()
-        self.addView.buddyAdded(myJourney["buddies"].arrayValue)
-        self.addView.typeOfAddActivtiy = "AddPhotosVideos"
-        self.addView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: self.view.frame.size.height)
-        self.addView.editPost = post
-        self.addView.newScroll = self.newScroll;
-        
-        self.newScroll.contentSize.height = self.view.frame.height
-        backView.addSubview(newScroll)
-        
-        let leftButton = UIButton()
-        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-        leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
-        leftButton.addTarget(self, action: #selector(self.closeAdd(_:)), for: .touchUpInside)
-        
-        let rightButton = UIButton()
-        rightButton.frame = CGRect(x: 0, y: 0, width: 50, height: 30)
-        
-        rightButton.setTitle("Post", for: UIControlState())
-        rightButton.titleLabel?.font = avenirBold
-        rightButton.addTarget(self, action: #selector(self.savePhotoVideo(_:) ), for: .touchUpInside)
-        globalNavigationController.topViewController?.title = "Add Photos/Videos"
-        globalNavigationController.topViewController?.customNavigationBar(left: leftButton, right: rightButton)
-        self.addView.layer.zPosition = 10
-        
-        backView.layer.zPosition = 10
-        newScroll.contentSize.height = self.view.frame.height
-        
-        if(post.videoArr.count > 0) {
-            let videoUrl = URL(string:post.videoArr[0].serverUrl)
-            self.addView.addVideoToBlock(video: videoUrl)
-
-            self.addView.videosInitialView.alpha = 0.1
-            self.addView.videosInitialView.isUserInteractionEnabled = false
-            
-            self.addView.videosFinalView.alpha = 0.1
-            self.addView.videosFinalView.isUserInteractionEnabled = false
-        }        
-        
-        self.addView.locationView.alpha = 0.1
-        self.addView.locationView.isUserInteractionEnabled = false
-        
-        self.addView.locationView.alpha = 0.1
-        self.addView.locationView.isUserInteractionEnabled = false
-        
-        self.addView.thoughtsInitalView.alpha = 0.1
-        self.addView.thoughtsInitalView.isUserInteractionEnabled = false
-        
-        self.addView.tagFriendsView.alpha = 1
-        self.addView.tagFriendsView.isUserInteractionEnabled = true
-        self.newScroll.addSubview(self.addView)
     }
     
     func showEditActivity(_ post:Post, onPostLayout:PhotosOTG2?) {
@@ -255,9 +177,12 @@ extension NewTLViewController {
         let rightButton = UIButton()
         rightButton.frame = CGRect(x: 0, y: 0, width: 50, height: 30)
         
-        rightButton.setTitle("Post", for: UIControlState())
+        rightButton.setTitle("Done", for: UIControlState())
         rightButton.titleLabel?.font = avenirBold
         rightButton.addTarget(self, action: #selector(self.editActivity(_:) ), for: .touchUpInside)
+        
+        addView.postButton.setTitle("Done", for: .normal)
+        
         globalNavigationController.topViewController?.title = "Edit Activity"
         globalNavigationController.topViewController?.customNavigationBar(left: leftButton, right: rightButton)
         self.addView.layer.zPosition = 10
@@ -304,9 +229,89 @@ extension NewTLViewController {
         self.newScroll.addSubview(self.addView)
     }
     
-    
-    
-    
+    func showEditAddActivity(_ post:Post, onPostLayout:PhotosOTG2?) {
+        
+        if (onPostLayout != nil) {
+            editingPostLayout = onPostLayout
+        }
+        
+        isActivityHidden = false;
+        hideHeaderAndFooter(false)
+        var darkBlur: UIBlurEffect!
+        var blurView: UIVisualEffectView!
+        self.backView = UIView();
+        self.backView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: self.view.frame.size.height)
+        self.view.addSubview(self.backView)        
+        darkBlur = UIBlurEffect(style: .dark)
+        blurView = UIVisualEffectView(effect: darkBlur)
+        blurView.frame.size.height = self.backView.frame.height
+        blurView.frame.size.width = self.backView.frame.width
+        blurView.layer.zPosition = -1
+        blurView.isUserInteractionEnabled = false
+        self.backView.addSubview(blurView)
+        let vibrancyEffect = UIVibrancyEffect(blurEffect: darkBlur)
+        let vibrancyEffectView = UIVisualEffectView(effect: vibrancyEffect)
+        blurView.contentView.addSubview(vibrancyEffectView)
+        
+        
+        self.newScroll = UIScrollView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+        self.backView.addSubview(self.newScroll)
+        self.addView = AddActivityNew()
+        self.addView.buddyAdded(myJourney["buddies"].arrayValue)
+        self.addView.typeOfAddActivtiy = "AddPhotosVideos"
+        self.addView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: self.view.frame.size.height)
+        self.addView.editPost = post
+        self.addView.newScroll = self.newScroll;
+        
+        self.newScroll.contentSize.height = self.view.frame.height
+        backView.addSubview(newScroll)
+        
+        let leftButton = UIButton()
+        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
+        leftButton.addTarget(self, action: #selector(self.closeAdd(_:)), for: .touchUpInside)
+        
+        let rightButton = UIButton()
+        rightButton.frame = CGRect(x: 0, y: 0, width: 50, height: 30)
+        
+        rightButton.setTitle("Done", for: UIControlState())
+        rightButton.titleLabel?.font = avenirBold
+        rightButton.addTarget(self, action: #selector(self.savePhotoVideo(_:) ), for: .touchUpInside)
+        
+        addView.postButton.setTitle("Done", for: .normal)
+        
+        globalNavigationController.topViewController?.title = "Add Photos/Videos"
+        globalNavigationController.topViewController?.customNavigationBar(left: leftButton, right: rightButton)
+        self.addView.layer.zPosition = 10
+        
+        backView.layer.zPosition = 10
+        newScroll.contentSize.height = self.view.frame.height
+        
+        if(post.videoArr.count > 0) {
+            let videoUrl = URL(string:post.videoArr[0].serverUrl)
+            self.addView.addVideoToBlock(video: videoUrl)
+
+            self.addView.videosInitialView.alpha = 0.1
+            self.addView.videosInitialView.isUserInteractionEnabled = false
+            
+            self.addView.videosFinalView.alpha = 0.1
+            self.addView.videosFinalView.isUserInteractionEnabled = false
+        }        
+        
+        self.addView.locationView.alpha = 0.1
+        self.addView.locationView.isUserInteractionEnabled = false
+        
+        self.addView.locationView.alpha = 0.1
+        self.addView.locationView.isUserInteractionEnabled = false
+        
+        self.addView.thoughtsInitalView.alpha = 0.1
+        self.addView.thoughtsInitalView.isUserInteractionEnabled = false
+        
+        self.addView.tagFriendsView.alpha = 1
+        self.addView.tagFriendsView.isUserInteractionEnabled = true
+        self.newScroll.addSubview(self.addView)
+    }
+        
     func buddyLeaves(_ post: JSON) {
         
         prevPosts.append(post)

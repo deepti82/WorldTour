@@ -745,8 +745,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         }
     }
     
-    
-    
     func getJourney(canGetFromCache: Bool) {
         
         request.getJourney(currentUser["_id"].string!, canGetCachedData: canGetFromCache, completion: {(response, isFromCache) in

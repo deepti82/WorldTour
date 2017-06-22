@@ -561,15 +561,6 @@ class ActivityFeedFooterBasic: UIView {
                             }
                             actionSheetControllerIOS8.addAction(editActionButton)
                             
-                            //                let changeCoverActionButton: UIAlertAction = UIAlertAction(title: "Change Cover Photo", style: .default)
-                            //                {action -> Void in
-                            //                }
-                            //                actionSheetControllerIOS8.addAction(changeCoverActionButton)
-                            
-                            //                let deleteActionButton: UIAlertAction = UIAlertAction(title: "Delete", style: .destructive)
-                            //                {action -> Void in
-                            //                }
-                            //                actionSheetControllerIOS8.addAction(deleteActionButton)
                         }else{
                             let reportActionButton: UIAlertAction = UIAlertAction(title: "Report", style: .default)
                             {action -> Void in
@@ -587,7 +578,7 @@ class ActivityFeedFooterBasic: UIView {
                         actionSheetControllerIOS8.addAction(cancel)
                         
                     }            
-                    if(postTop["type"].stringValue == "quick-itinerary") {
+                    else if(postTop["type"].stringValue == "quick-itinerary") {
                         let editActionButton: UIAlertAction = UIAlertAction(title: "Edit", style: .default)
                         {action -> Void in
                             let itineraryVC = storyboard?.instantiateViewController(withIdentifier: "qiPVC") as! QIViewController
@@ -627,12 +618,13 @@ class ActivityFeedFooterBasic: UIView {
                         }
                         actionSheetControllerIOS8.addAction(cancel)
                     }
-                    if postTop["type"].stringValue == "travel-life" || postTop["type"].stringValue == "local-life" {
+                    else if postTop["type"].stringValue == "travel-life" || postTop["type"].stringValue == "local-life" {
                         
-                        let EditCheckIn: UIAlertAction = UIAlertAction(title: "Edit Activity", style: .default)
+                        let EditLocalActivity: UIAlertAction = UIAlertAction(title: "Edit Activity", style: .default)
                         {action -> Void in                   
                             (self.parentController as! MyLifeViewController).showEditActivity(self.postTop)
                         }
+                        actionSheetControllerIOS8.addAction(EditLocalActivity)
                         
                         let EditDnt: UIAlertAction = UIAlertAction(title: "Change Date & Time", style: .default)
                         { action -> Void in
@@ -662,10 +654,11 @@ class ActivityFeedFooterBasic: UIView {
                         }
                         actionSheetControllerIOS8.addAction(DeletePost)
                         
-                        let share: UIAlertAction = UIAlertAction(title: "Add Photos/Videos", style: .default)
+                        let addPhotoVideoToActivity: UIAlertAction = UIAlertAction(title: "Add Photos/Videos", style: .default)
                         { action -> Void in
                             (self.parentController as! MyLifeViewController).showEditAddActivity(self.postTop)
                         }
+                        actionSheetControllerIOS8.addAction(addPhotoVideoToActivity)
                         
                         let cancel: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel)
                         { action -> Void in
