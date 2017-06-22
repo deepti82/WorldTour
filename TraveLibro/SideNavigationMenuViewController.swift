@@ -279,8 +279,6 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let cell = tableView.cellForRow(at: indexPath) as! SideMenuTableViewCell
-//         cell.backgroundColor = mainBlueColor
-//        cell.menuLabel.textColor = mainGreenColor
         
         switch((indexPath as NSIndexPath).row)
         {
@@ -291,7 +289,8 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
             self.slideMenuController()?.changeMainViewController(self.exploreDestinationsController, close: true)
             
         case 2:
-            self.slideMenuController()?.changeMainViewController(self.popBloggersController, close: true)        
+            self.slideMenuController()?.changeMainViewController(self.popBloggersController, close: true)
+            
         case 3:
             if currentUser != nil {
                 inviteToAppClicked(sender: cell, onView: self)
@@ -300,6 +299,7 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
                 closeLeft()
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
             }
+            
         case 4:
             if currentUser != nil {
                 self.rateUsButtonClicked()
@@ -307,7 +307,8 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
             else {
                 closeLeft()
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
-            }            
+            }
+            
         case 5:
             if currentUser != nil {
                 feedbackClicked()
@@ -315,14 +316,15 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
             else {
                 closeLeft()
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
-            }            
+            }
+            
         case 6:
             if currentUser != nil {
                 logoutUser()
             }
             else{
-                closeLeft()
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
+                self.loginClicked()
+//                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
             }
             
         case 7:
@@ -342,13 +344,6 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         }
     }
     
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        
-//        let cell = tableView.cellForRow(at: indexPath) as! SideMenuTableViewCell
-//        cell.backgroundColor = mainGreenColor
-//        cell.menuLabel.textColor = mainBlueColor
-        
-    }
     
     //MARK: - Rate Us
     
@@ -376,6 +371,14 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         reportVC.whichView = "ReportView"
         let reportNVC = UINavigationController(rootViewController: reportVC)
         self.slideMenuController()?.changeMainViewController(reportNVC, close: true)
+    }
+    
+    func loginClicked() {
+        
+        let logInVC = storyboard?.instantiateViewController(withIdentifier: "logIn") as! LogInViewController
+        logInVC.isFromSidebar = true
+        let loginNVC = UINavigationController(rootViewController: logInVC)
+        self.slideMenuController()?.changeMainViewController(loginNVC, close: true)
     }
     
     

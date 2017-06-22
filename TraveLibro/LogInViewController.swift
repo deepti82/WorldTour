@@ -12,11 +12,13 @@ import Toaster
 class LogInViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var videoScrollView: UIScrollView!
+    
     var layout:HorizontalLayout!
     var logIn = LogInView()
     var forgotView = ForgotPassword()
     var emailTxtField = UITextField()
     let loader = LoadingOverlay()
+    var isFromSidebar = false
     
     //MARK: - Lifecycle
     
@@ -30,11 +32,16 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         getDarkBackGroundBlur(self)
         self.navigationController?.isNavigationBarHidden = false
         
-        let leftButton = UIButton()
-        leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
-        leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
-        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-        self.customNavigationBar(left: leftButton, right: nil)
+        if isFromSidebar {
+            setNavigationBarItemText("Login")            
+        }
+        else {
+            let leftButton = UIButton()
+            leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
+            leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
+            leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+            self.customNavigationTextBar(left: leftButton, right: nil, text: "Login")            
+        }
         
         logIn = LogInView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 450))
         logIn.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/2)
@@ -59,8 +66,15 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         logIn.emailTxt.text = ""
         logIn.passwordTxt.text = ""
         if shouldShowLoader {
-            loader.showOverlay(self.view)            
+            loader.showOverlay(self.view)
+            self.customNavigationTextBar(left: nil, right: nil, text: "Login")
+            self.navigationItem.hidesBackButton = true
         }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        globalNavigationController = self.navigationController
     }
     
     override func viewWillDisappear(_ animated: Bool) {

@@ -92,6 +92,9 @@ var currentUploadingPostID = Int64(0)
 
 let user = User()
 
+var profileVC: TLProfileViewController!
+var nationalityPage: AddNationalityNewViewController!
+
 let width = UIScreen.main.bounds.size.width
 let height = UIScreen.main.bounds.size.height
 
@@ -241,10 +244,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
             // Fallback on earlier versions
         }
         
+        
+        //Advance Declaration
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        profileVC = storyboard.instantiateViewController(withIdentifier: "TLProfileView") as! TLProfileViewController
+        nationalityPage = storyboard.instantiateViewController(withIdentifier: "nationalityNew") as! AddNationalityNewViewController
+        
         UINavigationBar.appearance().backgroundColor = mainBlueColor
         UIBarButtonItem.appearance().tintColor = UIColor.white
-        
-//        OneSignal.initWithLaunchOptions(launchOptions, appId: "bf8baf0a-dcfb-4a30-a0c1-ee67cae2feb1")
         
         OneSignal.initWithLaunchOptions(launchOptions, appId: "bf8baf0a-dcfb-4a30-a0c1-ee67cae2feb1", handleNotificationReceived: { (notification) in
             
@@ -329,20 +337,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
         let pageController = UIPageControl.appearance()
         pageController.pageIndicatorTintColor = UIColor.white
         pageController.currentPageIndicatorTintColor = mainBlueColor
-        pageController.backgroundColor = UIColor.clear
-        
-        //        self.addObserver(self, forKeyPath: "profileViewY", options: .New, context: nil)
-        
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        pageController.backgroundColor = UIColor.clear                
+       
         let tabBarController = UITabBarController()
         let homeVC = storyboard.instantiateViewController(withIdentifier: "Home") as! HomeViewController
         tabBarController.viewControllers = [homeVC]
-        //        window?.rootViewController = tabBarController
-        
-        let image = UIImage(named: "adventure_icon")
-        
-//        feedVC.tabBarItem = UITabBarItem(title: "Feed", image: image, tag: 1)
-        
+                
         return true
     }
     

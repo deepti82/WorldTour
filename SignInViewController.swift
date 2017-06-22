@@ -9,9 +9,6 @@ import TAPageControl
 var currentUser: JSON!
 var loggedInUser : JSON!
 let social = SocialLoginClass()
-var profileVC: TLProfileViewController!
-var nationalityPage: AddNationalityNewViewController!
-var navigation: UINavigationController?
 
 class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegate, UIScrollViewDelegate {
     
@@ -126,15 +123,15 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         switch self.showPage {            
             
         case 0:
-            self.videoScrollView.scrollRectToVisible(imageView1.frame, animated: true)
+            self.videoScrollView.scrollRectToVisible(imageView1.frame, animated: false)
             player1.playFromBeginning()
             
         case 1:
-            self.videoScrollView.scrollRectToVisible(imageView2.frame, animated: true)
+            self.videoScrollView.scrollRectToVisible(imageView2.frame, animated: false)
             player2.playFromBeginning()
             
         case 2:
-            self.videoScrollView.scrollRectToVisible(imageView3.frame, animated: true)
+            self.videoScrollView.scrollRectToVisible(imageView3.frame, animated: false)
             player3.playFromBeginning()
             
         default:
@@ -237,11 +234,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         
         toggleSoundButton.frame = CGRect(x: self.view.frame.maxX - 60, y: signInFooter.frame.origin.y - 60, width: 40, height: 32)
         
-        profileVC = self.storyboard?.instantiateViewController(withIdentifier: "TLProfileView") as! TLProfileViewController
-        
-        nationalityPage = self.storyboard?.instantiateViewController(withIdentifier: "nationalityNew") as! AddNationalityNewViewController
-        
-        navigation = self.navigationController
+        globalNavigationController = self.navigationController
     }
     
     func destroyViews() {

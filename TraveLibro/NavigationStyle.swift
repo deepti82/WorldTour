@@ -11,12 +11,11 @@ extension UIViewController {
     //MARK: - Nationality
     
     func gotoNationalityPage() {
-        
-        if currentUser["alreadyLoggedIn"].bool! {            
-            self.slideMenuController()?.changeMainViewController(profileVC, close: true)
-            navigation?.pushViewController(profileVC, animated: true)
+            
+        if currentUser["alreadyLoggedIn"].bool! {
+            globalNavigationController?.pushViewController(profileVC, animated: true)
         } else {
-            navigation?.pushViewController(nationalityPage, animated: true)
+            globalNavigationController?.pushViewController(nationalityPage, animated: true)
         }
     }
     
@@ -79,11 +78,17 @@ extension UIViewController {
             leftBarButton.customView = left
             self.navigationItem.leftBarButtonItem = leftBarButton
         }
+        else {
+            self.navigationItem.leftBarButtonItem = nil
+        }
         
         if (right != nil) {
             let rightBarButton = UIBarButtonItem()
             rightBarButton.customView = right as? UIView
             self.navigationItem.rightBarButtonItem = rightBarButton
+        }
+        else{
+            self.navigationItem.rightBarButtonItem = nil
         }
         
         self.slideMenuController()?.removeLeftGestures()

@@ -70,7 +70,8 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
         
         globalNewTLViewController = nil
         globalTLMainFeedsViewController = nil
-        navigation = nil
+        profileVC = nil
+        nationalityPage = nil
         
         isLoadedForFirstTime = true
         
