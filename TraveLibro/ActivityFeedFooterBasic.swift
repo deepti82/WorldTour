@@ -322,8 +322,7 @@ class ActivityFeedFooterBasic: UIView {
         }
     }
     
-    func showLike() {
-        print("in footer tap out \(postTop)")
+    func showLike() {        
         if currentUser != nil {
             let feedVC = storyboard!.instantiateViewController(withIdentifier: "likeTable") as! LikeUserViewController
             feedVC.postId = postTop["_id"].stringValue            
@@ -542,174 +541,68 @@ class ActivityFeedFooterBasic: UIView {
     
     @IBAction func optionClick(_ sender: UIButton) {
         
-        var shouldPresent = true
-        
-        let actionSheetControllerIOS8: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        
-        if isSelfUser(otherUserID: postTop["user"]["_id"].stringValue) {
+        if currentUser != nil {
+            var shouldPresent = true
             
-            if(self.pageType == viewType.VIEW_TYPE_MY_LIFE && isSelfUser(otherUserID: currentUser["_id"].stringValue)) {                
+            let actionSheetControllerIOS8: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+            
+            if isSelfUser(otherUserID: postTop["user"]["_id"].stringValue) {
                 
-                if(postTop["type"].stringValue == "detail-itinerary") {
-                    if isSelfUser(otherUserID: currentUser["_id"].stringValue) {
+                if(self.pageType == viewType.VIEW_TYPE_MY_LIFE && isSelfUser(otherUserID: currentUser["_id"].stringValue)) {                
+                    
+                    if(postTop["type"].stringValue == "detail-itinerary") {
+                        if isSelfUser(otherUserID: currentUser["_id"].stringValue) {
+                            
+                            let editActionButton: UIAlertAction = UIAlertAction(title: "Edit", style: .default)
+                            {action -> Void in
+                                let alert = UIAlertController(title: "Edit Itinerary", message: "You can only edit your Itinerary on Web.", preferredStyle: UIAlertControllerStyle.alert)
+                                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                                self.parentController.present(alert,animated: true, completion: nil)                            
+                            }
+                            actionSheetControllerIOS8.addAction(editActionButton)
+                            
+                            //                let changeCoverActionButton: UIAlertAction = UIAlertAction(title: "Change Cover Photo", style: .default)
+                            //                {action -> Void in
+                            //                }
+                            //                actionSheetControllerIOS8.addAction(changeCoverActionButton)
+                            
+                            //                let deleteActionButton: UIAlertAction = UIAlertAction(title: "Delete", style: .destructive)
+                            //                {action -> Void in
+                            //                }
+                            //                actionSheetControllerIOS8.addAction(deleteActionButton)
+                        }else{
+                            let reportActionButton: UIAlertAction = UIAlertAction(title: "Report", style: .default)
+                            {action -> Void in
+                                let alert = UIAlertController(title: "Report", message: "Reported Successfully.", preferredStyle: UIAlertControllerStyle.alert)
+                                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                                showPopover(optionsController: alert, sender: sender, vc: self.parentController)
+                            }
+                            actionSheetControllerIOS8.addAction(reportActionButton)
+                        }
                         
+                        let cancel: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel)
+                        { action -> Void in
+                            
+                        }
+                        actionSheetControllerIOS8.addAction(cancel)
+                        
+                    }            
+                    if(postTop["type"].stringValue == "quick-itinerary") {
                         let editActionButton: UIAlertAction = UIAlertAction(title: "Edit", style: .default)
                         {action -> Void in
-                            let alert = UIAlertController(title: "Edit Itinerary", message: "You can only edit your Itinerary on Web.", preferredStyle: UIAlertControllerStyle.alert)
-                            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-                            self.parentController.present(alert,animated: true, completion: nil)                            
+                            let itineraryVC = storyboard?.instantiateViewController(withIdentifier: "qiPVC") as! QIViewController
+                            itineraryVC.editID = self.postTop["_id"].stringValue
+                            self.parentController?.navigationController?.pushViewController(itineraryVC, animated: true)
                         }
                         actionSheetControllerIOS8.addAction(editActionButton)
                         
-                        //                let changeCoverActionButton: UIAlertAction = UIAlertAction(title: "Change Cover Photo", style: .default)
-                        //                {action -> Void in
-                        //                }
-                        //                actionSheetControllerIOS8.addAction(changeCoverActionButton)
-                        
-                        //                let deleteActionButton: UIAlertAction = UIAlertAction(title: "Delete", style: .destructive)
-                        //                {action -> Void in
-                        //                }
-                        //                actionSheetControllerIOS8.addAction(deleteActionButton)
-                    }else{
-                        let reportActionButton: UIAlertAction = UIAlertAction(title: "Report", style: .default)
-                        {action -> Void in
-                            let alert = UIAlertController(title: "Report", message: "Reported Successfully.", preferredStyle: UIAlertControllerStyle.alert)
-                            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-                            showPopover(optionsController: alert, sender: sender, vc: self.parentController)
-                        }
-                        actionSheetControllerIOS8.addAction(reportActionButton)
-                    }
-                    
-                    let cancel: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel)
-                    { action -> Void in
-                        
-                    }
-                    actionSheetControllerIOS8.addAction(cancel)
-                    
-                }            
-                if(postTop["type"].stringValue == "quick-itinerary") {
-                    let editActionButton: UIAlertAction = UIAlertAction(title: "Edit", style: .default)
-                    {action -> Void in
-                        let itineraryVC = storyboard?.instantiateViewController(withIdentifier: "qiPVC") as! QIViewController
-                        itineraryVC.editID = self.postTop["_id"].stringValue
-                        self.parentController?.navigationController?.pushViewController(itineraryVC, animated: true)
-                    }
-                    actionSheetControllerIOS8.addAction(editActionButton)
-                    
-                    let deleteActionButton: UIAlertAction = UIAlertAction(title: "Delete", style: .destructive)
-                    {action -> Void in
-                        
-                        let alert = UIAlertController(title: "", message: "Are you sure you want to delete this Itinerary.", preferredStyle: UIAlertControllerStyle.alert)
-                        alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil))
-                        alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.destructive, handler: { action in                            
-                            request.deleteItinerary(id: self.postTop["_id"].stringValue, completion: {(response) in
-                                DispatchQueue.main.async(execute: {
-                                    if response.error != nil {
-                                        print("error: \(response.error!.localizedDescription)")
-                                    }
-                                    else if response["value"].bool! {
-                                        (self.parentController as! MyLifeViewController).reloadContainerData()
-                                    }                                    
-                                })
-                            })
-                        }))
-                        showPopover(optionsController: alert, sender: sender, vc: self.parentController)
-                        
-                        //                        globalMyLifeViewController.present(alert, animated: true, completion: nil)
-                        
-                        
-                    }
-                    actionSheetControllerIOS8.addAction(deleteActionButton)
-                    
-                    let cancel: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel)
-                    { action -> Void in
-                        
-                    }
-                    actionSheetControllerIOS8.addAction(cancel)
-                }
-                if postTop["type"].stringValue == "travel-life" || postTop["type"].stringValue == "local-life" {
-                   
-                    let EditCheckIn: UIAlertAction = UIAlertAction(title: "Edit Activity", style: .default)
-                    {action -> Void in                   
-                        (self.parentController as! MyLifeViewController).showEditActivity(self.postTop)
-                    }
-                    
-                    let EditDnt: UIAlertAction = UIAlertAction(title: "Change Date & Time", style: .default)
-                    { action -> Void in
-                        (self.parentController as! MyLifeViewController).changeDateAndTime(self)
-                    }
-                    actionSheetControllerIOS8.addAction(EditDnt)
-                    
-                    let DeletePost: UIAlertAction = UIAlertAction(title: "Delete Activity", style: .default)
-                    { action -> Void in
-                        
-                        let alert = UIAlertController(title: "", message: "Are you sure you want to delete this Activtiy", preferredStyle: UIAlertControllerStyle.alert)
-                        alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil))
-                        alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.destructive, handler: { action in                        
-                            request.deletePost(self.postTop["_id"].string!, uniqueId: self.postTop["uniqueId"].string!, user:currentUser["_id"].stringValue, completion: {(response) in
-                                DispatchQueue.main.async(execute: {
-                                    if response.error != nil {
-                                        print("error: \(response.error!.localizedDescription)")
-                                    }
-                                    else if response["value"].bool! {
-                                        (self.parentController as! MyLifeViewController).reloadContainerData()
-                                    }                                    
-                                })                               
-                            })
-                        }))
-                        showPopover(optionsController: alert, sender: sender, vc: self.parentController)
-                        
-                    }
-                    actionSheetControllerIOS8.addAction(DeletePost)
-                    
-                    let share: UIAlertAction = UIAlertAction(title: "Add Photos/Videos", style: .default)
-                    { action -> Void in
-                        (self.parentController as! MyLifeViewController).showEditAddActivity(self.postTop)
-                    }
-                    
-                    let cancel: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel)
-                    { action -> Void in
-                        
-                    }
-                    actionSheetControllerIOS8.addAction(cancel)
-
-                    
-//                    if isBuddy() && self.pageType == viewType.VIEW_TYPE_MY_LIFE && isSelfUser(otherUserID: currentUser["_id"].stringValue){
-//                        
-//                        let DeletePost: UIAlertAction = UIAlertAction(title: "Delete Activity", style: .default)
-//                        { action -> Void in
-//                            
-//                            let alert = UIAlertController(title: "", message: "Are you sure you want to delete this Activtiy", preferredStyle: UIAlertControllerStyle.alert)
-//                            alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil))
-//                            alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.destructive, handler: { action in
-//                                request.deletePost(self.postTop["_id"].string!, uniqueId: self.postTop["uniqueId"].string!, user:currentUser["_id"].stringValue, completion: {(response) in                                    
-//                                    (self.parentController as! MyLifeViewController).reloadContainerData()                                    
-//                                })                                
-//                            }))
-//                            showPopover(optionsController: alert, sender: sender, vc: self.parentController)                            
-//                        }
-//                        actionSheetControllerIOS8.addAction(DeletePost)                        
-//                    }
-                }
-                if(postTop["type"].stringValue == "ended-journey" || postTop["type"].stringValue == "on-the-go-journey") {
-                    if isSelfUser(otherUserID: currentUser["_id"].stringValue) {
-                        
-                        let changeNameActionButton: UIAlertAction = UIAlertAction(title: "Change Journey Name", style: .default)
+                        let deleteActionButton: UIAlertAction = UIAlertAction(title: "Delete", style: .destructive)
                         {action -> Void in
                             
-                            //1. Create the alert controller.
-                            let alert = UIAlertController(title: "", message: "Change Journey Name", preferredStyle: .alert)
-                            //2. Add the text field. You can configure it however you need.
-                            alert.addTextField { (textField) in
-                                textField.text = self.postTop["name"].stringValue
-                            }
-                            
-                            // 3. Grab the value from the text field, and print it when the user clicks OK.
-                            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
-                                let textField = alert?.textFields![0] // Force unwrapping because we know it exists.
-                                print("Text field: \(textField?.text)")
-                                if textField?.text != "" {
-                                request.journeyChangeName((textField?.text)!, journeyId: self.postTop["_id"].stringValue, completion: { response  in
+                            let alert = UIAlertController(title: "", message: "Are you sure you want to delete this Itinerary.", preferredStyle: UIAlertControllerStyle.alert)
+                            alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil))
+                            alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.destructive, handler: { action in                            
+                                request.deleteItinerary(id: self.postTop["_id"].stringValue, completion: {(response) in
                                     DispatchQueue.main.async(execute: {
                                         if response.error != nil {
                                             print("error: \(response.error!.localizedDescription)")
@@ -719,200 +612,310 @@ class ActivityFeedFooterBasic: UIView {
                                         }                                    
                                     })
                                 })
-                                }else{
-                                    let alert = UIAlertController(title: "", message: "Journey name can not be empty.", preferredStyle: UIAlertControllerStyle.alert)
-                                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-                                    showPopover(optionsController: alert, sender: sender, vc: self.parentController)
-                                }
                             }))
+                            showPopover(optionsController: alert, sender: sender, vc: self.parentController)
                             
-                            let cancel: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel)
-                            { action -> Void in
+                            //                        globalMyLifeViewController.present(alert, animated: true, completion: nil)
+                            
+                            
+                        }
+                        actionSheetControllerIOS8.addAction(deleteActionButton)
+                        
+                        let cancel: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel)
+                        { action -> Void in
+                            
+                        }
+                        actionSheetControllerIOS8.addAction(cancel)
+                    }
+                    if postTop["type"].stringValue == "travel-life" || postTop["type"].stringValue == "local-life" {
+                        
+                        let EditCheckIn: UIAlertAction = UIAlertAction(title: "Edit Activity", style: .default)
+                        {action -> Void in                   
+                            (self.parentController as! MyLifeViewController).showEditActivity(self.postTop)
+                        }
+                        
+                        let EditDnt: UIAlertAction = UIAlertAction(title: "Change Date & Time", style: .default)
+                        { action -> Void in
+                            (self.parentController as! MyLifeViewController).changeDateAndTime(self)
+                        }
+                        actionSheetControllerIOS8.addAction(EditDnt)
+                        
+                        let DeletePost: UIAlertAction = UIAlertAction(title: "Delete Activity", style: .default)
+                        { action -> Void in
+                            
+                            let alert = UIAlertController(title: "", message: "Are you sure you want to delete this Activtiy", preferredStyle: UIAlertControllerStyle.alert)
+                            alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil))
+                            alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.destructive, handler: { action in                        
+                                request.deletePost(self.postTop["_id"].string!, uniqueId: self.postTop["uniqueId"].string!, user:currentUser["_id"].stringValue, completion: {(response) in
+                                    DispatchQueue.main.async(execute: {
+                                        if response.error != nil {
+                                            print("error: \(response.error!.localizedDescription)")
+                                        }
+                                        else if response["value"].bool! {
+                                            (self.parentController as! MyLifeViewController).reloadContainerData()
+                                        }                                    
+                                    })                               
+                                })
+                            }))
+                            showPopover(optionsController: alert, sender: sender, vc: self.parentController)
+                            
+                        }
+                        actionSheetControllerIOS8.addAction(DeletePost)
+                        
+                        let share: UIAlertAction = UIAlertAction(title: "Add Photos/Videos", style: .default)
+                        { action -> Void in
+                            (self.parentController as! MyLifeViewController).showEditAddActivity(self.postTop)
+                        }
+                        
+                        let cancel: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel)
+                        { action -> Void in
+                            
+                        }
+                        actionSheetControllerIOS8.addAction(cancel)
+                        
+                        
+                        //                    if isBuddy() && self.pageType == viewType.VIEW_TYPE_MY_LIFE && isSelfUser(otherUserID: currentUser["_id"].stringValue){
+                        //                        
+                        //                        let DeletePost: UIAlertAction = UIAlertAction(title: "Delete Activity", style: .default)
+                        //                        { action -> Void in
+                        //                            
+                        //                            let alert = UIAlertController(title: "", message: "Are you sure you want to delete this Activtiy", preferredStyle: UIAlertControllerStyle.alert)
+                        //                            alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil))
+                        //                            alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.destructive, handler: { action in
+                        //                                request.deletePost(self.postTop["_id"].string!, uniqueId: self.postTop["uniqueId"].string!, user:currentUser["_id"].stringValue, completion: {(response) in                                    
+                        //                                    (self.parentController as! MyLifeViewController).reloadContainerData()                                    
+                        //                                })                                
+                        //                            }))
+                        //                            showPopover(optionsController: alert, sender: sender, vc: self.parentController)                            
+                        //                        }
+                        //                        actionSheetControllerIOS8.addAction(DeletePost)                        
+                        //                    }
+                    }
+                    if(postTop["type"].stringValue == "ended-journey" || postTop["type"].stringValue == "on-the-go-journey") {
+                        if isSelfUser(otherUserID: currentUser["_id"].stringValue) {
+                            
+                            let changeNameActionButton: UIAlertAction = UIAlertAction(title: "Change Journey Name", style: .default)
+                            {action -> Void in
+                                
+                                //1. Create the alert controller.
+                                let alert = UIAlertController(title: "", message: "Change Journey Name", preferredStyle: .alert)
+                                //2. Add the text field. You can configure it however you need.
+                                alert.addTextField { (textField) in
+                                    textField.text = self.postTop["name"].stringValue
+                                }
+                                
+                                // 3. Grab the value from the text field, and print it when the user clicks OK.
+                                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
+                                    let textField = alert?.textFields![0] // Force unwrapping because we know it exists.
+                                    print("Text field: \(textField?.text)")
+                                    if textField?.text != "" {
+                                        request.journeyChangeName((textField?.text)!, journeyId: self.postTop["_id"].stringValue, completion: { response  in
+                                            DispatchQueue.main.async(execute: {
+                                                if response.error != nil {
+                                                    print("error: \(response.error!.localizedDescription)")
+                                                }
+                                                else if response["value"].bool! {
+                                                    (self.parentController as! MyLifeViewController).reloadContainerData()
+                                                }                                    
+                                            })
+                                        })
+                                    }else{
+                                        let alert = UIAlertController(title: "", message: "Journey name can not be empty.", preferredStyle: UIAlertControllerStyle.alert)
+                                        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                                        showPopover(optionsController: alert, sender: sender, vc: self.parentController)
+                                    }
+                                }))
+                                
+                                let cancel: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel)
+                                { action -> Void in
+                                    
+                                }
+                                alert.addAction(cancel)
+                                
+                                // 4. Present the alert.
+                                showPopover(optionsController: alert, sender: sender, vc: self.parentController)
+                                
+                                //                        globalMyLifeContainerViewController.present(alert, animated: true, completion: nil)
                                 
                             }
-                            alert.addAction(cancel)
+                            actionSheetControllerIOS8.addAction(changeNameActionButton)
                             
-                            // 4. Present the alert.
-                            showPopover(optionsController: alert, sender: sender, vc: self.parentController)
+                            let changeDateActionButton: UIAlertAction = UIAlertAction(title: "Change End Journey Date", style: .default)
+                            {action -> Void in
+                                (self.parentController as! MyLifeViewController).changeDateAndTimeEndJourney(self)
+                            }
                             
-                            //                        globalMyLifeContainerViewController.present(alert, animated: true, completion: nil)
+                            if(self.postTop["endTime"].string != nil) {
+                                actionSheetControllerIOS8.addAction(changeDateActionButton)
+                            }
+                            
+                            let crateCountriesActionButton: UIAlertAction = UIAlertAction(title: "Rate Countries", style: .default)
+                            {action -> Void in
+                                let end = storyboard!.instantiateViewController(withIdentifier: "endJourney") as! EndJourneyViewController
+                                end.journeyId = self.postTop["_id"].stringValue
+                                end.type = "MyLife"
+                                self.parentController?.navigationController?.pushViewController(end, animated: true)
+                            }
+                            actionSheetControllerIOS8.addAction(crateCountriesActionButton)
+                            
+                            let changeCoverCountriesActionButton: UIAlertAction = UIAlertAction(title: "Change Cover Photo", style: .default)
+                            {action -> Void in
+                                let end = storyboard!.instantiateViewController(withIdentifier: "endJourney") as! EndJourneyViewController
+                                end.journeyId = self.postTop["_id"].stringValue
+                                end.type = "MyLife"
+                                self.parentController?.navigationController?.pushViewController(end, animated: true)
+                            }
+                            actionSheetControllerIOS8.addAction(changeCoverCountriesActionButton)
+                        }else{
+                            let reportActionButton: UIAlertAction = UIAlertAction(title: "Report", style: .default)
+                            {action -> Void in
+                                let alert = UIAlertController(title: "Report", message: "Reported Successfully.", preferredStyle: UIAlertControllerStyle.alert)
+                                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                                showPopover(optionsController: alert, sender: sender, vc: self.parentController)
+                            }
+                            actionSheetControllerIOS8.addAction(reportActionButton)
+                        }
+                        
+                        
+                        let cancel: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel)
+                        { action -> Void in
                             
                         }
-                        actionSheetControllerIOS8.addAction(changeNameActionButton)
+                        actionSheetControllerIOS8.addAction(cancel)
                         
-                        let changeDateActionButton: UIAlertAction = UIAlertAction(title: "Change End Journey Date", style: .default)
-                        {action -> Void in
-                            (self.parentController as! MyLifeViewController).changeDateAndTimeEndJourney(self)
-                        }
+                        //                let changeCoverCountriesActionButton: UIAlertAction = UIAlertAction(title: "Delete Journey", style: .destructive)
+                        //                {action -> Void in
+                        //                }
+                        //                actionSheetControllerIOS8.addAction(changeCoverCountriesActionButton)
                         
-                        if(self.postTop["endTime"].string != nil) {
-                            actionSheetControllerIOS8.addAction(changeDateActionButton)
+                    }
+                    
+                } 
+                else {
+                    if isBuddy() {
+                        let DeletePost: UIAlertAction = UIAlertAction(title: "Delete Activity", style: .default)
+                        { action -> Void in
+                            
+                            let alert = UIAlertController(title: "", message: "Are you sure you want to delete this Activtiy", preferredStyle: UIAlertControllerStyle.alert)
+                            alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil))
+                            alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.destructive, handler: { action in
+                                request.deletePost(self.postTop["_id"].string!, uniqueId: self.postTop["uniqueId"].string!, user:currentUser["_id"].stringValue, completion: {(response) in
+                                    DispatchQueue.main.async(execute: {
+                                        if response.error != nil {
+                                            print("error: \(response.error!.localizedDescription)")
+                                        }
+                                        else if response["value"].bool! {
+                                            (self.parentController as! MyLifeViewController).reloadContainerData()
+                                        }                                    
+                                    })                                
+                                })                            
+                            }))
+                            showPopover(optionsController: alert, sender: sender, vc: self.parentController)                                                
                         }
+                        actionSheetControllerIOS8.addAction(DeletePost)
                         
-                        let crateCountriesActionButton: UIAlertAction = UIAlertAction(title: "Rate Countries", style: .default)
-                        {action -> Void in
-                            let end = storyboard!.instantiateViewController(withIdentifier: "endJourney") as! EndJourneyViewController
-                            end.journeyId = self.postTop["_id"].stringValue
-                            end.type = "MyLife"
-                            self.parentController?.navigationController?.pushViewController(end, animated: true)
-                        }
-                        actionSheetControllerIOS8.addAction(crateCountriesActionButton)
+                    }
+                    
+                    let reportActionButton: UIAlertAction = UIAlertAction(title: "Hide", style: .default) {action -> Void in
+                        let alert = UIAlertController(title: "Hide", message: "Hided successfuly", preferredStyle: UIAlertControllerStyle.alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                        showPopover(optionsController: alert, sender: sender, vc: self.parentController)
                         
-                        let changeCoverCountriesActionButton: UIAlertAction = UIAlertAction(title: "Change Cover Photo", style: .default)
-                        {action -> Void in
-                            let end = storyboard!.instantiateViewController(withIdentifier: "endJourney") as! EndJourneyViewController
-                            end.journeyId = self.postTop["_id"].stringValue
-                            end.type = "MyLife"
-                            self.parentController?.navigationController?.pushViewController(end, animated: true)
-                        }
-                        actionSheetControllerIOS8.addAction(changeCoverCountriesActionButton)
+                    }
+                    
+                    let reportActionButton1: UIAlertAction = UIAlertAction(title: "Report", style: .default) {action -> Void in
+                        let alert = UIAlertController(title: "Report", message: "Reported Successfully", preferredStyle: UIAlertControllerStyle.alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                        showPopover(optionsController: alert, sender: sender, vc: self.parentController)                    
+                    }
+                    
+                    if isSelfUser(otherUserID: currentUser["_id"].stringValue) {
+                        shouldPresent = false
+                        
                     }else{
-                        let reportActionButton: UIAlertAction = UIAlertAction(title: "Report", style: .default)
-                        {action -> Void in
-                            let alert = UIAlertController(title: "Report", message: "Reported Successfully.", preferredStyle: UIAlertControllerStyle.alert)
-                            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-                            showPopover(optionsController: alert, sender: sender, vc: self.parentController)
+                        actionSheetControllerIOS8.addAction(reportActionButton1)
+                        let cancel: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel)
+                        { action -> Void in
+                            
                         }
-                        actionSheetControllerIOS8.addAction(reportActionButton)
-                    }
-                    
-                    
-                    let cancel: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel)
-                    { action -> Void in
+                        actionSheetControllerIOS8.addAction(cancel)
                         
                     }
-                    actionSheetControllerIOS8.addAction(cancel)
                     
-                    //                let changeCoverCountriesActionButton: UIAlertAction = UIAlertAction(title: "Delete Journey", style: .destructive)
-                    //                {action -> Void in
-                    //                }
-                    //                actionSheetControllerIOS8.addAction(changeCoverCountriesActionButton)
                     
                 }
                 
-            } 
-            else {
+            }
+            else{
                 if isBuddy() {
-                    let DeletePost: UIAlertAction = UIAlertAction(title: "Delete Activity", style: .default)
-                    { action -> Void in
-                        
-                        let alert = UIAlertController(title: "", message: "Are you sure you want to delete this Activtiy", preferredStyle: UIAlertControllerStyle.alert)
-                        alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil))
-                        alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.destructive, handler: { action in
-                            request.deletePost(self.postTop["_id"].string!, uniqueId: self.postTop["uniqueId"].string!, user:currentUser["_id"].stringValue, completion: {(response) in
-                                DispatchQueue.main.async(execute: {
-                                    if response.error != nil {
-                                        print("error: \(response.error!.localizedDescription)")
-                                    }
-                                    else if response["value"].bool! {
-                                        (self.parentController as! MyLifeViewController).reloadContainerData()
-                                    }                                    
-                                })                                
-                            })                            
-                        }))
-                        showPopover(optionsController: alert, sender: sender, vc: self.parentController)                                                
+                    if self.pageType == viewType.VIEW_TYPE_MY_LIFE {
+                        let DeletePost: UIAlertAction = UIAlertAction(title: "Delete Activity", style: .default)
+                        { action -> Void in
+                            
+                            let alert = UIAlertController(title: "", message: "Are you sure you want to delete this Activtiy", preferredStyle: UIAlertControllerStyle.alert)
+                            alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil))
+                            alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.destructive, handler: { action in
+                                request.deletePost(self.postTop["_id"].string!, uniqueId: self.postTop["uniqueId"].string!, user:currentUser["_id"].stringValue, completion: {(response) in
+                                    DispatchQueue.main.async(execute: {
+                                        if response.error != nil {
+                                            print("error: \(response.error!.localizedDescription)")
+                                        }
+                                        else if response["value"].bool! {
+                                            (self.parentController as! MyLifeViewController).reloadContainerData()
+                                        }                                    
+                                    })                               
+                                })
+                                
+                                
+                            }))
+                            showPopover(optionsController: alert, sender: sender, vc: self.parentController)                        
+                        }
+                        actionSheetControllerIOS8.addAction(DeletePost)
                     }
-                    actionSheetControllerIOS8.addAction(DeletePost)
-                    
-                }
-                
-                let reportActionButton: UIAlertAction = UIAlertAction(title: "Hide", style: .default) {action -> Void in
-                    let alert = UIAlertController(title: "Hide", message: "Hided successfuly", preferredStyle: UIAlertControllerStyle.alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-                    showPopover(optionsController: alert, sender: sender, vc: self.parentController)
                     
                 }
                 
                 let reportActionButton1: UIAlertAction = UIAlertAction(title: "Report", style: .default) {action -> Void in
                     let alert = UIAlertController(title: "Report", message: "Reported Successfully", preferredStyle: UIAlertControllerStyle.alert)
                     alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-                    showPopover(optionsController: alert, sender: sender, vc: self.parentController)                    
+                    showPopover(optionsController: alert, sender: sender, vc: self.parentController)
                 }
                 
-                if isSelfUser(otherUserID: currentUser["_id"].stringValue) {
-                    shouldPresent = false
-                    
-                }else{
+                let reportActionButton: UIAlertAction = UIAlertAction(title: "Hide", style: .default) {action -> Void in
+                    let alert = UIAlertController(title: "Hide", message: "Hided successfuly", preferredStyle: UIAlertControllerStyle.alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                    showPopover(optionsController: alert, sender: sender, vc: self.parentController)
+                }
+                
+                if self.type == "popular"{
                     actionSheetControllerIOS8.addAction(reportActionButton1)
-                    let cancel: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel)
-                    { action -> Void in
+                }
+                else{
+                    
+                    if isSelfUser(otherUserID: postTop["user"]["_id"].stringValue) {
+                        actionSheetControllerIOS8.addAction(reportActionButton)
+                        
+                    }else{
+                        actionSheetControllerIOS8.addAction(reportActionButton1)
                         
                     }
-                    actionSheetControllerIOS8.addAction(cancel)
-                    
                 }
                 
                 
-            }
-            
-        }
-        else{
-            if isBuddy() {
-                if self.pageType == viewType.VIEW_TYPE_MY_LIFE {
-                    let DeletePost: UIAlertAction = UIAlertAction(title: "Delete Activity", style: .default)
-                    { action -> Void in
-                        
-                        let alert = UIAlertController(title: "", message: "Are you sure you want to delete this Activtiy", preferredStyle: UIAlertControllerStyle.alert)
-                        alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil))
-                        alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.destructive, handler: { action in
-                            request.deletePost(self.postTop["_id"].string!, uniqueId: self.postTop["uniqueId"].string!, user:currentUser["_id"].stringValue, completion: {(response) in
-                                DispatchQueue.main.async(execute: {
-                                    if response.error != nil {
-                                        print("error: \(response.error!.localizedDescription)")
-                                    }
-                                    else if response["value"].bool! {
-                                        (self.parentController as! MyLifeViewController).reloadContainerData()
-                                    }                                    
-                                })                               
-                            })
-                            
-                            
-                        }))
-                        showPopover(optionsController: alert, sender: sender, vc: self.parentController)                        
-                    }
-                    actionSheetControllerIOS8.addAction(DeletePost)
-                }
-                
-            }
-            
-            let reportActionButton1: UIAlertAction = UIAlertAction(title: "Report", style: .default) {action -> Void in
-                let alert = UIAlertController(title: "Report", message: "Reported Successfully", preferredStyle: UIAlertControllerStyle.alert)
-                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-                showPopover(optionsController: alert, sender: sender, vc: self.parentController)
-            }
-            
-            let reportActionButton: UIAlertAction = UIAlertAction(title: "Hide", style: .default) {action -> Void in
-                let alert = UIAlertController(title: "Hide", message: "Hided successfuly", preferredStyle: UIAlertControllerStyle.alert)
-                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-                showPopover(optionsController: alert, sender: sender, vc: self.parentController)
-            }
-            
-            if self.type == "popular"{
-                actionSheetControllerIOS8.addAction(reportActionButton1)
-            }
-            else{
-                
-                if isSelfUser(otherUserID: postTop["user"]["_id"].stringValue) {
-                    actionSheetControllerIOS8.addAction(reportActionButton)
-                    
-                }else{
-                    actionSheetControllerIOS8.addAction(reportActionButton1)
+                let cancel: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel)
+                { action -> Void in
                     
                 }
+                actionSheetControllerIOS8.addAction(cancel)
             }
             
-            
-            let cancel: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel)
-            { action -> Void in
-                
-            }
-            actionSheetControllerIOS8.addAction(cancel)
+            if shouldPresent {
+                showPopover(optionsController: actionSheetControllerIOS8, sender: sender, vc: self.parentController)
+            }            
         }
-        
-        if shouldPresent {
-            showPopover(optionsController: actionSheetControllerIOS8, sender: sender, vc: self.parentController)
+        else {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
         }
-        
     }
     
     

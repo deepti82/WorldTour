@@ -119,19 +119,22 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
     
     private func showVideo() {        
         stopAllPlayers()
-        
+                
         switch self.showPage {            
             
-        case 0:
+        case 0:            
             self.videoScrollView.scrollRectToVisible(imageView1.frame, animated: false)
+            videoLabel.text = "Travel Life"
             player1.playFromBeginning()
             
         case 1:
             self.videoScrollView.scrollRectToVisible(imageView2.frame, animated: false)
+            videoLabel.text = "Local Life"
             player2.playFromBeginning()
             
         case 2:
             self.videoScrollView.scrollRectToVisible(imageView3.frame, animated: false)
+            videoLabel.text = "My Life"
             player3.playFromBeginning()
             
         default:
