@@ -19,8 +19,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
     var showPage = 0
     var shouldShowNavBar = false
     
-    @IBOutlet weak var videoScrollView: UIScrollView!
-    @IBOutlet weak var ipTextField: UITextField!    
+    @IBOutlet weak var videoScrollView: UIScrollView!  
     var toggleSoundButton: UIButton!
     var playBtn: UIButton!
     var videoLabel: UILabel!
@@ -46,8 +45,6 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        createImagesBack()
-       
         getDarkBackGroundBlur(self)        
         
         if shouldShowNavBar {
@@ -92,7 +89,6 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         toggleSoundButton.layer.cornerRadius = 5
         self.view.addSubview(toggleSoundButton)
         
-        //play button [custumization]
         
         playBtn = UIButton()
         playBtn.backgroundColor = UIColor.clear
@@ -109,14 +105,22 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         setAnalytics(name: "SignIn Page")
         self.navigationController?.isNavigationBarHidden = true
         playBtn.isHidden = true
-        
-        loadData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        print("\n showpage : \(showPage)")
+        createImagesBack()
+        
+        loadData()
+        
+        self.showVideo()
+        
+        playBtn.frame = CGRect(x: 0, y: 0, width: 100, height: 65)
+        playBtn.center = imageView1.center
+    }
+    
+    private func showVideo() {        
         stopAllPlayers()
         
         switch self.showPage {            
@@ -124,27 +128,22 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         case 0:
             self.videoScrollView.scrollRectToVisible(imageView1.frame, animated: true)
             player1.playFromBeginning()
-            //            self.videoScrollView.scrollRectToVisible(CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight), animated: true)
             
         case 1:
             self.videoScrollView.scrollRectToVisible(imageView2.frame, animated: true)
             player2.playFromBeginning()
-            //            self.videoScrollView.scrollRectToVisible(CGRect(x: screenWidth, y: 0, width: screenWidth, height: screenHeight), animated: true)
             
         case 2:
             self.videoScrollView.scrollRectToVisible(imageView3.frame, animated: true)
             player3.playFromBeginning()
-            //            self.videoScrollView.scrollRectToVisible(CGRect(x: screenWidth*2, y: 0, width: screenWidth, height: screenHeight), animated: true)
             
         default:
             break
         }
-        
-        playBtn.frame = CGRect(x: 0, y: 0, width: 100, height: 65)
-        playBtn.center = imageView1.center
-    }   
+    }
     
     func createImagesBack() {
+        
         videoScrollView.delegate = self
         self.horizontal = HorizontalLayout(height: screenHeight)
         self.videoScrollView.addSubview(horizontal)
@@ -175,7 +174,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
     func loadData() {
         
         let videoWidth = screenWidth
-        videoHeight = screenHeight        
+        videoHeight = screenHeight
         
         imageView1.frame = CGRect(x: 0, y: 0, width: videoWidth, height: videoHeight)
         imageView1.backgroundColor = UIColor.clear
@@ -192,10 +191,8 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         self.player1.fillMode = "AVLayerVideoGravityResizeAspectFill"
         self.player1.setUrl(NSURL(fileURLWithPath: (Bundle.main.path(forResource: "travellife", ofType:"mp4"))!) as URL)
         imageView1.addSubview(self.player1.view)
-//        self.horizontal.addSubview(imageView1)
         
         imageView2.frame = CGRect(x: 0, y: 0, width: videoWidth, height: videoHeight)
-//        imageView2 = UIImageView(frame: CGRect(x: 0, y: 0, width: videoWidth, height: videoHeight))
         imageView2.backgroundColor = UIColor.clear
         imageView2.contentMode = UIViewContentMode.center
         imageView2.center = self.view.center
@@ -209,11 +206,8 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         self.player2.fillMode = "AVLayerVideoGravityResizeAspectFill"              
         self.player2.setUrl(NSURL(fileURLWithPath: (Bundle.main.path(forResource: "locallife", ofType:"mp4"))!) as URL)
         imageView2.addSubview(self.player2.view)
-//        self.horizontal.addSubview(imageView2)
-        
         
         imageView3.frame = CGRect(x: 0, y: 0, width: videoWidth, height: videoHeight)
-//        imageView3 = UIImageView(frame: CGRect(x: 0, y: 0, width: videoWidth, height: videoHeight))
         imageView3.backgroundColor = UIColor.clear
         imageView3.contentMode = UIViewContentMode.center
         imageView3.center = self.view.center
@@ -227,7 +221,6 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         self.player3.fillMode = "AVLayerVideoGravityResizeAspectFill"              
         self.player3.setUrl(NSURL(fileURLWithPath: (Bundle.main.path(forResource: "mylife", ofType:"mp4"))!) as URL)
         imageView3.addSubview(self.player3.view)
-//        self.horizontal.addSubview(imageView3)
         
         addToLayout()        
         
@@ -236,9 +229,6 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
             signInFooter.center = CGPoint(x: self.view.center.x, y: signInFooter.center.y)
             self.view.addSubview(signInFooter)
         }
-        
-        ipTextField.delegate = self
-        ipTextField.returnKeyType = .done
         
         signInFooter.signUp.addTarget(self, action: #selector(SignInViewController.goToSignUp(_:)), for: .touchUpInside)
         signInFooter.signInButton.addTarget(self, action: #selector(SignInViewController.loginButtonTapped(_:)), for: .touchUpInside)
@@ -256,6 +246,8 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
     
     func destroyViews() {
         
+        print("\n destroyViews called \n\n")
+        
         player1.view.removeFromSuperview()
         player2.view.removeFromSuperview()
         player3.view.removeFromSuperview()
@@ -264,34 +256,18 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         player2 = nil
         player3 = nil
         
-//        imageView1.removeFromSuperview()
-//        imageView2.removeFromSuperview()
-//        imageView3.removeFromSuperview()
-//        
-//        imageView1 = nil
-//        imageView2 = nil
-//        imageView3 = nil
+        imageView1.removeFromSuperview()
+        imageView2.removeFromSuperview()
+        imageView3.removeFromSuperview()
+        
+        imageView1 = nil
+        imageView2 = nil
+        imageView3 = nil
     }
     
     func addToLayout() {
         self.horizontal.layoutSubviews()
         self.videoScrollView.contentSize = CGSize(width: self.horizontal.frame.width, height: self.horizontal.frame.height)
-    }
-    
-    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        ipTextField.resignFirstResponder()
-        if ipTextField.text != nil && ipTextField.text != "" {
-            adminUrl = "http://" + ipTextField.text! + "/api/"
-        }
-        return true
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        ipTextField.resignFirstResponder()
-        if ipTextField.text != nil && ipTextField.text != "" {
-            adminUrl = "http://" + ipTextField.text! + "/api/"
-        }
-        return true
     }
     
     
@@ -458,6 +434,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        
         playBtn.isHidden = true
         videoToPlay()
         
