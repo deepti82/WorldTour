@@ -93,11 +93,14 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
                 self.mainPhoto?.isUserInteractionEnabled = true
                 self.mainPhoto?.tag = 0
                 let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(PhotosOTG2.openSinglePhoto(_:)))
-                self.mainPhoto?.addGestureRecognizer(tapGestureRecognizer)                
+                self.mainPhoto?.addGestureRecognizer(tapGestureRecognizer)
+                
+                self.mainPhoto?.sd_setImage(with: getImageURL(post.imageArr[0].imageUrl.absoluteString, width: BIG_PHOTO_WIDTH),
+                                            placeholderImage: getPlaceholderImage())
             }
-            
-            self.mainPhoto?.sd_setImage(with: getImageURL(post.imageArr[0].imageUrl.absoluteString, width: BIG_PHOTO_WIDTH),
-                                        placeholderImage: getPlaceholderImage())
+            else {
+                self.mainPhoto?.image = post.imageArr[0].image
+            }
             
 
             /*cache.fetch(URL: URL(string:imgStr)!).onSuccess({ (data) in

@@ -745,6 +745,9 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         }
     }
     
+    
+    //MARK: - Fetch Journey Data
+    
     func getJourney(canGetFromCache: Bool) {
         
         request.getJourney(currentUser["_id"].string!, canGetCachedData: canGetFromCache, completion: {(response, isFromCache) in
@@ -798,9 +801,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         })
     }
     
-    
-    //MARK: - Getone journey added.
-    
     func getOneJourney() {
         request.getJourneyById(fromOutSide, completion: {(response) in
             DispatchQueue.main.async(execute: {
@@ -849,7 +849,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         })
         
     }
-
     
     func getAllPosts(_ posts: [JSON]) {
         
@@ -909,6 +908,9 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         hideAddActivity()
     }
     
+    
+    //MARK: - Navigate To Other Controller
+    
     func gotoSummaries(_ sender: UIButton) {
         
         let summaryVC = storyboard?.instantiateViewController(withIdentifier: "summarySub") as! SummarySubViewController
@@ -939,7 +941,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         
         
     }
-    
     
     func gotoVideos(_ sender: UIButton) {
         if sender.tag > 0 {
@@ -1847,10 +1848,13 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     }
     
     func deletePost(_ footer:PhotoOTGFooter) {
-        loader.showOverlay(self.view)
-        request.deletePost(footer.postTop.post_ids, uniqueId: self.myJourney["uniqueId"].string!, user: currentUser["_id"].stringValue, completion: {(response) in
-            self.getJourney(canGetFromCache: false)
-        })
+        self.hideHeaderAndFooter(false)
+        DispatchQueue.main.asyncAfter(deadline: .now()+0.5) {
+            self.loader.showOverlay(self.view)
+            request.deletePost(footer.postTop.post_ids, uniqueId: self.myJourney["uniqueId"].string!, user: currentUser["_id"].stringValue, completion: {(response) in
+                self.getJourney(canGetFromCache: false)
+            })            
+        }
     }
     
     var currentPhotoFooter:PhotoOTGFooter!
