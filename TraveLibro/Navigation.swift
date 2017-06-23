@@ -16,6 +16,8 @@ class Navigation {
 //    var json: JSON!
 
     
+    //MARK: - Save / Edit User
+    
     func saveUser(_ firstName: String, lastName: String, email: String, mobile: String, fbId: String, googleId: String, twitterId: String, instaId: String, nationality: String, profilePicture: String, gender: String, dob: String, completion: @escaping ((JSON) -> Void)) {
         print("\n gender in saveUser : \(gender)")
         
@@ -87,26 +89,6 @@ class Navigation {
         }
     }
     
-    func reportProblem(_ id: String, problemMessage: String, completion: @escaping ((JSON) -> Void)) {
-        var json = JSON(1);
-        let params = ["user":id, "problem":problemMessage]
-        do {
-            let opt = try HTTP.POST(adminUrl + "reportProblems/save", parameters: params)
-            opt.start { response in
-                if let err = response.error {
-                    print("error: \(err.localizedDescription)")
-                }
-                else
-                {
-                    json  = JSON(data: response.data)
-                    completion(json)
-                }
-            }
-        } catch let error {
-            print("got an error creating the request: \(error)")
-        }
-    }
-    
     func bulkEditUser(params: [String : Any], completion: @escaping ((JSON) -> Void)) {
         
         var json = JSON(1);
@@ -127,6 +109,7 @@ class Navigation {
             print("got an error creating the request: \(error)")
         }
     }
+    
     
     func getUserFromCache(_ id: String, completion: @escaping ((JSON) -> Void)) {
         let urlString = adminUrl + "user/getOne"
@@ -1007,6 +990,8 @@ class Navigation {
         }
     }
     
+    //MARK: - Follow / Unfollow
+    
     func followUser(_ userId: String, followUserId: String, completion: @escaping ((JSON) -> Void)) {
         
         do {
@@ -1024,6 +1009,29 @@ class Navigation {
                 {
                     json  = JSON(data: response.data)
                     print(json)
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+    }
+    
+    func unfollow(_ userId: String, unFollowId: String, completion: @escaping ((JSON) -> Void)) {
+        
+        do {
+            
+            let params = ["_id": unFollowId, "user": userId]
+            let opt = try HTTP.POST(adminUrl + "user/unFollowUser", parameters: params)
+            var json = JSON(1);
+            opt.start { response in
+                //                print("started response: \(response)")
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    json  = JSON(data: response.data)
                     completion(json)
                 }
             }
@@ -1054,29 +1062,6 @@ class Navigation {
                     json  = JSON(data: response.data)
                     print(json)
                     completion(json, callbackNum)
-                }
-            }
-        } catch let error {
-            print("got an error creating the request: \(error)")
-        }
-    }
-    
-    func unfollow(_ userId: String, unFollowId: String, completion: @escaping ((JSON) -> Void)) {
-        
-        do {
-            
-            let params = ["_id": unFollowId, "user": userId]
-            let opt = try HTTP.POST(adminUrl + "user/unFollowUser", parameters: params)
-            var json = JSON(1);
-            opt.start { response in
-                //                print("started response: \(response)")
-                if let err = response.error {
-                    print("error: \(err.localizedDescription)")
-                }
-                else
-                {
-                    json  = JSON(data: response.data)
-                    completion(json)
                 }
             }
         } catch let error {
@@ -3331,33 +3316,6 @@ class Navigation {
         return goodDate
     }
     
-    
-    func getLocalPost(lat:String,lng:String,pageNo:Int,category:String, completion: @escaping ((JSON) -> Void)) {
-        
-        do {
-            print("category")
-            print(category)
-            print("My user")
-            print(currentUser["_id"])
-            print(category)
-            let opt = try HTTP.POST(adminUrl + "post/getLocalPost", parameters: ["user": currentUser["_id"].stringValue,"lat":lat,"long":lng,"pagenumber":pageNo,"category":category])
-            var json = JSON(1);
-            opt.start {response in
-                if let err = response.error {
-                    print("error: \(err.localizedDescription)")
-                } else {
-                    json  = JSON(data: response.data)
-                    completion(json)
-                }
-            }
-        } catch let error {
-            print("got an error creating the request: \(error)")
-        }
-        
-    }
-    
-    
-    
     func journeyChangeName(_ name: String,journeyId: String, completion: @escaping ((JSON) -> Void)) {
         
         var json = JSON(1);
@@ -4144,6 +4102,30 @@ class Navigation {
             print("got an error creating the request: \(error)")
         }
     }
+    
+    
+    //MARK: - Report a problem
+    
+    func reportProblem(_ id: String, problemMessage: String, completion: @escaping ((JSON) -> Void)) {
+        var json = JSON(1);
+        let params = ["user":id, "problem":problemMessage]
+        do {
+            let opt = try HTTP.POST(adminUrl + "reportProblems/save", parameters: params)
+            opt.start { response in
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    json  = JSON(data: response.data)
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+    }
+    
     
     //MARK: - Logout
     
