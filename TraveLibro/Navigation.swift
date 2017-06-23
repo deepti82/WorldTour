@@ -13,10 +13,8 @@ class Navigation {
     
     let cache = Shared.dataCache
     
-//    var json: JSON!
-
     
-    //MARK: - Save / Edit User
+    //MARK: - User Helpers
     
     func saveUser(_ firstName: String, lastName: String, email: String, mobile: String, fbId: String, googleId: String, twitterId: String, instaId: String, nationality: String, profilePicture: String, gender: String, dob: String, completion: @escaping ((JSON) -> Void)) {
         print("\n gender in saveUser : \(gender)")
@@ -110,7 +108,6 @@ class Navigation {
         }
     }
     
-    
     func getUserFromCache(_ id: String, completion: @escaping ((JSON) -> Void)) {
         let urlString = adminUrl + "user/getOne"
         self.cache.fetch(key: urlString+id).onSuccess { data in
@@ -170,12 +167,6 @@ class Navigation {
         } catch let error {
             print("got an error creating the request: \(error)")
         }
-        
-        
-        
-        
-        
-        
     }
     
     func getUserOnce(_ id: String, urlSlug: String?, completion: @escaping ((JSON) -> Void)) {
@@ -964,31 +955,6 @@ class Navigation {
         }
     }
     
-    func getBucketListCount(_ id: String, completion: @escaping ((JSON) -> Void)) {
-        
-        do {
-            
-            let params = ["_id": id]
-            print("params: \(params)")
-            
-            let opt = try HTTP.POST(adminUrl + "user/getOne", parameters: params)
-            var json = JSON(1);
-            opt.start { response in
-                //                print("started response: \(response)")
-                if let err = response.error {
-                    print("error: \(err.localizedDescription)")
-                }
-                else
-                {
-                    json  = JSON(data: response.data)
-                    print(json)
-                    completion(json)
-                }
-            }
-        } catch let error {
-            print("got an error creating the request: \(error)")
-        }
-    }
     
     //MARK: - Follow / Unfollow
     
@@ -2119,7 +2085,11 @@ class Navigation {
         }
     }
     
-    func likePost(_ id: String, userId: String, unlike: Bool,postId: String, completion: @escaping ((JSON) -> Void)) {
+    
+    //MARK: -  Like & Comment
+    //MARK: Set Like N Comments
+    
+    func likePost(_ id: String, userId: String, unlike: Bool, postId: String, completion: @escaping ((JSON) -> Void)) {
         
         do {
             
@@ -2179,7 +2149,6 @@ class Navigation {
         }
     }
     
-    //MARK: -  Global Like
     func globalLike(_ id: String, userId: String, unlike: Bool, type: String, completion: @escaping ((JSON) -> Void)) {
         
         do {
@@ -2221,32 +2190,6 @@ class Navigation {
                 if let err = response.error {
                     print("error: \(err.localizedDescription)")
                     completion(json)
-                }
-                else
-                {
-                    json  = JSON(data: response.data)
-                    print(json)
-                    completion(json)
-                }
-            }
-        } catch let error {
-            print("got an error creating the request: \(error)")
-        }
-    }
-    
-    func commentOnPost(postId: String, userId: String, commentText: String, hashtags: [String], mentions: [String], completion: @escaping ((JSON) -> Void)) {
-        
-        do {
-            
-            let params = ["post": postId, "user":  userId, "text": commentText, "type": "post", "hashtag" : hashtags, "tagUser": []] as [String : Any]
-              
-            print("set comment params: \(params)")
-            
-            let opt = try HTTP.POST(adminUrl + "comment/addComment", parameters: [params])
-            var json = JSON(1);
-            opt.start {response in
-                if let err = response.error {
-                    print("error: \(err.localizedDescription)")
                 }
                 else
                 {
@@ -2302,56 +2245,214 @@ class Navigation {
         }
     }
     
-    func commentOnPhotos(id: String, postId: String, userId: String, commentText: String, hashtags: [String], mentions: [String], photoId: String, completion: @escaping ((JSON) -> Void)) {
+    //MARK: Get Like N Comments
+    
+    func getLikes(userId: String, post: String, pagenumber: Int, completion: @escaping ((JSON) -> Void)) {
         
         do {
             
-            let params = ["uniqueId": id, "post": postId, "user":  userId, "text": commentText, "type": "photo", "hashtag" : hashtags, "photo": photoId] as [String : Any]
+            let params:JSON = ["user": userId, "_id": post, "pagenumber": pagenumber]
             
-            print("set photo comment params: \(params)")
+            let jsonData = try params.rawData()
             
-            let opt = try HTTP.POST(adminUrl + "comment/addComment", parameters: [params])
-            var json = JSON(1);
-            opt.start {response in
-                if let err = response.error {
-                    print("error: \(err.localizedDescription)")
+            // create post request
+            let url = URL(string: adminUrl + "post/getPostLikes")!
+            let request = NSMutableURLRequest(url: url)
+            request.httpMethod = "POST"
+            
+            // insert json data to the request
+            request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+            request.httpBody = jsonData
+            
+            
+            let task = URLSession.shared.dataTask(with: request as URLRequest) {data, response, error in
+                if error != nil{
+                    print("Error -> \(error)")
+                    return
                 }
-                else
-                {
-                    json  = JSON(data: response.data)
-                    print(json)
-                    completion(json)
+                
+                do {
+                    let result = try JSONSerialization.jsonObject(with: data!, options: []) as! [String:AnyObject]
+                    print("response: \(JSON(result))")
+                    completion(JSON(result))
+                    
+                } catch {
+                    print("Error: \(error)")
                 }
             }
+            
+            task.resume()
+            
         } catch let error {
             print("got an error creating the request: \(error)")
         }
+        
     }
     
-    func commentOnVideos(id: String, postId: String, userId: String, commentText: String, hashtags: [String], mentions: [String], videoId: String, completion: @escaping ((JSON) -> Void)) {
+    func getPhotoLikes(userId: String, id: String, pagenumber: Int, completion: @escaping ((JSON) -> Void)) {
         
         do {
             
-            let params = ["uniqueId": id, "post": postId, "user":  userId, "text": commentText, "type": "video", "hashtag" : hashtags, "video":videoId] as [String : Any]
+            let params:JSON = ["user": userId, "_id": id, "pagenumber": pagenumber]
             
-            print("set photo comment params: \(params)")
+            let jsonData = try params.rawData()
             
-            let opt = try HTTP.POST(adminUrl + "comment/addComment", parameters: [params])
-            var json = JSON(1);
-            opt.start {response in
-                if let err = response.error {
-                    print("error: \(err.localizedDescription)")
+            // create post request
+            let url = URL(string: adminUrl + "postphotos/getPostLikes")!
+            let request = NSMutableURLRequest(url: url)
+            request.httpMethod = "POST"
+            
+            // insert json data to the request
+            request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+            request.httpBody = jsonData
+            
+            
+            let task = URLSession.shared.dataTask(with: request as URLRequest) {data, response, error in
+                if error != nil{
+                    print("Error -> \(error)")
+                    return
                 }
-                else
-                {
-                    json  = JSON(data: response.data)
-                    print(json)
-                    completion(json)
+                
+                do {
+                    let result = try JSONSerialization.jsonObject(with: data!, options: []) as! [String:AnyObject]
+                    print("response: \(JSON(result))")
+                    completion(JSON(result))
+                    
+                } catch {
+                    print("Error: \(error)")
                 }
             }
+            
+            task.resume()
+            
         } catch let error {
             print("got an error creating the request: \(error)")
         }
+        
+    }
+    
+    func getVideoLikes(userId: String, id: String, pagenumber: Int, completion: @escaping ((JSON) -> Void)) {
+        
+        do {
+            let params:JSON = ["user": userId, "_id": id, "pagenumber": pagenumber]
+            print(params)
+            let jsonData = try params.rawData()
+            
+            // create post request
+            let url = URL(string: adminUrl + "postvideos/getPostLikes")!
+            let request = NSMutableURLRequest(url: url)
+            request.httpMethod = "POST"
+            
+            // insert json data to the request
+            request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+            request.httpBody = jsonData
+            
+            
+            let task = URLSession.shared.dataTask(with: request as URLRequest) {data, response, error in
+                if error != nil{
+                    print("Error -> \(error)")
+                    return
+                }
+                
+                do {
+                    let result = try JSONSerialization.jsonObject(with: data!, options: []) as! [String:AnyObject]
+                    print("response: \(JSON(result))")
+                    completion(JSON(result))
+                    
+                } catch {
+                    print("Error: \(error)")
+                }
+            }
+            
+            task.resume()
+            
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+        
+    }
+    
+    func getItineraryLikes(userId: String, id: String, pagenumber: Int, completion: @escaping ((JSON) -> Void)) {
+        
+        do {
+            let params:JSON = ["user": userId, "_id": id, "pagenumber": pagenumber]
+            
+            let jsonData = try params.rawData()
+            
+            // create post request
+            let url = URL(string: adminUrl + "itinerary/getItineraryLikes")!
+            let request = NSMutableURLRequest(url: url)
+            request.httpMethod = "POST"
+            
+            // insert json data to the request
+            request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+            request.httpBody = jsonData
+            
+            
+            let task = URLSession.shared.dataTask(with: request as URLRequest) {data, response, error in
+                if error != nil{
+                    print("Error -> \(error)")
+                    return
+                }
+                
+                do {
+                    let result = try JSONSerialization.jsonObject(with: data!, options: []) as! [String:AnyObject]
+                    print("response: \(JSON(result))")
+                    completion(JSON(result))
+                    
+                } catch {
+                    print("Error: \(error)")
+                }
+            }
+            
+            task.resume()
+            
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+        
+    }
+    
+    func getJourneyLikes(userId: String, id: String, pagenumber: Int, completion: @escaping ((JSON) -> Void)) {
+        
+        do {
+            
+            let params: JSON = ["user": userId, "_id": id, "pagenumber": pagenumber]
+            print(params)
+            let jsonData = try params.rawData()
+            
+            // create post request
+            let url = URL(string: adminUrl + "journey/getJourneyLikes")!
+            let request = NSMutableURLRequest(url: url)
+            request.httpMethod = "POST"
+            
+            // insert json data to the request
+            request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+            request.httpBody = jsonData
+            
+            
+            let task = URLSession.shared.dataTask(with: request as URLRequest) {data, response, error in
+                if error != nil{
+                    print("Error -> \(error)")
+                    return
+                }
+                
+                do {
+                    let result = try JSONSerialization.jsonObject(with: data!, options: []) as! [String:AnyObject]
+                    print("response: \(JSON(result))")
+                    completion(JSON(result))
+                    
+                } catch {
+                    print("Error: \(error)")
+                }
+            }
+            
+            task.resume()
+            
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+        
     }
     
     func getComments(_ id: String, type: String, userId: String, pageno: Int, completion: @escaping ((JSON) -> Void)) {
@@ -2474,17 +2575,16 @@ class Navigation {
         }
     }
 
-    
-    func editPost(_ id: String, location:String, categoryLocation: String, thoughts: String, completion: @escaping ((JSON) -> Void)) {
-        
+    func editComment(type: String, commentId: String, commentText: String, userId:  String, hashtag: [String], addedHashtags: [String], removedHashtags: [String], photoId:String, completion: @escaping ((JSON) -> Void)) {
         do {
+            let params = ["type":type.lowercased(), "_id": commentId, "text": commentText, "user": userId, "hashtag": hashtag, "addHashtag": addedHashtags, "removeHashtag": removedHashtags] as [String: Any]
+            //            if type == "Photo" {
+            //                params = ["type":"photo", "_id": commentId, "text": commentText, "user": userId, "hashtag": hashtag, "addHashtag": addedHashtags, "removeHashtag": removedHashtags, "photo": photoId] as [String: Any]
+            //            } else {
+            //                params = ["type":"video", "_id": commentId, "text": commentText, "user": userId, "hashtag": hashtag, "addHashtag": addedHashtags, "removeHashtag": removedHashtags, "video": photoId] as [String: Any]
+            //            }
             
-            let jsonObject = ["category": categoryLocation, "location": location]
-            let params = ["_id": id, "type": "editPost", "checkIn": jsonObject, "thoughts": thoughts] as [String : Any]
-            
-            print("get one journey params: \(params)")
-            
-            let opt = try HTTP.POST(adminUrl + "post/editData", parameters: [params])
+            let opt = try HTTP.POST(adminUrl + "comment/editComment", parameters: params)
             var json = JSON(1);
             opt.start {response in
                 if let err = response.error {
@@ -2493,11 +2593,70 @@ class Navigation {
                 else
                 {
                     json  = JSON(data: response.data)
-                    print(json)
+                    print("edit comment response: \(json)")
                     completion(json)
                 }
             }
         } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+        
+    }
+    
+    func deleteComment(commentId: String, completion: @escaping ((JSON) -> Void)) {
+        
+        do {
+            let params = ["_id": commentId, "type": "post"] as [String: Any]
+            
+            let opt = try HTTP.POST(adminUrl + "comment/deletePostComment", parameters: params)
+            var json = JSON(1);
+            opt.start {response in
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    json  = JSON(data: response.data)
+                    print("delete comment response: \(json)")
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+        
+    }
+    
+    
+    //MARK: - Edit OTG Post
+    
+    func editPost(param:JSON, completion: @escaping ((JSON) -> Void) ) {
+        do {
+            let jsonData = try param.rawData()
+            // create post request
+            let url = URL(string: adminUrl + "post/editData")!
+            let request = NSMutableURLRequest(url: url)
+            request.httpMethod = "POST"
+            // insert json data to the request
+            request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+            request.httpBody = jsonData
+            let task = URLSession.shared.dataTask(with: request as URLRequest) {data, response, error in
+                if error != nil{
+                    print("Error -> \(error)")
+                    return
+                }
+                
+                do {
+                    let result = try JSONSerialization.jsonObject(with: data!, options: []) as! [String:AnyObject]
+                    print("response: \(JSON(result))")
+                    completion(JSON(result))
+                    
+                } catch {
+                    print("Error: \(error)")
+                }
+            }
+            task.resume()
+        } catch {
             print("got an error creating the request: \(error)")
         }
     }
@@ -2570,74 +2729,6 @@ class Navigation {
                 completion(json)
             }
         }
-        
-    }
-    
-    func postPhotosLike(_ photoId: String, postId: String, userId: String, userName: String, unlike: Bool, completion: @escaping ((JSON) -> Void)) {
-        
-        do {
-            
-            var params = ["photoId": photoId, "postId": postId, "user": userId, "name": userName] as [String : Any]
-            
-            if unlike {
-                params = ["photoId": photoId, "postId": postId, "user": userId, "name": userName, "unlike": unlike] as [String : Any]
-            }
-            
-            let opt = try HTTP.POST(adminUrl + "postphotos/updateLikePost", parameters: params)
-            var json = JSON(1)
-            
-            opt.start{(response) in
-                
-                if let err = response.error {
-                    
-                    print("error: \(err.localizedDescription)")
-                }
-                    
-                else
-                {
-                    print("making json")
-                    json  = JSON(data: response.data)
-                    print(json)
-                    completion(json)
-                }
-            }
-        } catch let error {
-            print("got an error creating the request: \(error)")
-        }
-    }
-    
-    
-    func postVideoLike(_ photoId: String, postId: String, userId: String, userName: String, unlike: Bool, completion: @escaping ((JSON) -> Void)) {
-        
-        do {
-            
-            var params = ["videoId": photoId, "postId": postId, "user": userId, "name": userName] as [String : Any]
-            
-            if unlike {
-                params = ["videoId": photoId, "postId": postId, "user": userId, "name": userName, "unlike": unlike] as [String : Any]
-            }           
-            
-            let opt = try HTTP.POST(adminUrl + "postvideos/updateLikePost", parameters: params)
-            var json = JSON(1)
-            
-            opt.start{(response) in
-                
-                if let err = response.error {
-                    
-                    print("error: \(err.localizedDescription)")
-                }
-                    
-                else
-                {
-                    print("making json")
-                    json  = JSON(data: response.data)
-                    print(json)
-                    completion(json)
-                }
-            }
-        } catch let error {
-            print("got an error creating the request: \(error)")
-        }
     }
     
     func deletePost(_ id: String, uniqueId: String, user: String, completion: @escaping ((JSON) -> Void)) {
@@ -2688,6 +2779,7 @@ class Navigation {
             print("got an error creating the request: \(error)")
         }
     }
+    
     func changeDateTimeLocal(_ id: String, date: String, completion: @escaping ((JSON) -> Void)) {
         loader.hideOverlayView()
         do {
@@ -2739,6 +2831,7 @@ class Navigation {
             print("got an error creating the request: \(error)")
         }
     }
+    
     func kindOfJourney(_ id: String, kindOfJourney: [String], completion: @escaping ((JSON) -> Void)) {
         
         do {
@@ -3112,68 +3205,6 @@ class Navigation {
         
     }
     
-    func deleteComment(commentId: String, completion: @escaping ((JSON) -> Void)) {
-        
-        do {
-            let params = ["_id": commentId, "type": "post"] as [String: Any]
-//            let editComment = ["_id", "text", "user", "name"]
-            
-            
-            let opt = try HTTP.POST(adminUrl + "comment/deletePostComment", parameters: params)
-            var json = JSON(1);
-            opt.start {response in
-                if let err = response.error {
-                    print("error: \(err.localizedDescription)")
-                }
-                else
-                {
-                    json  = JSON(data: response.data)
-                    print("delete comment response: \(json)")
-                    completion(json)
-                }
-            }
-        } catch let error {
-            print("got an error creating the request: \(error)")
-        }
-        
-    }
-    
-    func editComment(type: String, commentId: String, commentText: String, userId:  String, hashtag: [String], addedHashtags: [String], removedHashtags: [String], photoId:String, completion: @escaping ((JSON) -> Void)) {
-        print("my type")
-        print(type)
-        
-        
-        do {
-            let params = ["type":type.lowercased(), "_id": commentId, "text": commentText, "user": userId, "hashtag": hashtag, "addHashtag": addedHashtags, "removeHashtag": removedHashtags] as [String: Any]
-//            if type == "Photo" {
-//                params = ["type":"photo", "_id": commentId, "text": commentText, "user": userId, "hashtag": hashtag, "addHashtag": addedHashtags, "removeHashtag": removedHashtags, "photo": photoId] as [String: Any]
-//            } else {
-//                params = ["type":"video", "_id": commentId, "text": commentText, "user": userId, "hashtag": hashtag, "addHashtag": addedHashtags, "removeHashtag": removedHashtags, "video": photoId] as [String: Any]
-//            }
-            
-            let opt = try HTTP.POST(adminUrl + "comment/editComment", parameters: params)
-            var json = JSON(1);
-            opt.start {response in
-                if let err = response.error {
-                    print("error: \(err.localizedDescription)")
-                }
-                else
-                {
-                    json  = JSON(data: response.data)
-                    print("edit comment response: \(json)")
-                    completion(json)
-                }
-            }
-        } catch let error {
-            print("got an error creating the request: \(error)")
-        }
-        
-    }
-
-
-    
-    
-    
     func getAllCityC(_ search: String, country: String, completion: @escaping ((JSON) -> Void)) {
         
         do {
@@ -3265,36 +3296,7 @@ class Navigation {
     
     
 //    func postAddPhotosVideos (param:JSON, completion: @escaping ((JSON) -> Void) ) {
-    func editPost(param:JSON, completion: @escaping ((JSON) -> Void) ) {
-        do {
-            let jsonData = try param.rawData()
-            // create post request
-            let url = URL(string: adminUrl + "post/editData")!
-            let request = NSMutableURLRequest(url: url)
-            request.httpMethod = "POST"
-            // insert json data to the request
-            request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
-            request.httpBody = jsonData
-            let task = URLSession.shared.dataTask(with: request as URLRequest) {data, response, error in
-                if error != nil{
-                    print("Error -> \(error)")
-                    return
-                }
-                
-                do {
-                    let result = try JSONSerialization.jsonObject(with: data!, options: []) as! [String:AnyObject]
-                    print("response: \(JSON(result))")
-                    completion(JSON(result))
-                    
-                } catch {
-                    print("Error: \(error)")
-                }
-            }
-            task.resume()
-        } catch {
-            print("got an error creating the request: \(error)")
-        }
-    }
+    
     
     func changeDateFormat(_ givenFormat: String, getFormat: String, date: String, isDate: Bool) -> String {
         
@@ -3737,226 +3739,6 @@ class Navigation {
         
     }
     
-    func getJourneyLikes(userId: String, id: String, pagenumber: Int, completion: @escaping ((JSON) -> Void)) {
-        
-        do {
-            var params: JSON
-            
-            
-            params = ["user": userId, "_id": id, "pagenumber": pagenumber]
-            print(params)
-            let jsonData = try params.rawData()
-            
-            // create post request
-            let url = URL(string: adminUrl + "journey/getJourneyLikes")!
-            let request = NSMutableURLRequest(url: url)
-            request.httpMethod = "POST"
-            
-            // insert json data to the request
-            request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
-            request.httpBody = jsonData
-            
-            
-            let task = URLSession.shared.dataTask(with: request as URLRequest) {data, response, error in
-                if error != nil{
-                    print("Error -> \(error)")
-                    return
-                }
-                
-                do {
-                    let result = try JSONSerialization.jsonObject(with: data!, options: []) as! [String:AnyObject]
-                    print("response: \(JSON(result))")
-                    completion(JSON(result))
-                    
-                } catch {
-                    print("Error: \(error)")
-                }
-            }
-            
-            task.resume()
-            
-        } catch let error {
-            print("got an error creating the request: \(error)")
-        }
-        
-    }
-
-    func getItineraryLikes(userId: String, id: String, pagenumber: Int, completion: @escaping ((JSON) -> Void)) {
-        
-        do {
-            var params: JSON
-            
-            
-            params = ["user": userId, "_id": id, "pagenumber": pagenumber]
-            print(params)
-            let jsonData = try params.rawData()
-            
-            // create post request
-            let url = URL(string: adminUrl + "itinerary/getItineraryLikes")!
-            let request = NSMutableURLRequest(url: url)
-            request.httpMethod = "POST"
-            
-            // insert json data to the request
-            request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
-            request.httpBody = jsonData
-            
-            
-            let task = URLSession.shared.dataTask(with: request as URLRequest) {data, response, error in
-                if error != nil{
-                    print("Error -> \(error)")
-                    return
-                }
-                
-                do {
-                    let result = try JSONSerialization.jsonObject(with: data!, options: []) as! [String:AnyObject]
-                    print("response: \(JSON(result))")
-                    completion(JSON(result))
-                    
-                } catch {
-                    print("Error: \(error)")
-                }
-            }
-            
-            task.resume()
-            
-        } catch let error {
-            print("got an error creating the request: \(error)")
-        }
-        
-    }
-
-    func getPhotoLikes(userId: String, id: String, pagenumber: Int, completion: @escaping ((JSON) -> Void)) {
-        
-        do {
-            var params: JSON
-            
-            
-            params = ["user": userId, "_id": id, "pagenumber": pagenumber]
-            print(params)
-            let jsonData = try params.rawData()
-            
-            // create post request
-            let url = URL(string: adminUrl + "postphotos/getPostLikes")!
-            let request = NSMutableURLRequest(url: url)
-            request.httpMethod = "POST"
-            
-            // insert json data to the request
-            request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
-            request.httpBody = jsonData
-            
-            
-            let task = URLSession.shared.dataTask(with: request as URLRequest) {data, response, error in
-                if error != nil{
-                    print("Error -> \(error)")
-                    return
-                }
-                
-                do {
-                    let result = try JSONSerialization.jsonObject(with: data!, options: []) as! [String:AnyObject]
-                    print("response: \(JSON(result))")
-                    completion(JSON(result))
-                    
-                } catch {
-                    print("Error: \(error)")
-                }
-            }
-            
-            task.resume()
-            
-        } catch let error {
-            print("got an error creating the request: \(error)")
-        }
-        
-    }
-
-    func getVideoLikes(userId: String, id: String, pagenumber: Int, completion: @escaping ((JSON) -> Void)) {
-        
-        do {
-            var params: JSON
-            
-            
-            params = ["user": userId, "_id": id, "pagenumber": pagenumber]
-            print(params)
-            let jsonData = try params.rawData()
-            
-            // create post request
-            let url = URL(string: adminUrl + "postvideos/getPostLikes")!
-            let request = NSMutableURLRequest(url: url)
-            request.httpMethod = "POST"
-            
-            // insert json data to the request
-            request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
-            request.httpBody = jsonData
-            
-            
-            let task = URLSession.shared.dataTask(with: request as URLRequest) {data, response, error in
-                if error != nil{
-                    print("Error -> \(error)")
-                    return
-                }
-                
-                do {
-                    let result = try JSONSerialization.jsonObject(with: data!, options: []) as! [String:AnyObject]
-                    print("response: \(JSON(result))")
-                    completion(JSON(result))
-                    
-                } catch {
-                    print("Error: \(error)")
-                }
-            }
-            
-            task.resume()
-            
-        } catch let error {
-            print("got an error creating the request: \(error)")
-        }
-        
-    }
-
-    
-    func getLikes(userId: String, post: String, pagenumber: Int, completion: @escaping ((JSON) -> Void)) {
-        
-        do {
-            var params: JSON
-            
-            
-                params = ["user": userId, "_id": post, "pagenumber": pagenumber]
-            print(params)
-            let jsonData = try params.rawData()
-            
-            // create post request
-            let url = URL(string: adminUrl + "post/getPostLikes")!
-            let request = NSMutableURLRequest(url: url)
-            request.httpMethod = "POST"
-            
-            // insert json data to the request
-            request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
-            request.httpBody = jsonData
-            
-            
-            let task = URLSession.shared.dataTask(with: request as URLRequest) {data, response, error in
-                if error != nil{
-                    print("Error -> \(error)")
-                    return
-                }
-                
-                do {
-                    let result = try JSONSerialization.jsonObject(with: data!, options: []) as! [String:AnyObject]
-                    print("response: \(JSON(result))")
-                    completion(JSON(result))
-                    
-                } catch {
-                    print("Error: \(error)")
-                }
-            }
-            
-            task.resume()
-            
-        } catch let error {
-            print("got an error creating the request: \(error)")
-        }
-        
-    }
     
     func getPopularUsers(pagenumber: Int, completion: @escaping ((JSON) -> Void)) {
         
