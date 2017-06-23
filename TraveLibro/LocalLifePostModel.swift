@@ -306,13 +306,11 @@ public class LocalLifePostModel {
     func getAllJson() -> [JSON] {
         var retJson:[JSON] = []
         do {
-            var check = false;
             let query = post.select(id,type,userId,journeyId,thoughts,location,category,city,country,latitude,longitude,date,buddyDb)
                 .filter(localLifePostStatus == 0 || localLifePostStatus == 4)
                 .limit(1)
             
-            for post in try db.prepare(query) {
-                check = true
+            for post in try db.prepare(query) {           
                 let p = LocalLifePostModel()
                 p.post_id = Int(post[id])
                 p.post_type = String(post[type])

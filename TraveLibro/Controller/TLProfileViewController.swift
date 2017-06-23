@@ -693,7 +693,6 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     
     func setTextWithAnimation(onView: UILabel, text: String) {
         
-        let charArray = Array(text.characters)        
         onView.text = ""
         
         strIndex = 0

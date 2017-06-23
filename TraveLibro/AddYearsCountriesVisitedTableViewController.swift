@@ -58,7 +58,7 @@ class AddYearsCountriesVisitedTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
 //        configureSearchController()
-        for i in previousYear...currentYear{
+        for _ in previousYear...currentYear{
             years.append("\(currentYear)")
             currentYear -= 1
         }
@@ -286,23 +286,9 @@ class AddYearsCountriesVisitedTableViewController: UITableViewController {
 //        print("test aggregate: \(testAggregate)")
         
         for i in 0 ..< trialVariable.count {
-            
-            var flag = 0
             list["year"].string = trialVariable[i]["country"].string!
-            //            list["countryId"] = JSON(selectedYear)
-//            for j in 0 ..< testAggregate.count {
-//                
-//                if "\(testAggregate[j]["year"])" == list["year"].string! {
-//                    
-//                    list["times"].int = trialVariable[i]["quantity"].int! + testAggregate[j]["times"].int!
-//                    
-//                }
-//                
-//            }
             list["times"].int = trialVariable[i]["quantity"].int!
-            //            print("list: \(list)")
             temp.append(list)
-            
         }
         print("previous countries: \(getCountries)")
         listFormat = JSON(temp)

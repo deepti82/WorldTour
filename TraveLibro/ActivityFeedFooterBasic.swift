@@ -809,13 +809,6 @@ class ActivityFeedFooterBasic: UIView {
                         
                     }
                     
-                    let reportActionButton: UIAlertAction = UIAlertAction(title: "Hide", style: .default) {action -> Void in
-                        let alert = UIAlertController(title: "Hide", message: "Hided successfuly", preferredStyle: UIAlertControllerStyle.alert)
-                        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-                        showPopover(optionsController: alert, sender: sender, vc: self.parentController)
-                        
-                    }
-                    
                     let reportActionButton1: UIAlertAction = UIAlertAction(title: "Report", style: .default) {action -> Void in
                         let alert = UIAlertController(title: "Report", message: "Reported Successfully", preferredStyle: UIAlertControllerStyle.alert)
                         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))

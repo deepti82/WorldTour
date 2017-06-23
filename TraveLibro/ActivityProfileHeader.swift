@@ -90,8 +90,8 @@ class ActivityProfileHeader: UIView {
             
             if pageType == viewType.VIEW_TYPE_ACTIVITY {
                 
-                localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["timestamp"].stringValue, isDate: true)
-                localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["timestamp"].stringValue, isDate: false)
+                localDate.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["timestamp"].stringValue, isDate: true)
+                localTime.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["timestamp"].stringValue, isDate: false)
                 
                 switch feed["type"].stringValue {
                 case "on-the-go-journey":
@@ -109,8 +109,8 @@ class ActivityProfileHeader: UIView {
                     profilePic.hnk_setImageFromURL(getImageURL(feed["creator"]["profilePicture"].stringValue, width: SMALL_PHOTO_WIDTH))
                     
                     if feed["timestamp"].stringValue == "" {
-                        localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["createdAt"].stringValue, isDate: true)
-                        localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["createdAt"].stringValue, isDate: false)                        
+                        localDate.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["createdAt"].stringValue, isDate: true)
+                        localTime.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["createdAt"].stringValue, isDate: false)                        
                     }
                     
                     break
@@ -124,8 +124,8 @@ class ActivityProfileHeader: UIView {
             else if pageType == viewType.VIEW_TYPE_OTG {
                 userName.text = feed["postCreator"]["name"].stringValue
                 profilePic.hnk_setImageFromURL(getImageURL(feed["postCreator"]["profilePicture"].stringValue, width: SMALL_PHOTO_WIDTH))
-                localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["UTCModified"].stringValue, isDate: true)
-                localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["UTCModified"].stringValue, isDate: false)
+                localDate.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["UTCModified"].stringValue, isDate: true)
+                localTime.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["UTCModified"].stringValue, isDate: false)
             }
             
             else if pageType == viewType.VIEW_TYPE_MY_LIFE {
@@ -136,8 +136,8 @@ class ActivityProfileHeader: UIView {
                 case "ended-journey":
                     userName.text = feed["user"]["name"].stringValue
                     profilePic.hnk_setImageFromURL(getImageURL(feed["user"]["profilePicture"].stringValue, width: SMALL_PHOTO_WIDTH))
-                    localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["startTime"].stringValue, isDate: true)
-                    localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["startTime"].stringValue, isDate: false)
+                    localDate.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["startTime"].stringValue, isDate: true)
+                    localTime.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["startTime"].stringValue, isDate: false)
                     break
                     
                     
@@ -146,15 +146,15 @@ class ActivityProfileHeader: UIView {
                 case "detail-itinerary":
                     userName.text = feed["creator"]["name"].stringValue
                     profilePic.hnk_setImageFromURL(getImageURL(feed["creator"]["profilePicture"].stringValue, width: SMALL_PHOTO_WIDTH))
-                    localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["startTime"].stringValue, isDate: true)
-                    localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["startTime"].stringValue, isDate: false)
+                    localDate.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["startTime"].stringValue, isDate: true)
+                    localTime.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["startTime"].stringValue, isDate: false)
                     break
                     
                 default:
                     userName.text = feed["postCreator"]["name"].stringValue
                     profilePic.hnk_setImageFromURL(getImageURL(feed["postCreator"]["profilePicture"].stringValue, width: SMALL_PHOTO_WIDTH))
-                    localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["UTCModified"].stringValue, isDate: true)
-                    localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["UTCModified"].stringValue, isDate: false)
+                    localDate.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["UTCModified"].stringValue, isDate: true)
+                    localTime.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["UTCModified"].stringValue, isDate: false)
                 }
             }
             
@@ -166,8 +166,8 @@ class ActivityProfileHeader: UIView {
                 case "ended-journey":
                     userName.text = feed["user"]["name"].stringValue
                     profilePic.hnk_setImageFromURL(getImageURL(feed["user"]["profilePicture"].stringValue, width: SMALL_PHOTO_WIDTH))
-                    localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["UTCModified"].stringValue, isDate: true)
-                    localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["UTCModified"].stringValue, isDate: false)
+                    localDate.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["UTCModified"].stringValue, isDate: true)
+                    localTime.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["UTCModified"].stringValue, isDate: false)
                     break
                     
                     
@@ -176,15 +176,15 @@ class ActivityProfileHeader: UIView {
                 case "detail-itinerary":
                     userName.text = feed["creator"]["name"].stringValue
                     profilePic.hnk_setImageFromURL(getImageURL(feed["creator"]["profilePicture"].stringValue, width: SMALL_PHOTO_WIDTH))
-                    localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["UTCModified"].stringValue, isDate: true)
-                    localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["UTCModified"].stringValue, isDate: false)
+                    localDate.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["UTCModified"].stringValue, isDate: true)
+                    localTime.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["UTCModified"].stringValue, isDate: false)
                     break
                     
                 default:
                     userName.text = feed["postCreator"]["name"].stringValue
                     profilePic.hnk_setImageFromURL(getImageURL(feed["postCreator"]["profilePicture"].stringValue, width: SMALL_PHOTO_WIDTH))
-                    localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["UTCModified"].stringValue, isDate: true)
-                    localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["UTCModified"].stringValue, isDate: false)
+                    localDate.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["UTCModified"].stringValue, isDate: true)
+                    localTime.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["UTCModified"].stringValue, isDate: false)
                 }
                 
             }
@@ -192,8 +192,8 @@ class ActivityProfileHeader: UIView {
             else if pageType == viewType.VIEW_TYPE_POPULAR_JOURNEY ||
                 pageType == viewType.VIEW_TYPE_POPULAR_ITINERARY {
                 
-                localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["startTime"].stringValue, isDate: true)
-                localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["startTime"].stringValue, isDate: false)
+                localDate.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["startTime"].stringValue, isDate: true)
+                localTime.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["startTime"].stringValue, isDate: false)
                 
                 switch feed["type"].stringValue {
                 case "on-the-go-journey":
@@ -219,8 +219,8 @@ class ActivityProfileHeader: UIView {
             
             else if pageType == viewType.VIEW_TYPE_SHOW_SINGLE_POST {
                 
-                localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["UTCModified"].stringValue, isDate: true)
-                localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["UTCModified"].stringValue, isDate: false)
+                localDate.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["UTCModified"].stringValue, isDate: true)
+                localTime.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["UTCModified"].stringValue, isDate: false)
                 
                 switch feed["type"].stringValue {
                 case "on-the-go-journey":
@@ -228,8 +228,8 @@ class ActivityProfileHeader: UIView {
                 case "ended-journey":
                     userName.text = feed["user"]["name"].stringValue
                     profilePic.hnk_setImageFromURL(getImageURL(feed["user"]["profilePicture"].stringValue, width: SMALL_PHOTO_WIDTH))
-                    localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["startTime"].stringValue, isDate: true)
-                    localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["startTime"].stringValue, isDate: false)                    
+                    localDate.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["startTime"].stringValue, isDate: true)
+                    localTime.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["startTime"].stringValue, isDate: false)                    
                     break
                     
                     
@@ -240,8 +240,8 @@ class ActivityProfileHeader: UIView {
                     profilePic.hnk_setImageFromURL(getImageURL(feed["creator"]["profilePicture"].stringValue, width: SMALL_PHOTO_WIDTH))
                     
                     if feed["timestamp"].stringValue == "" {
-                        localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["createdAt"].stringValue, isDate: true)
-                        localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["createdAt"].stringValue, isDate: false)                        
+                        localDate.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["createdAt"].stringValue, isDate: true)
+                        localTime.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["createdAt"].stringValue, isDate: false)                        
                     }
                     
                     break
@@ -263,8 +263,8 @@ class ActivityProfileHeader: UIView {
         profilePic.hnk_setImageFromURL(getImageURL(currentUser["profilePicture"].stringValue, width: SMALL_PHOTO_WIDTH))
         
         if feed["date"].stringValue != "" {
-            localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd-MM-yyyy", date: feed["date"].stringValue, isDate: true)
-            localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["date"].stringValue, isDate: false)
+            localDate.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd-MM-yyyy", date: feed["date"].stringValue, isDate: true)
+            localTime.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["date"].stringValue, isDate: false)
         }
         else {
             if feed["type"].stringValue == "quick-itinerary" {
@@ -272,8 +272,8 @@ class ActivityProfileHeader: UIView {
                 dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSZ"
                 let showDate = dateFormatter.string(from: Date())
                 
-                localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd-MM-yyyy", date: showDate, isDate: true)
-                localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: showDate, isDate: false)                
+                localDate.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd-MM-yyyy", date: showDate, isDate: true)
+                localTime.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: showDate, isDate: false)                
             }
             else {
                 localDate.text = ""
@@ -290,8 +290,8 @@ class ActivityProfileHeader: UIView {
         profilePic.hnk_setImageFromURL(getImageURL(currentUser["profilePicture"].stringValue, width: SMALL_PHOTO_WIDTH))
         
         if post.post_date != "" {
-            localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd-MM-yyyy", date: post.post_date, isDate: true)
-            localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: post.post_date, isDate: false)
+            localDate.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd-MM-yyyy", date: post.post_date, isDate: true)
+            localTime.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: post.post_date, isDate: false)
         }
         else {
             localDate.text = ""

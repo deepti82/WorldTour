@@ -244,8 +244,8 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
         profileHeader?.fillProfileHeader(feed:feed, pageType: viewType.VIEW_TYPE_OTG, cellType: feedCellType.CELL_POST_TYPE)
         
         
-        profileHeader?.localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["UTCModified"].stringValue, isDate: true)
-        profileHeader?.localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["UTCModified"].stringValue, isDate: false)
+        profileHeader?.localDate.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["UTCModified"].stringValue, isDate: true)
+        profileHeader?.localTime.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["UTCModified"].stringValue, isDate: false)
         
         
         //  START ACTIVITY TEXT HEADER

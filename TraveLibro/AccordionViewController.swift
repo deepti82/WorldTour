@@ -497,8 +497,8 @@ class allReviewsMLTableViewCell: UITableViewCell {
         categoryImage.image = UIImage(named: getCategory(type: feed["checkIn"]["category"].stringValue))
         categoryImage.tintColor = mainBlueColor
         
-        calendarDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd-MM-yyyy", date: feed["UTCModified"].stringValue, isDate: true)
-        clockTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["UTCModified"].stringValue, isDate: false)
+        calendarDate.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd-MM-yyyy", date: feed["UTCModified"].stringValue, isDate: true)
+        clockTime.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["UTCModified"].stringValue, isDate: false)
 
         
         if feed["type"].stringValue == "travel-life" {

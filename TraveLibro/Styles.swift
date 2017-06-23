@@ -822,6 +822,26 @@ func isLocalFeed(feed: JSON) -> Bool {
 }
 
 
+func changeDateFormat(_ givenFormat: String, getFormat: String, date: String, isDate: Bool) -> String {
+    
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = givenFormat
+    let date = dateFormatter.date(from: date)
+    
+    dateFormatter.dateFormat = getFormat
+    
+    if isDate {
+        
+        dateFormatter.dateStyle = .medium
+        
+    }
+    var goodDate = "";
+    if(date != nil) {
+        goodDate = dateFormatter.string(from: date!)
+    }
+    return goodDate
+}
+
 //MARK: - Sort JSON Array
 
 func sortJSONArray(inputArray:[JSON], key: String) -> [JSON] {
@@ -898,6 +918,19 @@ func isSelfUser(otherUserID: String) -> Bool {
     else {
         return false
     }
+}
+
+func isSelfUserLoggedIn() -> Bool {
+    if currentUser != nil {
+        if isSelfUser(otherUserID: currentUser["_id"].stringValue) {
+            return true
+        }
+        else {
+            return false
+        }
+    }
+    
+    return false
 }
 
 

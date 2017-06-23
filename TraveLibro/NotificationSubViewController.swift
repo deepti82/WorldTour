@@ -137,10 +137,6 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
                     else if response["value"].bool! {
                         
                         if !(response["data"].arrayValue.isEmpty){
-                            var indexx = 0
-                            if self.currentPageNumber != 1 {
-                                indexx = (self.notifications.count - 1)
-                            }                        
                             if self.currentPageNumber == 1 {
                                 self.notifications = []
                             }
@@ -942,7 +938,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
     
     func customRemoteNotificationReceived(notification: Notification) {
         
-        let remoteNotifications = notification.object as? Array<JSON>
+//        let remoteNotifications = notification.object as? Array<JSON>
         
 //        if notifications.isEmpty {
             self.pullToRefreshCalled()

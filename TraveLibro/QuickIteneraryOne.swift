@@ -152,7 +152,7 @@ class QuickIteneraryOne: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         
         monthPickerView.delegate = self
         
-        let currentMonth = NSCalendar(identifier: NSCalendar.Identifier.gregorian)!.component(.month, from: NSDate() as Date)
+        _ = NSCalendar(identifier: NSCalendar.Identifier.gregorian)!.component(.month, from: NSDate() as Date)
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {

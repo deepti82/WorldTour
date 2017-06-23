@@ -373,17 +373,11 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
         
         var followId: String!
         
-        var Index = 0
-        
         for i in 0 ..< followers.count {
             
-            if followers[i]["urlSlug"].string! == followName {
-                
+            if followers[i]["urlSlug"].string! == followName {                
                 followId = followers[i]["_id"].string!
-                Index = i
-                
-            }
-            
+            }            
         }
         
         request.followUser(user.getExistingUser(), followUserId: followId, completion: {(response) in
@@ -416,17 +410,11 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
         
         var unfollowId: String!
         
-        var Index = 0
-        
         for i in 0 ..< followers.count {
             
             if followers[i]["urlSlug"].string! == unfollowName {
-                
                 unfollowId = followers[i]["_id"].string!
-                Index = i
-                
             }
-            
         }
         
         request.unfollow(user.getExistingUser(), unFollowId: unfollowId, completion: {(response) in

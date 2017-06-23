@@ -80,18 +80,12 @@ public class QuickItinerary {
         var retVal:[JSON] = []
         
         do {
-            var check = false;
             let query = post.select(id,quickJson,status,editId)
             for post1 in try db.prepare(query) {
-                check = true
+            
                 let p = LocalLifePostModel();
                 
-                var postID = post1[id]
-                
-                let id_temp = Int(post1[id])
                 var quickItineryL:JSON = JSON(data: (String(post1[quickJson])?.data(using: .utf8))! )
-                print("\n quickItinery in getAll : \(quickItineryL)")
-                let status_temp = Bool(post1[status])
                 
                 let actualId = Int(post1[id]) + 30000
                 

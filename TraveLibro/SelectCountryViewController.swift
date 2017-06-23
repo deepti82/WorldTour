@@ -353,7 +353,7 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
                         prevVC.whichView = "BucketList"
                         prevVC.getBucketList()
                         prevVC.tableView.reloadData()
-                        self.navigationController?.popViewController(animated: true)
+                        _ = self.navigationController?.popViewController(animated: true)
                         
                     }
                     
@@ -647,30 +647,13 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
         
     }
     
-    func sectionIndexTitles(for tableView: UITableView) -> [String]? {
-        
-//        let indexLetters =
-//        let indexOfLetters = indexLetters.componentsSeparatedByString(" ")
-        
+    func sectionIndexTitles(for tableView: UITableView) -> [String]? {        
         if whichView == "addYear" {
             return nil
         }
-        
-//        var indexOfLetters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "X", "Y", "Z"]
-        
-        if countries != nil {
-            for country in countries {
-                
-//                indexOfLetters.append(String(country["name"].string!.characters.first!))
-                
-            }
-            
-//            indexOfLetters = Array(Set(indexOfLetters))
-//            indexOfLetters = indexOfLetters.sorted()
-        }
         return nil
-        
     }
+    
     func setImage(_ imageView: UIImageView, imageName: String) {
         
         let isUrl = verifyUrl(imageName)
