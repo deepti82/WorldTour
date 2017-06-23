@@ -216,6 +216,15 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
         }
         
         self.layoutSubviews()
+        
+        if post.post_isOffline {
+            for subvs in self.subviews {
+                if !(subvs.isKind(of: DottedLine.self)) {
+                    subvs.backgroundColor = offlinePostColor                    
+                }
+            }
+        }
+        
     }
     
     func headerLayout(feed:JSON) {
@@ -234,22 +243,9 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
         profileHeader?.followButton.isHidden = true
         profileHeader?.fillProfileHeader(feed:feed, pageType: viewType.VIEW_TYPE_OTG, cellType: feedCellType.CELL_POST_TYPE)
         
-        if feed["type"].stringValue == "on-the-go-journey"{
-            profileHeader?.localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["startTime"].stringValue, isDate: true)
-            profileHeader?.localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["startTime"].stringValue, isDate: false)
-        }else if feed["type"].stringValue == "ended-journey"{
-            profileHeader?.localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["endTime"].stringValue, isDate: true)
-            profileHeader?.localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["endTime"].stringValue, isDate: false)
-        }else if feed["type"].stringValue == "quick-itinerary"{
-            profileHeader?.localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["createdAt"].stringValue, isDate: true)
-            profileHeader?.localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["createdAt"].stringValue, isDate: false)
-        }else if feed["type"].stringValue == "detail-itinerary"{
-            profileHeader?.localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["startDate"].stringValue, isDate: true)
-            profileHeader?.localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["startTime"].stringValue, isDate: false)
-        }else {
-            profileHeader?.localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["UTCModified"].stringValue, isDate: true)
-            profileHeader?.localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["UTCModified"].stringValue, isDate: false)
-        }
+        
+        profileHeader?.localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["UTCModified"].stringValue, isDate: true)
+        profileHeader?.localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["UTCModified"].stringValue, isDate: false)
         
         
         //  START ACTIVITY TEXT HEADER
@@ -259,6 +255,7 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
             flag = true
         }
         
+        textHeader?.backgroundColor = UIColor(white: 1, alpha: 0.8)
         textHeader?.displayText = getThought(feed)
         textHeader?.setText(text: (textHeader?.displayText)!)
         
@@ -299,6 +296,7 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
                 flag = true
             }
             
+            textHeader?.backgroundColor = UIColor(white: 1, alpha: 0.8)
             textHeader?.displayText = getThoughtForLocalPost(post)
             textHeader?.setText(text: (textHeader?.displayText)!)
             if textHeader?.displayText.string != "" {
@@ -307,7 +305,7 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
                 textHeader?.headerText.frame = CGRect(x: 8, y: 0, width: self.frame.width-16, height: textHeight)
                 textHeader?.headerText.center = (textHeader?.headerText.center)!
                 if flag {
-                    self.addSubview(textHeader!)                    
+                    self.addSubview(textHeader!)
                 }
             }
         }
