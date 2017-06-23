@@ -592,7 +592,14 @@ public class Post {
                 var photosJson:[JSON] = []
                 
                 for img in p.imageArr {
-                    photosJson.append(img.parseJson())
+                    if post[type] == "addPhotosVideos" {
+                        if img.editId == "" {
+                            photosJson.append(img.parseJson())                            
+                        }
+                    }
+                    else {
+                        photosJson.append(img.parseJson())
+                    }
                 }
                 
                 let v = PostVideo();

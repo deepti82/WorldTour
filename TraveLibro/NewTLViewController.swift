@@ -236,6 +236,10 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         
         print("\n\n videoURL : \(self.addView.videoURL) \n videoCaption : \(self.addView.videoCaption)")
         
+        for img in self.addView.editPost.imageArr {
+            self.addView.imageArr.append(img)
+        }
+        
         let post = Post()
         let po = post.setPost(user.getExistingUser(), 
                               username: "", 
@@ -260,26 +264,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
                               oldVideoStream: nil,
                               postType: editPostType.EDITING_PHOTO_VIDEO)
         
-//        let post = PostEditPhotosVideos()
-//        post.saveAddPhotosVideos(uniqueId: self.addView.editPost.post_uniqueId, 
-//                                 imageArr: self.addView.imageArr,
-//                                 buddy:JSON(self.addView.addedBuddies).rawString()!)
-        
-        
-//        let po = Post()
-//        var postJSON:JSON = self.addView.editPost.jsonPost
-//        postJSON["isPostOffline"] = true
-//        postJSON["editPostType"] = 2
-//        
-//        var photosJson:[JSON] = []
-//        for img in self.addView.imageArr {
-//            photosJson.append(img.parseJson())
-//        }
-//        
-//        postJSON["photos"] = JSON(photosJson)
-//        postJSON["buddies"] = JSON(self.addView.addedBuddies)
-//
-//        po.jsonToPost(postJSON);
         self.editPostFromLayout(post: po, postLayout: self.editingPostLayout)
         
         let i = PostImage()
@@ -1340,31 +1324,30 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     
     func editPostFromLayout(post:Post, postLayout:PhotosOTG2?) {
        
-        if postLayout != nil {            
+        if postLayout != nil {
             
             (postLayout!.rateButton)?.removeFromSuperview()
+            postLayout?.rateButton = nil
+            
             (postLayout!.footerView)?.removeFromSuperview()
+            postLayout?.footerView = nil
             
-            let uploadingView = UploadingToCloud(frame: CGRect(x: 0, y: 0, width: (postLayout?.frame.size.width)!, height: 23))
-            
-            var text = ""            
-            switch post.post_editType {
-            case 0:
-                text = "EDIT_NEW_POST"
+            if postLayout?.postTop.videoArr.count != post.videoArr.count ||
+                postLayout?.postTop.imageArr.count != post.imageArr.count ||
+                postLayout?.postTop.post_locationImage != post.post_locationImage {
                 
-            case 1:
-                text = "EDITING_ACTIVITY"
+                postLayout?.mainPhoto?.removeFromSuperview()
+                postLayout?.mainPhoto = nil
                 
-            case 2:
-                text = "EDITING_PHOTO_VIDEO"
+                postLayout?.videoContainer?.removeFromSuperview()
+                postLayout?.videoContainer = nil
                 
-            default:
-                text = ""
+                postLayout?.centerView?.removeFromSuperview()
+                postLayout?.centerView = nil
             }
             
-            let localJson:JSON = ["type":"editTravelLifePost","editType":text]            
-            uploadingView.fillUploadingStrip(feed: localJson)
-            postLayout?.addSubview(uploadingView)
+            postLayout?.generatePost(post)
+
             self.layout.layoutSubviews()            
         }
     }
@@ -1374,7 +1357,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         var thoughts = String()
         var postTitle = ""
         var photos: [JSON] = []
-        //        let tags = ActiveLabel()
         
         if post["thoughts"] != nil && post["thoughts"].string != "" {
             
