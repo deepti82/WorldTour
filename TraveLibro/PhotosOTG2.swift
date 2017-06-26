@@ -287,6 +287,9 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
         profileHeader?.followButton.isHidden = true
         profileHeader?.fillProfileHeaderForLocalPost(post: post)
         
+        profileHeader?.localDate.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: post.post_date, isDate: true)
+        profileHeader?.localTime.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: post.post_date, isDate: false)
+        
         if post.post_thoughts != "" {
             
             var flag = false
