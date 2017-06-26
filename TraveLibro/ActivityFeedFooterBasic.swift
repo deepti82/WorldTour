@@ -624,7 +624,7 @@ class ActivityFeedFooterBasic: UIView {
                         {action -> Void in                   
                             (self.parentController as! MyLifeViewController).showEditActivity(self.postTop)
                         }
-                        actionSheetControllerIOS8.addAction(EditLocalActivity)
+//                        actionSheetControllerIOS8.addAction(EditLocalActivity)
                         
                         let EditDnt: UIAlertAction = UIAlertAction(title: "Change Date & Time", style: .default)
                         { action -> Void in
@@ -658,7 +658,7 @@ class ActivityFeedFooterBasic: UIView {
                         { action -> Void in
                             (self.parentController as! MyLifeViewController).showEditAddActivity(self.postTop)
                         }
-                        actionSheetControllerIOS8.addAction(addPhotoVideoToActivity)
+//                        actionSheetControllerIOS8.addAction(addPhotoVideoToActivity)
                         
                         let cancel: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel)
                         { action -> Void in
