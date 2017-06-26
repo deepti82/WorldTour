@@ -24,11 +24,13 @@ class SearchLocationTableViewController: UITableViewController, UISearchBarDeleg
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setAnalytics(name: "Search Location")
+        UIApplication.shared.statusBarView?.backgroundColor = NAVIGATION_BAR_CLEAR_COLOR
         self.navigationController?.navigationBar.isTranslucent = true
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        UIApplication.shared.statusBarView?.backgroundColor = NAVIGATION_BAR_COLOR
         self.navigationController?.navigationBar.isTranslucent = false
     }
     
@@ -79,7 +81,6 @@ class SearchLocationTableViewController: UITableViewController, UISearchBarDeleg
 
     
     func configureSearchController() {
-        
         searchController = UISearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = true

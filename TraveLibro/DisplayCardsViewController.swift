@@ -74,6 +74,7 @@ class DisplayCardsViewController: UIPageViewController, UIPageViewControllerData
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        UIApplication.shared.statusBarView?.backgroundColor = NAVIGATION_BAR_CLEAR_COLOR
         self.navigationController?.navigationBar.isTranslucent = true
         pageControl.frame = CGRect(x: self.view.center.x, y: screenHeight - 15, width: 60, height: 30)
     }

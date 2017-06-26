@@ -45,60 +45,47 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
         mainTableView.sectionIndexTrackingBackgroundColor = UIColor.clear
         
         if whichView == "CountriesVisited" {
-             self.title = "Countries Visited"
-            self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Avenir-Medium", size: 18)!]
 
             rightButton.setImage(UIImage(named: "arrow_next_fa"), for: UIControlState())
             rightButton.addTarget(self, action: #selector(SelectCountryViewController.addYear(_:)), for: .touchUpInside)
             rightButton.frame = CGRect(x: 0, y: 8, width: 30, height: 30)
             
-            self.customNavigationBar(left: leftButton, right: rightButton)
+            self.customNavigationTextBar(left: leftButton, right: rightButton, text: "Countries Visited")
             
         }
         
-        else if whichView == "BucketList" {
-            
-            self.title = "Bucket List"
-            self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Avenir-Medium", size: 18)!]
+        else if whichView == "BucketList" {            
 
-//            rightButton.setImage(UIImage(named: "arrow_next_fa"), forState: .Normal)
             rightButton.setTitle("Save", for: UIControlState())
             rightButton.titleLabel?.font = avenirFont
             rightButton.addTarget(self, action: #selector(SelectCountryViewController.saveNPop(_:)), for: .touchUpInside)
             rightButton.frame = CGRect(x: 0, y: 10, width: 50, height: 30)
             
-            self.customNavigationBar(left: leftButton, right: rightButton)
-            
             self.view.backgroundColor = UIColor.white
+            
+            self.customNavigationTextBar(left: leftButton, right: rightButton, text: "Bucket List")
             
             print("already selected: \(alreadySelected)")
             
         }
         
         else if whichView == "selectNationality" {
-             self.title = "Countries Visited"
-            self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Avenir-Medium", size: 18)!]
-
+            
             getDarkBackGroundBlur(self)
             rightButton.setImage(UIImage(named: "arrow_next_fa"), for: UIControlState())
             rightButton.addTarget(self, action: #selector(SelectCountryViewController.chooseCity(_:)), for: .touchUpInside)
             rightButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
             
-            self.customNavigationBar(left: leftButton, right: rightButton)
-            
-            
+            self.customNavigationTextBar(left: leftButton, right: rightButton, text: "Countries Visited")
         }
         
         else if whichView == "addYear" {
             
-//            getDarkBackGroundBlur(self)
             rightButton.setTitle("Save", for: UIControlState())
             rightButton.titleLabel?.font = UIFont(name: "Avenir-Medium", size: 15)
             rightButton.addTarget(self, action: #selector(SelectCountryViewController.saveCountriesVisited(_:)), for: .touchUpInside)
             rightButton.frame = CGRect(x: 0, y: 0, width: 70, height: 30)
             self.customNavigationBar(left: leftButton, right: rightButton)
-            
-            
         }
         
         searchFieldView = SearchFieldView(frame: CGRect(x: 10, y: 0, width: searchView.frame.width + 25, height: searchView.frame.height))
@@ -166,13 +153,15 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setAnalytics(name: "Select Country")
-//        self.navigationController?.navigationBar.isTranslucent = true
+        setAnalytics(name: "Select Country")        
+        self.navigationController?.navigationBar.isTranslucent = true
+        UIApplication.shared.statusBarView?.backgroundColor = NAVIGATION_BAR_CLEAR_COLOR
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.navigationBar.isTranslucent = false
+        UIApplication.shared.statusBarView?.backgroundColor = NAVIGATION_BAR_COLOR
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
@@ -258,7 +247,6 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
     }
     
     func configureSearchController() {
-        
         searchController = UISearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = true
