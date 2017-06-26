@@ -483,17 +483,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
         if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
             print("\n current version is  : \(version)")
             
-            var fullVersionString = version.replacingOccurrences(of: ".", with: "")
-            let array = version.components(separatedBy: ".")
-            
-            if array.count < 3 {
-                for _ in array.count..<3 {
-                    fullVersionString.append("0")
-                }
+            let isSchemaUpdated = UserDefaults.standard.string(forKey: "isTableSchemaUpdated")
+            if (isSchemaUpdated != nil || isSchemaUpdated == "1") {
+//                print("\n In iff")
             }
-            
-            if ((Int(fullVersionString))! < 406) {
-                self.dropDBTables()                
+            else {
+//                print("\n In else")
+                UserDefaults.standard.set("1", forKey: "isTableSchemaUpdated")
+                self.dropDBTables()
             }
         }
     }
