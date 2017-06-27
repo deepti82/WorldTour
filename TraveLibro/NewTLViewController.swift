@@ -71,6 +71,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     var fromOutSide = ""
     var fromType = ""
     let userm = User()
+    var journeyCreator = ""
 
     
     @IBAction func addMoreBuddies(_ sender: AnyObject) {
@@ -583,6 +584,9 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
                     }
                     else if response["value"].bool! {
                         whichJourney = ""
+                        
+                        self.journeyCreator = response["data"]["journeyCreator"].stringValue
+                        
                         self.cancelButton(nil)
                         self.layout.removeAll()
                         self.prevPosts = []
@@ -626,6 +630,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
             DispatchQueue.main.async(execute: {
                 self.loader.hideOverlayView()
 
+                print("\n\n JourneyJSON : \(response)")
                 if response.error != nil {
                     print("error: \(response.error!.localizedDescription)")
                 }
@@ -635,6 +640,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
                     }else{
                         whichJourney = "otg"
                     }
+                    self.journeyCreator = response["data"]["journeyCreator"].stringValue
+                    
                     jouurneyToShow = response["data"]
                     self.cancelButton(nil)
                     self.layout.removeAll()
@@ -1130,8 +1137,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         if fromOutSide == "" {
             getJourney(canGetFromCache: getFromCache)
         }else{            
-            if !isSelfJourney(journeyID: fromOutSide) {
-                addPostsButton.isHidden = true                
+            if ((!isSelfJourney(journeyID: fromOutSide, creatorId: self.journeyCreator)) || (self.fromType == "ended-journey")) {
+                addPostsButton.isHidden = true
             }
             getOneJourney()
         }
@@ -1572,7 +1579,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     //MARK:- First View Actions
     
     func checkForLocation(_ sender: UIButton?) {
-        if isSelfJourney(journeyID: fromOutSide) {
+        if isSelfJourney(journeyID: fromOutSide, creatorId: self.journeyCreator) {
             self.detectLocation()            
         }
     }
@@ -1909,7 +1916,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
                 })
             }
             else {
-                if isSelfJourney(journeyID: fromOutSide) {
+                if isSelfJourney(journeyID: fromOutSide, creatorId: self.journeyCreator) {
                     self.detectLocation()
                 }
             }
@@ -2199,11 +2206,13 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         otgView.closeBuddies.isHidden = true
         infoButton.isHidden = true
         
-        if isSelfJourney(journeyID: fromOutSide) {
-            addPostsButton.isHidden = false
+        
+        
+        if ((!isSelfJourney(journeyID: fromOutSide, creatorId: self.journeyCreator)) || (self.fromType == "ended-journey")) {
+            addPostsButton.isHidden = true
         }
         else {
-            addPostsButton.isHidden = true
+            addPostsButton.isHidden = false
         }
         
         
@@ -2390,9 +2399,10 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     
     //MARK: - Helper Functions
     
-    func isSelfJourney(journeyID: String) -> Bool {
+    func isSelfJourney(journeyID: String, creatorId: String) -> Bool {
+        print("\n currentUser : \(currentUser["_id"].stringValue)     isSelfUser : \(isSelfUser(otherUserID: currentUser["_id"].stringValue))     journeyID: \(currentUser["journeyId"].stringValue)")
         if ((journeyID == "") ||
-            (isSelfUser(otherUserID: currentUser["_id"].stringValue) && currentUser["journeyId"].stringValue == journeyID)) {
+            (isSelfUser(otherUserID: currentUser["_id"].stringValue) && (self.journeyCreator == creatorId))) {
             return true
         }
         return false

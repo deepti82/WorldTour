@@ -658,7 +658,7 @@ extension NewTLViewController {
             self.view.bringSubview(toFront: mainFooter!)            
         }
         self.view.bringSubview(toFront: infoButton)
-        if (globalNewTLViewController?.isSelfJourney(journeyID: fromOutSide))! {
+        if (globalNewTLViewController?.isSelfJourney(journeyID: fromOutSide, creatorId: journeyCreator))! {
             self.scrollToBottom()
         }
         

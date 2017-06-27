@@ -215,8 +215,8 @@ public class QuickItinerary {
             if(!check && (uploadFlag == true)) {
                 if globalNewTLViewController != nil {
                     if(globalNewTLViewController?.isActivityHidden)! {
-                        if (globalNewTLViewController?.isSelfJourney(journeyID: (globalNewTLViewController?.fromOutSide)!))! {
-                            globalNewTLViewController?.getJourney(canGetFromCache: false)                            
+                        if (globalNewTLViewController?.isSelfJourney(journeyID: (globalNewTLViewController?.fromOutSide)!, creatorId: (globalNewTLViewController?.journeyCreator)!))! {
+                            globalNewTLViewController?.fetchJourneyData(false)
                         }
                     }                    
                 }
