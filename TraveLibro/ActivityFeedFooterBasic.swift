@@ -444,6 +444,7 @@ class ActivityFeedFooterBasic: UIView {
     //MARK: - Rating
     
     @IBAction func rateThisClicked(_ sender: UIButton) {
+        newRating = nil
         openRating()
     }
     
