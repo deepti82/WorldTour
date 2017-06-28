@@ -191,6 +191,7 @@ extension NewTLViewController {
         newScroll.contentSize.height = self.view.frame.height
         
         self.addView.typeOfAddActivtiy = "EditActivity"
+        
         if(post.imageArr.count > 0) {
             self.addView.imageArr = post.imageArr
             self.addView.addPhotoToLayout();

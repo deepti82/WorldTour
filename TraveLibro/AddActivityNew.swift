@@ -763,12 +763,19 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
         addPhotos(sender)
     }
     
-    func addCaption(_ sender: UIButton) {
+    func addCaption(_ sender: AnyObject) {
         let captionVC = storyboard?.instantiateViewController(withIdentifier: "addCaptions") as! AddCaptionsViewController
         captionVC.imageArr = imageArr
         captionVC.addActivity = self
         
-        captionVC.currentImageIndex = sender.tag
+        if ((sender as AnyObject).isKind(of: UITapGestureRecognizer.self)) {
+            let tap = sender as? UITapGestureRecognizer
+            let view = tap?.view
+            captionVC.currentImageIndex = (view?.tag)!
+        }
+        else {
+            captionVC.currentImageIndex = (sender as! UIButton).tag
+        }
         globalNavigationController?.setNavigationBarHidden(false, animated: false)
         globalNavigationController!.pushViewController(captionVC, animated: true)
     }
@@ -781,17 +788,34 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
     //MARK: - UI Helpers
     
     func addPhotoToLayout() {
+        
         self.horizontalScrollForPhotos.removeAll()
+        
         for i in 0 ..< imageArr.count {
-            let photosButton = UIButton(frame: CGRect(x: 6, y: 0, width: 65, height: 65))
-            photosButton.setImage(imageArr[i].image, for: .normal)
-            photosButton.imageView?.contentMode = UIViewContentMode.scaleAspectFill
+            let photosButton = UIImageView(frame: CGRect(x: 6, y: 0, width: 65, height: 65))
+            photosButton.image = UIImage(named: "logo-default")
+            photosButton.contentMode = UIViewContentMode.scaleAspectFill
+            
+            if(imageArr[i].image != nil) {
+                photosButton.image = imageArr[i].image
+            } else {
+                
+                let urlStr = imageArr[i].imageUrl.absoluteString + "&width=500"
+                photosButton.sd_setImage(with: URL(string:urlStr)!,
+                                         placeholderImage: getPlaceholderImage())
+                
+                let tapGestureRecognizer = UITapGestureRecognizer(target:self, action: #selector(self.addCaption(_:)))
+                photosButton.isUserInteractionEnabled = true
+                photosButton.addGestureRecognizer(tapGestureRecognizer)
+            }
+            
+            photosButton.contentMode = UIViewContentMode.scaleAspectFill
             photosButton.layer.cornerRadius = 5.0
             photosButton.tag = i
             photosButton.clipsToBounds = true
-            photosButton.addTarget(self, action: #selector(self.addCaption(_:)), for: .touchUpInside)
             self.horizontalScrollForPhotos.addSubview(photosButton)
         }
+        
         if(self.typeOfAddActivtiy != "EditActivity") {
             let addMorePhotosButton = UIButton(frame: CGRect(x: 6, y: 0, width: 65, height: 65))
             addMorePhotosButton.backgroundColor = UIColor.black.withAlphaComponent(0.6)
