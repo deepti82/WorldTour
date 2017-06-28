@@ -183,8 +183,6 @@ public class PostImage {
                             .limit(1)
                     }
                     
-                    print("")
-                    
                     
                     for photo in try db.prepare(query) {
                         print("\n &&&&&&&& uploading photos from post : \(photo[post])\n &&&&&&&&")

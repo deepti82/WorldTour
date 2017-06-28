@@ -56,14 +56,13 @@ public class PostVideo {
         var filename:URL!
         var filenameOnly = "";
 
-        print(self.caption);
         let data = NSData(contentsOf: self.videoUrl)
         do {
             filenameOnly = String(Date().ticks) + "." + self.videoUrl.pathExtension
             filename = getDocumentsDirectory().appendingPathComponent( filenameOnly )
             try? data?.write(to: filename)
         }
-        let insert = videos.insert(post <- Int64(self.postId) , captions <- self.caption ,localUrl <- filenameOnly,url <- "",thumbnail <- "", videoUploadStatus <- 0)
+        let insert = videos.insert(post <- Int64(self.postId) , captions <- self.caption ,localUrl <- filenameOnly, url <- serverUrl, thumbnail <- serverUrlThumbnail, videoUploadStatus <- 0)
         do {
             try db.run(insert)
         }
@@ -193,9 +192,7 @@ public class PostVideo {
     }
     
     func parseJson() -> JSON {
-        print(self.serverUrl)
-        print(self.caption)
-        print(self.serverUrlThumbnail)
+        
         var photoJson:JSON = ["name":self.serverUrl,"caption":self.caption,"thumbnail":self.serverUrlThumbnail,"localUrl":self.localURL]
         if(self.editId != "") {
             photoJson["_id"] = JSON(self.editId)
@@ -206,6 +203,7 @@ public class PostVideo {
     
     func rollbackVideoTableProgress() {
         do {
+            
             let query = videos.select(id,post,captions,localUrl,url)
                 .filter(url == "" && (videoUploadStatus == 1))
             

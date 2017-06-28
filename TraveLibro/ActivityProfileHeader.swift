@@ -80,6 +80,7 @@ class ActivityProfileHeader: UIView {
             
             setFollowButtonTitle(button: followButton, followType: feed["following"].intValue, otherUserID: (feed["_id"] != nil ? feed["_id"].stringValue : "admin"))
             
+            //userName.textColor = mainBlueColor
             
             if (pageType == viewType.VIEW_TYPE_ACTIVITY ||
                 pageType == viewType.VIEW_TYPE_SHOW_SINGLE_POST ||
@@ -260,6 +261,7 @@ class ActivityProfileHeader: UIView {
         self.followButton.isHidden = true
         
         userName.text = currentUser["name"].stringValue
+        //userName.textColor = offlinePostTextColor
         profilePic.hnk_setImageFromURL(getImageURL(currentUser["profilePicture"].stringValue, width: SMALL_PHOTO_WIDTH))
         
         if feed["date"].stringValue != "" {
@@ -287,6 +289,7 @@ class ActivityProfileHeader: UIView {
         self.followButton.isHidden = true
         
         userName.text = currentUser["name"].stringValue
+        //userName.textColor = offlinePostTextColor
         profilePic.hnk_setImageFromURL(getImageURL(currentUser["profilePicture"].stringValue, width: SMALL_PHOTO_WIDTH))
         
         if post.post_date != "" {

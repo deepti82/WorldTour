@@ -219,8 +219,18 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
         
         if post.post_isOffline {
             for subvs in self.subviews {
-                if !(subvs.isKind(of: DottedLine.self)) {
-                    subvs.backgroundColor = offlinePostColor                    
+                if (!(subvs.isKind(of: DottedLine.self)) &&
+                    !(subvs.isKind(of: ActivityProfileHeader.self)) &&
+                    !(subvs.isKind(of: UploadingToCloud.self)) &&
+                    !(subvs.isKind(of: ActivityTextHeader.self))) {
+                    
+                    //subvs.layer.zPosition = -1
+                    
+                    let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.light)
+                    let blurEffectView = UIVisualEffectView(effect: blurEffect)
+                    blurEffectView.frame = subvs.bounds
+                    blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+                    subvs.addSubview(blurEffectView)
                 }
             }
         }

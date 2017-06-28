@@ -127,7 +127,7 @@ public class Post {
                 self.userName <- username,
                 self.checkInChange <- isCheckInChange,
                 self.prevBuddyDb <- "",
-                self.oldVideo <- "",
+                self.oldVideo <- (oldVideoStream != nil ? oldVideoStream! : ""),
                 self.postEditType <- self.getPostType(from: postType)
             )
         }
@@ -192,18 +192,25 @@ public class Post {
                 image.save()
             }
             
+            print("prevVideoString : \(oldVideoStream)")
+            
             if(videoURL != nil) {
                 let video = PostVideo()
                 video.videoUrl = videoURL
                 video.caption = videoCaption
                 video.postId = Int(localPostId)
+                if (oldVideoStream != nil && oldVideoStream != "") {
+                    let serverPath = videoURL?.lastPathComponent
+                    print("serverPath: \(serverPath)")
+                    video.serverUrl = serverPath!
+                }
                 video.save()
             }
             print("\n isUploadingInProgress : \(isUploadingInProgress)")
-            if (!isUploadingInProgress && (localPostId == Int64(1))) {
-                currentUploadingPostID = localPostId
-            }
-            print("currentUploadingPostID inside setPost: \(currentUploadingPostID)")
+//            if (!isUploadingInProgress && (localPostId == Int64(1))) {
+//                currentUploadingPostID = localPostId
+//            }
+            print("\n currentUploadingPostID inside setPost: \(currentUploadingPostID)")
             
             let query = self.getAllPost(postid: localPostId)
             for post in query {

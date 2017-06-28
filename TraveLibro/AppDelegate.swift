@@ -42,6 +42,7 @@ let darkOrangeColor = UIColor(hex: "FF6759").cgColor
 let mainGreenColor = UIColor(red: 75/255, green: 203/255, blue: 187/255, alpha: 1) // #4BCBBB
 let endJourneyColor = UIColor(red: 87/255, green: 211/255, blue: 199/255, alpha: 1) // #57D3C7
 let offlinePostColor = UIColor(red: 100/255, green: 100/255, blue: 100/255, alpha: 1)
+let offlinePostTextColor = UIColor(hex: "#6E6F76")
 
 let navGreen = UIColor(red: 17/255, green: 211/255, blue: 203/255, alpha: 1) // #11d3cb
 let navBlue = UIColor(red: 44/255, green: 55/255, blue: 87/255, alpha: 1) // #2c3757

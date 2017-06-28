@@ -245,6 +245,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         dateFormatterTwo.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSZ"
         self.currentTime = dateFormatterTwo.string(from: Date())
         
+        let prevVideo = (self.addView.videoURL != nil) ? (self.addView.editPost.jsonPost["videos"].isEmpty ? nil : (self.addView.editPost.jsonPost["videos"].rawString())) : nil
+        
         let post = Post()
         let po = post.setPost(user.getExistingUser(), 
                               username: "", 
@@ -266,7 +268,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
                               videoURL: self.addView.videoURL,
                               videoCaption: self.addView.videoCaption,
                               isCheckInChange: false,
-                              oldVideoStream: nil,
+                              oldVideoStream: prevVideo,
                               postType: editPostType.EDITING_PHOTO_VIDEO)
         
         self.editPostFromLayout(post: po, postLayout: self.editingPostLayout)
@@ -340,8 +342,10 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
             dateFormatterTwo.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSZ"
             self.currentTime = dateFormatterTwo.string(from: Date())
             
+            print("\n VideoURL : \(self.addView.videoURL) caption : \(self.addView.videoCaption)")
+            
             let post  = Post()
-            let po = post.setPost(currentUser["_id"].stringValue, username: currentUser["name"].stringValue, JourneyId: self.myJourney["uniqueId"].stringValue, editPostId: self.addView.editPost.post_ids, editPostUniqueID: self.addView.editPost.post_uniqueId, type: "editPost", Date: self.currentTime, Location: location!, Category: category, Latitude: lat, Longitude: lng, Country: self.addView.currentCountry, City: self.addView.currentCity, thoughts: thoughts, newbuddies: newbuddies!, oldbuddies: prevbuddies, imageArr: self.addView.imageArr, videoURL: nil, videoCaption: "", isCheckInChange: isCheckInchanged, oldVideoStream: prevVideo, postType: editPostType.EDITING_ACTIVITY)
+            let po = post.setPost(currentUser["_id"].stringValue, username: currentUser["name"].stringValue, JourneyId: self.myJourney["uniqueId"].stringValue, editPostId: self.addView.editPost.post_ids, editPostUniqueID: self.addView.editPost.post_uniqueId, type: "editPost", Date: self.currentTime, Location: location!, Category: category, Latitude: lat, Longitude: lng, Country: self.addView.currentCountry, City: self.addView.currentCity, thoughts: thoughts, newbuddies: newbuddies!, oldbuddies: prevbuddies, imageArr: self.addView.imageArr, videoURL: self.addView.videoURL, videoCaption: self.addView.videoCaption, isCheckInChange: isCheckInchanged, oldVideoStream: prevVideo, postType: editPostType.EDITING_ACTIVITY)
             self.editPostFromLayout(post: po, postLayout: self.editingPostLayout)
             
             let i = PostImage()
