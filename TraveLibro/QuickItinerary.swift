@@ -156,7 +156,7 @@ public class QuickItinerary {
             else {
                 print("\n else succeed")
                 query = post.select(id,quickJson,status,editId)
-                    .filter(QIUploadStatus == 0 || QIUploadStatus == 3 && (id == currentUploadingPostID))
+                    .filter((QIUploadStatus == 0 || QIUploadStatus == 3) && (id == currentUploadingPostID))
                     .limit(1)
             }
             

@@ -141,6 +141,7 @@ public class PostVideo {
                     self.uploadVideo()
                 })
             }
+            
             if(!check) {
                 print(" ******* videoCheck 4")
                 let po = Post();

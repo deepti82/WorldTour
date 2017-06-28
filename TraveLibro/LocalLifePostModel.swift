@@ -384,7 +384,7 @@ public class LocalLifePostModel {
             else {
                 print("\n else succeed")
                 query = post.select(id,type,userId,journeyId,thoughts,location,category,city,country,latitude,longitude,date,buddyDb)
-                    .filter(localLifePostStatus == 0 || localLifePostStatus == 3 && (id == currentUploadingPostID))
+                    .filter((localLifePostStatus == 0 || localLifePostStatus == 3) && (id == currentUploadingPostID))
                     .limit(1)
             }
             

@@ -67,7 +67,7 @@ public class PostEditPhotosVideos {
             else {
                 print("\n else succeed")
                 query = addPhotosVideos_db.select(id_db,uniqueId_db,buddyDb)
-                    .filter(postEditUploadStatus == 0 || postEditUploadStatus == 3 && (id_db == currentUploadingPostID))
+                    .filter((postEditUploadStatus == 0 || postEditUploadStatus == 3) && (id_db == currentUploadingPostID))
                     .limit(1)
             }
             

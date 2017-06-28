@@ -186,6 +186,9 @@ public class PostImage {
                     
                     for photo in try db.prepare(query) {
                         print("\n &&&&&&&& uploading photos from post : \(photo[post])\n &&&&&&&&")
+                        if photo[post] != currentUploadingPostID {
+                            currentUploadingPostID = photo[post]
+                        }
                         
                         print(" ******* check 2")
                         self.updateStatus(photoId: photo[id], status: (isNetworkReachable ? uploadStatus.UPLOAD_IN_PROGRESS : uploadStatus.UPLOAD_PENDING) , urlString: "")                

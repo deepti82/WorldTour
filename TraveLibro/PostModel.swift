@@ -207,9 +207,9 @@ public class Post {
                 video.save()
             }
             print("\n isUploadingInProgress : \(isUploadingInProgress)")
-//            if (!isUploadingInProgress && (localPostId == Int64(1))) {
-//                currentUploadingPostID = localPostId
-//            }
+            if (!isUploadingInProgress && (localPostId == Int64(1))) {
+                currentUploadingPostID = localPostId
+            }
             print("\n currentUploadingPostID inside setPost: \(currentUploadingPostID)")
             
             let query = self.getAllPost(postid: localPostId)
@@ -561,7 +561,7 @@ public class Post {
             else {
                 print("\n else succeed")
                 query = post.select(id, type, userId, journeyId, thoughts, location, category, city, country, latitude, longitude, date, newbuddyDb, prevBuddyDb, userName, checkInChange, postUploadStatus, postServerId, postServerUniqueId, oldVideo)
-                    .filter(postUploadStatus == 0 || postUploadStatus == 3 && (id == currentUploadingPostID))
+                    .filter((postUploadStatus == 0 || postUploadStatus == 3) && (self.id == currentUploadingPostID))
                     .limit(1)
             }
             
@@ -674,9 +674,13 @@ public class Post {
                                 
                             }
                             print(" ******* postCheck 3")
-                            isUploadingInProgress = false
-                            let i = PostImage()
-                            i.uploadPhotos(delegate: nil)
+                            
+                            DispatchQueue.main.asyncAfter(deadline: .now()+0.3, execute: { 
+                                isUploadingInProgress = false
+                                let i = PostImage()
+                                i.uploadPhotos(delegate: nil)
+                            })
+                            
                         }
                         else {
                             print("response error")
@@ -727,9 +731,12 @@ public class Post {
                                 
                             }
                             print(" ******* postCheck 3")
-                            isUploadingInProgress = false
-                            let i = PostImage()
-                            i.uploadPhotos(delegate: nil)
+                            
+                            DispatchQueue.main.asyncAfter(deadline: .now()+0.3, execute: {
+                                isUploadingInProgress = false
+                                let i = PostImage()
+                                i.uploadPhotos(delegate: nil)
+                            })
                         }
                         else {
                             print("response error")
