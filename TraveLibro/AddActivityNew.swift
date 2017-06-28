@@ -799,17 +799,15 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
             if(imageArr[i].image != nil) {
                 photosButton.image = imageArr[i].image
             } else {
-                
                 let urlStr = imageArr[i].imageUrl.absoluteString + "&width=500"
                 photosButton.sd_setImage(with: URL(string:urlStr)!,
                                          placeholderImage: getPlaceholderImage())
-                
-                let tapGestureRecognizer = UITapGestureRecognizer(target:self, action: #selector(self.addCaption(_:)))
-                photosButton.isUserInteractionEnabled = true
-                photosButton.addGestureRecognizer(tapGestureRecognizer)
             }
             
-            photosButton.contentMode = UIViewContentMode.scaleAspectFill
+            let tapGestureRecognizer = UITapGestureRecognizer(target:self, action: #selector(self.addCaption(_:)))
+            photosButton.isUserInteractionEnabled = true
+            photosButton.addGestureRecognizer(tapGestureRecognizer)
+            
             photosButton.layer.cornerRadius = 5.0
             photosButton.tag = i
             photosButton.clipsToBounds = true

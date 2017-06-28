@@ -254,6 +254,7 @@ class AddCaptionsViewController: UIViewController, UITextFieldDelegate, ToolStac
         self.player.playbackLoops = true
         self.player.muted = false
         self.player.view.frame = self.videoContainer.bounds
+        self.player.fillMode = "AVLayerVideoGravityResizeAspectFill"
         self.player.setUrl(self.videoURL)
         self.videoContainer.addSubview(self.player.view)
         self.imageForCaption.isHidden = true
@@ -345,6 +346,10 @@ class AddCaptionsViewController: UIViewController, UITextFieldDelegate, ToolStac
     override func viewDidAppear(_ animated: Bool) {
         setAnalytics(name: "Add Caption to Image")
 
+        if self.type == "videoCaption" {
+            self.player.view.frame = self.videoContainer.bounds
+        }
+        
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         print("in view did appear")
         if (isEditedImage) {
