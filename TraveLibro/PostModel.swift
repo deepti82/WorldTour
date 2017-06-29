@@ -192,8 +192,6 @@ public class Post {
                 image.save()
             }
             
-            print("prevVideoString : \(oldVideoStream)")
-            
             if(videoURL != nil) {
                 let video = PostVideo()
                 video.videoUrl = videoURL
@@ -201,12 +199,11 @@ public class Post {
                 video.postId = Int(localPostId)
                 if (oldVideoStream != nil && oldVideoStream != "") {
                     let serverPath = videoURL?.lastPathComponent
-                    print("serverPath: \(serverPath)")
                     video.serverUrl = serverPath!
                 }
                 video.save()
             }
-            print("\n isUploadingInProgress : \(isUploadingInProgress)")
+            
             if (!isUploadingInProgress && (localPostId == Int64(1))) {
                 currentUploadingPostID = localPostId
             }

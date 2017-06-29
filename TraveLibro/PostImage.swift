@@ -186,6 +186,7 @@ public class PostImage {
                     
                     for photo in try db.prepare(query) {
                         print("\n &&&&&&&& uploading photos from post : \(photo[post])\n &&&&&&&&")
+                       
                         if photo[post] != currentUploadingPostID {
                             currentUploadingPostID = photo[post]
                         }

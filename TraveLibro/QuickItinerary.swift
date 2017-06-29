@@ -214,11 +214,9 @@ public class QuickItinerary {
             print("\n UploadFlag :::: \(uploadFlag)")
             if(!check && (uploadFlag == true)) {
                 if globalNewTLViewController != nil {
-                    if(globalNewTLViewController?.isActivityHidden)! {
-                        if (globalNewTLViewController?.isSelfJourney(journeyID: (globalNewTLViewController?.fromOutSide)!, creatorId: (globalNewTLViewController?.journeyCreator)!))! {
-                            globalNewTLViewController?.fetchJourneyData(false)
-                        }
-                    }                    
+                    if (globalNewTLViewController?.isSelfJourney(journeyID: (globalNewTLViewController?.fromOutSide)!, creatorId: (globalNewTLViewController?.journeyCreator)!))! {
+                        globalNewTLViewController?.fetchJourneyData(false)
+                    }
                 }
                 else {
                     request.getJourney(currentUser["_id"].string!, canGetCachedData: false, completion: {(response, isFromCache) in
