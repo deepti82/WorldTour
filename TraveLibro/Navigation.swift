@@ -3137,7 +3137,7 @@ class Navigation {
             }
         } catch let error {
             print("got an error creating the request: \(error)")
-        }       
+        }
     }
     
     func searchCity(_ searchText: String, completion: @escaping ((JSON) -> Void)) {
@@ -3199,7 +3199,7 @@ class Navigation {
                 else
                 {
                     json  = JSON(data: response.data)
-                    print(json)
+                    print("\n add card response : \(json) \n")
                     completion(json)
                 }
             }

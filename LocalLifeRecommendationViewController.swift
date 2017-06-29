@@ -41,8 +41,9 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
         globalNewTLViewController = nil
         globalTLMainFeedsViewController = nil
         loader.hideOverlayView()
-        let i = PostImage()
-        i.uploadPhotos(delegate: nil)
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.startUploadingPostInBackground()
         
         globalLocalLife = self
         getDarkBackGround(self)

@@ -475,8 +475,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
     
     private func resumeUploading() {
         uploadFlag = false
-        let i = PostImage()
-        i.uploadPhotos(delegate: nil)
+        startUploadingPostInBackground()
     }
     
     private func dropOldDB() {
@@ -524,6 +523,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
         
     }
     
+    func startUploadingPostInBackground() {
+        let i = PostImage()
+        i.uploadPhotos(delegate: nil)
+    }
     
     //MARK: - Notification Observer
     

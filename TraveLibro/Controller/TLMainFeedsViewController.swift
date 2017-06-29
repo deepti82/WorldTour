@@ -81,8 +81,8 @@ class TLMainFeedsViewController: UIViewController, UITableViewDataSource, UITabl
         if pageType == viewType.VIEW_TYPE_ACTIVITY ||
             pageType == viewType.VIEW_TYPE_LOCAL_LIFE {
             
-            let i = PostImage()
-            i.uploadPhotos(delegate: self)
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            appDelegate.startUploadingPostInBackground()
         }
         
         

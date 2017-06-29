@@ -31,8 +31,6 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
                 
         postTop = post
         
-        print("\n is postOffline : \(postTop.post_isOffline) \n\n")        
-        
         //Header generation only
         if (postTop.jsonPost != nil) {
             headerLayout(feed: postTop.jsonPost)

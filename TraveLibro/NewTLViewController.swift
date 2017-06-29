@@ -273,8 +273,9 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         
         self.editPostFromLayout(post: po, postLayout: self.editingPostLayout)
         
-        let i = PostImage()
-        i.uploadPhotos(delegate: nil)
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.startUploadingPostInBackground()
+        
         self.addView.postButton.isHidden = true
         
         hideAddActivity()
@@ -348,8 +349,9 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
             let po = post.setPost(currentUser["_id"].stringValue, username: currentUser["name"].stringValue, JourneyId: self.myJourney["uniqueId"].stringValue, editPostId: self.addView.editPost.post_ids, editPostUniqueID: self.addView.editPost.post_uniqueId, type: "editPost", Date: self.currentTime, Location: location!, Category: category, Latitude: lat, Longitude: lng, Country: self.addView.currentCountry, City: self.addView.currentCity, thoughts: thoughts, newbuddies: newbuddies!, oldbuddies: prevbuddies, imageArr: self.addView.imageArr, videoURL: self.addView.videoURL, videoCaption: self.addView.videoCaption, isCheckInChange: isCheckInchanged, oldVideoStream: prevVideo, postType: editPostType.EDITING_ACTIVITY)
             self.editPostFromLayout(post: po, postLayout: self.editingPostLayout)
             
-            let i = PostImage()
-            i.uploadPhotos(delegate: nil)
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            appDelegate.startUploadingPostInBackground()
+            
             self.addView.postButton.isHidden = true
         }
         
@@ -413,8 +415,9 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
             let po = post.setPost(currentUser["_id"].stringValue, username: currentUser["name"].stringValue, JourneyId: self.journeyId, editPostId: nil, editPostUniqueID: nil, type: "travel-life", Date: self.currentTime, Location: location, Category: category, Latitude: lat, Longitude: lng, Country: self.addView.currentCountry, City: self.addView.currentCity, thoughts: thoughts, newbuddies: buddies!, oldbuddies: nil, imageArr: self.addView.imageArr, videoURL: self.addView.videoURL, videoCaption: self.addView.videoCaption, isCheckInChange: false, oldVideoStream: "", postType: editPostType.EDIT_NEW_POST)            
             self.addPostLayout(po)
             
-            let i = PostImage()
-            i.uploadPhotos(delegate: nil)
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            appDelegate.startUploadingPostInBackground()
+            
             self.addView.postButton.isHidden = true
         }
         

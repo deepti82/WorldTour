@@ -77,8 +77,8 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
             
             print("\n DB : Uploading to cloud started...")
             
-            let i = PostImage()
-            i.uploadPhotos(delegate: nil)
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            appDelegate.startUploadingPostInBackground()
             
             isAppStartedFromInitial = false
         }
