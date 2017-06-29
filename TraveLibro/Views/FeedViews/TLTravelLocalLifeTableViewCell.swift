@@ -443,8 +443,10 @@ class TLTravelLocalLifeTableViewCell: UITableViewCell, PlayerDelegate {
                                 if(videoUrl == nil) {
                                     videoUrl = URL(string:self.feeds["videos"][0]["localUrl"].stringValue)
                                 }
-                                self.FMPlayer?.setUrl(videoUrl!)
-                                self.FMPlayer?.playFromBeginning()
+                                if videoUrl != nil {
+                                    self.FMPlayer?.setUrl(videoUrl!)
+                                    self.FMPlayer?.playFromBeginning()
+                                }
                             }
                         }
                         else {
