@@ -135,13 +135,10 @@ class KindOfJourneyOTGViewController: UIViewController {
                     print("error: \(response.error?.localizedDescription)")
                 }
                 else if response["value"].bool! {
-                    
-                    print("is editing? \(self.isEdit)")
                     self.goBack(UIView())
                     if(globalNewTLViewController != nil) {
-                        globalNewTLViewController?.getJourney(canGetFromCache: false)
+                        globalNewTLViewController?.fetchJourneyData(false)
                     }
-                    
                 }
                 else {
                     

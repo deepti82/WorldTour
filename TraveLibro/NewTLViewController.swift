@@ -1426,7 +1426,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         DispatchQueue.main.asyncAfter(deadline: .now()+0.5) {
             self.loader.showOverlay(self.view)
             request.deletePost(footer.postTop.post_ids, uniqueId: self.myJourney["uniqueId"].string!, user: currentUser["_id"].stringValue, completion: {(response) in
-                self.getJourney(canGetFromCache: false)
+                self.fetchJourneyData(false)
             })            
         }
     }
@@ -1481,7 +1481,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         DispatchQueue.main.asyncAfter(deadline: .now()+0.5) { 
             self.loader.showOverlay(self.view)
             request.changeDateTime(self.currentPhotoFooter.postTop.post_uniqueId, postID: self.currentPhotoFooter.postTop.post_ids,  date: "\(self.dateSelected) \(self.timeSelected)", completion: {(response) in
-                self.getJourney(canGetFromCache: false)
+                self.fetchJourneyData(false)
             })
             self.inputview.removeFromSuperview() // To resign the inputView on clicking done.
             self.backView.removeFromSuperview()
@@ -1498,7 +1498,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
                 } else if response["value"].bool! {
                     print("edited date time response")
                     self.journeyDateChanged(date: "\(self.dateSelected)T\(self.timeSelected).000Z")
-                    self.getJourney(canGetFromCache: false)
+                    self.fetchJourneyData(false)
                 } else {
                     
                 }
@@ -2406,7 +2406,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     func isSelfJourney(journeyID: String, creatorId: String) -> Bool {
         print("\n currentUser : \(currentUser["_id"].stringValue)     isSelfUser : \(isSelfUser(otherUserID: currentUser["_id"].stringValue))     journeyID: \(currentUser["journeyId"].stringValue)")
         if ((journeyID == "") ||
-            (isSelfUser(otherUserID: currentUser["_id"].stringValue) && (self.journeyCreator == creatorId))) {
+            (isSelfUser(otherUserID: currentUser["_id"].stringValue) && (currentUser["_id"].stringValue == self.journeyCreator))) {
             return true
         }
         return false
