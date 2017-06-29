@@ -746,67 +746,89 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     //MARK: - Navigate To Other Controller
     
     func gotoSummaries(_ sender: UIButton) {
-        
-        let summaryVC = storyboard?.instantiateViewController(withIdentifier: "summarySub") as! SummarySubViewController
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
-        self.navigationController?.pushViewController(summaryVC, animated: true)
-        summaryVC.journeyId = myJourney["_id"].string!
-        //        infoView.animation.makeOpacity(0.0).animate(0.5)
-        infoView.isHidden = true
-        
-        
+        if isNetworkReachable {
+            let summaryVC = storyboard?.instantiateViewController(withIdentifier: "summarySub") as! SummarySubViewController
+            self.navigationController?.setNavigationBarHidden(false, animated: true)
+            self.navigationController?.pushViewController(summaryVC, animated: true)
+            summaryVC.journeyId = myJourney["_id"].string!
+            //        infoView.animation.makeOpacity(0.0).animate(0.5)
+            infoView.isHidden = true
+        }
+        else {
+            let tstr = Toast(text: "No Internet Connection.")
+            tstr.show()
+        }
     }
     
     func gotoPhotos(_ sender: UIButton) {
-        if sender.tag > 0 {
-            let photoVC = storyboard?.instantiateViewController(withIdentifier: "photoGrid") as! TripSummaryPhotosViewController
-            self.navigationController?.setNavigationBarHidden(false, animated: true)
-            self.navigationController?.pushViewController(photoVC, animated: true)
-            photoVC.noPhoto = sender.tag
-            photoVC.currentContentType = contentType.TL_CONTENT_IMAGE_TYPE
-            photoVC.journeyID = myJourney["_id"].string!
-            photoVC.creationDate = myJourney["startTime"].string!
-            //        infoView.animation.makeOpacity(0.0).animate(0.5)
-            infoView.isHidden = true
-        }else{
-            let tstr = Toast(text: "No Photos")
+        
+        if isNetworkReachable {
+            if sender.tag > 0 {
+                let photoVC = storyboard?.instantiateViewController(withIdentifier: "photoGrid") as! TripSummaryPhotosViewController
+                self.navigationController?.setNavigationBarHidden(false, animated: true)
+                self.navigationController?.pushViewController(photoVC, animated: true)
+                photoVC.noPhoto = sender.tag
+                photoVC.currentContentType = contentType.TL_CONTENT_IMAGE_TYPE
+                photoVC.journeyID = myJourney["_id"].string!
+                photoVC.creationDate = myJourney["startTime"].string!
+                //        infoView.animation.makeOpacity(0.0).animate(0.5)
+                infoView.isHidden = true
+            }else{
+                let tstr = Toast(text: "No Photos")
+                tstr.show()
+            }
+        }
+        else {
+            let tstr = Toast(text: "No Internet Connection.")
             tstr.show()
         }
+        
         
         
     }
     
     func gotoVideos(_ sender: UIButton) {
-        if sender.tag > 0 {
-            let photoVC = storyboard?.instantiateViewController(withIdentifier: "photoGrid") as! TripSummaryPhotosViewController
-            self.navigationController?.setNavigationBarHidden(false, animated: true)
-            self.navigationController?.pushViewController(photoVC, animated: true)
-            photoVC.noPhoto = sender.tag
-            photoVC.currentContentType = contentType.TL_CONTENT_VIDEO_TYPE
-            photoVC.journeyID = myJourney["_id"].string!
-            photoVC.creationDate = myJourney["startTime"].string!
-            //        infoView.animation.makeOpacity(0.0).animate(0.5)
-            infoView.isHidden = true
-        }else{
+        if isNetworkReachable {
+            if sender.tag > 0 {
+                let photoVC = storyboard?.instantiateViewController(withIdentifier: "photoGrid") as! TripSummaryPhotosViewController
+                self.navigationController?.setNavigationBarHidden(false, animated: true)
+                self.navigationController?.pushViewController(photoVC, animated: true)
+                photoVC.noPhoto = sender.tag
+                photoVC.currentContentType = contentType.TL_CONTENT_VIDEO_TYPE
+                photoVC.journeyID = myJourney["_id"].string!
+                photoVC.creationDate = myJourney["startTime"].string!
+                //        infoView.animation.makeOpacity(0.0).animate(0.5)
+                infoView.isHidden = true
+            }else{
+                let tstr = Toast(text: "No Videos")
+                tstr.show()
+            }
         }
-        
-        
+        else{
+            let tstr = Toast(text: "No Internet Connection.")
+            tstr.show()
+        }
     }
     
     func gotoReviews (_ sender: UIButton) {
-        if sender.tag > 0 {
-
-        let ratingVC = storyboard?.instantiateViewController(withIdentifier: "ratingTripSummary") as! AddYourRatingViewController
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
-        self.navigationController?.pushViewController(ratingVC, animated: true)
-        ratingVC.journeyId = myJourney["_id"].string!
-        infoView.isHidden = true
-            
-        }else{
-            let tstr = Toast(text: "No Reviews")
+        if isNetworkReachable {
+            if sender.tag > 0 {
+                
+                let ratingVC = storyboard?.instantiateViewController(withIdentifier: "ratingTripSummary") as! AddYourRatingViewController
+                self.navigationController?.setNavigationBarHidden(false, animated: true)
+                self.navigationController?.pushViewController(ratingVC, animated: true)
+                ratingVC.journeyId = myJourney["_id"].string!
+                infoView.isHidden = true
+                
+            }else{
+                let tstr = Toast(text: "No Reviews")
+                tstr.show()
+            }
+        }
+        else {
+            let tstr = Toast(text: "No Internet Connection.")
             tstr.show()
         }
-        
     }
     
     func writeImageToFile(_ path: String, completeBlock: (_ success: Bool) -> Void) {
