@@ -524,8 +524,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
     }
     
     func startUploadingPostInBackground() {
-        let i = PostImage()
-        i.uploadPhotos(delegate: nil)
+//        let uploadID = UIApplication.shared.beginBackgroundTask { 
+            let i = PostImage()
+            i.uploadPhotos(delegate: nil)
+//        }
+//        
+//        UIApplication.shared.endBackgroundTask(uploadID)
+        
     }
     
     //MARK: - Notification Observer

@@ -230,8 +230,7 @@ public class QuickItinerary {
                 isUploadingInProgress = false
                 currentUploadingPostID = Int64(0)
                 uploadFlag = false
-                let i = PostImage()
-                i.uploadPhotos(delegate: nil)
+                (UIApplication.shared.delegate as! AppDelegate).startUploadingPostInBackground()
             }
             else if (!check) {
                 isUploadingInProgress = false

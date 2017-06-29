@@ -672,11 +672,8 @@ public class Post {
                             }
                             print(" ******* postCheck 3")
                             
-                            DispatchQueue.main.asyncAfter(deadline: .now()+0.3, execute: { 
-                                isUploadingInProgress = false
-                                let i = PostImage()
-                                i.uploadPhotos(delegate: nil)
-                            })
+                            isUploadingInProgress = false
+                            (UIApplication.shared.delegate as! AppDelegate).startUploadingPostInBackground()
                             
                         }
                         else {
@@ -729,11 +726,10 @@ public class Post {
                             }
                             print(" ******* postCheck 3")
                             
-                            DispatchQueue.main.asyncAfter(deadline: .now()+0.3, execute: {
-                                isUploadingInProgress = false
-                                let i = PostImage()
-                                i.uploadPhotos(delegate: nil)
-                            })
+                            
+                            isUploadingInProgress = false
+                            (UIApplication.shared.delegate as! AppDelegate).startUploadingPostInBackground()
+                            
                         }
                         else {
                             print("response error")

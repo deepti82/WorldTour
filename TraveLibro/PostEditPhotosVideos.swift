@@ -122,8 +122,7 @@ public class PostEditPhotosVideos {
                     }
                     print(" ******* postPhotoVideoCheck 3")
                     isUploadingInProgress = false
-                    let i = PostImage()
-                    i.uploadPhotos(delegate: nil)
+                    (UIApplication.shared.delegate as! AppDelegate).startUploadingPostInBackground()
                 })
             }
             if(!check) {
