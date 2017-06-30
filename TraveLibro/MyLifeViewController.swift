@@ -1,5 +1,6 @@
 
 import UIKit
+import Toaster
 
 var isEmptyProfile = false
 var globalMyLifeController: MyLifeViewController!
@@ -732,58 +733,65 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate, UITex
     var timeSelected = ""
     
     func changeDateAndTime(_ footer:ActivityFeedFooterBasic) {
-        currentPhotoFooter = footer
-        hideHeaderAndFooter(true)
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSZ"
-        self.inputview = UIView(frame: CGRect(x: 0, y: UIScreen.main.bounds.size.height - 240, width: self.view.frame.size.width, height: 240))
-        self.inputview.backgroundColor = UIColor.white
-        self.datePickerView = UIDatePicker(frame: CGRect(x: 0, y: 0, width: self.inputview.frame.size.width, height: 240))
-        self.datePickerView.datePickerMode = UIDatePickerMode.dateAndTime                
-        var showDate = dateFormatter.string(from: Date())        
-        switch footer.postTop["type"].stringValue {
-        case "on-the-go-journey":
-            fallthrough
-        case "ended-journey":
-            fallthrough
-        case "quick-itinerary":
-            fallthrough
-        case "detail-itinerary":
-            showDate = footer.postTop["updatedAt"].stringValue
-            break
+        if isNetworkReachable {
+            currentPhotoFooter = footer
+            hideHeaderAndFooter(true)
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSZ"
+            self.inputview = UIView(frame: CGRect(x: 0, y: UIScreen.main.bounds.size.height - 240, width: self.view.frame.size.width, height: 240))
+            self.inputview.backgroundColor = UIColor.white
+            self.datePickerView = UIDatePicker(frame: CGRect(x: 0, y: 0, width: self.inputview.frame.size.width, height: 240))
+            self.datePickerView.datePickerMode = UIDatePickerMode.dateAndTime
+            var showDate = dateFormatter.string(from: Date())
+            switch footer.postTop["type"].stringValue {
+            case "on-the-go-journey":
+                fallthrough
+            case "ended-journey":
+                fallthrough
+            case "quick-itinerary":
+                fallthrough
+            case "detail-itinerary":
+                showDate = footer.postTop["updatedAt"].stringValue
+                break
+                
+            default:
+                showDate = footer.postTop["UTCModified"].stringValue
+            }
             
-        default:
-            showDate = footer.postTop["UTCModified"].stringValue
-        }        
+            self.datePickerView.date = dateFormatter.date(from: showDate)!
+            self.datePickerView.maximumDate = Date()
+            
+            self.backView = UIView(frame: CGRect(x: 0, y: UIScreen.main.bounds.size.height - 280, width: self.view.frame.size.width, height: 40))
+            self.backView.backgroundColor = UIColor(hex: "#272b49")
+            self.inputview.addSubview(self.datePickerView) // add date picker to UIView
+            
+            let doneButton = UIButton(frame: CGRect(x: UIScreen.main.bounds.size.width - 100, y: 0, width: 100, height: 40))
+            doneButton.setTitle("Save", for: .normal)
+            doneButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14.0)
+            doneButton.setTitleColor(UIColor.white, for: .normal)
+            
+            let cancelButton = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: 40))
+            cancelButton.setTitle("Cancel", for: .normal)
+            cancelButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14.0)
+            cancelButton.setTitleColor(UIColor.white, for: UIControlState())
+            self.inputview.addSubview(self.backView)
+            self.backView.addSubview(doneButton) // add Button to UIView
+            self.backView.addSubview(cancelButton) // add Cancel to UIView
+            
+            doneButton.addTarget(self, action: #selector(self.doneButton(_:)), for: .touchUpInside) // set button click event
+            cancelButton.addTarget(self, action: #selector(self.cancelButton(_:)), for: .touchUpInside) // set button click event
+            
+            self.datePickerView.addTarget(self, action: #selector(NewTLViewController.handleDatePicker(_:)), for: .valueChanged)
+            
+            self.handleDatePicker(self.datePickerView) // Set the date on start.
+            self.view.addSubview(self.backView)
+            self.view.addSubview(self.inputview)
+        }
+        else {
+            let tstr = Toast(text: "No Internet Connection.")
+            tstr.show()
+        }
         
-        self.datePickerView.date = dateFormatter.date(from: showDate)!
-        self.datePickerView.maximumDate = Date()
-        
-        self.backView = UIView(frame: CGRect(x: 0, y: UIScreen.main.bounds.size.height - 280, width: self.view.frame.size.width, height: 40))
-        self.backView.backgroundColor = UIColor(hex: "#272b49")
-        self.inputview.addSubview(self.datePickerView) // add date picker to UIView
-        
-        let doneButton = UIButton(frame: CGRect(x: UIScreen.main.bounds.size.width - 100, y: 0, width: 100, height: 40))
-        doneButton.setTitle("Save", for: .normal)
-        doneButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14.0)
-        doneButton.setTitleColor(UIColor.white, for: .normal)
-        
-        let cancelButton = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: 40))
-        cancelButton.setTitle("Cancel", for: .normal)
-        cancelButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14.0)
-        cancelButton.setTitleColor(UIColor.white, for: UIControlState())
-        self.inputview.addSubview(self.backView)
-        self.backView.addSubview(doneButton) // add Button to UIView
-        self.backView.addSubview(cancelButton) // add Cancel to UIView
-        
-        doneButton.addTarget(self, action: #selector(self.doneButton(_:)), for: .touchUpInside) // set button click event
-        cancelButton.addTarget(self, action: #selector(self.cancelButton(_:)), for: .touchUpInside) // set button click event
-        
-        self.datePickerView.addTarget(self, action: #selector(NewTLViewController.handleDatePicker(_:)), for: .valueChanged)
-        
-        self.handleDatePicker(self.datePickerView) // Set the date on start.
-        self.view.addSubview(self.backView)
-        self.view.addSubview(self.inputview)
     }
     
     func changeDateAndTimeEndJourney(_ footer:ActivityFeedFooterBasic) {

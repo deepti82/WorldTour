@@ -1,6 +1,7 @@
 import UIKit
 import Spring
 import AVFoundation
+import Toaster
 
 protocol TLFooterBasicDelegate {
     func footerLikeCommentCountUpdated(likeDone: Bool, likeCount: Int, commentCount: Int, tag: Int)
@@ -593,17 +594,23 @@ class ActivityFeedFooterBasic: UIView {
                             
                             let alert = UIAlertController(title: "", message: "Are you sure you want to delete this Itinerary.", preferredStyle: UIAlertControllerStyle.alert)
                             alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil))
-                            alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.destructive, handler: { action in                            
-                                request.deleteItinerary(id: self.postTop["_id"].stringValue, completion: {(response) in
-                                    DispatchQueue.main.async(execute: {
-                                        if response.error != nil {
-                                            print("error: \(response.error!.localizedDescription)")
-                                        }
-                                        else if response["value"].bool! {
-                                            (self.parentController as! MyLifeViewController).reloadContainerData()
-                                        }                                    
+                            alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.destructive, handler: { action in
+                                if isNetworkReachable {
+                                    request.deleteItinerary(id: self.postTop["_id"].stringValue, completion: {(response) in
+                                        DispatchQueue.main.async(execute: {
+                                            if response.error != nil {
+                                                print("error: \(response.error!.localizedDescription)")
+                                            }
+                                            else if response["value"].bool! {
+                                                (self.parentController as! MyLifeViewController).reloadContainerData()
+                                            }                                    
+                                        })
                                     })
-                                })
+                                }
+                                else {
+                                    let tstr = Toast(text: "No Internet Connection.")
+                                    tstr.show()
+                                }
                             }))
                             showPopover(optionsController: alert, sender: sender, vc: self.parentController)
                             
@@ -638,17 +645,23 @@ class ActivityFeedFooterBasic: UIView {
                             
                             let alert = UIAlertController(title: "", message: "Are you sure you want to delete this Activtiy", preferredStyle: UIAlertControllerStyle.alert)
                             alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil))
-                            alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.destructive, handler: { action in                        
-                                request.deletePost(self.postTop["_id"].string!, uniqueId: self.postTop["uniqueId"].string!, user:currentUser["_id"].stringValue, completion: {(response) in
-                                    DispatchQueue.main.async(execute: {
-                                        if response.error != nil {
-                                            print("error: \(response.error!.localizedDescription)")
-                                        }
-                                        else if response["value"].bool! {
-                                            (self.parentController as! MyLifeViewController).reloadContainerData()
-                                        }                                    
-                                    })                               
-                                })
+                            alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.destructive, handler: { action in
+                                if isNetworkReachable {
+                                    request.deletePost(self.postTop["_id"].string!, uniqueId: self.postTop["uniqueId"].string!, user:currentUser["_id"].stringValue, completion: {(response) in
+                                        DispatchQueue.main.async(execute: {
+                                            if response.error != nil {
+                                                print("error: \(response.error!.localizedDescription)")
+                                            }
+                                            else if response["value"].bool! {
+                                                (self.parentController as! MyLifeViewController).reloadContainerData()
+                                            }                                    
+                                        })                               
+                                    })
+                                }
+                                else {
+                                    let tstr = Toast(text: "No Internet Connection.")
+                                    tstr.show()
+                                }
                             }))
                             showPopover(optionsController: alert, sender: sender, vc: self.parentController)
                             
@@ -701,19 +714,26 @@ class ActivityFeedFooterBasic: UIView {
                                 // 3. Grab the value from the text field, and print it when the user clicks OK.
                                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
                                     let textField = alert?.textFields![0] // Force unwrapping because we know it exists.
-                                    print("Text field: \(textField?.text)")
+                                    
                                     if textField?.text != "" {
-                                        request.journeyChangeName((textField?.text)!, journeyId: self.postTop["_id"].stringValue, completion: { response  in
-                                            DispatchQueue.main.async(execute: {
-                                                if response.error != nil {
-                                                    print("error: \(response.error!.localizedDescription)")
-                                                }
-                                                else if response["value"].bool! {
-                                                    (self.parentController as! MyLifeViewController).reloadContainerData()
-                                                }                                    
+                                        if isNetworkReachable {
+                                            request.journeyChangeName((textField?.text)!, journeyId: self.postTop["_id"].stringValue, completion: { response  in
+                                                DispatchQueue.main.async(execute: {
+                                                    if response.error != nil {
+                                                        print("error: \(response.error!.localizedDescription)")
+                                                    }
+                                                    else if response["value"].bool! {
+                                                        (self.parentController as! MyLifeViewController).reloadContainerData()
+                                                    }                                    
+                                                })
                                             })
-                                        })
-                                    }else{
+                                        }
+                                        else {
+                                            let tstr = Toast(text: "No Internet Connection.")
+                                            tstr.show()
+                                        }
+                                    }
+                                    else{
                                         let alert = UIAlertController(title: "", message: "Journey name can not be empty.", preferredStyle: UIAlertControllerStyle.alert)
                                         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
                                         showPopover(optionsController: alert, sender: sender, vc: self.parentController)
@@ -793,16 +813,22 @@ class ActivityFeedFooterBasic: UIView {
                             let alert = UIAlertController(title: "", message: "Are you sure you want to delete this Activtiy", preferredStyle: UIAlertControllerStyle.alert)
                             alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil))
                             alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.destructive, handler: { action in
-                                request.deletePost(self.postTop["_id"].string!, uniqueId: self.postTop["uniqueId"].string!, user:currentUser["_id"].stringValue, completion: {(response) in
-                                    DispatchQueue.main.async(execute: {
-                                        if response.error != nil {
-                                            print("error: \(response.error!.localizedDescription)")
-                                        }
-                                        else if response["value"].bool! {
-                                            (self.parentController as! MyLifeViewController).reloadContainerData()
-                                        }                                    
-                                    })                                
-                                })                            
+                                if isNetworkReachable {
+                                    request.deletePost(self.postTop["_id"].string!, uniqueId: self.postTop["uniqueId"].string!, user:currentUser["_id"].stringValue, completion: {(response) in
+                                        DispatchQueue.main.async(execute: {
+                                            if response.error != nil {
+                                                print("error: \(response.error!.localizedDescription)")
+                                            }
+                                            else if response["value"].bool! {
+                                                (self.parentController as! MyLifeViewController).reloadContainerData()
+                                            }                                    
+                                        })                                
+                                    })
+                                }
+                                else {
+                                    let tstr = Toast(text: "No Internet Connection.")
+                                    tstr.show()
+                                }
                             }))
                             showPopover(optionsController: alert, sender: sender, vc: self.parentController)                                                
                         }
@@ -842,17 +868,22 @@ class ActivityFeedFooterBasic: UIView {
                             let alert = UIAlertController(title: "", message: "Are you sure you want to delete this Activtiy", preferredStyle: UIAlertControllerStyle.alert)
                             alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil))
                             alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.destructive, handler: { action in
-                                request.deletePost(self.postTop["_id"].string!, uniqueId: self.postTop["uniqueId"].string!, user:currentUser["_id"].stringValue, completion: {(response) in
-                                    DispatchQueue.main.async(execute: {
-                                        if response.error != nil {
-                                            print("error: \(response.error!.localizedDescription)")
-                                        }
-                                        else if response["value"].bool! {
-                                            (self.parentController as! MyLifeViewController).reloadContainerData()
-                                        }                                    
-                                    })                               
-                                })
-                                
+                                if isNetworkReachable {
+                                    request.deletePost(self.postTop["_id"].string!, uniqueId: self.postTop["uniqueId"].string!, user:currentUser["_id"].stringValue, completion: {(response) in
+                                        DispatchQueue.main.async(execute: {
+                                            if response.error != nil {
+                                                print("error: \(response.error!.localizedDescription)")
+                                            }
+                                            else if response["value"].bool! {
+                                                (self.parentController as! MyLifeViewController).reloadContainerData()
+                                            }                                    
+                                        })                               
+                                    })
+                                }
+                                else {
+                                    let tstr = Toast(text: "No Internet Connection.")
+                                    tstr.show()
+                                }
                                 
                             }))
                             showPopover(optionsController: alert, sender: sender, vc: self.parentController)                        
