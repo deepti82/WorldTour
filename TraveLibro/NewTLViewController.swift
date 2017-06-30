@@ -75,20 +75,34 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
 
     
     @IBAction func addMoreBuddies(_ sender: AnyObject) {
-        buddiesStatus = false;
-        let getBuddies = storyboard?.instantiateViewController(withIdentifier: "addBuddies") as! AddBuddiesViewController
-        getBuddies.addedFriends = myJourney["buddies"].arrayValue
-        getBuddies.whichView = "NewTLMiddle"
-        getBuddies.uniqueId = journeyId
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
-        self.navigationController?.pushViewController(getBuddies, animated: true)
+        if isNetworkReachable {
+            buddiesStatus = false;
+            let getBuddies = storyboard?.instantiateViewController(withIdentifier: "addBuddies") as! AddBuddiesViewController
+            getBuddies.addedFriends = myJourney["buddies"].arrayValue
+            getBuddies.whichView = "NewTLMiddle"
+            getBuddies.uniqueId = journeyId
+            self.navigationController?.setNavigationBarHidden(false, animated: true)
+            self.navigationController?.pushViewController(getBuddies, animated: true)
+        }
+        else {
+            let tstr = Toast(text: "No Internet Connection.")
+            tstr.show()
+        }
+        
     }
     
     @IBAction func endJourneyTapped(_ sender: UIButton) {
-        let end = storyboard!.instantiateViewController(withIdentifier: "endJourney") as! EndJourneyViewController
-        end.journeyId = myJourney["_id"].stringValue
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
-        self.navigationController!.pushViewController(end, animated: true)
+       
+        if isNetworkReachable {
+            let end = storyboard!.instantiateViewController(withIdentifier: "endJourney") as! EndJourneyViewController
+            end.journeyId = myJourney["_id"].stringValue
+            self.navigationController?.setNavigationBarHidden(false, animated: true)
+            self.navigationController!.pushViewController(end, animated: true)
+        }
+        else {
+            let tstr = Toast(text: "No Internet Connection.")
+            tstr.show()
+        }
     }
     
     
@@ -1447,56 +1461,68 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     }
     
     func deletePost(_ footer:PhotoOTGFooter) {
-        self.hideHeaderAndFooter(false)
-        DispatchQueue.main.asyncAfter(deadline: .now()+0.5) {
-            self.loader.showOverlay(self.view)
-            request.deletePost(footer.postTop.post_ids, uniqueId: self.myJourney["uniqueId"].string!, user: currentUser["_id"].stringValue, completion: {(response) in
-                self.fetchJourneyData(false)
-            })            
+        if isNetworkReachable {
+            self.hideHeaderAndFooter(false)
+            DispatchQueue.main.asyncAfter(deadline: .now()+0.5) {
+                self.loader.showOverlay(self.view)
+                request.deletePost(footer.postTop.post_ids, uniqueId: self.myJourney["uniqueId"].string!, user: currentUser["_id"].stringValue, completion: {(response) in
+                    self.fetchJourneyData(false)
+                })
+            }
+        }
+        else {
+            let tstr = Toast(text: "No Internet Connection.")
+            tstr.show()
         }
     }
     
     var currentPhotoFooter:PhotoOTGFooter!
     
     func changeDateAndTime(_ footer:PhotoOTGFooter) {
-        currentPhotoFooter = footer
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSZ"
-        self.inputview = UIView(frame: CGRect(x: 0, y: UIScreen.main.bounds.size.height - 200, width: self.view.frame.size.width, height: 240))
-        self.inputview.backgroundColor = UIColor.white
-        self.datePickerView = UIDatePicker(frame: CGRect(x: 0, y: 10, width: self.inputview.frame.size.width, height: 200))
-        self.datePickerView.datePickerMode = UIDatePickerMode.dateAndTime
-        self.datePickerView.minimumDate = dateFormatter.date(from: myJourney["startTime"].string!)
-        self.datePickerView.date = dateFormatter.date(from: footer.postTop.jsonPost["UTCModified"].stringValue)!
-        self.datePickerView.maximumDate = Date()
-        self.backView = UIView(frame: CGRect(x: 0, y: UIScreen.main.bounds.size.height - 240, width: self.view.frame.size.width, height: 40))
-        self.backView.backgroundColor = UIColor(hex: "#272b49")
-        self.inputview.addSubview(self.datePickerView) // add date picker to UIView
-        let doneButton = UIButton(frame: CGRect(x: UIScreen.main.bounds.size.width - 100, y: 0, width: 100, height: 40))
-        doneButton.setTitle("Save", for: .normal)
-        doneButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14.0)
-        doneButton.setTitleColor(UIColor.white, for: .normal)
-        
-        let cancelButton = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: 40))
-        cancelButton.setTitle("Cancel", for: .normal)
-        cancelButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14.0)
-        cancelButton.setTitleColor(UIColor.white, for: UIControlState())
-        self.inputview.addSubview(self.backView)
-        self.backView.addSubview(doneButton) // add Button to UIView
-        self.backView.addSubview(cancelButton) // add Cancel to UIView
-        
-        doneButton.addTarget(self, action: #selector(NewTLViewController.doneButton(_:)), for: .touchUpInside) // set button click event
-        cancelButton.addTarget(self, action: #selector(NewTLViewController.cancelButton(_:)), for: .touchUpInside) // set button click event
-        
-//        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard(_:)))
-        
-//        view.addGestureRecognizer(tap)
-        
-        self.datePickerView.addTarget(self, action: #selector(NewTLViewController.handleDatePicker(_:)), for: .valueChanged)
-        
-        self.handleDatePicker(self.datePickerView) // Set the date on start.
-        self.view.addSubview(self.backView)
-        self.view.addSubview(self.inputview)
+        if isNetworkReachable {
+            currentPhotoFooter = footer
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSZ"
+            self.inputview = UIView(frame: CGRect(x: 0, y: UIScreen.main.bounds.size.height - 200, width: self.view.frame.size.width, height: 240))
+            self.inputview.backgroundColor = UIColor.white
+            self.datePickerView = UIDatePicker(frame: CGRect(x: 0, y: 10, width: self.inputview.frame.size.width, height: 200))
+            self.datePickerView.datePickerMode = UIDatePickerMode.dateAndTime
+            self.datePickerView.minimumDate = dateFormatter.date(from: myJourney["startTime"].string!)
+            self.datePickerView.date = dateFormatter.date(from: footer.postTop.jsonPost["UTCModified"].stringValue)!
+            self.datePickerView.maximumDate = Date()
+            self.backView = UIView(frame: CGRect(x: 0, y: UIScreen.main.bounds.size.height - 240, width: self.view.frame.size.width, height: 40))
+            self.backView.backgroundColor = UIColor(hex: "#272b49")
+            self.inputview.addSubview(self.datePickerView) // add date picker to UIView
+            let doneButton = UIButton(frame: CGRect(x: UIScreen.main.bounds.size.width - 100, y: 0, width: 100, height: 40))
+            doneButton.setTitle("Save", for: .normal)
+            doneButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14.0)
+            doneButton.setTitleColor(UIColor.white, for: .normal)
+            
+            let cancelButton = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: 40))
+            cancelButton.setTitle("Cancel", for: .normal)
+            cancelButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14.0)
+            cancelButton.setTitleColor(UIColor.white, for: UIControlState())
+            self.inputview.addSubview(self.backView)
+            self.backView.addSubview(doneButton) // add Button to UIView
+            self.backView.addSubview(cancelButton) // add Cancel to UIView
+            
+            doneButton.addTarget(self, action: #selector(NewTLViewController.doneButton(_:)), for: .touchUpInside) // set button click event
+            cancelButton.addTarget(self, action: #selector(NewTLViewController.cancelButton(_:)), for: .touchUpInside) // set button click event
+            
+            //        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard(_:)))
+            
+            //        view.addGestureRecognizer(tap)
+            
+            self.datePickerView.addTarget(self, action: #selector(NewTLViewController.handleDatePicker(_:)), for: .valueChanged)
+            
+            self.handleDatePicker(self.datePickerView) // Set the date on start.
+            self.view.addSubview(self.backView)
+            self.view.addSubview(self.inputview)
+        }
+        else {
+            let tstr = Toast(text: "No Internet Connection.")
+            tstr.show()
+        }
     }
     
     
