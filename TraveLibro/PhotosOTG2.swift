@@ -378,7 +378,8 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
     func openSinglePhoto(_ sender: UIGestureRecognizer?) {
         let singlePhotoController = storyboard?.instantiateViewController(withIdentifier: "singlePhoto") as! SinglePhotoViewController
 //        singlePhotoController.mainImage?.image = sender.image
-        singlePhotoController.index = (sender?.view?.tag == 0 || sender?.view?.tag == 1) ? ((sender?.view?.isEqual(self.mainPhoto))! ? 0 : 1) : sender?.view?.tag
+        singlePhotoController.index = sender?.view?.tag
+            //(sender?.view?.tag == 0 || sender?.view?.tag == 1) ? ((sender?.view?.isEqual(self.mainPhoto))! ? 0 : 1) : sender?.view?.tag
         singlePhotoController.postId = postTop.post_ids
         globalNavigationController.pushViewController(singlePhotoController, animated: true)
     
