@@ -1056,7 +1056,12 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         
         infoButton.isHidden = true
         
-        self.fetchJourneyData(true)
+        
+        if !((fromOutSide == "") && (isSelfUser(otherUserID: currentUser["_id"].stringValue)) && (currentUser["journeyId"].stringValue == "-1")) {
+            self.fetchJourneyData(true)
+            loader.showOverlay(self.view)
+        }
+        
         
         self.view.bringSubview(toFront: infoButton)
         self.view.bringSubview(toFront: addPostsButton)
@@ -1066,7 +1071,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         self.hideHeaderAndFooter(true)
         
         mainScroll.delegate = self
-        loader.showOverlay(self.view)
+        
         
         self.mainFooter = FooterViewNew(frame: CGRect(x: 0, y: self.view.frame.height - MAIN_FOOTER_HEIGHT, width: self.view.frame.width, height: MAIN_FOOTER_HEIGHT))
         self.mainFooter?.layer.zPosition = 5

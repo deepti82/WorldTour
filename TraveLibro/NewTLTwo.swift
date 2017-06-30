@@ -479,7 +479,7 @@ extension NewTLViewController {
     }
     
     func showJourneyOngoing(journey: JSON) {
-        print("in ongoing journey \(isJourneyOngoing) ----- \(insideView)")
+        print("\n\n\n **********************\n in ongoing journey \(isJourneyOngoing) ----- \(insideView) \n **********************\n")
         
         if !isJourneyOngoing {
             height = self.view.frame.height/2
