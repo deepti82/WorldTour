@@ -38,6 +38,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     var difference = CGFloat(0)
     var loader = LoadingOverlay()
     var insideView:String = "both"
+    var shouldReload = false
     
     var editingPostLayout: PhotosOTG2?
     
@@ -1001,6 +1002,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         
         getDarkBackGroundNew(self)
         
+        shouldReload = false
+        
         ToastView.appearance().backgroundColor = endJourneyColor
         
         self.setTopNavigation(text: "")
@@ -1177,13 +1180,18 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     var isRefreshing = false
     
     func fetchJourneyData(_ getFromCache: Bool) {
-        if fromOutSide == "" {
-            getJourney(canGetFromCache: getFromCache)
-        }else{            
-            if ((!isSelfJourney(journeyID: fromOutSide, creatorId: self.journeyCreator)) || (self.fromType == "ended-journey")) {
-                addPostsButton.isHidden = true
+        if isActivityHidden {
+            if fromOutSide == "" {
+                getJourney(canGetFromCache: getFromCache)
+            }else{
+                if ((!isSelfJourney(journeyID: fromOutSide, creatorId: self.journeyCreator)) || (self.fromType == "ended-journey")) {
+                    addPostsButton.isHidden = true
+                }
+                getOneJourney()
             }
-            getOneJourney()
+        }
+        else {
+            shouldReload = true
         }
     }
     

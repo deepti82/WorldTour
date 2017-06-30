@@ -62,6 +62,7 @@ extension NewTLViewController {
     
     
     func hideAddActivity() {
+        
         UIApplication.shared.statusBarView?.backgroundColor = NAVIGATION_BAR_COLOR
         
         editingPostLayout = nil
@@ -69,6 +70,11 @@ extension NewTLViewController {
         addView.removeFromSuperview()
         backView.removeFromSuperview()
         self.setTopNavigation(text: "On The Go");
+        
+        if shouldReload {
+            shouldReload = false
+            self.fetchJourneyData(false)
+        }
     }
     
     
