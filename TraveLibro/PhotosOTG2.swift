@@ -220,7 +220,8 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
                 if (!(subvs.isKind(of: DottedLine.self)) &&
                     !(subvs.isKind(of: ActivityProfileHeader.self)) &&
                     !(subvs.isKind(of: UploadingToCloud.self)) &&
-                    !(subvs.isKind(of: ActivityTextHeader.self))) {
+                    !(subvs.isKind(of: ActivityTextHeader.self)) &&
+                    !(subvs.isKind(of: PhotosOTGView.self))) {
                     
                     //subvs.layer.zPosition = -1
                     
@@ -340,8 +341,18 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
             let photosButton = UIImageView(frame: CGRect(x: 5, y: 5, width: 80, height: 80))
             photosButton.image = UIImage(named: "logo-default")
             photosButton.contentMode = UIViewContentMode.scaleAspectFill
+            photosButton.tag = i
+            
+            
             if(post.post_isOffline) {
                 photosButton.image = post.imageArr[i].image
+                
+                let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.light)
+                let blurEffectView = UIVisualEffectView(effect: blurEffect)
+                blurEffectView.frame = photosButton.bounds
+                blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+                photosButton.addSubview(blurEffectView)
+                
             } else {
                 photosButton.frame.size.height = 82
                 photosButton.frame.size.width = 82
@@ -353,11 +364,13 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
                     photosButton.isUserInteractionEnabled = true
                     photosButton.addGestureRecognizer(tapGestureRecognizer)
                 }
-            }     
-            photosButton.tag = i
+            }
+            
             photosButton.clipsToBounds = true
             centerView?.horizontalScrollForPhotos.addSubview(photosButton)
         }
+        
+        
         centerView?.horizontalScrollForPhotos.layoutSubviews()
         centerView?.morePhotosView.contentSize = CGSize(width: (centerView?.horizontalScrollForPhotos.frame.width)!, height: (centerView?.horizontalScrollForPhotos.frame.height)!)
     }
