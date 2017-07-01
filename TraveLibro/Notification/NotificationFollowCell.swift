@@ -105,7 +105,7 @@ class NotificationFollowCell: UITableViewCell {
         totalHeight = CGFloat(0)
         
         NFHeader.frame = CGRect(x: 0, y: 0, width: Int(HEADER_HEIGHT), height: Int(HEADER_HEIGHT))
-        NFHeader.setHeaderData(data: notificationData)
+        NFHeader.setHeaderData(data: notificationData, parentVC: helper)
         let xPos = NFHeader.frame.origin.x + NFHeader.frame.size.width
         
         let titleHeight = NFTitle.setMessageLabel(data: notificationData)

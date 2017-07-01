@@ -8,10 +8,16 @@
 
 import UIKit
 
+protocol TLNotificationHeaderDelegate {
+    func notificationSenderProfilePictureTabbed(tag: Int)
+}
+
 class notificationHeader: UIView {
 
     
-    @IBOutlet weak var NFProfilePicture: UIImageView!    
+    @IBOutlet weak var NFProfilePicture: UIImageView!
+    
+    var notificationHeaderDelegate: TLNotificationHeaderDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -32,7 +38,10 @@ class notificationHeader: UIView {
         self.addSubview(view);
     }
     
-    func setHeaderData(data: JSON) {
+    func setHeaderData(data: JSON, parentVC: NotificationSubViewController?) {
+        if parentVC != nil {
+            self.notificationHeaderDelegate = parentVC
+        }
         
         if data["type"].stringValue == "userBadge" {
             NFProfilePicture.sd_setImage(with: getImageURL(currentUser["profilePicture"].stringValue, width: SMALL_PHOTO_WIDTH),
@@ -44,6 +53,10 @@ class notificationHeader: UIView {
         }
           
         makeBuddiesTLProfilePicture(NFProfilePicture)
+    }
+    
+    @IBAction func profilePictureTabbed(_ sender: UITapGestureRecognizer) {
+        notificationHeaderDelegate?.notificationSenderProfilePictureTabbed(tag: self.tag)
     }
 
 }

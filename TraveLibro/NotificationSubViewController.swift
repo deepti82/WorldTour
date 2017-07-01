@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NotificationSubViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class NotificationSubViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, TLNotificationHeaderDelegate {
     
 //    var lastContentOffset = CGFloat(0)
     
@@ -330,6 +330,8 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
                     cell?.setData(notificationData: cellNotificationData, helper: self)
                 }
                 
+                cell?.NFHeader.tag = indexPath.row
+                
                 cell?.backgroundColor = UIColor.clear
                 currentCellHeight = (cell?.totalHeight)!
                 return cell!                
@@ -344,8 +346,9 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
             }
             cell?.backgroundColor = UIColor.clear
             
-            currentCellHeight = (cell?.totalHeight)!
+            cell?.NFHeader.tag = indexPath.row
             
+            currentCellHeight = (cell?.totalHeight)!
             return cell!
             
             
@@ -367,6 +370,8 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
             cell?.NFPermission.NFRightButton.tag = indexPath.row
             cell?.NFPermission.NFViewButton.tag = indexPath.row
             
+            cell?.NFHeader.tag = indexPath.row
+            
             cell?.backgroundColor = UIColor.clear
             currentCellHeight = (cell?.totalHeight)!
             return cell!
@@ -384,6 +389,8 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
             cell?.NFPermission.NFLeftButton.tag = indexPath.row
             cell?.NFPermission.NFRightButton.tag = indexPath.row
             cell?.NFPermission.NFViewButton.tag = indexPath.row
+            
+            cell?.NFHeader.tag = indexPath.row
             
             cell?.backgroundColor = UIColor.clear
             currentCellHeight = (cell?.totalHeight)!
@@ -405,6 +412,8 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
             else{
                 cell?.setData(notificationData: cellNotificationData, helper: self)
             }
+            
+            cell?.NFHeader.tag = indexPath.row
             
             cell?.backgroundColor = UIColor.clear
             currentCellHeight = (cell?.totalHeight)!
@@ -436,6 +445,8 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
             cell?.setData(notificationData: cellNotificationData, helper: self)
         }
         
+        cell?.NFHeader.tag = indexPath.row
+        
         cell?.backgroundColor = UIColor.clear
         return cell!
         
@@ -461,16 +472,9 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         case "userFollowingResponse":
             
             let moveToUserJSON = cellNotificationData["userFrom"]
-    
-            selectedPeople = moveToUserJSON["_id"].stringValue
-            selectedUser = moveToUserJSON
+            self.gotoOtherUserProfile(otherUserData: moveToUserJSON)
             
-            let profile = storyboard?.instantiateViewController(withIdentifier: "TLProfileView") as! TLProfileViewController
-            profile.displayData = "search"
-            profile.currentSelectedUser = moveToUserJSON
-            self.navigationController?.pushViewController(profile, animated: true)
             break
-            
             
             
         case "journeyLike":
@@ -813,6 +817,16 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
     
     //MARK: - Button Action Helpers
     
+    func gotoOtherUserProfile(otherUserData: JSON) {
+        selectedPeople = otherUserData["_id"].stringValue
+        selectedUser = otherUserData
+        
+        let profile = storyboard?.instantiateViewController(withIdentifier: "TLProfileView") as! TLProfileViewController
+        profile.displayData = "search"
+        profile.currentSelectedUser = otherUserData
+        self.navigationController?.pushViewController(profile, animated: true)
+    }
+    
     func gotoOTG() {
         request.getUser(user.getExistingUser(), urlSlug: nil, completion: {(request, isFromCache) in
             DispatchQueue.main.async {
@@ -862,6 +876,16 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         self.navigationController?.pushViewController(singlePhotoController, animated: true)
     }
     
+    
+    //MARK: - TLNotificationHeaderDelegate Handler
+    
+    func notificationSenderProfilePictureTabbed(tag: Int) {
+        
+        let cellNotificationData = notifications[tag]
+        let moveToUserJSON = cellNotificationData["userFrom"]
+        
+        self.gotoOtherUserProfile(otherUserData: moveToUserJSON)
+    }
     
     //MARK: - Scroll Delagtes
     

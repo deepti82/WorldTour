@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16F2073" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -27,12 +26,16 @@
                         </imageView>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <gestureRecognizers/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="KJ8-F2-pUc" secondAttribute="trailing" constant="5" id="GFu-hP-ycZ"/>
                         <constraint firstItem="KJ8-F2-pUc" firstAttribute="top" secondItem="WyL-Eg-888" secondAttribute="top" constant="5" id="KV5-Ed-RV9"/>
                         <constraint firstAttribute="bottom" secondItem="KJ8-F2-pUc" secondAttribute="bottom" constant="5" id="PlC-Nv-WZN"/>
                         <constraint firstItem="KJ8-F2-pUc" firstAttribute="leading" secondItem="WyL-Eg-888" secondAttribute="leading" constant="5" id="bYg-le-DP5"/>
                     </constraints>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="C0P-BW-hkk" appends="YES" id="8nO-s4-gVE"/>
+                    </connections>
                 </view>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -46,6 +49,11 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="-113" y="-380"/>
         </view>
+        <tapGestureRecognizer id="C0P-BW-hkk">
+            <connections>
+                <action selector="profilePictureTabbed:" destination="-1" id="Cao-pO-i9K"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
     <resources>
         <image name="logo-default" width="600" height="600"/>
