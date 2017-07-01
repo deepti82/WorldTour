@@ -110,14 +110,14 @@ SPEC CHECKSUMS:
   FirebaseAnalytics: 9c67af0ebeb8d2146c9b4ea2616439affa947b58
   FirebaseCore: 03da1cb32615569bbc2830a22f9ad753d9a02ef5
   FirebaseInstanceID: ba1e640935235e5fac39dfa816fe7660e72e1a8a
-  Google: 813c467362eabc11385f5a5cc9ad0cb651a58f4e
+  Google: cd92fab98f800f509da88c1e0c570275713bc9d5
   GoogleAnalytics: f42cc53a87a51fe94334821868d9c8481ff47a7b
   GoogleInterchangeUtilities: d5bc4d88d5b661ab72f9d70c58d02ca8c27ad1f7
   GoogleSymbolUtilities: 631ee17048aa5e9ab133470d768ea997a5ef9b96
   GoogleToolboxForMac: 2b2596cbb7186865e98cadf2b1e262d851c2b168
   HanekeSwift: 4113367892828e7700d24a384027de6ebc79aad1
   iCarousel: d782f635afac190c49bb8ee455882284cff8b85f
-  imglyKit: b78152c784cdcdf64297de33ad474bd7f13c7de9
+  imglyKit: 630bdcfa80b6a67e3b1ab64573aa2fc16ee97178
   OneSignal: c8f0d08ffa30fcf751c97a29639725877027e788
   Player: 5cff076cc9f13b51f56b6fb7bed24431569b8102
   SABlurImageView: 7003ca28ded502c984846374a117f88a287d9faf
@@ -135,4 +135,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 1b53b193119ce82783ad08f51dd7b175b1788ce7
 
-COCOAPODS: 1.2.0
+COCOAPODS: 1.2.1
