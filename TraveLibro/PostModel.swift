@@ -100,17 +100,16 @@ public class Post {
         })
     }
     
-    func setPost(_ UserId: String, username:String, JourneyId: String, editPostId: String?, editPostUniqueID:String?, Type: String, Date: String, Location: String, Category: String, Latitude: String, 
+    func setPost(_ UserId: String, username:String, JourneyId: String, editPostId: String?, editPostUniqueID:String?, type: String, Date: String, Location: String, Category: String, Latitude: String, 
                  Longitude: String, Country: String, City: String, thoughts: String, newbuddies:String, oldbuddies:String?, imageArr:[PostImage], videoURL:URL?, videoCaption:String, isCheckInChange:Bool,
                  oldVideoStream:String?, postType: editPostType) -> Post {
         
         var retPost:Post!
         var postInsert: SQLite.Insert!
         
-        
-        if editPostId != nil {
+        if type == "addPhotosVideos" {
             postInsert = self.post.insert(
-                self.type <- Type,
+                self.type <- type,
                 self.postServerId <- editPostId!,
                 self.postServerUniqueId <- editPostUniqueID!,
                 self.userId <- UserId,
@@ -127,34 +126,60 @@ public class Post {
                 self.postUploadStatus <- Int64(0),
                 self.userName <- username,
                 self.checkInChange <- isCheckInChange,
-                self.prevBuddyDb <- oldbuddies!,
-                self.oldVideo <- oldVideoStream!,
+                self.prevBuddyDb <- "",
+                self.oldVideo <- (oldVideoStream != nil ? oldVideoStream! : ""),
                 self.postEditType <- self.getPostType(from: postType)
             )
         }
-        else{
-            postInsert = self.post.insert(
-                self.type <- Type,
-                self.postServerId <- "",
-                self.postServerUniqueId <- "",
-                self.userId <- UserId,
-                self.journeyId <- JourneyId,
-                self.date <- Date,
-                self.location <- Location,
-                self.category <- Category,
-                self.latitude <- Latitude,
-                self.longitude <- Longitude,
-                self.country <- Country,
-                self.city <- City,
-                self.thoughts <- thoughts,
-                self.newbuddyDb <- newbuddies,
-                self.postUploadStatus <- Int64(0),
-                self.userName <- "",
-                self.checkInChange <- false,
-                self.prevBuddyDb <- "",
-                self.oldVideo <- "",
-                self.postEditType <- self.getPostType(from: postType)
-            )
+        else {
+            if editPostId != nil {
+                postInsert = self.post.insert(
+                    self.type <- type,
+                    self.postServerId <- editPostId!,
+                    self.postServerUniqueId <- editPostUniqueID!,
+                    self.userId <- UserId,
+                    self.journeyId <- JourneyId,
+                    self.date <- Date,
+                    self.location <- Location,
+                    self.category <- Category,
+                    self.latitude <- Latitude,
+                    self.longitude <- Longitude,
+                    self.country <- Country,
+                    self.city <- City,
+                    self.thoughts <- thoughts,
+                    self.newbuddyDb <- newbuddies,
+                    self.postUploadStatus <- Int64(0),
+                    self.userName <- username,
+                    self.checkInChange <- isCheckInChange,
+                    self.prevBuddyDb <- oldbuddies!,
+                    self.oldVideo <- (oldVideoStream != nil ? oldVideoStream! : ""),
+                    self.postEditType <- self.getPostType(from: postType)
+                )
+            }
+            else{
+                postInsert = self.post.insert(
+                    self.type <- type,
+                    self.postServerId <- "",
+                    self.postServerUniqueId <- "",
+                    self.userId <- UserId,
+                    self.journeyId <- JourneyId,
+                    self.date <- Date,
+                    self.location <- Location,
+                    self.category <- Category,
+                    self.latitude <- Latitude,
+                    self.longitude <- Longitude,
+                    self.country <- Country,
+                    self.city <- City,
+                    self.thoughts <- thoughts,
+                    self.newbuddyDb <- newbuddies,
+                    self.postUploadStatus <- Int64(0),
+                    self.userName <- "",
+                    self.checkInChange <- false,
+                    self.prevBuddyDb <- "",
+                    self.oldVideo <- "",
+                    self.postEditType <- self.getPostType(from: postType)
+                )
+            }
         }
         
         do {
@@ -172,16 +197,23 @@ public class Post {
                 video.videoUrl = videoURL
                 video.caption = videoCaption
                 video.postId = Int(localPostId)
+                if (oldVideoStream != nil && oldVideoStream != "") {
+                    let serverPath = videoURL?.lastPathComponent
+                    video.serverUrl = serverPath!
+                }
                 video.save()
             }
+            
+            if (!isUploadingInProgress && (localPostId == Int64(1))) {
+                currentUploadingPostID = localPostId
+            }
+            print("\n currentUploadingPostID inside setPost: \(currentUploadingPostID)")
             
             let query = self.getAllPost(postid: localPostId)
             for post in query {
                 retPost = post;
                 retPost.post_isOffline = true;
             }
-            
-            
         }
         catch {
             print("Error")
@@ -515,19 +547,31 @@ public class Post {
         print(" ******* postCheck 1")
         do {
             var check = false;
-            let query = post.select(id, type, userId, journeyId, thoughts, location, category, city, country, latitude, longitude, date, newbuddyDb, prevBuddyDb, userName, checkInChange, postUploadStatus, postServerId, postServerUniqueId, oldVideo)
-                .filter(postUploadStatus == 0 || postUploadStatus == 3)
-                .limit(1)
+            
+            var query: QueryType!
+            if currentUploadingPostID == Int64(0) {
+                print("\n if succeed")
+                query = post.select(id, type, userId, journeyId, thoughts, location, category, city, country, latitude, longitude, date, newbuddyDb, prevBuddyDb, userName, checkInChange, postUploadStatus, postServerId, postServerUniqueId, oldVideo)
+                    .filter(postUploadStatus == 0 || postUploadStatus == 3)
+                    .limit(1)                    
+            }
+            else {
+                print("\n else succeed")
+                query = post.select(id, type, userId, journeyId, thoughts, location, category, city, country, latitude, longitude, date, newbuddyDb, prevBuddyDb, userName, checkInChange, postUploadStatus, postServerId, postServerUniqueId, oldVideo)
+                    .filter((postUploadStatus == 0 || postUploadStatus == 3) && (self.id == currentUploadingPostID))
+                    .limit(1)
+            }
+            
             
             for post in try db.prepare(query) {
                 
                 print(" ******* postCheck 2")
                 
-                print("\n postId : \(post[id]) postIds: \(post[postServerId])")
-                
                 self.updateStatus(postId: post[id], status: (isNetworkReachable ? uploadStatus.UPLOAD_IN_PROGRESS : uploadStatus.UPLOAD_PENDING))
                 
                 check = true
+                uploadFlag = true
+                
                 let p = Post();                
                 
                 p.post_id = Int(post[id])
@@ -548,11 +592,18 @@ public class Post {
                 
                 let i = PostImage();
                 p.imageArr = i.getAllImages(postNo: post[id])
-                print("\n imageArr: \(p.imageArr)")
+                
                 var photosJson:[JSON] = []
                 
                 for img in p.imageArr {
-                    photosJson.append(img.parseJson())
+                    if post[type] == "addPhotosVideos" {
+                        if img.editId == "" {
+                            photosJson.append(img.parseJson())                            
+                        }
+                    }
+                    else {
+                        photosJson.append(img.parseJson())
+                    }
                 }
                 
                 let v = PostVideo();
@@ -592,7 +643,7 @@ public class Post {
                                           "type":post[type],                                          
                                           "thoughts":post[thoughts],
                                           "checkIn":checkInJson]
-
+                
                 if post[postServerId] == "" {
                     newPostParams["journey"] = JSON(post[journeyId])
                     newPostParams["date"] = JSON(post[date])
@@ -609,7 +660,6 @@ public class Post {
                         }
                         else if response["value"].bool! {
                             do {
-                                print(response);
                                 let singlePhoto = self.post.filter(self.id == postID)
                                 try self.db.run(singlePhoto.delete())
                                 i.deletePhotos(postID);
@@ -621,9 +671,10 @@ public class Post {
                                 
                             }
                             print(" ******* postCheck 3")
+                            
                             isUploadingInProgress = false
-                            let i = PostImage()
-                            i.uploadPhotos(delegate: nil)
+                            (UIApplication.shared.delegate as! AppDelegate).startUploadingPostInBackground()
+                            
                         }
                         else {
                             print("response error")
@@ -641,8 +692,17 @@ public class Post {
                     newPostParams["oldBuddies"] = oldBuddyJSON
                     newPostParams["videosArr"] = oldVideoJSON
                     newPostParams["photosArr"] = JSON(photosJson)
-//                    newPostParams["videosArr"] = JSON(vidoesJson)
                     newPostParams["checkInChange"] = JSON(post[checkInChange])
+                    
+                    if post[type] == "addPhotosVideos" {
+                        newPostParams = [:]
+                        newPostParams["buddies"] = newBuddyJSON
+                        newPostParams["user"] = JSON(post[userId])
+                        newPostParams["type"] =  JSON(post[type])
+                        newPostParams["uniqueId"] = JSON(post[postServerUniqueId])
+                        newPostParams["photosArr"] = JSON(photosJson)
+                        newPostParams["videosArr"] = JSON(vidoesJson)
+                    }
                     
                     request.editPost(param: newPostParams, completion: { (response) in
                         
@@ -654,7 +714,6 @@ public class Post {
                         }
                         else if response["value"].bool! {
                             do {
-                                print(response);
                                 let singlePhoto = self.post.filter(self.id == postID)
                                 try self.db.run(singlePhoto.delete())
                                 i.deletePhotos(postID);
@@ -666,9 +725,11 @@ public class Post {
                                 
                             }
                             print(" ******* postCheck 3")
+                            
+                            
                             isUploadingInProgress = false
-                            let i = PostImage()
-                            i.uploadPhotos(delegate: nil)
+                            (UIApplication.shared.delegate as! AppDelegate).startUploadingPostInBackground()
+                            
                         }
                         else {
                             print("response error")

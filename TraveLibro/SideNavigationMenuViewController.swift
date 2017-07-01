@@ -135,99 +135,105 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
     }   
     
     func updateProfilePicture() {
-        print("\n updateProfilePicture currentUser : \(currentUser)")
-        if currentUser != nil && (currentUser["_id"].stringValue == user.getExistingUser()) {
-            print("Current user name : \(currentUser["name"].stringValue)")
-            starstack.isHidden = false
-            profile.flag.isHidden = false
-            profileName.text = currentUser["name"].stringValue
-            imageName = currentUser["profilePicture"].stringValue
-            loginLabel.isHidden = true
-            profileName.isHidden = false
-            
-            if currentUser["userBadgeName"].string == "newbie"{
-                star1.image = UIImage(named: "star_check")
-                star1.tintColor  = UIColor.white
+        DispatchQueue.main.async { 
+            print("\n updateProfilePicture currentUser : \(currentUser)")
+            if currentUser != nil && (currentUser["_id"].stringValue == user.getExistingUser()) {
+                print("Current user name : \(currentUser["name"].stringValue)")
+                self.starstack.isHidden = false
+                self.profile.flag.isHidden = false
+                self.profileName.text = currentUser["name"].stringValue
+                self.imageName = currentUser["profilePicture"].stringValue
+                self.loginLabel.isHidden = true
+                self.profileName.isHidden = false
+                
+                if currentUser["userBadgeName"].string == "newbie"{
+                    self.star1.image = UIImage(named: "star_check")
+                    self.star1.tintColor  = UIColor.white
+                }
+                else if currentUser["userBadgeName"].string == "justGotWings"{
+                    self.star1.image = UIImage(named: "star_check")
+                    self.star1.tintColor  = UIColor.white
+                    self.star2.image = UIImage(named: "star_check")
+                    self.star2.tintColor  = UIColor.white
+                }
+                else if currentUser["userBadgeName"].string == "globeTrotter"{
+                    self.star1.image = UIImage(named: "star_check")
+                    self.star1.tintColor  = UIColor.white
+                    self.star2.image = UIImage(named: "star_check")
+                    self.star2.tintColor  = UIColor.white
+                    self.star3.image = UIImage(named: "star_check")
+                    self.star3.tintColor  = UIColor.white
+                }
+                else if currentUser["userBadgeName"].string == "wayfarer"{
+                    self.star1.image = UIImage(named: "star_check")
+                    self.star1.tintColor  = UIColor.white
+                    self.star2.image = UIImage(named: "star_check")
+                    self.star2.tintColor  = UIColor.white
+                    self.star3.image = UIImage(named: "star_check")
+                    self.star3.tintColor  = UIColor.white
+                    self.star4.image = UIImage(named: "star_check")
+                    self.star4.tintColor  = UIColor.white
+                }
+                else if currentUser["userBadgeName"].string == "nomad"{
+                    self.star1.image = UIImage(named: "star_check")
+                    self.star1.tintColor  = UIColor.white
+                    self.star2.image = UIImage(named: "star_check")
+                    self.star2.tintColor  = UIColor.white
+                    self.star3.image = UIImage(named: "star_check")
+                    self.star3.tintColor  = UIColor.white
+                    self.star4.image = UIImage(named: "star_check")
+                    self.star4.tintColor  = UIColor.white
+                    self.star5.image = UIImage(named: "star_check")
+                    self.star5.tintColor  = UIColor.white
+                }
+                else {
+                    self.starstack.isHidden = true
+                    
+                }
+                
+                let isUrl = verifyUrl(self.imageName)
+                if (isUrl) {
+                    let getImageUrl = URL(string:self.imageName)!
+                    self.profilePicture.sd_setImage(with: getImageUrl, placeholderImage: getPlaceholderImage())
+                    self.profile.image.sd_setImage(with: getImageUrl, placeholderImage: getPlaceholderImage())
+                    self.backgroundImage.sd_setImage(with: getImageUrl, placeholderImage: getPlaceholderImage())
+                } else {
+                    let getImageUrl = URL(string:adminUrl + "upload/readFile?file=" + self.imageName + "&width=500")
+                    self.profilePicture.sd_setImage(with: getImageUrl, placeholderImage: getPlaceholderImage())
+                    self.profile.image.sd_setImage(with: getImageUrl, placeholderImage: getPlaceholderImage())
+                    self.backgroundImage.sd_setImage(with: getImageUrl, placeholderImage: getPlaceholderImage())
+                }
+                if currentUser["homeCountry"] != nil {
+                    self.profile.flag.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(currentUser["homeCountry"]["flag"].stringValue)", width: SMALL_PHOTO_WIDTH))
+                }
+                
+                makeMenuProfilePicture(self.profilePicture)
             }
-            else if currentUser["userBadgeName"].string == "justGotWings"{
-                star1.image = UIImage(named: "star_check")
-                star1.tintColor  = UIColor.white
-                star2.image = UIImage(named: "star_check")
-                star2.tintColor  = UIColor.white
-            }
-            else if currentUser["userBadgeName"].string == "globeTrotter"{
-                star1.image = UIImage(named: "star_check")
-                star1.tintColor  = UIColor.white
-                star2.image = UIImage(named: "star_check")
-                star2.tintColor  = UIColor.white
-                star3.image = UIImage(named: "star_check")
-                star3.tintColor  = UIColor.white
-            }
-            else if currentUser["userBadgeName"].string == "wayfarer"{
-                star1.image = UIImage(named: "star_check")
-                star1.tintColor  = UIColor.white
-                star2.image = UIImage(named: "star_check")
-                star2.tintColor  = UIColor.white
-                star3.image = UIImage(named: "star_check")
-                star3.tintColor  = UIColor.white
-                star4.image = UIImage(named: "star_check")
-                star4.tintColor  = UIColor.white
-            } 
-            else if currentUser["userBadgeName"].string == "nomad"{
-                star1.image = UIImage(named: "star_check")
-                star1.tintColor  = UIColor.white
-                star2.image = UIImage(named: "star_check")
-                star2.tintColor  = UIColor.white
-                star3.image = UIImage(named: "star_check")
-                star3.tintColor  = UIColor.white
-                star4.image = UIImage(named: "star_check")
-                star4.tintColor  = UIColor.white
-                star5.image = UIImage(named: "star_check")
-                star5.tintColor  = UIColor.white
+            else if (currentUser != nil) {
+                //Do nothing
             }
             else {
-                starstack.isHidden = true
-                
+                self.profile.flag.isHidden = true
+                self.starstack.isHidden = true
+                self.loginLabel.isHidden = false
+                self.profileName.isHidden = true
             }
             
-            let isUrl = verifyUrl(imageName)
-            if (isUrl) {
-                let getImageUrl = URL(string:imageName)!
-                profilePicture.sd_setImage(with: getImageUrl, placeholderImage: getPlaceholderImage())
-                profile.image.sd_setImage(with: getImageUrl, placeholderImage: getPlaceholderImage())
-                backgroundImage.sd_setImage(with: getImageUrl, placeholderImage: getPlaceholderImage())
-            } else {
-                let getImageUrl = URL(string:adminUrl + "upload/readFile?file=" + imageName + "&width=500")
-                profilePicture.sd_setImage(with: getImageUrl, placeholderImage: getPlaceholderImage())
-                profile.image.sd_setImage(with: getImageUrl, placeholderImage: getPlaceholderImage())
-                backgroundImage.sd_setImage(with: getImageUrl, placeholderImage: getPlaceholderImage())
-            }
-            if currentUser["homeCountry"] != nil {
-                profile.flag.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(currentUser["homeCountry"]["flag"].stringValue)", width: SMALL_PHOTO_WIDTH))
-            }
-            
-            makeMenuProfilePicture(profilePicture)
-        }
-        else if (currentUser != nil) {
-            //Do nothing
-        }
-        else {
-            profile.flag.isHidden = true
-            starstack.isHidden = true
-            loginLabel.isHidden = false
-            profileName.isHidden = true
+            self.profile.flag.isHidden = true
         }
         
-        profile.flag.isHidden = true
     }
     
     @IBAction func profileTap(_ sender: AnyObject?) {
         if currentUser != nil {
             selectedUser = nil
+            
             request.getUserFromCache(user.getExistingUser(), completion: { (response) in
-                currentUser = response["data"]
-                print("\n currentUser : \(currentUser)")
-                self.slideMenuController()?.changeMainViewController(self.myProfileViewController, close: true)
+                DispatchQueue.main.async(execute: { 
+                    currentUser = response["data"]
+                    print("\n currentUser : \(currentUser)")
+                    self.slideMenuController()?.changeMainViewController(self.myProfileViewController, close: true)
+                })
             })
         }
         else{
@@ -279,8 +285,6 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let cell = tableView.cellForRow(at: indexPath) as! SideMenuTableViewCell
-//         cell.backgroundColor = mainBlueColor
-//        cell.menuLabel.textColor = mainGreenColor
         
         switch((indexPath as NSIndexPath).row)
         {
@@ -291,7 +295,8 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
             self.slideMenuController()?.changeMainViewController(self.exploreDestinationsController, close: true)
             
         case 2:
-            self.slideMenuController()?.changeMainViewController(self.popBloggersController, close: true)        
+            self.slideMenuController()?.changeMainViewController(self.popBloggersController, close: true)
+            
         case 3:
             if currentUser != nil {
                 inviteToAppClicked(sender: cell, onView: self)
@@ -300,6 +305,7 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
                 closeLeft()
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
             }
+            
         case 4:
             if currentUser != nil {
                 self.rateUsButtonClicked()
@@ -307,7 +313,8 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
             else {
                 closeLeft()
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
-            }            
+            }
+            
         case 5:
             if currentUser != nil {
                 feedbackClicked()
@@ -315,14 +322,15 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
             else {
                 closeLeft()
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
-            }            
+            }
+            
         case 6:
             if currentUser != nil {
                 logoutUser()
             }
             else{
-                closeLeft()
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
+                self.loginClicked()
+//                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
             }
             
         case 7:
@@ -342,13 +350,6 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         }
     }
     
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        
-//        let cell = tableView.cellForRow(at: indexPath) as! SideMenuTableViewCell
-//        cell.backgroundColor = mainGreenColor
-//        cell.menuLabel.textColor = mainBlueColor
-        
-    }
     
     //MARK: - Rate Us
     
@@ -376,6 +377,14 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         reportVC.whichView = "ReportView"
         let reportNVC = UINavigationController(rootViewController: reportVC)
         self.slideMenuController()?.changeMainViewController(reportNVC, close: true)
+    }
+    
+    func loginClicked() {
+        
+        let logInVC = storyboard?.instantiateViewController(withIdentifier: "logIn") as! LogInViewController
+        logInVC.isFromSidebar = true
+        let loginNVC = UINavigationController(rootViewController: logInVC)
+        self.slideMenuController()?.changeMainViewController(loginNVC, close: true)
     }
     
     

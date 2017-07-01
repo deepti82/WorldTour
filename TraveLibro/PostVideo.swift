@@ -56,14 +56,13 @@ public class PostVideo {
         var filename:URL!
         var filenameOnly = "";
 
-        print(self.caption);
         let data = NSData(contentsOf: self.videoUrl)
         do {
             filenameOnly = String(Date().ticks) + "." + self.videoUrl.pathExtension
             filename = getDocumentsDirectory().appendingPathComponent( filenameOnly )
             try? data?.write(to: filename)
         }
-        let insert = videos.insert(post <- Int64(self.postId) , captions <- self.caption ,localUrl <- filenameOnly,url <- "",thumbnail <- "", videoUploadStatus <- 0)
+        let insert = videos.insert(post <- Int64(self.postId) , captions <- self.caption ,localUrl <- filenameOnly, url <- serverUrl, thumbnail <- serverUrlThumbnail, videoUploadStatus <- 0)
         do {
             try db.run(insert)
         }
@@ -102,16 +101,28 @@ public class PostVideo {
     func uploadVideo() {
         print(" ******* videoCheck 1")
         do {
-            var check = false;
-            let query = videos.select(id,post,captions,localUrl,url)
-                .filter(url == "" && (videoUploadStatus == 0 || videoUploadStatus == 3))
-                .limit(1)
+            var check = false
+            var query: QueryType!
+            
+            if currentUploadingPostID == Int64(0) {
+                print("\n if succeed")
+                query = videos.select(id,post,captions,localUrl,url)
+                    .filter(url == "" && (videoUploadStatus == 0 || videoUploadStatus == 3))
+                    .limit(1)                    
+            }
+            else {
+                print("\n else succeed")
+                query = videos.select(id,post,captions,localUrl,url)
+                    .filter(url == "" && (videoUploadStatus == 0 || videoUploadStatus == 3) && (post == currentUploadingPostID))
+                    .limit(1)
+            }
             
             for photo in try db.prepare(query) {
                 print(" ******* videoCheck 2")
                 
                 self.updateStatus(videoID: photo[id], status: (isNetworkReachable ? uploadStatus.UPLOAD_IN_PROGRESS : uploadStatus.UPLOAD_PENDING), urlString: "", thumbnailStr: "")
-                check = true;
+                check = true
+                uploadFlag = true
                 let url = getDocumentsDirectory().appendingPathComponent( String(photo[localUrl]) )
                 request.uploadPhotos(url, localDbId: 0,completion: {(response) in
                     if response.error != nil {
@@ -130,6 +141,7 @@ public class PostVideo {
                     self.uploadVideo()
                 })
             }
+            
             if(!check) {
                 print(" ******* videoCheck 4")
                 let po = Post();
@@ -181,9 +193,7 @@ public class PostVideo {
     }
     
     func parseJson() -> JSON {
-        print(self.serverUrl)
-        print(self.caption)
-        print(self.serverUrlThumbnail)
+        
         var photoJson:JSON = ["name":self.serverUrl,"caption":self.caption,"thumbnail":self.serverUrlThumbnail,"localUrl":self.localURL]
         if(self.editId != "") {
             photoJson["_id"] = JSON(self.editId)
@@ -194,6 +204,7 @@ public class PostVideo {
     
     func rollbackVideoTableProgress() {
         do {
+            
             let query = videos.select(id,post,captions,localUrl,url)
                 .filter(url == "" && (videoUploadStatus == 1))
             

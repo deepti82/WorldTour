@@ -194,9 +194,6 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
         self.tagFriendButton.addTarget(self, action: #selector(self.tagMoreBuddies(_:)), for: .touchUpInside)
         self.friendsCount.addTarget(self, action: #selector(self.tagMoreBuddies(_:)), for: .touchUpInside)
         self.postButton.addTarget(self, action: #selector(self.newPost(_:)), for: .touchUpInside)
-        //        self.postButtonUp.addTarget(self, action: #selector(NewTLViewController.newPost(_:)), for: .touchUpInside)
-        //        self.postCancelButton.addTarget(self, action: #selector(NewTLViewController.closeAdd(_:)), for: .touchUpInside)
-        
         
         self.viewContainerView.isUserInteractionEnabled = true
         let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(AddActivityNew.addCaptionVideo(_:)))
@@ -326,11 +323,10 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
         globalNavigationController?.pushViewController(next, animated: true)
     }
     
+    
     func addVideos(_ sender: UIButton) {
-        
         self.videosInitialView.isHidden = false
         self.videosFinalView.isHidden = true
-        //        addHeightToNewActivity(5.0)
         let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         
@@ -343,11 +339,6 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
                     cameraConf.allowedRecordingModes = [.video]
                     cameraConf.showCameraRoll = false
                     cameraConf.maximumVideoLength = 30
-                    
-                    //                    let timeLabel = UILabel(frame: CGRect(x: 50, y: 100, width: 200, height: 40))
-                    //                    timeLabel.text = "time :"
-                    //                    timeLabel.textColor = UIColor.white                    
-                    //                    cameraConf.timeLabelConfigurationClosure = timeLabel
                     
                     cameraConf.videoOutputSettings = [
                         "AVVideoCodecKey": AVVideoCodecH264 as AnyObject,
@@ -367,7 +358,6 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
             
             
             self.cameraViewController = CameraViewController(configuration:configuration)
-            //            timeLabel.text = self.cameraViewController.recordingTimeLabel.text
             self.cameraViewController.completionBlock = self.completionVideoBlock
             
             if let popover = self.cameraViewController.popoverPresentationController{
@@ -375,12 +365,6 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
                 popover.sourceRect = sender.bounds
             }
             globalNavigationController.present(self.cameraViewController, animated: true, completion: nil)
-            
-            
-            
-            //            showPopover(optionsController: optionMenu, sender: sender, vc: globalNavigationController)
-            
-            //            globalNavigationController.topViewController?.present(self.cameraViewController, animated: true, completion: nil)
         })
         
         func buttonColor (button:UIButton) {
@@ -389,9 +373,10 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
         
         let takeVideoGallery = UIAlertAction(title: "Gallery", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
+            UIApplication.shared.statusBarView?.backgroundColor = NAVIGATION_BAR_CLEAR_COLOR
             let imagePickerController = UIImagePickerController()
             imagePickerController.navigationBar.isTranslucent = true
-            imagePickerController.navigationBar.barTintColor = mainBlueColor
+            imagePickerController.navigationBar.barTintColor = NAVIGATION_BAR_COLOR
             imagePickerController.navigationBar.tintColor = UIColor.white
             imagePickerController.navigationBar.titleTextAttributes = [
                 NSForegroundColorAttributeName : UIColor.white
@@ -486,25 +471,40 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
         
         sender.isUserInteractionEnabled = false
         
+        print("\n globalNavigationController.topViewController ::: \(globalNavigationController.topViewController) \n\n")
+        
         switch(self.typeOfAddActivtiy) {
-        case "AddPhotosVideos":
-            let newTl = globalNavigationController.topViewController as! NewTLViewController;
-            newTl.savePhotoVideo(sender);
+        case "AddPhotosVideos":            
+            if (globalNavigationController.topViewController?.isKind(of: NewTLViewController.self))! {
+                let newTl = globalNavigationController.topViewController as! NewTLViewController
+                newTl.savePhotoVideo(sender)                
+            }
+            else {
+                let myLifeVC = globalNavigationController.topViewController as! MyLifeViewController
+                myLifeVC.savePhotoVideoToFeed(sender)
+            }
+            
+            
         case "EditActivity":
-            let newTl = globalNavigationController.topViewController as! NewTLViewController;
-            newTl.editActivity(sender);
+            if (globalNavigationController.topViewController?.isKind(of: NewTLViewController.self))! {
+                let newTl = globalNavigationController.topViewController as! NewTLViewController
+                newTl.editActivity(sender)
+            }
+            else {
+                let myLifeVC = globalNavigationController.topViewController as! MyLifeViewController
+                myLifeVC.editFeedData(sender)
+            }
+            
+            
         case "CreateLocalLife":
-            let newTl = globalLocalLife;
-            newTl?.newPost(sender)
+            let newLl = globalLocalLife
+            newLl?.newPost(sender)
+            
+            
         default:
-            let newTl = globalNavigationController.topViewController as! NewTLViewController;
-            newTl.newPost(sender);   
+            let newTl = globalNavigationController.topViewController as! NewTLViewController
+            newTl.newPost(sender)
         }
-    }
-    
-    func closeAdd(_ sender: UIButton) {
-        let newTl = globalNavigationController.topViewController as! NewTLViewController;
-        newTl.closeAdd(sender);
     }
     
     func addThoughts(_ sender: UIButton) {
@@ -661,43 +661,13 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
         let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let takePhotos = UIAlertAction(title: "Take Photos", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
-            //            let configuration = Configuration() { builder in
-            //                builder.configureCameraViewController( { cameraConf in
-            //                        cameraConf.allowedRecordingModes = [.photo]
-            //                })
-            //            }
-            //            let cameraViewController = CameraViewController(configuration:configuration)
-            //            cameraViewController.cameraController?.recordingMode = .photo
-            //            
-            //            
-            //            
-            //            func abc(image:UIImage?,url:URL?) -> Void
-            //            {
-            //                let photoEffect = PhotoEffectThumbnailRenderer(inputImage: image!);
-            //                if(cameraViewController.cameraController?.photoEffect != nil) {
-            //                    photoEffect.generateThumbnails(for: [(cameraViewController.cameraController?.photoEffect)!], of: (image?.size)!, singleCompletion: { (image:UIImage, num:Int) in
-            //                        DispatchQueue.main.async(execute: {
-            //                            let imgA:[UIImage] = [image]
-            //                            cameraViewController.dismiss(animated: true, completion: nil)
-            //                            globalAddActivityNew.photosAdded(assets: imgA)
-            //                        })
-            //                    })
-            //                } else {
-            //                    let imgA:[UIImage] = [image!]
-            //                    cameraViewController.dismiss(animated: true, completion: nil)
-            //                    globalAddActivityNew.photosAdded(assets: imgA)
-            //                }
-            //                
-            //            }
-            //            cameraViewController.completionBlock = abc;
-            //            
-            //            globalNavigationController?.topViewController?.present(cameraViewController, animated: true, completion: nil)
             
             let imagePickerController = UIImagePickerController()
             if(self.typeOfAddActivtiy == "CreateLocalLife") {
+                UIApplication.shared.statusBarView?.backgroundColor = NAVIGATION_BAR_CLEAR_COLOR
                 imagePickerController.delegate = globalLocalLife as (UIImagePickerControllerDelegate & UINavigationControllerDelegate)?
                 imagePickerController.navigationBar.isTranslucent = true
-                imagePickerController.navigationBar.barTintColor = mainBlueColor
+                imagePickerController.navigationBar.barTintColor = NAVIGATION_BAR_COLOR
                 imagePickerController.navigationBar.tintColor = UIColor.white
                 imagePickerController.navigationBar.titleTextAttributes = [
                     NSForegroundColorAttributeName : UIColor.white
@@ -717,19 +687,14 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
                 popover.sourceRect = sender.bounds
             }
             globalNavigationController.present(imagePickerController, animated: true, completion: nil)
-            
-            
-            
-            //            showPopover(optionsController: , sender: self.photosButton, vc: globalNavigationController)
-            //            globalNavigationController?.topViewController?.present(imagePickerController, animated: true, completion: nil)
-            
         })
+        
         let photoLibrary = UIAlertAction(title: "Photos Library", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
             let multipleImage = BSImagePickerViewController()
-            
+            UIApplication.shared.statusBarView?.backgroundColor = NAVIGATION_BAR_CLEAR_COLOR
             multipleImage.navigationBar.isTranslucent = true
-            multipleImage.navigationBar.barTintColor = mainBlueColor
+            multipleImage.navigationBar.barTintColor = NAVIGATION_BAR_COLOR
             multipleImage.navigationBar.tintColor = UIColor.white
             multipleImage.navigationBar.titleTextAttributes = [
                 NSForegroundColorAttributeName : UIColor.white
@@ -740,9 +705,10 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
                 print("Selected: \(asset)")
             }, deselect: { (asset: PHAsset) -> Void in
                 print("Deselected: \(asset)")
-            }, cancel: { (assets: [PHAsset]) -> Void in
+            }, cancel: { (assets: [PHAsset]) -> Void in                
                 print("Cancel: \(assets)")
             }, finish: { (assets: [PHAsset]) -> Void in
+                
                 if sender.tag == 1 {
                     self.photosAddedMore = true
                 }
@@ -760,7 +726,9 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
                     }
                     self.photosAdded(assets: img11)
                 }
-            }, completion: nil)
+            }, completion: {
+                print("\n\n Completion block called")
+            })
         })
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: {
@@ -795,12 +763,19 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
         addPhotos(sender)
     }
     
-    func addCaption(_ sender: UIButton) {
+    func addCaption(_ sender: AnyObject) {
         let captionVC = storyboard?.instantiateViewController(withIdentifier: "addCaptions") as! AddCaptionsViewController
         captionVC.imageArr = imageArr
         captionVC.addActivity = self
         
-        captionVC.currentImageIndex = sender.tag
+        if ((sender as AnyObject).isKind(of: UITapGestureRecognizer.self)) {
+            let tap = sender as? UITapGestureRecognizer
+            let view = tap?.view
+            captionVC.currentImageIndex = (view?.tag)!
+        }
+        else {
+            captionVC.currentImageIndex = (sender as! UIButton).tag
+        }
         globalNavigationController?.setNavigationBarHidden(false, animated: false)
         globalNavigationController!.pushViewController(captionVC, animated: true)
     }
@@ -813,17 +788,32 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
     //MARK: - UI Helpers
     
     func addPhotoToLayout() {
+        
         self.horizontalScrollForPhotos.removeAll()
+        
         for i in 0 ..< imageArr.count {
-            let photosButton = UIButton(frame: CGRect(x: 6, y: 0, width: 65, height: 65))
-            photosButton.setImage(imageArr[i].image, for: .normal)
-            photosButton.imageView?.contentMode = UIViewContentMode.scaleAspectFill
+            let photosButton = UIImageView(frame: CGRect(x: 6, y: 0, width: 65, height: 65))
+            photosButton.image = UIImage(named: "logo-default")
+            photosButton.contentMode = UIViewContentMode.scaleAspectFill
+            
+            if(imageArr[i].image != nil) {
+                photosButton.image = imageArr[i].image
+            } else {
+                let urlStr = imageArr[i].imageUrl.absoluteString + "&width=500"
+                photosButton.sd_setImage(with: URL(string:urlStr)!,
+                                         placeholderImage: getPlaceholderImage())
+            }
+            
+            let tapGestureRecognizer = UITapGestureRecognizer(target:self, action: #selector(self.addCaption(_:)))
+            photosButton.isUserInteractionEnabled = true
+            photosButton.addGestureRecognizer(tapGestureRecognizer)
+            
             photosButton.layer.cornerRadius = 5.0
             photosButton.tag = i
             photosButton.clipsToBounds = true
-            photosButton.addTarget(self, action: #selector(self.addCaption(_:)), for: .touchUpInside)
             self.horizontalScrollForPhotos.addSubview(photosButton)
         }
+        
         if(self.typeOfAddActivtiy != "EditActivity") {
             let addMorePhotosButton = UIButton(frame: CGRect(x: 6, y: 0, width: 65, height: 65))
             addMorePhotosButton.backgroundColor = UIColor.black.withAlphaComponent(0.6)

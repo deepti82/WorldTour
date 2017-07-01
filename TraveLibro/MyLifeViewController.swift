@@ -1,10 +1,11 @@
 
 import UIKit
+import Toaster
 
 var isEmptyProfile = false
 var globalMyLifeController: MyLifeViewController!
 var globalMyLifeViewController:MyLifeViewController!
-class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
+class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate, UITextViewDelegate, UITextFieldDelegate {
     
     @IBOutlet weak var profileName: UILabel!
     @IBOutlet weak var buttonsView: UIView!
@@ -26,6 +27,9 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var journeysContainerView: UIView!
     @IBOutlet weak var collectionContainer: UIView!
     @IBOutlet weak var tableContainer: UIView!
+    
+    var textFieldYPos = CGFloat(0)
+    var difference = CGFloat(0)
     
     var isFromFooter = false
     var mainFooter: FooterViewNew?
@@ -101,13 +105,6 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(MyLifeViewController.exitMyLife(_:)))
         profileName.addGestureRecognizer(tap)
-        
-        
-//        let statusBar = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 20))
-//        statusBar.layer.zPosition = -1
-//        statusBar.backgroundColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 1)
-//        self.view.addSubview(statusBar)
-        
         
         let frameWidth = self.view.frame.width - 25
         
@@ -423,15 +420,13 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     
- // For Edit Activity
-    
-    
+    //MARK: - Show Edit Feed Data
+        
     func showEditActivity(_ postJson:JSON) {
         
         let post = Post();
         post.jsonToPost(postJson)
         
-   
         var darkBlur: UIBlurEffect!
         var blurView: UIVisualEffectView!
         self.backView = UIView();
@@ -451,6 +446,8 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         self.newScroll = UIScrollView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height ))
         self.backView.addSubview(self.newScroll)
         self.addView = AddActivityNew()
+        self.addView.thoughtsTextView.delegate = self
+        
         
         self.addView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: self.view.frame.size.height)
         self.addView.editPost = post
@@ -468,9 +465,12 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         let rightButton = UIButton()
         rightButton.frame = CGRect(x: 0, y: 0, width: 50, height: 30)
         
-        rightButton.setTitle("Post", for: UIControlState())
+        rightButton.setTitle("Done", for: UIControlState())
         rightButton.titleLabel?.font = avenirBold
-        //        rightButton.addTarget(self, action: #selector(self.editActivity(_:) ), for: .touchUpInside)
+        rightButton.addTarget(self, action: #selector(self.editFeedData(_:)), for: .touchUpInside)
+        
+        addView.postButton.setTitle("Done", for: .normal)
+        
         globalNavigationController.topViewController?.title = "Edit Activity"
         globalNavigationController.topViewController?.customNavigationBar(left: leftButton, right: rightButton)
         self.addView.layer.zPosition = 10
@@ -511,12 +511,159 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         
         self.newScroll.addSubview(self.addView)
     }
+        
+    func showEditAddActivity(_ postJson:JSON) {
+        let post = Post();
+        post.jsonToPost(postJson)
+        print(postJson);
+        var darkBlur: UIBlurEffect!
+        var blurView: UIVisualEffectView!
+        self.backView = UIView();
+        self.backView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: self.view.frame.size.height)
+        self.view.addSubview(self.backView)
+        self.backView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: self.view.frame.size.height)
+        darkBlur = UIBlurEffect(style: .dark)
+        blurView = UIVisualEffectView(effect: darkBlur)
+        blurView.frame.size.height = self.backView.frame.height
+        blurView.frame.size.width = self.backView.frame.width
+        blurView.layer.zPosition = -1
+        blurView.isUserInteractionEnabled = false
+        self.backView.addSubview(blurView)
+        let vibrancyEffect = UIVibrancyEffect(blurEffect: darkBlur)
+        let vibrancyEffectView = UIVisualEffectView(effect: vibrancyEffect)
+        blurView.contentView.addSubview(vibrancyEffectView)
+        self.newScroll = UIScrollView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height ))
+        self.backView.addSubview(self.newScroll)
+        self.addView = AddActivityNew()
+        self.addView.buddyAdded(postJson["buddies"].arrayValue)
+        self.addView.thoughtsTextView.delegate = self
+        
+        self.addView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: self.view.frame.size.height)
+        self.addView.typeOfAddActivtiy = "AddPhotosVideos"
+        self.addView.editPost = post
+        self.addView.newScroll = self.newScroll;
+        self.addView.checkConnection()
+        self.newScroll.contentSize.height = self.view.frame.height
+        newScroll.contentSize.width = 0
+        backView.addSubview(newScroll)
+        
+        let leftButton = UIButton()
+        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
+        leftButton.addTarget(self, action: #selector(self.closeAdd(_:)), for: .touchUpInside)
+        
+        let rightButton = UIButton()
+        rightButton.frame = CGRect(x: 0, y: 0, width: 50, height: 30)
+        
+        rightButton.setTitle("Done", for: UIControlState())
+        rightButton.titleLabel?.font = avenirBold
+        rightButton.addTarget(self, action: #selector(self.savePhotoVideoToFeed(_:)), for: .touchUpInside)
+        
+        addView.postButton.setTitle("Done", for: .normal)
+        
+        globalNavigationController.topViewController?.title = "Add Photos/Videos"
+        globalNavigationController.topViewController?.customNavigationBar(left: leftButton, right: rightButton)
+        self.addView.layer.zPosition = 10
+        
+        backView.layer.zPosition = 10
+        newScroll.contentSize.height = self.view.frame.height
+        newScroll.contentSize.width = 0
+        
+        if(post.videoArr.count > 0) {
+            let videoUrl = URL(string:post.videoArr[0].serverUrl)
+            self.addView.addVideoToBlock(video: videoUrl)
+        }
+        
+        self.addView.locationView.alpha = 0.1
+        self.addView.locationView.isUserInteractionEnabled = false
+        
+        self.addView.locationView.alpha = 0.1
+        self.addView.locationView.isUserInteractionEnabled = false
+        
+        self.addView.thoughtsInitalView.alpha = 0.1
+        self.addView.thoughtsInitalView.isUserInteractionEnabled = false
+        
+        self.addView.tagFriendsView.alpha = 1
+        self.addView.tagFriendsView.isUserInteractionEnabled = true
+        
+        self.newScroll.addSubview(self.addView)
+    }
+    
+    
+    //MARK: - Edit Feed Data
+    
+    func savePhotoVideoToFeed (_ sender: UIButton) {
+        
+        print("\n\n videoURL : \(self.addView.videoURL) \n videoCaption : \(self.addView.videoCaption)")
+        
+        hideAddActivity()
+    }
+    
+    func editFeedData (_ sender: UIButton) {
+        
+        var lat = ""
+        if self.addView.currentLat != nil && self.addView.currentLat != 0.0 {
+            lat = String(self.addView.currentLat!)
+            if(lat == "0.0") {
+                lat = ""
+            }
+        }
+        var lng = ""
+        if self.addView.currentLong != nil && self.addView.currentLong != 0.0 {
+            lng = String(self.addView.currentLong!)
+            if(lng == "0.0") {
+                lng = ""
+            }
+        }
+        var category = ""
+        if self.addView.categoryLabel.text != nil {
+            category = self.addView.categoryLabel.text!
+            if(category == "Label") {
+                category = ""
+            }
+        }
+        
+        if (userLocation == nil) {
+            self.addView.addLocationButton.titleLabel?.text = self.addView.addLocationText.text
+            lat = ""
+            lng = ""
+        }
+        var location = self.addView.addLocationButton.titleLabel?.text
+        if location != nil {
+            location = (self.addView.addLocationButton.titleLabel?.text)!
+            if(location == "Add Location") {
+                location = ""
+            }
+        }
+        else{
+            location = ""
+        }
+        
+        var thoughts = ""
+        if self.addView.thoughtsTextView.text != nil {
+            thoughts = self.addView.thoughtsTextView.text!
+            if(thoughts == "Fill Me In...") {
+                thoughts = ""
+            }
+        }
+        
+        if(self.addView.imageArr.count > 0 || self.addView.videoURL != nil  || thoughts.characters.count > 0 || (location?.characters.count)! > 0) {
+            
+        }
+        
+        hideAddActivity()        
+    }
+    
+    
     
     func closeAdd(_ sender: UIButton) {
         hideAddActivity()
     }
     
     func hideAddActivity() {
+        
+        UIApplication.shared.statusBarView?.backgroundColor = NAVIGATION_BAR_COLOR
+        
         addView.removeFromSuperview()
         backView.removeFromSuperview()
         let leftButton = UIButton()
@@ -529,6 +676,54 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         self.title = currentUser["name"].string!
     }
 
+    
+    //MARK: - Text Delegate
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        
+        if text == "\n" {
+            
+            addView.thoughtsTextView.resignFirstResponder()
+            
+            if addView.thoughtsTextView.text == "" {
+                
+                addView.thoughtsTextView.text = "Fill Me In..."
+                
+            }
+            return true
+            
+        }
+        
+        let newText = (textView.text as NSString).replacingCharacters(in: range, with: text)
+        let number = newText.characters.count
+        addView.countCharacters(number)
+        return number <= 180
+        
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        textFieldYPos = textView.frame.origin.y + textView.frame.size.height
+        if addView.thoughtsTextView.text == "Fill Me In..." {
+            addView.thoughtsTextView.text = ""
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        textFieldYPos = 0
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textFieldYPos = textField.frame.origin.y + textField.frame.size.height
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        textFieldYPos = 0
+    }
+    
+    
+    
+    //MARK: - Helper
+    
     // Change date and Time
     var currentPhotoFooter:ActivityFeedFooterBasic!
     var currentPhotoFooter2:ActivityFeedFooterBasic!
@@ -538,58 +733,65 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     var timeSelected = ""
     
     func changeDateAndTime(_ footer:ActivityFeedFooterBasic) {
-        currentPhotoFooter = footer
-        hideHeaderAndFooter(true)
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSZ"
-        self.inputview = UIView(frame: CGRect(x: 0, y: UIScreen.main.bounds.size.height - 240, width: self.view.frame.size.width, height: 240))
-        self.inputview.backgroundColor = UIColor.white
-        self.datePickerView = UIDatePicker(frame: CGRect(x: 0, y: 0, width: self.inputview.frame.size.width, height: 240))
-        self.datePickerView.datePickerMode = UIDatePickerMode.dateAndTime                
-        var showDate = dateFormatter.string(from: Date())        
-        switch footer.postTop["type"].stringValue {
-        case "on-the-go-journey":
-            fallthrough
-        case "ended-journey":
-            fallthrough
-        case "quick-itinerary":
-            fallthrough
-        case "detail-itinerary":
-            showDate = footer.postTop["updatedAt"].stringValue
-            break
+        if isNetworkReachable {
+            currentPhotoFooter = footer
+            hideHeaderAndFooter(true)
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSZ"
+            self.inputview = UIView(frame: CGRect(x: 0, y: UIScreen.main.bounds.size.height - 240, width: self.view.frame.size.width, height: 240))
+            self.inputview.backgroundColor = UIColor.white
+            self.datePickerView = UIDatePicker(frame: CGRect(x: 0, y: 0, width: self.inputview.frame.size.width, height: 240))
+            self.datePickerView.datePickerMode = UIDatePickerMode.dateAndTime
+            var showDate = dateFormatter.string(from: Date())
+            switch footer.postTop["type"].stringValue {
+            case "on-the-go-journey":
+                fallthrough
+            case "ended-journey":
+                fallthrough
+            case "quick-itinerary":
+                fallthrough
+            case "detail-itinerary":
+                showDate = footer.postTop["updatedAt"].stringValue
+                break
+                
+            default:
+                showDate = footer.postTop["UTCModified"].stringValue
+            }
             
-        default:
-            showDate = footer.postTop["UTCModified"].stringValue
-        }        
+            self.datePickerView.date = dateFormatter.date(from: showDate)!
+            self.datePickerView.maximumDate = Date()
+            
+            self.backView = UIView(frame: CGRect(x: 0, y: UIScreen.main.bounds.size.height - 280, width: self.view.frame.size.width, height: 40))
+            self.backView.backgroundColor = UIColor(hex: "#272b49")
+            self.inputview.addSubview(self.datePickerView) // add date picker to UIView
+            
+            let doneButton = UIButton(frame: CGRect(x: UIScreen.main.bounds.size.width - 100, y: 0, width: 100, height: 40))
+            doneButton.setTitle("Save", for: .normal)
+            doneButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14.0)
+            doneButton.setTitleColor(UIColor.white, for: .normal)
+            
+            let cancelButton = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: 40))
+            cancelButton.setTitle("Cancel", for: .normal)
+            cancelButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14.0)
+            cancelButton.setTitleColor(UIColor.white, for: UIControlState())
+            self.inputview.addSubview(self.backView)
+            self.backView.addSubview(doneButton) // add Button to UIView
+            self.backView.addSubview(cancelButton) // add Cancel to UIView
+            
+            doneButton.addTarget(self, action: #selector(self.doneButton(_:)), for: .touchUpInside) // set button click event
+            cancelButton.addTarget(self, action: #selector(self.cancelButton(_:)), for: .touchUpInside) // set button click event
+            
+            self.datePickerView.addTarget(self, action: #selector(NewTLViewController.handleDatePicker(_:)), for: .valueChanged)
+            
+            self.handleDatePicker(self.datePickerView) // Set the date on start.
+            self.view.addSubview(self.backView)
+            self.view.addSubview(self.inputview)
+        }
+        else {
+            let tstr = Toast(text: "No Internet Connection.")
+            tstr.show()
+        }
         
-        self.datePickerView.date = dateFormatter.date(from: showDate)!
-        self.datePickerView.maximumDate = Date()
-        
-        self.backView = UIView(frame: CGRect(x: 0, y: UIScreen.main.bounds.size.height - 280, width: self.view.frame.size.width, height: 40))
-        self.backView.backgroundColor = UIColor(hex: "#272b49")
-        self.inputview.addSubview(self.datePickerView) // add date picker to UIView
-        
-        let doneButton = UIButton(frame: CGRect(x: UIScreen.main.bounds.size.width - 100, y: 0, width: 100, height: 40))
-        doneButton.setTitle("Save", for: .normal)
-        doneButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14.0)
-        doneButton.setTitleColor(UIColor.white, for: .normal)
-        
-        let cancelButton = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: 40))
-        cancelButton.setTitle("Cancel", for: .normal)
-        cancelButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14.0)
-        cancelButton.setTitleColor(UIColor.white, for: UIControlState())
-        self.inputview.addSubview(self.backView)
-        self.backView.addSubview(doneButton) // add Button to UIView
-        self.backView.addSubview(cancelButton) // add Cancel to UIView
-        
-        doneButton.addTarget(self, action: #selector(self.doneButton(_:)), for: .touchUpInside) // set button click event
-        cancelButton.addTarget(self, action: #selector(self.cancelButton(_:)), for: .touchUpInside) // set button click event
-        
-        self.datePickerView.addTarget(self, action: #selector(NewTLViewController.handleDatePicker(_:)), for: .valueChanged)
-        
-        self.handleDatePicker(self.datePickerView) // Set the date on start.
-        self.view.addSubview(self.backView)
-        self.view.addSubview(self.inputview)
     }
     
     func changeDateAndTimeEndJourney(_ footer:ActivityFeedFooterBasic) {
@@ -656,7 +858,6 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         hideHeaderAndFooter(false)
     }
 
-
     func doneButton(_ sender: UIButton){
         
         request.changeDateTimeLocal(currentPhotoFooter.postTop["_id"].stringValue, date: "\(dateSelected) \(timeSelected)", completion: {(response) in
@@ -667,82 +868,6 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         self.inputview.removeFromSuperview() // To resign the inputView on clicking done.
         self.backView.removeFromSuperview()
         hideHeaderAndFooter(false)
-    }
-
-    
-    // Add PhotosVideo
-    
-    func showEditAddActivity(_ postJson:JSON) {
-        let post = Post();
-        post.jsonToPost(postJson)
-        print(postJson);
-        var darkBlur: UIBlurEffect!
-        var blurView: UIVisualEffectView!
-        self.backView = UIView();
-        self.backView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: self.view.frame.size.height)
-        self.view.addSubview(self.backView)
-        self.backView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: self.view.frame.size.height)
-        darkBlur = UIBlurEffect(style: .dark)
-        blurView = UIVisualEffectView(effect: darkBlur)
-        blurView.frame.size.height = self.backView.frame.height
-        blurView.frame.size.width = self.backView.frame.width
-        blurView.layer.zPosition = -1
-        blurView.isUserInteractionEnabled = false
-        self.backView.addSubview(blurView)
-        let vibrancyEffect = UIVibrancyEffect(blurEffect: darkBlur)
-        let vibrancyEffectView = UIVisualEffectView(effect: vibrancyEffect)
-        blurView.contentView.addSubview(vibrancyEffectView)
-        self.newScroll = UIScrollView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height ))
-        self.backView.addSubview(self.newScroll)
-        self.addView = AddActivityNew()
-        self.addView.buddyAdded(postJson["buddies"].arrayValue)
-        
-        self.addView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: self.view.frame.size.height)
-        self.addView.typeOfAddActivtiy = "AddPhotosVideos"
-        self.addView.editPost = post
-        self.addView.newScroll = self.newScroll;
-        self.addView.checkConnection()
-        self.newScroll.contentSize.height = self.view.frame.height
-        newScroll.contentSize.width = 0
-        backView.addSubview(newScroll)
-        
-        let leftButton = UIButton()
-        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-        leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
-        leftButton.addTarget(self, action: #selector(self.closeAdd(_:)), for: .touchUpInside)
-        
-        let rightButton = UIButton()
-        rightButton.frame = CGRect(x: 0, y: 0, width: 50, height: 30)
-        
-        rightButton.setTitle("Post", for: UIControlState())
-        rightButton.titleLabel?.font = avenirBold
-//        rightButton.addTarget(self, action: #selector(self.savePhotoVideo(_:) ), for: .touchUpInside)
-        globalNavigationController.topViewController?.title = "Add Photos/Videos"
-        globalNavigationController.topViewController?.customNavigationBar(left: leftButton, right: rightButton)
-        self.addView.layer.zPosition = 10
-        
-        backView.layer.zPosition = 10
-        newScroll.contentSize.height = self.view.frame.height
-        newScroll.contentSize.width = 0
-        
-        if(post.videoArr.count > 0) {
-            let videoUrl = URL(string:post.videoArr[0].serverUrl)
-            self.addView.addVideoToBlock(video: videoUrl)
-        }
-        
-        self.addView.locationView.alpha = 0.1
-        self.addView.locationView.isUserInteractionEnabled = false
-        
-        self.addView.locationView.alpha = 0.1
-        self.addView.locationView.isUserInteractionEnabled = false
-        
-        self.addView.thoughtsInitalView.alpha = 0.1
-        self.addView.thoughtsInitalView.isUserInteractionEnabled = false
-        
-        self.addView.tagFriendsView.alpha = 1
-        self.addView.tagFriendsView.isUserInteractionEnabled = true
-        
-        self.newScroll.addSubview(self.addView)
     }
     
     func hideHeaderAndFooter(_ isShow:Bool) {

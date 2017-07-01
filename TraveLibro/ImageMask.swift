@@ -15,9 +15,6 @@ class TagViewFrame: UIView {
         let mask = CAShapeLayer()
         mask.frame = self.layer.bounds
         
-        let width = self.layer.bounds.width
-        let height = self.layer.bounds.height
-        
         let path = CGMutablePath()
         
 //        CGPathMoveToPoint(path, nil, 0, 0)

@@ -306,13 +306,11 @@ public class LocalLifePostModel {
     func getAllJson() -> [JSON] {
         var retJson:[JSON] = []
         do {
-            var check = false;
             let query = post.select(id,type,userId,journeyId,thoughts,location,category,city,country,latitude,longitude,date,buddyDb)
                 .filter(localLifePostStatus == 0 || localLifePostStatus == 4)
                 .limit(1)
             
-            for post in try db.prepare(query) {
-                check = true
+            for post in try db.prepare(query) {           
                 let p = LocalLifePostModel()
                 p.post_id = Int(post[id])
                 p.post_type = String(post[type])
@@ -374,12 +372,25 @@ public class LocalLifePostModel {
     func uploadPost() {
         print("\n uploadPost called in localLife")
         do {
-            var check = false;
-            let query = post.select(id,type,userId,journeyId,thoughts,location,category,city,country,latitude,longitude,date,buddyDb)
-                .filter(localLifePostStatus == 0 || localLifePostStatus == 3)
-                .limit(1)
+            var check = false
+            var query: QueryType!
+            
+            if currentUploadingPostID == Int64(0) {
+                print("\n if succeed")
+                query = post.select(id,type,userId,journeyId,thoughts,location,category,city,country,latitude,longitude,date,buddyDb)
+                    .filter(localLifePostStatus == 0 || localLifePostStatus == 3)
+                    .limit(1)                   
+            }
+            else {
+                print("\n else succeed")
+                query = post.select(id,type,userId,journeyId,thoughts,location,category,city,country,latitude,longitude,date,buddyDb)
+                    .filter((localLifePostStatus == 0 || localLifePostStatus == 3) && (id == currentUploadingPostID))
+                    .limit(1)
+            }
+            
             for post in try db.prepare(query) {
                 check = true
+                uploadFlag = true
                 
                 self.updateStatus(postId: post[id], status: (isNetworkReachable ? uploadStatus.UPLOAD_IN_PROGRESS : uploadStatus.UPLOAD_PENDING))
                 

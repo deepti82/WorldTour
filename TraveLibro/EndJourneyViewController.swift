@@ -505,7 +505,6 @@ class EndJourneyViewController: UIViewController {
                                             print("error: \(response.error!.localizedDescription)")
                                         }
                                         else if response["value"].bool! {
-                                            
                                             self.goBack()
                                         }
                                         else {
@@ -538,6 +537,7 @@ class EndJourneyViewController: UIViewController {
             
             
         }
+            
         else{
 //            let tstr = Toast(text: "Wait a while.....")
 //            tstr.show()
@@ -556,6 +556,7 @@ class EndJourneyViewController: UIViewController {
                             
                             DispatchQueue.main.async(execute: {
                                 self.goBack()
+                                
                                 currentUser = response["data"]
                                 if globalNewTLViewController != nil {
                                     globalNewTLViewController?.removeFromParentViewController()
@@ -621,6 +622,9 @@ class EndJourneyViewController: UIViewController {
     }
     
     func goBack() {
+        
+        currentUser["journeyId"] = JSON("-1")
+        
         self.gotoActivityController(lat: nil, lng: nil, category: nil)
         DispatchQueue.global().async { 
             request.getUser(user.getExistingUser(), urlSlug: "") { (response, isFromCache) in

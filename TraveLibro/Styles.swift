@@ -407,25 +407,25 @@ func getThoughtForLocalPost (_ post: Post) ->  NSMutableAttributedString {
     let buddy = post.buddyJson
     
     if(post.post_thoughts != "" ) {
-        retText.append(getRegularString(string: post.post_thoughts.trimmingCharacters(in: CharacterSet.whitespaces), size: TL_REGULAR_FONT_SIZE))
+        retText.append(getRegularOfflineString(string: post.post_thoughts.trimmingCharacters(in: CharacterSet.whitespaces), size: TL_REGULAR_FONT_SIZE))
         if(location != nil && location != "") {
-            retText.append(getRegularString(string: " at ", size: TL_REGULAR_FONT_SIZE))
-            retText.append(getBoldString(string: location!.trimmingCharacters(in: CharacterSet.whitespaces), size: TL_REGULAR_FONT_SIZE))
+            retText.append(getRegularOfflineString(string: " at ", size: TL_REGULAR_FONT_SIZE))
+            retText.append(getBoldOfflineString(string: location!.trimmingCharacters(in: CharacterSet.whitespaces), size: TL_REGULAR_FONT_SIZE))
             
-            retText.append(getBuddiesString(buddies: buddy))
+            retText.append(getBuddiesStringForLocalPost(buddies: buddy))
         } else {
-            retText.append(getBuddiesString(buddies: buddy))
+            retText.append(getBuddiesStringForLocalPost(buddies: buddy))
         }
     } 
     else {
         if(location != nil && location != "") {            
-            retText.append(getRegularString(string: "At ", size: TL_REGULAR_FONT_SIZE))
-            retText.append(getBoldString(string: location!.trimmingCharacters(in: CharacterSet.whitespaces), size: TL_REGULAR_FONT_SIZE))
+            retText.append(getRegularOfflineString(string: "At ", size: TL_REGULAR_FONT_SIZE))
+            retText.append(getBoldOfflineString(string: location!.trimmingCharacters(in: CharacterSet.whitespaces), size: TL_REGULAR_FONT_SIZE))
             
-            retText.append(getBuddiesString(buddies: buddy))
+            retText.append(getBuddiesStringForLocalPost(buddies: buddy))
         }
         else {
-            retText.append(getBuddiesString(buddies: buddy))
+            retText.append(getBuddiesStringForLocalPost(buddies: buddy))
         }
     }
     
@@ -453,6 +453,35 @@ func getBuddiesString (buddies: [JSON]) -> NSMutableAttributedString {
                 }
                 else {                        
                     buddyText.append(getBoldString(string: "\(buddyVal["name"].stringValue), ", size: TL_REGULAR_FONT_SIZE))
+                }
+            }
+        }
+    }
+    
+    return buddyText
+}
+
+func getBuddiesStringForLocalPost (buddies: [JSON]) -> NSMutableAttributedString {
+    let buddyText = NSMutableAttributedString(string: "")
+    
+    if buddies.isNotEmpty {
+        if(buddies.count == 1) {
+            //                retText = retText + " with " + buddy[0]["name"].stringValue
+            buddyText.append(getRegularOfflineString(string: " with ", size: TL_REGULAR_FONT_SIZE))
+            buddyText.append(getBoldOfflineString(string: buddies[0]["name"].stringValue, size: TL_REGULAR_FONT_SIZE))
+        } else {
+            buddyText.append(getRegularOfflineString(string: " with ", size: TL_REGULAR_FONT_SIZE))
+            for i in 0..<buddies.count {
+                let buddyVal = buddies[i]
+                
+                if i == (buddies.count - 2) {
+                    buddyText.append(getBoldOfflineString(string: "\(buddyVal["name"].stringValue) and ", size: TL_REGULAR_FONT_SIZE))
+                }
+                else if i == (buddies.count-1) {
+                    buddyText.append(getBoldOfflineString(string: "\(buddyVal["name"].stringValue)", size: TL_REGULAR_FONT_SIZE))
+                }
+                else {
+                    buddyText.append(getBoldOfflineString(string: "\(buddyVal["name"].stringValue), ", size: TL_REGULAR_FONT_SIZE))
                 }
             }
         }
@@ -674,6 +703,11 @@ func getRegularString(string: String, size: Int) -> NSMutableAttributedString {
                               attributes: [NSFontAttributeName: UIFont(name: "Avenir-Medium", size: CGFloat(size))!, NSForegroundColorAttributeName: mainBlueColor])
 }
 
+func getRegularOfflineString(string: String, size: Int) -> NSMutableAttributedString {
+    return NSMutableAttributedString(string: string,
+                                     attributes: [NSFontAttributeName: UIFont(name: "Avenir-Medium", size: CGFloat(size))!, NSForegroundColorAttributeName: mainBlueColor])
+}
+
 func getRegularRomanString(string: String, size: Int) -> NSMutableAttributedString {
     return NSMutableAttributedString(string: string, 
                                      attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: CGFloat(size))!, NSForegroundColorAttributeName: UIColor.black])
@@ -682,6 +716,11 @@ func getRegularRomanString(string: String, size: Int) -> NSMutableAttributedStri
 func getBoldString(string: String, size: Int) -> NSMutableAttributedString {
     return NSMutableAttributedString(string: string, 
                               attributes: [NSFontAttributeName: UIFont(name: "Avenir-Heavy", size: CGFloat(size))!, NSForegroundColorAttributeName: mainBlueColor])
+}
+
+func getBoldOfflineString(string: String, size: Int) -> NSMutableAttributedString {
+    return NSMutableAttributedString(string: string,
+                                     attributes: [NSFontAttributeName: UIFont(name: "Avenir-Heavy", size: CGFloat(size))!, NSForegroundColorAttributeName: mainBlueColor])
 }
 
 func getRedString(string: String) -> NSMutableAttributedString {
@@ -822,28 +861,48 @@ func isLocalFeed(feed: JSON) -> Bool {
 }
 
 
+func changeDateFormat(_ givenFormat: String, getFormat: String, date: String, isDate: Bool) -> String {
+    
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = givenFormat
+    let date = dateFormatter.date(from: date)
+    
+    dateFormatter.dateFormat = getFormat
+    
+    if isDate {
+        
+        dateFormatter.dateStyle = .medium
+        
+    }
+    var goodDate = "";
+    if(date != nil) {
+        goodDate = dateFormatter.string(from: date!)
+    }
+    return goodDate
+}
+
 //MARK: - Sort JSON Array
 
-func sortJSONArray(inputArray:[JSON], key: String) -> [JSON] {
-    
-    let result = inputArray.sorted {
-        switch ($0[key], $1[key]) {
-        case (nil, nil), (_, nil):
-            return true
-        case (nil, _):
-            return false
-        case let (lhs as String, rhs as String):
-            return lhs < rhs
-        case let (lhs as Int, rhs as Int):
-            return  lhs < rhs
-        // Add more for Double, Date, etc.
-        default:
-            return true
-        }
-    }
-    
-    return result
-}
+//func sortJSONArray(inputArray:[JSON], key: String) -> [JSON] {
+//    
+//    let result = inputArray.sorted {
+//        switch ($0[key], $1[key]) {
+//        case (nil, nil), (_, nil):
+//            return true
+//        case (nil, _):
+//            return false
+//        case let (lhs as String, rhs as String):
+//            return lhs < rhs
+//        case let (lhs as Int, rhs as Int):
+//            return  lhs < rhs
+//        // Add more for Double, Date, etc.
+//        default:
+//            return true
+//        }
+//    }
+//    
+//    return result
+//}
 
 //MARK: - PlaceHolder Image
 
@@ -898,6 +957,19 @@ func isSelfUser(otherUserID: String) -> Bool {
     else {
         return false
     }
+}
+
+func isSelfUserLoggedIn() -> Bool {
+    if currentUser != nil {
+        if isSelfUser(otherUserID: currentUser["_id"].stringValue) {
+            return true
+        }
+        else {
+            return false
+        }
+    }
+    
+    return false
 }
 
 

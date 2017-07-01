@@ -207,7 +207,8 @@ class startOTGView: UIView {
         bonVoyageLabel.animate()
         
     }
+    
     @IBAction func onBuddyCancel(_ sender: Any) {
-        globalNewTLViewController?.getJourney()
+        globalNewTLViewController?.getJourney(canGetFromCache: false)
     }
 }

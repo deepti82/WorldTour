@@ -45,7 +45,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
             
         case "NewTLView":
             globalNewTLViewController?.buddyAdded(addedFriends,inMiddle:false,completionDone: { (json) in
-                 globalNewTLViewController?.getJourney()
+                globalNewTLViewController?.fetchJourneyData(false)
             });
         default:
             break;

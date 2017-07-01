@@ -41,13 +41,22 @@ let lightOrangeColor = UIColor(red: 252/255, green: 103/255, blue: 89/255, alpha
 let darkOrangeColor = UIColor(hex: "FF6759").cgColor
 let mainGreenColor = UIColor(red: 75/255, green: 203/255, blue: 187/255, alpha: 1) // #4BCBBB
 let endJourneyColor = UIColor(red: 87/255, green: 211/255, blue: 199/255, alpha: 1) // #57D3C7
+let offlinePostColor = UIColor(red: 100/255, green: 100/255, blue: 100/255, alpha: 1)
+let offlinePostTextColor = UIColor(hex: "#6E6F76")
+
 let navGreen = UIColor(red: 17/255, green: 211/255, blue: 203/255, alpha: 1) // #11d3cb
 let navBlue = UIColor(red: 44/255, green: 55/255, blue: 87/255, alpha: 1) // #2c3757
 let navOrange = UIColor(red: 255/255, green: 103/255, blue: 89/255, alpha: 1) // #ff6759
+
+let NAVIGATION_BAR_COLOR = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 1)
+let NAVIGATION_BAR_CLEAR_COLOR = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 0)
+
 let avenirFont = UIFont(name: "Avenir-Roman", size: 14)
 let avenirBold = UIFont(name: "Avenir-Heavy", size: 14)
 let FontAwesomeFont = UIFont(name: "FontAwesome", size: 14)
 let NAVIGATION_FONT = UIFont(name: "Avenir-Roman", size: 18)
+
+let STATUS_BAR_HEIGHT = UIApplication.shared.statusBarFrame.size.height
 
 let MAIN_FOOTER_HEIGHT = CGFloat(60)
 let VERY_BIG_PHOTO_WIDTH = 800
@@ -81,8 +90,13 @@ var shouldShowLoader = false
 var isSettingsEdited = false
 var isCountryAdded = false
 var isUploadingInProgress = false
+var uploadFlag = false
+var currentUploadingPostID = Int64(0)
 
 let user = User()
+
+var profileVC: TLProfileViewController!
+var nationalityPage: AddNationalityNewViewController!
 
 let width = UIScreen.main.bounds.size.width
 let height = UIScreen.main.bounds.size.height
@@ -142,7 +156,7 @@ let FEED_UPLOADING_VIEW_HEIGHT = CGFloat(25)
 let TL_REGULAR_FONT_SIZE = 14
 
 
-let categoryImages = ["restaurant_checkin", "nature_checkin", "landmarks_checkin", "museums_landmarks", "adventure_icon", "aqua_checkin", "shopping", "beach_checkin", "cinema_checkin", "hotels-1", "planetrans", "reg", "othersdottrans", "city_icon", "health_beauty", "emergency", "essential", "entertainment"]
+let categoryImages = ["restaurant_checkin", "nature_checkin", "landmarks_checkin", "museums_landmarks", "adventure_icon", "aqua_checkin", "shopping", "beach_checkin", "cinema_checkin", "hotels", "planetrans", "reg", "othersdottrans", "city_icon", "health_beauty", "emergency", "essential", "entertainment"]
 
 var globalNavigationController:UINavigationController!
 
@@ -161,14 +175,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
         
         leftViewController = storyboard.instantiateViewController(withIdentifier: "sideMenu") as! SideNavigationMenuViewController
         
-//        let mainViewController = storyboard.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
-        
-        
-        
         let mainViewController = storyboard.instantiateViewController(withIdentifier: "TLProfileView") as! TLProfileViewController
         mainViewController.isAppStartedFromInitial = true
-        
-//        let signInVC = storyboard.instantiateViewController(withIdentifier: "SignUpOne") as! SignInViewController
         
         let nationality = storyboard.instantiateViewController(withIdentifier: "nationalityNew") as!AddNationalityNewViewController
         
@@ -221,6 +229,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
         
         createMenuView()        
         
+        UIApplication.shared.statusBarView?.backgroundColor = NAVIGATION_BAR_COLOR
+        
         googleAnalytics()
         
         enableCrashReporting()
@@ -237,10 +247,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
             // Fallback on earlier versions
         }
         
+        
+        //Advance Declaration
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        profileVC = storyboard.instantiateViewController(withIdentifier: "TLProfileView") as! TLProfileViewController
+        nationalityPage = storyboard.instantiateViewController(withIdentifier: "nationalityNew") as! AddNationalityNewViewController
+        
         UINavigationBar.appearance().backgroundColor = mainBlueColor
         UIBarButtonItem.appearance().tintColor = UIColor.white
-        
-//        OneSignal.initWithLaunchOptions(launchOptions, appId: "bf8baf0a-dcfb-4a30-a0c1-ee67cae2feb1")
         
         OneSignal.initWithLaunchOptions(launchOptions, appId: "bf8baf0a-dcfb-4a30-a0c1-ee67cae2feb1", handleNotificationReceived: { (notification) in
             
@@ -325,21 +340,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
         let pageController = UIPageControl.appearance()
         pageController.pageIndicatorTintColor = UIColor.white
         pageController.currentPageIndicatorTintColor = mainBlueColor
-        pageController.backgroundColor = UIColor.clear
-        
-        //        self.addObserver(self, forKeyPath: "profileViewY", options: .New, context: nil)
-        
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        pageController.backgroundColor = UIColor.clear                
+       
         let tabBarController = UITabBarController()
         let homeVC = storyboard.instantiateViewController(withIdentifier: "Home") as! HomeViewController
-//        let feedVC = storyboard.instantiateViewController(withIdentifier: "Activity") as! ProfilePostsViewController
         tabBarController.viewControllers = [homeVC]
-        //        window?.rootViewController = tabBarController
-        
-        let image = UIImage(named: "adventure_icon")
-        
-//        feedVC.tabBarItem = UITabBarItem(title: "Feed", image: image, tag: 1)
-        
+                
         return true
     }
     
@@ -468,8 +474,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
     }
     
     private func resumeUploading() {
-        let i = PostImage()
-        i.uploadPhotos(delegate: nil)
+        uploadFlag = false
+        startUploadingPostInBackground()
     }
     
     private func dropOldDB() {
@@ -477,17 +483,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
         if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
             print("\n current version is  : \(version)")
             
-            var fullVersionString = version.replacingOccurrences(of: ".", with: "")
-            let array = version.components(separatedBy: ".")
-            
-            if array.count < 3 {
-                for _ in array.count..<3 {
-                    fullVersionString.append("0")
-                }
+            let isSchemaUpdated = UserDefaults.standard.string(forKey: "isTableSchemaUpdated")
+            if (isSchemaUpdated != nil || isSchemaUpdated == "1") {
+//                print("\n In iff")
             }
-            
-            if ((Int(fullVersionString))! < 406) {
-                self.dropDBTables()                
+            else {
+//                print("\n In else")
+                UserDefaults.standard.set("1", forKey: "isTableSchemaUpdated")
+                self.dropDBTables()
             }
         }
     }
@@ -520,6 +523,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
         
     }
     
+    func startUploadingPostInBackground() {
+//        let uploadID = UIApplication.shared.beginBackgroundTask { 
+            let i = PostImage()
+            i.uploadPhotos(delegate: nil)
+//        }
+//        
+//        UIApplication.shared.endBackgroundTask(uploadID)
+        
+    }
     
     //MARK: - Notification Observer
     
@@ -539,6 +551,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
         globalNavigationController.delegate = self
         globalNavigationController.pushViewController(signInVC, animated: true)
     }
+    
+    
+    //MARK: - Helper Functions
     
     func enableCrashReporting() {
         Fabric.with([Crashlytics.self])
@@ -694,3 +709,8 @@ func updateFooterBadge(){
 }
 
 
+extension UIApplication {
+    var statusBarView: UIView? {
+        return value(forKey: "statusBar") as? UIView
+    }
+}

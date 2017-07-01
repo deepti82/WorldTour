@@ -12,6 +12,7 @@ import Toaster
 import SwiftGifOrigin
 import Crashlytics
 
+
 class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     @IBOutlet weak var gradientView: UIView!
@@ -69,7 +70,6 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
         
         globalNewTLViewController = nil
         globalTLMainFeedsViewController = nil
-        navigation = nil
         
         isLoadedForFirstTime = true
         
@@ -77,8 +77,8 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
             
             print("\n DB : Uploading to cloud started...")
             
-            let i = PostImage()
-            i.uploadPhotos(delegate: nil)
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            appDelegate.startUploadingPostInBackground()
             
             isAppStartedFromInitial = false
         }
@@ -121,6 +121,8 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
         
         setAnalytics(name: "Profile")
         
+        UIApplication.shared.statusBarView?.backgroundColor = NAVIGATION_BAR_CLEAR_COLOR
+        
         shouldShowTransperentNavBar = true
         
         self.setNavigationBar()
@@ -157,6 +159,9 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        
+        UIApplication.shared.statusBarView?.backgroundColor = NAVIGATION_BAR_COLOR
+        
         isProfileVCVisible = false
         shouldShowTransperentNavBar = false        
         if (self.mamStackView.tag == 1) {
@@ -686,7 +691,6 @@ class TLProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     
     func setTextWithAnimation(onView: UILabel, text: String) {
         
-        let charArray = Array(text.characters)        
         onView.text = ""
         
         strIndex = 0

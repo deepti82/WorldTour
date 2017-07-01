@@ -53,9 +53,9 @@ class SocialLoginClass: UIViewController {
                         let json = JSON(data: response.data)
                         print(json)
                         
-                        if json["emails"][0]["value"].string! != "" {
+                        if json["emails"][0]["value"].stringValue != "" {
                             if loggedInUser != nil {
-                                request.changeLogin(id: loggedInUser["_id"].stringValue, email: json["emails"][0]["value"].string!, facebookID: nil, googleID: json["id"].string!, completion: { (response) in
+                                request.changeLogin(id: loggedInUser["_id"].stringValue, email: json["emails"][0]["value"].stringValue, facebookID: nil, googleID: json["id"].stringValue, completion: { (response) in
                                     
                                     DispatchQueue.main.async(execute: {
                                         
@@ -116,7 +116,7 @@ class SocialLoginClass: UIViewController {
                                 })                            
                             }
                             else {
-                                request.saveUser(json["name"]["givenName"].string!, lastName: json["name"]["familyName"].string!, email: json["emails"][0]["value"].string!, mobile: "", fbId: "", googleId: json["id"].string!, twitterId: "", instaId: "", nationality: "", profilePicture: json["image"]["url"].string!, gender: json["gender"].stringValue, dob: "", completion: {(response) in                                
+                                request.saveUser(json["name"]["givenName"].stringValue, lastName: json["name"]["familyName"].stringValue, email: json["emails"][0]["value"].stringValue, mobile: "", fbId: "", googleId: json["id"].stringValue, twitterId: "", instaId: "", nationality: "", profilePicture: json["image"]["url"].stringValue, gender: json["gender"].stringValue, dob: "", completion: {(response) in
                                     DispatchQueue.main.async(execute: {
                                         
                                         if (response.error != nil) {
@@ -177,38 +177,25 @@ class SocialLoginClass: UIViewController {
                         
                         print("opt finished: \(response.description)")
                         let json = JSON(data: response.data)
-                        //                        let birthday: String!
-                        
-                        //                        if json["birthday"] {
-                        //
-                        //                            print("inside birthday if statement")
-                        //                            birthday = json["birthday"].string!
-                        //
-                        //                        }
-                        //
-                        //                        else {
-                        //
-                        //                            birthday = ""
-                        //                        }
                         
                         var email = ""
                         var mobile = ""
                         
                         if json["email"] != nil {
                             
-                            email = json["email"].string!
+                            email = json["email"].stringValue
                             
                         }
                         else if json["mobile"] != nil {
                             
-                            mobile = json["mobile"].string!
+                            mobile = json["mobile"].stringValue
                             
                         }
                         
                         if email != "" {
                         
                             if loggedInUser != nil {
-                                request.changeLogin(id: loggedInUser["_id"].stringValue, email: email, facebookID: json["id"].string!, googleID: nil, completion: { (responsess) in
+                                request.changeLogin(id: loggedInUser["_id"].stringValue, email: email, facebookID: json["id"].stringValue, googleID: nil, completion: { (responsess) in
                                     
                                     DispatchQueue.main.async(execute: {
                                         
@@ -267,7 +254,8 @@ class SocialLoginClass: UIViewController {
                                 })                        
                             }
                             else {
-                                request.saveUser(json["first_name"].string!, lastName: json["last_name"].string!, email: email, mobile: mobile, fbId: json["id"].string!, googleId: "", twitterId: "", instaId: "", nationality: "", profilePicture: json["picture"]["data"]["url"].string!, gender: json["gender"].string!, dob: "", completion: {(response) in
+                                print("\n\n ************\n FB RESPONSE JSON :: \n \(json) \n ************\n\n")
+                                request.saveUser(json["first_name"].stringValue, lastName: json["last_name"].stringValue, email: email, mobile: mobile, fbId: json["id"].stringValue, googleId: "", twitterId: "", instaId: "", nationality: "", profilePicture: json["picture"]["data"]["url"].stringValue, gender: json["gender"].stringValue, dob: "", completion: {(response) in
                                     
                                     DispatchQueue.main.async(execute: {
                                         
@@ -361,12 +349,7 @@ class SocialLoginClass: UIViewController {
                         let json = try JSONSerialization.jsonObject(with: data!, options: [])
                         print("json: \(JSON(json))")
                         let serialJson = JSON(json)
-                        
-                        //                        print("name: \(serialJson["name"].string!)")
-                        //                        print("mobile: 0123456789")
-                        //                        print("id: \(session!.userID)")
-                        //                        print("dp: \(serialJson["profile_image_url"].string!)")
-                        request.saveUser(serialJson["name"].string!, lastName: "", email: "", mobile: "0123456789", fbId: "", googleId: "", twitterId: session!.userID, instaId: "", nationality: "", profilePicture: serialJson["profile_image_url"].string!, gender: "", dob: "", completion: {(response) in
+                        request.saveUser(serialJson["name"].stringValue, lastName: "", email: "", mobile: "0123456789", fbId: "", googleId: "", twitterId: session!.userID, instaId: "", nationality: "", profilePicture: serialJson["profile_image_url"].stringValue, gender: "", dob: "", completion: {(response) in
                             
                             DispatchQueue.main.async(execute: {
                                 

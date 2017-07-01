@@ -4,33 +4,34 @@ import Spring
 
 class PhotosOTG2: VerticalLayout,PlayerDelegate {
     var postTop:Post!
-    var endJourneyView: EndJourneyMyLife!    
-    var lines: OnlyLine!
-    var profileHeader:ActivityProfileHeader!
-    var textHeader:ActivityTextHeader!
+    var endJourneyView: EndJourneyMyLife?    
+    var lines: OnlyLine?
+    var profileHeader:ActivityProfileHeader?
+    var textHeader:ActivityTextHeader?
     var centerView:PhotosOTGView?
     var footerView:PhotoOTGFooter?
     var mainPhoto:UIImageView?
-    var videoContainer:VideoView!
-    var uploadingView:UploadingToCloud!
+    var videoContainer:VideoView?
+    var uploadingView:UploadingToCloud?
     var newTl:NewTLViewController!
     var player:Player!
     var scrollView:UIScrollView!
     var rateButton:RatingCheckIn?
-    var headerLine:DottedLine!
-    var dropView: DropShadow1!
+    var headerLine:DottedLine?    
     var journeyUser: String = ""
     var willPlay = false
     var mainPhotoImageURL: URL?
+    
+    //MARK: - Post Creation
     
     func generatePost(_ post:Post) {
         
         self.layer.cornerRadius = 5.0
         self.clipsToBounds = true
-        //header generation only
-        
+                
         postTop = post
         
+        //Header generation only
         if (postTop.jsonPost != nil) {
             headerLayout(feed: postTop.jsonPost)
         }
@@ -42,101 +43,76 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
         
         //Image generation only
         if(post.videoArr.count > 0) {
-            self.videoContainer = VideoView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.width))
-            self.player = Player()
-            self.player.delegate = self
-            self.player.view.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.width)
-            self.player.view.clipsToBounds = true
-            self.player.playbackLoops = true
-            self.player.muted = true
-            self.player.fillMode = "AVLayerVideoGravityResizeAspectFill"
-            self.videoContainer.player = self.player
-//            var videoUrl:URL!
-            self.videoContainer.tagText.isHidden = true
-            videoContainer.tagView.isHidden = true
+            if self.videoContainer == nil {
+                self.videoContainer = VideoView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.width))
+                self.player = Player()
+                self.player.delegate = self
+                self.player.view.clipsToBounds = true
+                self.player.playbackLoops = true
+                self.player.muted = true
+                self.player.fillMode = "AVLayerVideoGravityResizeAspectFill"
+                self.videoContainer?.player = self.player
+                self.videoContainer?.videoHolder.addSubview(self.player.view)
+                self.addSubview(self.videoContainer!)
+            }            
             
-//            if(!post.post_isOffline) {
-//                videoUrl = URL(string: post.videoArr[0].serverUrl)
-//            } else {
-//                videoUrl = post.videoArr[0].imageUrl
-//            }
+            self.player.view.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.width)
+            self.videoContainer?.tagText.isHidden = true
+            videoContainer?.tagView.isHidden = true
+            
             let serverThumbnailURL = post.videoArr[0].serverUrlThumbnail
             
-            videoContainer.playBtn.tintColor = mainOrangeColor
+            videoContainer?.playBtn.tintColor = mainOrangeColor
             
-            //if videoUrl != nil {
-                self.videoContainer.videoHolder.sd_setImage(with: getImageURL(serverThumbnailURL, width: BIG_PHOTO_WIDTH),
-                                                            placeholderImage: getPlaceholderImage())
-                //getThumbnailFromVideoURL(url: videoUrl!, onView: self.videoContainer.videoHolder)
-            //}
             
-            self.videoContainer.videoHolder.addSubview(self.player.view)
-            self.addSubview(self.videoContainer)
+            self.videoContainer?.videoHolder.sd_setImage(with: getImageURL(serverThumbnailURL, width: BIG_PHOTO_WIDTH),
+                                                         placeholderImage: getPlaceholderImage())
+            
             
             if(!post.post_isOffline) {
-                self.videoContainer.isUserInteractionEnabled = true
+                self.videoContainer?.isUserInteractionEnabled = true
                 let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(self.openSingleVideo(_:)))
-                self.videoContainer.addGestureRecognizer(tapGestureRecognizer)
-                self.videoContainer.tag = 0
+                self.videoContainer?.addGestureRecognizer(tapGestureRecognizer)
+                self.videoContainer?.tag = 0
             }
         } 
             
         else if(post.imageArr.count > 0) {
-            self.mainPhoto = UIImageView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.width))            
-            self.mainPhoto?.contentMode = UIViewContentMode.scaleAspectFill
-            self.mainPhoto?.clipsToBounds = true
-            self.mainPhoto?.tag = 0
+            if self.mainPhoto == nil {
+                self.mainPhoto = UIImageView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.width))
+                self.mainPhoto?.contentMode = UIViewContentMode.scaleAspectFill
+                self.mainPhoto?.clipsToBounds = true
+                self.mainPhoto?.tag = 0
+                self.addSubview(mainPhoto!)
+            }
+            
             self.mainPhoto?.image = UIImage(named: "logo-default")
-            self.addSubview(mainPhoto!)            
             
             if(!post.post_isOffline) {
                 self.mainPhoto?.isUserInteractionEnabled = true
                 self.mainPhoto?.tag = 0
                 let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(PhotosOTG2.openSinglePhoto(_:)))
-                self.mainPhoto?.addGestureRecognizer(tapGestureRecognizer)                
+                self.mainPhoto?.addGestureRecognizer(tapGestureRecognizer)
+                
+                self.mainPhoto?.sd_setImage(with: getImageURL(post.imageArr[0].imageUrl.absoluteString, width: BIG_PHOTO_WIDTH),
+                                            placeholderImage: getPlaceholderImage())
             }
-            
-            self.mainPhoto?.sd_setImage(with: getImageURL(post.imageArr[0].imageUrl.absoluteString, width: BIG_PHOTO_WIDTH),
-                                        placeholderImage: getPlaceholderImage())
-            
-
-            /*cache.fetch(URL: URL(string:imgStr)!).onSuccess({ (data) in
-                self.mainPhoto?.image = UIImage(data: data as Data)
-                
-                let image = self.mainPhoto?.image
-                
-                let widthInPixels =  image?.cgImage?.width
-                let heightInPixels =  image?.cgImage?.height
-                
-                if((heightInPixels) != nil) {
-                    let finalHeight =  CGFloat(heightInPixels!) / CGFloat(widthInPixels!) * self.frame.width;
-                    
-                    
-                    let maxheight = screenHeight - ( 60 + 113 )
-                    if(finalHeight > maxheight) {
-                        self.mainPhoto?.frame.size.height = maxheight
-                    } else {
-                        self.mainPhoto?.frame.size.height = finalHeight
-                    }
-                }
-                
-                self.mainPhoto?.frame.size.width = self.frame.width
-                self.mainPhotoImageURL = post.imageArr[0].imageUrl
-//                self.mainPhoto.hnk_setImageFromURL(post.imageArr[0].imageUrl)
-                
-                self.layoutSubviews()
-                globalNewTLViewController.addHeightToLayout(height: 50)
-            })*/
+            else {
+                self.mainPhoto?.image = post.imageArr[0].image
+            }
         }
             
         else if(post.post_locationImage != nil && post.post_locationImage != "") {
-            self.mainPhoto = UIImageView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.width))
-            self.mainPhoto?.tag = 0
-            self.mainPhoto?.contentMode = UIViewContentMode.scaleAspectFill
+            if self.mainPhoto == nil {
+                self.mainPhoto = UIImageView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.width))
+                self.mainPhoto?.tag = 0
+                self.mainPhoto?.contentMode = UIViewContentMode.scaleAspectFill
+                self.addSubview(mainPhoto!)                
+            }
+            
             self.mainPhoto?.image = UIImage(named: "logo-default")
             self.mainPhoto?.sd_setImage(with: (URL(string:self.postTop.post_locationImage)!), 
                                         placeholderImage: getPlaceholderImage())
-            self.addSubview(mainPhoto!)
         }
         
         //End of Image
@@ -144,20 +120,26 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
         if(post.videoArr.count > 0) {
             showImageIndexStart = 0
         }
+        
         //Center Generation Only
         if(post.imageArr.count > showImageIndexStart) {
-            centerView = PhotosOTGView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 90 ))
+            if centerView == nil {
+                centerView = PhotosOTGView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 90))
+                self.addSubview(centerView!)
+            }
+            
             centerView?.backgroundColor = UIColor(white: 1, alpha: 0.8)
             addPhotoToLayout(post,startIndex:showImageIndexStart)
-            self.addSubview(centerView!)
         }
-        //End of Center
-        
         
         if(post.post_isOffline) {
+            
             //Offline Generation Only
             
-            uploadingView = UploadingToCloud(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 23))
+            if uploadingView == nil {
+                uploadingView = UploadingToCloud(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 23))
+                self.addSubview(uploadingView!)
+            }
             
             var text = ""            
             switch post.post_editType {
@@ -174,20 +156,24 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
                 text = ""
             }
             let localJson:JSON = ["type":"editTravelLifePost","editType":text]
-            print("\n localJson: \(localJson)")
-            uploadingView.fillUploadingStrip(feed: localJson)
-            self.addSubview(uploadingView)
-            //End of Footer
+            
+            uploadingView?.fillUploadingStrip(feed: localJson)
         }
         else {
+           
             //Footer Generation Only
-            footerView = PhotoOTGFooter(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 65))
+            
+            if footerView == nil {
+                footerView = PhotoOTGFooter(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 65))
+                self.addSubview(footerView!)
+            }
+            
             if isSelfUser(otherUserID: currentUser["_id"].stringValue) {
                 footerView?.optionButton.isHidden = false
             }else{
                 footerView?.optionButton.isHidden = true
             }
-
+            
             footerView?.PhotoOtg = self;
             footerView?.postTop = self.postTop;
             footerView?.setLikeCount(post.post_likeCount)
@@ -198,13 +184,16 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
                 footerView?.optionButton.isHidden = false
             }else{
                 footerView?.optionButton.isHidden = true
-            }            
-            self.addSubview(footerView!)            
+            }
             
-            if(post.post_location != "") {
-                rateButton = RatingCheckIn(frame: CGRect(x: 0, y: 0, width: width, height: 150))
-                rateButton?.photosOtg = self;
-                rateButton?.whichView = "otg"
+            if(post.post_location != "" && !post.post_isOffline) {
+                if rateButton == nil {
+                    rateButton = RatingCheckIn(frame: CGRect(x: 0, y: 0, width: width, height: 150))
+                    rateButton?.whichView = "otg"
+                    self.addSubview(rateButton!)
+                }
+                
+                rateButton?.photosOtg = self
                 rateButton?.journeyUser = self.journeyUser
                 
                 if post.postCreator["_id"].stringValue != user.getExistingUser() {
@@ -221,106 +210,129 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
                     rateButton?.review = review
                     rateButton?.modifyAsReview()
                 }
-                
-                
-                
-                self.addSubview(rateButton!)
             }
-            
-            
-            
-            //End of Footer
         }
-
+        
         self.layoutSubviews()
+        
+        if post.post_isOffline {
+            for subvs in self.subviews {
+                if (!(subvs.isKind(of: DottedLine.self)) &&
+                    !(subvs.isKind(of: ActivityProfileHeader.self)) &&
+                    !(subvs.isKind(of: UploadingToCloud.self)) &&
+                    !(subvs.isKind(of: ActivityTextHeader.self)) &&
+                    !(subvs.isKind(of: PhotosOTGView.self))) {
+                    
+                    //subvs.layer.zPosition = -1
+                    
+                    let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.light)
+                    let blurEffectView = UIVisualEffectView(effect: blurEffect)
+                    blurEffectView.frame = subvs.bounds
+                    blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+                    subvs.addSubview(blurEffectView)
+                }
+            }
+        }
+        
     }
     
     func headerLayout(feed:JSON) {
-        headerLine = DottedLine(frame: CGRect(x: 0, y: 2, width: self.frame.width, height: 38))
-        
-        profileHeader = ActivityProfileHeader(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: FEEDS_HEADER_HEIGHT))
-        profileHeader.parentController = globalNewTLViewController
-        profileHeader.backgroundColor = UIColor(white: 1, alpha: 0.8)
-        self.addSubview(headerLine)
-        self.addSubview(profileHeader)
-        profileHeader.followButton.isHidden = true
-        profileHeader.fillProfileHeader(feed:feed, pageType: viewType.VIEW_TYPE_OTG, cellType: feedCellType.CELL_POST_TYPE)
-        
-        
-        if feed["type"].stringValue == "on-the-go-journey"{
-            profileHeader.localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["startTime"].stringValue, isDate: true)
-            profileHeader.localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["startTime"].stringValue, isDate: false)
-        }else if feed["type"].stringValue == "ended-journey"{
-            profileHeader.localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["endTime"].stringValue, isDate: true)
-            profileHeader.localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["endTime"].stringValue, isDate: false)
-        }else if feed["type"].stringValue == "quick-itinerary"{
-            profileHeader.localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["createdAt"].stringValue, isDate: true)
-            profileHeader.localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["createdAt"].stringValue, isDate: false)
-        }else if feed["type"].stringValue == "detail-itinerary"{
-            profileHeader.localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["startDate"].stringValue, isDate: true)
-            profileHeader.localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["startTime"].stringValue, isDate: false)
-        }else {
-            profileHeader.localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["UTCModified"].stringValue, isDate: true)
-            profileHeader.localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["UTCModified"].stringValue, isDate: false)
-            
+        if headerLine == nil {
+            headerLine = DottedLine(frame: CGRect(x: 0, y: 2, width: self.frame.width, height: 38))
+            self.addSubview(headerLine!)
         }
         
-//if feed["thoughts"].stringValue != "" {
-            
-            //  START ACTIVITY TEXT HEADER
-            textHeader = ActivityTextHeader(frame: CGRect.zero)
-            textHeader.displayText = getThought(feed)
-            textHeader.setText(text: textHeader.displayText)
-            if textHeader.displayText.string != "" {
-                let textHeight = (heightOfAttributedText(attributedString: textHeader.displayText, width: (self.frame.width-25)) + 10)
-                textHeader.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: textHeight)
-                textHeader.headerText.frame = CGRect(x: 8, y: 0, width: self.frame.width-16, height: textHeight)
-                textHeader.headerText.center = textHeader.headerText.center
-                self.addSubview(textHeader)
-            }
-            
-        //}
+        if profileHeader == nil {
+            profileHeader = ActivityProfileHeader(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: FEEDS_HEADER_HEIGHT))
+            self.addSubview(profileHeader!)
+            profileHeader?.parentController = globalNewTLViewController
+        }
         
+        profileHeader?.backgroundColor = UIColor(white: 1, alpha: 0.8)        
+        profileHeader?.followButton.isHidden = true
+        profileHeader?.fillProfileHeader(feed:feed, pageType: viewType.VIEW_TYPE_OTG, cellType: feedCellType.CELL_POST_TYPE)
+        
+        
+        profileHeader?.localDate.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: feed["UTCModified"].stringValue, isDate: true)
+        profileHeader?.localTime.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["UTCModified"].stringValue, isDate: false)
+        
+        
+        //  START ACTIVITY TEXT HEADER
+        var flag = false
+        if textHeader == nil {
+            textHeader = ActivityTextHeader(frame: CGRect.zero)
+            flag = true
+        }
+        
+        textHeader?.backgroundColor = UIColor(white: 1, alpha: 0.8)
+        textHeader?.displayText = getThought(feed)
+        textHeader?.setText(text: (textHeader?.displayText)!)
+        
+        if textHeader?.displayText.string != "" {
+            let textHeight = (heightOfAttributedText(attributedString: (textHeader?.displayText)!, width: (self.frame.width-25)) + 10)
+            textHeader?.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: textHeight)
+            textHeader?.headerText.frame = CGRect(x: 8, y: 0, width: self.frame.width-16, height: textHeight)
+            textHeader?.headerText.center = (textHeader?.headerText.center)!
+            if flag {
+                self.addSubview(textHeader!)                
+            }
+        }
     }
     
     func headerLayoutForLocalPost(post: Post) {
         
-        profileHeader = ActivityProfileHeader(frame: CGRect(x: 0, y: 20, width: self.frame.width, height: FEEDS_HEADER_HEIGHT))
-        profileHeader.parentController = globalNewTLViewController
-        profileHeader.backgroundColor = UIColor(white: 1, alpha: 0.8)
-        self.addSubview(profileHeader)
-        profileHeader.followButton.isHidden = true
-        profileHeader.fillProfileHeaderForLocalPost(post: post)
+        if headerLine == nil {
+            headerLine = DottedLine(frame: CGRect(x: 0, y: 2, width: self.frame.width, height: 38))
+            self.addSubview(headerLine!)
+        }
+        
+        if profileHeader == nil {
+            profileHeader = ActivityProfileHeader(frame: CGRect(x: 0, y: 20, width: self.frame.width, height: FEEDS_HEADER_HEIGHT))
+            self.addSubview(profileHeader!)
+        }
+        
+        profileHeader?.parentController = globalNewTLViewController
+        profileHeader?.backgroundColor = UIColor(white: 1, alpha: 0.8)
+        profileHeader?.followButton.isHidden = true
+        profileHeader?.fillProfileHeaderForLocalPost(post: post)
+        
+        profileHeader?.localDate.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd MM, yyyy", date: post.post_date, isDate: true)
+        profileHeader?.localTime.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: post.post_date, isDate: false)
         
         if post.post_thoughts != "" {
-            //  START ACTIVITY TEXT HEADER
             
-            textHeader = ActivityTextHeader(frame: CGRect.zero)
-            textHeader.displayText = getThoughtForLocalPost(post)
-            textHeader.setText(text: textHeader.displayText)
-            if textHeader.displayText.string != "" {
-                let textHeight = (heightOfAttributedText(attributedString: textHeader.displayText, width: (self.frame.width-25)) + 10)
-                textHeader.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: textHeight)
-                textHeader.headerText.frame = CGRect(x: 8, y: 0, width: self.frame.width-16, height: textHeight)
-                textHeader.headerText.center = textHeader.headerText.center
-                self.addSubview(textHeader)
+            var flag = false
+            
+            if textHeader == nil {
+                textHeader = ActivityTextHeader(frame: CGRect.zero)
+                flag = true
+            }
+            
+            textHeader?.backgroundColor = UIColor(white: 1, alpha: 0.8)
+            textHeader?.displayText = getThoughtForLocalPost(post)
+            textHeader?.setText(text: (textHeader?.displayText)!)
+            if textHeader?.displayText.string != "" {
+                let textHeight = (heightOfAttributedText(attributedString: (textHeader?.displayText)!, width: (self.frame.width-25)) + 10)
+                textHeader?.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: textHeight)
+                textHeader?.headerText.frame = CGRect(x: 8, y: 0, width: self.frame.width-16, height: textHeight)
+                textHeader?.headerText.center = (textHeader?.headerText.center)!
+                if flag {
+                    self.addSubview(textHeader!)
+                }
             }
         }
     }
     
     func setText(text: String) {
-        textHeader.headerText.text = text
-        //        self.addSubview(textHeader)
+        textHeader?.headerText.text = text
     }
     
     func openSingleVideo(_ sender: AnyObject) {
         let singlePhotoController = storyboard?.instantiateViewController(withIdentifier: "singlePhoto") as! SinglePhotoViewController
-//        singlePhotoController.mainImage?.image = sender.image
         singlePhotoController.index = sender.view.tag
         singlePhotoController.type = "Video"
         singlePhotoController.postId = self.postTop.post_ids
         globalNavigationController.pushViewController(singlePhotoController, animated: true)
-//        globalNavigationController.present(singlePhotoController, animated: true, completion: nil)
     }
     
     func addPhotoToLayout(_ post: Post, startIndex: Int) {
@@ -329,8 +341,18 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
             let photosButton = UIImageView(frame: CGRect(x: 5, y: 5, width: 80, height: 80))
             photosButton.image = UIImage(named: "logo-default")
             photosButton.contentMode = UIViewContentMode.scaleAspectFill
+            photosButton.tag = i
+            
+            
             if(post.post_isOffline) {
                 photosButton.image = post.imageArr[i].image
+                
+                let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.light)
+                let blurEffectView = UIVisualEffectView(effect: blurEffect)
+                blurEffectView.frame = photosButton.bounds
+                blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+                photosButton.addSubview(blurEffectView)
+                
             } else {
                 photosButton.frame.size.height = 82
                 photosButton.frame.size.width = 82
@@ -343,11 +365,12 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
                     photosButton.addGestureRecognizer(tapGestureRecognizer)
                 }
             }
-            //photosButton.layer.cornerRadius = 5.0
-            photosButton.tag = i
+            
             photosButton.clipsToBounds = true
             centerView?.horizontalScrollForPhotos.addSubview(photosButton)
         }
+        
+        
         centerView?.horizontalScrollForPhotos.layoutSubviews()
         centerView?.morePhotosView.contentSize = CGSize(width: (centerView?.horizontalScrollForPhotos.frame.width)!, height: (centerView?.horizontalScrollForPhotos.frame.height)!)
     }
@@ -355,7 +378,8 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
     func openSinglePhoto(_ sender: UIGestureRecognizer?) {
         let singlePhotoController = storyboard?.instantiateViewController(withIdentifier: "singlePhoto") as! SinglePhotoViewController
 //        singlePhotoController.mainImage?.image = sender.image
-        singlePhotoController.index = (sender?.view?.tag == 0 || sender?.view?.tag == 1) ? ((sender?.view?.isEqual(self.mainPhoto))! ? 0 : 1) : sender?.view?.tag
+        singlePhotoController.index = sender?.view?.tag
+            //(sender?.view?.tag == 0 || sender?.view?.tag == 1) ? ((sender?.view?.isEqual(self.mainPhoto))! ? 0 : 1) : sender?.view?.tag
         singlePhotoController.postId = postTop.post_ids
         globalNavigationController.pushViewController(singlePhotoController, animated: true)
     
@@ -368,10 +392,10 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
         
         if isVideoViewInRangeToPlay() {
             if !self.willPlay {
-                self.videoContainer.showLoadingIndicator(color: mainOrangeColor)
+                self.videoContainer?.showLoadingIndicator(color: mainOrangeColor)
             }
             DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
-                self.videoContainer.stopLoadingIndicator()
+                self.videoContainer?.stopLoadingIndicator()
                 if self.isVideoViewInRangeToPlay() {
                     if !self.willPlay {
 //                        self.videoContainer.playBtn.isHidden = true
@@ -393,7 +417,7 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
                     self.player.stop()
                     self.willPlay = false
 //                    self.videoContainer.playBtn.isHidden = false
-                    self.videoContainer.stopLoadingIndicator()
+                    self.videoContainer?.stopLoadingIndicator()
                 }
             })
         }
@@ -401,13 +425,13 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
             self.player.stop()
             self.willPlay = false
 //            self.videoContainer.playBtn.isHidden = false
-            self.videoContainer.stopLoadingIndicator()
+            self.videoContainer?.stopLoadingIndicator()
         }
     }
     
     func isVideoViewInRangeToPlay() -> Bool {
-        let min = self.frame.origin.y + self.videoContainer.frame.origin.y
-        let max = min + self.videoContainer.frame.size.height
+        let min = self.frame.origin.y + (self.videoContainer?.frame.origin.y)!
+        let max = min + (self.videoContainer?.frame.size.height)!
         let scrollMin = self.scrollView.contentOffset.y
         let scrollMax = scrollMin + self.scrollView.frame.height
         
