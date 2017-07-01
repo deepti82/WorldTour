@@ -217,9 +217,17 @@ public class QuickItinerary {
                     if (globalNewTLViewController?.isSelfJourney(journeyID: (globalNewTLViewController?.fromOutSide)!, creatorId: (globalNewTLViewController?.journeyCreator)!))! {
                         globalNewTLViewController?.fetchJourneyData(false)
                     }
+                    else {
+                        request.getJourney(user.getExistingUser(), canGetCachedData: false, completion: {(response, isFromCache) in
+                            //This call is just to update cached data
+                        })
+                        if ((!isSelfUser(otherUserID: currentUser["_id"].stringValue))) {
+                            globalNewTLViewController?.fetchJourneyData(false)
+                        }
+                    }
                 }
                 else {
-                    request.getJourney(currentUser["_id"].string!, canGetCachedData: false, completion: {(response, isFromCache) in
+                    request.getJourney(user.getExistingUser(), canGetCachedData: false, completion: {(response, isFromCache) in
                         //This call is just to update cached data
                     })
                 }
