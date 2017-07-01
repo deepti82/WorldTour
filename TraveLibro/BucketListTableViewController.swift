@@ -286,7 +286,7 @@ class BucketListTableViewController: UITableViewController  {
         print(self.whichView);
         let delete = UITableViewRowAction(style: .destructive , title: "Delete") { (action, indexPath) in
             if self.whichView == "BucketList" {
-                let alert = UIAlertController(title: "", message: "Are you sure you want to delete \(cell.countryName.text!) from BucketList", preferredStyle: UIAlertControllerStyle.alert)
+                let alert = UIAlertController(title: "", message: "Are you sure you want to delete \(cell.countryName.text!) from BucketList?", preferredStyle: UIAlertControllerStyle.alert)
                 alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil))
                 alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.destructive, handler: { action in
                     request.removeBucketList(cell.countryId,completion: { (response) in
@@ -301,7 +301,7 @@ class BucketListTableViewController: UITableViewController  {
 
                 self.present(alert, animated: true, completion: nil)
             } else if self.whichView == "CountriesVisited" {
-                let alert = UIAlertController(title: "", message: "Are you sure you want to delete \(cell.countryName.text!) from Countries Visited", preferredStyle: UIAlertControllerStyle.alert)
+                let alert = UIAlertController(title: "", message: "Are you sure you want to delete \(cell.countryName.text!) from Countries Visited?", preferredStyle: UIAlertControllerStyle.alert)
                 alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil))
                 alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.destructive, handler: { action in
                     request.removeCountriesVisited(cell.countryId,year:Int(cell.yearOfVisit.text!)!,completion: { (response) in

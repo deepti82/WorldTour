@@ -592,7 +592,7 @@ class ActivityFeedFooterBasic: UIView {
                         let deleteActionButton: UIAlertAction = UIAlertAction(title: "Delete", style: .destructive)
                         {action -> Void in
                             
-                            let alert = UIAlertController(title: "", message: "Are you sure you want to delete this Itinerary.", preferredStyle: UIAlertControllerStyle.alert)
+                            let alert = UIAlertController(title: "", message: "Are you sure you want to delete this Itinerary?", preferredStyle: UIAlertControllerStyle.alert)
                             alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil))
                             alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.destructive, handler: { action in
                                 if isNetworkReachable {
@@ -643,7 +643,7 @@ class ActivityFeedFooterBasic: UIView {
                         let DeletePost: UIAlertAction = UIAlertAction(title: "Delete Activity", style: .default)
                         { action -> Void in
                             
-                            let alert = UIAlertController(title: "", message: "Are you sure you want to delete this Activtiy", preferredStyle: UIAlertControllerStyle.alert)
+                            let alert = UIAlertController(title: "", message: "Are you sure you want to delete this Activtiy?", preferredStyle: UIAlertControllerStyle.alert)
                             alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil))
                             alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.destructive, handler: { action in
                                 if isNetworkReachable {
@@ -679,26 +679,10 @@ class ActivityFeedFooterBasic: UIView {
                             
                         }
                         actionSheetControllerIOS8.addAction(cancel)
-                        
-                        
-                        //                    if isBuddy() && self.pageType == viewType.VIEW_TYPE_MY_LIFE && isSelfUser(otherUserID: currentUser["_id"].stringValue){
-                        //                        
-                        //                        let DeletePost: UIAlertAction = UIAlertAction(title: "Delete Activity", style: .default)
-                        //                        { action -> Void in
-                        //                            
-                        //                            let alert = UIAlertController(title: "", message: "Are you sure you want to delete this Activtiy", preferredStyle: UIAlertControllerStyle.alert)
-                        //                            alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil))
-                        //                            alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.destructive, handler: { action in
-                        //                                request.deletePost(self.postTop["_id"].string!, uniqueId: self.postTop["uniqueId"].string!, user:currentUser["_id"].stringValue, completion: {(response) in                                    
-                        //                                    (self.parentController as! MyLifeViewController).reloadContainerData()                                    
-                        //                                })                                
-                        //                            }))
-                        //                            showPopover(optionsController: alert, sender: sender, vc: self.parentController)                            
-                        //                        }
-                        //                        actionSheetControllerIOS8.addAction(DeletePost)                        
-                        //                    }
                     }
+                    
                     if(postTop["type"].stringValue == "ended-journey" || postTop["type"].stringValue == "on-the-go-journey") {
+                       
                         if isSelfUser(otherUserID: currentUser["_id"].stringValue) {
                             
                             let changeNameActionButton: UIAlertAction = UIAlertAction(title: "Change Journey Name", style: .default)
@@ -749,38 +733,69 @@ class ActivityFeedFooterBasic: UIView {
                                 // 4. Present the alert.
                                 showPopover(optionsController: alert, sender: sender, vc: self.parentController)
                                 
-                                //                        globalMyLifeContainerViewController.present(alert, animated: true, completion: nil)
-                                
                             }
                             actionSheetControllerIOS8.addAction(changeNameActionButton)
+                            
+                            let crateCountriesActionButton: UIAlertAction = UIAlertAction(title: "Rate Countries", style: .default)
+                            {action -> Void in
+                                self.showEndJourneyVC()
+                            }
+                            actionSheetControllerIOS8.addAction(crateCountriesActionButton)
+                            
+                            let changeCoverCountriesActionButton: UIAlertAction = UIAlertAction(title: "Change Cover Photo", style: .default)
+                            {action -> Void in
+                                self.showEndJourneyVC()
+                            }
+                            actionSheetControllerIOS8.addAction(changeCoverCountriesActionButton)
                             
                             let changeDateActionButton: UIAlertAction = UIAlertAction(title: "Change End Journey Date", style: .default)
                             {action -> Void in
                                 (self.parentController as! MyLifeViewController).changeDateAndTimeEndJourney(self)
                             }
                             
-                            if(self.postTop["endTime"].string != nil) {
+                            let deleteJourneyAction: UIAlertAction = UIAlertAction(title: "Delete Journey", style: .default)
+                            {action -> Void in
+                                
+                                let alert = UIAlertController(title: "", message: "Are you sure you want to delete this journey?", preferredStyle: UIAlertControllerStyle.alert)
+                                alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil))
+                                alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.destructive, handler: { action in
+                                    
+                                    if isNetworkReachable {
+//                                        (self.parentController as! MyLifeViewController).loader.showOverlay((self.parentController as! MyLifeViewController).view)
+                                        
+                                        request.deleteJourney(userID: user.getExistingUser(), journeyId: self.postTop["_id"].stringValue, completion: { (response) in
+                                            DispatchQueue.main.async(execute: {
+                                                if response.error != nil {
+                                                    print("error: \(response.error!.localizedDescription)")
+                                                    (self.parentController as! MyLifeViewController).loader.hideOverlayView()
+                                                }
+                                                else if response["value"].bool! {
+                                                    (self.parentController as! MyLifeViewController).reloadContainerData()
+                                                }
+                                                else {
+                                                    (self.parentController as! MyLifeViewController).loader.hideOverlayView()
+                                                }
+                                            })
+                                        })
+                                    }
+                                    else {
+                                        let tstr = Toast(text: "No Internet Connection.")
+                                        tstr.show()
+                                    }
+                                }))
+                                showPopover(optionsController: alert, sender: sender, vc: self.parentController)
+                                
+                            }
+                            
+                            
+                            if(postTop["type"].stringValue == "ended-journey") {
                                 actionSheetControllerIOS8.addAction(changeDateActionButton)
+                                actionSheetControllerIOS8.addAction(deleteJourneyAction)
                             }
                             
-                            let crateCountriesActionButton: UIAlertAction = UIAlertAction(title: "Rate Countries", style: .default)
-                            {action -> Void in
-                                let end = storyboard!.instantiateViewController(withIdentifier: "endJourney") as! EndJourneyViewController
-                                end.journeyId = self.postTop["_id"].stringValue
-                                end.type = "MyLife"
-                                self.parentController?.navigationController?.pushViewController(end, animated: true)
-                            }
-                            actionSheetControllerIOS8.addAction(crateCountriesActionButton)
+                        }
                             
-                            let changeCoverCountriesActionButton: UIAlertAction = UIAlertAction(title: "Change Cover Photo", style: .default)
-                            {action -> Void in
-                                let end = storyboard!.instantiateViewController(withIdentifier: "endJourney") as! EndJourneyViewController
-                                end.journeyId = self.postTop["_id"].stringValue
-                                end.type = "MyLife"
-                                self.parentController?.navigationController?.pushViewController(end, animated: true)
-                            }
-                            actionSheetControllerIOS8.addAction(changeCoverCountriesActionButton)
-                        }else{
+                        else{
                             let reportActionButton: UIAlertAction = UIAlertAction(title: "Report", style: .default)
                             {action -> Void in
                                 let alert = UIAlertController(title: "Report", message: "Reported Successfully.", preferredStyle: UIAlertControllerStyle.alert)
@@ -797,10 +812,6 @@ class ActivityFeedFooterBasic: UIView {
                         }
                         actionSheetControllerIOS8.addAction(cancel)
                         
-                        //                let changeCoverCountriesActionButton: UIAlertAction = UIAlertAction(title: "Delete Journey", style: .destructive)
-                        //                {action -> Void in
-                        //                }
-                        //                actionSheetControllerIOS8.addAction(changeCoverCountriesActionButton)
                         
                     }
                     
@@ -810,7 +821,7 @@ class ActivityFeedFooterBasic: UIView {
                         let DeletePost: UIAlertAction = UIAlertAction(title: "Delete Activity", style: .default)
                         { action -> Void in
                             
-                            let alert = UIAlertController(title: "", message: "Are you sure you want to delete this Activtiy", preferredStyle: UIAlertControllerStyle.alert)
+                            let alert = UIAlertController(title: "", message: "Are you sure you want to delete this Activtiy?", preferredStyle: UIAlertControllerStyle.alert)
                             alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil))
                             alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.destructive, handler: { action in
                                 if isNetworkReachable {
@@ -865,7 +876,7 @@ class ActivityFeedFooterBasic: UIView {
                         let DeletePost: UIAlertAction = UIAlertAction(title: "Delete Activity", style: .default)
                         { action -> Void in
                             
-                            let alert = UIAlertController(title: "", message: "Are you sure you want to delete this Activtiy", preferredStyle: UIAlertControllerStyle.alert)
+                            let alert = UIAlertController(title: "", message: "Are you sure you want to delete this Activtiy?", preferredStyle: UIAlertControllerStyle.alert)
                             alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil))
                             alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.destructive, handler: { action in
                                 if isNetworkReachable {
@@ -964,6 +975,19 @@ class ActivityFeedFooterBasic: UIView {
             else {
                 return false
             }
+        }
+    }
+    
+    func showEndJourneyVC() {
+        if isNetworkReachable {
+            let end = storyboard!.instantiateViewController(withIdentifier: "endJourney") as! EndJourneyViewController
+            end.journeyId = self.postTop["_id"].stringValue
+            end.type = "MyLife"
+            self.parentController?.navigationController?.pushViewController(end, animated: true)
+        }
+        else {
+            let tstr = Toast(text: "No Internet Connection.")
+            tstr.show()
         }
     }
     

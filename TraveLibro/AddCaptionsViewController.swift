@@ -54,7 +54,7 @@ class AddCaptionsViewController: UIViewController, UITextFieldDelegate, ToolStac
     
     @IBAction func deletePhoto(_ sender: UIButton) {
         
-        let alert = UIAlertController(title: "", message: "Are you sure you want to delete this Activtiy", preferredStyle: UIAlertControllerStyle.alert)
+        let alert = UIAlertController(title: "", message: "Are you sure you want to delete this Activtiy?", preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil))
         alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.destructive, handler: { action in
             if(self.type != "videoCaption") {

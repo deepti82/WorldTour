@@ -757,6 +757,28 @@ class Navigation {
         }
     }
     
+    func deleteJourney(userID: String, journeyId: String, completion: @escaping ((JSON) -> Void)) {
+        
+        do {
+            let params = ["user": userID, "_id": journeyId]
+            let opt = try HTTP.POST(adminUrl + "journey/deleteJourney", parameters: params)
+            var json = JSON(1);
+            opt.start {response in
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    json  = JSON(data: response.data)
+                    print("\n Delete journey response : \(json)")
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+    }
+    
     
     //MARK: - Follow / Unfollow
     
