@@ -1,5 +1,6 @@
 import UIKit
 import SABlurImageView
+import Toaster
 
 class SideNavigationMenuViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -391,42 +392,49 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
     //MARK: - Logout
     
     func logoutUser() {
-        closeLeft()        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            let loader = LoadingOverlay()
-            loader.showOverlay((globalNavigationController.topViewController?.view)!)
-            request.logout(id: user.getExistingUser()) { (response) in
-                DispatchQueue.main.async(execute: {
-                    loader.hideOverlayView()
-                    if response.error != nil {
-                        print("error: \(response.error!.localizedDescription)")
-                    }
-                    else if response["value"].bool! {                                              
-                        clearNotificationCount()
-                                             
-                        let newViewController = self.storyboard?.instantiateViewController(withIdentifier: "SignUpOne") as! SignInViewController
-                        newViewController.shouldShowNavBar = false
-                        
-                        let nvc = UINavigationController(rootViewController: newViewController)
-                        leftViewController = self.storyboard?.instantiateViewController(withIdentifier: "sideMenu") as! SideNavigationMenuViewController                        
-                        let slideMenuController = SlideMenuController(mainViewController:nvc, leftMenuViewController: leftViewController)
-                        
-                        ((UIApplication.shared.delegate as! AppDelegate).window)?.rootViewController = slideMenuController
-                        UIViewController().customiseNavigation()
-                        
-                    }
-                    else {
-                        let errorAlert = UIAlertController(title: "Error", message: "Logout failed. Please try again later", preferredStyle: UIAlertControllerStyle.alert)
-                        let DestructiveAction = UIAlertAction(title: "Ok", style: .destructive) {
-                            (result : UIAlertAction) -> Void in
-                            //Cancel Action
-                        }            
-                        errorAlert.addAction(DestructiveAction)
-                        self.navigationController?.present(errorAlert, animated: true, completion: nil)
-                    }
-                })
-            }           
+        closeLeft()
+        if isNetworkReachable {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                let loader = LoadingOverlay()
+                loader.showOverlay((globalNavigationController.topViewController?.view)!)
+                request.logout(id: user.getExistingUser()) { (response) in
+                    DispatchQueue.main.async(execute: {
+                        loader.hideOverlayView()
+                        if response.error != nil {
+                            print("error: \(response.error!.localizedDescription)")
+                        }
+                        else if response["value"].bool! {
+                            clearNotificationCount()
+                            
+                            let newViewController = self.storyboard?.instantiateViewController(withIdentifier: "SignUpOne") as! SignInViewController
+                            newViewController.shouldShowNavBar = false
+                            
+                            let nvc = UINavigationController(rootViewController: newViewController)
+                            leftViewController = self.storyboard?.instantiateViewController(withIdentifier: "sideMenu") as! SideNavigationMenuViewController
+                            let slideMenuController = SlideMenuController(mainViewController:nvc, leftMenuViewController: leftViewController)
+                            
+                            ((UIApplication.shared.delegate as! AppDelegate).window)?.rootViewController = slideMenuController
+                            UIViewController().customiseNavigation()
+                            
+                        }
+                        else {
+                            let errorAlert = UIAlertController(title: "Error", message: "Logout failed. Please try again later", preferredStyle: UIAlertControllerStyle.alert)
+                            let DestructiveAction = UIAlertAction(title: "Ok", style: .destructive) {
+                                (result : UIAlertAction) -> Void in
+                                //Cancel Action
+                            }
+                            errorAlert.addAction(DestructiveAction)
+                            self.navigationController?.present(errorAlert, animated: true, completion: nil)
+                        }
+                    })
+                }           
+            }
         }
+        else {
+            let tstr = Toast(text: "No Internet Connection.")
+            tstr.show()
+        }
+        
     }
  
 }
