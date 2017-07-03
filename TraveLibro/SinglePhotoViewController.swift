@@ -603,7 +603,10 @@ class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDele
         self.player.fillMode = "AVLayerVideoGravityResizeAspectFill"
         var videoUrl:URL!
         videoUrl = URL(string:data["name"].stringValue)
-        self.player.setUrl(videoUrl!)
+        
+        if (videoUrl != nil) {
+            self.player.setUrl(videoUrl!)
+        }
         
         self.player.playFromBeginning()
         self.mainImage.addSubview(self.player.view)

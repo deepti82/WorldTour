@@ -70,6 +70,7 @@ public class PostVideo {
             print("ERROR FOUND");
         }
     }
+    
     func getAll(postNo:Int64) -> [PostVideo] {
         var all:[PostVideo] = []
         do {
@@ -90,7 +91,6 @@ public class PostVideo {
                 p.imageUrl = getDocumentsDirectory().appendingPathComponent( video[localUrl] )
                 all.append(p)
             }
-            
         }
         catch {
             

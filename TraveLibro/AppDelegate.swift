@@ -229,13 +229,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
         
         createMenuView()        
         
+        self.stopUploading()
+        //Above call it to update previous uploading INProgress status to undone (UPLOAD_PENDING / UPLOAD_FAILED)
+        
         UIApplication.shared.statusBarView?.backgroundColor = NAVIGATION_BAR_COLOR
         
         googleAnalytics()
         
         enableCrashReporting()
         
-        checkReachability()
+        
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { 
+            self.checkReachability()
+        }
         
         if #available(iOS 10.0, *) {
             UNUserNotificationCenter.current().requestAuthorization(options: [.badge, .alert, .sound]) { (granted, error) in
@@ -380,6 +387,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
     
     func applicationWillTerminate(_ application: UIApplication) {
         clearNotificationCount()
+        self.stopUploading()
+        
         
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
