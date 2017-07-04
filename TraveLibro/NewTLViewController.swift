@@ -1058,7 +1058,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         
         
         if !((fromOutSide == "") && (isSelfUser(otherUserID: currentUser["_id"].stringValue)) && (currentUser["journeyId"].stringValue == "-1")) {
-            self.fetchJourneyData(true)
+            self.fetchJourneyData(false)
             loader.showOverlay(self.view)
         }
         

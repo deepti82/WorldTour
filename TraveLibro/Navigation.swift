@@ -407,7 +407,13 @@ class Navigation {
                 if(isSelfUser(otherUserID: id)) {
                     self.cache.fetch(key: urlString+id).onSuccess { data in
                         let json = JSON(data: data)
-                        completion(json,true)
+                        if !isNetworkReachable {
+                            completion(json,canGetCachedData)
+                        }
+                        else {
+                            completion(json,true)
+                        }
+                        
                         }
                         .onFailure({ (error) in
                             isCacheInvalid = true
