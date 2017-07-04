@@ -3099,7 +3099,10 @@
 					"$(PROJECT_DIR)/build/Debug-iphoneos/SwiftyJSON",
 					"$(SRCROOT)",
 				);
-				"FRAMEWORK_SEARCH_PATHS[arch=*]" = "\"~/Dowloads/FacebookSDK\" $(SRCROOT)";
+				"FRAMEWORK_SEARCH_PATHS[arch=*]" = (
+					"\"~/Dowloads/FacebookSDK\"",
+					"$(SRCROOT)",
+				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					"COCOAPODS=1",
