@@ -16,6 +16,8 @@ import Fabric
 import Crashlytics
 import Google
 
+import Alamofire
+
 import UserNotificationsUI
 
 
@@ -155,6 +157,8 @@ let FEED_UPLOADING_VIEW_HEIGHT = CGFloat(25)
 //Font
 let TL_REGULAR_FONT_SIZE = 14
 
+var alamofireSessionMgr: SessionManager!
+
 
 let categoryImages = ["restaurant_checkin", "nature_checkin", "landmarks_checkin", "museums_landmarks", "adventure_icon", "aqua_checkin", "shopping", "beach_checkin", "cinema_checkin", "hotels", "planetrans", "reg", "othersdottrans", "city_icon", "health_beauty", "emergency", "essential", "entertainment"]
 
@@ -219,6 +223,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
         
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
+        
+        let configuration = URLSessionConfiguration.background(withIdentifier: "com.travelibro.background_upload")
+        alamofireSessionMgr = Alamofire.SessionManager(configuration: configuration)
         
         NotificationCenter.default.addObserver(self, selector: #selector(reachabilityDidChange(_:)), name: NSNotification.Name(rawValue: ReachabilityDidChangeNotificationName), object: nil)        
         _ = reachability?.startNotifier()

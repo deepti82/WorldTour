@@ -3064,12 +3064,40 @@ class Navigation {
     
     func uploadPhotos(_ file: URL, localDbId: Int?, completion: @escaping ((JSON) -> Void)) {
         
-        do {            
-            var id = ""            
+        var id = ""
+        if localDbId != nil {
+            
+            id = "\(localDbId!)"
+        }
+        
+        alamofireSessionMgr.upload(multipartFormData: { (multipartData) in
+            multipartData.append(file, withName: "file")
+        }, to: adminUrl + "upload") { (encodingResult) in
+            switch encodingResult {
+            case .success(let upload, _, _):
+                upload.responseJSON { response in
+                    print("\n response :: \(String(describing: response.result))")
+                    print("\n response :: \(String(describing: response.result.value))")
+                    var json  = JSON(response.result.value!)
+                    json["localId"] = JSON(id)
+                    print("upload file response: \(json)")
+                    completion(json)
+                }
+                
+            case .failure(let encodingError):
+                print("error: \(encodingError)")
+            }
+        }
+        
+        
+        /*
+        do {
+            var id = ""
             if localDbId != nil {
                 
                 id = "\(localDbId!)"
             }
+            
             HTTP.globalRequest { req in
                 req.timeoutInterval = 6000
             }
@@ -3094,7 +3122,7 @@ class Navigation {
             }
         } catch let error {
             print("got an error creating the request: \(error)")
-        }
+        }*/
     }
     
     func getLocation(_ lat: Double, long: Double, completion: @escaping ((JSON) -> Void)) {
