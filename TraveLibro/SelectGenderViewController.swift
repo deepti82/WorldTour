@@ -69,19 +69,13 @@ class SelectGenderViewController: UIViewController {
             DispatchQueue.main.async(execute: {
                 loader.hideOverlayView()
                 if response.error != nil {
-                    
-                    print("response: \(response.error?.localizedDescription)")
+                    print("response: \(String(describing: response.error?.localizedDescription))")
                 }
                 else if response["value"].bool! {
-                    
-                    print("response arrived!")                    
                     self.navigationController?.pushViewController(self.dpVC, animated: true)
-                    
                 }
                 else {
-                    
                     print("response error: \(response["data"])")
-                    
                 }
             })
         })

@@ -44,7 +44,6 @@ class AddNationalityNewViewController: UIViewController, UIPickerViewDelegate {
         nationalityID = allCountries[index]["_id"].string!
         hintLabel.isHidden = false
         pickNationalityMainView.isHidden = true
-        print("\n userNationatilty :\(userNationatilty.titleLabel?.text)")
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.saveCountry(sender as! UIButton)            
@@ -146,7 +145,7 @@ class AddNationalityNewViewController: UIViewController, UIPickerViewDelegate {
                 self.loader.hideOverlayView()
                 
                 if response.error != nil {
-                    print("error: \(response.error?.localizedDescription)")
+                    print("error: \(String(describing: response.error?.localizedDescription))")
                 }
                 else {
                     if response["value"] == true {

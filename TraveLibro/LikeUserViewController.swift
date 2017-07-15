@@ -238,9 +238,7 @@ class LikeCell: UITableViewCell {
     
     @IBAction func followTap(_ sender: UIButton) {
         
-        if sender.tag == 0 {
-            
-            print("profile name follow: \(profileName.text)")            
+        if sender.tag == 0 {            
             parent.followUser(getURLSlug(slug: urlSlurg.text!), sender: sender)
             sender.tag = 1
             sender.setImage(UIImage(named:"following"), for: .normal)
@@ -251,7 +249,6 @@ class LikeCell: UITableViewCell {
         }
             
         else if sender.tag == 1 {
-            print("profile name unfollow: \(profileName.text)")
             parent.unFollowUser(getURLSlug(slug: urlSlurg.text!), sender: sender)
             sender.tag = 0
             sender.setImage(UIImage(named:"follow"), for: .normal)

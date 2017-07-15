@@ -524,7 +524,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
             request.checkLocalLife(lat: String(locValue.latitude), lng: String(locValue.longitude), completion: { (response) in
                 DispatchQueue.main.async(execute: {
                     if (response.error != nil) {
-                        print("error: \(response.error?.localizedDescription)")
+                        print("error: \(String(describing: response.error?.localizedDescription))")
                         self.titleLabel.text = "Location Not Found"
                     }
                     else if response["value"].bool! {

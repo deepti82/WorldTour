@@ -72,9 +72,7 @@ class SignupCardsViewController: UIViewController {
             DispatchQueue.main.async(execute: {
                 self.loader.hideOverlayView()
                 if response.error != nil {
-                    
-                    print("response: \(response.error?.localizedDescription)")
-                    
+                    print("response: \(String(describing: response.error?.localizedDescription))")
                 }
                 else if response["value"].bool! {
                     

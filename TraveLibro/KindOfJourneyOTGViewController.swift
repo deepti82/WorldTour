@@ -47,7 +47,6 @@ class KindOfJourneyOTGViewController: UIViewController {
         getDarkBackGroundBlue(self)
         
         let allControllers = self.navigationController?.viewControllers
-        print("All controllers \(allControllers)")
         for vc in allControllers! {
             if (vc.isKind(of: NewTLViewController.self)) {
                 backVC = vc as! NewTLViewController
@@ -132,7 +131,7 @@ class KindOfJourneyOTGViewController: UIViewController {
                 DispatchQueue.main.async(execute: {
                 self.loader.hideOverlayView()
                 if response.error != nil {
-                    print("error: \(response.error?.localizedDescription)")
+                    print("error: \(String(describing: response.error?.localizedDescription))")
                 }
                 else if response["value"].bool! {
                     self.goBack(UIView())

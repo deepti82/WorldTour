@@ -32,10 +32,6 @@ class TutorialCards: UIView {
                              ["Family", "Friends", "Partner/ Spouse", "Solo", "Business", "Blogger", "Group Tour", "Photographer"],
                              ["Luxury", "Backpacking", "Green Travelling", "Pocket Friendly", "Romance", "Sports & Adventure", "History & Culture", "Spirituality & Wellness", "Shopping", "Food & Wine", "Festival"]]
         
-        print("cardTitle: \(cardTitle.text)")
-        
-        print("checkbox: \(checkBoxNumber)")
-        
         var options: [String] = []
         
         if !(currentUser["travelConfig"]["usuallyGo"].isEmpty) {

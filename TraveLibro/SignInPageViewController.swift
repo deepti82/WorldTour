@@ -118,7 +118,7 @@ class SignInPageViewController: UIViewController {
             pageView.facebookLabel.text = "       Connect with Facebook"
             
             let url = loggedInUser["profilePicture"].stringValue
-            pageView.profileImage.hnk_setImageFromURL(NSURL(string: url) as! URL)
+            pageView.profileImage.hnk_setImageFromURL(NSURL(string: url)! as URL)
             let msg = getRegularStringWithColor(string: "Hi ", size: 14, color: UIColor.white)
             msg.append(getBoldStringWithColor(string: loggedInUser["name"].stringValue, size: 14, color: UIColor.white))
             msg.append(getRegularStringWithColor(string: ", we have updated the app for a quicker and faster log-in process.", size: 14, color: UIColor.white))
@@ -231,7 +231,7 @@ class SignInPageViewController: UIViewController {
     //MARK: - User Migrate failed
     
     func userChangeLoginFailed(notification : Notification) {
-        print("\n user change login failed : \(notification.object)")
+        print("\n user change login failed : \(String(describing: notification.object))")
         
         let errorAlert = UIAlertController(title: "Error", message: "Something went wrong. Please try after sometimes.", preferredStyle: UIAlertControllerStyle.alert)
         let DestructiveAction = UIAlertAction(title: "Ok", style: .destructive) {

@@ -54,7 +54,7 @@ class PhotosOTG: UIView {
     
     @IBAction func sendLikes(_ sender: UIButton) {
         
-        print("like button tapped \(sender.titleLabel!.text)")
+        print("like button tapped \(String(describing: sender.titleLabel!.text))")
         
         var hasLiked = false
         if sender.tag == 1 {

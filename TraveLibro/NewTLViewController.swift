@@ -542,7 +542,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
         if post["photos"] != nil && post["photos"].array!.count > 0 {
             
 //            photos = post["photos"].array!
-            checkIn.mainPhoto.hnk_setImageFromURL(NSURL(string: "\(adminUrl)upload/readFile?file=\(post["photos"][0]["name"].string!)&width=500") as! URL)
+            checkIn.mainPhoto.hnk_setImageFromURL(NSURL(string: "\(adminUrl)upload/readFile?file=\(post["photos"][0]["name"].string!)&width=500")! as URL)
             checkIn.mainPhoto.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.openSinglePhoto(_:))))
             checkIn.mainPhoto.tag = 0
             
@@ -1576,8 +1576,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
     
     func cancelButton(_ sender: UIButton?){
         self.hideHeaderAndFooter(false)
-        print("\n InputView : \(self.inputView)")
-        print("\n InputView : \(self.datePickerView)")
         
         if self.datePickerView != nil {
             self.inputview.removeFromSuperview() // To resign the inputView on clicking done.
@@ -1936,7 +1934,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
                     DispatchQueue.main.async(execute: {
                         
                         if (response.error != nil) {
-                            print("error: \(response.error?.localizedDescription)")
+                            print("error: \(String(describing: response.error?.localizedDescription))")
                         }
                         else if response["value"].bool! {
                             print(response["data"]);
@@ -2042,8 +2040,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
                 DispatchQueue.main.async(execute: {
                     
                     if response.error != nil {
-                        
-                        print("error: \(response.error?.localizedDescription)")
+                        print("error: \(String(describing: response.error?.localizedDescription))")
                     }
                         
                     else if response["value"].bool! {
@@ -2340,12 +2337,10 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, UITextViewDele
                 DispatchQueue.main.async(execute: {
                     
                     if (response.error != nil) {
-                        
-                        print("error: \(response.error?.localizedDescription)")
-                        
+                        print("error: \(String(describing: response.error?.localizedDescription))")
                     }
                     else if response["value"].bool! {
-                        print(response["data"]);
+                        print("\n get location response: \(response["data"])");
                         self.locationArray = response["data"].array!
                         //                        self.getAllLocations()
                     }

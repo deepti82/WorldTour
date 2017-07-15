@@ -141,7 +141,7 @@ public class PostImage {
                 p.editId = String(photo[editIdTable])
                 let imageData = NSData(contentsOf: p.imageUrl)
                 
-                p.image = UIImage(data: imageData as! Data)!
+                p.image = UIImage(data: imageData! as Data)!
                 allImages.append(p)
             }
         }
@@ -200,7 +200,7 @@ public class PostImage {
                         let url = getDocumentsDirectory().appendingPathComponent( String(photo[localUrl]) )
                         request.uploadPhotos(url, localDbId: 0,completion: {(response) in
                             if response.error != nil {
-                                print("response: \(response.error?.localizedDescription)")
+                                print("response: \(String(describing: response.error?.localizedDescription))")
                                 self.updateStatus(photoId: photo[self.id], status: uploadStatus.UPLOAD_FAILED, urlString: "")
                             }
                             else if response["value"].bool! {

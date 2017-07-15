@@ -456,7 +456,7 @@ public class LocalLifePostModel {
                 
                 request.postLocalLifeJson(params, completion: {(response) in
                     if response.error != nil {
-                        print("response: \(response.error?.localizedDescription)")
+                        print("response: \(String(describing: response.error?.localizedDescription))")
                         self.updateStatus(postId: post[self.id], status: uploadStatus.UPLOAD_FAILED)
                     }
                     else if response["value"].bool! {

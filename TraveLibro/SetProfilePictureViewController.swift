@@ -220,7 +220,7 @@ class SetProfilePictureViewController: UIViewController, UIImagePickerController
                 self.loader.hideOverlayView()
                 if response.error != nil {
                     
-                    print("error: \(response.error?.localizedDescription)")
+                    print("error: \(String(describing: response.error?.localizedDescription))")
                 }
                 else {
                     

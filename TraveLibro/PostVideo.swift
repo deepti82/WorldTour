@@ -126,7 +126,7 @@ public class PostVideo {
                 let url = getDocumentsDirectory().appendingPathComponent( String(photo[localUrl]) )
                 request.uploadPhotos(url, localDbId: 0,completion: {(response) in
                     if response.error != nil {
-                        print("response: \(response.error?.localizedDescription)")
+                        print("response: \(String(describing: response.error?.localizedDescription))")
                         self.updateStatus(videoID: photo[self.id], status: uploadStatus.UPLOAD_FAILED, urlString: "", thumbnailStr: "")                        
                     }
                     else if response["value"].bool! {                        

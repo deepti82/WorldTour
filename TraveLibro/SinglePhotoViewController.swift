@@ -531,7 +531,7 @@ class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDele
         self.imageCaption.text = ""
         
         let mainImageString = "\(adminUrl)upload/readFile?file=\(data["name"].string!)"
-        self.mainImage.hnk_setImageFromURL(NSURL(string:mainImageString) as! URL)
+        self.mainImage.hnk_setImageFromURL(NSURL(string:mainImageString)! as URL)
         self.carouselView.isHidden = true
         self.mainImage.isHidden = false
         
@@ -648,7 +648,7 @@ class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDele
                 DispatchQueue.main.async(execute: {
                     self.loader.hideOverlayView()
                     if response.error != nil {
-                        print("response: \(response.error?.localizedDescription)")
+                        print("response: \(String(describing: response.error?.localizedDescription))")
                     }
                         
                     else if response["value"].bool! {
@@ -706,7 +706,7 @@ class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDele
                     self.loader.hideOverlayView()
                     if response.error != nil {
                         
-                        print("response: \(response.error?.localizedDescription)")
+                        print("response: \(String(describing: response.error?.localizedDescription))")
                         
                     } else if response["value"].bool! {
                         self.navigationController?.setNavigationBarHidden(false, animated: true)
@@ -744,7 +744,7 @@ class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDele
                 DispatchQueue.main.async(execute: {
                     self.loader.hideOverlayView()
                     if response.error != nil {
-                        print("response: \(response.error?.localizedDescription)")
+                        print("response: \(String(describing: response.error?.localizedDescription))")
                     }
                         
                     else if response["value"].bool! {
@@ -882,7 +882,7 @@ class SinglePhotoViewController: UIViewController, PlayerDelegate, iCarouselDele
                 let currentJson = carouselDict.value(forKey: key) as? JSON
                 singlePhotoJSON = currentJson
                 
-                print("\n CurrentJSON : \(currentJson) key :\(key)  current index: \(carousel.currentItemIndex)")
+                print("\n CurrentJSON : \(String(describing: currentJson)) key :\(key)  current index: \(carousel.currentItemIndex)")
                 
                 if currentJson != nil {
                     if (currentJson?["type"].stringValue == "photo") {

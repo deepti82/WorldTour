@@ -19,7 +19,7 @@ class CardCheckBoxes: UIView {
         
         if sender.currentBackgroundImage == UIImage(named: "halfnhalfbgGray") {
             
-            print("sender title: \(sender.titleLabel?.text)")
+            print("sender title: \(String(describing: sender.titleLabel?.text))")
             sender.setBackgroundImage(UIImage(named: "halfnhalfbgGreen"), for: UIControlState())
             
             print("cardTitle: \(cardTitle)")
@@ -39,7 +39,7 @@ class CardCheckBoxes: UIView {
         
         else {
             
-            print("sender title: \(sender.titleLabel?.text)")
+            print("sender title: \(String(describing: sender.titleLabel?.text))")
             if selectedOptions.contains(sender.titleLabel!.text!) {
                 selectedOptions.remove(at: (selectedOptions.indexOf(value: (sender.titleLabel?.text)!))!)
             }

@@ -655,7 +655,7 @@ public class Post {
                         print("\n postTravel RESPOSNESSSSS: \(response)")
                         
                         if response.error != nil {
-                            print("response: \(response.error?.localizedDescription)")
+                            print("response: \(String(describing: response.error?.localizedDescription))")
                             self.updateStatus(postId: post[self.id], status: uploadStatus.UPLOAD_FAILED)
                         }
                         else if response["value"].bool! {
@@ -709,7 +709,7 @@ public class Post {
                         print("\n editPost RESPOSNESSSSS: \(response)")
                         
                         if response.error != nil {
-                            print("response: \(response.error?.localizedDescription)")
+                            print("response: \(String(describing: response.error?.localizedDescription))")
                             self.updateStatus(postId: post[self.id], status: uploadStatus.UPLOAD_FAILED)
                         }
                         else if response["value"].bool! {

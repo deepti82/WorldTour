@@ -5,8 +5,8 @@ import OneSignal
 import Haneke
 import Crashlytics
 
-var adminUrl = "https://travelibro.wohlig.com/api/"
-//var adminUrl = "https://travelibro.com/api/"
+//var adminUrl = "https://travelibro.wohlig.com/api/"
+var adminUrl = "https://travelibro.com/api/"
 var mapKey = "AIzaSyDPH6EYKMW97XMTJzqYqA0CR4fk5l2gzE4"
 
 class Navigation {
@@ -115,7 +115,7 @@ class Navigation {
             print("\n getUserFromCache : \(json["data"]["name"].stringValue)")
             completion(json)
         }.onFailure { (error) in
-            print("Error : \(error)")
+            print("Error : \(String(describing: error))")
             request.getUser(id, urlSlug: "", completion: { (response, isFromCache) in
                 if !(isFromCache) {
                     completion(response)                    
@@ -295,7 +295,7 @@ class Navigation {
         
         let task = URLSession.shared.dataTask(with: request as URLRequest) {data, response, error in
             if error != nil{
-                print("Error -> \(error)")
+                print("Error -> \(String(describing: error))")
                 return
             }
             
@@ -417,7 +417,7 @@ class Navigation {
                         }
                         .onFailure({ (error) in
                             isCacheInvalid = true
-                            print("\n ERROR in fetching OTG data from cache : \(error)")
+                            print("\n ERROR in fetching OTG data from cache : \(String(describing: error))")
                         })
                 }
             }
@@ -487,7 +487,7 @@ class Navigation {
             
             let task = URLSession.shared.dataTask(with: request as URLRequest) {data, response, error in
                 if error != nil{
-                    print("Error -> \(error)")
+                    print("Error -> \(String(describing: error))")
                     return
                 }
                 do {                    
@@ -526,7 +526,7 @@ class Navigation {
             
             let task = URLSession.shared.dataTask(with: request as URLRequest) {data, response, error in
                 if error != nil{
-                    print("Error -> \(error)")
+                    print("Error -> \(String(describing: error))")
                     return
                 }
                 
@@ -681,7 +681,7 @@ class Navigation {
             
             let task = URLSession.shared.dataTask(with: request as URLRequest) {data, response, error in
                 if error != nil{
-                    print("Error -> \(error)")
+                    print("Error -> \(String(describing: error))")
                     return
                 }
                 
@@ -1018,7 +1018,7 @@ class Navigation {
             
             let task = URLSession.shared.dataTask(with: request as URLRequest) {data, response, error in
                 if error != nil{
-                    print("Error -> \(error)")
+                    print("Error -> \(String(describing: error))")
                     return
                 }
                 do {
@@ -1112,7 +1112,7 @@ class Navigation {
             
             let task = URLSession.shared.dataTask(with: request as URLRequest) {data, response, error in
                 if error != nil{
-                    print("Error -> \(error)")
+                    print("Error -> \(String(describing: error))")
                     return
                 }
                 
@@ -1171,7 +1171,7 @@ class Navigation {
             
             let task = URLSession.shared.dataTask(with: request as URLRequest) {data, response, error in
                 if error != nil{
-                    print("Error -> \(error)")
+                    print("Error -> \(String(describing: error))")
                     return
                 }
                 
@@ -1231,7 +1231,7 @@ class Navigation {
             
             let task = URLSession.shared.dataTask(with: request as URLRequest) {data, response, error in
                 if error != nil{
-                    print("Error -> \(error)")
+                    print("Error -> \(String(describing: error))")
                     return
                 }
                 
@@ -1280,7 +1280,7 @@ class Navigation {
             
             let task = URLSession.shared.dataTask(with: request as URLRequest) {data, response, error in
                 if error != nil{
-                    print("Error -> \(error)")
+                    print("Error -> \(String(describing: error))")
                     return
                 }
                 
@@ -1325,7 +1325,7 @@ class Navigation {
             
             let task = URLSession.shared.dataTask(with: request as URLRequest) {data, response, error in
                 if error != nil{
-                    print("Error -> \(error)")
+                    print("Error -> \(String(describing: error))")
                     return
                 }
                 
@@ -1377,7 +1377,7 @@ class Navigation {
             
             let task = URLSession.shared.dataTask(with: request as URLRequest) {data, response, error in
                 if error != nil{
-                    print("Error -> \(error)")
+                    print("Error -> \(String(describing: error))")
                     return
                 }
                 
@@ -1429,7 +1429,7 @@ class Navigation {
             
             let task = URLSession.shared.dataTask(with: request as URLRequest) {data, response, error in
                 if error != nil{
-                    print("Error -> \(error)")
+                    print("Error -> \(String(describing: error))")
                     return
                 }
                 
@@ -1553,7 +1553,7 @@ class Navigation {
         
         let task = URLSession.shared.dataTask(with: request as URLRequest) {data, response, error in
             if error != nil{
-                print("Error -> \(error)")
+                print("Error -> \(String(describing: error))")
                 return
             }
             
@@ -1700,7 +1700,7 @@ class Navigation {
             
             let task = URLSession.shared.dataTask(with: request as URLRequest) {data, response, error in
                 if error != nil{
-                    print("Error -> \(error)")
+                    print("Error -> \(String(describing: error))")
                     return
                 }
                 
@@ -1739,7 +1739,7 @@ class Navigation {
             
             let task = URLSession.shared.dataTask(with: request as URLRequest) {data, response, error in
                 if error != nil{
-                    print("Error -> \(error)")
+                    print("Error -> \(String(describing: error))")
                     return
                 }
                 
@@ -1942,7 +1942,7 @@ class Navigation {
             
             let task = URLSession.shared.dataTask(with: request as URLRequest) {data, response, error in
                 if error != nil{
-                    print("Error -> \(error)")
+                    print("Error -> \(String(describing: error))")
                     return
                 }
                 
@@ -1984,7 +1984,7 @@ class Navigation {
             
             let task = URLSession.shared.dataTask(with: request as URLRequest) {data, response, error in
                 if error != nil{
-                    print("Error -> \(error)")
+                    print("Error -> \(String(describing: error))")
                     return
                 }
                 
@@ -2025,7 +2025,7 @@ class Navigation {
             
             let task = URLSession.shared.dataTask(with: request as URLRequest) {data, response, error in
                 if error != nil{
-                    print("Error -> \(error)")
+                    print("Error -> \(String(describing: error))")
                     return
                 }
                 
@@ -2066,7 +2066,7 @@ class Navigation {
             
             let task = URLSession.shared.dataTask(with: request as URLRequest) {data, response, error in
                 if error != nil{
-                    print("Error -> \(error)")
+                    print("Error -> \(String(describing: error))")
                     return
                 }
                 
@@ -2108,7 +2108,7 @@ class Navigation {
             
             let task = URLSession.shared.dataTask(with: request as URLRequest) {data, response, error in
                 if error != nil{
-                    print("Error -> \(error)")
+                    print("Error -> \(String(describing: error))")
                     return
                 }
                 
@@ -2360,7 +2360,7 @@ class Navigation {
             request.httpBody = jsonData
             let task = URLSession.shared.dataTask(with: request as URLRequest) {data, response, error in
                 if error != nil{
-                    print("Error -> \(error)")
+                    print("Error -> \(String(describing: error))")
                     return
                 }
                 
@@ -2849,7 +2849,7 @@ class Navigation {
             
             let task = URLSession.shared.dataTask(with: request as URLRequest) {data, response, error in
                 if error != nil{
-                    print("Error -> \(error)")
+                    print("Error -> \(String(describing: error))")
                     return
                 }
                 
@@ -2894,7 +2894,7 @@ class Navigation {
             
             let task = URLSession.shared.dataTask(with: request as URLRequest) {data, response, error in
                 if error != nil{
-                    print("Error -> \(error)")
+                    print("Error -> \(String(describing: error))")
                     return
                 }
                 
@@ -2940,7 +2940,7 @@ class Navigation {
             
             let task = URLSession.shared.dataTask(with: request as URLRequest) {data, response, error in
                 if error != nil{
-                    print("Error -> \(error)")
+                    print("Error -> \(String(describing: error))")
                     return
                 }
                 
@@ -3014,7 +3014,7 @@ class Navigation {
                 
                 let task = URLSession.shared.dataTask(with: request as URLRequest) {data, response, error in
                     if error != nil{
-                        print("Error -> \(error)")
+                        print("Error -> \(String(describing: error))")
                         return
                     }
                     

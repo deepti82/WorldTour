@@ -274,10 +274,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
             
             let fullMessage: String? = payload?.body
             
-            let data = payload?.additionalData
-            
-            print("Data : \(data)")
-//
             print("Recived notifn : " + fullMessage!)
 //
 //            print("Received Notification - \(notification?.payload.notificationID) - \(notification?.payload.title)")
@@ -686,7 +682,7 @@ func getUnreadNotificationCount() {
             DispatchQueue.main.async(execute: { 
                 
                 if response.error != nil {
-                    print("\n Error : \(response.error?.localizedDescription)")
+                    print("\n Error : \(String(describing: response.error?.localizedDescription))")
                 }
                 else if response["value"].bool! {
                     let notificationCount = response["data"].intValue

@@ -16,7 +16,7 @@ class EditEditProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("which view: \(whichView)")
+        print("which view: \(String(describing: whichView))")
         
         self.title = ""
         

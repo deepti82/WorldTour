@@ -342,7 +342,7 @@ class SocialLoginClass: UIViewController {
                 
                 client.sendTwitterRequest(req) { (response, data, connectionError) -> Void in
                     if connectionError != nil {
-                        print("Error: \(connectionError)")
+                        print("Error: \(String(describing: connectionError))")
                     }
                     
                     do {

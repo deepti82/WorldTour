@@ -42,7 +42,7 @@ class EmptyPagesViewController: UIViewController {
     func gotoProfile(_ sender: UIButton?) {
         
         let allControllers = self.navigationController?.viewControllers
-        print("\n allControllers : \(allControllers)")
+        print("\n allControllers : \(String(describing: allControllers))")
         var found = false
         let count = ((allControllers?.count)!-1)
         

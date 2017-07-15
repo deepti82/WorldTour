@@ -471,7 +471,7 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
         
         sender.isUserInteractionEnabled = false
         
-        print("\n globalNavigationController.topViewController ::: \(globalNavigationController.topViewController) \n\n")
+        print("\n globalNavigationController.topViewController ::: \(String(describing: globalNavigationController.topViewController)) \n\n")
         
         switch(self.typeOfAddActivtiy) {
         case "AddPhotosVideos":            
@@ -528,7 +528,7 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
                 request.getLocationOTG(userLocation.latitude, long: userLocation.longitude, completion: {(response) in
                     DispatchQueue.main.async(execute: {
                         if (response.error != nil) {
-                            print("error: \(response.error?.localizedDescription)")
+                            print("error: \(String(describing: response.error?.localizedDescription))")
                         }
                         else if response["value"].bool! {
                             self.checkConnection()

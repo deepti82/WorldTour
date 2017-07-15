@@ -248,7 +248,7 @@ class PhotoOTGFooter: UIView {
             likeButton.curve = "spring"
             likeButton.animateTo()
             
-            print("like button tapped \(sender.titleLabel!.text)")
+            print("like button tapped \(String(describing: sender.titleLabel!.text))")
             
             var unLike = false
             if sender.tag == 1 {

@@ -81,7 +81,7 @@ class BucketListTableViewController: UITableViewController  {
     func gotoProfile(_ sender: UIButton?) {
         
         let allControllers = self.navigationController?.viewControllers
-        print("\n allControllers : \(allControllers)")
+        print("\n allControllers : \(String(describing: allControllers))")
         var found = false
         let count = ((allControllers?.count)!-1)
         
@@ -108,8 +108,7 @@ class BucketListTableViewController: UITableViewController  {
             DispatchQueue.main.async(execute: {
                 self.loader.hideOverlayView()
                 if response.error != nil {
-                    
-                    print("error - \(response.error?.code): \(response.error?.localizedDescription)")
+                    print("error - \(String(describing: response.error?.code)): \(String(describing: response.error?.localizedDescription))")
                 }
                 else if response["value"].bool! {
                     
@@ -146,8 +145,7 @@ class BucketListTableViewController: UITableViewController  {
             DispatchQueue.main.async(execute: {
                 self.loader.hideOverlayView()
                 if response.error != nil {
-                    
-                    print("error - \(response.error?.code): \(response.error?.localizedDescription)")
+                    print("error - \(String(describing: response.error?.code)): \(String(describing: response.error?.localizedDescription))")
                 }
                 else if response["value"].bool! {
                     

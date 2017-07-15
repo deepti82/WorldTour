@@ -79,7 +79,6 @@ class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewD
         print("\n\n Save city called")
         var cityName = ""
         
-        print("city name: \(cityTextField.text), \(currentUser["_id"]), \(currentUser["homeCity"].string)")        
         if self.cityTextField.text != "" {
             
             cityName = self.cityTextField.text!
@@ -91,9 +90,7 @@ class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewD
                         print(response["value"])
                         
                         if response.error != nil {
-                            
-                            print("error: \(response.error?.localizedDescription)")
-                            
+                            print("error: \(String(describing: response.error?.localizedDescription))")
                         } else if response["value"] == true {
                             currentUser = response["data"]
                             if self.isFromSettings != true {
@@ -142,9 +139,7 @@ class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func selectGender() {
-        print("\n\n selectGender called ")
         print("\n\n IsMainThread : \(Thread.isMainThread) \n\n")
-        print("\n\n Top VC : \(self.navigationController?.topViewController)")
         
         if (self.navigationController?.topViewController?.isKind(of: AddCityViewController.self))! {
             let selectGenderVC = self.storyboard!.instantiateViewController(withIdentifier: "selectGender") as! SelectGenderViewController
@@ -157,15 +152,12 @@ class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func textFieldDidChange(_ textfield: UITextField) {
         
-        print("inside target function: \(cityTextField.text)")
-        
         request.searchCity(cityTextField.text!, completion: {(response) in
             
             DispatchQueue.main.async(execute: {
                 
                 if response.error != nil {
-                    
-                    print("error: \(response.error?.localizedDescription)")
+                    print("error: \(String(describing: response.error?.localizedDescription))")
                 }
                     
                 else {
@@ -318,7 +310,7 @@ class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewD
                 DispatchQueue.main.async(execute: {
                     print(response);
                     if (response.error != nil) {
-                        print("error: \(response.error?.localizedDescription)")
+                        print("error: \(String(describing: response.error?.localizedDescription))")
                     }
                         
                     else {                        

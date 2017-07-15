@@ -184,7 +184,7 @@ class DisplayCardsViewController: UIPageViewController, UIPageViewControllerData
                 
                 if response.error != nil {
                     
-                    print("error: \(response.error?.localizedDescription)")
+                    print("error: \(String(describing: response.error?.localizedDescription))")
                 }
                     
                 else {

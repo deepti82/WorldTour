@@ -109,7 +109,7 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
                     self.loader.hideOverlayView()
                     if response.error != nil {
                         
-                        print("error: \(response.error?.localizedDescription)")
+                        print("error: \(String(describing: response.error?.localizedDescription))")
                         
                     }
                     
@@ -220,7 +220,7 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
                 self.loader.hideOverlayView()
                 if response.error != nil {
                     
-                    print("error: \(response.error?.localizedDescription)")
+                    print("error: \(String(describing: response.error?.localizedDescription))")
                     
                 }
                     

@@ -186,7 +186,7 @@ public class QuickItinerary {
                 
                 request.postQuickitenary(title: quickItineryL["title"].stringValue, year: quickItineryL["year"].int!, month: quickItineryL["month"].stringValue, duration:quickItineryL["duration"].int!, description:quickItineryL["description"].stringValue, itineraryType:quickItineryL["itineraryType"], countryVisited:quickItineryL["countryVisited"],photos:photosJson,status:status_temp,editId:editid_temp!,  completion: {(response) in                    
                     if response.error != nil {
-                        print("response: \(response.error?.localizedDescription)")
+                        print("response: \(String(describing: response.error?.localizedDescription))")
                         self.updateStatus(postId: post1[self.id], status: uploadStatus.UPLOAD_FAILED)
                     }
                     else if response["value"].bool! {

@@ -37,8 +37,6 @@ class MyLifeContainerViewController: UIViewController, UITableViewDelegate, UITa
 
         globalMyLifeContainerViewController = self
         
-        print("\n ViewControllers : \(self.navigationController?.visibleViewController)")
-        
         isEmptyProfile = false
         
         timeTag = TimestampTagViewOnScroll(frame: CGRect(x: 0, y: 200, width: screenWidth + 8, height: 40))

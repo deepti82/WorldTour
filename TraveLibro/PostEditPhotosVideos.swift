@@ -101,7 +101,7 @@ public class PostEditPhotosVideos {
                 
                 request.editPost(param: params, completion: {(response) in
                     if response.error != nil {
-                        print("response: \(response.error?.localizedDescription)")
+                        print("response: \(String(describing: response.error?.localizedDescription))")
                         self.updateStatus(postID: post[self.id_db], status: uploadStatus.UPLOAD_FAILED)
                     }
                     else if response["value"].bool! {
