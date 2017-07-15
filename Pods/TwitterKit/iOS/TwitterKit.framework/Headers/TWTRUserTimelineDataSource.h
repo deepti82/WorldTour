@@ -48,6 +48,11 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, readonly) BOOL includeRetweets;
 
+/*
+ *  A filtering object that hides certain tweets.
+ */
+@property (nonatomic, copy, nullable) TWTRTimelineFilter *timelineFilter;
+
 /**
  *  Convenience initializer. Uses default values for `maxTweetsPerRequest`, `includeReplies` and `includeRetweets`.
  *
@@ -63,7 +68,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @param userID              The user ID of the Twitter User
  *  @param screenName          The screen name of the Twitter User
- *  @param APIClient           The API client to use for making network requests.
+ *  @param client              The API client to use for making network requests.
  *  @param maxTweetsPerRequest The number of Tweets per batch to request. A value of 0 will use the server default.
  *  @param includeReplies      Whether replies should be requested
  *  @param includeRetweets     Whether retweets should be requested

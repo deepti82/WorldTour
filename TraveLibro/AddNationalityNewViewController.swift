@@ -207,7 +207,13 @@ class AddNationalityNewViewController: UIViewController, UIPickerViewDelegate {
         if userNationatilty.titleLabel!.text == "Button" {
             
             countrySelected = ""
-            alert(message: "Select Country", title: "Please Select Origin Country")
+            let errorAlert = UIAlertController(title: "Select Country", message: "Please Select Origin Country", preferredStyle: UIAlertControllerStyle.alert)
+            let DestructiveAction = UIAlertAction(title: "Ok", style: .destructive) {
+                (result : UIAlertAction) -> Void in
+                //Cancel Action
+            }
+            errorAlert.addAction(DestructiveAction)
+            self.navigationController?.present(errorAlert, animated: true, completion: nil)
             
         } else if userNationatilty.titleLabel!.text != nil {
             
@@ -219,9 +225,13 @@ class AddNationalityNewViewController: UIViewController, UIPickerViewDelegate {
                         
                         if response.error != nil {
                             
-                            self.alert(message: "Select Country", title: "Please try agin later...")
-                            print("error: \(response.error?.localizedDescription)")
-                            
+                            let errorAlert = UIAlertController(title: "Select Country", message: "Please try agin later...", preferredStyle: UIAlertControllerStyle.alert)
+                            let DestructiveAction = UIAlertAction(title: "Ok", style: .destructive) {
+                                (result : UIAlertAction) -> Void in
+                                //Cancel Action
+                            }
+                            errorAlert.addAction(DestructiveAction)
+                            self.navigationController?.present(errorAlert, animated: true, completion: nil)
                         } else {
                             if response["value"] == true {
                                 currentUser = response["data"]

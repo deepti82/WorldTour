@@ -130,7 +130,13 @@ class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewD
             }
             
         } else {
-            self.alert(message: "Please Select City.", title: "Select City")
+            let errorAlert = UIAlertController(title: "Select City", message: "Please Select City", preferredStyle: UIAlertControllerStyle.alert)
+            let DestructiveAction = UIAlertAction(title: "Ok", style: .destructive) {
+                (result : UIAlertAction) -> Void in
+                //Cancel Action
+            }
+            errorAlert.addAction(DestructiveAction)
+            self.navigationController?.present(errorAlert, animated: true, completion: nil)
         }            
                 
     }

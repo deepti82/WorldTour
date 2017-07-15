@@ -89,6 +89,7 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "$BUILT_PRODUCTS_DIR/Alamofire/Alamofire.framework"
   install_framework "$BUILT_PRODUCTS_DIR/AsyncSwift/Async.framework"
   install_framework "$BUILT_PRODUCTS_DIR/BSGridCollectionViewLayout/BSGridCollectionViewLayout.framework"
   install_framework "$BUILT_PRODUCTS_DIR/BSImagePicker/BSImagePicker.framework"
@@ -109,9 +110,10 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/Toaster/Toaster.framework"
   install_framework "$BUILT_PRODUCTS_DIR/UIImageViewModeScaleAspect/UIImageViewModeScaleAspect.framework"
   install_framework "$BUILT_PRODUCTS_DIR/iCarousel/iCarousel.framework"
-  install_framework "${PODS_ROOT}/imglyKit/imglyKit.framework"
+  install_framework "${PODS_ROOT}/imglyKit/pesdk-ios-build-5.1.0/imglyKit.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "$BUILT_PRODUCTS_DIR/Alamofire/Alamofire.framework"
   install_framework "$BUILT_PRODUCTS_DIR/AsyncSwift/Async.framework"
   install_framework "$BUILT_PRODUCTS_DIR/BSGridCollectionViewLayout/BSGridCollectionViewLayout.framework"
   install_framework "$BUILT_PRODUCTS_DIR/BSImagePicker/BSImagePicker.framework"
@@ -132,7 +134,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/Toaster/Toaster.framework"
   install_framework "$BUILT_PRODUCTS_DIR/UIImageViewModeScaleAspect/UIImageViewModeScaleAspect.framework"
   install_framework "$BUILT_PRODUCTS_DIR/iCarousel/iCarousel.framework"
-  install_framework "${PODS_ROOT}/imglyKit/imglyKit.framework"
+  install_framework "${PODS_ROOT}/imglyKit/pesdk-ios-build-5.1.0/imglyKit.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
   wait

@@ -162,7 +162,13 @@ class DisplayPagesFourViewController: UIViewController {
             request.addCard(currentUser["_id"].string!, editFieldValue: req, completion: {(responce) in
                 DispatchQueue.main.async(execute: {
                     if responce["value"] != true{
-                        self.alert(message: "Enable to save", title: "Holiday Type")
+                        let errorAlert = UIAlertController(title: "Holiday Type", message: "Enable to save", preferredStyle: UIAlertControllerStyle.alert)
+                        let DestructiveAction = UIAlertAction(title: "Ok", style: .destructive) {
+                            (result : UIAlertAction) -> Void in
+                            //Cancel Action
+                        }
+                        errorAlert.addAction(DestructiveAction)
+                        self.navigationController?.present(errorAlert, animated: true, completion: nil)
                     }
                     let next = self.storyboard?.instantiateViewController(withIdentifier: "TLProfileView") as! TLProfileViewController
                     next.isAppStartedFromInitial = true

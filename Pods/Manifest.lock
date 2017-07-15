@@ -1,59 +1,54 @@
 PODS:
-  - AsyncSwift (2.0.0)
+  - Alamofire (4.5.0)
+  - AsyncSwift (2.0.1)
   - BSGridCollectionViewLayout (1.2.0)
-  - BSImagePicker (2.5.0):
+  - BSImagePicker (2.6.0):
     - BSGridCollectionViewLayout (~> 1.2.0)
-    - UIImageViewModeScaleAspect (~> 1.5.0)
+    - UIImageViewModeScaleAspect (= 1.5)
   - Cent (6.0.3):
     - Dollar (~> 6.1.0)
   - DKChainableAnimationKit (2.0.0)
   - Dollar (6.1.0)
-  - Fabric (1.6.11)
-  - FirebaseAnalytics (3.6.0):
-    - FirebaseCore (~> 3.4)
+  - FirebaseAnalytics (3.9.0):
+    - FirebaseCore (~> 3.6)
     - FirebaseInstanceID (~> 1.0)
-    - GoogleInterchangeUtilities (~> 1.2)
-    - GoogleSymbolUtilities (~> 1.1)
     - GoogleToolboxForMac/NSData+zlib (~> 2.1)
-  - FirebaseCore (3.4.6):
-    - GoogleInterchangeUtilities (~> 1.2)
+  - FirebaseCore (3.6.0):
     - GoogleToolboxForMac/NSData+zlib (~> 2.1)
-  - FirebaseInstanceID (1.0.8)
-  - Google/Analytics (3.0.3):
+  - FirebaseInstanceID (1.0.10):
+    - FirebaseCore (~> 3.6)
+  - Google/Analytics (3.1.0):
     - Google/Core
     - GoogleAnalytics (~> 3.12)
-  - Google/Core (3.0.3):
+  - Google/Core (3.1.0):
     - FirebaseAnalytics (~> 3.2)
   - GoogleAnalytics (3.17.0)
-  - GoogleInterchangeUtilities (1.2.2):
-    - GoogleSymbolUtilities (~> 1.1)
-  - GoogleSymbolUtilities (1.1.2)
-  - GoogleToolboxForMac/Defines (2.1.0)
-  - GoogleToolboxForMac/NSData+zlib (2.1.0):
-    - GoogleToolboxForMac/Defines (= 2.1.0)
+  - GoogleToolboxForMac/Defines (2.1.1)
+  - GoogleToolboxForMac/NSData+zlib (2.1.1):
+    - GoogleToolboxForMac/Defines (= 2.1.1)
   - HanekeSwift (0.10.1)
   - iCarousel (1.8.3)
-  - imglyKit (5.0.6)
-  - OneSignal (2.3.4)
+  - imglyKit (5.1.0)
+  - OneSignal (2.5.4)
   - Player (0.2.2)
-  - SABlurImageView (3.0.0)
+  - SABlurImageView (3.0.1)
   - Simplicity (2.0.1)
   - Spring (1.0.3)
-  - SQLite.swift (0.11.2):
-    - SQLite.swift/standard (= 0.11.2)
-  - SQLite.swift/standard (0.11.2)
+  - SQLite.swift (0.11.3):
+    - SQLite.swift/standard (= 0.11.3)
+  - SQLite.swift/standard (0.11.3)
   - SwiftGifOrigin (1.6.1)
   - SwiftHTTP (2.0.2)
-  - TabPageViewController (0.2.1)
+  - TabPageViewController (0.2.7)
   - TAPageControl (0.2.0)
-  - Toaster (2.0.1)
-  - TwitterCore (2.5.0):
-    - Fabric
-  - TwitterKit (2.5.0):
-    - TwitterCore (= 2.5.0)
+  - Toaster (2.0.4)
+  - TwitterCore (3.0.0)
+  - TwitterKit (3.0.3):
+    - TwitterCore (>= 3.0.0)
   - UIImageViewModeScaleAspect (1.5)
 
 DEPENDENCIES:
+  - Alamofire (~> 4.4)
   - AsyncSwift
   - BSImagePicker (~> 2.4)
   - Cent
@@ -67,11 +62,11 @@ DEPENDENCIES:
   - Player (~> 0.2.0)
   - SABlurImageView
   - Simplicity
-  - Spring (from `https://github.com/MengTo/Spring.git`, branch `swift3`)
+  - Spring
   - SQLite.swift (~> 0.11.2)
   - SwiftGifOrigin (~> 1.6.1)
   - SwiftHTTP (~> 2.0.0)
-  - TabPageViewController (from `https://github.com/EndouMari/TabPageViewController.git`, branch `swift_3`)
+  - TabPageViewController
   - TAPageControl
   - Toaster (~> 2.0)
   - TwitterCore
@@ -81,58 +76,44 @@ EXTERNAL SOURCES:
   HanekeSwift:
     :branch: feature/swift-3
     :git: https://github.com/Haneke/HanekeSwift.git
-  Spring:
-    :branch: swift3
-    :git: https://github.com/MengTo/Spring.git
-  TabPageViewController:
-    :branch: swift_3
-    :git: https://github.com/EndouMari/TabPageViewController.git
 
 CHECKOUT OPTIONS:
   HanekeSwift:
-    :commit: 1157a124ec699f4ad926cb054f1d0bfce88ae7a9
+    :commit: 2f6d87f1f725d204d85cb34492e8c399cd5a200f
     :git: https://github.com/Haneke/HanekeSwift.git
-  Spring:
-    :commit: 3a9227c6e9157e7b47f5ac1ee5abab2a56b50002
-    :git: https://github.com/MengTo/Spring.git
-  TabPageViewController:
-    :commit: 7e43c9ffae8b4cf4d3b81fc4a4e5317d334b6b3f
-    :git: https://github.com/EndouMari/TabPageViewController.git
 
 SPEC CHECKSUMS:
-  AsyncSwift: 6ba6ed9ecb51344458063f7c86fe447ab824e313
+  Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
+  AsyncSwift: 632138e42ead868b53c745fcde9bf733ce1527ad
   BSGridCollectionViewLayout: 8f12c8e1e08c47057f5a39a6828f4395f043d78f
-  BSImagePicker: 9ad3385318ca0db7e792b51ea8929cfc39284c56
+  BSImagePicker: 7b740d0a9f23160bcdca01f179445583bd1c09b0
   Cent: 2e2deb7ced0fc6c4c320075ddd4f63ed8defd8db
   DKChainableAnimationKit: b9e079381d6e059f8a1f969223d16e3970ec3545
   Dollar: 0a9883680f2c1104adf0d19b827c3be71d3e3121
-  Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
-  FirebaseAnalytics: 9c67af0ebeb8d2146c9b4ea2616439affa947b58
-  FirebaseCore: 03da1cb32615569bbc2830a22f9ad753d9a02ef5
-  FirebaseInstanceID: ba1e640935235e5fac39dfa816fe7660e72e1a8a
-  Google: cd92fab98f800f509da88c1e0c570275713bc9d5
+  FirebaseAnalytics: e5fe8486efc01bec33f6bf82e2fa9fce4b124052
+  FirebaseCore: 9691ee2ade70c098d7cf92440f4303f16d83ca75
+  FirebaseInstanceID: b9eedd6846fb5e1f0f7279e1deaa7a7e4cf8392e
+  Google: 98da4b1a60ed0beb80a290387a28333406a1eb90
   GoogleAnalytics: f42cc53a87a51fe94334821868d9c8481ff47a7b
-  GoogleInterchangeUtilities: d5bc4d88d5b661ab72f9d70c58d02ca8c27ad1f7
-  GoogleSymbolUtilities: 631ee17048aa5e9ab133470d768ea997a5ef9b96
-  GoogleToolboxForMac: 2b2596cbb7186865e98cadf2b1e262d851c2b168
+  GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   HanekeSwift: 4113367892828e7700d24a384027de6ebc79aad1
   iCarousel: d782f635afac190c49bb8ee455882284cff8b85f
-  imglyKit: 630bdcfa80b6a67e3b1ab64573aa2fc16ee97178
-  OneSignal: c8f0d08ffa30fcf751c97a29639725877027e788
+  imglyKit: 1760a944e51caf0a4aef3e2fc0d7109201749c0c
+  OneSignal: da994bcf6a2efbdceaf71e389e1d05245c562899
   Player: 5cff076cc9f13b51f56b6fb7bed24431569b8102
-  SABlurImageView: 7003ca28ded502c984846374a117f88a287d9faf
+  SABlurImageView: bd0940330d0e8571379a495623e57c436659a202
   Simplicity: 58ce0c6569baf45e48ccd25432274ae899097517
   Spring: 3f02b5dc3308572ef177b3cad0fa7bbc4b0706f7
-  SQLite.swift: 670c3e9e0a806bbfd56a3de5d530768dc0e6fe7c
+  SQLite.swift: 99b36c22084427f0abbeb957556ce1528cf10bb3
   SwiftGifOrigin: d6679d3ebe9df2e049a84bc52582635107b581f6
   SwiftHTTP: faa1a5f7670568ffc9361898229dbe84a6088468
-  TabPageViewController: a4b46480e21251000962abad071b538679dbc2ad
+  TabPageViewController: c37a1257a50c2b50712dde61bf499768eee95b67
   TAPageControl: fd11d779bbb5c2464ca2f55dde9e288213ea8a9b
-  Toaster: be65cd48e93a525b2a9cc4bd25a2bfc900e02d9f
-  TwitterCore: 95c46af93112768a7983bd370d66023553601d01
-  TwitterKit: dd8042698b0ff5bd3066fa919b3b2b50d8eed829
+  Toaster: f13031c636ef065281bc11857be9a16c7659e04f
+  TwitterCore: 8ce250be1eb34633a0e6acc89520d4165ec52c10
+  TwitterKit: 202404be71aadd81d19f677b34579fe77d9cb67e
   UIImageViewModeScaleAspect: 11a790a0b9d248a13dc63e3a78991f1463b6d84e
 
-PODFILE CHECKSUM: 1b53b193119ce82783ad08f51dd7b175b1788ce7
+PODFILE CHECKSUM: 0422e881fd2a8851ff0e8b8a31841217dc2d1ce3
 
 COCOAPODS: 1.2.1
