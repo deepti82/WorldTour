@@ -68,8 +68,9 @@ public class QuickItinerary {
             print(imageArr);
             for image in imageArr {
                 image.postId = Int(actualId)
-                
-                image.save()
+                if image.editId == "" {
+                    image.save()
+                }
             }
         } catch _ {
             print("ERROR OCCURED");

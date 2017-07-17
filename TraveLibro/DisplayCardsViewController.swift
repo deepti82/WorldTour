@@ -132,12 +132,8 @@ class DisplayCardsViewController: UIPageViewController, UIPageViewControllerData
         
         if !(isFromSettings != nil && isFromSettings == true) {
             _ = viewControllerAtIndex(dataIndex)
-        }        
+        }
         
-        //        travelConfig["holidayType"]!.filter{
-        //            !contains(travelConfig["preferToTravel"]!, $0)
-        //        }
-        //        print("travel config 1: \(travelConfig)")
         
         if travelConfig["preferToTravel"] != nil && travelConfig["holidayType"] != nil {
             

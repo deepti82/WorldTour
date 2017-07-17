@@ -50,7 +50,9 @@ class QIViewController: UIPageViewController, UIPageViewControllerDataSource, UI
         }else{
             setViewControllers([quickOne], direction: .forward, animated: false, completion: nil)
             inx = 0
-        }        
+        }
+        
+        
         if(editID != nil) {
             editValue = editID;
             request.getItinerary(editID, completion: { (json) in
@@ -72,7 +74,7 @@ class QIViewController: UIPageViewController, UIPageViewControllerDataSource, UI
                         }
                         quickFour.iniText = self.editJson["description"].stringValue
                         globalPostImage = []
-                        print(self.editJson)
+                        print("\n Itinerary Data : \(self.editJson) \n");
                         for (_,photo) in self.editJson["photos"] {
                             let po = PostImage();
                             po.urlToData(photo["name"].stringValue, serverID: photo["_id"].stringValue)

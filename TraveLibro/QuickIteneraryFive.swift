@@ -11,7 +11,7 @@ import Photos
 import  BSImagePicker
 
 class QuickIteneraryFive: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-
+    
     @IBOutlet weak var photosAddMore: UIButton!
     @IBOutlet weak var photosGalleryFirstView: UIView!
     @IBOutlet weak var photoGallerySecondView: UIView!
@@ -23,24 +23,25 @@ class QuickIteneraryFive: UIViewController, UICollectionViewDataSource, UICollec
     let image1 = UIImage()
     let imagePicker = UIImagePickerController()
     var selectPhotosCount = 10
-        override func viewDidLoad() {
+    
+    override func viewDidLoad() {
         super.viewDidLoad()
         
         photosCollection.dataSource = self
         photosCollection.delegate = self
         photoGallerySecondView.isHidden = true
-            addTripPhotos.addTarget(self, action: #selector(addTripPhotosGallery(_:)), for: .touchUpInside)
-            photosAddMore.addTarget(self, action: #selector(addTripPhotosGallery(_:)), for: .touchUpInside)
-            
-            transparentCardWhite(photosGalleryFirstView)
-            transparentCardWhite(photoGallerySecondView)
-            photosAddMore.clipsToBounds = true
-            photosAddMore.layer.cornerRadius = 5
-            addTripPhotos.layer.cornerRadius = 5
-            addTripPhotos.clipsToBounds = true
-            
+        addTripPhotos.addTarget(self, action: #selector(addTripPhotosGallery(_:)), for: .touchUpInside)
+        photosAddMore.addTarget(self, action: #selector(addTripPhotosGallery(_:)), for: .touchUpInside)
+        
+        transparentCardWhite(photosGalleryFirstView)
+        transparentCardWhite(photoGallerySecondView)
+        photosAddMore.clipsToBounds = true
+        photosAddMore.layer.cornerRadius = 5
+        addTripPhotos.layer.cornerRadius = 5
+        addTripPhotos.clipsToBounds = true
+        
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -48,7 +49,7 @@ class QuickIteneraryFive: UIViewController, UICollectionViewDataSource, UICollec
     override func viewWillAppear(_ animated: Bool) {
         print(quickItinery)
         setAnalytics(name: "Quickitinerary page Five")
-
+        
     }
     
     
@@ -69,13 +70,13 @@ class QuickIteneraryFive: UIViewController, UICollectionViewDataSource, UICollec
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-//        if shouldShowBigImage(position: indexPath.row) {
-//            return CGSize(width: (collectionView.frame.size.width), height: collectionView.frame.size.width * 0.7)
-//        }
+        //        if shouldShowBigImage(position: indexPath.row) {
+        //            return CGSize(width: (collectionView.frame.size.width), height: collectionView.frame.size.width * 0.7)
+        //        }
         return CGSize(width: ((photosCollection.frame.size.width - 2)/2), height: (((photosCollection.frame.size.width - 2)/2) * 1.35))
         
     }
-
+    
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photosFromGallery", for: indexPath)
@@ -101,8 +102,8 @@ class QuickIteneraryFive: UIViewController, UICollectionViewDataSource, UICollec
     
     func addTripPhotosGallery(_ sender: UIButton){
         
-//        let captionVC = storyboard?.instantiateViewController(withIdentifier: "addCaptions") as! AddCaptionsViewController
-//        captionVC.imageArr = thumbnail1
+        //        let captionVC = storyboard?.instantiateViewController(withIdentifier: "addCaptions") as! AddCaptionsViewController
+        //        captionVC.imageArr = thumbnail1
         
         let multipleImage = BSImagePickerViewController()
         UIApplication.shared.statusBarView?.backgroundColor = NAVIGATION_BAR_CLEAR_COLOR
@@ -113,44 +114,44 @@ class QuickIteneraryFive: UIViewController, UICollectionViewDataSource, UICollec
         multipleImage.navigationBar.titleTextAttributes = [
             NSForegroundColorAttributeName : UIColor.white
         ] // Title color
-
+        
         
         self.bs_presentImagePickerController(multipleImage, animated: true,
                                              select: { (asset: PHAsset) -> Void in
                                                 
                                                 print("Selected: \(asset)")
                                                 
-                    
-            }, deselect: { (assets: PHAsset) -> Void in
-                
-                print("deselected: \(assets)")
-                
-            },  cancel: { (assets: [PHAsset]) -> Void in
-                
-                print("Cancel: \(assets)")
-                }, finish: { (assets: [PHAsset]) -> Void in
-                    
-                    var img11 = [UIImage]()
-                DispatchQueue.main.async {
-                    let option1 = PHImageRequestOptions()
-                    option1.isSynchronous = true
-                    for n in 0...assets.count-1{
-                        PHImageManager.default().requestImage(for: assets[n], targetSize: CGSize(width: assets[n].pixelWidth, height: assets[n].pixelHeight), contentMode: .aspectFit, options: option1, resultHandler: {(result, info) in
-                            img11.append(result!)
-                        })
-                    }
-                    self.photosAdded(assets: img11)
-                    
-
+                                                
+        }, deselect: { (assets: PHAsset) -> Void in
+            
+            print("deselected: \(assets)")
+            
+        },  cancel: { (assets: [PHAsset]) -> Void in
+            
+            print("Cancel: \(assets)")
+        }, finish: { (assets: [PHAsset]) -> Void in
+            
+            var img11 = [UIImage]()
+            DispatchQueue.main.async {
+                let option1 = PHImageRequestOptions()
+                option1.isSynchronous = true
+                for n in 0...assets.count-1{
+                    PHImageManager.default().requestImage(for: assets[n], targetSize: CGSize(width: assets[n].pixelWidth, height: assets[n].pixelHeight), contentMode: .aspectFit, options: option1, resultHandler: {(result, info) in
+                        img11.append(result!)
+                    })
                 }
-            }, completion: nil)
-
+                self.photosAdded(assets: img11)
+                
+                
+            }
+        }, completion: nil)
+        
     }
     
     func photosAdded(assets: [UIImage]) {
         for asset in assets {
             let postImg = PostImage()
-            postImg.image = asset.resizeWith(width:800)            
+            postImg.image = asset.resizeWith(width:800)
             imageArr.append(postImg)
             globalPostImage.append(postImg)
         }
