@@ -3066,7 +3066,6 @@ class Navigation {
         
         var id = ""
         if localDbId != nil {
-            
             id = "\(localDbId!)"
         }
         
@@ -3083,11 +3082,11 @@ class Navigation {
                     print("upload file response: \(json)")
                     completion(json)
                 }
-                
             case .failure(let encodingError):
                 print("error: \(encodingError)")
             }
         }
+        
         
         
         /*

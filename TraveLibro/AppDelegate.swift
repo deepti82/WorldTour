@@ -370,10 +370,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
     }
     
     func applicationDidEnterBackground(_ application: UIApplication) {
+        print("\n applicationDidEnterBackground ");
         if (UserDefaults.standard.object(forKey: "notificationCount") != nil) {
             let notificationCount = UserDefaults.standard.value(forKey: "notificationCount") as! Int
             application.applicationIconBadgeNumber = notificationCount
         }
+        
+        var bgTask:UIBackgroundTaskIdentifier!
+        bgTask = UIApplication.shared.beginBackgroundTask { () -> Void in
+            UIApplication.shared.endBackgroundTask(bgTask)
+        }
+        
+        
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     }
@@ -401,7 +409,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
     func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
         return UIInterfaceOrientationMask.portrait
     }
-    
     
     //MARK: - Reachability
     

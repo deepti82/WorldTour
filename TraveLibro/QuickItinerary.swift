@@ -246,6 +246,7 @@ public class QuickItinerary {
                 uploadFlag = false
             }
         }
+            
         catch {
             print("There is an error");
         }

@@ -41,6 +41,9 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
     @IBOutlet weak var profilePicture: UIImageView!
     @IBOutlet weak var profileNew: UIView!
    
+    
+    //MARK: - Settings Tabbed
+    
     @IBAction func SettingsTap(_ sender: AnyObject) {
         if currentUser != nil {
             request.getUserFromCache(user.getExistingUser(), completion: { (response) in
