@@ -1,6 +1,7 @@
 
 import UIKit
 import TAPageControl
+import Toaster
 
 var cardTitle: String!
 var selectedOptions: [String] = []
@@ -92,59 +93,36 @@ class DisplayCardsViewController: UIPageViewController, UIPageViewControllerData
     
     //MARK:- Next Page
     
-    func nextPage(_ sender: AnyObject) {
+    func nextPage(_ sender: UIButton?) {
         
-//        dataIndex = dataIndex + 1
-//        
-//        //        pageControl.currentPage = dataIndex
-//        
-//        //        viewControllerAtIndex(dataIndex)
-//        
-//        travelConfig[cardTitle] = selectedOptions
-//        
-//        selectedOptions = []
-//        
-//        if dataIndex < 4 || (isFromSettings == nil || isFromSettings == false){
-//            let myVC = viewControllerAtIndex(dataIndex) as! SignupCardsViewController
-//            setViewControllers([myVC], direction: .forward, animated: true, completion: nil)
-//        }
-//        
-//        if dataIndex == 3 {
-//            
-//            rightButton.frame.size.width = 70.0
-//            rightButton.setImage(nil, for: UIControlState())
-//            rightButton.setTitle("Done", for: UIControlState())
-//            rightButton.titleLabel?.font = UIFont(name: "Avenir-Roman", size: 16)
-//            
-//        }
-//            
-//        else if dataIndex > 3 {
-//            
-//            finishQuestions(sender)
-//        }
-        
-        travelConfig[cardTitle] = selectedOptions
-        
-        selectedOptions = []
-        
-        if dataIndex < 4 || (isFromSettings == nil || isFromSettings == false){
-            dataIndex = dataIndex + 1
-            if dataIndex < 4 {
-                pageControl.currentPage = dataIndex
-                cardTitle = cardTitles[dataIndex]
-                self.setViewControllers([pageviewControllers[dataIndex]], direction: UIPageViewControllerNavigationDirection.forward, animated: true, completion: nil)
-            }
+        if selectedOptions.isEmpty {
+            Toast(text: "Please select your choice").show();
         }
+        else{
         
-        if dataIndex == 3 {
-            rightButton.frame.size.width = 70.0
-            rightButton.setImage(nil, for: UIControlState())
-            rightButton.setTitle("Done", for: UIControlState())
-            rightButton.titleLabel?.font = UIFont(name: "Avenir-Roman", size: 16)
-        }
-        else if dataIndex > 3 {
+            travelConfig[cardTitle] = selectedOptions
             
-            finishQuestions(sender)
+            selectedOptions = []
+            
+            if dataIndex < 4 || (isFromSettings == nil || isFromSettings == false){
+                dataIndex = dataIndex + 1
+                if dataIndex < 4 {
+                    pageControl.currentPage = dataIndex
+                    cardTitle = cardTitles[dataIndex]
+                    self.setViewControllers([pageviewControllers[dataIndex]], direction: UIPageViewControllerNavigationDirection.forward, animated: true, completion: nil)
+                }
+            }
+            
+            if dataIndex == 3 {
+                rightButton.frame.size.width = 70.0
+                rightButton.setImage(nil, for: UIControlState())
+                rightButton.setTitle("Done", for: UIControlState())
+                rightButton.titleLabel?.font = UIFont(name: "Avenir-Roman", size: 16)
+            }
+            else if dataIndex > 3 {
+                
+                finishQuestions(sender!)
+            }
         }
     }
     
@@ -208,6 +186,13 @@ class DisplayCardsViewController: UIPageViewController, UIPageViewControllerData
                     else {
                         
                         print("response error: \(response["data"])")
+                        let errorAlert = UIAlertController(title: "Error", message: "Please check your preferences.", preferredStyle: UIAlertControllerStyle.alert)
+                        let DestructiveAction = UIAlertAction(title: "Ok", style: .destructive) {
+                            (result : UIAlertAction) -> Void in
+                            //Cancel Action
+                        }
+                        errorAlert.addAction(DestructiveAction)
+                        self.navigationController?.present(errorAlert, animated: true, completion: nil)
                     }
                 }
             })

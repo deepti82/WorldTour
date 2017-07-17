@@ -30,7 +30,7 @@ class CardCheckBoxes: UIView {
 //                flag = 1
 //            }
             
-            if !selectedOptions.contains(sender.titleLabel!.text!) {
+            if !(selectedOptions.contains(sender.titleLabel!.text!)) {
                 
                 selectedOptions.append(sender.titleLabel!.text!)
                 
@@ -40,7 +40,7 @@ class CardCheckBoxes: UIView {
         else {
             
             print("sender title: \(String(describing: sender.titleLabel?.text))")
-            if selectedOptions.contains(sender.titleLabel!.text!) {
+            if (selectedOptions.contains(sender.titleLabel!.text!)) {
                 selectedOptions.remove(at: (selectedOptions.indexOf(value: (sender.titleLabel?.text)!))!)
             }
             sender.setBackgroundImage(UIImage(named: "halfnhalfbgGray"), for: UIControlState())
