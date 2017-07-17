@@ -18,6 +18,7 @@ public class QuickItinerary {
     var imageArr:[PostImage] = []
     var loader = LoadingOverlay()
     let id = Expression<Int64>("id")
+    let uploadId = Expression<Int64>("uploadingId")
     let quickJson = Expression<String>("quickJson")
     let status = Expression<Bool>("status")
     let editId = Expression<String>("editId")
@@ -27,6 +28,7 @@ public class QuickItinerary {
     init() {
         try! db.run(post.create(ifNotExists: true) { t in
             t.column(id, primaryKey: true)
+            t.column(uploadId)
             t.column(quickJson)
             t.column(status)
             t.column(editId)
@@ -43,21 +45,39 @@ public class QuickItinerary {
         do {
             let postId = try db.run(photoinsert)
             let actualId = Int(postId) + 30000
+            
+            let updaterow = self.post.filter(self.id == postId)
+            do {
+                try self.db.run(updaterow.update(self.uploadId <- Int64(actualId)))
+            }
+            catch {
+                print("\n QI update error FOUND")
+            }
+            
+            if (!isUploadingInProgress && (actualId == 30001)) {
+                currentUploadingPostID = Int64(actualId)
+            }
+            
             for image in imageArr {
                 image.postId = Int(actualId)
-                
+                image.editId = ""
                 image.save()
+               
             }
+            
         } catch _ {
             print("ERROR OCCURED");
         }
     }
+    
+    
     func save(_ quickItinerary:JSON,imageArr:[PostImage],statusVal:Bool,oldId:String) {
         print("save clicked")
         quickItinery["status"] = JSON(statusVal)
         
         let photoinsert = self.post.insert(
             self.quickJson <- quickItinerary.rawString()!,
+            self.uploadId <- 0,
             self.status <- statusVal,
             self.editId <- oldId,
             self.QIUploadStatus <- 0
@@ -65,13 +85,26 @@ public class QuickItinerary {
         do {
             let postId = try db.run(photoinsert)
             let actualId = Int(postId) + 30000
-            print(imageArr);
+            
+            let updaterow = self.post.filter(self.id == postId)
+            do {
+                try self.db.run(updaterow.update(self.uploadId <- Int64(actualId)))
+            }
+            catch {
+                print("\n QI update error FOUND")
+            }
+            
+            if (!isUploadingInProgress && (actualId == 30001)) {
+                currentUploadingPostID = Int64(actualId)
+            }
+            
             for image in imageArr {
                 image.postId = Int(actualId)
-                if image.editId == "" {
-                    image.save()
-                }
+                image.editId = oldId
+                image.save()
             }
+            
+            
         } catch _ {
             print("ERROR OCCURED");
         }
@@ -81,7 +114,7 @@ public class QuickItinerary {
         var retVal:[JSON] = []
         
         do {
-            let query = post.select(id,quickJson,status,editId)
+            let query = post.select(id,uploadId,quickJson,status,editId)
             for post1 in try db.prepare(query) {
             
                 let p = LocalLifePostModel();
@@ -129,9 +162,9 @@ public class QuickItinerary {
             toStatus = 3
         }
         
-        let updaterow = self.post.filter(self.id == postId)
+        let updaterow = self.post.filter(self.uploadId == postId)
         do {
-            try self.db.run(updaterow.update(self.id <- Int64(toStatus))) 
+            try self.db.run(updaterow.update(self.QIUploadStatus <- Int64(toStatus)))
         }
         catch {
             print("\n QI update error FOUND")
@@ -150,34 +183,32 @@ public class QuickItinerary {
             
             if currentUploadingPostID == Int64(0) {
                 print("\n if succeed")
-                query = post.select(id,quickJson,status,editId)
+                query = post.select(id,uploadId,quickJson,status,editId)
                     .filter(QIUploadStatus == 0 || QIUploadStatus == 3)
                     .limit(1)                   
             }
             else {
                 print("\n else succeed")
-                query = post.select(id,quickJson,status,editId)
-                    .filter((QIUploadStatus == 0 || QIUploadStatus == 3) && (id == currentUploadingPostID))
+                query = post.select(id,uploadId,quickJson,status,editId)
+                    .filter((QIUploadStatus == 0 || QIUploadStatus == 3) && (uploadId == currentUploadingPostID))
                     .limit(1)
             }
             
             for post1 in try db.prepare(query) {
                 check = true
                 
-                self.updateStatus(postId: post1[id], status: (isNetworkReachable ? uploadStatus.UPLOAD_IN_PROGRESS : uploadStatus.UPLOAD_PENDING))
+                self.updateStatus(postId: post1[uploadId], status: (isNetworkReachable ? uploadStatus.UPLOAD_IN_PROGRESS : uploadStatus.UPLOAD_PENDING))
                 
                 let p = LocalLifePostModel();
                 
-                let postID = post1[id]
+                let postID = post1[uploadId]
                 
                 let quickItineryL:JSON = JSON(data: (String(post1[quickJson])?.data(using: .utf8))! )
                 let editid_temp = String(post1[editId])
                 let status_temp = Bool(post1[status])
                 
-                let actualId = Int(post1[id]) + 30000
-                
                 let i = PostImage();
-                p.imageArr = i.getAllImages(postNo: Int64(actualId))
+                p.imageArr = i.getAllImages(postNo: postID)
                 
                 var photosJson:[JSON] = []
                 
@@ -188,25 +219,29 @@ public class QuickItinerary {
                 request.postQuickitenary(title: quickItineryL["title"].stringValue, year: quickItineryL["year"].int!, month: quickItineryL["month"].stringValue, duration:quickItineryL["duration"].int!, description:quickItineryL["description"].stringValue, itineraryType:quickItineryL["itineraryType"], countryVisited:quickItineryL["countryVisited"],photos:photosJson,status:status_temp,editId:editid_temp!,  completion: {(response) in                    
                     if response.error != nil {
                         print("response: \(String(describing: response.error?.localizedDescription))")
-                        self.updateStatus(postId: post1[self.id], status: uploadStatus.UPLOAD_FAILED)
+                        self.updateStatus(postId: post1[self.uploadId], status: uploadStatus.UPLOAD_FAILED)
                     }
                     else if response["value"].bool! {
+                        
+                        self.updateStatus(postId: post1[self.uploadId], status: uploadStatus.UPLOAD_COMPLETE)
+                        
                         do {
-                            let singlePhoto = self.post.filter(self.id == postID)
+                            let singlePhoto = self.post.filter(self.uploadId == postID)
                             try self.db.run(singlePhoto.delete())
-                            i.deletePhotos(Int64(actualId));                            
+                            i.deletePhotos(Int64(postID));
                         }
                         catch {
                             
                         }
-                        if(check) {
-                            self.upload()
-                        }
-                        self.updateStatus(postId: post1[self.id], status: uploadStatus.UPLOAD_COMPLETE)
+                        
+                        
+                        isUploadingInProgress = false
+                        (UIApplication.shared.delegate as! AppDelegate).startUploadingPostInBackground()
+                        
                     }
                     else {
                         print("response error")
-                        self.updateStatus(postId: post1[self.id], status: uploadStatus.UPLOAD_FAILED)
+                        self.updateStatus(postId: post1[self.uploadId], status: uploadStatus.UPLOAD_FAILED)
                     }
                     
                 })
@@ -255,12 +290,12 @@ public class QuickItinerary {
     
     func rollbackItineraryTableProgress() {
         do {
-            let query = post.select(id,quickJson,status,editId)
+            let query = post.select(id,uploadId,quickJson,status,editId)
                 .filter(QIUploadStatus == 1)
                 
             
             for post in try db.prepare(query) {
-                self.updateStatus(postId: post[self.id], status: uploadStatus.UPLOAD_FAILED)
+                self.updateStatus(postId: post[self.uploadId], status: uploadStatus.UPLOAD_FAILED)
             }
         }
         catch {

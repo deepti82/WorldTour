@@ -139,6 +139,8 @@ class AddCaptionsViewController: UIViewController, UITextFieldDelegate, ToolStac
                 self.addActivity.imageArr = imageArr;
                 self.addActivity.addPhotoToLayout()
             } else if self.quickIt != nil {
+                self.quickIt.imageArr = imageArr
+                globalPostImage = imageArr
                 self.quickIt.photosCollection.reloadData()
             }
         }

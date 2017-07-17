@@ -227,10 +227,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
         let configuration = URLSessionConfiguration.background(withIdentifier: "com.travelibro.background_upload")
         alamofireSessionMgr = Alamofire.SessionManager(configuration: configuration)
         
+        self.dropOldDB()
+        
         NotificationCenter.default.addObserver(self, selector: #selector(reachabilityDidChange(_:)), name: NSNotification.Name(rawValue: ReachabilityDidChangeNotificationName), object: nil)        
         _ = reachability?.startNotifier()
-        
-        self.dropOldDB()
         
         SDWebImageDownloader.shared().maxConcurrentDownloads = 3
         
@@ -501,12 +501,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
             print("\n current version is  : \(version)")
             
             let isSchemaUpdated = UserDefaults.standard.string(forKey: "isTableSchemaUpdated")
-            if (isSchemaUpdated != nil || isSchemaUpdated == "1") {
+            if (isSchemaUpdated != nil || isSchemaUpdated == "2") {
 //                print("\n In iff")
             }
             else {
 //                print("\n In else")
-                UserDefaults.standard.set("1", forKey: "isTableSchemaUpdated")
+                UserDefaults.standard.set("2", forKey: "isTableSchemaUpdated")
                 self.dropDBTables()
             }
         }
