@@ -1519,10 +1519,11 @@ class Navigation {
         }
     }
     
-    func postQuickitenary(title:String, year:Int, month:String, duration:Int, description:String, itineraryType:JSON, countryVisited:JSON,photos:[JSON],status:Bool,editId:String,completion: @escaping ((JSON) -> Void)) {
+    func postQuickitenary(title:String, year:Int, month:String, duration:Int, description:String, itineraryType:JSON, countryVisited:JSON,oldPhotos:[JSON],photos:[JSON],status:Bool,editId:String,completion: @escaping ((JSON) -> Void)) {
         
         var params: JSON = ["name":title, "year":year, "month":month, "description":description, "duration":duration, "user":currentUser["_id"], "status":status]
         params["photos"] = JSON(photos)
+        params["oldPhotos"] = JSON(oldPhotos)
         params["itineraryType"] = itineraryType
         
         var countryVisitedCopy = countryVisited
@@ -1543,6 +1544,8 @@ class Navigation {
             params["_id"] = JSON(editId);
             url = URL(string: adminUrl + "itinerary/editQuickItineraryApp")!
         }
+        print("\n\n params of editQuickItinerary : \(params) \n ")
+        
         let jsonData = try! params.rawData()
         
         let request = NSMutableURLRequest(url: url)

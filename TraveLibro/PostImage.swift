@@ -27,6 +27,7 @@ public class PostImage {
     var editId = ""
     var stripServerURL = "";
     var isLoopingRequest = false
+    var localPhotoUploadStatus = Int64(0)
     
     let photos = Table("Photos")
     
@@ -131,7 +132,7 @@ public class PostImage {
             let localUrl = Expression<String>("localUrl")
             let url = Expression<String>("url")
             
-            let query = photos.select(id,post,captions,localUrl,url,editIdTable)
+            let query = photos.select(id,post,captions,localUrl,url,editIdTable,photoUploadStatus)
                 .filter(post == postNo)
             for photo in try db.prepare(query) {
                 let p = PostImage();
@@ -139,6 +140,7 @@ public class PostImage {
                 p.serverUrl = String(photo[url])
                 p.imageUrl = getDocumentsDirectory().appendingPathComponent( photo[localUrl] )
                 p.editId = String(photo[editIdTable])
+                p.localPhotoUploadStatus = photo[photoUploadStatus]
                 let imageData = NSData(contentsOf: p.imageUrl)
                 
                 p.image = UIImage(data: imageData! as Data)!
