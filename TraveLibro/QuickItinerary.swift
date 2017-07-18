@@ -217,22 +217,11 @@ public class QuickItinerary {
                 p.imageArr = i.getAllImages(postNo: postID)
                 
                 var photosJson:[JSON] = []
-                var oldPhotoJson:[JSON] = []
-                
                 for img in p.imageArr {
-                    if img.localPhotoUploadStatus == Int64(0) {
-                        oldPhotoJson.append(img.parseJson())
-                    }
-                    else {
-                        photosJson.append(img.parseJson())
-                    }
+                    photosJson.append(img.parseJson())
                 }
                 
-                print("\n\n oldPhotoJSON : \(oldPhotoJson) \n\n")
-                print("\n\n photosJson : \(photosJson) \n\n")
-                print("")
-                
-                request.postQuickitenary(title: quickItineryL["title"].stringValue, year: quickItineryL["year"].int!, month: quickItineryL["month"].stringValue, duration:quickItineryL["duration"].int!, description:quickItineryL["description"].stringValue, itineraryType:quickItineryL["itineraryType"], countryVisited:quickItineryL["countryVisited"], oldPhotos: oldPhotoJson, photos:photosJson,status:status_temp,editId:editid_temp!,  completion: {(response) in
+                request.postQuickitenary(title: quickItineryL["title"].stringValue, year: quickItineryL["year"].int!, month: quickItineryL["month"].stringValue, duration:quickItineryL["duration"].int!, description:quickItineryL["description"].stringValue, itineraryType:quickItineryL["itineraryType"], countryVisited:quickItineryL["countryVisited"], photos:photosJson,status:status_temp,editId:editid_temp!,  completion: {(response) in
                     if response.error != nil {
                         print("response: \(String(describing: response.error?.localizedDescription))")
                         self.updateStatus(postId: post1[self.uploadId], status: uploadStatus.UPLOAD_FAILED)
