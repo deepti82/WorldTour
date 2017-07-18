@@ -449,6 +449,8 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
         self.videoURL = video
         self.viewContainerView.addSubview(self.player.view)
         
+        addHeightToNewActivity(30.0)
+        
     }
     
     func removeVideoBlock() {
@@ -456,6 +458,7 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
         self.videosFinalView.isHidden = true
         self.videoURL = nil
         self.videoCaption = ""
+        removeHeightFromNewActivity(30.0)
     }
     
     func addCaptionVideo(_ sender: UIButton) {
@@ -511,7 +514,7 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
         thoughtsTextView.becomeFirstResponder()
         self.thoughtsFinalView.isHidden = false
         self.thoughtsInitalView.isHidden = true
-        addHeightToNewActivity(50.0)
+        addHeightToNewActivity(160.0)
     }
     
     func addLocationTapped() {
@@ -829,13 +832,20 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
         self.horizontalScrollForPhotos.layoutSubviews()
         self.photoScroll.contentSize = CGSize(width: self.horizontalScrollForPhotos.frame.width, height: self.horizontalScrollForPhotos.frame.height)
         photosCount.text = "" + String(imageArr.count) + "";
+        
         if(imageArr.count == 0) {
             self.photosIntialView.isHidden = false
             self.photosFinalView.isHidden = true
+            
+            removeHeightFromNewActivity(30.0)
+            
         } else {
             self.photosIntialView.isHidden = true
             self.photosFinalView.isHidden = false
+            
+            addHeightToNewActivity(30.0)
         }
+        
     }
     
     func styleHorizontalButton(_ button: UIButton, buttonTitle: String) {
@@ -883,6 +893,14 @@ class AddActivityNew: SpringView, PlayerDelegate, UITextFieldDelegate {
     
     func addHeightToNewActivity(_ height: CGFloat) {
         self.frame.size.height = self.frame.height + height
+        newScroll.contentSize.height = self.frame.height
+        newScroll.bounces = false
+        newScroll.showsVerticalScrollIndicator = false
+        
+    }
+    
+    func removeHeightFromNewActivity(_ height: CGFloat) {
+        self.frame.size.height = self.frame.height - height
         newScroll.contentSize.height = self.frame.height
         newScroll.bounces = false
         newScroll.showsVerticalScrollIndicator = false
