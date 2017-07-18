@@ -500,12 +500,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
         if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
             print("\n current version is  : \(version)")
             
+            var shouldDelete = false
+            
             let isSchemaUpdated = UserDefaults.standard.string(forKey: "isTableSchemaUpdated")
-            if (isSchemaUpdated != nil || isSchemaUpdated == "2") {
-//                print("\n In iff")
+            if isSchemaUpdated != nil {
+                if (isSchemaUpdated == "2") {
+                    print("\n Schema is uptoDate");
+                }
+                else {
+                    shouldDelete = true
+                }
             }
             else {
-//                print("\n In else")
+                shouldDelete = true
+            }
+            
+            if shouldDelete {
                 UserDefaults.standard.set("2", forKey: "isTableSchemaUpdated")
                 self.dropDBTables()
             }
