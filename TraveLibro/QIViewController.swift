@@ -74,7 +74,7 @@ class QIViewController: UIPageViewController, UIPageViewControllerDataSource, UI
                         }
                         quickFour.iniText = self.editJson["description"].stringValue
                         globalPostImage = []
-                        print("\n Itinerary Data : \(self.editJson) \n");
+                        
                         for (_,photo) in self.editJson["photos"] {
                             let po = PostImage();
                             po.urlToData(photo["name"].stringValue, serverID: photo["_id"].stringValue)

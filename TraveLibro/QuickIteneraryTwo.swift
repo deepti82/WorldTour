@@ -30,6 +30,7 @@ class QuickIteneraryTwo: UIViewController {
 //            eachButton.clipsToBounds = true
             eachButton.addTarget(self, action: #selector(typeButtonPressed(_:)), for: .touchUpInside)
         }
+        
         for button in typeButton {
             let index = typeButton.index(of: button)
             button.setTitle(array[index!], for: .application)
@@ -58,17 +59,18 @@ class QuickIteneraryTwo: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
     func typeButtonPressed(_ sender: UIButton!){
         if sender.tag == 0 {
             sender.setBackgroundImage(UIImage(named: "orangebox"), for: .normal)
 //            sender.imageView?.contentMode = .scaleAspectFit
 //            sender.clipsToBounds = true
-            eachButton.append(sender.title(for: .application)!)
+            eachButton.append(sender.currentTitle!)
             sender.tag = 1
         }
         else {
             sender.setBackgroundImage(UIImage(named: "bluebox"), for: .normal)
-            eachButton = eachButton.filter({$0 != sender.currentTitle})
+            eachButton = eachButton.filter { $0 != sender.currentTitle }
             sender.tag = 0
 //            sender.imageView?.contentMode = .scaleAspectFit
 //            sender.clipsToBounds = true
