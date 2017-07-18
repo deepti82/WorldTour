@@ -88,6 +88,11 @@ class ActivityFeedFooterBasic: UIView {
         likeButton.imageView?.contentMode = .scaleAspectFit
         self.likeHeart.text = String(format: "%C", faicon["likes"]!)
         
+        //option button border
+//        optionButton.layer.cornerRadius = 5
+//        optionButton.layer.borderColor = mainBlueColor.cgColor
+//        optionButton.layer.borderWidth = 0.5
+        
         do {
             audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: like))
         }
@@ -135,7 +140,7 @@ class ActivityFeedFooterBasic: UIView {
                 if feed["checkIn"] != nil && feed["checkIn"]["lat"].stringValue != "" {
                     ratingStack.isHidden = true
                     if canRate() {
-                        rateThisButton.setTitle("Rate this now", for: .normal)
+                        rateThisButton.setTitle("Rate", for: .normal)
                     }
                     else {
                         rateThisButton.setTitle("", for: .normal)
@@ -146,6 +151,15 @@ class ActivityFeedFooterBasic: UIView {
                     ratingStack.isHidden = true
                     rateThisButton.isHidden = true
                 }
+            }
+            
+            if (isSelfUser(otherUserID: postTop["user"]["_id"].stringValue) && self.pageType == viewType.VIEW_TYPE_MY_LIFE) {
+                optionButton.setImage(nil, for: .normal)
+                optionButton.setTitle("Edit", for: .normal)
+            }
+            else {
+                optionButton.setImage((UIImage(named: "options_icon")), for: .normal)
+                optionButton.setTitle("", for: .normal)
             }
             
             if (isSelfUser(otherUserID: postTop["user"]["_id"].stringValue) && self.pageType != viewType.VIEW_TYPE_MY_LIFE) {
