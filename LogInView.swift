@@ -52,6 +52,7 @@ class LogInView: UIView {
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view);
+        print("test")
     }
     
 }
